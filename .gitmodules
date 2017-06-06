@@ -1,0 +1,3 @@
+[submodule "OpenTuner"]
+	path = OpenTuner
+	url = https://github.com/jansel/opentuner.git
