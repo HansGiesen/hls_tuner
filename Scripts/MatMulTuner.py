@@ -26,6 +26,8 @@ class MatMulTuner(MeasurementInterface):
     self.project_path = self.i3_root + "/Code/SDSoC/MatMul"
     self.output_path  = self.project_path + "/Debug"
 
+    self.serial_device = "/dev/ttyACM0"
+
     super(MatMulTuner, self).__init__(*args)
 
   def manipulator(self):
@@ -46,6 +48,9 @@ class MatMulTuner(MeasurementInterface):
     return manipulator
 
   def run(self, desired_result, input, limit):
+
+    print("Building...")
+
     cfg = desired_result.configuration.data
 
     symbols = ''
@@ -57,12 +62,16 @@ class MatMulTuner(MeasurementInterface):
     build_cmd += 'make clean && '
     build_cmd += 'make I3_PARAMETERS=\'' + symbols + '\'"'
 
-    build_result = self.call_program(build_cmd)
-    assert build_result['returncode'] == 0
+    print("BUILDING HAS BEEN DISABLED!!!")
+#    build_result = self.call_program(build_cmd)
+#    assert build_result['returncode'] == 0
 
-    run_cmd = './tmp.bin'
+    print("Running...")
+
+    run_cmd  = [self.script_path + '/Run', self.output_path, self.serial_device]
 
     run_result = self.call_program(run_cmd)
+#    print(run_result['stdout'])
     assert run_result['returncode'] == 0
 
     return Result(time = run_result['time'])
