@@ -23,16 +23,14 @@
 								<option id="xilinx.gnu.compiler.dircategory.includes.411392918" name="Include Paths" superClass="xilinx.gnu.compiler.dircategory.includes" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;../src&quot;"/>
 								</option>
-								<option id="xilinx.gnu.compiler.symbols.defined.893987827" name="Defined symbols (-D)" superClass="xilinx.gnu.compiler.symbols.defined" valueType="definedSymbols"/>
+								<option id="xilinx.gnu.compiler.symbols.defined.893987827" name="Defined symbols (-D)" superClass="xilinx.gnu.compiler.symbols.defined"/>
 								<inputType id="com.xilinx.sdsoc.managedbuild.tool.sdscc.input.1933431947" name="C source files" superClass="com.xilinx.sdsoc.managedbuild.tool.sdscc.input"/>
 							</tool>
 							<tool id="com.xilinx.sdsoc.managedbuild.toolchain.cppcompiler.1020502216" name="SDS++ Compiler" superClass="com.xilinx.sdsoc.managedbuild.toolchain.cppcompiler">
 								<option id="xilinx.gnu.compiler.dircategory.includes.815969374" name="Include Paths" superClass="xilinx.gnu.compiler.dircategory.includes" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;../src&quot;"/>
 								</option>
-								<option id="xilinx.gnu.compiler.symbols.defined.1700196925" superClass="xilinx.gnu.compiler.symbols.defined" valueType="definedSymbols">
-									<listOptionValue builtIn="false" value="BLA=3"/>
-								</option>
+								<option id="xilinx.gnu.compiler.symbols.defined.1700196925" name="Defined symbols (-D)" superClass="xilinx.gnu.compiler.symbols.defined" valueType="definedSymbols"/>
 								<inputType id="com.xilinx.sdsoc.managedbuild.tool.sdspp.input.2086168206" name="C++ source files" superClass="com.xilinx.sdsoc.managedbuild.tool.sdspp.input"/>
 							</tool>
 							<tool id="com.xilinx.sdsoc.managedbuild.toolchain.linker.1897933402" name="SDS++ Linker" superClass="com.xilinx.sdsoc.managedbuild.toolchain.linker">

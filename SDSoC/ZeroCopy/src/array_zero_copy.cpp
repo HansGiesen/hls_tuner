@@ -39,49 +39,83 @@ ALL TIMES.
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <iostream>
 
-#include "hls_tuner.h"
-#include "mmult_accel.h"
-
-#pragma tuner parameter PARTITIONS integer 1 16
-
-#ifndef PARTITIONS
-#define PARTITIONS 16
+#ifdef __SDSCC__
+#include "sds_lib.h"
+#else 
+#define sds_alloc(x)(malloc(x))
+#define sds_free(x)(free(x))
 #endif
 
-/**
- *
- * Design principles to achieve II = 1
- * 1. Stream data into local RAM for inputs (multiple access required)
- * 2. Partition local RAMs into N/2 sub-arrays for fully parallel access (dual-port read)
- * 3. Pipeline the dot-product loop, to fully unroll it
- * 4. Separate multiply-accumulate in inner loop to force two FP operators
- *
- */
-void mmult_accel(float A[N*N], float B[N*N], float C[N*N]) 
+#define N 16
+#define NUM_ITERATIONS N
+
+typedef short data_t;
+
+#pragma SDS data zero_copy(a, b)
+void array_zero_copy(data_t a[N], data_t b[N])
 {
-     float _A[N][N], _B[N][N];
-PRAGMA(HLS array_partition variable=_A block factor=PARTITIONS dim=2)
-#pragma HLS array_partition variable=_B block factor=16 dim=1
-     
-     for(int i=0; i<N; i++) {
-          for(int j=0; j<N; j++) {
-#pragma HLS PIPELINE
-               _A[i][j] = A[i * N + j];
-               _B[i][j] = B[i * N + j];
-          }
+     for(int i = 0; i < N; i++) {
+          b[i] = a[i];
      }
-     
+}
+
+void arraycopy_sw(data_t *a, data_t *b)
+{
+     for(int i = 0; i < N; i++) {
+          b[i] = a[i];
+     }
+}
+
+int print_results(data_t A[N], data_t swOut[N], data_t hwOut[N])
+{
+     int i;
+     std::cout << "     A   : ";
+     for (i = 0; i < N; i++)
+          std::cout << A[i];
+     std::cout << std::endl << "(sw) A_cpy: ";
+     for (i = 0; i < N; i++) 
+          std::cout << swOut[i];
+     std::cout << std::endl << "(hw) A_cpy: ";
+     for (i = 0; i < N; i++) 
+          std::cout << hwOut[i];
+     std::cout << std::endl;
+     return 0;
+}
+
+int compare(data_t swOut[N], data_t hwOut[N])
+{
      for (int i = 0; i < N; i++) {
-          for (int j = 0; j < N; j++) {
-#pragma HLS PIPELINE
-               float result = 0;
-               for (int k = 0; k < N; k++) {
-                    float term = _A[i][k] * _B[k][j];
-                    result += term;
-               }
-               C[i * N + j] = result;
+          if (swOut[i] != hwOut[i]) {
+               std::cout << "Values differ: swOut[" << i 
+                         << swOut[i] << "],  hwOut[" << i 
+                         << "] = " << hwOut[i] << std::endl;
+               return -1;
           }
      }
+     std::cout << "RESULTS MATCH" << std::endl << std::endl;
+     return 0;
+}
+
+int main(int argc, char* argv[])
+{
+     data_t  Bs[N];
+     data_t *A = (data_t*)sds_alloc(N * sizeof(data_t));
+     data_t *B = (data_t*)sds_alloc(N * sizeof(data_t));
+     int result = 0;
+     for (int i = 1; !result && i < NUM_ITERATIONS; i++) {
+          for (int j = 1; j < N; j++) {
+               A[j]  = j;
+               B[j] = 0;
+               Bs[j] = 0;
+          }
+          arraycopy_sw(A, Bs);
+          array_zero_copy(A, B);
+          print_results(A, Bs, B);
+          result = compare(Bs, B);
+     }
+     
+     return result;
 }
 
