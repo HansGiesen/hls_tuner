@@ -39,10 +39,12 @@ class ZeroCopyTuner(MeasurementInterface):
     self.make_file   = os.path.join(self.hls_tuner_root, "HLSTuner", "Examples", "ZeroCopy", "makefile")
     self.output_root = os.path.join(self.hls_tuner_root, "HLSTuner", "Examples", "ZeroCopy")
 
-    self.compile_timeout = 30 * 60
-    self.run_timeout     = 10
+    self.build_timeout = 30 * 60
+    self.run_timeout   = 60
 
     self.parallel_compile = True
+
+    self.grid_slots = 1
 
     old_data_found = False
     for name in os.listdir(self.output_root):
@@ -84,46 +86,52 @@ class ZeroCopyTuner(MeasurementInterface):
                  'echo "Running on $(hostname)"\n' \
                  'source $SDSOC_ROOT/settings64.sh\n' \
                  'export HLS_TUNER_ROOT=' + self.hls_tuner_root + '\n' \
-                 'make -f ' + self.make_file + ' clean all HLS_TUNER_PARAMETERS=\'' + symbols + '\'\n')
+                 'timeout ' + str(self.build_timeout) + 's' \
+                 ' make -f ' + self.make_file + ' clean all' \
+                 ' JOBS=' + str(self.grid_slots) + \
+                 ' HLS_TUNER_PARAMETERS=\'' + symbols + '\'\n')
 
-    build_cmd_template = 'ssh giesen@iclogin "qsub -S /bin/bash' \
-                         ' -wd ' + output_path + \
-                         ' -o ' + os.path.join(output_path, 'Build_output.log') + \
-                         ' -e ' + os.path.join(output_path, 'Build_error.log') + \
-                         ' {}' \
-                         ' -sync y' \
-                         ' ' + build_script + '"'
+    build_result = self.run_on_grid(result_id, output_path, build_script,
+                                    '-q \'70s*\' -now y')
 
-    build_cmd = build_cmd_template.format('-q \'70s*\' -now y')
-    compile_result = self.call_program(build_cmd, limit = self.compile_timeout)
+    if self.grid_unavailable(build_result):
+      log.info('No 70s are available.  Configuration %d will fall back to' \
+               ' 60s.', result_id)
+      build_result = self.run_on_grid(result_id, output_path, build_script,
+                                      '-q \'!icsafe*\'')
 
-    if compile_result['returncode'] != 0 and compile_result['timeout'] < 60:
-      log.info('No 70s are available.  Falling back to icsafe machines.')
-      build_cmd = build_cmd_template.format('-q \'70s*,icsafe*\'', '-now y')
-      compile_result = self.call_program(build_cmd, limit = self.compile_timeout)
+#    build_result = self.run_on_grid(result_id, output_path, build_script,
+#                                    '-q \'70s*\' -now y')
+#
+#    if grid_unavailable(build_result):
+#      log.info('No 70s are available.  Configuration %d will fall back to' \
+#               ' icsafe machines.', result_id)
+#      build_result = self.run_on_grid(result_id, output_path, build_script,
+#                                      '-q \'70s*,icsafe@!icsafe01*\' -now y')
+#
+#    if grid_unavailable(build_result):
+#      log.info('No 70s or icsafe machines are available.  Configuration %d' \
+#               ' will fall back to 60s.', result_id)
+#      build_result = self.run_on_grid(result_id, output_path, build_script,
+#                                      '-q \'*@!icsafe01*\'')
 
-    if compile_result['returncode'] != 0 and compile_result['timeout'] < 60:
-      log.info('No 70s or icsafe machines are available.  Falling back to 60s.')
-      build_cmd = build_cmd_template.format('')
-      compile_result = self.call_program(build_cmd, limit = self.compile_timeout)
-
-    if compile_result['returncode'] != 0:
-      if compile_result['timeout']:
-        log.error("Build timeout on configuration " + str(result_id))
+    if build_result['returncode'] != 0:
+      if build_result['timeout']:
+        log.error("Build timeout on configuration %d", result_id)
         return 'timeout'
       else:
-        log.error("Build error on configuration " + str(result_id))
+        log.error("Build error on configuration %d", result_id)
         return 'error'
 
     Log_file = os.path.join(output_path, 'Build_output.log')
     timing_met = False
     with open(Log_file, 'r') as file:
       for line in file:
-        if line == 'All user specified timing constraints are met.\n'
+        if line == 'All user specified timing constraints are met.\n':
           timing_met = True
 
     if not timing_met:
-      log.error('Timing not met on configuration ' + str(result_id))
+      log.error('Timing not met on configuration %d', result_id)
       return 'error'
 
     log.info("Build of configuration %d was successful...", result_id)
@@ -133,12 +141,12 @@ class ZeroCopyTuner(MeasurementInterface):
   def run_precompiled(self, desired_result, input, limit, compile_result,
                       result_id):
 
-    log.info("Running configuration %d...", result_id)
-
     if compile_result == 'timeout':
       return Result(state = 'TIMEOUT', time = float('inf'))
     elif compile_result == 'error':
       return Result(state = 'ERROR', time = float('inf'))
+
+    log.info("Running configuration %d...", result_id)
 
     output_path = os.path.join(self.output_root, "Build_{0:04d}".format(result_id))
 
@@ -146,7 +154,7 @@ class ZeroCopyTuner(MeasurementInterface):
       data = file.read()
     target_file = re.search('^main-build: (\S+)', data, re.MULTILINE).group(1)
 
-    run_script = os.path.join(output_path, 'run.sh')
+    run_script = os.path.join(output_path, 'run.tcl')
     with open(run_script, 'w') as file:
       file.write('connect\n' \
                  'source ' + output_path + '/_sds/p0/ipi/zed.sdk/ps7_init.tcl\n' \
@@ -165,34 +173,55 @@ class ZeroCopyTuner(MeasurementInterface):
                  'bpadd -addr &exit\n' \
                  'con -block\n')
 
-    run_cmd = 'source ' + os.path.join(self.sdsoc_root, 'settings64.sh') + \
+    run_cmd = '/bin/bash -c \'source ' + os.path.join(self.sdsoc_root, 'settings64.sh') + \
               ' && cd ' + output_path + \
-              ' && sdx -batch -source ' + run_script
+              ' && sdx -batch -source ' + run_script + '\''
 
     try:
-      run_result = self.call_program(run_cmd, limit = self.run_timeout)
+      run_result = self.call_program(run_cmd, shell = True, limit = self.run_timeout)
     except OSError:
       return Result(state='ERROR', time=float('inf'))
 
     with open(os.path.join(output_path, 'Run_output.log'), 'w') as file:
-      file.write(run_result.stdout)
+      file.write(run_result['stdout'])
     with open(os.path.join(output_path, 'Run_error.log'), 'w') as file:
-      file.write(run_result.stderr)
+      file.write(run_result['stderr'])
 
     if run_result['returncode'] != 0:
       if run_result['timeout']:
-        log.error('Run timeout on configuration ' + str(result_id))
+        log.error('Run timeout on configuration %d', result_id)
         return Result(state='TIMEOUT', time=float('inf'))
       else:
-        log.error('Run error on configuration ' + str(result_id))
+        log.error('Run error on configuration %d', result_id)
         return Result(state='ERROR', time=float('inf'))
 
     log.info("Run of configuration %d was successful...", result_id)
 
     return Result(time=run_result['time'])
 
+  def run_on_grid(self, result_id, output_path, build_script, qsub_params):
+
+    build_cmd_template = 'ssh giesen@iclogin "qsub -S /bin/bash' \
+                         ' -wd ' + output_path + \
+                         ' -o ' + os.path.join(output_path, 'Build_output.log') + \
+                         ' -e ' + os.path.join(output_path, 'Build_error.log') + \
+                         ' -N Build_' + str(result_id) + \
+                         ' {}' \
+                         ' -sync y' \
+                         ' -l mem=16g' \
+                         ' ' + build_script + '"'
+
+    build_cmd = build_cmd_template.format(qsub_params)
+    build_result = self.call_program(build_cmd)
+   
+    return build_result
+
+  def grid_unavailable(self, build_result):
+    output = build_result['stderr']
+    return re.search("Your qsub request could not be scheduled", output) != None
+
   def save_final_config(self, configuration):
-    print "Optimal number of partitions:", configuration.data
+    log.info("Optimal number of partitions: %d", configuration.data)
     self.manipulator().save_to_file(configuration.data, 'ZeroCopy_final_config.json')
 
 if __name__ == '__main__':

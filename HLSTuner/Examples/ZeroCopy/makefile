@@ -15,7 +15,7 @@ CPP_DEPS := array_zero_copy.d
               -fmessage-length=0 -MT"$@" -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" \
               -o "$@" "$<" -sds-hw array_zero_copy array_zero_copy.cpp \
               -clkid 1 -sds-end -sds-sys-config standalone -sds-proc a9_0 \
-              -sds-pf "zed"
+              -sds-pf "zed" -maxjobs $(JOBS)
 	@echo 'Finished building: $<'
 	@echo ' '
 
@@ -32,7 +32,9 @@ main-build: ZeroCopy.elf
 ZeroCopy.elf: $(OBJS)  $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: SDS++ Linker'
-	sds++  -o "ZeroCopy.elf" $(OBJS) $(USER_OBJS) $(LIBS) -dmclkid 1  -sds-sys-config standalone -sds-proc a9_0 -sds-pf "zed"
+	sds++ -o "ZeroCopy.elf" $(OBJS) $(USER_OBJS) $(LIBS) -dmclkid 1 \
+              -sds-sys-config standalone -sds-proc a9_0 -sds-pf "zed" \
+              -maxjobs $(JOBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
