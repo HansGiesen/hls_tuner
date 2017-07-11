@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ASCII"?>
+<sdsproject:SDSProject xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sdsproject="http://www.xilinx.com/sdsproject" name="FilterPipeline" location="/home/gyzuh/University/HLSTuner/SDSoC/FilterPipeline" platform="zed" sysConfig="standalone" runtime="C/C++" cpu="a9_0" os="standalone" ConfigType="Debug">
+  <configuration name="Debug" id="com.xilinx.sdsoc.managedbuild.project.debug.71544166">
+    <configBuildOptions xsi:type="sdsproject:Option" insertapm="false" genbitstream="true" gensdcard="false" dmclkid="2" enableHwSwTrace="false" traceApplication="false">
+      <accelerator name="Filter_hor_HW" filepath="src/FilterPipeline.cpp" clkid="1"/>
+      <accelerator name="Filter_ver_HW" filepath="src/FilterPipeline.cpp" clkid="1"/>
+    </configBuildOptions>
+    <lastBuildOptions xsi:type="sdsproject:Option" insertapm="false" genbitstream="true" gensdcard="false" dmclkid="2" enableHwSwTrace="false" traceApplication="false">
+      <accelerator name="Filter_hor_HW" filepath="src/FilterPipeline.cpp" clkid="1"/>
+      <accelerator name="Filter_ver_HW" filepath="src/FilterPipeline.cpp" clkid="1"/>
+    </lastBuildOptions>
+  </configuration>
+  <configuration name="Release" id="com.xilinx.sdsoc.managedbuild.project.release.803452019">
+    <configBuildOptions xsi:type="sdsproject:Option" insertapm="false" genbitstream="true" gensdcard="true" dmclkid="1" enableHwSwTrace="false" traceApplication="false"/>
+  </configuration>
+</sdsproject:SDSProject>
