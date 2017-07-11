@@ -10,6 +10,8 @@ import shutil
 import re
 import logging
 import argparse
+import threading
+import serial
 
 from opentuner import ConfigurationManipulator
 from opentuner import IntegerParameter
@@ -88,7 +90,7 @@ class ZeroCopyTuner(MeasurementInterface):
                  'export HLS_TUNER_ROOT=' + self.hls_tuner_root + '\n' \
                  'timeout ' + str(self.build_timeout) + 's' \
                  ' make -f ' + self.make_file + ' clean all' \
-                 ' JOBS=' + str(self.grid_slots) + \
+                 ' THREADS=' + str(self.grid_slots) + \
                  ' HLS_TUNER_PARAMETERS=\'' + symbols + '\'\n')
 
     build_result = self.run_on_grid(result_id, output_path, build_script,
@@ -154,7 +156,7 @@ class ZeroCopyTuner(MeasurementInterface):
       data = file.read()
     target_file = re.search('^main-build: (\S+)', data, re.MULTILINE).group(1)
 
-    run_script = os.path.join(output_path, 'run.tcl')
+    run_script = os.path.join(output_path, 'Run.tcl')
     with open(run_script, 'w') as file:
       file.write('connect\n' \
                  'source ' + output_path + '/_sds/p0/ipi/zed.sdk/ps7_init.tcl\n' \
@@ -177,10 +179,16 @@ class ZeroCopyTuner(MeasurementInterface):
               ' && cd ' + output_path + \
               ' && sdx -batch -source ' + run_script + '\''
 
+    serial_port = serial.Serial('/dev/ttyACM0', baudrate = 115200, timeout = 1)
+    thread = self.CollectOutputThread(serial_port, output_path)
+    thread.start()
+
     try:
       run_result = self.call_program(run_cmd, shell = True, limit = self.run_timeout)
     except OSError:
       return Result(state='ERROR', time=float('inf'))
+
+    thread.join()
 
     with open(os.path.join(output_path, 'Run_output.log'), 'w') as file:
       file.write(run_result['stdout'])
@@ -223,6 +231,24 @@ class ZeroCopyTuner(MeasurementInterface):
   def save_final_config(self, configuration):
     log.info("Optimal number of partitions: %d", configuration.data)
     self.manipulator().save_to_file(configuration.data, 'ZeroCopy_final_config.json')
+
+  class CollectOutputThread(threading.Thread):
+
+    def __init__(self, serial_port, output_path):
+      super(ZeroCopyTuner.CollectOutputThread, self).__init__()
+      self.serial_port = serial_port
+      self.output_path = output_path
+      self.stop_event = threading.Event()
+
+    def run(self):
+      with open(os.path.join(self.output_path, 'Serial_output.log'), 'w') as file:
+        while not self.stop_event.isSet():
+          data = self.serial_port.read()
+          file.write(data)
+
+    def join(self, timeout = None):
+      self.stop_event.set()
+      super(ZeroCopyTuner.CollectOutputThread, self).join(timeout)
 
 if __name__ == '__main__':
   opentuner.init_logging()

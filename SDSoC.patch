@@ -1,13 +1,19 @@
---- xdcc.tcl.old	2017-06-29 15:22:02.309957172 -0400
-+++ xdcc.tcl	2017-06-29 15:22:27.669623737 -0400
-@@ -3270,6 +3270,10 @@
-   } elseif {[string equal $arg "-maxthreads"]} {
-     incr i
-     append other_syslink_switches " -maxthreads " [lindex $argv $i]
-+  } elseif {[string equal $arg "-maxjobs"]} {
-+# HG: Modification for IC grid
-+    incr i
-+    append other_syslink_switches " -maxjobs " [lindex $argv $i]
-   } elseif {[string equal $arg "-sdcard"]} {
-     incr i
-     set tempdir [lindex $argv $i]
+--- loader.old	2017-07-07 14:36:50.478749172 -0400
++++ loader	2017-07-07 14:36:56.638751072 -0400
+@@ -32,6 +32,8 @@
+   return $_valid
+ }
+ 
++OS=$(awk '/DISTRIB_ID=/' /etc/*-release | sed 's/DISTRIB_ID=//' | tr '[:upper:]' '[:lower:]')
++
+ if [ "$XIL_NO_OVERRIDE" = "1" ]; then
+   XIL_PA_NO_XILINX_OVERRIDE=1
+   XIL_PA_NO_XILINX_SDK_OVERRIDE=1
+@@ -418,7 +420,6 @@
+ export RDI_APPROOT
+ 
+ # Ubuntu-specific logic (from SDSoC)
+-OS=$(awk '/DISTRIB_ID=/' /etc/*-release | sed 's/DISTRIB_ID=//' | tr '[:upper:]' '[:lower:]')
+ if [ "$OS" = "ubuntu" ]; then
+     PATH=$RDI_APPROOT/tps/$RDI_PLATFORM/libxslt/bin:$PATH
+     LD_LIBRARY_PATH=$RDI_APPROOT/tps/$RDI_PLATFORM/libxslt/lib:$LD_LIBRARY_PATH
