@@ -23,32 +23,28 @@
 #define UNROLL_FACTOR_INNER_VER 1
 #endif
 
-#if UNROLL_SKIP_CHECK_OUTER_HOR == 1
-#define UNROLL_SKIP_CHECK_OUTER_HOR skip_exit_check
-#else
+#ifndef UNROLL_SKIP_CHECK_OUTER_HOR
 #define UNROLL_SKIP_CHECK_OUTER_HOR
 #endif
 
-#if UNROLL_SKIP_CHECK_INNER_HOR == 1
-#define UNROLL_SKIP_CHECK_INNER_HOR skip_exit_check
-#else
+#ifndef UNROLL_SKIP_CHECK_INNER_HOR
 #define UNROLL_SKIP_CHECK_INNER_HOR
 #endif
 
-#if UNROLL_SKIP_CHECK_OUTER_VER == 1
-#define UNROLL_SKIP_CHECK_OUTER_VER skip_exit_check
-#else
+#ifndef UNROLL_SKIP_CHECK_OUTER_VER
 #define UNROLL_SKIP_CHECK_OUTER_VER
 #endif
 
-#if UNROLL_SKIP_CHECK_INNER_VER == 1
-#define UNROLL_SKIP_CHECK_INNER_VER skip_exit_check
-#else
+#ifndef UNROLL_SKIP_CHECK_INNER_VER
 #define UNROLL_SKIP_CHECK_INNER_VER
 #endif
 
-#ifndef INIT_INTERVAL
-#define INIT_INTERVAL 16
+#ifndef INIT_INTERVAL_HOR
+#define INIT_INTERVAL_HOR 16
+#endif
+
+#ifndef INIT_INTERVAL_VER
+#define INIT_INTERVAL_VER 16
 #endif
 
 #define MATRIX_WIDTH  (128)
@@ -127,10 +123,10 @@ void Filter_hor_HW(const matrix_type iInput[MATRIX_HEIGHT * MATRIX_WIDTH],
     for (int X = 0; X < MATRIX_WIDTH + FILTER_LENGTH - 1; X++)
     {
       PRAGMA(HLS unroll factor=UNROLL_FACTOR_INNER_HOR UNROLL_SKIP_CHECK_INNER_HOR)
-      PRAGMA(HLS pipeline ii=INIT_INTERVAL)
+      PRAGMA(HLS pipeline ii=INIT_INTERVAL_HOR)
 
       matrix_type Sum = 0;
-      for (int Tap = 0; Tap < FILTER_LENGTH - 1; Tap++)
+      for (int Tap = 0; Tap < FILTER_LENGTH; Tap++)
       {
         matrix_type Value = 0;
         if (Tap < FILTER_LENGTH - 1)
@@ -163,10 +159,10 @@ void Filter_ver_HW(const matrix_type iInput[MATRIX_HEIGHT * MATRIX_WIDTH],
     {
 #pragma HLS DEPENDENCE variable=Buffer inter false
       PRAGMA(HLS unroll factor=UNROLL_FACTOR_INNER_VER UNROLL_SKIP_CHECK_INNER_VER)
-      PRAGMA(HLS pipeline ii=INIT_INTERVAL)
+      PRAGMA(HLS pipeline ii=INIT_INTERVAL_VER)
 
       matrix_type Sum = 0;
-      for (int Tap = 0; Tap < FILTER_LENGTH - 1; Tap++)
+      for (int Tap = 0; Tap < FILTER_LENGTH; Tap++)
       {
         matrix_type Value = 0;
         if (Tap < FILTER_LENGTH - 1)
