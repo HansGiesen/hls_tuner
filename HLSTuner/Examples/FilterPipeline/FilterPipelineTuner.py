@@ -118,20 +118,16 @@ class FilterPipelineTuner(MeasurementInterface):
                  ' THREADS=' + str(self.grid_slots) + \
                  ' HLS_TUNER_PARAMETERS=\'' + symbols + '\'\n')
 
+    # I avoid the icsafe machines because their operating system does not
+    # support SDSoC properly at the moment.
     build_result = self.run_on_grid(result_id, output_path, build_script,
                                     '-q \'70s*\' -now y')
 
     if self.grid_unavailable(build_result):
       log.info('No 70s are available.  Configuration %d will fall back to' \
-               ' icsafe machines.', result_id)
+               ' 60s.', result_id)
       build_result = self.run_on_grid(result_id, output_path, build_script,
-                                      '-q \'70s*,icsafe*\' -now y')
-
-    if self.grid_unavailable(build_result):
-      log.info('No 70s or icsafe machines are available.  Configuration %d' \
-               ' will fall back to 60s.', result_id)
-      build_result = self.run_on_grid(result_id, output_path, build_script,
-                                      '')
+                                      '-q \'!icsafe*\'')
 
     if build_result['returncode'] != 0:
       if build_result['returncode'] == 124:
