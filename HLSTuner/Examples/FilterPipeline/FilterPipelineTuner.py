@@ -43,7 +43,7 @@ class FilterPipelineTuner(MeasurementInterface):
     self.make_file   = os.path.join(self.hls_tuner_root, "HLSTuner", "Examples", "FilterPipeline", "makefile")
     self.output_root = os.path.join(self.hls_tuner_root, "HLSTuner", "Examples", "FilterPipeline")
 
-    self.build_timeout = 30 * 60
+    self.build_timeout = 120 * 60
     self.run_timeout   = 60
 
     self.parallel_compile = True
