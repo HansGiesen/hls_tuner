@@ -2,6 +2,7 @@
 
 #ifdef __SDSCC__
 #include <sds_lib.h>
+#include <hls_stream.h>
 #endif
 
 #include <iostream>
@@ -116,6 +117,14 @@ void Filter_SW(const matrix_type iInput[MATRIX_HEIGHT * MATRIX_WIDTH],
 void Filter_hor_HW(const matrix_type iInput[MATRIX_HEIGHT * MATRIX_WIDTH],
     matrix_type oOutput[MATRIX_HEIGHT * MATRIX_WIDTH])
 {
+  hls::stream<matrix_type> Input;
+  for (int Y = 0; Y < MATRIX_HEIGHT + FILTER_LENGTH - 1; Y++)
+    for (int X = 0; X < MATRIX_WIDTH; X++)
+      Input.write(iInput[Y * MATRIX_WIDTH + X]);
+
+#pragma HLS DATAFLOW
+
+  hls::stream<matrix_type> Output;
   matrix_type Buffer[FILTER_LENGTH - 1];
   for (int Y = 0; Y < MATRIX_HEIGHT; Y++)
   {
@@ -132,7 +141,7 @@ void Filter_hor_HW(const matrix_type iInput[MATRIX_HEIGHT * MATRIX_WIDTH],
         if (Tap < FILTER_LENGTH - 1)
           Value = Buffer[Tap];
         else if (X < MATRIX_WIDTH)
-          Value = iInput[Y * MATRIX_WIDTH + X];
+          Value = Input.read();
 
         Sum += Value;
 
@@ -141,9 +150,15 @@ void Filter_hor_HW(const matrix_type iInput[MATRIX_HEIGHT * MATRIX_WIDTH],
       }
 
       if (X >= FILTER_LENGTH - 1)
-        oOutput[Y * MATRIX_WIDTH + X - FILTER_LENGTH + 1] = Sum / FILTER_LENGTH;
+        Output.write(Sum / FILTER_LENGTH);
     }
   }
+
+#pragma HLS DATAFLOW
+
+  for (int Y = 0; Y < MATRIX_HEIGHT + FILTER_LENGTH - 1; Y++)
+    for (int X = 0; X < MATRIX_WIDTH; X++)
+      oOutput[Y * MATRIX_WIDTH + X] = Output.read();
 }
 
 #pragma SDS data mem_attribute(iInput:PHYSICAL_CONTIGUOUS, oOutput:PHYSICAL_CONTIGUOUS)
@@ -151,6 +166,14 @@ void Filter_hor_HW(const matrix_type iInput[MATRIX_HEIGHT * MATRIX_WIDTH],
 void Filter_ver_HW(const matrix_type iInput[MATRIX_HEIGHT * MATRIX_WIDTH],
     matrix_type oOutput[MATRIX_HEIGHT * MATRIX_WIDTH])
 {
+  hls::stream<matrix_type> Input;
+  for (int Y = 0; Y < MATRIX_HEIGHT + FILTER_LENGTH - 1; Y++)
+    for (int X = 0; X < MATRIX_WIDTH; X++)
+      Input.write(iInput[Y * MATRIX_WIDTH + X]);
+
+#pragma HLS DATAFLOW
+
+  hls::stream<matrix_type> Output;
   matrix_type Buffer[FILTER_LENGTH - 1][MATRIX_WIDTH];
   for (int Y = 0; Y < MATRIX_HEIGHT + FILTER_LENGTH - 1; Y++)
   {
@@ -168,7 +191,7 @@ void Filter_ver_HW(const matrix_type iInput[MATRIX_HEIGHT * MATRIX_WIDTH],
         if (Tap < FILTER_LENGTH - 1)
           Value = Buffer[Tap][X];
         else if (Y < MATRIX_HEIGHT)
-          Value = iInput[Y * MATRIX_WIDTH + X];
+          Value = Input.read();
 
         Sum += Value;
 
@@ -177,9 +200,15 @@ void Filter_ver_HW(const matrix_type iInput[MATRIX_HEIGHT * MATRIX_WIDTH],
       }
 
       if (Y >= FILTER_LENGTH - 1)
-        oOutput[(Y - FILTER_LENGTH + 1) * MATRIX_WIDTH + X] = Sum / FILTER_LENGTH;
+        Output.write(Sum / FILTER_LENGTH);
     }
   }
+
+  #pragma HLS DATAFLOW
+
+  for (int Y = 0; Y < MATRIX_HEIGHT + FILTER_LENGTH - 1; Y++)
+    for (int X = 0; X < MATRIX_WIDTH; X++)
+      oOutput[Y * MATRIX_WIDTH + X] = Output.read();
 }
 
 void Show_matrix(const matrix_type * iMatrix)

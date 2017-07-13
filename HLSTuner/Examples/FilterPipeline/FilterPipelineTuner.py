@@ -95,13 +95,21 @@ class FilterPipelineTuner(MeasurementInterface):
     build_script = os.path.join(output_path, 'build.sh')
     with open(build_script, 'w') as file:
       file.write('#!/bin/bash -e\n' \
-                 'echo "Running on $(hostname)"\n' \
                  'source $SDSOC_ROOT/settings64.sh\n' \
                  'export HLS_TUNER_ROOT=' + self.hls_tuner_root + '\n' \
                  'timeout ' + str(self.build_timeout) + 's' \
                  ' make -f ' + self.make_file + ' clean all' \
                  ' THREADS=' + str(self.grid_slots) + \
-                 ' HLS_TUNER_PARAMETERS=\'' + symbols + '\'\n')
+                 ' HLS_TUNER_PARAMETERS=\'' + symbols + '\'\n' \
+                 '(\n' \
+                 '  echo "Host: $(hostname)"\n' \
+                 '  echo "Output of free:"\n' \
+                 '  free -h\n' \
+                 '  echo "Output of top:"\n' \
+                 '  top -icbn 1\n' \
+                 '  echo "Output of dmesg:"\n' \
+                 '  dmesg -T\n' \
+                 ') > System.txt\n')
 
     build_result = self.run_on_grid(result_id, output_path, build_script,
                                     '-q \'70s*\' -now y')
