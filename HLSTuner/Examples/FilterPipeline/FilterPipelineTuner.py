@@ -14,6 +14,7 @@ import threading
 import serial
 
 from opentuner import ConfigurationManipulator
+from opentuner import LogIntegerParameter
 from opentuner import IntegerParameter
 from opentuner import EnumParameter
 from opentuner import MeasurementInterface
@@ -63,16 +64,16 @@ class FilterPipelineTuner(MeasurementInterface):
   def manipulator(self):
 
     manipulator = ConfigurationManipulator()
-    manipulator.add_parameter(IntegerParameter("UNROLL_FACTOR_OUTER_HOR", 1, 128))
-    manipulator.add_parameter(IntegerParameter("UNROLL_FACTOR_INNER_HOR", 1, 143))
-    manipulator.add_parameter(IntegerParameter("UNROLL_FACTOR_OUTER_VER", 1, 143))
-    manipulator.add_parameter(IntegerParameter("UNROLL_FACTOR_INNER_VER", 1, 128))
+    manipulator.add_parameter(LogIntegerParameter("UNROLL_FACTOR_OUTER_HOR", 1, 128))
+    manipulator.add_parameter(LogIntegerParameter("UNROLL_FACTOR_INNER_HOR", 1, 143))
+    manipulator.add_parameter(LogIntegerParameter("UNROLL_FACTOR_OUTER_VER", 1, 143))
+    manipulator.add_parameter(LogIntegerParameter("UNROLL_FACTOR_INNER_VER", 1, 128))
     manipulator.add_parameter(EnumParameter("UNROLL_SKIP_CHECK_OUTER_HOR", ['', 'skip_exit_check']))
     manipulator.add_parameter(EnumParameter("UNROLL_SKIP_CHECK_INNER_HOR", ['', 'skip_exit_check']))
     manipulator.add_parameter(EnumParameter("UNROLL_SKIP_CHECK_OUTER_VER", ['', 'skip_exit_check']))
     manipulator.add_parameter(EnumParameter("UNROLL_SKIP_CHECK_INNER_VER", ['', 'skip_exit_check']))
-    manipulator.add_parameter(IntegerParameter("INIT_INTERVAL_HOR", 1, 16))
-    manipulator.add_parameter(IntegerParameter("INIT_INTERVAL_VER", 1, 16))
+    manipulator.add_parameter(LogIntegerParameter("INIT_INTERVAL_HOR", 1, 16))
+    manipulator.add_parameter(LogIntegerParameter("INIT_INTERVAL_VER", 1, 16))
     return manipulator
 
   def compile_and_run(self, desired_result, input, limit):
@@ -95,48 +96,45 @@ class FilterPipelineTuner(MeasurementInterface):
     build_script = os.path.join(output_path, 'build.sh')
     with open(build_script, 'w') as file:
       file.write('#!/bin/bash -e\n' \
-                 'source $SDSOC_ROOT/settings64.sh\n' \
+                 'echo "Host: $(hostname)" > System.txt\n' \
+                 'Exit_handler()\n' \
+                 '{\n' \
+                 '  EXIT_VALUE=$?\n' \
+                 '  (\n' \
+                 '    echo "Output of free:"\n' \
+                 '    free -h\n' \
+                 '    echo "Output of top:"\n' \
+                 '    top -icbn 1\n' \
+                 '    echo "Output of dmesg:"\n' \
+                 '    dmesg -T\n' \
+                 '  ) >> System.txt\n' \
+                 '  exit ${EXIT_VALUE}\n' \
+                 '}\n' \
+                 'trap Exit_handler exit\n' \
+                 'source "$SDSOC_ROOT/settings64.sh"\n' \
                  'export HLS_TUNER_ROOT=' + self.hls_tuner_root + '\n' \
                  'timeout ' + str(self.build_timeout) + 's' \
                  ' make -f ' + self.make_file + ' clean all' \
                  ' THREADS=' + str(self.grid_slots) + \
-                 ' HLS_TUNER_PARAMETERS=\'' + symbols + '\'\n' \
-                 '(\n' \
-                 '  echo "Host: $(hostname)"\n' \
-                 '  echo "Output of free:"\n' \
-                 '  free -h\n' \
-                 '  echo "Output of top:"\n' \
-                 '  top -icbn 1\n' \
-                 '  echo "Output of dmesg:"\n' \
-                 '  dmesg -T\n' \
-                 ') > System.txt\n')
+                 ' HLS_TUNER_PARAMETERS=\'' + symbols + '\'\n')
 
     build_result = self.run_on_grid(result_id, output_path, build_script,
                                     '-q \'70s*\' -now y')
 
     if self.grid_unavailable(build_result):
       log.info('No 70s are available.  Configuration %d will fall back to' \
-               ' 60s.', result_id)
+               ' icsafe machines.', result_id)
       build_result = self.run_on_grid(result_id, output_path, build_script,
-                                      '-q \'!icsafe*\'')
+                                      '-q \'70s*,icsafe*\' -now y')
 
-#    build_result = self.run_on_grid(result_id, output_path, build_script,
-#                                    '-q \'70s*\' -now y')
-#
-#    if grid_unavailable(build_result):
-#      log.info('No 70s are available.  Configuration %d will fall back to' \
-#               ' icsafe machines.', result_id)
-#      build_result = self.run_on_grid(result_id, output_path, build_script,
-#                                      '-q \'70s*,icsafe@!icsafe01*\' -now y')
-#
-#    if grid_unavailable(build_result):
-#      log.info('No 70s or icsafe machines are available.  Configuration %d' \
-#               ' will fall back to 60s.', result_id)
-#      build_result = self.run_on_grid(result_id, output_path, build_script,
-#                                      '-q \'*@!icsafe01*\'')
+    if self.grid_unavailable(build_result):
+      log.info('No 70s or icsafe machines are available.  Configuration %d' \
+               ' will fall back to 60s.', result_id)
+      build_result = self.run_on_grid(result_id, output_path, build_script,
+                                      '')
 
     if build_result['returncode'] != 0:
-      if build_result['timeout']:
+      if build_result['returncode'] == 124:
         log.error("Build timeout on configuration %d", result_id)
         return 'timeout'
       else:
