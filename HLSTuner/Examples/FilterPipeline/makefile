@@ -11,12 +11,13 @@ CPP_DEPS := FilterPipeline.d
 %.o: ${SRC_DIR}/%.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking: SDS++ Compiler'
-	sds++ $(HLS_TUNER_PARAMETERS) -Wall -O0 -g -I"${SRC_DIR}" -c \
+	sds++ $(HLS_TUNER_DEFINES) -Wall -O0 -g -I"${SRC_DIR}" -c \
               -fmessage-length=0 -MT"$@" -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" \
-              -o "$@" "$<" -sds-hw Filter_hor_HW FilterPipeline.cpp  -clkid 1 \
-              -sds-end -sds-hw Filter_ver_HW FilterPipeline.cpp  -clkid 1 \
-              -sds-end -sds-sys-config standalone -sds-proc a9_0 \
-              -sds-pf "zed" -maxthreads $(THREADS)
+              -o "$@" "$<" -sds-hw Filter_hor_HW FilterPipeline.cpp  -clkid \
+              $(HLS_TUNER_ACCELERATOR_1_CLOCK) -sds-end -sds-hw Filter_ver_HW \
+              FilterPipeline.cpp  -clkid $(HLS_TUNER_ACCELERATOR_2_CLOCK) \
+              -sds-end -sds-sys-config standalone -sds-proc a9_0 -sds-pf \
+              "zed" -maxthreads $(THREADS)
 	@echo 'Finished building: $<'
 	@echo ' '
 
@@ -33,8 +34,9 @@ main-build: FilterPipeline.elf
 FilterPipeline.elf: $(OBJS)  $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: SDS++ Linker'
-	sds++ -o "FilterPipeline.elf" $(OBJS) $(USER_OBJS) $(LIBS) -dmclkid 1 \
-              -sds-sys-config standalone -sds-proc a9_0 -sds-pf "zed" \
+	sds++ -o "FilterPipeline.elf" $(OBJS) $(USER_OBJS) $(LIBS) -dmclkid \
+              $(HLS_TUNER_DATA_MOVER_CLOCK) -sds-sys-config standalone \
+              -sds-proc a9_0 -sds-pf "zed" \
               -maxthreads $(THREADS)
 	@echo 'Finished building target: $@'
 	@echo ' '

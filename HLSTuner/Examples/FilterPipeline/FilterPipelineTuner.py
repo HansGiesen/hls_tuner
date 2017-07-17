@@ -74,6 +74,9 @@ class FilterPipelineTuner(MeasurementInterface):
     manipulator.add_parameter(EnumParameter("UNROLL_SKIP_CHECK_INNER_VER", ['', 'skip_exit_check']))
     manipulator.add_parameter(LogIntegerParameter("INIT_INTERVAL_HOR", 1, 16))
     manipulator.add_parameter(LogIntegerParameter("INIT_INTERVAL_VER", 1, 16))
+    manipulator.add_parameter(EnumParameter("ACCELERATOR_1_CLOCK", ['0', '1', '2', '3']))
+    manipulator.add_parameter(EnumParameter("ACCELERATOR_2_CLOCK", ['0', '1', '2', '3']))
+    manipulator.add_parameter(EnumParameter("DATA_MOVER_CLOCK", ['0', '1', '2', '3']))
     return manipulator
 
   def compile_and_run(self, desired_result, input, limit):
@@ -89,9 +92,16 @@ class FilterPipelineTuner(MeasurementInterface):
     output_path = os.path.join(self.output_root, "Build_{0:04d}".format(result_id))
     os.mkdir(output_path)
 
-    symbols = ''
+    defines = ''
     for param, value in config_data.items():
-      symbols += ' -D{0}={1}'.format(param, value)
+      if param == 'DATA_MOVER_CLOCK':
+        data_mover_clock = str(value)
+      elif param == 'ACCELERATOR_1_CLOCK':
+        accelerator_1_clock = str(value)
+      elif param == 'ACCELERATOR_2_CLOCK':
+        accelerator_2_ clock = str(value)
+      else
+        defines += ' -D{0}={1}'.format(param, value)
 
     build_script = os.path.join(output_path, 'build.sh')
     with open(build_script, 'w') as file:
@@ -116,7 +126,10 @@ class FilterPipelineTuner(MeasurementInterface):
                  'timeout ' + str(self.build_timeout) + 's' \
                  ' make -f ' + self.make_file + ' clean all' \
                  ' THREADS=' + str(self.grid_slots) + \
-                 ' HLS_TUNER_PARAMETERS=\'' + symbols + '\'\n')
+                 ' HLS_TUNER_DEFINES=\'' + defines + '\'' \
+                 ' HLS_TUNER_DATA_MOVER_CLOCK=' + data_mover_clock \
+                 ' HLS_TUNER_ACCELERATOR_CLOCK=' + accelerator_1_clock + \
+                 ' HLS_TUNER_ACCELERATOR_CLOCK=' + accelerator_2_clock + '\n')
 
     # I avoid the icsafe machines because their operating system does not
     # support SDSoC properly at the moment.
