@@ -19,12 +19,18 @@ class MakeConfigTable(object):
       raise RuntimeError("Database could not be opened.")
 
   def main(self):
-    cfgs = self.session.query(resultsdb.models.Configuration)
+    results = self.session.query(resultsdb.models.Result)
+    if results.count() == 0:
+      return
     with open(self.args.csv_file, 'w') as file:
-      writer = csv.DictWriter(file, cfgs[0].data.keys())
+      keys = results[0].configuration.data.keys() + ['state', 'time']
+      writer = csv.DictWriter(file, keys)
       writer.writeheader()
-      for cfg in cfgs:
-        writer.writerow(cfg.data)
+      for result in results:
+        row = result.configuration.data
+        row['state'] = result.state
+        row['time'] = result.time
+        writer.writerow(row)
 
 if __name__ == '__main__':
   args = argparser.parse_args()
