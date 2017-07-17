@@ -12,6 +12,8 @@ import logging
 import argparse
 import threading
 import serial
+import stat
+import pwd
 
 from opentuner import ConfigurationManipulator
 from opentuner import LogIntegerParameter
@@ -40,8 +42,8 @@ class FilterPipelineTuner(MeasurementInterface):
     if self.hls_tuner_root == "":
       raise RuntimeError("Environment variable HLS_TUNER_ROOT was not set.")
 
-    self.make_file   = os.path.join(self.hls_tuner_root, "HLSTuner", "Examples", "FilterPipeline", "makefile")
-    self.output_root = os.path.join(self.hls_tuner_root, "HLSTuner", "Examples", "FilterPipeline")
+    self.make_file   = self.hls_tuner_root + "/HLSTuner/Examples/FilterPipeline/makefile"
+    self.output_root = self.hls_tuner_root + "/HLSTuner/Examples/FilterPipeline"
 
     self.build_timeout = 120 * 60
     self.run_timeout   = 60
@@ -50,9 +52,12 @@ class FilterPipelineTuner(MeasurementInterface):
 
     self.grid_slots = 1
 
+    self.serial_device   = '/dev/ttyACM0'
+    self.serial_baudrate = 115200
+
     old_data_found = False
     for name in os.listdir(self.output_root):
-      dir = os.path.join(self.output_root, name)
+      dir = self.output_root + '/' + name
       if os.path.isdir(dir) and re.match('Build_', os.path.basename(dir)):
         old_data_found = True
 
@@ -60,6 +65,27 @@ class FilterPipelineTuner(MeasurementInterface):
       raise RuntimeError("Old results were found.  Explicitly confirm" \
                          " appending the results using the --append command" \
                          " line arguments.")
+
+    try:
+      info = os.stat(self.serial_device)
+    except OSError:
+      raise RuntimeError("The serial device could not be found.  The FPGA may" \
+                         " not be powered on.")
+    if !os.access(self.serial_device, os.R_OK | os.W_OK):
+      raise RuntimeError("The user has no permission to access the serial" \
+                         " device.  Perhaps the user must be added to the" \
+                         " 'dialout' group.")
+
+    root_found = False
+    for pid in subprocess.check_output(['pidof', 'hw_server']):
+      for line in open('/proc/' + pid + '/status'):
+        if line.startswith('Uid:'):
+          uid = int(line.split()[1])
+          if uid == 0:
+            root_found = True
+    if not root_found:
+      raise RuntimeError("You should start hw_server as root before you run" \
+                         " this script.")
 
   def manipulator(self):
 
@@ -89,7 +115,7 @@ class FilterPipelineTuner(MeasurementInterface):
 
     log.info("Building configuration %d...", result_id)
 
-    output_path = os.path.join(self.output_root, "Build_{0:04d}".format(result_id))
+    output_path = self.output_root + "/Build_{0:04d}".format(result_id)
     os.mkdir(output_path)
 
     defines = ''
@@ -103,7 +129,7 @@ class FilterPipelineTuner(MeasurementInterface):
       else
         defines += ' -D{0}={1}'.format(param, value)
 
-    build_script = os.path.join(output_path, 'build.sh')
+    build_script = output_path + '/build.sh'
     with open(build_script, 'w') as file:
       file.write('#!/bin/bash -e\n' \
                  'echo "Host: $(hostname)" > System.txt\n' \
@@ -150,7 +176,7 @@ class FilterPipelineTuner(MeasurementInterface):
         log.error("Build error on configuration %d", result_id)
         return 'error'
 
-    Log_file = os.path.join(output_path, 'Build_output.log')
+    Log_file = output_path + '/Build_output.log'
     timing_met = False
     with open(Log_file, 'r') as file:
       for line in file:
@@ -175,13 +201,13 @@ class FilterPipelineTuner(MeasurementInterface):
 
     log.info("Running configuration %d...", result_id)
 
-    output_path = os.path.join(self.output_root, "Build_{0:04d}".format(result_id))
+    output_path = self.output_root + "/Build_{0:04d}".format(result_id)
 
     with open(self.make_file, 'r') as file:
       data = file.read()
     target_file = re.search('^main-build: (\S+)', data, re.MULTILINE).group(1)
 
-    run_script = os.path.join(output_path, 'Run.tcl')
+    run_script = output_path + '/Run.tcl'
     with open(run_script, 'w') as file:
       file.write('connect\n' \
                  'source ' + output_path + '/_sds/p0/ipi/zed.sdk/ps7_init.tcl\n' \
@@ -200,11 +226,11 @@ class FilterPipelineTuner(MeasurementInterface):
                  'bpadd -addr &exit\n' \
                  'con -block\n')
 
-    run_cmd = '/bin/bash -c \'source ' + os.path.join(self.sdsoc_root, 'settings64.sh') + \
+    run_cmd = '/bin/bash -c \'source ' + self.sdsoc_root + '/settings64.sh' + \
               ' && cd ' + output_path + \
               ' && sdx -batch -source ' + run_script + '\''
 
-    serial_port = serial.Serial('/dev/ttyACM0', baudrate = 115200, timeout = 1)
+    serial_port = serial.Serial(self.serial_device, baudrate = self.serial_baudrate, timeout = 1)
     thread = self.CollectOutputThread(serial_port, output_path)
     thread.start()
 
@@ -215,9 +241,9 @@ class FilterPipelineTuner(MeasurementInterface):
 
     thread.join()
 
-    with open(os.path.join(output_path, 'Run_output.log'), 'w') as file:
+    with open(output_path + '/Run_output.log', 'w') as file:
       file.write(run_result['stdout'])
-    with open(os.path.join(output_path, 'Run_error.log'), 'w') as file:
+    with open(output_path + '/Run_error.log', 'w') as file:
       file.write(run_result['stderr'])
 
     if run_result['returncode'] != 0:
@@ -236,8 +262,8 @@ class FilterPipelineTuner(MeasurementInterface):
 
     build_cmd_template = 'ssh giesen@iclogin "qsub -S /bin/bash' \
                          ' -wd ' + output_path + \
-                         ' -o ' + os.path.join(output_path, 'Build_output.log') + \
-                         ' -e ' + os.path.join(output_path, 'Build_error.log') + \
+                         ' -o ' + output_path + '/Build_output.log' + \
+                         ' -e ' + output_path + '/Build_error.log' + \
                          ' -N Build_' + str(result_id) + \
                          ' {}' \
                          ' -sync y' \
@@ -266,7 +292,7 @@ class FilterPipelineTuner(MeasurementInterface):
       self.stop_event = threading.Event()
 
     def run(self):
-      with open(os.path.join(self.output_path, 'Serial_output.log'), 'w') as file:
+      with open(self.output_path + '/Serial_output.log', 'w') as file:
         while not self.stop_event.isSet():
           data = self.serial_port.read()
           file.write(data)
