@@ -271,9 +271,18 @@ class FilterPipelineTuner(MeasurementInterface):
                          ' ' + build_script + '"'
 
     build_cmd = build_cmd_template.format(qsub_params)
-    build_result = self.call_program(build_cmd)
-   
-    return build_result
+
+    # This replaces MeasurementInterface.call_program, which sends a KILL
+    # signal instead of INT when a user interrupts the program.  As a result,
+    # qsub with the -now option does not have a chance to cancel running jobs.
+    process = subprocess.Popen(build_cmd, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
+    output, error = Process.communicate();
+
+    return {'time'      : 0,
+            'timeout'   : False,
+            'returncode': process.returncode,
+            'stdout'    : output,
+            'stderr'    : error}
 
   def grid_unavailable(self, build_result):
     output = build_result['stderr']
