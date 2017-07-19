@@ -278,6 +278,11 @@ class FilterPipelineTuner(MeasurementInterface):
     process = subprocess.Popen(build_cmd, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
     output, error = Process.communicate();
 
+    with open(os.path.join(output_path, 'Launch_output.log'), 'a') as file:
+      file.write(build_result['stdout'])
+    with open(os.path.join(output_path, 'Launch_error.log'), 'a') as file:
+      file.write(build_result['stderr'])
+
     return {'time'      : 0,
             'timeout'   : False,
             'returncode': process.returncode,
