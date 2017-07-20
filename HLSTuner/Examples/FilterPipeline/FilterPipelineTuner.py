@@ -71,14 +71,14 @@ class FilterPipelineTuner(MeasurementInterface):
     except OSError:
       raise RuntimeError("The serial device could not be found.  The FPGA may" \
                          " not be powered on.")
-    if !os.access(self.serial_device, os.R_OK | os.W_OK):
+    if not os.access(self.serial_device, os.R_OK | os.W_OK):
       raise RuntimeError("The user has no permission to access the serial" \
                          " device.  Perhaps the user must be added to the" \
                          " 'dialout' group.")
 
     root_found = False
-    for pid in subprocess.check_output(['pidof', 'hw_server']):
-      for line in open('/proc/' + pid + '/status'):
+    for pid in subprocess.check_output(['pidof', 'hw_server']).split():
+      for line in open('/proc/' + pid + '/status', 'rt'):
         if line.startswith('Uid:'):
           uid = int(line.split()[1])
           if uid == 0:
@@ -125,8 +125,8 @@ class FilterPipelineTuner(MeasurementInterface):
       elif param == 'ACCELERATOR_1_CLOCK':
         accelerator_1_clock = str(value)
       elif param == 'ACCELERATOR_2_CLOCK':
-        accelerator_2_ clock = str(value)
-      else
+        accelerator_2_clock = str(value)
+      else:
         defines += ' -D{0}={1}'.format(param, value)
 
     build_script = output_path + '/build.sh'
@@ -153,9 +153,9 @@ class FilterPipelineTuner(MeasurementInterface):
                  ' make -f ' + self.make_file + ' clean all' \
                  ' THREADS=' + str(self.grid_slots) + \
                  ' HLS_TUNER_DEFINES=\'' + defines + '\'' \
-                 ' HLS_TUNER_DATA_MOVER_CLOCK=' + data_mover_clock \
-                 ' HLS_TUNER_ACCELERATOR_CLOCK=' + accelerator_1_clock + \
-                 ' HLS_TUNER_ACCELERATOR_CLOCK=' + accelerator_2_clock + '\n')
+                 ' HLS_TUNER_DATA_MOVER_CLOCK=' + data_mover_clock + \
+                 ' HLS_TUNER_ACCELERATOR_1_CLOCK=' + accelerator_1_clock + \
+                 ' HLS_TUNER_ACCELERATOR_2_CLOCK=' + accelerator_2_clock + '\n')
 
     # I avoid the icsafe machines because their operating system does not
     # support SDSoC properly at the moment.
@@ -271,23 +271,14 @@ class FilterPipelineTuner(MeasurementInterface):
                          ' ' + build_script + '"'
 
     build_cmd = build_cmd_template.format(qsub_params)
-
-    # This replaces MeasurementInterface.call_program, which sends a KILL
-    # signal instead of INT when a user interrupts the program.  As a result,
-    # qsub with the -now option does not have a chance to cancel running jobs.
-    process = subprocess.Popen(build_cmd, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
-    output, error = Process.communicate();
+    build_result = self.call_program(build_cmd)
 
     with open(os.path.join(output_path, 'Launch_output.log'), 'a') as file:
       file.write(build_result['stdout'])
     with open(os.path.join(output_path, 'Launch_error.log'), 'a') as file:
       file.write(build_result['stderr'])
 
-    return {'time'      : 0,
-            'timeout'   : False,
-            'returncode': process.returncode,
-            'stdout'    : output,
-            'stderr'    : error}
+    return build_result
 
   def grid_unavailable(self, build_result):
     output = build_result['stderr']
