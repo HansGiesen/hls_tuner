@@ -118,7 +118,7 @@ void Filter_hor_HW(const matrix_type iInput[MATRIX_HEIGHT * MATRIX_WIDTH],
     matrix_type oOutput[MATRIX_HEIGHT * MATRIX_WIDTH])
 {
   hls::stream<matrix_type> Input;
-  for (int Y = 0; Y < MATRIX_HEIGHT + FILTER_LENGTH - 1; Y++)
+  for (int Y = 0; Y < MATRIX_HEIGHT; Y++)
     for (int X = 0; X < MATRIX_WIDTH; X++)
       Input.write(iInput[Y * MATRIX_WIDTH + X]);
 
@@ -156,7 +156,7 @@ void Filter_hor_HW(const matrix_type iInput[MATRIX_HEIGHT * MATRIX_WIDTH],
 
 #pragma HLS DATAFLOW
 
-  for (int Y = 0; Y < MATRIX_HEIGHT + FILTER_LENGTH - 1; Y++)
+  for (int Y = 0; Y < MATRIX_HEIGHT; Y++)
     for (int X = 0; X < MATRIX_WIDTH; X++)
       oOutput[Y * MATRIX_WIDTH + X] = Output.read();
 }
@@ -167,7 +167,7 @@ void Filter_ver_HW(const matrix_type iInput[MATRIX_HEIGHT * MATRIX_WIDTH],
     matrix_type oOutput[MATRIX_HEIGHT * MATRIX_WIDTH])
 {
   hls::stream<matrix_type> Input;
-  for (int Y = 0; Y < MATRIX_HEIGHT + FILTER_LENGTH - 1; Y++)
+  for (int Y = 0; Y < MATRIX_HEIGHT; Y++)
     for (int X = 0; X < MATRIX_WIDTH; X++)
       Input.write(iInput[Y * MATRIX_WIDTH + X]);
 
@@ -206,7 +206,7 @@ void Filter_ver_HW(const matrix_type iInput[MATRIX_HEIGHT * MATRIX_WIDTH],
 
   #pragma HLS DATAFLOW
 
-  for (int Y = 0; Y < MATRIX_HEIGHT + FILTER_LENGTH - 1; Y++)
+  for (int Y = 0; Y < MATRIX_HEIGHT; Y++)
     for (int X = 0; X < MATRIX_WIDTH; X++)
       oOutput[Y * MATRIX_WIDTH + X] = Output.read();
 }
