@@ -2,25 +2,21 @@
 #
 # Tuner for the Matrix Multiplication example in SDSoC
 
-import opentuner
-import os
-import subprocess
-import time
-import shutil
-import re
-import logging
-import argparse
-import threading
-import serial
-import stat
-import pwd
+# pylint: disable=bad-indentation,bad-whitespace,line-too-long
 
+import argparse
+import logging
+import os
+import re
+import subprocess
+import threading
+import opentuner
 from opentuner import ConfigurationManipulator
 from opentuner import LogIntegerParameter
-from opentuner import IntegerParameter
 from opentuner import EnumParameter
 from opentuner import MeasurementInterface
 from opentuner import Result
+import serial
 
 log = logging.getLogger('FilterPipelineTuner')
 
@@ -57,8 +53,8 @@ class FilterPipelineTuner(MeasurementInterface):
 
     old_data_found = False
     for name in os.listdir(self.output_root):
-      dir = self.output_root + '/' + name
-      if os.path.isdir(dir) and re.match('Build_', os.path.basename(dir)):
+      path = self.output_root + '/' + name
+      if os.path.isdir(path) and re.match('Build_', os.path.basename(dir)):
         old_data_found = True
 
     if old_data_found and not args.append:
@@ -67,7 +63,7 @@ class FilterPipelineTuner(MeasurementInterface):
                          " line arguments.")
 
     try:
-      info = os.stat(self.serial_device)
+      os.stat(self.serial_device)
     except OSError:
       raise RuntimeError("The serial device could not be found.  The FPGA may" \
                          " not be powered on.")
@@ -90,26 +86,21 @@ class FilterPipelineTuner(MeasurementInterface):
   def manipulator(self):
 
     manipulator = ConfigurationManipulator()
-    manipulator.add_parameter(LogIntegerParameter("UNROLL_FACTOR_OUTER_HOR", 1, 128))
-    manipulator.add_parameter(LogIntegerParameter("UNROLL_FACTOR_INNER_HOR", 1, 143))
-    manipulator.add_parameter(LogIntegerParameter("UNROLL_FACTOR_OUTER_VER", 1, 143))
-    manipulator.add_parameter(LogIntegerParameter("UNROLL_FACTOR_INNER_VER", 1, 128))
-    manipulator.add_parameter(EnumParameter("UNROLL_SKIP_CHECK_OUTER_HOR", ['', 'skip_exit_check']))
-    manipulator.add_parameter(EnumParameter("UNROLL_SKIP_CHECK_INNER_HOR", ['', 'skip_exit_check']))
-    manipulator.add_parameter(EnumParameter("UNROLL_SKIP_CHECK_OUTER_VER", ['', 'skip_exit_check']))
-    manipulator.add_parameter(EnumParameter("UNROLL_SKIP_CHECK_INNER_VER", ['', 'skip_exit_check']))
-    manipulator.add_parameter(LogIntegerParameter("INIT_INTERVAL_HOR", 1, 16))
-    manipulator.add_parameter(LogIntegerParameter("INIT_INTERVAL_VER", 1, 16))
+    manipulator.add_parameter(LogIntegerParameter("INIT_INTERVAL_HOR_1", 1, 16))
+    manipulator.add_parameter(LogIntegerParameter("INIT_INTERVAL_HOR_2", 1, 16))
+    manipulator.add_parameter(LogIntegerParameter("INIT_INTERVAL_VER_1", 1, 16))
+    manipulator.add_parameter(LogIntegerParameter("INIT_INTERVAL_VER_2", 1, 16))
+    manipulator.add_parameter(LogIntegerParameter("ARRAY_PARTITION_FACTOR", 1, 15))
     manipulator.add_parameter(EnumParameter("ACCELERATOR_1_CLOCK", ['0', '1', '2', '3']))
     manipulator.add_parameter(EnumParameter("ACCELERATOR_2_CLOCK", ['0', '1', '2', '3']))
     manipulator.add_parameter(EnumParameter("DATA_MOVER_CLOCK", ['0', '1', '2', '3']))
     return manipulator
 
-  def compile_and_run(self, desired_result, input, limit):
+  def compile_and_run(self, desired_result, inp, limit):
 
     cfg = desired_result.configuration.data
     compile_result = self.compile(cfg, 0)
-    return self.run_precompiled(desired_result, input, limit, compile_result, 0)
+    return self.run_precompiled(desired_result, inp, limit, compile_result, 0)
 
   def compile(self, config_data, result_id):
 
@@ -130,32 +121,32 @@ class FilterPipelineTuner(MeasurementInterface):
         defines += ' -D{0}={1}'.format(param, value)
 
     build_script = output_path + '/build.sh'
-    with open(build_script, 'w') as file:
-      file.write('#!/bin/bash -e\n' \
-                 'echo "Host: $(hostname)" > System.txt\n' \
-                 'Exit_handler()\n' \
-                 '{\n' \
-                 '  EXIT_VALUE=$?\n' \
-                 '  (\n' \
-                 '    echo "Output of free:"\n' \
-                 '    free -h\n' \
-                 '    echo "Output of top:"\n' \
-                 '    top -icbn 1\n' \
-                 '    echo "Output of dmesg:"\n' \
-                 '    dmesg -T\n' \
-                 '  ) >> System.txt\n' \
-                 '  exit ${EXIT_VALUE}\n' \
-                 '}\n' \
-                 'trap Exit_handler exit\n' \
-                 'source "$SDSOC_ROOT/settings64.sh"\n' \
-                 'export HLS_TUNER_ROOT=' + self.hls_tuner_root + '\n' \
-                 'timeout ' + str(self.build_timeout) + 's' \
-                 ' make -f ' + self.make_file + ' clean all' \
-                 ' THREADS=' + str(self.grid_slots) + \
-                 ' HLS_TUNER_DEFINES=\'' + defines + '\'' \
-                 ' HLS_TUNER_DATA_MOVER_CLOCK=' + data_mover_clock + \
-                 ' HLS_TUNER_ACCELERATOR_1_CLOCK=' + accelerator_1_clock + \
-                 ' HLS_TUNER_ACCELERATOR_2_CLOCK=' + accelerator_2_clock + '\n')
+    with open(build_script, 'w') as script_file:
+      script_file.write('#!/bin/bash -e\n' \
+                        'echo "Host: $(hostname)" > System.txt\n' \
+                        'Exit_handler()\n' \
+                        '{\n' \
+                        '  EXIT_VALUE=$?\n' \
+                        '  (\n' \
+                        '    echo "Output of free:"\n' \
+                        '    free -h\n' \
+                        '    echo "Output of top:"\n' \
+                        '    top -icbn 1\n' \
+                        '    echo "Output of dmesg:"\n' \
+                        '    dmesg -T\n' \
+                        '  ) >> System.txt\n' \
+                        '  exit ${EXIT_VALUE}\n' \
+                        '}\n' \
+                        'trap Exit_handler exit\n' \
+                        'source "$SDSOC_ROOT/settings64.sh"\n' \
+                        'export HLS_TUNER_ROOT=' + self.hls_tuner_root + '\n' \
+                        'timeout ' + str(self.build_timeout) + 's' \
+                        ' make -f ' + self.make_file + ' clean all' \
+                        ' THREADS=' + str(self.grid_slots) + \
+                        ' HLS_TUNER_DEFINES=\'' + defines + '\'' \
+                        ' HLS_TUNER_DATA_MOVER_CLOCK=' + data_mover_clock + \
+                        ' HLS_TUNER_ACCELERATOR_1_CLOCK=' + accelerator_1_clock + \
+                        ' HLS_TUNER_ACCELERATOR_2_CLOCK=' + accelerator_2_clock + '\n')
 
     # I avoid the icsafe machines because their operating system does not
     # support SDSoC properly at the moment.
@@ -176,10 +167,10 @@ class FilterPipelineTuner(MeasurementInterface):
         log.error("Build error on configuration %d", result_id)
         return 'error'
 
-    Log_file = output_path + '/Build_output.log'
+    log_path = output_path + '/Build_output.log'
     timing_met = False
-    with open(Log_file, 'r') as file:
-      for line in file:
+    with open(log_path, 'r') as log_file:
+      for line in log_file:
         if line == 'All user specified timing constraints are met.\n':
           timing_met = True
 
@@ -191,7 +182,7 @@ class FilterPipelineTuner(MeasurementInterface):
 
     return 'ok'
 
-  def run_precompiled(self, desired_result, input, limit, compile_result,
+  def run_precompiled(self, desired_result, inp, limit, compile_result,
                       result_id):
 
     if compile_result == 'timeout':
@@ -203,28 +194,28 @@ class FilterPipelineTuner(MeasurementInterface):
 
     output_path = self.output_root + "/Build_{0:04d}".format(result_id)
 
-    with open(self.make_file, 'r') as file:
-      data = file.read()
-    target_file = re.search('^main-build: (\S+)', data, re.MULTILINE).group(1)
+    with open(self.make_file, 'r') as file_handle:
+      data = file_handle.read()
+    target_file = re.search(r'^main-build: (\S+)', data, re.MULTILINE).group(1)
 
     run_script = output_path + '/Run.tcl'
-    with open(run_script, 'w') as file:
-      file.write('connect\n' \
-                 'source ' + output_path + '/_sds/p0/ipi/zed.sdk/ps7_init.tcl\n' \
-                 'targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Zed 210248518531"} -index 0\n' \
-                 'rst -system\n' \
-                 'after 3000\n' \
-                 'targets -set -filter {jtag_cable_name =~ "Digilent Zed 210248518531" && level==0} -index 1\n' \
-                 'fpga -file ' + target_file + '.bit\n' \
-                 'targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Zed 210248518531"} -index 0\n' \
-                 'loadhw ' + output_path + '/_sds/p0/ipi/zed.sdk/zed.hdf\n' \
-                 'targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Zed 210248518531"} -index 0\n' \
-                 'ps7_init\n' \
-                 'ps7_post_config\n' \
-                 'targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Zed 210248518531"} -index 0\n' \
-                 'dow ' + target_file + '\n' \
-                 'bpadd -addr &exit\n' \
-                 'con -block\n')
+    with open(run_script, 'w') as script_file:
+      script_file.write('connect\n' \
+                        'source ' + output_path + '/_sds/p0/ipi/zed.sdk/ps7_init.tcl\n' \
+                        'targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Zed 210248518531"} -index 0\n' \
+                        'rst -system\n' \
+                        'after 3000\n' \
+                        'targets -set -filter {jtag_cable_name =~ "Digilent Zed 210248518531" && level==0} -index 1\n' \
+                        'fpga -file ' + target_file + '.bit\n' \
+                        'targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Zed 210248518531"} -index 0\n' \
+                        'loadhw ' + output_path + '/_sds/p0/ipi/zed.sdk/zed.hdf\n' \
+                        'targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Zed 210248518531"} -index 0\n' \
+                        'ps7_init\n' \
+                        'ps7_post_config\n' \
+                        'targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Zed 210248518531"} -index 0\n' \
+                        'dow ' + target_file + '\n' \
+                        'bpadd -addr &exit\n' \
+                        'con -block\n')
 
     run_cmd = '/bin/bash -c \'source ' + self.sdsoc_root + '/settings64.sh' + \
               ' && cd ' + output_path + \
@@ -273,10 +264,10 @@ class FilterPipelineTuner(MeasurementInterface):
     build_cmd = build_cmd_template.format(qsub_params)
     build_result = self.call_program(build_cmd)
 
-    with open(os.path.join(output_path, 'Launch_output.log'), 'a') as file:
-      file.write(build_result['stdout'])
-    with open(os.path.join(output_path, 'Launch_error.log'), 'a') as file:
-      file.write(build_result['stderr'])
+    with open(os.path.join(output_path, 'Launch_output.log'), 'a') as log_file:
+      log_file.write(build_result['stdout'])
+    with open(os.path.join(output_path, 'Launch_error.log'), 'a') as log_file:
+      log_file.write(build_result['stderr'])
 
     return build_result
 
@@ -297,10 +288,10 @@ class FilterPipelineTuner(MeasurementInterface):
       self.stop_event = threading.Event()
 
     def run(self):
-      with open(self.output_path + '/Serial_output.log', 'w') as file:
+      with open(self.output_path + '/Serial_output.log', 'w') as output_file:
         while not self.stop_event.isSet():
           data = self.serial_port.read()
-          file.write(data)
+          output_file.write(data)
 
     def join(self, timeout = None):
       self.stop_event.set()
