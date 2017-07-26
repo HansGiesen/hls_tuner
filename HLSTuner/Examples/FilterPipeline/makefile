@@ -2,11 +2,11 @@ RM := rm -rf _sds sd_card
 
 SRC_DIR := ${HLS_TUNER_ROOT}/SDSoC/FilterPipeline/src
 
-CPP_SRCS := ${SRC_DIR}/FilterPipeline.cpp 
+CPP_SRCS := ${SRC_DIR}/FilterPipeline.cpp ${SRC_DIR}/FilterPipeline_tb.cpp
 
-OBJS := FilterPipeline.o 
+OBJS := FilterPipeline.o FilterPipeline_tb.o
 
-CPP_DEPS := FilterPipeline.d 
+CPP_DEPS := FilterPipeline.d FilterPipeline_tb.d
 
 %.o: ${SRC_DIR}/%.cpp
 	@echo 'Building file: $<'
