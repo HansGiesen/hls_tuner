@@ -1,0 +1,12 @@
+[Unit]
+Description=Xilinx Target Communication Framework agent
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/scratch/safe/SDSoC/SDx/2017.1/Vivado/bin/hw_server
+Restart=always
+SyslogIdentifier=hw_server
+
+[Install]
+WantedBy=multi-user.target
