@@ -23,11 +23,12 @@ class MakeConfigTable(object):
     if results.count() == 0:
       return
     with open(self.args.csv_file, 'w') as file:
-      keys = results[0].configuration.data.keys() + ['state', 'time']
+      keys = ['id'] + results[0].configuration.data.keys() + ['state', 'time']
       writer = csv.DictWriter(file, keys)
       writer.writeheader()
       for result in results:
         row = result.configuration.data
+        row['id'] = result.id
         row['state'] = result.state
         row['time'] = result.time
         writer.writerow(row)
