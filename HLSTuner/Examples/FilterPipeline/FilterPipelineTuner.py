@@ -127,6 +127,7 @@ class FilterPipelineTuner(MeasurementInterface):
                         'Exit_handler()\n' \
                         '{\n' \
                         '  EXIT_VALUE=$?\n' \
+                        '  [ ${EXIT_VALUE} == 124 ] && echo "Build timed out."\n' \
                         '  (\n' \
                         '    echo "Output of free:"\n' \
                         '    free -h\n' \
@@ -158,6 +159,9 @@ class FilterPipelineTuner(MeasurementInterface):
                ' 60s.', result_id)
       build_result = self.run_on_grid(result_id, output_path, build_script,
                                       '-q \'!icsafe*\'')
+
+    log.info("Build result of configuration %d: %s", result_id,
+             self.get_build_result_code(output_path))
 
     if build_result['returncode'] != 0:
       if build_result['returncode'] == 124:
@@ -278,6 +282,49 @@ class FilterPipelineTuner(MeasurementInterface):
   def save_final_config(self, configuration):
     log.info("Optimal number of partitions: %d", configuration.data)
     self.manipulator().save_to_file(configuration.data, 'FilterPipeline_final_config.json')
+
+  def get_build_result_code(self, output_path):
+
+    try:
+      with open(output_path + '/Build_output.log', 'r') as log_file:
+        lines = log_file.read()
+    except:
+      with open(output_path + '/Launch_error.log', 'r') as log_file:
+        lines = log_file.read()
+      if re.search('ssh_exchange_identification', lines) != None:
+        code = 'LE0'
+      else:
+        code = 'LE?'
+      return code
+
+    if re.search(r'Build timed out.', lines) != None:
+      code = 'BTO' # Build timed out.
+    if re.search(r'\[Place 30-640\]', lines) != None:
+      code = 'BE0' # Too many LUTs
+    elif re.search(r'\[SCHED 204-80\]', lines) != None:
+      code = 'BE1' # Dependency error
+    elif re.search(r'\[XFORM 203-504\]', lines) != None:
+      code = 'BE2' # Too much unrolling
+    elif re.search(r'\[XFORM 203-1403\]', lines) != None:
+      code = 'BE3' # Too many load/store instructions
+    elif re.search(r'\[Timing 38-282\]', lines) != None:
+      code = 'TIMING' # Timing constraints not met
+    elif re.search(r'\[Timing 38-246\]', lines) != None:
+      code = 'BE5' # Thread error.
+    elif re.search(r'\[Common 17-179\]', lines) != None:
+      code = 'BE9' # Fork failed.
+    elif re.search(r'Scripts Generated : progress 0%', lines) != None:
+      code = 'BE6' # Unknown error at 0% of bitstream generation.
+    elif re.search(r'Moving function[^\n]*\n[^\n]*failed$', lines, re.MULTILINE) != None:
+      code = 'BE7' # Unknown error while moving function
+    elif re.search(r'This may take some time[^\n]*\n[^\n]*failed$', lines, re.MULTILINE) != None:
+      code = 'BE4' # Unknown error while generating bitstream
+    elif re.search(r'Finished building target:', lines) == None:
+      code = 'BE?'
+    else:
+      code = 'SUCCESS'
+
+    return code
 
   class CollectOutputThread(threading.Thread):
 
