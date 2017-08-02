@@ -54,7 +54,7 @@ class FilterPipelineTuner(MeasurementInterface):
     old_data_found = False
     for name in os.listdir(self.output_root):
       path = self.output_root + '/' + name
-      if os.path.isdir(path) and re.match('Build_', os.path.basename(dir)):
+      if os.path.isdir(path) and re.match('Build_', os.path.basename(path)):
         old_data_found = True
 
     if old_data_found and not args.append:
@@ -86,10 +86,8 @@ class FilterPipelineTuner(MeasurementInterface):
   def manipulator(self):
 
     manipulator = ConfigurationManipulator()
-    manipulator.add_parameter(LogIntegerParameter("INIT_INTERVAL_HOR_1", 1, 16))
-    manipulator.add_parameter(LogIntegerParameter("INIT_INTERVAL_HOR_2", 1, 16))
-    manipulator.add_parameter(LogIntegerParameter("INIT_INTERVAL_VER_1", 1, 16))
-    manipulator.add_parameter(LogIntegerParameter("INIT_INTERVAL_VER_2", 1, 16))
+    manipulator.add_parameter(LogIntegerParameter("INIT_INTERVAL_HOR", 1, 16))
+    manipulator.add_parameter(LogIntegerParameter("INIT_INTERVAL_VER", 1, 16))
     manipulator.add_parameter(LogIntegerParameter("ARRAY_PARTITION_FACTOR", 1, 15))
     manipulator.add_parameter(EnumParameter("ACCELERATOR_1_CLOCK", ['0', '1', '2', '3']))
     manipulator.add_parameter(EnumParameter("ACCELERATOR_2_CLOCK", ['0', '1', '2', '3']))
@@ -236,10 +234,10 @@ class FilterPipelineTuner(MeasurementInterface):
 
     thread.join()
 
-    with open(output_path + '/Run_output.log', 'w') as file:
-      file.write(run_result['stdout'])
-    with open(output_path + '/Run_error.log', 'w') as file:
-      file.write(run_result['stderr'])
+    with open(output_path + '/Run_output.log', 'w') as log_file:
+      log_file.write(run_result['stdout'])
+    with open(output_path + '/Run_error.log', 'w') as log_file:
+      log_file.write(run_result['stderr'])
 
     if run_result['returncode'] != 0:
       if run_result['timeout']:

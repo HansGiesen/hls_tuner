@@ -3,20 +3,11 @@
 
 #include "hls_tuner.h"
 
-#ifndef INIT_INTERVAL_HOR_1
-#define INIT_INTERVAL_HOR_1 1
+#ifndef INIT_INTERVAL_HOR
+#define INIT_INTERVAL_HOR 1
 #endif
-
-#ifndef INIT_INTERVAL_HOR_2
-#define INIT_INTERVAL_HOR_2 1
-#endif
-
-#ifndef INIT_INTERVAL_VER_1
-#define INIT_INTERVAL_VER_1 1
-#endif
-
-#ifndef INIT_INTERVAL_VER_2
-#define INIT_INTERVAL_VER_2 1
+#ifndef INIT_INTERVAL_VER
+#define INIT_INTERVAL_VER 1
 #endif
 
 #ifndef ARRAY_PARTITION_FACTOR

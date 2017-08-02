@@ -35,9 +35,8 @@ FilterPipeline.elf: $(OBJS)  $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: SDS++ Linker'
 	sds++ -o "FilterPipeline.elf" $(OBJS) $(USER_OBJS) $(LIBS) -dmclkid \
-              $(HLS_TUNER_DATA_MOVER_CLOCK) -sds-sys-config standalone \
-              -sds-proc a9_0 -sds-pf "zed" \
-              -maxthreads $(THREADS)
+              $(HLS_TUNER_DATA_MOVER_CLOCK) -mno-boot-files -sds-sys-config \
+              standalone -sds-proc a9_0 -sds-pf "zed" -maxthreads $(THREADS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
