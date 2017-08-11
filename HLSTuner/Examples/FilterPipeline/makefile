@@ -17,7 +17,7 @@ CPP_DEPS := FilterPipeline.d FilterPipeline_tb.d
               $(HLS_TUNER_ACCELERATOR_1_CLOCK) -sds-end -sds-hw Filter_ver_HW \
               FilterPipeline.cpp  -clkid $(HLS_TUNER_ACCELERATOR_2_CLOCK) \
               -sds-end -sds-sys-config standalone -sds-proc a9_0 -sds-pf \
-              "zed" -maxthreads $(THREADS)
+              "zed" -maxjobs $(JOBS) -maxthreads $(THREADS)
 	@echo 'Finished building: $<'
 	@echo ' '
 
@@ -36,7 +36,8 @@ FilterPipeline.elf: $(OBJS)  $(USER_OBJS)
 	@echo 'Invoking: SDS++ Linker'
 	sds++ -o "FilterPipeline.elf" $(OBJS) $(USER_OBJS) $(LIBS) -dmclkid \
               $(HLS_TUNER_DATA_MOVER_CLOCK) -mno-boot-files -sds-sys-config \
-              standalone -sds-proc a9_0 -sds-pf "zed" -maxthreads $(THREADS)
+              standalone -sds-proc a9_0 -sds-pf "zed" -maxjobs $(JOBS) \
+              -maxthreads $(THREADS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 

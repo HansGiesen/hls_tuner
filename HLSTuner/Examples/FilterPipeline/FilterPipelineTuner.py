@@ -42,11 +42,12 @@ class FilterPipelineTuner(MeasurementInterface):
     self.output_root = self.hls_tuner_root + "/HLSTuner/Examples/FilterPipeline"
 
     self.build_timeout = 120 * 60
-    self.run_timeout   = 60
+    self.run_timeout   = 5 * 60
 
     self.parallel_compile = True
 
-    self.grid_slots = 1
+    self.max_jobs = 1
+    self.max_threads = 1
 
     self.serial_device   = '/dev/ttyACM0'
     self.serial_baudrate = 115200
@@ -120,46 +121,65 @@ class FilterPipelineTuner(MeasurementInterface):
 
     build_script = output_path + '/build.sh'
     with open(build_script, 'w') as script_file:
-      script_file.write('#!/bin/bash -e\n' \
-                        'echo "Host: $(hostname)" > System.txt\n' \
-                        'Exit_handler()\n' \
-                        '{\n' \
-                        '  EXIT_VALUE=$?\n' \
-                        '  [ ${EXIT_VALUE} == 124 ] && echo "Build timed out."\n' \
-                        '  (\n' \
-                        '    echo "Output of free:"\n' \
-                        '    free -h\n' \
-                        '    echo "Output of top:"\n' \
-                        '    top -icbn 1\n' \
-                        '    echo "Output of dmesg:"\n' \
-                        '    dmesg -T\n' \
-                        '  ) >> System.txt\n' \
-                        '  exit ${EXIT_VALUE}\n' \
-                        '}\n' \
-                        'trap Exit_handler exit\n' \
-                        'source "$SDSOC_ROOT/settings64.sh"\n' \
-                        'export HLS_TUNER_ROOT=' + self.hls_tuner_root + '\n' \
-                        'timeout ' + str(self.build_timeout) + 's' \
-                        ' make -f ' + self.make_file + ' clean all' \
-                        ' THREADS=' + str(self.grid_slots) + \
-                        ' HLS_TUNER_DEFINES=\'' + defines + '\'' \
-                        ' HLS_TUNER_DATA_MOVER_CLOCK=' + data_mover_clock + \
-                        ' HLS_TUNER_ACCELERATOR_1_CLOCK=' + accelerator_1_clock + \
-                        ' HLS_TUNER_ACCELERATOR_2_CLOCK=' + accelerator_2_clock + '\n')
+      script_file.write('''
+#!/bin/bash -e
+Exit_handler()
+{{
+  EXIT_VALUE=$?
+  [ ${{EXIT_VALUE}} == 124 ] && echo "Build timed out."
+  exit ${{EXIT_VALUE}}
+}}
+trap Exit_handler exit
+source "$SDSOC_ROOT/settings64.sh"
+export HLS_TUNER_ROOT={hls_tuner_root}
+"$HLS_TUNER_ROOT/HLSTuner/Scripts/Monitor.sh" "timeout {build_timeout}s \
+  make -f {make_file} clean all \
+  JOBS={max_jobs} \
+  THREADS={max_threads} \
+  HLS_TUNER_DEFINES='{defines}' \
+  HLS_TUNER_DATA_MOVER_CLOCK={data_mover_clock} \
+  HLS_TUNER_ACCELERATOR_1_CLOCK={accelerator_1_clock} \
+  HLS_TUNER_ACCELERATOR_2_CLOCK={accelerator_2_clock}" \
+  Monitor.log.gz'''.format(hls_tuner_root = self.hls_tuner_root,
+                           build_timeout = self.build_timeout,
+                           make_file = self.make_file,
+                           max_jobs = self.max_jobs,
+                           max_threads = self.max_threads,
+                           defines = defines,
+                           data_mover_clock = data_mover_clock,
+                           accelerator_1_clock = accelerator_1_clock,
+                           accelerator_2_clock = accelerator_2_clock))
 
-    # I avoid the icsafe machines because their operating system does not
-    # support SDSoC properly at the moment.
-    build_result = self.run_on_grid(result_id, output_path, build_script,
-                                    '-q \'70s*\' -now y')
+    for attempt in range(0, 5):
 
-    if self.grid_unavailable(build_result):
-      log.info('No 70s are available.  Configuration %d will fall back to' \
-               ' 60s.', result_id)
+      if attempt > 0:
+        log.info("Repeating build of configuration %d...", result_id)
+
+        for filename in ['Build_output.log', 'Build_error.log',
+                         'Launch_output.log', 'Launch_error.log',
+                         'Monitor.log.gz']:
+          pathname = output_path + '/' + filename
+          if os.path.isfile(pathname):
+            os.remove(pathname)
+
+      # I avoid the icsafe machines because their operating system does not
+      # support SDSoC properly at the moment.
       build_result = self.run_on_grid(result_id, output_path, build_script,
-                                      '-q \'!icsafe*\'')
+                                      '-q \'70s*\' -now y')
 
-    log.info("Build result of configuration %d: %s", result_id,
-             self.get_build_result_code(output_path))
+      if self.grid_unavailable(build_result):
+        log.info('No 70s are available.  Configuration %d will fall back to' \
+                 ' 60s.', result_id)
+        build_result = self.run_on_grid(result_id, output_path, build_script,
+                                        '-q \'!icsafe*\'')
+
+      result_code = self.get_build_result_code(output_path)
+
+      log.info("Build result of configuration %d: %s", result_id, result_code)
+
+      if not result_code in ['LE0', 'LE?', 'BE4', 'BE5', 'BE6', 'BE7', 'BE9',
+                             'BE?']:
+        break
 
     if build_result['returncode'] != 0:
       if build_result['returncode'] == 124:
@@ -200,24 +220,32 @@ class FilterPipelineTuner(MeasurementInterface):
       data = file_handle.read()
     target_file = re.search(r'^main-build: (\S+)', data, re.MULTILINE).group(1)
 
+    # SDSoC 2017.1 is not loading symbols from ELF file properly, so we have to
+    # obtain the address of the exit function ourselves.  Otherwise, we could
+    # just have used the command "bpadd -addr &exit" in TCL.
+    symbols = subprocess.check_output(['nm', output_path + '/' + target_file])
+    exit_address = re.search(r'^(\S+) T exit$', symbols, re.MULTILINE).group(1)
+    
     run_script = output_path + '/Run.tcl'
     with open(run_script, 'w') as script_file:
-      script_file.write('connect\n' \
-                        'source ' + output_path + '/_sds/p0/ipi/zed.sdk/ps7_init.tcl\n' \
-                        'targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Zed 210248518531"} -index 0\n' \
-                        'rst -system\n' \
-                        'after 3000\n' \
-                        'targets -set -filter {jtag_cable_name =~ "Digilent Zed 210248518531" && level==0} -index 1\n' \
-                        'fpga -file ' + target_file + '.bit\n' \
-                        'targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Zed 210248518531"} -index 0\n' \
-                        'loadhw ' + output_path + '/_sds/p0/ipi/zed.sdk/zed.hdf\n' \
-                        'targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent Zed 210248518531"} -index 0\n' \
-                        'ps7_init\n' \
-                        'ps7_post_config\n' \
-                        'targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Zed 210248518531"} -index 0\n' \
-                        'dow ' + target_file + '\n' \
-                        'bpadd -addr &exit\n' \
-                        'con -block\n')
+      script_file.write('''
+connect
+source {output_path}/_sds/p0/ipi/zed.sdk/ps7_init.tcl
+targets -set -nocase -filter {{name =~"APU*" && jtag_cable_name =~ "Digilent Zed 210248518531"}} -index 0
+rst -system
+after 3000
+targets -set -filter {{jtag_cable_name =~ "Digilent Zed 210248518531" && level==0}} -index 1
+fpga -file {target_file}.bit
+targets -set -nocase -filter {{name =~"APU*" && jtag_cable_name =~ "Digilent Zed 210248518531"}} -index 0
+loadhw {output_path}/_sds/p0/ipi/zed.sdk/zed.hdf
+targets -set -nocase -filter {{name =~"APU*" && jtag_cable_name =~ "Digilent Zed 210248518531"}} -index 0
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {{name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Zed 210248518531"}} -index 0
+dow {target_file}
+bpadd -addr 0x{exit_address}
+con -block'''.format(output_path = output_path, target_file = target_file,
+                     exit_address = exit_address))
 
     run_cmd = '/bin/bash -c \'source ' + self.sdsoc_root + '/settings64.sh' + \
               ' && cd ' + output_path + \
