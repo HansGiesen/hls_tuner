@@ -98,11 +98,19 @@ int main()
 
   Randomize_matrix(Input_matrix);
 
+#ifdef __SDSCC__
+  unsigned long long Start_time = sds_clock_counter();
+#endif
+
   Filter_SW(Input_matrix, Temp_matrix_SW, DIRECTION_HORIZONTAL);
   Filter_SW(Temp_matrix_SW, Output_matrix_SW, DIRECTION_VERTICAL);
 
   Filter_hor_HW(Input_matrix, Temp_matrix_HW);
   Filter_ver_HW(Temp_matrix_HW, Output_matrix_HW);
+
+#ifdef __SDSCC__
+  unsigned long long End_time = sds_clock_counter();
+#endif
 
   std::cout << "Input\n";
   Show_matrix(Input_matrix);
@@ -118,6 +126,11 @@ int main()
   Destroy_matrix(Temp_matrix_HW);
   Destroy_matrix(Output_matrix_SW);
   Destroy_matrix(Output_matrix_HW);
+
+#ifdef __SDSCC__
+  unsigned long long Duration = End_time - Start_time;
+  std::cout << "The test took " << Duration << " cycles.\n";
+#endif
 
   if (Equal)
   {

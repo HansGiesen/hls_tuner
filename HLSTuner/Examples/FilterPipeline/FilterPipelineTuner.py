@@ -46,7 +46,7 @@ class FilterPipelineTuner(MeasurementInterface):
 
     self.parallel_compile = True
 
-    self.max_jobs = 1
+    self.max_jobs = 4
     self.max_threads = 1
 
     self.serial_device   = '/dev/ttyACM0'
@@ -121,7 +121,7 @@ class FilterPipelineTuner(MeasurementInterface):
 
     build_script = output_path + '/build.sh'
     with open(build_script, 'w') as script_file:
-      script_file.write('''
+      script_file.write('''\
 #!/bin/bash -e
 Exit_handler()
 {{
@@ -132,35 +132,35 @@ Exit_handler()
 trap Exit_handler exit
 source "$SDSOC_ROOT/settings64.sh"
 export HLS_TUNER_ROOT={hls_tuner_root}
-"$HLS_TUNER_ROOT/HLSTuner/Scripts/Monitor.sh" "timeout {build_timeout}s \
-  make -f {make_file} clean all \
-  JOBS={max_jobs} \
-  THREADS={max_threads} \
-  HLS_TUNER_DEFINES='{defines}' \
-  HLS_TUNER_DATA_MOVER_CLOCK={data_mover_clock} \
-  HLS_TUNER_ACCELERATOR_1_CLOCK={accelerator_1_clock} \
-  HLS_TUNER_ACCELERATOR_2_CLOCK={accelerator_2_clock}" \
-  Monitor.log.gz'''.format(hls_tuner_root = self.hls_tuner_root,
-                           build_timeout = self.build_timeout,
-                           make_file = self.make_file,
-                           max_jobs = self.max_jobs,
-                           max_threads = self.max_threads,
-                           defines = defines,
-                           data_mover_clock = data_mover_clock,
-                           accelerator_1_clock = accelerator_1_clock,
-                           accelerator_2_clock = accelerator_2_clock))
+"$HLS_TUNER_ROOT/HLSTuner/Scripts/Monitor.sh" "timeout {build_timeout}s \\
+  make -f {make_file} clean all \\
+  JOBS={max_jobs} \\
+  THREADS={max_threads} \\
+  HLS_TUNER_DEFINES='{defines}' \\
+  HLS_TUNER_DATA_MOVER_CLOCK={data_mover_clock} \\
+  HLS_TUNER_ACCELERATOR_1_CLOCK={accelerator_1_clock} \\
+  HLS_TUNER_ACCELERATOR_2_CLOCK={accelerator_2_clock}" \\
+  Monitor.log.gz
+'''.format(hls_tuner_root = self.hls_tuner_root,
+           build_timeout = self.build_timeout,
+           make_file = self.make_file,
+           max_jobs = self.max_jobs,
+           max_threads = self.max_threads,
+           defines = defines,
+           data_mover_clock = data_mover_clock,
+           accelerator_1_clock = accelerator_1_clock,
+           accelerator_2_clock = accelerator_2_clock))
 
     for attempt in range(0, 5):
 
       if attempt > 0:
         log.info("Repeating build of configuration %d...", result_id)
 
-        for filename in ['Build_output.log', 'Build_error.log',
-                         'Launch_output.log', 'Launch_error.log',
-                         'Monitor.log.gz']:
-          pathname = output_path + '/' + filename
-          if os.path.isfile(pathname):
-            os.remove(pathname)
+        backup_path = output_path + '/Attempt_' + str(attempt)
+        os.mkdir(backup_path)
+        for filename in os.listdir(output_path):
+          if not filename.startswith('Attempt_'):
+            os.rename(output_path + '/' + filename, backup_path + '/' + filename)
 
       # I avoid the icsafe machines because their operating system does not
       # support SDSoC properly at the moment.
@@ -228,7 +228,7 @@ export HLS_TUNER_ROOT={hls_tuner_root}
     
     run_script = output_path + '/Run.tcl'
     with open(run_script, 'w') as script_file:
-      script_file.write('''
+      script_file.write('''\
 connect
 source {output_path}/_sds/p0/ipi/zed.sdk/ps7_init.tcl
 targets -set -nocase -filter {{name =~"APU*" && jtag_cable_name =~ "Digilent Zed 210248518531"}} -index 0
@@ -244,7 +244,8 @@ ps7_post_config
 targets -set -nocase -filter {{name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Zed 210248518531"}} -index 0
 dow {target_file}
 bpadd -addr 0x{exit_address}
-con -block'''.format(output_path = output_path, target_file = target_file,
+con -block
+'''.format(output_path = output_path, target_file = target_file,
                      exit_address = exit_address))
 
     run_cmd = '/bin/bash -c \'source ' + self.sdsoc_root + '/settings64.sh' + \
@@ -267,17 +268,27 @@ con -block'''.format(output_path = output_path, target_file = target_file,
     with open(output_path + '/Run_error.log', 'w') as log_file:
       log_file.write(run_result['stderr'])
 
-    if run_result['returncode'] != 0:
-      if run_result['timeout']:
-        log.error('Run timeout on configuration %d', result_id)
-        return Result(state='TIMEOUT', time=float('inf'))
-      else:
-        log.error('Run error on configuration %d', result_id)
-        return Result(state='ERROR', time=float('inf'))
+    if run_result['returncode'] != 0 and run_result['timeout']:
+      log.error('Run timeout on configuration %d', result_id)
+      return Result(state='TIMEOUT', time=float('inf'))
+
+    test_failed = True
+    cycles = float('inf')
+    with open(output_path + '/Serial_output.log', 'r') as output_file:
+      for line in output_file:
+        if line == "TEST PASSED\r\n":
+          test_failed = False
+        match = re.match(r'The test took (\S+) cycles.\r\n', line)
+        if match != None:
+          cycles = match.group(1)
+
+    if run_result['returncode'] != 0 or test_failed:
+      log.error('Run error on configuration %d', result_id)
+      return Result(state='ERROR', time=float('inf'))
 
     log.info("Run of configuration %d was successful...", result_id)
 
-    return Result(time=run_result['time'])
+    return Result(time=cycles)
 
   def run_on_grid(self, result_id, output_path, build_script, qsub_params):
 
@@ -288,7 +299,8 @@ con -block'''.format(output_path = output_path, target_file = target_file,
                          ' -N Build_' + str(result_id) + \
                          ' {}' \
                          ' -sync y' \
-                         ' -l mem=16g' \
+                         ' -pe onenode ' + str(self.max_jobs) + \
+                         ' -l mem=' + str(16 / self.max_jobs) + 'g' \
                          ' ' + build_script + '"'
 
     build_cmd = build_cmd_template.format(qsub_params)
