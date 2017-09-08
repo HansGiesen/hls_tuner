@@ -6,6 +6,7 @@
 
 import argparse
 import logging
+import math
 import os
 import re
 import subprocess
@@ -18,7 +19,8 @@ from opentuner import MeasurementInterface
 from opentuner import Result
 import serial
 
-log = logging.getLogger('FilterPipelineTuner')
+log = logging.getLogger(__name__)
+log.setLevel(logging.INFO)
 
 argparser = argparse.ArgumentParser(parents=opentuner.argparsers())
 argparser.add_argument('--append', action = 'store_true',
@@ -52,6 +54,8 @@ class FilterPipelineTuner(MeasurementInterface):
     self.serial_device   = '/dev/ttyACM0'
     self.serial_baudrate = 115200
 
+    self.max_connections = 10
+
     old_data_found = False
     for name in os.listdir(self.output_root):
       path = self.output_root + '/' + name
@@ -83,6 +87,17 @@ class FilterPipelineTuner(MeasurementInterface):
     if not root_found:
       raise RuntimeError("You should start hw_server as root before you run" \
                          " this script.")
+
+    self.mux_socket_dir = os.environ["HOME"] + '/.ssh/mux_sockets'
+    if not os.path.isdir(self.mux_socket_dir):
+      os.mkdir(self.mux_socket_dir)
+
+    self.ssh_processes = []
+    for socket in range(0, int(math.ceil(args.parallelism / self.max_connections))):
+      socket_file = self.mux_socket_dir + '/%C_' + str(socket)
+      process = subprocess.Popen('ssh -M -S ' + socket_file + 
+                                 ' -N giesen@iclogin', shell = True)
+      self.ssh_processes.append(process)
 
   def manipulator(self):
 
@@ -119,7 +134,7 @@ class FilterPipelineTuner(MeasurementInterface):
       else:
         defines += ' -D{0}={1}'.format(param, value)
 
-    build_script = output_path + '/build.sh'
+    build_script = output_path + '/Build.sh'
     with open(build_script, 'w') as script_file:
       script_file.write('''\
 #!/bin/bash -e
@@ -159,7 +174,7 @@ export HLS_TUNER_ROOT={hls_tuner_root}
         backup_path = output_path + '/Attempt_' + str(attempt)
         os.mkdir(backup_path)
         for filename in os.listdir(output_path):
-          if not filename.startswith('Attempt_'):
+          if not filename.startswith('Attempt_') and not filename == 'Build.sh':
             os.rename(output_path + '/' + filename, backup_path + '/' + filename)
 
       # I avoid the icsafe machines because their operating system does not
@@ -292,7 +307,10 @@ con -block
 
   def run_on_grid(self, result_id, output_path, build_script, qsub_params):
 
-    build_cmd_template = 'ssh giesen@iclogin "qsub -S /bin/bash' \
+    socket = int(math.floor((result_id % args.parallelism - 1) / self.max_connections))
+    socket_file = self.mux_socket_dir + '/%C_' + str(socket)
+
+    build_cmd_template = 'ssh -S ' + socket_file + ' giesen@iclogin "qsub -S /bin/bash' \
                          ' -wd ' + output_path + \
                          ' -o ' + output_path + '/Build_output.log' + \
                          ' -e ' + output_path + '/Build_error.log' + \
@@ -364,6 +382,10 @@ con -block
 
     return code
 
+  def stop_ssh(self):
+    for process in self.ssh_processes:
+      process.terminate()
+
   class CollectOutputThread(threading.Thread):
 
     def __init__(self, serial_port, output_path):
@@ -385,5 +407,6 @@ con -block
 if __name__ == '__main__':
   opentuner.init_logging()
   args = argparser.parse_args()
-  FilterPipelineTuner.main(args)
-
+  tuner = FilterPipelineTuner
+  tuner.main(args)
+  tuner.stop_ssh()

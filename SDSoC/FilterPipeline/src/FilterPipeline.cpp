@@ -28,7 +28,7 @@ PRAGMA(HLS pipeline ii=INIT_INTERVAL_HOR)
       }
 
       if (X >= FILTER_LENGTH - 1)
-      oOutput[Y * MATRIX_WIDTH + X] = Sum / FILTER_LENGTH;
+        oOutput[Y * MATRIX_WIDTH + X] = Sum / FILTER_LENGTH;
     }
 }
 
@@ -59,6 +59,6 @@ PRAGMA(HLS pipeline ii=INIT_INTERVAL_VER)
       }
 
       if (Y >= FILTER_LENGTH - 1)
-      oOutput[Y * MATRIX_WIDTH + X] = Sum / FILTER_LENGTH;
+        oOutput[(Y - (FILTER_LENGTH - 1)) * MATRIX_WIDTH + X] = Sum / FILTER_LENGTH;
     }
 }

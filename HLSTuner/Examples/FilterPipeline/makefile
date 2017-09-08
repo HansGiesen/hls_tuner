@@ -11,7 +11,7 @@ CPP_DEPS := FilterPipeline.d FilterPipeline_tb.d
 %.o: ${SRC_DIR}/%.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking: SDS++ Compiler'
-	sds++ $(HLS_TUNER_DEFINES) -Wall -O0 -g -I"${SRC_DIR}" -c \
+	sds++ $(HLS_TUNER_DEFINES) -Wall -O3 -I"${SRC_DIR}" -c \
               -fmessage-length=0 -MT"$@" -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" \
               -o "$@" "$<" -sds-hw Filter_hor_HW FilterPipeline.cpp  -clkid \
               $(HLS_TUNER_ACCELERATOR_1_CLOCK) -sds-end -sds-hw Filter_ver_HW \

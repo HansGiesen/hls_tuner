@@ -98,12 +98,12 @@ int main()
 
   Randomize_matrix(Input_matrix);
 
+  Filter_SW(Input_matrix, Temp_matrix_SW, DIRECTION_HORIZONTAL);
+  Filter_SW(Temp_matrix_SW, Output_matrix_SW, DIRECTION_VERTICAL);
+
 #ifdef __SDSCC__
   unsigned long long Start_time = sds_clock_counter();
 #endif
-
-  Filter_SW(Input_matrix, Temp_matrix_SW, DIRECTION_HORIZONTAL);
-  Filter_SW(Temp_matrix_SW, Output_matrix_SW, DIRECTION_VERTICAL);
 
   Filter_hor_HW(Input_matrix, Temp_matrix_HW);
   Filter_ver_HW(Temp_matrix_HW, Output_matrix_HW);

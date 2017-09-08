@@ -29,6 +29,12 @@
 								<option id="xilinx.gnu.compiler.dircategory.includes.938913746" name="Include Paths" superClass="xilinx.gnu.compiler.dircategory.includes" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;../src&quot;"/>
 								</option>
+								<option id="xilinx.gnu.compiler.symbols.defined.1051073895" name="Defined symbols (-D)" superClass="xilinx.gnu.compiler.symbols.defined" valueType="definedSymbols">
+									<listOptionValue builtIn="false" value="INIT_INTERVAL_HOR=2"/>
+									<listOptionValue builtIn="false" value="INIT_INTERVAL_VER=1"/>
+									<listOptionValue builtIn="false" value="ARRAY_PARTITION_FACTOR=6"/>
+								</option>
+								<option id="xilinx.gnu.compiler.option.optimization.level.1244783448" superClass="xilinx.gnu.compiler.option.optimization.level" value="gnu.c.optimization.level.most" valueType="enumerated"/>
 								<inputType id="com.xilinx.sdsoc.managedbuild.tool.sdspp.input.1220400508" name="C++ source files" superClass="com.xilinx.sdsoc.managedbuild.tool.sdspp.input"/>
 							</tool>
 							<tool id="com.xilinx.sdsoc.managedbuild.toolchain.linker.521452507" name="SDS++ Linker" superClass="com.xilinx.sdsoc.managedbuild.toolchain.linker">
@@ -40,9 +46,6 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
-					<fileInfo id="com.xilinx.sdsoc.managedbuild.project.debug.71544166.269204789" name="FilterPipelineNew.cpp" rcbsApplicability="disable" resourcePath="src/FilterPipelineNew.cpp" toolsToInvoke="com.xilinx.sdsoc.managedbuild.toolchain.cppcompiler.35736807.1969856913">
-						<tool id="com.xilinx.sdsoc.managedbuild.toolchain.cppcompiler.35736807.1969856913" name="SDS++ Compiler" superClass="com.xilinx.sdsoc.managedbuild.toolchain.cppcompiler.35736807"/>
-					</fileInfo>
 					<sourceEntries>
 						<entry excluding="src/FilterPipelineNew.cpp|**/_sds/iprepo/|**/_sds/p0/|**/_sds/reports/|**/_sds/vhls/" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
@@ -67,15 +70,15 @@
 					<folderInfo id="com.xilinx.sdsoc.managedbuild.project.release.803452019." name="/" resourcePath="">
 						<toolChain id="com.xilinx.sdsoc.managedbuild.project.release.toolchain.1945356339" name="SDS Toolchain" superClass="com.xilinx.sdsoc.managedbuild.project.release.toolchain">
 							<targetPlatform binaryParser="com.xilinx.sdk.managedbuilder.XELF.armlinux" id="com.xilinx.sdsoc.managedbuild.toolchain.targetplatform.710700807" isAbstract="false" name="SDS Target Platform" superClass="com.xilinx.sdsoc.managedbuild.toolchain.targetplatform"/>
-							<builder buildPath="${workspace_loc:/FilterPipeline}/Release" enableAutoBuild="true" id="com.xilinx.sdsoc.managedbuild.toolchain.builder.1684992295" managedBuildOn="true" name="GNU make.Release" superClass="com.xilinx.sdsoc.managedbuild.toolchain.builder"/>
+							<builder buildPath="${workspace_loc:/FilterPipeline}/Release" enableAutoBuild="true" id="com.xilinx.sdsoc.managedbuild.toolchain.builder.1684992295" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="GNU make" superClass="com.xilinx.sdsoc.managedbuild.toolchain.builder"/>
 							<tool id="com.xilinx.sdsoc.managedbuild.project.release.sdscc.1770161239" name="SDSCC Compiler" superClass="com.xilinx.sdsoc.managedbuild.project.release.sdscc">
-								<option id="xilinx.gnu.compiler.dircategory.includes.206983291" superClass="xilinx.gnu.compiler.dircategory.includes" valueType="includePath">
+								<option id="xilinx.gnu.compiler.dircategory.includes.206983291" name="Include Paths" superClass="xilinx.gnu.compiler.dircategory.includes" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;../src&quot;"/>
 								</option>
 								<inputType id="com.xilinx.sdsoc.managedbuild.tool.sdscc.input.1764670658" name="C source files" superClass="com.xilinx.sdsoc.managedbuild.tool.sdscc.input"/>
 							</tool>
 							<tool id="com.xilinx.sdsoc.managedbuild.project.release.sdspp.1297046098" name="SDS++ Compiler" superClass="com.xilinx.sdsoc.managedbuild.project.release.sdspp">
-								<option id="xilinx.gnu.compiler.dircategory.includes.1795216810" superClass="xilinx.gnu.compiler.dircategory.includes" valueType="includePath">
+								<option id="xilinx.gnu.compiler.dircategory.includes.1795216810" name="Include Paths" superClass="xilinx.gnu.compiler.dircategory.includes" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;../src&quot;"/>
 								</option>
 								<inputType id="com.xilinx.sdsoc.managedbuild.tool.sdspp.input.1995488863" name="C++ source files" superClass="com.xilinx.sdsoc.managedbuild.tool.sdspp.input"/>
