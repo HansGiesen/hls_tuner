@@ -13,14 +13,14 @@ import subprocess
 import threading
 import opentuner
 from opentuner import ConfigurationManipulator
+from opentuner import FloatParameter
 from opentuner import LogIntegerParameter
 from opentuner import EnumParameter
 from opentuner import MeasurementInterface
 from opentuner import Result
 import serial
 
-log = logging.getLogger(__name__)
-log.setLevel(logging.INFO)
+log = logging.getLogger('FilterPipelineTuner')
 
 argparser = argparse.ArgumentParser(parents=opentuner.argparsers())
 argparser.add_argument('--append', action = 'store_true',
@@ -91,10 +91,14 @@ class FilterPipelineTuner(MeasurementInterface):
     self.mux_socket_dir = os.environ["HOME"] + '/.ssh/mux_sockets'
     if not os.path.isdir(self.mux_socket_dir):
       os.mkdir(self.mux_socket_dir)
+    else:
+      for socket in os.listdir(self.mux_socket_dir):
+        if re.search(socket, '_' + str(os.getpid()) + '_') != None:
+          os.remove(self.mux_socket_dir + '/' + socket)
 
     self.ssh_processes = []
     for socket in range(0, int(math.ceil(args.parallelism / self.max_connections))):
-      socket_file = self.mux_socket_dir + '/%C_' + str(socket)
+      socket_file = self.mux_socket_dir + '/%C_' + str(os.getpid()) + '_' + str(socket)
       process = subprocess.Popen('ssh -M -S ' + socket_file + 
                                  ' -N giesen@iclogin', shell = True)
       self.ssh_processes.append(process)
@@ -107,6 +111,8 @@ class FilterPipelineTuner(MeasurementInterface):
     manipulator.add_parameter(LogIntegerParameter("ARRAY_PARTITION_FACTOR", 1, 15))
     manipulator.add_parameter(EnumParameter("ACCELERATOR_1_CLOCK", ['0', '1', '2', '3']))
     manipulator.add_parameter(EnumParameter("ACCELERATOR_2_CLOCK", ['0', '1', '2', '3']))
+    manipulator.add_parameter(FloatParameter("ACCELERATOR_1_UNCERTAINTY", 0, 100))
+    manipulator.add_parameter(FloatParameter("ACCELERATOR_2_UNCERTAINTY", 0, 100))
     manipulator.add_parameter(EnumParameter("DATA_MOVER_CLOCK", ['0', '1', '2', '3']))
     return manipulator
 
@@ -131,6 +137,10 @@ class FilterPipelineTuner(MeasurementInterface):
         accelerator_1_clock = str(value)
       elif param == 'ACCELERATOR_2_CLOCK':
         accelerator_2_clock = str(value)
+      elif param == 'ACCELERATOR_1_UNCERTAINTY':
+        accelerator_1_uncertainty = str(value)
+      elif param == 'ACCELERATOR_2_UNCERTAINTY':
+        accelerator_2_uncertainty = str(value)
       else:
         defines += ' -D{0}={1}'.format(param, value)
 
@@ -165,6 +175,11 @@ export HLS_TUNER_ROOT={hls_tuner_root}
            data_mover_clock = data_mover_clock,
            accelerator_1_clock = accelerator_1_clock,
            accelerator_2_clock = accelerator_2_clock))
+
+    with open(output_path + '/Filter_hor.tcl', 'w') as script_file:
+      script_file.write('set_clock_uncertainty ' + accelerator_1_uncertainty + '%\n')
+    with open(output_path + '/Filter_ver.tcl', 'w') as script_file:
+      script_file.write('set_clock_uncertainty ' + accelerator_2_uncertainty + '%\n')
 
     for attempt in range(0, 5):
 
@@ -308,7 +323,7 @@ con -block
   def run_on_grid(self, result_id, output_path, build_script, qsub_params):
 
     socket = int(math.floor((result_id % args.parallelism - 1) / self.max_connections))
-    socket_file = self.mux_socket_dir + '/%C_' + str(socket)
+    socket_file = self.mux_socket_dir + '/%C_' + str(os.getpid()) + '_' + str(socket)
 
     build_cmd_template = 'ssh -S ' + socket_file + ' giesen@iclogin "qsub -S /bin/bash' \
                          ' -wd ' + output_path + \
@@ -406,6 +421,8 @@ con -block
 
 if __name__ == '__main__':
   opentuner.init_logging()
+  for handler in logging.getLogger().handlers:
+    handler.setLevel(logging.INFO)
   args = argparser.parse_args()
   tuner = FilterPipelineTuner
   tuner.main(args)

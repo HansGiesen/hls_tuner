@@ -13,9 +13,10 @@ CPP_DEPS := FilterPipeline.d FilterPipeline_tb.d
 	@echo 'Invoking: SDS++ Compiler'
 	sds++ $(HLS_TUNER_DEFINES) -Wall -O3 -I"${SRC_DIR}" -c \
               -fmessage-length=0 -MT"$@" -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" \
-              -o "$@" "$<" -sds-hw Filter_hor_HW FilterPipeline.cpp  -clkid \
-              $(HLS_TUNER_ACCELERATOR_1_CLOCK) -sds-end -sds-hw Filter_ver_HW \
-              FilterPipeline.cpp  -clkid $(HLS_TUNER_ACCELERATOR_2_CLOCK) \
+              -o "$@" "$<" -sds-hw Filter_hor_HW FilterPipeline.cpp -clkid \
+              $(HLS_TUNER_ACCELERATOR_1_CLOCK) -hls-tcl Filter_hor.tcl \
+              -sds-end -sds-hw Filter_ver_HW FilterPipeline.cpp -clkid \
+              $(HLS_TUNER_ACCELERATOR_2_CLOCK) -hls-tcl Filter_ver.tcl \
               -sds-end -sds-sys-config standalone -sds-proc a9_0 -sds-pf \
               "zed" -maxjobs $(JOBS) -maxthreads $(THREADS)
 	@echo 'Finished building: $<'
