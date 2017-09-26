@@ -9,8 +9,13 @@ import logging
 import math
 import os
 import re
+import serial
 import subprocess
+import sys
 import threading
+
+sys.path.insert(0, os.path.abspath('../../../OpenTuner'))
+
 import opentuner
 from opentuner import ConfigurationManipulator
 from opentuner import FloatParameter
@@ -18,7 +23,6 @@ from opentuner import LogIntegerParameter
 from opentuner import EnumParameter
 from opentuner import MeasurementInterface
 from opentuner import Result
-import serial
 
 log = logging.getLogger('FilterPipelineTuner')
 
