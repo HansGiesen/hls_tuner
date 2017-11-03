@@ -2,4 +2,5 @@
 [ -d .Remove ] || mkdir .Remove
 DIR=`mktemp -p .Remove -d`
 mv $* "$DIR"
-rm -fr "$DIR" > /dev/null &
+rm -fr "$DIR" &> /dev/null &
+

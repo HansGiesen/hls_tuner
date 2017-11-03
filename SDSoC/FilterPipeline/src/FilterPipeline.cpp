@@ -11,6 +11,7 @@ void Filter_hor_HW(const matrix_type iInput[MATRIX_HEIGHT * MATRIX_WIDTH],
   for (int Y = 0; Y < MATRIX_HEIGHT; Y++)
     for (int X = 0; X < MATRIX_WIDTH + FILTER_LENGTH - 1; X++)
     {
+PRAGMA(HLS unroll factor=UNROLL_FACTOR_HOR)
 #pragma HLS DEPENDENCE variable=oOutput inter false
 PRAGMA(HLS pipeline ii=INIT_INTERVAL_HOR)
 
@@ -41,6 +42,7 @@ void Filter_ver_HW(const matrix_type iInput[MATRIX_HEIGHT * MATRIX_WIDTH],
   for (int Y = 0; Y < MATRIX_HEIGHT + FILTER_LENGTH - 1; Y++)
     for (int X = 0; X < MATRIX_WIDTH; X++)
     {
+PRAGMA(HLS unroll factor=UNROLL_FACTOR_VER)
 #pragma HLS DEPENDENCE variable=Buffer inter false
 PRAGMA(HLS array_partition variable=Buffer dim=1 cyclic factor=ARRAY_PARTITION_FACTOR)
 PRAGMA(HLS pipeline ii=INIT_INTERVAL_VER)

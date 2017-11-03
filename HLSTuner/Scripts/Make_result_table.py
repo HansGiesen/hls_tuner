@@ -19,6 +19,12 @@ class MakeConfigTable(object):
       raise RuntimeError("Database could not be opened.")
 
   def main(self):
+    desired_results = self.session.query(resultsdb.models.DesiredResult)
+    if desired_results.count() == 0:
+      return
+    id_table = {}
+    for desired_result in desired_results:
+      id_table[desired_result.result_id] = desired_result.id
     results = self.session.query(resultsdb.models.Result)
     if results.count() == 0:
       return
@@ -28,7 +34,7 @@ class MakeConfigTable(object):
       writer.writeheader()
       for result in results:
         row = result.configuration.data
-        row['id'] = result.id
+        row['id'] = id_table[result.id]
         row['state'] = result.state
         row['time'] = result.time
         writer.writerow(row)
