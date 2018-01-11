@@ -59,7 +59,7 @@ class FilterPipelineTuner(MeasurementInterface):
     self.serial_device   = '/dev/ttyACM0'
     self.serial_baudrate = 115200
 
-    self.max_connections = 10
+    self.fpga_host = 'hactar.seas.upenn.edu'
 
     old_data_found = False
     for name in os.listdir(self.output_root):
@@ -72,41 +72,7 @@ class FilterPipelineTuner(MeasurementInterface):
                          " appending the results using the --append command" \
                          " line arguments.")
 
-    try:
-      os.stat(self.serial_device)
-    except OSError:
-      raise RuntimeError("The serial device could not be found.  The FPGA may" \
-                         " not be powered on.")
-    if not os.access(self.serial_device, os.R_OK | os.W_OK):
-      raise RuntimeError("The user has no permission to access the serial" \
-                         " device.  Perhaps the user must be added to the" \
-                         " 'dialout' group.")
-
-    root_found = False
-    for pid in subprocess.check_output(['pidof', 'hw_server']).split():
-      for line in open('/proc/' + pid + '/status', 'rt'):
-        if line.startswith('Uid:'):
-          uid = int(line.split()[1])
-          if uid == 0:
-            root_found = True
-    if not root_found:
-      raise RuntimeError("You should start hw_server as root before you run" \
-                         " this script.")
-
-    self.mux_socket_dir = os.environ["HOME"] + '/.ssh/mux_sockets'
-    if not os.path.isdir(self.mux_socket_dir):
-      os.mkdir(self.mux_socket_dir)
-    else:
-      for socket in os.listdir(self.mux_socket_dir):
-        if re.search(socket, '_' + str(os.getpid()) + '_') != None:
-          os.remove(self.mux_socket_dir + '/' + socket)
-
-    self.ssh_processes = []
-    for socket in range(0, int(math.ceil(args.parallelism / self.max_connections))):
-      socket_file = self.mux_socket_dir + '/%C_' + str(os.getpid()) + '_' + str(socket)
-      process = subprocess.Popen('ssh -M -S ' + socket_file + 
-                                 ' -N giesen@iclogin', shell = True)
-      self.ssh_processes.append(process)
+    check_fpga_host()
 
   def manipulator(self):
 
@@ -283,8 +249,8 @@ export HLS_TUNER_ROOT={hls_tuner_root}
     symbols = subprocess.check_output(['nm', output_path + '/' + self.target_file])
     exit_address = re.search(r'^(\S+) T exit$', symbols, re.MULTILINE).group(1)
     
-    run_script = output_path + '/Run.tcl'
-    with open(run_script, 'w') as script_file:
+    TCL_script = output_path + '/Run.tcl'
+    with open(TCL_script, 'w') as script_file:
       script_file.write('''\
 connect
 source {output_path}/_sds/p0/ipi/zed.sdk/ps7_init.tcl
@@ -305,20 +271,25 @@ con -block
 '''.format(output_path = output_path, target_file = self.target_file,
                      exit_address = exit_address))
 
-    run_cmd = '/bin/bash -c \'source ' + self.sdsoc_root + '/settings64.sh' + \
-              ' && cd ' + output_path + \
-              ' && sdx -batch -source ' + run_script + '\''
-
-    serial_port = serial.Serial(self.serial_device, baudrate = self.serial_baudrate, timeout = 1)
-    thread = self.CollectOutputThread(serial_port, output_path)
-    thread.start()
+    run_script = output_path + '/Run.sh'
+    with open(run_script, 'w') as script_file:
+      script_file.write('''\
+#!/bin/bash -e
+source {sdsoc_root}/settings64.sh
+cd {output_path}
+stty -F {serial_device} {serial_baudrate} raw
+cat {serial_device} > Serial_output.log &
+sdx -batch -source {TCL_script}
+kill $!
+'''.format(sdsoc_root = self.sdsoc_root, output_path = self.output_path,
+           serial_device = self.serial_device, serial_baudrate =
+           self.serial_baudrate, TCL_script = TCL_script))
 
     try:
-      run_result = self.call_program(run_cmd, shell = True, limit = self.run_timeout)
+      run_result = self.call_program('ssh ' + fpga_host + ' ' + run_script,
+                                     limit = self.run_timeout)
     except OSError:
       return Result(state='ERROR', time=float('inf'))
-
-    thread.join()
 
     with open(output_path + '/Run_output.log', 'w') as log_file:
       log_file.write(run_result['stdout'])
@@ -347,12 +318,40 @@ con -block
 
     return Result(time=cycles)
 
+  def check_fpga_host(self):
+
+    check_script = output_path + '/Check_FPGA_host.sh'
+    with open(check_script, 'w') as script_file:
+      script_file.write('''\
+#!/bin/bash -e
+[ -c '{serial_device}' ] && echo "Not found" && exit
+[ -r '{serial_device}' -a -w '{serial_device}' ] echo 'Not accessible' && exit
+PIDS=$(pidof hw_server)
+for PID in $(pidof hw_server)
+do
+  OWNER=$(grep Uid: "/proc/$PID/status" | awk '{ print $2 }')
+  [ "$OWNER" == "0" ] && echo "Success" && exit
+done
+echo "Not root"
+'''.format(serial_device = self.serial_device))
+
+    output = self.check_output('ssh ' + fpga_host + ' ' + check_script)
+    if output == 'Not found':
+      raise RuntimeError("The serial device could not be found.  The FPGA may" \
+                         " not be powered on.")
+    elif output == 'Not accessible':
+      raise RuntimeError("The user has no permission to access the serial" \
+                         " device.  Perhaps the user must be added to the" \
+                         " 'dialout' group.")
+    elif output == 'Not root':
+      raise RuntimeError("You should start hw_server as root before you run" \
+                         " this script.")
+    elif output != 'Success':
+      raise RuntimeError("Check_FPGA_host.sh returned an unknown error.")
+      
   def run_on_grid(self, result_id, output_path, build_script, qsub_params):
 
-    socket = int(math.floor((result_id % args.parallelism - 1) / self.max_connections))
-    socket_file = self.mux_socket_dir + '/%C_' + str(os.getpid()) + '_' + str(socket)
-
-    build_cmd_template = 'ssh -S ' + socket_file + ' giesen@iclogin "qsub -S /bin/bash' \
+    build_cmd_template = 'qsub -S /bin/bash' \
                          ' -wd ' + output_path + \
                          ' -o ' + output_path + '/Build_output.log' + \
                          ' -e ' + output_path + '/Build_error.log' + \
@@ -361,7 +360,7 @@ con -block
                          ' -sync y' \
                          ' -pe onenode ' + str(self.max_jobs) + \
                          ' -l mem=' + str(16 / self.max_jobs) + 'g' \
-                         ' ' + build_script + '"'
+                         ' ' + build_script
 
     build_cmd = build_cmd_template.format(qsub_params)
     build_result = self.call_program(build_cmd)
@@ -386,12 +385,7 @@ con -block
       with open(output_path + '/Build_output.log', 'r') as log_file:
         lines = log_file.read()
     except:
-      with open(output_path + '/Launch_error.log', 'r') as log_file:
-        lines = log_file.read()
-      if re.search('ssh_exchange_identification', lines) != None:
-        code = 'LE0'
-      else:
-        code = 'LE?'
+      code = 'LE?'
       return code
 
     if re.search(r'Build timed out.', lines) != None:
@@ -423,10 +417,6 @@ con -block
 
     return code
 
-  def stop_ssh(self):
-    for process in self.ssh_processes:
-      process.terminate()
-
   def find_tuner_root(self):
     prefix = sys.path[0]
     while True:
@@ -437,24 +427,6 @@ con -block
         raise RuntimeError("Cannot find root of HLS tuner workspace.")
     return prefix;
 
-  class CollectOutputThread(threading.Thread):
-
-    def __init__(self, serial_port, output_path):
-      super(FilterPipelineTuner.CollectOutputThread, self).__init__()
-      self.serial_port = serial_port
-      self.output_path = output_path
-      self.stop_event = threading.Event()
-
-    def run(self):
-      with open(self.output_path + '/Serial_output.log', 'w') as output_file:
-        while not self.stop_event.isSet():
-          data = self.serial_port.read()
-          output_file.write(data)
-
-    def join(self, timeout = None):
-      self.stop_event.set()
-      super(FilterPipelineTuner.CollectOutputThread, self).join(timeout)
-
 if __name__ == '__main__':
   opentuner.init_logging()
   for handler in logging.getLogger().handlers:
@@ -462,5 +434,4 @@ if __name__ == '__main__':
   args = argparser.parse_args()
   tuner = FilterPipelineTuner
   tuner.main(args)
-  tuner.stop_ssh()
 
