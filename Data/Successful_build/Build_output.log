@@ -1,0 +1,114 @@
+rm -rf _sds sd_card FilterPipeline.o FilterPipeline_tb.oFilterPipeline.d FilterPipeline_tb.d FilterPipeline.elf
+ 
+Building file: /scratch/safe/giesen/hls_tuner/SDSoC/FilterPipeline/src/FilterPipeline.cpp
+Invoking: SDS++ Compiler
+sds++ -DARRAY_PARTITION_FACTOR=1 -DINIT_INTERVAL_VER_2=6 -DINIT_INTERVAL_VER_1=5 -DINIT_INTERVAL_HOR_2=1 -DINIT_INTERVAL_HOR_1=3 -Wall -O0 -g -I"/scratch/safe/giesen/hls_tuner/SDSoC/FilterPipeline/src" -c \
+              -fmessage-length=0 -MT"FilterPipeline.o" -MMD -MP -MF"FilterPipeline.d" -MT"FilterPipeline.o" \
+              -o "FilterPipeline.o" "/scratch/safe/giesen/hls_tuner/SDSoC/FilterPipeline/src/FilterPipeline.cpp" -sds-hw Filter_hor_HW FilterPipeline.cpp  -clkid \
+              3 -sds-end -sds-hw Filter_ver_HW \
+              FilterPipeline.cpp  -clkid 2 \
+              -sds-end -sds-sys-config standalone -sds-proc a9_0 -sds-pf \
+              "zed" -maxthreads 1
+INFO: [SDSoC 0-0] Processing -sds-hw block for Filter_hor_HW
+INFO: [SDSoC 0-0] Processing -sds-hw block for Filter_ver_HW
+INFO: [SDSoC 0-0] Create data motion intermediate representation
+INFO: [SDSoC 0-0] Performing accelerator source linting for Filter_hor_HW
+INFO: [SDSoC 0-0] Performing accelerator source linting for Filter_ver_HW
+INFO: [SDSoC 0-0] Performing pragma generation
+INFO: [SDSoC 0-0] Successfully generated tcl script: /mnt/icgridio2/safe/giesen/hls_tuner/HLSTuner/Examples/FilterPipeline/Build_0040/_sds/vhls/Filter_hor_HW.tcl
+INFO: [SDSoC 0-0] Moving function Filter_hor_HW to Programmable Logic
+INFO: [SDSoC 0-0] Performing pragma generation
+INFO: [SDSoC 0-0] Successfully generated tcl script: /mnt/icgridio2/safe/giesen/hls_tuner/HLSTuner/Examples/FilterPipeline/Build_0040/_sds/vhls/Filter_ver_HW.tcl
+INFO: [SDSoC 0-0] Moving function Filter_ver_HW to Programmable Logic
+sds++ log file saved as /mnt/icgridio2/safe/giesen/hls_tuner/HLSTuner/Examples/FilterPipeline/Build_0040/_sds/reports/sds_FilterPipeline.log
+
+Finished building: /scratch/safe/giesen/hls_tuner/SDSoC/FilterPipeline/src/FilterPipeline.cpp
+ 
+Building file: /scratch/safe/giesen/hls_tuner/SDSoC/FilterPipeline/src/FilterPipeline_tb.cpp
+Invoking: SDS++ Compiler
+sds++ -DARRAY_PARTITION_FACTOR=1 -DINIT_INTERVAL_VER_2=6 -DINIT_INTERVAL_VER_1=5 -DINIT_INTERVAL_HOR_2=1 -DINIT_INTERVAL_HOR_1=3 -Wall -O0 -g -I"/scratch/safe/giesen/hls_tuner/SDSoC/FilterPipeline/src" -c \
+              -fmessage-length=0 -MT"FilterPipeline_tb.o" -MMD -MP -MF"FilterPipeline_tb.d" -MT"FilterPipeline_tb.o" \
+              -o "FilterPipeline_tb.o" "/scratch/safe/giesen/hls_tuner/SDSoC/FilterPipeline/src/FilterPipeline_tb.cpp" -sds-hw Filter_hor_HW FilterPipeline.cpp  -clkid \
+              3 -sds-end -sds-hw Filter_ver_HW \
+              FilterPipeline.cpp  -clkid 2 \
+              -sds-end -sds-sys-config standalone -sds-proc a9_0 -sds-pf \
+              "zed" -maxthreads 1
+INFO: [SDSoC 0-0] Create data motion intermediate representation
+INFO: [SDSoC 0-0] Compiling /mnt/icgridio2/safe/giesen/hls_tuner/SDSoC/FilterPipeline/src/FilterPipeline_tb.cpp
+sds++ log file saved as /mnt/icgridio2/safe/giesen/hls_tuner/HLSTuner/Examples/FilterPipeline/Build_0040/_sds/reports/sds_FilterPipeline_tb.log
+
+Finished building: /scratch/safe/giesen/hls_tuner/SDSoC/FilterPipeline/src/FilterPipeline_tb.cpp
+ 
+Building target: FilterPipeline.elf
+Invoking: SDS++ Linker
+sds++ -o "FilterPipeline.elf" FilterPipeline.o FilterPipeline_tb.o   -dmclkid \
+              2 -sds-sys-config standalone \
+              -sds-proc a9_0 -sds-pf "zed" \
+              -maxthreads 1
+INFO: [SDSoC 0-0] Analyzing object files
+... /mnt/icgridio2/safe/giesen/hls_tuner/HLSTuner/Examples/FilterPipeline/Build_0040/FilterPipeline.o
+... /mnt/icgridio2/safe/giesen/hls_tuner/HLSTuner/Examples/FilterPipeline/Build_0040/FilterPipeline_tb.o
+INFO: [SDSoC 0-0] Generating data motion network
+INFO: [SDSoC 0-0] Analyzing hardware accelerators...
+INFO: [SDSoC 0-0] Analyzing callers to hardware accelerators...
+INFO: [SDSoC 0-0] Scheduling data transfer graph for partition 0
+INFO: [SDSoC 0-0] Creating data motion network hardware for partition 0
+INFO: [SDSoC 0-0] Creating software stub functions for partition 0
+INFO: [SDSoC 0-0] Generating data motion network report for partition 0
+INFO: [SDSoC 0-0] Rewriting caller code
+INFO: [SDSoC 0-0] Creating block diagram (BD), address map, port information and device registration for partition 0 (this may take a few minutes)
+system_linker started at Mon Jul 24 18:20:39 EDT 2017
+INFO: [SDSoC 0-0] Copying address map
+INFO: [SDSoC 0-0] Creating port and device registration data
+system_linker completed at Mon Jul 24 18:22:17 EDT 2017
+INFO: [SDSoC 0-0] Software tracing enabled
+INFO: [SDSoC 0-0] Rewrite caller functions
+INFO: [SDSoC 0-0] Compile caller rewrite file /mnt/icgridio2/safe/giesen/hls_tuner/HLSTuner/Examples/FilterPipeline/Build_0040/_sds/swstubs/FilterPipeline_tb.cpp
+INFO: [SDSoC 0-0] Prepare hardware access API functions
+INFO: [SDSoC 0-0] Create accelerator stub functions
+INFO: [SDSoC 0-0] Compile hardware access API functions
+INFO: [SDSoC 0-0] Compile accelerator stub functions
+INFO: [SDSoC 0-0] Create board support package library
+INFO: [SDSoC 0-0] Link application ELF file
+INFO: [SDSoC 0-0] Enable generation of hardware programming files
+INFO: [SDSoC 0-0] Enable generation of boot files
+INFO: [SDSoC 0-0] Calling system_linker for partition 0
+system_linker started at Mon Jul 24 18:22:51 EDT 2017
+INFO: [SDSoC 0-0] Generating bitstream for platform zed.
+      This may take some time to complete
+... [18:30:14] Starting synth_design
+... [18:30:21] Starting RTL Elaboration : Time (s): cpu = 00:00:23 ; elapsed = 00:00:31 . Memory (MB): peak = 1340.109 ; gain = 426.766 ; free physical = 119500 ; free virtual = 141220
+... [18:30:33] Start Loading Part and Timing Information
+... [18:30:33] Start Applying 'set_property' XDC Constraints
+... [18:30:33] Start RTL Component Statistics 
+... [18:30:33] Start RTL Hierarchical Component Statistics 
+... [18:30:33] Start Part Resource Summary
+... [18:30:33] Start Cross Boundary and Area Optimization
+... [18:30:33] Start Timing Optimization
+... [18:30:46] Start Applying XDC Timing Constraints
+... [18:30:46] Start Technology Mapping
+... [18:30:46] Start IO Insertion
+... [18:30:46] Start Flattening Before IO Insertion
+... [18:30:46] Start Final Netlist Cleanup
+... [18:30:46] Start Renaming Generated Instances
+... [18:30:46] Start Rebuilding User Hierarchy
+... [18:30:46] Start Renaming Generated Ports
+... [18:30:46] Start Handling Custom Attributes
+... [18:30:46] Start Renaming Generated Nets
+... [18:30:46] Start Writing Synthesis Report
+... [18:31:27] Starting DRC Task
+... [18:31:27] Starting Logic Optimization Task
+... [18:31:39] Starting Connectivity Check Task
+... [18:31:39] Starting Power Optimization Task
+... [18:31:45] Starting PowerOpt Patch Enables Task
+... [18:31:57] Starting Placer Task
+... [18:33:04] Starting Routing Task
+INFO: [SDSoC 0-0] Creating boot files
+system_linker completed at Mon Jul 24 18:35:01 EDT 2017
+All user specified timing constraints are met.
+sds++ log file saved as /mnt/icgridio2/safe/giesen/hls_tuner/HLSTuner/Examples/FilterPipeline/Build_0040/_sds/reports/sds.log
+
+Finished building target: FilterPipeline.elf
+ 
+sdsoc_make_clean Debug
+ 
