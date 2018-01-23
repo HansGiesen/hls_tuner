@@ -117,12 +117,14 @@ int main()
   unsigned long long End_time_HW = sds_clock_counter();
 #endif
 
+/*
   std::cout << "Input\n";
   Show_matrix(Input_matrix);
   std::cout << "Output of software implementation\n";
   Show_matrix(Output_matrix_SW);
   std::cout << "Output of hardware implementation\n";
   Show_matrix(Output_matrix_HW);
+*/
 
   bool Equal = Compare_matrices(Output_matrix_SW, Output_matrix_HW);
 

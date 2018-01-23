@@ -9,6 +9,7 @@ import os
 import re
 import serial
 import shutil
+import stat
 import subprocess
 import sys
 import threading
@@ -45,7 +46,7 @@ class FilterPipelineTuner(MeasurementInterface):
     self.make_file   = self.hls_tuner_root + "/TestApps/FilterPipeline/Sources/Makefile"
     self.output_root = self.hls_tuner_root + "/TestApps/FilterPipeline"
 
-    self.fake_build        = False
+    self.fake_build        = True
     self.fake_build_source = self.hls_tuner_root + '/Data/Successful_build'
 
     self.build_timeout = 120 * 60
@@ -72,7 +73,7 @@ class FilterPipelineTuner(MeasurementInterface):
                          " appending the results using the --append command" \
                          " line arguments.")
 
-    check_fpga_host()
+    self.check_fpga_host()
 
   def manipulator(self):
 
@@ -254,17 +255,16 @@ export HLS_TUNER_ROOT={hls_tuner_root}
       script_file.write('''\
 connect
 source {output_path}/_sds/p0/ipi/zed.sdk/ps7_init.tcl
-targets -set -nocase -filter {{name =~"APU*" && jtag_cable_name =~ "Digilent Zed 210248518531"}} -index 0
+targets -set -nocase -filter {{name =~"APU*" && jtag_cable_name =~ "Digilent Zed*"}} -index 0
 rst -system
 after 3000
-targets -set -filter {{jtag_cable_name =~ "Digilent Zed 210248518531" && level==0}} -index 1
+targets -set -filter {{jtag_cable_name =~ "Digilent Zed*" && level==0}} -index 1
 fpga -file {target_file}.bit
-targets -set -nocase -filter {{name =~"APU*" && jtag_cable_name =~ "Digilent Zed 210248518531"}} -index 0
+targets -set -nocase -filter {{name =~"APU*" && jtag_cable_name =~ "Digilent Zed*"}} -index 0
 loadhw {output_path}/_sds/p0/ipi/zed.sdk/zed.hdf
-targets -set -nocase -filter {{name =~"APU*" && jtag_cable_name =~ "Digilent Zed 210248518531"}} -index 0
 ps7_init
 ps7_post_config
-targets -set -nocase -filter {{name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Zed 210248518531"}} -index 0
+targets -set -nocase -filter {{name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Zed*"}} -index 0
 dow {target_file}
 bpadd -addr 0x{exit_address}
 con -block
@@ -281,12 +281,13 @@ stty -F {serial_device} {serial_baudrate} raw
 cat {serial_device} > Serial_output.log &
 sdx -batch -source {TCL_script}
 kill $!
-'''.format(sdsoc_root = self.sdsoc_root, output_path = self.output_path,
+'''.format(sdsoc_root = self.sdsoc_root, output_path = output_path,
            serial_device = self.serial_device, serial_baudrate =
            self.serial_baudrate, TCL_script = TCL_script))
+    os.chmod(run_script, os.stat(run_script).st_mode | stat.S_IXUSR)
 
     try:
-      run_result = self.call_program('ssh ' + fpga_host + ' ' + run_script,
+      run_result = self.call_program('ssh ' + self.fpga_host + ' ' + run_script,
                                      limit = self.run_timeout)
     except OSError:
       return Result(state='ERROR', time=float('inf'))
@@ -320,33 +321,35 @@ kill $!
 
   def check_fpga_host(self):
 
-    check_script = output_path + '/Check_FPGA_host.sh'
+    check_script = self.output_root + '/Check_FPGA_host.sh'
     with open(check_script, 'w') as script_file:
       script_file.write('''\
 #!/bin/bash -e
-[ -c '{serial_device}' ] && echo "Not found" && exit
-[ -r '{serial_device}' -a -w '{serial_device}' ] echo 'Not accessible' && exit
+[ ! -c '{serial_device}' ] && echo "Not found" && exit
+[ ! -r '{serial_device}' -o ! -w '{serial_device}' ] && echo 'Not accessible' && exit
 PIDS=$(pidof hw_server)
 for PID in $(pidof hw_server)
 do
-  OWNER=$(grep Uid: "/proc/$PID/status" | awk '{ print $2 }')
+  OWNER=$(grep Uid: "/proc/$PID/status" | awk '{{ print $2 }}')
   [ "$OWNER" == "0" ] && echo "Success" && exit
 done
 echo "Not root"
 '''.format(serial_device = self.serial_device))
+    os.chmod(check_script, os.stat(check_script).st_mode | stat.S_IXUSR)
 
-    output = self.check_output('ssh ' + fpga_host + ' ' + check_script)
-    if output == 'Not found':
+    print('ssh ' + self.fpga_host + ' ' + check_script)
+    output = subprocess.check_output(['ssh', self.fpga_host, check_script])
+    if output == 'Not found\n':
       raise RuntimeError("The serial device could not be found.  The FPGA may" \
                          " not be powered on.")
-    elif output == 'Not accessible':
+    elif output == 'Not accessible\n':
       raise RuntimeError("The user has no permission to access the serial" \
                          " device.  Perhaps the user must be added to the" \
                          " 'dialout' group.")
-    elif output == 'Not root':
+    elif output == 'Not root\n':
       raise RuntimeError("You should start hw_server as root before you run" \
                          " this script.")
-    elif output != 'Success':
+    elif output != 'Success\n':
       raise RuntimeError("Check_FPGA_host.sh returned an unknown error.")
       
   def run_on_grid(self, result_id, output_path, build_script, qsub_params):
@@ -421,11 +424,11 @@ echo "Not root"
     prefix = sys.path[0]
     while True:
       [prefix, last_dir] = os.path.split(prefix)
-      if last_dir == "HLS_tuner":
+      if last_dir == "OpenTuner":
         break;
       if prefix == "":
         raise RuntimeError("Cannot find root of HLS tuner workspace.")
-    return prefix;
+    return prefix
 
 if __name__ == '__main__':
   opentuner.init_logging()

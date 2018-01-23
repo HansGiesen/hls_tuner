@@ -3,4 +3,5 @@ Run.tcl
 opentuner.db
 opentuner.log
 Build_*
+Check_FPGA_host.sh
 
