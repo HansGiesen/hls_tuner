@@ -46,7 +46,7 @@ class FilterPipelineTuner(MeasurementInterface):
     self.make_file   = self.hls_tuner_root + "/TestApps/FilterPipeline/Sources/Makefile"
     self.output_root = self.hls_tuner_root + "/TestApps/FilterPipeline"
 
-    self.fake_build        = True
+    self.fake_build        = False
     self.fake_build_source = self.hls_tuner_root + '/Data/Successful_build'
 
     self.build_timeout = 120 * 60
@@ -201,44 +201,67 @@ export HLS_TUNER_ROOT={hls_tuner_root}
                     output_path + '/_sds/p0/ipi/zed.sdk')
         build_result = {'returncode': 0}
 
-      result_code = self.get_build_result_code(output_path)
+      try:
+        with open(output_path + '/Build_output.log', 'r') as log_file:
+          lines = log_file.read()
+      except:
+        code = 'LE?'
+        return code
 
-      log.info("Build result of configuration %d: %s", result_id, result_code)
+      if re.search(r'Build timed out.', lines) != None:
+        result = Result(state = 'BTO', msg = 'Build timed out.')
+      elif re.search(r'\[Place 30-640\]', lines) != None:
+        result = Result(state = 'BE0', msg = 'Too many LUTs')
+      elif re.search(r'\[SCHED 204-80\]', lines) != None:
+        result = Result(state = 'BE1', msg = 'Dependency error')
+      elif re.search(r'\[XFORM 203-504\]', lines) != None:
+        result = Result(state = 'BE2', msg = 'Too much unrolling')
+      elif re.search(r'\[XFORM 203-1403\]', lines) != None:
+        result = Result(state = 'BE3',
+                        msg = 'Too many load/store instructions')
+      elif re.search(r'\[Timing 38-282\]', lines) != None:
+        result = Result(state = 'TIMING', msg = 'Timing constraints not met')
+      elif re.search(r'\[Timing 38-246\]', lines) != None:
+        result = Result(state = 'BE5', msg = 'Thread error')
+      elif re.search(r'\[Common 17-179\]', lines) != None:
+        result = Result(state = 'BE9', msg = 'Fork failed.')
+      elif re.search(r'Scripts Generated : progress 0%', lines) != None:
+        result = Result(state = 'BE6',
+                        msg = 'Unknown error at 0% of bitstream generation')
+      elif re.search(r'Moving function[^\n]*\n[^\n]*failed$', lines,
+                     re.MULTILINE) != None:
+        result = Result(state = 'BE7',
+                        msg = 'Unknown error while moving function')
+      elif re.search(r'This may take some time[^\n]*\n[^\n]*failed$', lines,
+                     re.MULTILINE) != None:
+        result = Result(state = 'BE4',
+                        msg = 'Unknown error while generating bitstream')
+      elif re.search(r'Finished building target:', lines) == None:
+        result = Result(state = 'BE?', msg = 'Unknown build error')
+      else:
+        result = Result(state = 'OK', msg = 'Build was successful.')
 
-      if not result_code in ['LE0', 'LE?', 'BE4', 'BE5', 'BE6', 'BE7', 'BE9',
-                             'BE?']:
+      log.info("Attempt %d: %s (%s)", attempt, result.msg, result.state)
+
+      if not result.state in ['BE4', 'BE5', 'BE6', 'BE7', 'BE9', 'BE?']:
         break
 
-    if build_result['returncode'] != 0:
-      if build_result['returncode'] == 124:
-        log.error("Build timeout on configuration %d", result_id)
-        return 'timeout'
-      else:
-        log.error("Build error on configuration %d", result_id)
-        return 'error'
-
-    log_path = output_path + '/Build_output.log'
-    timing_met = False
-    with open(log_path, 'r') as log_file:
-      for line in log_file:
-        if line == 'All user specified timing constraints are met.\n':
-          timing_met = True
-
-    if not timing_met:
+    if result.state == 'OK':
+      log.info("Build of configuration %d was successful...", result_id)
+    elif result.state == 'BTO':
+      log.error("Build timeout on configuration %d", result_id)
+    elif result.state == 'TIMING':
       log.error('Timing not met on configuration %d', result_id)
-      return 'error'
+    else:
+      log.error("Build error on configuration %d", result_id)
 
-    log.info("Build of configuration %d was successful...", result_id)
-
-    return 'ok'
+    return result
 
   def run_precompiled(self, desired_result, inp, limit, compile_result,
                       result_id):
 
-    if compile_result == 'timeout':
-      return Result(state = 'TIMEOUT', time = float('inf'))
-    elif compile_result == 'error':
-      return Result(state = 'ERROR', time = float('inf'))
+    if compile_result.state != 'OK':
+      return compile_result
 
     log.info("Running configuration %d...", result_id)
 
@@ -290,7 +313,7 @@ kill $!
       run_result = self.call_program('ssh ' + self.fpga_host + ' ' + run_script,
                                      limit = self.run_timeout)
     except OSError:
-      return Result(state='ERROR', time=float('inf'))
+      return Result(state='RE?', msg = 'Unknown error while running.')
 
     with open(output_path + '/Run_output.log', 'w') as log_file:
       log_file.write(run_result['stdout'])
@@ -299,7 +322,7 @@ kill $!
 
     if run_result['returncode'] != 0 and run_result['timeout']:
       log.error('Run timeout on configuration %d', result_id)
-      return Result(state='TIMEOUT', time=float('inf'))
+      return Result(state='RTO', msg = 'Timeout while running.')
 
     test_failed = True
     cycles = float('inf')
@@ -313,11 +336,11 @@ kill $!
 
     if run_result['returncode'] != 0 or test_failed:
       log.error('Run error on configuration %d', result_id)
-      return Result(state='ERROR', time=float('inf'))
+      return Result(state = 'RE1')
 
     log.info("Run of configuration %d was successful...", result_id)
 
-    return Result(time=cycles)
+    return Result(state = 'OK', msg = 'Test successful.', time = cycles)
 
   def check_fpga_host(self):
 
@@ -337,7 +360,6 @@ echo "Not root"
 '''.format(serial_device = self.serial_device))
     os.chmod(check_script, os.stat(check_script).st_mode | stat.S_IXUSR)
 
-    print('ssh ' + self.fpga_host + ' ' + check_script)
     output = subprocess.check_output(['ssh', self.fpga_host, check_script])
     if output == 'Not found\n':
       raise RuntimeError("The serial device could not be found.  The FPGA may" \
@@ -381,44 +403,6 @@ echo "Not root"
 
   def save_final_config(self, configuration):
     self.manipulator().save_to_file(configuration.data, 'FilterPipeline_final_config.json')
-
-  def get_build_result_code(self, output_path):
-
-    try:
-      with open(output_path + '/Build_output.log', 'r') as log_file:
-        lines = log_file.read()
-    except:
-      code = 'LE?'
-      return code
-
-    if re.search(r'Build timed out.', lines) != None:
-      code = 'BTO' # Build timed out.
-    if re.search(r'\[Place 30-640\]', lines) != None:
-      code = 'BE0' # Too many LUTs
-    elif re.search(r'\[SCHED 204-80\]', lines) != None:
-      code = 'BE1' # Dependency error
-    elif re.search(r'\[XFORM 203-504\]', lines) != None:
-      code = 'BE2' # Too much unrolling
-    elif re.search(r'\[XFORM 203-1403\]', lines) != None:
-      code = 'BE3' # Too many load/store instructions
-    elif re.search(r'\[Timing 38-282\]', lines) != None:
-      code = 'TIMING' # Timing constraints not met
-    elif re.search(r'\[Timing 38-246\]', lines) != None:
-      code = 'BE5' # Thread error.
-    elif re.search(r'\[Common 17-179\]', lines) != None:
-      code = 'BE9' # Fork failed.
-    elif re.search(r'Scripts Generated : progress 0%', lines) != None:
-      code = 'BE6' # Unknown error at 0% of bitstream generation.
-    elif re.search(r'Moving function[^\n]*\n[^\n]*failed$', lines, re.MULTILINE) != None:
-      code = 'BE7' # Unknown error while moving function
-    elif re.search(r'This may take some time[^\n]*\n[^\n]*failed$', lines, re.MULTILINE) != None:
-      code = 'BE4' # Unknown error while generating bitstream
-    elif re.search(r'Finished building target:', lines) == None:
-      code = 'BE?'
-    else:
-      code = 'SUCCESS'
-
-    return code
 
   def find_tuner_root(self):
     prefix = sys.path[0]
