@@ -333,6 +333,9 @@ kill $!
         match = re.match(r'The hardware test took (\S+) cycles.\r\n', line)
         if match != None:
           cycles = match.group(1)
+        else:
+          log.error('Serial port produced invalid output.', result_id)
+          return Result(state = 'RE2')          
 
     if run_result['returncode'] != 0 or test_failed:
       log.error('Run error on configuration %d', result_id)
