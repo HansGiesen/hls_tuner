@@ -1,0 +1,8 @@
+/* standalone */
+the_ROM_image:
+{
+  [bootloader]<standalone/boot/fsbl.elf>
+  <bitstream>
+  <elf>
+}
+
