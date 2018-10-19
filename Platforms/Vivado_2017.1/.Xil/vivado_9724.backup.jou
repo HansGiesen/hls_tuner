@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# Vivado v2017.1_sdx (64-bit)
+# SW Build 1915620 on Thu Jun 22 17:54:59 MDT 2017
+# IP Build 1908669 on Thu Jun 22 19:20:41 MDT 2017
+# Start of session at: Thu Oct 18 11:01:41 2018
+# Process ID: 9724
+# Current directory: /scratch/safe/giesen/HLS_tuner/1/Platforms/Vivado_2017.1/.Xil
+# Command line: vivado -mode batch -notrace -source archive_project.tcl /scratch/safe/giesen/HLS_tuner/1/Platforms/Vivado_2017.1/Generate_pynq/pynq/pynq.xpr
+# Log file: /scratch/safe/giesen/HLS_tuner/1/Platforms/Vivado_2017.1/.Xil/vivado.log
+# Journal file: /scratch/safe/giesen/HLS_tuner/1/Platforms/Vivado_2017.1/.Xil/vivado.jou
+#-----------------------------------------------------------
+open_project /scratch/safe/giesen/HLS_tuner/1/Platforms/Vivado_2017.1/Generate_pynq/pynq/pynq.xpr
+source archive_project.tcl -notrace

@@ -1,0 +1,40 @@
+#-----------------------------------------------------------
+# Vivado v2017.1_sdx (64-bit)
+# SW Build 1915620 on Thu Jun 22 17:54:59 MDT 2017
+# IP Build 1908669 on Thu Jun 22 19:20:41 MDT 2017
+# Start of session at: Thu Oct 18 11:01:41 2018
+# Process ID: 9724
+# Current directory: /scratch/safe/giesen/HLS_tuner/1/Platforms/Vivado_2017.1/.Xil
+# Command line: vivado -mode batch -notrace -source archive_project.tcl /scratch/safe/giesen/HLS_tuner/1/Platforms/Vivado_2017.1/Generate_pynq/pynq/pynq.xpr
+# Log file: /scratch/safe/giesen/HLS_tuner/1/Platforms/Vivado_2017.1/.Xil/vivado.log
+# Journal file: /scratch/safe/giesen/HLS_tuner/1/Platforms/Vivado_2017.1/.Xil/vivado.jou
+#-----------------------------------------------------------
+INFO: [Common 17-1460] Use of init.tcl in /home/gyzuh/SDx/SDx/2017.1/Vivado/scripts/init.tcl is deprecated. Please use Vivado_init.tcl 
+Sourcing tcl script '/home/gyzuh/SDx/SDx/2017.1/Vivado/scripts/init.tcl'
+16 Beta devices matching pattern found, 16 enabled.
+Loaded SDSoC Platform Tcl Library
+open_project /scratch/safe/giesen/HLS_tuner/1/Platforms/Vivado_2017.1/Generate_pynq/pynq/pynq.xpr
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/home/gyzuh/SDx/SDx/2017.1/Vivado/data/ip'.
+open_project: Time (s): cpu = 00:00:01 ; elapsed = 00:00:08 . Memory (MB): peak = 1144.023 ; gain = 0.000 ; free physical = 1712 ; free virtual = 13376
+source archive_project.tcl -notrace
+INFO: [Coretcl 2-137] starting archive...
+INFO: [Coretcl 2-1499] Saving project copy to temporary location './.Xil/Vivado-9724-lenovo-laptop' for archiving project
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/home/gyzuh/SDx/SDx/2017.1/Vivado/data/ip'.
+INFO: [Coretcl 2-1211] Creating project copy for archival...
+INFO: [Coretcl 2-1213] Including run results for 'synth_1'
+INFO: [Coretcl 2-1213] Including run results for 'impl_1'
+INFO: [Coretcl 2-1209] Adding archive summary file to the project...
+INFO: [Coretcl 2-1214] Preparing project files for archive...
+INFO: [Coretcl 2-1210] Compressing project files and data...
+INFO: [Coretcl 2-1215] Project archived (/scratch/safe/giesen/HLS_tuner/1/Platforms/Vivado_2017.1/.Xil/pynq.xpr.zip)
+INFO: [Coretcl 2-1216] To view the archive summary log in GUI, double click on 'Design Sources->Text->archive_project_summary.txt', or open this file from the archived project directory.
+archive_project: Time (s): cpu = 00:00:02 ; elapsed = 00:01:47 . Memory (MB): peak = 1155.039 ; gain = 11.016 ; free physical = 1639 ; free virtual = 13316
+INFO: [Common 17-206] Exiting Vivado at Thu Oct 18 11:05:55 2018...
