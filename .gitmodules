@@ -1,3 +1,3 @@
 [submodule "OpenTuner"]
 	path = OpenTuner
-	url = https://github.com/jansel/opentuner.git
+	url = giesen@eniac.seas.upenn.edu:/project/ese/ic/gitroot/opentuner.git
