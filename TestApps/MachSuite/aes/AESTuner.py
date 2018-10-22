@@ -53,8 +53,8 @@ class AESTuner(MeasurementInterface):
     if self.sdsoc_root == "":
       raise RuntimeError("Environment variable SDSOC_ROOT was not set.")
 
-    self.make_file   = hls_tuner_root + "/Apps/aes/Sources/Makefile"
-    self.output_root = hls_tuner_root + "/Apps/aes/Output"
+    self.make_file   = hls_tuner_root + "/TestApps/MachSuite/aes/Sources/Makefile"
+    self.output_root = hls_tuner_root + "/TestApps/MachSuite/aes/Output"
 
     self.fake_build        = False
     self.fake_build_source = hls_tuner_root + '/Data/Successful_build'
@@ -76,7 +76,7 @@ class AESTuner(MeasurementInterface):
     old_data_found = False
     for name in os.listdir(self.output_root):
       path = self.output_root + '/' + name
-      if os.path.isdir(path) and re.match('[0-9]+', os.path.basename(path)):
+      if os.path.isdir(path) and re.match('Build_', os.path.basename(path)):
         old_data_found = True
 
     if old_data_found and not args.append:
@@ -131,7 +131,7 @@ class AESTuner(MeasurementInterface):
 
     log.info("Building configuration %d...", result_id)
 
-    output_path = self.output_root + "/{0:04d}".format(result_id)
+    output_path = self.output_root + "/Build_{0:04d}".format(result_id)
     os.mkdir(output_path)
 
     defines = ''
@@ -142,8 +142,9 @@ class AESTuner(MeasurementInterface):
         accelerator_clock = str(value)
       elif param == 'ACCELERATOR_UNCERTAINTY':
         accelerator_uncertainty = str(value)
-      elif param.startswith('PIPELINE_') and not param.startswith('PIPELINE_II_'):
-        defines += ' -D{0}'.format(param)
+      elif re.match(r'PIPELINE_(?!II_).*', param):
+        if value:
+          defines += ' -D{0}'.format(param)
       else:
         defines += ' -D{0}={1}'.format(param, value)
 
@@ -160,7 +161,7 @@ Exit_handler()
 trap Exit_handler exit
 export HLS_TUNER_ROOT={hls_tuner_root}
 DIR=$(mktemp -d -p /scratch/local)
-echo $(hostname) ${{DIR}} > Dir.txt
+echo $(hostname) ${{DIR}} > Host.txt
 cd ${{DIR}}
 timeout {build_timeout}s \\
   make -f {make_file} clean all \\
@@ -170,8 +171,7 @@ timeout {build_timeout}s \\
   DATA_MOVER_CLOCK={data_mover_clock} \\
   ACCELERATOR_CLOCK={accelerator_clock}
 cd -
-mv ${{DIR}}/* .
-rm Dir.txt
+mv ${{DIR}}/{{.[!.],}}* .
 rmdir ${{DIR}} 
 '''.format(hls_tuner_root = hls_tuner_root,
            build_timeout = self.build_timeout,
@@ -241,7 +241,7 @@ rmdir ${{DIR}}
       if re.search(r'Build timed out.', lines) != None:
         result = Result(state = 'BTO', msg = 'Build timed out.')
       elif re.search(r'\[Place 30-640\]', lines) != None:
-        result = Result(state = 'BE0', msg = 'Too many LUTs')
+        result = Result(state = 'BE0', msg = 'Too many LUTs or BRAMs')
       elif re.search(r'\[SCHED 204-80\]', lines) != None:
         result = Result(state = 'BE1', msg = 'Dependency error')
       elif re.search(r'\[XFORM 203-504\]', lines) != None:
@@ -271,7 +271,8 @@ rmdir ${{DIR}}
       else:
         result = Result(state = 'OK', msg = 'Build was successful.')
 
-      log.info("Attempt %d: %s (%s)", attempt, result.msg, result.state)
+      log.info("Build %d, attempt %d: %s (%s)", result_id, attempt, result.msg,
+               result.state)
 
       if not result.state in ['BE4', 'BE5', 'BE6', 'BE7', 'BE9', 'BE?']:
         break
@@ -295,7 +296,7 @@ rmdir ${{DIR}}
 
     log.info("Running configuration %d...", result_id)
 
-    output_path = self.output_root + "/{0:04d}".format(result_id)
+    output_path = self.output_root + "/Build_{0:04d}".format(result_id)
 
     # SDSoC 2017.1 is not loading symbols from ELF file properly, so we have to
     # obtain the address of the exit function ourselves.  Otherwise, we could

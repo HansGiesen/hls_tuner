@@ -18,8 +18,8 @@ THREADS ?= 1
 
 SDSOC_ROOT := $(realpath $(SDSOC_ROOT))
 
-SRC_DIR := $(HLS_TUNER_ROOT)/Apps/aes/Sources
-COMMON_DIR := $(HLS_TUNER_ROOT)/Apps/common
+SRC_DIR := $(HLS_TUNER_ROOT)/TestApps/MachSuite/aes/Sources
+COMMON_DIR := $(HLS_TUNER_ROOT)/TestApps/MachSuite/common
 
 SRC_FILES := aes_test.c aes.c
 OBJ_FILES := $(SRC_FILES:.c=.o)
