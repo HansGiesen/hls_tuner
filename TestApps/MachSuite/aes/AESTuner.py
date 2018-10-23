@@ -163,7 +163,9 @@ export HLS_TUNER_ROOT={hls_tuner_root}
 DIR=$(mktemp -d -p /scratch/local)
 echo $(hostname) ${{DIR}} > Host.txt
 cd ${{DIR}}
-timeout {build_timeout}s \\
+# The /usr/bin/timeout tool changes its process group, which means that the
+# children do not receive TERM signals, so we use a custom timeout script.
+${{HLS_TUNER_ROOT}}/Scripts/Timeout.sh -t {build_timeout} \\
   make -f {make_file} clean all \\
   JOBS={max_jobs} \\
   THREADS={max_threads} \\
