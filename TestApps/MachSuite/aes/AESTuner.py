@@ -152,17 +152,11 @@ class AESTuner(MeasurementInterface):
     with open(build_script, 'w') as script_file:
       script_file.write('''\
 #!/bin/bash -e
-Exit_handler()
-{{
-  EXIT_VALUE=$?
-  [ ${{EXIT_VALUE}} == 124 ] && echo "Build timed out."
-  exit ${{EXIT_VALUE}}
-}}
-trap Exit_handler exit
 export HLS_TUNER_ROOT={hls_tuner_root}
 DIR=$(mktemp -d -p /scratch/local)
 echo $(hostname) ${{DIR}} > Host.txt
 cd ${{DIR}}
+EXIT_CODE=0
 # The /usr/bin/timeout tool changes its process group, which means that the
 # children do not receive TERM signals, so we use a custom timeout script.
 ${{HLS_TUNER_ROOT}}/Scripts/Timeout.sh -t {build_timeout} \\
@@ -171,10 +165,17 @@ ${{HLS_TUNER_ROOT}}/Scripts/Timeout.sh -t {build_timeout} \\
   THREADS={max_threads} \\
   HLS_TUNER_DEFINES='{defines}' \\
   DATA_MOVER_CLOCK={data_mover_clock} \\
-  ACCELERATOR_CLOCK={accelerator_clock}
-cd -
-mv ${{DIR}}/{{.[!.],}}* .
-rmdir ${{DIR}} 
+  ACCELERATOR_CLOCK={accelerator_clock} || EXIT_CODE=$?
+if [ -d {temp_dir} -a -z "$(find {temp_dir} -prune -empty -type d 2> /dev/null)" ]
+then
+  cd -
+  shopt -s dotglob
+  mv ${{DIR}}/* .
+  rmdir ${{DIR}}
+fi
+[ "${{EXIT_CODE}}" == 143 ] && echo "Build timed out."
+[ "${{EXIT_CODE}}" == 0 ] && echo "Build has completed successfully."
+exit ${{EXIT_CODE}}
 '''.format(hls_tuner_root = hls_tuner_root,
            build_timeout = self.build_timeout,
            make_file = self.make_file,
@@ -233,14 +234,24 @@ rmdir ${{DIR}}
                     output_path + '/_sds/p0/ipi/zed.sdk')
         build_result = {'returncode': 0}
 
+      result = None
+
+      try:
+        with open(output_path + '/Launch_error.log', 'r') as log_file:
+          lines = log_file.read()
+      except:
+        result = Result(state = 'LE?', msg = 'Launch error.')
+
+      if result == None and re.search(r'Interrupted!', lines) != None:
+        raise KeyboardException
+
       try:
         with open(output_path + '/Build_output.log', 'r') as log_file:
           lines = log_file.read()
       except:
-        code = 'LE?'
-        return code
+        result = Result(state = 'LE?', msg = 'Launch error.')
 
-      if re.search(r'Build timed out.', lines) != None:
+      if result == None and re.search(r'Build timed out.', lines) != None:
         result = Result(state = 'BTO', msg = 'Build timed out.')
       elif re.search(r'\[Place 30-640\]', lines) != None:
         result = Result(state = 'BE0', msg = 'Too many LUTs or BRAMs')
@@ -255,6 +266,8 @@ rmdir ${{DIR}}
         result = Result(state = 'TIMING', msg = 'Timing constraints not met')
       elif re.search(r'\[Timing 38-246\]', lines) != None:
         result = Result(state = 'BE5', msg = 'Thread error')
+      elif re.search(r'\[DRC PDCY-4\]', lines) != None:
+        result = Result(state = 'BE8', msg = 'Unconnected carry input')
       elif re.search(r'\[Common 17-179\]', lines) != None:
         result = Result(state = 'BE9', msg = 'Fork failed.')
       elif re.search(r'Scripts Generated : progress 0%', lines) != None:
@@ -268,15 +281,15 @@ rmdir ${{DIR}}
                      re.MULTILINE) != None:
         result = Result(state = 'BE4',
                         msg = 'Unknown error while generating bitstream')
-      elif re.search(r'Finished building target:', lines) == None:
+      elif re.search(r'Build has completed successfully.', lines) == None:
         result = Result(state = 'BE?', msg = 'Unknown build error')
       else:
         result = Result(state = 'OK', msg = 'Build was successful.')
 
-      log.info("Build %d, attempt %d: %s (%s)", result_id, attempt, result.msg,
-               result.state)
+      log.info("Configuration %d, attempt %d: %s (%s)", result_id, attempt,
+               result.msg, result.state)
 
-      if not result.state in ['BE4', 'BE5', 'BE6', 'BE7', 'BE9', 'BE?']:
+      if not result.state in ['LE?', 'BE4', 'BE5', 'BE6', 'BE7', 'BE9', 'BE?']:
         break
 
     if result.state == 'OK':
@@ -431,6 +444,36 @@ echo "Success"
 
   def save_final_config(self, configuration):
     self.manipulator().save_to_file(configuration.data, 'aes_final_config.json')
+
+  def cleanup(self, result_id):
+
+    output_path = self.output_root + "/Build_{0:04d}".format(result_id)
+    host_file = output_path + '/Host.txt'
+
+    if os.path.isfile(host_file):
+      with open(host_file, 'r') as file_handle:
+        info = file_handle.readline()
+      host, temp_dir = re.search(r'(\S+)\s+(\S+)', info).groups()
+
+      cleanup_script = output_path + '/Cleanup.sh'
+      with open(cleanup_script, 'w') as cleanup_file:
+        cleanup_file.write('''\
+#!/bin/bash -e
+[[ "{temp_dir}" != /scratch/local* ]] && exit 1
+[ ! -d {temp_dir} ] && exit 0
+[ -n "$(find {temp_dir} -prune -empty -type d 2> /dev/null)" ] && exit 0
+shopt -s dotglob
+mv {temp_dir}/* .
+rmdir {temp_dir}
+'''.format(temp_dir = temp_dir))
+
+      subprocess.check_output(['qsub', '-S', '/bin/bash', \
+                              '-wd', output_path, \
+                              '-o', output_path + '/Cleanup_output.log', \
+                              '-e', output_path + '/Cleanup_error.log', \
+                              '-N', 'Cleanup_' + str(result_id), \
+                              '-q', '*@' + host + '*', \
+                              cleanup_script])
 
 if __name__ == '__main__':
   opentuner.init_logging()
