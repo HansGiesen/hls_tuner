@@ -15,6 +15,9 @@ import sys
 import threading
 
 def find_tuner_root():
+  """
+  Returns the root directory of the HLS tuner repository in which the current working directory resides.
+  """
   prefix = sys.path[0]
   while True:
     [prefix, last_dir] = os.path.split(prefix)
@@ -24,8 +27,8 @@ def find_tuner_root():
       raise RuntimeError("Cannot find root of HLS tuner workspace.")
   return prefix
 
-hls_tuner_root = find_tuner_root();
-sys.path.insert(0, hls_tuner_root + '/OpenTuner')
+tuner_root = find_tuner_root()
+sys.path.insert(0, tuner_root + '/OpenTuner')
 
 import opentuner
 from opentuner import ConfigurationManipulator
@@ -44,8 +47,14 @@ argparser.add_argument('--append', action = 'store_true',
                        help = 'append new tuning run to existing runs')
 
 class AESTuner(MeasurementInterface):
+  """
+  Main tuner class for AES benchmark of MachSuite
+  """
 
   def __init__(self, *pargs, **kwargs):
+    """
+    Initializes a tuner object and performs a few sanity checks.
+    """
 
     super(AESTuner, self).__init__(*pargs, **kwargs)
 
@@ -53,14 +62,21 @@ class AESTuner(MeasurementInterface):
     if self.sdsoc_root == "":
       raise RuntimeError("Environment variable SDSOC_ROOT was not set.")
 
-    self.make_file   = hls_tuner_root + "/TestApps/MachSuite/aes/Sources/Makefile"
-    self.output_root = hls_tuner_root + "/TestApps/MachSuite/aes/Output"
+    self.make_file     = tuner_root + "/TestApps/MachSuite/aes/Sources/Makefile"
+    self.output_root   = tuner_root + "/TestApps/MachSuite/aes/Output"
+    self.template_path = tuner_root + "/Templates"
 
     self.fake_build        = False
-    self.fake_build_source = hls_tuner_root + '/Data/Successful_build'
+    self.fake_build_source = tuner_root + '/Data/Successful_build'
 
-    self.build_timeout = 120 * 60
-    self.run_timeout   = 5 * 60
+    self.presynth_timeout = 15 * 60
+    self.synth_timeout    = 30 * 60
+    self.impl_timeout     = 30 * 60
+    self.run_timeout      = 5 * 60
+
+    self.presynth_retries = 5
+    self.synth_retries    = 5
+    self.impl_retries     = 5
 
     self.parallel_compile = True
 
@@ -76,7 +92,7 @@ class AESTuner(MeasurementInterface):
     old_data_found = False
     for name in os.listdir(self.output_root):
       path = self.output_root + '/' + name
-      if os.path.isdir(path) and re.match('Build_', os.path.basename(path)):
+      if os.path.isdir(path) and re.match('[0-9]{4}$', os.path.basename(path)):
         old_data_found = True
 
     if old_data_found and not args.append:
@@ -87,6 +103,9 @@ class AESTuner(MeasurementInterface):
     self.check_fpga_host()
 
   def manipulator(self):
+    """
+    Returns an object that represents the parameters that can be tuned.
+    """
 
     manipulator = ConfigurationManipulator()
     manipulator.add_parameter(BooleanParameter("PIPELINE_SUB"))
@@ -116,195 +135,263 @@ class AESTuner(MeasurementInterface):
     manipulator.add_parameter(IntegerParameter("PIPELINE_II_ECB1", 1, 32))
     manipulator.add_parameter(IntegerParameter("PIPELINE_II_ECB2", 1, 8))
     manipulator.add_parameter(IntegerParameter("PIPELINE_II_ECB3", 1, 13))
-    manipulator.add_parameter(EnumParameter("ACCELERATOR_CLOCK", ['0', '1', '2', '3']))
-    manipulator.add_parameter(FloatParameter("ACCELERATOR_UNCERTAINTY", 0, 100))
+    manipulator.add_parameter(EnumParameter("KERNEL_CLOCK", ['0', '1', '2', '3']))
     manipulator.add_parameter(EnumParameter("DATA_MOVER_CLOCK", ['0', '1', '2', '3']))
     return manipulator
 
-  def compile_and_run(self, desired_result, inp, limit):
-
-    cfg = desired_result.configuration.data
-    compile_result = self.compile(cfg, 0)
-    return self.run_precompiled(desired_result, inp, limit, compile_result, 0)
-
   def compile(self, config_data, result_id):
+    """
+    Builds hardware and software for one configuration.
+    """
 
-    log.info("Building configuration %d...", result_id)
-
-    output_path = self.output_root + "/Build_{0:04d}".format(result_id)
+    output_path = self.output_root + "/{0:04d}".format(result_id)
     os.mkdir(output_path)
+    presynth_output_path = output_path + '/Presynth'
+
+    result = self.do_presynth(config_data, result_id, output_path, presynth_output_path)
+    if result.state == 'POK':
+      result = self.do_synth(result_id, output_path, presynth_output_path)
+    if result.state == 'SOK':
+      result = self.do_impl(result_id, output_path)
+
+    return result
+
+  def do_presynth(self, config_data, result_id, output_path, presynth_output_path):
+    """
+    Creates software and performs all hardware generation steps before RTL synthesis on one configuration, including
+    HLS.
+    """
+
+    log.info("Presynthesize configuration %d...", result_id)
+
+    build_script_template = self.template_path + '/Presynth.bash'
+    build_script = presynth_output_path + '/Presynth.bash'
+    qsub_output_log = presynth_output_path + '/QSub_output.log'
+    qsub_error_log = presynth_output_path + '/QSub_error.log'
+    build_output_log = presynth_output_path + '/Presynth_output.log'
+    build_error_log = presynth_output_path + '/Presynth_error.log'
+
+    for retry in range(0, self.presynth_retries):
+
+      if retry > 0:
+        log.info("Repeating presynthesis of configuration %d...", result_id)
+        os.rename(presynth_output_path, output_path + '/Presynth_failed_' + str(retry - 1))
+
+      os.mkdir(presynth_output_path)
+
+      self.create_presynth_scripts(config_data, build_script_template, build_script)
+
+      if not self.fake_build:
+        self.run_on_grid(result_id, presynth_output_path, build_script, qsub_output_log, qsub_error_log,
+                         build_output_log, build_error_log, "Presynth")
+      else:
+        pass
+
+      result = self.get_presynth_result(qsub_error_log, build_output_log)
+
+      log.info("Configuration %d, attempt %d: %s (%s)", result_id, retry,
+               result.msg, result.state)
+
+      if not result.state in ['PE0', 'PE1', 'PE2', 'PE?']:
+        break
+
+    if result.state == 'POK':
+      log.info("Presynthesis of configuration %d was successful...", result_id)
+    elif result.state == 'PTO':
+      log.error("Presynthesis timeout on configuration %d", result_id)
+    else:
+      log.error("Presynthesis error on configuration %d", result_id)
+
+    return result
+
+  def create_presynth_scripts(self, config_data, script_template, script):
+    """
+    Creates scripts for presynthesis build step.
+    """
 
     defines = ''
     for param, value in config_data.items():
       if param == 'DATA_MOVER_CLOCK':
         data_mover_clock = str(value)
-      elif param == 'ACCELERATOR_CLOCK':
-        accelerator_clock = str(value)
-      elif param == 'ACCELERATOR_UNCERTAINTY':
-        accelerator_uncertainty = str(value)
+      elif param == 'KERNEL_CLOCK':
+        kernel_clock = str(value)
       elif re.match(r'PIPELINE_(?!II_).*', param):
         if value:
           defines += ' -D{0}'.format(param)
       else:
         defines += ' -D{0}={1}'.format(param, value)
 
-    build_script = output_path + '/Build.sh'
-    with open(build_script, 'w') as script_file:
-      script_file.write('''\
-#!/bin/bash -e
-export HLS_TUNER_ROOT={hls_tuner_root}
-DIR=$(mktemp -d -p /scratch/local)
-echo $(hostname) ${{DIR}} > Host.txt
-cd ${{DIR}}
-EXIT_CODE=0
-# The /usr/bin/timeout tool changes its process group, which means that the
-# children do not receive TERM signals, so we use a custom timeout script.
-${{HLS_TUNER_ROOT}}/Scripts/Timeout.sh -t {build_timeout} \\
-  make -f {make_file} clean all \\
-  JOBS={max_jobs} \\
-  THREADS={max_threads} \\
-  HLS_TUNER_DEFINES='{defines}' \\
-  DATA_MOVER_CLOCK={data_mover_clock} \\
-  ACCELERATOR_CLOCK={accelerator_clock} || EXIT_CODE=$?
-if [ -d {temp_dir} -a -z "$(find {temp_dir} -prune -empty -type d 2> /dev/null)" ]
-then
-  cd -
-  shopt -s dotglob
-  mv ${{DIR}}/* .
-  rmdir ${{DIR}}
-fi
-[ "${{EXIT_CODE}}" == 143 ] && echo "Build timed out."
-[ "${{EXIT_CODE}}" == 0 ] && echo "Build has completed successfully."
-exit ${{EXIT_CODE}}
-'''.format(hls_tuner_root = hls_tuner_root,
-           build_timeout = self.build_timeout,
-           make_file = self.make_file,
-           max_jobs = self.max_jobs,
-           max_threads = self.max_threads,
-           defines = defines,
-           data_mover_clock = data_mover_clock,
-           accelerator_clock = accelerator_clock))
+    self.fill_in_template(script_template, script,
+                          tuner_root       = tuner_root,
+                          timeout          = self.presynth_timeout,
+                          make_file        = self.make_file,
+                          max_jobs         = self.max_jobs,
+                          max_threads      = self.max_threads,
+                          defines          = defines,
+                          data_mover_clock = data_mover_clock,
+                          kernel_clock     = kernel_clock)
 
-    with open(output_path + '/aes.tcl', 'w') as script_file:
-      script_file.write('set_clock_uncertainty ' + accelerator_uncertainty + '%\n')
+  def get_presynth_result(self, qsub_error_log, build_output_log):
+    """
+    Analyzes the presynthesis output to determine the build result.
+    """
 
-    with open(self.make_file, 'r') as file_handle:
-      data = file_handle.read()
-    self.target_file = re.search(r'^EXE_FILE\s*:=\s*(\S+)', data, re.MULTILINE).group(1)
+    result = None
 
-    for attempt in range(0, 5):
+    try:
+      with open(qsub_error_log, 'r') as log_file:
+        lines = log_file.read()
+    except:
+      result = Result(state = 'PE0', msg = 'Cannot find presynthesis qsub error log.')
 
-      if attempt > 0:
-        log.info("Repeating build of configuration %d...", result_id)
+    if result == None and re.search(r'Interrupted!', lines) != None:
+      raise KeyboardException
+    elif re.search(r'Cannot create temporary directory.', lines) != None:
+      result = Result(state = 'PE1', msg = 'Cannot create temporary directory for presynthesis.')
 
-        backup_path = output_path + '/Attempt_' + str(attempt)
-        os.mkdir(backup_path)
-        for filename in os.listdir(output_path):
-          if not filename.startswith('Attempt_') and not filename == 'Build.sh':
-            os.rename(output_path + '/' + filename, backup_path + '/' + filename)
+    try:
+      with open(build_output_log, 'r') as log_file:
+        lines = log_file.read()
+    except:
+      result = Result(state = 'PE2', msg = 'Cannot find presynthesis output log.')
 
-      if not self.fake_build:
-
-        build_result = self.run_on_grid(result_id, output_path, build_script,
-                                        '-q \'70s*\' -now y')
-
-        if self.grid_unavailable(build_result):
-          log.info('No 70s are available.  Configuration %d will fall back to' \
-                 ' icsafe machines.', result_id)
-          build_result = self.run_on_grid(result_id, output_path, build_script,
-                                         '-q \'!60s*\'')
-
-        if self.grid_unavailable(build_result):
-          log.info('No icsafe machines are available.  Configuration %d will'
-                   ' fall back to 60s.', result_id)
-          build_result = self.run_on_grid(result_id, output_path, build_script,
-                                         '')
-
-      else:
-        shutil.copy(self.fake_build_source + '/Build_output.log',
-                    output_path)
-        shutil.copy(self.fake_build_source + '/' + self.target_file,
-                    output_path)
-        shutil.copy(self.fake_build_source + '/' + self.target_file + '.bit',
-                    output_path)
-        os.makedirs(output_path + '/_sds/p0/ipi/zed.sdk')
-        shutil.copy(self.fake_build_source + '/_sds/p0/ipi/zed.sdk/ps7_init.tcl',
-                    output_path + '/_sds/p0/ipi/zed.sdk')
-        shutil.copy(self.fake_build_source + '/_sds/p0/ipi/zed.sdk/zed.hdf',
-                    output_path + '/_sds/p0/ipi/zed.sdk')
-        build_result = {'returncode': 0}
-
-      result = None
-
-      try:
-        with open(output_path + '/Launch_error.log', 'r') as log_file:
-          lines = log_file.read()
-      except:
-        result = Result(state = 'LE?', msg = 'Launch error.')
-
-      if result == None and re.search(r'Interrupted!', lines) != None:
-        raise KeyboardException
-
-      try:
-        with open(output_path + '/Build_output.log', 'r') as log_file:
-          lines = log_file.read()
-      except:
-        result = Result(state = 'LE?', msg = 'Launch error.')
-
-      if result == None and re.search(r'Build timed out.', lines) != None:
-        result = Result(state = 'BTO', msg = 'Build timed out.')
-      elif re.search(r'\[Place 30-640\]', lines) != None:
-        result = Result(state = 'BE0', msg = 'Too many LUTs or BRAMs')
-      elif re.search(r'\[SCHED 204-80\]', lines) != None:
-        result = Result(state = 'BE1', msg = 'Dependency error')
-      elif re.search(r'\[XFORM 203-504\]', lines) != None:
-        result = Result(state = 'BE2', msg = 'Too much unrolling')
-      elif re.search(r'\[XFORM 203-1403\]', lines) != None:
-        result = Result(state = 'BE3',
-                        msg = 'Too many load/store instructions')
-      elif re.search(r'\[Timing 38-282\]', lines) != None:
-        result = Result(state = 'TIMING', msg = 'Timing constraints not met')
-      elif re.search(r'\[Timing 38-246\]', lines) != None:
-        result = Result(state = 'BE5', msg = 'Thread error')
-      elif re.search(r'\[DRC PDCY-4\]', lines) != None:
-        result = Result(state = 'BE8', msg = 'Unconnected carry input')
-      elif re.search(r'\[Common 17-179\]', lines) != None:
-        result = Result(state = 'BE9', msg = 'Fork failed.')
-      elif re.search(r'Scripts Generated : progress 0%', lines) != None:
-        result = Result(state = 'BE6',
-                        msg = 'Unknown error at 0% of bitstream generation')
-      elif re.search(r'Moving function[^\n]*\n[^\n]*failed$', lines,
-                     re.MULTILINE) != None:
-        result = Result(state = 'BE7',
-                        msg = 'Unknown error while moving function')
-      elif re.search(r'This may take some time[^\n]*\n[^\n]*failed$', lines,
-                     re.MULTILINE) != None:
-        result = Result(state = 'BE4',
-                        msg = 'Unknown error while generating bitstream')
-      elif re.search(r'Build has completed successfully.', lines) == None:
-        result = Result(state = 'BE?', msg = 'Unknown build error')
-      else:
-        result = Result(state = 'OK', msg = 'Build was successful.')
-
-      log.info("Configuration %d, attempt %d: %s (%s)", result_id, attempt,
-               result.msg, result.state)
-
-      if not result.state in ['LE?', 'BE4', 'BE5', 'BE6', 'BE7', 'BE9', 'BE?']:
-        break
-
-    if result.state == 'OK':
-      log.info("Build of configuration %d was successful...", result_id)
-    elif result.state == 'BTO':
-      log.error("Build timeout on configuration %d", result_id)
-    elif result.state == 'TIMING':
-      log.error('Timing not met on configuration %d', result_id)
+    if result == None and re.search(r'Presynthesis timed out.', lines) != None:
+      result = Result(state = 'PTO', msg = 'Presynthesis timed out.')
+    elif re.search(r'\[XFORM 203-504\]', lines) != None:
+      result = Result(state = 'PE3', msg = 'Too much unrolling')
+    elif re.search(r'\[XFORM 203-1403\]', lines) != None:
+      result = Result(state = 'PE4', msg = 'Too many load/store instructions')
+    elif re.search(r'Presynthesis has completed successfully.', lines) == None:
+      result = Result(state = 'PE?', msg = 'Unknown presynthesis error')
     else:
-      log.error("Build error on configuration %d", result_id)
+      result = Result(state = 'POK', msg = 'Presynthesis was successful.')
 
     return result
 
+  def do_synth(self, result_id, output_path, presynth_output_path):
+    """
+    Performs RTL synthesis of one configuration.
+    """
+
+    log.info("Synthesizing configuration %d...", result_id)
+
+    synth_output_path = output_path + '/Synth'
+    shell_script_template = self.template_path + '/Synth.bash'
+    shell_script = synth_output_path + '/Synth.bash'
+    tcl_script_template = self.template_path + '/Synth.tcl'
+    tcl_script = synth_output_path + '/Synth.tcl'
+    qsub_output_log = synth_output_path + '/QSub_output.log'
+    qsub_error_log = synth_output_path + '/QSub_error.log'
+    build_output_log = synth_output_path + '/Synth_output.log'
+    build_error_log = synth_output_path + '/Synth_error.log'
+
+    for retry in range(0, self.synth_retries):
+
+      if retry > 0:
+        log.info("Repeating synthesis of configuration %d...", result_id)
+        os.rename(synth_output_path, output_path + '/Synth_failed_' + str(retry - 1))
+
+      os.mkdir(synth_output_path)
+
+      self.create_synth_scripts(presynth_output_path, shell_script_template, shell_script, tcl_script_template,
+                                tcl_script)
+      
+      if not self.fake_build:
+        self.run_on_grid(result_id, synth_output_path, shell_script, qsub_output_log, qsub_error_log, build_output_log,
+                         build_error_log, "Synth")
+      else:
+        pass
+
+      result = self.get_synth_result(qsub_error_log, build_output_log)
+
+      log.info("Configuration %d, attempt %d: %s (%s)", result_id, retry,
+               result.msg, result.state)
+
+      if not result.state in ['SE0', 'SE1', 'SE2', 'SE?']:
+        break
+
+    if result.state == 'SOK':
+      log.info("Synthesis of configuration %d was successful...", result_id)
+    elif result.state == 'STO':
+      log.error("Synthesis timeout on configuration %d", result_id)
+    else:
+      log.error("Synthesis error on configuration %d", result_id)
+
+    return result
+
+  def create_synth_scripts(self, presynth_output_path, shell_script_template, shell_script, tcl_script_template, tcl_script):
+    """
+    Creates scripts for RTL synthesis step.
+    """
+
+    self.fill_in_template(shell_script_template, shell_script,
+                          tuner_root           = tuner_root,
+                          presynth_output_path = presynth_output_path,
+                          timeout              = self.synth_timeout,
+                          tcl_script           = tcl_script)
+
+    self.fill_in_template(tcl_script_template, tcl_script,
+                          max_jobs    = self.max_jobs,
+                          max_threads = self.max_threads)
+
+  def get_synth_result(self, qsub_error_log, build_output_log):
+    """
+    Analyzes the synthesis output to determine the build result.
+    """
+
+    result = None
+
+    try:
+      with open(qsub_error_log, 'r') as log_file:
+        lines = log_file.read()
+    except:
+      result = Result(state = 'SE0', msg = 'Cannot find synthesis qsub error log.')
+
+    if result == None and re.search(r'Interrupted!', lines) != None:
+      raise KeyboardException
+    elif re.search(r'Cannot create temporary directory.', lines) != None:
+      result = Result(state = 'SE1', msg = 'Cannot create temporary directory for synthesis.')
+
+    try:
+      with open(build_output_log, 'r') as log_file:
+        lines = log_file.read()
+    except:
+      result = Result(state = 'SE2', msg = 'Cannot find synthesis output log.')
+
+    if result == None and re.search(r'Synthesis timed out.', lines) != None:
+      result = Result(state = 'STO', msg = 'Synthesis timed out.')
+    elif re.search(r'Synthesis has completed successfully.', lines) == None:
+      result = Result(state = 'SE?', msg = 'Unknown synthesis error')
+    else:
+      result = Result(state = 'SOK', msg = 'Synthesis was successful.')
+
+    return result
+
+  def do_implementation(self):
+    """
+    Performs implementation step on one configuration.
+    """
+
+    pass
+
+  def fill_in_template(self, template_filename, output_filename, **replacements):
+    """
+    Copies a template file and fills in fields surrounded by curly braces.
+    """
+
+    with open(template_filename, "r") as template_file:
+      template = template_file.read()
+
+    template = template.format(**replacements)
+
+    with open(output_filename, "w") as output_file:
+      output_file.write(template)
+
   def run_precompiled(self, desired_result, inp, limit, compile_result,
                       result_id):
+    """
+    Tests one configuration on the FPGA.
+    """
 
     if compile_result.state != 'OK':
       return compile_result
@@ -392,6 +479,9 @@ kill $!
     return Result(state = 'OK', msg = 'Test successful.', time = cycles)
 
   def check_fpga_host(self):
+    """
+    Check whether the FPGA is ready to be used.
+    """
 
     check_script = self.output_root + '/Check_FPGA_host.sh'
     with open(check_script, 'w') as script_file:
@@ -413,15 +503,40 @@ echo "Success"
                          " 'dialout' group.")
     elif output != 'Success\n':
       raise RuntimeError("Check_FPGA_host.sh returned an unknown error.")
+
+  def run_on_grid(self, result_id, output_path, build_script, qsub_output_log, qsub_error_log, build_output_log,
+                  build_error_log, build_step):
+    """
+    Run a script on the IC grid.  Initially, jobs are only issued to the 70s because they have the highest
+    performance.  If they cannot schedule the jobs immediately, we issue the scripts to icsafe machines too.  If
+    they cannot schedule jobs immediately either, the jobs are issued to any available machine.
+    """
+
+    build_result = self.run_on_grid_core(result_id, output_path, build_script, qsub_output_log, qsub_error_log,
+                                         build_output_log, build_error_log, build_step, '-q \'70s*\' -now y')
+
+    if self.grid_unavailable(build_result):
+      log.info('No 70s are available.  Configuration %d will fall back to icsafe machines.', result_id)
+      build_result = self.run_on_grid_core(result_id, output_path, build_script, qsub_output_log, qsub_error_log,
+                                           build_output_log, build_error_log, build_step, '-q \'!60s*\' -now y')
+
+    if self.grid_unavailable(build_result):
+      log.info('No icsafe machines are available.  Configuration %d will fall back to 60s.', result_id)
+      self.run_on_grid_core(result_id, output_path, build_script, qsub_output_log, qsub_error_log, build_output_log,
+                            build_error_log, build_step, '')
       
-  def run_on_grid(self, result_id, output_path, build_script, qsub_params):
+  def run_on_grid_core(self, result_id, output_path, build_script, qsub_output_log, qsub_error_log, build_output_log,
+                       build_error_log, build_step, qsub_params):
+    """
+    Run a script on the IC grid.  All output is stored in log files.
+    """
 
     max_mem_per_core = self.max_mem_usage / self.max_jobs
     build_cmd_template = 'qsub -S /bin/bash' \
                          ' -wd ' + output_path + \
-                         ' -o ' + output_path + '/Build_output.log' + \
-                         ' -e ' + output_path + '/Build_error.log' + \
-                         ' -N Build_' + str(result_id) + \
+                         ' -o ' + build_output_log + \
+                         ' -e ' + build_error_log + \
+                         ' -N ' + build_step + '_' + str(result_id) + \
                          ' {}' \
                          ' -sync y' \
                          ' -pe onenode ' + str(self.max_jobs) + \
@@ -431,21 +546,30 @@ echo "Success"
     build_cmd = build_cmd_template.format(qsub_params)
     build_result = self.call_program(build_cmd)
 
-    with open(os.path.join(output_path, 'Launch_output.log'), 'a') as log_file:
+    with open(qsub_output_log, 'w') as log_file:
       log_file.write(build_result['stdout'])
-    with open(os.path.join(output_path, 'Launch_error.log'), 'a') as log_file:
+    with open(qsub_error_log, 'w') as log_file:
       log_file.write(build_result['stderr'])
 
     return build_result
 
   def grid_unavailable(self, build_result):
+    """
+    Returns True if the output of qsub indicates that a job cannot be executed immediately.
+    """
     output = build_result['stderr']
     return re.search("Your qsub request could not be scheduled", output) != None
 
   def save_final_config(self, configuration):
+    """
+    Store the final configuration in a JSON file.
+    """
     self.manipulator().save_to_file(configuration.data, 'aes_final_config.json')
 
   def cleanup(self, result_id):
+    """
+    Remove any files that were left behind on /scratch/local.
+    """
 
     output_path = self.output_root + "/Build_{0:04d}".format(result_id)
     host_file = output_path + '/Host.txt'
