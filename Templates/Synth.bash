@@ -20,7 +20,7 @@ fi
 
 # Store the hostname and directory in a text file such that we can find the temporary directory back should we want to
 # do that.
-echo $(hostname) ${{DIR}} > Synth_host.txt
+echo $(hostname) ${{DIR}} > Host.txt
 
 # Go to the temporary directory.
 cd ${{DIR}}

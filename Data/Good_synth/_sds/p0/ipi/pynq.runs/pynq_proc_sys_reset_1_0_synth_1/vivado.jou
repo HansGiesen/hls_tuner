@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2017.1_sdx (64-bit)
+# SW Build 1915620 on Thu Jun 22 17:54:59 MDT 2017
+# IP Build 1908669 on Thu Jun 22 19:20:41 MDT 2017
+# Start of session at: Tue Oct 30 17:11:37 2018
+# Process ID: 13285
+# Current directory: /scratch/local/tmp.HG4IAH4zV1/_sds/p0/ipi/pynq.runs/pynq_proc_sys_reset_1_0_synth_1
+# Command line: vivado -log pynq_proc_sys_reset_1_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source pynq_proc_sys_reset_1_0.tcl
+# Log file: /scratch/local/tmp.HG4IAH4zV1/_sds/p0/ipi/pynq.runs/pynq_proc_sys_reset_1_0_synth_1/pynq_proc_sys_reset_1_0.vds
+# Journal file: /scratch/local/tmp.HG4IAH4zV1/_sds/p0/ipi/pynq.runs/pynq_proc_sys_reset_1_0_synth_1/vivado.jou
+#-----------------------------------------------------------
+source pynq_proc_sys_reset_1_0.tcl -notrace

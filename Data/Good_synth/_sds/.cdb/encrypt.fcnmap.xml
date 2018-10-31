@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xd:repository xmlns:xd="http://www.xilinx.com/xd">
+  <xd:fcnMap xd:fcnName="encrypt" xd:type="hls_adapter" xd:adapterCompRef="encrypt_if" xd:clockId="0" xd:templateInstantiation="__NA__" xd:componentRef="encrypt" xd:initiationInterval="12407" xd:clockPeriod="6.000000" xd:sequential="true" xd:hostMachine="64" xd:reset="control">
+    <xd:ctrlReg xd:name="control" xd:busInterfaceRef="ap_ctrl" xd:portInterfaceType="acc_handshake" xd:type="axis_acc_adapter" xd:offset="0x8" xd:bufferDepth="16" xd:dataWidth="4"/>
+    <xd:arg xd:name="ctx" xd:swRootName="ctx" xd:direction="in" xd:busInterfaceRef="ctx_offset" xd:hwName="ctx_offset" xd:portInterfaceType="register" xd:handshakeRef="ap_none" xd:aximmMasterRef="m_axi_ctx" xd:aximmMasterDirection="inout" xd:aximmMasterDataWidth="1024" xd:aximmMasterArraySize="" xd:dataPack="true" xd:dataPackWidth="1024" xd:bitMapping="1023:0" xd:dataWidth="32" xd:instanceRef="encrypt_if" xd:index="0" xd:offset="0xC" xd:bufferDepth="16"/>
+    <xd:arg xd:name="k" xd:swRootName="k" xd:direction="in" xd:busInterfaceRef="k_PORTA" xd:hwName="k_PORTA" xd:portInterfaceType="bram" xd:arraySize="32" xd:dataWidth="8" xd:mode="master" xd:index="0" xd:instanceRef="encrypt_if" xd:bufferDepth="32" xd:multibufferDepth="4"/>
+    <xd:arg xd:name="buf" xd:swRootName="buf" xd:direction="in" xd:busInterfaceRef="buf_offset" xd:hwName="buf_offset" xd:portInterfaceType="register" xd:handshakeRef="ap_none" xd:aximmMasterRef="m_axi_buf_r" xd:aximmMasterDirection="inout" xd:aximmMasterDataWidth="8" xd:aximmMasterArraySize="16" xd:dataWidth="32" xd:instanceRef="encrypt_if" xd:index="1" xd:offset="0x10" xd:bufferDepth="16"/>
+    <xd:latencyEstimates xd:best-case="11812" xd:worst-case="12406" xd:average-case="12116"/>
+    <xd:resourceEstimates xd:LUT="338535" xd:FF="267461" xd:BRAM="60" xd:DSP="0"/>
+  </xd:fcnMap>
+</xd:repository>

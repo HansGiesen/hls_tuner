@@ -1,0 +1,20 @@
+#-----------------------------------------------------------
+# Vivado v2017.1_sdx (64-bit)
+# SW Build 1915620 on Thu Jun 22 17:54:59 MDT 2017
+# IP Build 1908669 on Thu Jun 22 19:20:41 MDT 2017
+# Start of session at: Tue Oct 30 16:30:02 2018
+# Process ID: 18357
+# Current directory: /scratch/local/tmp.wBr2TBiwTt/_sds/vhls/encrypt/solution/impl/ip
+# Command line: vivado -notrace -mode batch -source run_ippack.tcl
+# Log file: /scratch/local/tmp.wBr2TBiwTt/_sds/vhls/encrypt/solution/impl/ip/vivado.log
+# Journal file: /scratch/local/tmp.wBr2TBiwTt/_sds/vhls/encrypt/solution/impl/ip/vivado.jou
+#-----------------------------------------------------------
+INFO: [Common 17-1460] Use of init.tcl in /scratch/safe/SDSoC/SDx/2017.1/Vivado/scripts/init.tcl is deprecated. Please use Vivado_init.tcl 
+Sourcing tcl script '/scratch/safe/SDSoC/SDx/2017.1/Vivado/scripts/init.tcl'
+16 Beta devices matching pattern found, 16 enabled.
+Loaded SDSoC Platform Tcl Library
+source run_ippack.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip'.
+INFO: [Common 17-206] Exiting Vivado at Tue Oct 30 16:30:19 2018...

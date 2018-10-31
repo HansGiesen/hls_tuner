@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    table, th, td
+    {
+      border-collapse:collapse;
+      border:1px solid black;
+    }
+    th, td
+    {
+      padding:5px;
+    }
+    p
+    {
+      font-size:200%
+    }
+  </style>
+  <title> Data Motion Network Report </title>
+</head>
+<body>
+<p>Partition 0</p>
+<table>
+<caption><b><font size="5">Data Motion Network</font></b></caption>
+<tr>
+<th>Accelerator</th>
+<th>Argument</th>
+<th>IP Port</th>
+<th>Direction</th>
+<th>Declared Size(bytes)</th>
+<th>Pragmas</th>
+<th>Connection</th>
+</tr>
+<tr>
+<td>encrypt_1</td>
+<td>ctx</td>
+<td>ctx_offset</td>
+<td>INOUT</td>
+<td>0*128</td>
+<td><ul>
+<li>data_mover:zero_copy</li>
+</ul>
+</td>
+<td>processing_system7_0_S_AXI_ACP:AXIMM:0xC</td>
+</tr>
+<td></td>
+<td>k</td>
+<td>k_PORTA</td>
+<td>IN</td>
+<td>32*1</td>
+<td><ul>
+</ul>
+</td>
+<td>processing_system7_0_S_AXI_ACP:AXIDMA_SIMPLE</td>
+</tr>
+<td></td>
+<td>buf</td>
+<td>buf_offset</td>
+<td>INOUT</td>
+<td>16*1</td>
+<td><ul>
+<li>data_mover:zero_copy</li>
+</ul>
+</td>
+<td>processing_system7_0_S_AXI_ACP:AXIMM:0x10</td>
+</tr>
+</table>
+
+<table>
+<caption><b><font size="5">Accelerator Callsites</font></b></caption>
+<tr>
+<th>Accelerator</th>
+<th>Callsite</th>
+<th>IP Port</th>
+<th>Transfer Size(bytes)</th>
+<th>Paged or Contiguous</th>
+<th>Datamover Setup Time(CPU cycles)</th>
+<th>Transfer Time(CPU cycles)</th>
+</tr>
+<tr>
+<td>encrypt_1</td>
+<td>aes_test.c:49:5</td>
+<td>ctx_offset</td>
+<td>128</td>
+<td>contiguous</td>
+<td>410</td>
+<td>1990</td>
+</tr>
+<td></td>
+<td></td>
+<td>k_PORTA</td>
+<td>32</td>
+<td>contiguous</td>
+<td>1044</td>
+<td>1799</td>
+</tr>
+<td></td>
+<td></td>
+<td>buf_offset</td>
+<td>16</td>
+<td>contiguous</td>
+<td>420</td>
+<td>1790</td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,219 @@
+(c) Copyright 2012-2017 Xilinx, Inc. All Rights Reserved.
+#-----------------------------------------------------------
+# Tool version  : sds++ 2017.1 SW Build 1915620 on Jun 22 2017 18:00:35
+# Start time    : Tue Oct 30 16:30:44 EDT 2018
+# Command line  : sds++ -sds-sys-config standalone -sds-pf /mnt/icgridio2/safe/giesen/HLS_tuner/1/Platforms/Vivado_2017.1/pynq -sds-proc a9_0 -sds-hw encrypt /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c -clkid 0 -sds-end -maxjobs 4 -maxthreads 1 -dmclkid 2 -mno-boot-files -mno-bitstream -o aes.elf aes_test.o aes.o
+# Log file      : /scratch/local/tmp.wBr2TBiwTt/_sds/reports/sds.log
+# Journal file  : /scratch/local/tmp.wBr2TBiwTt/_sds/reports/sds.jou
+# Report file   : /scratch/local/tmp.wBr2TBiwTt/_sds/reports/sds.rpt
+#-----------------------------------------------------------
+
+Libraries: 
+Library Paths {}
+Analyzing object files
+arm-none-eabi-objcopy -O binary --set-section-flags .xdinfo=alloc --only-section=.xdinfo /scratch/local/tmp.wBr2TBiwTt/aes_test.o /scratch/local/tmp.wBr2TBiwTt/_sds/.data/xdinfo.xml
+arm-none-eabi-objcopy -O binary --set-section-flags .xddata=alloc --only-section=.xddata /scratch/local/tmp.wBr2TBiwTt/aes_test.o /scratch/local/tmp.wBr2TBiwTt/_sds/.data/xddata.xml
+arm-none-eabi-objcopy -O binary --set-section-flags .xdinfo=alloc --only-section=.xdinfo /scratch/local/tmp.wBr2TBiwTt/aes.o /scratch/local/tmp.wBr2TBiwTt/_sds/.data/xdinfo.xml
+arm-none-eabi-objcopy -O binary --set-section-flags .xddata=alloc --only-section=.xddata /scratch/local/tmp.wBr2TBiwTt/aes.o /scratch/local/tmp.wBr2TBiwTt/_sds/.data/encrypt.xml
+arm-none-eabi-objcopy -O binary --set-section-flags .xdpp=alloc --only-section=.xdpp /scratch/local/tmp.wBr2TBiwTt/aes.o /scratch/local/tmp.wBr2TBiwTt/_sds/.pp/aes.ii
+arm-none-eabi-objcopy -O binary --set-section-flags .xdfcnmap=alloc --only-section=.xdfcnmap /scratch/local/tmp.wBr2TBiwTt/aes.o /scratch/local/tmp.wBr2TBiwTt/_sds/.cdb/encrypt.fcnmap.xml
+arm-none-eabi-objcopy -O binary --set-section-flags .xdhlscore=alloc --only-section=.xdhlscore /scratch/local/tmp.wBr2TBiwTt/aes.o /scratch/local/tmp.wBr2TBiwTt/_sds/iprepo/repo/xilinx_com_hls_encrypt_1_0/xilinx_com_hls_encrypt_1_0.zip
+/usr/bin/unzip  -u -o /scratch/local/tmp.wBr2TBiwTt/_sds/iprepo/repo/xilinx_com_hls_encrypt_1_0/xilinx_com_hls_encrypt_1_0.zip -d /scratch/local/tmp.wBr2TBiwTt/_sds/iprepo/repo/xilinx_com_hls_encrypt_1_0
+Archive:  /scratch/local/tmp.wBr2TBiwTt/_sds/iprepo/repo/xilinx_com_hls_encrypt_1_0/xilinx_com_hls_encrypt_1_0.zip
+  inflating: /scratch/local/tmp.wBr2TBiwTt/_sds/iprepo/repo/xilinx_com_hls_encrypt_1_0/component.xml  
+  inflating: /scratch/local/tmp.wBr2TBiwTt/_sds/iprepo/repo/xilinx_com_hls_encrypt_1_0/constraints/a0_encrypt_ooc.xdc  
+  inflating: /scratch/local/tmp.wBr2TBiwTt/_sds/iprepo/repo/xilinx_com_hls_encrypt_1_0/hdl/verilog/a0_aes_expandEncKey_dEe.v  
+  inflating: /scratch/local/tmp.wBr2TBiwTt/_sds/iprepo/repo/xilinx_com_hls_encrypt_1_0/hdl/verilog/a0_encrypt.v  
+  inflating: /scratch/local/tmp.wBr2TBiwTt/_sds/iprepo/repo/xilinx_com_hls_encrypt_1_0/hdl/verilog/a0_encrypt_buf_r_m_axi.v  
+  inflating: /scratch/local/tmp.wBr2TBiwTt/_sds/iprepo/repo/xilinx_com_hls_encrypt_1_0/hdl/verilog/a0_aes_expandEncKey_bkb.v  
+  inflating: /scratch/local/tmp.wBr2TBiwTt/_sds/iprepo/repo/xilinx_com_hls_encrypt_1_0/hdl/verilog/a0_aes_expandEncKey_1.v  
+  inflating: /scratch/local/tmp.wBr2TBiwTt/_sds/iprepo/repo/xilinx_com_hls_encrypt_1_0/hdl/verilog/a0_aes_expandEncKey_dEe_rom.dat  
+  inflating: /scratch/local/tmp.wBr2TBiwTt/_sds/iprepo/repo/xilinx_com_hls_encrypt_1_0/hdl/verilog/a0_aes_addRoundKey.v  
+  inflating: /scratch/local/tmp.wBr2TBiwTt/_sds/iprepo/repo/xilinx_com_hls_encrypt_1_0/hdl/verilog/a0_aes_addRoundKey_cpy.v  
+  inflating: /scratch/local/tmp.wBr2TBiwTt/_sds/iprepo/repo/xilinx_com_hls_encrypt_1_0/hdl/verilog/a0_aes_expandEncKey.v  
+  inflating: /scratch/local/tmp.wBr2TBiwTt/_sds/iprepo/repo/xilinx_com_hls_encrypt_1_0/hdl/verilog/a0_aes_subBytes.v  
+  inflating: /scratch/local/tmp.wBr2TBiwTt/_sds/iprepo/repo/xilinx_com_hls_encrypt_1_0/hdl/verilog/a0_aes_shiftRows.v  
+  inflating: /scratch/local/tmp.wBr2TBiwTt/_sds/iprepo/repo/xilinx_com_hls_encrypt_1_0/hdl/verilog/a0_encrypt_lshr_256ncud.v  
+  inflating: /scratch/local/tmp.wBr2TBiwTt/_sds/iprepo/repo/xilinx_com_hls_encrypt_1_0/hdl/verilog/a0_aes_mixColumns.v  
+  inflating: /scratch/local/tmp.wBr2TBiwTt/_sds/iprepo/repo/xilinx_com_hls_encrypt_1_0/hdl/verilog/a0_aes_expandEncKey_bkb_rom.dat  
+  inflating: /scratch/local/tmp.wBr2TBiwTt/_sds/iprepo/repo/xilinx_com_hls_encrypt_1_0/hdl/verilog/a0_encrypt_ctx_m_axi.v  
+  inflating: /scratch/local/tmp.wBr2TBiwTt/_sds/iprepo/repo/xilinx_com_hls_encrypt_1_0/hdl/vhdl/a0_encrypt_lshr_256ncud.vhd  
+  inflating: /scratch/local/tmp.wBr2TBiwTt/_sds/iprepo/repo/xilinx_com_hls_encrypt_1_0/hdl/vhdl/a0_encrypt_buf_r_m_axi.vhd  
+  inflating: /scratch/local/tmp.wBr2TBiwTt/_sds/iprepo/repo/xilinx_com_hls_encrypt_1_0/hdl/vhdl/a0_aes_expandEncKey.vhd  
+  inflating: /scratch/local/tmp.wBr2TBiwTt/_sds/iprepo/repo/xilinx_com_hls_encrypt_1_0/hdl/vhdl/a0_aes_shiftRows.vhd  
+  inflating: /scratch/local/tmp.wBr2TBiwTt/_sds/iprepo/repo/xilinx_com_hls_encrypt_1_0/hdl/vhdl/a0_aes_subBytes.vhd  
+  inflating: /scratch/local/tmp.wBr2TBiwTt/_sds/iprepo/repo/xilinx_com_hls_encrypt_1_0/hdl/vhdl/a0_aes_expandEncKey_dEe.vhd  
+  inflating: /scratch/local/tmp.wBr2TBiwTt/_sds/iprepo/repo/xilinx_com_hls_encrypt_1_0/hdl/vhdl/a0_aes_addRoundKey_cpy.vhd  
+  inflating: /scratch/local/tmp.wBr2TBiwTt/_sds/iprepo/repo/xilinx_com_hls_encrypt_1_0/hdl/vhdl/a0_aes_addRoundKey.vhd  
+  inflating: /scratch/local/tmp.wBr2TBiwTt/_sds/iprepo/repo/xilinx_com_hls_encrypt_1_0/hdl/vhdl/a0_encrypt.vhd  
+  inflating: /scratch/local/tmp.wBr2TBiwTt/_sds/iprepo/repo/xilinx_com_hls_encrypt_1_0/hdl/vhdl/a0_aes_expandEncKey_1.vhd  
+  inflating: /scratch/local/tmp.wBr2TBiwTt/_sds/iprepo/repo/xilinx_com_hls_encrypt_1_0/hdl/vhdl/a0_aes_mixColumns.vhd  
+  inflating: /scratch/local/tmp.wBr2TBiwTt/_sds/iprepo/repo/xilinx_com_hls_encrypt_1_0/hdl/vhdl/a0_encrypt_ctx_m_axi.vhd  
+  inflating: /scratch/local/tmp.wBr2TBiwTt/_sds/iprepo/repo/xilinx_com_hls_encrypt_1_0/hdl/vhdl/a0_aes_expandEncKey_bkb.vhd  
+  inflating: /scratch/local/tmp.wBr2TBiwTt/_sds/iprepo/repo/xilinx_com_hls_encrypt_1_0/doc/ReleaseNotes.txt  
+  inflating: /scratch/local/tmp.wBr2TBiwTt/_sds/iprepo/repo/xilinx_com_hls_encrypt_1_0/misc/logo.png  
+  inflating: /scratch/local/tmp.wBr2TBiwTt/_sds/iprepo/repo/xilinx_com_hls_encrypt_1_0/xgui/encrypt_v1_0.tcl  
+arm-none-eabi-objcopy -O binary --set-section-flags .xdif=alloc --only-section=.xdif /scratch/local/tmp.wBr2TBiwTt/aes.o /scratch/local/tmp.wBr2TBiwTt/_sds/.cdb/encrypt_if.xml
+/mnt/icgridio2/safe/SDSoC/SDx/2017.1/bin/build_xd_ip_db  -sds-pf /mnt/icgridio2/safe/giesen/HLS_tuner/1/Platforms/Vivado_2017.1/pynq/hw/pynq.hpfm  -ip /scratch/local/tmp.wBr2TBiwTt/_sds/iprepo/repo/xilinx_com_hls_encrypt_1_0  -o /scratch/local/tmp.wBr2TBiwTt/_sds/.cdb/xd_ip_db.xml  
+INFO: Using user-defined path for XILINX_XD environment variable /mnt/icgridio2/safe/SDSoC/SDx/2017.1
+processing accelerators: /scratch/local/tmp.wBr2TBiwTt/_sds/iprepo/repo/xilinx_com_hls_encrypt_1_0
+ip_dir: /scratch/local/tmp.wBr2TBiwTt/_sds/iprepo/repo/xilinx_com_hls_encrypt_1_0
+/mnt/icgridio2/safe/SDSoC/SDx/2017.1/bin/xsltproc --stringparam xpath "spirit:component/spirit:name/text()" /mnt/icgridio2/safe/SDSoC/SDx/2017.1/scripts/xdcc/xpathValueOf.xsl /scratch/local/tmp.wBr2TBiwTt/_sds/iprepo/repo/xilinx_com_hls_encrypt_1_0/component.xml
+ip_name: encrypt
+Generating data motion network
+/mnt/icgridio2/safe/SDSoC/SDx/2017.1/bin/llvm-link -o /scratch/local/tmp.wBr2TBiwTt/_sds/.llvm/sds_all.o /scratch/local/tmp.wBr2TBiwTt/_sds/.llvm/aes_test.s /scratch/local/tmp.wBr2TBiwTt/_sds/.llvm/aes.s
+/mnt/icgridio2/safe/SDSoC/SDx/2017.1/bin/XidanePass  --platform pynq  --dmclkid 2  --repo /scratch/local/tmp.wBr2TBiwTt/_sds/.cdb/xd_ip_db.xml  --dmdb /mnt/icgridio2/safe/SDSoC/SDx/2017.1/data/DM.db   -os standalone -processor cortex-a9  
+INFO: [DMAnalysis 83-4494] Analyzing hardware accelerators...
+INFO: [DMAnalysis 83-4497] Analyzing callers to hardware accelerators...
+INFO: [DMAnalysis 83-4444] Scheduling data transfer graph for partition 0
+INFO: [DMAnalysis 83-4446] Creating data motion network hardware for partition 0
+INFO: [DMAnalysis 83-4448] Creating software stub functions for partition 0
+INFO: [DMAnalysis 83-4450] Generating data motion network report for partition 0
+INFO: [DMAnalysis 83-4454] Rewriting caller code
+Creating block diagram (BD), address map, port information and device registration for partition 0 (this may take a few minutes)
+/mnt/icgridio2/safe/SDSoC/SDx/2017.1/bin/system_linker -cf-input /scratch/local/tmp.wBr2TBiwTt/_sds/.llvm/apsys_0.xml -cf-output-dir _sds/p0 -ip-db /scratch/local/tmp.wBr2TBiwTt/_sds/.cdb/xd_ip_db.xml -ip-repo /scratch/local/tmp.wBr2TBiwTt/_sds/iprepo/repo -sds-pf /mnt/icgridio2/safe/giesen/HLS_tuner/1/Platforms/Vivado_2017.1/pynq:standalone  -sds-sys-config standalone -sds-proc a9_0 -software-only   -maxjobs 4 -maxthreads 1 -target-os standalone -trace-buffer 1024 -sdsoc 
+system_linker started at Tue Oct 30 16:31:03 EDT 2018
+Copying address map
+Creating port and device registration data
+system_linker completed at Tue Oct 30 16:33:06 EDT 2018
+Software tracing enabled
+Rewrite caller functions
+arm-none-eabi-objcopy -O binary --set-section-flags .xdinfo=alloc --only-section=.xdinfo /scratch/local/tmp.wBr2TBiwTt/aes_test.o /scratch/local/tmp.wBr2TBiwTt/_sds/.data/xdinfo.xml
+arm-none-eabi-objcopy -O binary --set-section-flags .xddata=alloc --only-section=.xddata /scratch/local/tmp.wBr2TBiwTt/aes_test.o /scratch/local/tmp.wBr2TBiwTt/_sds/.data/xddata.xml
+arm-none-eabi-objcopy -O binary --set-section-flags .xdsdata=alloc --only-section=.xdsdata /scratch/local/tmp.wBr2TBiwTt/aes_test.o /scratch/local/tmp.wBr2TBiwTt/_sds/.data/aes_test.o.xml
+/mnt/icgridio2/safe/SDSoC/SDx/2017.1/bin/caller_rewrite  -rewrite /scratch/local/tmp.wBr2TBiwTt/_sds/.llvm/caller0.cfrewrite  -o /scratch/local/tmp.wBr2TBiwTt/_sds/swstubs/aes_test.c  /scratch/local/tmp.wBr2TBiwTt/_sds/swstubs/unix_aes_test.c  --  -c  -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/common -Wall -O3 -DPIPELINE_CPKEY -DUNROLL_FACTOR_EXP1=2 -DUNROLL_FACTOR_EXP2=2 -DUNROLL_FACTOR_ECB1=28 -DUNROLL_FACTOR_ECB3=12 -DUNROLL_FACTOR_ECB2=1 -DPIPELINE_II_ADDKEY=4 -DPIPELINE_II_ECB1=31 -DPIPELINE_II_ECB2=5 -DPIPELINE_II_ECB3=4 -DPIPELINE_II_EXP1=1 -DPIPELINE_II_EXP2=2 -DPIPELINE_EXP1 -DUNROLL_FACTOR_ADDKEY=15 -DUNROLL_FACTOR_SUB=13 -DUNROLL_FACTOR_MIX=1 -DPIPELINE_SUB -DPIPELINE_II_CPKEY=2 -DPIPELINE_II_MIX=2 -DPIPELINE_ECB2 -DPIPELINE_ECB1 -DPIPELINE_ADDKEY -DUNROLL_FACTOR_CPKEY=15 -DPIPELINE_II_SUB=9 -D __SDSCC__  -target arm-none-eabi -mcpu=cortex-a9 -mfpu=vfpv3 -O0 -g -w    -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/target/aarch32-none/include  -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado_HLS/include   -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/6.2.1/include -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/6.2.1/include-fixed -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/include -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/libc/usr/include
+Compile caller rewrite file /scratch/local/tmp.wBr2TBiwTt/_sds/swstubs/aes_test.c
+arm-none-eabi-g++  -c /scratch/local/tmp.wBr2TBiwTt/_sds/swstubs/aes_test.c  -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/common -Wall -O3 -DPIPELINE_CPKEY -DUNROLL_FACTOR_EXP1=2 -DUNROLL_FACTOR_EXP2=2 -DUNROLL_FACTOR_ECB1=28 -DUNROLL_FACTOR_ECB3=12 -DUNROLL_FACTOR_ECB2=1 -DPIPELINE_II_ADDKEY=4 -DPIPELINE_II_ECB1=31 -DPIPELINE_II_ECB2=5 -DPIPELINE_II_ECB3=4 -DPIPELINE_II_EXP1=1 -DPIPELINE_II_EXP2=2 -DPIPELINE_EXP1 -DUNROLL_FACTOR_ADDKEY=15 -DUNROLL_FACTOR_SUB=13 -DUNROLL_FACTOR_MIX=1 -DPIPELINE_SUB -DPIPELINE_II_CPKEY=2 -DPIPELINE_II_MIX=2 -DPIPELINE_ECB2 -DPIPELINE_ECB1 -DPIPELINE_ADDKEY -DUNROLL_FACTOR_CPKEY=15 -DPIPELINE_II_SUB=9 -D __SDSCC__  -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard    -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/target/aarch32-none/include  -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado_HLS/include  -o /scratch/local/tmp.wBr2TBiwTt/_sds/swstubs/aes_test.o
+Prepare hardware access API functions
+Create accelerator stub functions
+/mnt/icgridio2/safe/SDSoC/SDx/2017.1/bin/stub_gen  -func "encrypt" -stub /scratch/local/tmp.wBr2TBiwTt/_sds/.llvm/encrypt.cfrewrite  -o /scratch/local/tmp.wBr2TBiwTt/_sds/swstubs/aes.c  /scratch/local/tmp.wBr2TBiwTt/_sds/swstubs/unix_aes.c  --  -c  -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/common -Wall -O3 -DPIPELINE_CPKEY -DUNROLL_FACTOR_EXP1=2 -DUNROLL_FACTOR_EXP2=2 -DUNROLL_FACTOR_ECB1=28 -DUNROLL_FACTOR_ECB3=12 -DUNROLL_FACTOR_ECB2=1 -DPIPELINE_II_ADDKEY=4 -DPIPELINE_II_ECB1=31 -DPIPELINE_II_ECB2=5 -DPIPELINE_II_ECB3=4 -DPIPELINE_II_EXP1=1 -DPIPELINE_II_EXP2=2 -DPIPELINE_EXP1 -DUNROLL_FACTOR_ADDKEY=15 -DUNROLL_FACTOR_SUB=13 -DUNROLL_FACTOR_MIX=1 -DPIPELINE_SUB -DPIPELINE_II_CPKEY=2 -DPIPELINE_II_MIX=2 -DPIPELINE_ECB2 -DPIPELINE_ECB1 -DPIPELINE_ADDKEY -DUNROLL_FACTOR_CPKEY=15 -DPIPELINE_II_SUB=9 -D __SDSCC__  -target arm-none-eabi -mcpu=cortex-a9 -mfpu=vfpv3 -O0 -g -w    -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/target/aarch32-none/include  -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado_HLS/include   -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/6.2.1/include -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/6.2.1/include-fixed -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/include -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/libc/usr/include
+Compile hardware access API functions
+arm-none-eabi-gcc   -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard    -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/target/aarch32-none/include  -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado_HLS/include -c  /scratch/local/tmp.wBr2TBiwTt/_sds/swstubs/portinfo.c
+arm-none-eabi-g++  -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard    -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/target/aarch32-none/include  -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado_HLS/include -c  /scratch/local/tmp.wBr2TBiwTt/_sds/swstubs/cf_stub.c
+arm-none-eabi-ar crs /scratch/local/tmp.wBr2TBiwTt/_sds/swstubs/libxlnk_stub.a /scratch/local/tmp.wBr2TBiwTt/_sds/swstubs/portinfo.o /scratch/local/tmp.wBr2TBiwTt/_sds/swstubs/cf_stub.o
+Compile accelerator stub functions
+arm-none-eabi-g++ -c aes.c -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/common -Wall -O3 -DPIPELINE_CPKEY -DUNROLL_FACTOR_EXP1=2 -DUNROLL_FACTOR_EXP2=2 -DUNROLL_FACTOR_ECB1=28 -DUNROLL_FACTOR_ECB3=12 -DUNROLL_FACTOR_ECB2=1 -DPIPELINE_II_ADDKEY=4 -DPIPELINE_II_ECB1=31 -DPIPELINE_II_ECB2=5 -DPIPELINE_II_ECB3=4 -DPIPELINE_II_EXP1=1 -DPIPELINE_II_EXP2=2 -DPIPELINE_EXP1 -DUNROLL_FACTOR_ADDKEY=15 -DUNROLL_FACTOR_SUB=13 -DUNROLL_FACTOR_MIX=1 -DPIPELINE_SUB -DPIPELINE_II_CPKEY=2 -DPIPELINE_II_MIX=2 -DPIPELINE_ECB2 -DPIPELINE_ECB1 -DPIPELINE_ADDKEY -DUNROLL_FACTOR_CPKEY=15 -DPIPELINE_II_SUB=9 -D __SDSCC__  -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard    -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/target/aarch32-none/include  -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado_HLS/include -o aes.o
+aes.c: In function 'void aes_addRoundKey(uint8_t*, uint8_t*)':
+aes.c:198:5: warning: label 'addkey' defined but not used [-Wunused-label]
+     addkey : while (i--)
+     ^~~~~~
+aes.c: In function 'void aes_addRoundKey_cpy(uint8_t*, uint8_t*, uint8_t*)':
+aes.c:214:5: warning: label 'cpkey' defined but not used [-Wunused-label]
+     cpkey : while (i--)
+     ^~~~~
+aes.c: In function 'void aes_mixColumns(uint8_t*)':
+aes.c:243:5: warning: label 'mix' defined but not used [-Wunused-label]
+     mix : for (i = 0; i < 16; i += 4)
+     ^~~
+aes.c: In function 'void aes_expandEncKey(uint8_t*, uint8_t*)':
+aes.c:268:5: warning: label 'exp1' defined but not used [-Wunused-label]
+     exp1 : for(i = 4; i < 16; i += 4)
+     ^~~~
+aes.c:283:5: warning: label 'exp2' defined but not used [-Wunused-label]
+     exp2 : for(i = 20; i < 32; i += 4)
+     ^~~~
+aes.c: In function 'void encrypt(aes256_context*, uint8_t*, uint8_t*)':
+aes.c:305:5: warning: label 'ecb1' defined but not used [-Wunused-label]
+     ecb1 : for (i = 0; i < sizeof(ctx->key); i++){
+     ^~~~
+aes.c:313:5: warning: label 'ecb2' defined but not used [-Wunused-label]
+     ecb2 : for (i = 8;--i;){
+     ^~~~
+aes.c:324:5: warning: label 'ecb3' defined but not used [-Wunused-label]
+     ecb3 : for(i = 1, rcon = 1; i < 14; ++i)
+     ^~~~
+arm-none-eabi-ar crs /scratch/local/tmp.wBr2TBiwTt/_sds/swstubs/libaes.a /scratch/local/tmp.wBr2TBiwTt/_sds/swstubs/portinfo.o /scratch/local/tmp.wBr2TBiwTt/_sds/swstubs/cf_stub.o /scratch/local/tmp.wBr2TBiwTt/_sds/swstubs/aes.o
+/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/bin/hsi  -mode batch -notrace -quiet -source /scratch/local/tmp.wBr2TBiwTt/_sds/swstubs/standalone_bsp/create_bsp.tcl
+INFO: [Hsi 55-1698] elapsed time for repository loading 1 seconds
+Create board support package library
+/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/bin/hsi  -mode batch -notrace -quiet -source /scratch/local/tmp.wBr2TBiwTt/_sds/swstubs/standalone_bsp/create_bsp_post.tcl
+INFO: [Hsi 55-1698] elapsed time for repository loading 0 seconds
+Running Make include in ps7_cortexa9_0/libsrc/qspips_v3_3/src
+Running Make include in ps7_cortexa9_0/libsrc/dmaps_v2_3/src
+Running Make include in ps7_cortexa9_0/libsrc/ddrps_v1_0/src
+Running Make include in ps7_cortexa9_0/libsrc/gpiops_v3_2/src
+Running Make include in ps7_cortexa9_0/libsrc/standalone_v6_2/src
+Running Make include in ps7_cortexa9_0/libsrc/cpu_cortexa9_v2_4/src
+Running Make include in ps7_cortexa9_0/libsrc/emacps_v3_4/src
+Running Make include in ps7_cortexa9_0/libsrc/axidma_v9_3/src
+Running Make include in ps7_cortexa9_0/libsrc/xilffs_v3_3/src
+Running Make include in ps7_cortexa9_0/libsrc/xadcps_v2_2/src
+Running Make include in ps7_cortexa9_0/libsrc/devcfg_v3_4/src
+Running Make include in ps7_cortexa9_0/libsrc/sdps_v3_2/src
+Running Make include in ps7_cortexa9_0/libsrc/scuwdt_v2_1/src
+Running Make include in ps7_cortexa9_0/libsrc/scugic_v3_6/src
+Running Make include in ps7_cortexa9_0/libsrc/uartps_v3_4/src
+Running Make include in ps7_cortexa9_0/libsrc/usbps_v2_4/src
+Running Make include in ps7_cortexa9_0/libsrc/coresightps_dcc_v1_4/src
+Running Make include in ps7_cortexa9_0/libsrc/scutimer_v2_1/src
+Running Make libs in ps7_cortexa9_0/libsrc/qspips_v3_3/src
+Compiling qspips
+arm-none-eabi-ar: creating ../../../lib/libxil.a
+Running Make libs in ps7_cortexa9_0/libsrc/dmaps_v2_3/src
+Compiling dmaps
+Running Make libs in ps7_cortexa9_0/libsrc/ddrps_v1_0/src
+Compiling ddrps
+Running Make libs in ps7_cortexa9_0/libsrc/gpiops_v3_2/src
+Compiling gpiops
+Running Make libs in ps7_cortexa9_0/libsrc/standalone_v6_2/src
+Compiling standalone
+Running Make libs in ps7_cortexa9_0/libsrc/cpu_cortexa9_v2_4/src
+Compiling cpu_cortexa9
+Running Make libs in ps7_cortexa9_0/libsrc/emacps_v3_4/src
+Compiling emacps
+Running Make libs in ps7_cortexa9_0/libsrc/axidma_v9_3/src
+Compiling axidma
+Running Make libs in ps7_cortexa9_0/libsrc/xilffs_v3_3/src
+Compiling XilFFs Library
+ff.c: In function 'create_name':
+ff.c:2147:4: warning: pointer targets in assignment differ in signedness [-Wpointer-sign]
+  p = *path;
+    ^
+ff.c:2220:8: warning: pointer targets in assignment differ in signedness [-Wpointer-sign]
+  *path = (p+si);      /* Return pointer to the next segment */
+        ^
+diskio.c: In function 'disk_status':
+diskio.c:201:2: warning: implicit declaration of function 'usleep' [-Wimplicit-function-declaration]
+  usleep(SD_CD_DELAY);
+  ^~~~~~
+At top level:
+diskio.c:134:11: warning: 'ExtCsd' defined but not used [-Wunused-variable]
+ static u8 ExtCsd[512] __attribute__ ((aligned(32)));
+           ^~~~~~
+Running Make libs in ps7_cortexa9_0/libsrc/xadcps_v2_2/src
+Compiling xadcps
+Running Make libs in ps7_cortexa9_0/libsrc/devcfg_v3_4/src
+Compiling devcfg
+Running Make libs in ps7_cortexa9_0/libsrc/sdps_v3_2/src
+Compiling sdps
+Running Make libs in ps7_cortexa9_0/libsrc/scuwdt_v2_1/src
+Compiling scuwdt
+Running Make libs in ps7_cortexa9_0/libsrc/scugic_v3_6/src
+Compiling scugic
+xscugic_g.c:53:2: warning: missing initializer for field 'HandlerTable' of 'XScuGic_Config {aka struct <anonymous>}' [-Wmissing-field-initializers]
+  }
+  ^
+In file included from xscugic_g.c:41:0:
+xscugic.h:217:27: note: 'HandlerTable' declared here
+  XScuGic_VectorTableEntry HandlerTable[XSCUGIC_MAX_NUM_INTR_INPUTS];/**<
+                           ^~~~~~~~~~~~
+Running Make libs in ps7_cortexa9_0/libsrc/uartps_v3_4/src
+Compiling uartps
+Running Make libs in ps7_cortexa9_0/libsrc/usbps_v2_4/src
+Compiling usbps
+Running Make libs in ps7_cortexa9_0/libsrc/coresightps_dcc_v1_4/src
+Compiling coresightps_dcc
+Running Make libs in ps7_cortexa9_0/libsrc/scutimer_v2_1/src
+Compiling scutimer
+Finished building libraries
+generate_bsp: Time (s): cpu = 00:00:09 ; elapsed = 00:00:25 . Memory (MB): peak = 421.867 ; gain = 0.000 ; free physical = 121865 ; free virtual = 144184
+Link application ELF file
+arm-none-eabi-g++ -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,--build-id=none -specs=/mnt/icgridio2/safe/SDSoC/SDx/2017.1/data/toolchain/aarch32-none.spec -Wl,-T -Wl,/mnt/icgridio2/safe/giesen/HLS_tuner/1/Platforms/Vivado_2017.1/pynq/sw/standalone/lscript.ld  /scratch/local/tmp.wBr2TBiwTt/_sds/swstubs/aes.o /scratch/local/tmp.wBr2TBiwTt/_sds/swstubs/aes_test.o   -L /scratch/local/tmp.wBr2TBiwTt/_sds/swstubs/standalone_bsp/ps7_cortexa9_0/lib  -L /mnt/icgridio2/safe/SDSoC/SDx/2017.1/target/aarch32-none/lib -L/scratch/local/tmp.wBr2TBiwTt/_sds/swstubs -Wl,--start-group -lxilffs -lgcc -lc -lstdc++ -Wl,--end-group -Wl,--start-group   -lxilffs -lxil -lgcc -lc  -lsds_lib -lxlnk_stub -lgcc -lc -Wl,--end-group -o /scratch/local/tmp.wBr2TBiwTt/_sds/swstubs/aes.elf
+arm-none-eabi-objcopy -R .xdinfo -R .xddata -R .xdasm -R .xdfcnmap -R .xdhlscore -R .xdif -R .xdparams -R .xdcore -R .xdsdata -R .xdpp /scratch/local/tmp.wBr2TBiwTt/_sds/swstubs/aes.elf
+Not creating bitstream due to the -mno-bitstream switch
+Calling system_linker for partition 0
+/mnt/icgridio2/safe/SDSoC/SDx/2017.1/bin/system_linker -cf-input /scratch/local/tmp.wBr2TBiwTt/_sds/.llvm/apsys_0.xml -cf-output-dir _sds/p0 -ip-db /scratch/local/tmp.wBr2TBiwTt/_sds/.cdb/xd_ip_db.xml -ip-repo /scratch/local/tmp.wBr2TBiwTt/_sds/iprepo/repo -sds-pf /mnt/icgridio2/safe/giesen/HLS_tuner/1/Platforms/Vivado_2017.1/pynq:standalone  -sds-sys-config standalone -sds-proc a9_0   -bit-name aes.elf.bit   -maxjobs 4 -maxthreads 1 -target-os standalone -trace-buffer 1024 -mdev-no-swgen -mdev-no-xsd -sdsoc -sd-output-dir _sds/p0/sd_card -bit-binary -elf /scratch/local/tmp.wBr2TBiwTt/_sds/swstubs/aes.elf
+system_linker started at Tue Oct 30 16:33:46 EDT 2018
+system_linker completed at Tue Oct 30 16:33:57 EDT 2018
+sds++ log file saved as /scratch/local/tmp.wBr2TBiwTt/_sds/reports/sds.log
+sds++ completed at Tue Oct 30 16:33:58 EDT 2018

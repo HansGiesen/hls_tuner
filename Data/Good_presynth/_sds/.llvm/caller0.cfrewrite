@@ -1,0 +1,13 @@
+{
+	"file":	"/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes_test.c",
+	"callers":	[{
+			"call":	"encrypt",
+			"line":	49,
+			"repl":	"_p0_encrypt_1_noasync"
+		}],
+	"parents":	[{
+			"function":	"main",
+			"proto":	"#ifdef __cplusplus\nextern \"C\" {\n#endif\nvoid _p0_encrypt_1_noasync(aes256_context * ctx, uint8_t k[32], uint8_t buf[16]);\n#ifdef __cplusplus\n}\n#endif\n"
+		}],
+	"waits":	[]
+}

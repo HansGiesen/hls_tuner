@@ -1,0 +1,24 @@
+(c) Copyright 2012-2017 Xilinx, Inc. All Rights Reserved.
+#-----------------------------------------------------------
+# Tool version  : sds++ 2017.1 SW Build 1915620 on Jun 22 2017 18:00:35
+# Start time    : Tue Oct 30 16:31:25 EDT 2018
+# Command line  : sds++ -sds-sys-config standalone -sds-pf /mnt/icgridio2/safe/giesen/HLS_tuner/1/Platforms/Vivado_2017.1/pynq -sds-proc a9_0 -sds-hw encrypt /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c -clkid 0 -sds-end -maxjobs 4 -maxthreads 1 -dmclkid 3 -mno-boot-files -mno-bitstream -o aes.elf aes_test.o aes.o
+# Log file      : /scratch/local/tmp.mnejJh1Zni/_sds/reports/sds.log
+# Journal file  : /scratch/local/tmp.mnejJh1Zni/_sds/reports/sds.jou
+# Report file   : /scratch/local/tmp.mnejJh1Zni/_sds/reports/sds.rpt
+#-----------------------------------------------------------
+
+-------------------
+Data Motion Network
+-------------------
+
+Data motion network report generated in /scratch/local/tmp.mnejJh1Zni/_sds/reports
+HTML file : /scratch/local/tmp.mnejJh1Zni/_sds/reports/data_motion.html
+
+-------------------
+Design Utilization
+-------------------
+
+  Partition 0
+  Utilization Summary : file not found : /scratch/local/tmp.mnejJh1Zni/_sds/p0/ipi/pynq.runs/impl_1/*_utilization_placed.rpt
+

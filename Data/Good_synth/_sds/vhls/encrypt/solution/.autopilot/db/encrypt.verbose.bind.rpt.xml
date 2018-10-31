@@ -1,0 +1,54 @@
+<profile>
+
+<section name = "Vivado HLS Report for 'encrypt'" level="0">
+<item name = "Date">Tue Oct 30 16:29:57 2018
+</item>
+<item name = "Version">2017.1 (Build 1846317 on Thu Jun 22 18:17:09 MDT 2017)</item>
+<item name = "Project">encrypt</item>
+<item name = "Solution">solution</item>
+<item name = "Product family">zynq</item>
+<item name = "Target device">xc7z020clg400-1</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing (ns)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">6.00, 17.03, 1.62</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency (clock cycles)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">, min, max, min, max, Type</keys>
+<column name="">11812, 12406, 11813, 12407, none</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="7">Instance, Module, min, max, min, max, Type</keys>
+<column name="grp_aes_expandEncKey_1_fu_527">aes_expandEncKey_1, 254, 298, 254, 298, none</column>
+<column name="grp_aes_addRoundKey_cpy_fu_538">aes_addRoundKey_cpy, 257, 257, 257, 257, none</column>
+<column name="grp_aes_addRoundKey_fu_548">aes_addRoundKey, 246, 246, 226, 226, function</column>
+<column name="grp_aes_expandEncKey_fu_561">aes_expandEncKey, 23, 23, 24, 24, function</column>
+<column name="grp_aes_mixColumns_fu_571">aes_mixColumns, 89, 89, 73, 73, function</column>
+<column name="grp_aes_subBytes_fu_578">aes_subBytes, 240, 240, 226, 226, function</column>
+<column name="grp_aes_shiftRows_fu_587">aes_shiftRows, 120, 120, 106, 106, function</column>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- ecb2">1792, 2100, 256 ~ 300, -, -, 7, no</column>
+<column name="- ecb3">9113, 9399, 701 ~ 723, -, -, 13, no</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+</profile>

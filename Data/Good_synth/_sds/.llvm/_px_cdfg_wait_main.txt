@@ -1,0 +1,136 @@
+bb0
+|SW(2)@0\n  %3 = alloca %struct.aes256_context, align 1
+|SW(3)@0\n  %4 = alloca [32 x i8], align 1
+|SW(4)@0\n  %5 = alloca [16 x i8], align 1
+|SW(5)@28\n  call void @llvm.dbg.value(metadata i32 %0, i64 0, metadata !52, metadata !53), !dbg !54
+|SW(6)@28\n  call void @llvm.dbg.value(metadata i8** %1, i64 0, metadata !55, metadata !53), !dbg !56
+|SW(7)@31\n  call void @llvm.dbg.declare(metadata [32 x i8]* %4, metadata !57, metadata !53), !dbg !61
+|SW(8)@32\n  call void @llvm.dbg.declare(metadata [16 x i8]* %5, metadata !62, metadata !53), !dbg !66
+|SW(9)@32\n  call void @llvm.dbg.value(metadata i8 0, i64 0, metadata !67, metadata !53), !dbg !68
+|SW(54)@35\n  br label %6, !dbg !69
+bb1
+|SW(55)@0\n  %storemerge = phi i8 [ 0, %2 ], [ %17, %16 ]
+|SW(10)@32\n  call void @llvm.dbg.value(metadata i8 %storemerge, i64 0, metadata !67, metadata !53), !dbg !68
+|SW(56)@35\n  %7 = icmp ult i8 %storemerge, 16, !dbg !71
+|SW(57)@35\n  br i1 %7, label %8, label %18, !dbg !74
+bb2
+|SW(11)@32\n  call void @llvm.dbg.value(metadata i8 %storemerge, i64 0, metadata !67, metadata !53), !dbg !68
+|SW(58)@36\n  %9 = zext i8 %storemerge to i32, !dbg !75
+|SW(59)@36\n  %10 = shl nuw nsw i32 %9, 4, !dbg !77
+|SW(12)@32\n  call void @llvm.dbg.value(metadata i8 %storemerge, i64 0, metadata !67, metadata !53), !dbg !68
+|SW(60)@36\n  %11 = zext i8 %storemerge to i32, !dbg !78
+|SW(61)@36\n  %12 = add nuw nsw i32 %10, %11, !dbg !79
+|SW(62)@36\n  %13 = trunc i32 %12 to i8, !dbg !75
+|SW(13)@32\n  call void @llvm.dbg.value(metadata i8 %storemerge, i64 0, metadata !67, metadata !53), !dbg !68
+|SW(63)@36\n  %14 = zext i8 %storemerge to i32, !dbg !80
+|SW(64)@36\n  %15 = getelementptr inbounds [16 x i8], [16 x i8]* %5, i32 0, i32 %14, !dbg !80
+|SW(14)@36\n  store i8 %13, i8* %15, align 1, !dbg !81
+|SW(65)@37\n  br label %16, !dbg !82
+bb3
+|SW(15)@32\n  call void @llvm.dbg.value(metadata i8 %storemerge, i64 0, metadata !67, metadata !53), !dbg !68
+|SW(66)@35\n  %17 = add i8 %storemerge, 1, !dbg !83
+|SW(16)@32\n  call void @llvm.dbg.value(metadata i8 %17, i64 0, metadata !67, metadata !53), !dbg !68
+|SW(67)@35\n  br label %6, !dbg !85, !llvm.loop !86
+bb4
+|SW(17)@32\n  call void @llvm.dbg.value(metadata i8 0, i64 0, metadata !67, metadata !53), !dbg !68
+|SW(68)@39\n  br label %19, !dbg !88
+bb5
+|SW(69)@0\n  %storemerge1 = phi i8 [ 0, %18 ], [ %25, %24 ]
+|SW(18)@32\n  call void @llvm.dbg.value(metadata i8 %storemerge1, i64 0, metadata !67, metadata !53), !dbg !68
+|SW(70)@39\n  %20 = icmp ult i8 %storemerge1, 32, !dbg !90
+|SW(71)@39\n  br i1 %20, label %21, label %26, !dbg !93
+bb6
+|SW(19)@32\n  call void @llvm.dbg.value(metadata i8 %storemerge1, i64 0, metadata !67, metadata !53), !dbg !68
+|SW(20)@32\n  call void @llvm.dbg.value(metadata i8 %storemerge1, i64 0, metadata !67, metadata !53), !dbg !68
+|SW(72)@40\n  %22 = zext i8 %storemerge1 to i32, !dbg !94
+|SW(73)@40\n  %23 = getelementptr inbounds [32 x i8], [32 x i8]* %4, i32 0, i32 %22, !dbg !94
+|SW(21)@40\n  store i8 %storemerge1, i8* %23, align 1, !dbg !96
+|SW(74)@41\n  br label %24, !dbg !97
+bb7
+|SW(22)@32\n  call void @llvm.dbg.value(metadata i8 %storemerge1, i64 0, metadata !67, metadata !53), !dbg !68
+|SW(75)@39\n  %25 = add i8 %storemerge1, 1, !dbg !98
+|SW(23)@32\n  call void @llvm.dbg.value(metadata i8 %25, i64 0, metadata !67, metadata !53), !dbg !68
+|SW(76)@39\n  br label %19, !dbg !100, !llvm.loop !101
+bb8
+|SW(24)@43\n  %27 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @.str, i32 0, i32 0)) #3, !dbg !103
+|SW(25)@32\n  call void @llvm.dbg.value(metadata i8 0, i64 0, metadata !67, metadata !53), !dbg !68
+|SW(77)@43\n  br label %28, !dbg !105
+bb9
+|SW(78)@0\n  %storemerge2 = phi i8 [ 0, %26 ], [ %37, %36 ]
+|SW(26)@32\n  call void @llvm.dbg.value(metadata i8 %storemerge2, i64 0, metadata !67, metadata !53), !dbg !68
+|SW(79)@43\n  %29 = icmp ult i8 %storemerge2, 16, !dbg !107
+|SW(80)@43\n  br i1 %29, label %30, label %38, !dbg !107
+bb10
+|SW(27)@32\n  call void @llvm.dbg.value(metadata i8 %storemerge2, i64 0, metadata !67, metadata !53), !dbg !68
+|SW(81)@43\n  %31 = zext i8 %storemerge2 to i32, !dbg !110
+|SW(82)@43\n  %32 = getelementptr inbounds [16 x i8], [16 x i8]* %5, i32 0, i32 %31, !dbg !110
+|SW(28)@43\n  %33 = load i8, i8* %32, align 1, !dbg !110
+|SW(83)@43\n  %34 = zext i8 %33 to i32, !dbg !110
+|SW(29)@43\n  %35 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @.str.1, i32 0, i32 0), i32 %34) #3, !dbg !110
+|SW(84)@43\n  br label %36, !dbg !110
+bb11
+|SW(30)@32\n  call void @llvm.dbg.value(metadata i8 %storemerge2, i64 0, metadata !67, metadata !53), !dbg !68
+|SW(85)@43\n  %37 = add i8 %storemerge2, 1, !dbg !112
+|SW(31)@32\n  call void @llvm.dbg.value(metadata i8 %37, i64 0, metadata !67, metadata !53), !dbg !68
+|SW(86)@43\n  br label %28, !dbg !112, !llvm.loop !114
+bb12
+|SW(32)@43\n  %putchar = call i32 @putchar(i32 10) #3, !dbg !115
+|SW(33)@44\n  %39 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @.str.3, i32 0, i32 0)) #3, !dbg !117
+|SW(34)@32\n  call void @llvm.dbg.value(metadata i8 0, i64 0, metadata !67, metadata !53), !dbg !68
+|SW(87)@44\n  br label %40, !dbg !119
+bb13
+|SW(88)@0\n  %storemerge3 = phi i8 [ 0, %38 ], [ %49, %48 ]
+|SW(35)@32\n  call void @llvm.dbg.value(metadata i8 %storemerge3, i64 0, metadata !67, metadata !53), !dbg !68
+|SW(89)@44\n  %41 = icmp ult i8 %storemerge3, 32, !dbg !121
+|SW(90)@44\n  br i1 %41, label %42, label %50, !dbg !121
+bb14
+|SW(36)@32\n  call void @llvm.dbg.value(metadata i8 %storemerge3, i64 0, metadata !67, metadata !53), !dbg !68
+|SW(91)@44\n  %43 = zext i8 %storemerge3 to i32, !dbg !124
+|SW(92)@44\n  %44 = getelementptr inbounds [32 x i8], [32 x i8]* %4, i32 0, i32 %43, !dbg !124
+|SW(37)@44\n  %45 = load i8, i8* %44, align 1, !dbg !124
+|SW(93)@44\n  %46 = zext i8 %45 to i32, !dbg !124
+|SW(38)@44\n  %47 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @.str.1, i32 0, i32 0), i32 %46) #3, !dbg !124
+|SW(94)@44\n  br label %48, !dbg !124
+bb15
+|SW(39)@32\n  call void @llvm.dbg.value(metadata i8 %storemerge3, i64 0, metadata !67, metadata !53), !dbg !68
+|SW(95)@44\n  %49 = add i8 %storemerge3, 1, !dbg !126
+|SW(40)@32\n  call void @llvm.dbg.value(metadata i8 %49, i64 0, metadata !67, metadata !53), !dbg !68
+|SW(96)@44\n  br label %40, !dbg !126, !llvm.loop !128
+bb16
+|SW(41)@44\n  %putchar4 = call i32 @putchar(i32 10) #3, !dbg !129
+|SW(42)@46\n  %puts = call i32 @puts(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @str, i32 0, i32 0)), !dbg !131
+|SW(97)@49\n  %51 = getelementptr inbounds [32 x i8], [32 x i8]* %4, i32 0, i32 0, !dbg !132
+|SW(98)@49\n  %52 = getelementptr inbounds [16 x i8], [16 x i8]* %5, i32 0, i32 0, !dbg !133
+|SW(43)@30\n  call void @llvm.dbg.value(metadata %struct.aes256_context* %3, i64 0, metadata !134, metadata !143), !dbg !144
+|XFER(IN):ctx @49, ARRAY\n
+|XFER(IN):k @49, ARRAY\n
+|XFER(IN):buf @49, ARRAY\n
+|call 'encrypt' in 'aes_test.c' @49 (async_id:-1) (resource id:-1)\n
+|XFER(OUT):buf @49, ARRAY\n
+|XFER(OUT):ctx @49, ARRAY\n
+|cf_wait(): \nXFER(IN):buf @49, ARRAY\nXFER(IN):k @49, ARRAY\nXFER(IN):ctx @49, ARRAY\n\n
+|SW(44)@51\n  %53 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @.str.5, i32 0, i32 0)) #3, !dbg !146
+|SW(45)@32\n  call void @llvm.dbg.value(metadata i8 0, i64 0, metadata !67, metadata !53), !dbg !68
+|SW(99)@51\n  br label %54, !dbg !148
+bb17
+|SW(100)@0\n  %storemerge5 = phi i8 [ 0, %50 ], [ %63, %62 ]
+|SW(46)@32\n  call void @llvm.dbg.value(metadata i8 %storemerge5, i64 0, metadata !67, metadata !53), !dbg !68
+|SW(101)@51\n  %55 = icmp ult i8 %storemerge5, 16, !dbg !150
+|SW(102)@51\n  br i1 %55, label %56, label %64, !dbg !150
+bb18
+|SW(47)@32\n  call void @llvm.dbg.value(metadata i8 %storemerge5, i64 0, metadata !67, metadata !53), !dbg !68
+|SW(103)@51\n  %57 = zext i8 %storemerge5 to i32, !dbg !153
+|SW(104)@51\n  %58 = getelementptr inbounds [16 x i8], [16 x i8]* %5, i32 0, i32 %57, !dbg !153
+|SW(48)@51\n  %59 = load i8, i8* %58, align 1, !dbg !153
+|SW(105)@51\n  %60 = zext i8 %59 to i32, !dbg !153
+|SW(49)@51\n  %61 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @.str.1, i32 0, i32 0), i32 %60) #3, !dbg !153
+|SW(106)@51\n  br label %62, !dbg !153
+bb19
+|SW(50)@32\n  call void @llvm.dbg.value(metadata i8 %storemerge5, i64 0, metadata !67, metadata !53), !dbg !68
+|SW(107)@51\n  %63 = add i8 %storemerge5, 1, !dbg !155
+|SW(51)@32\n  call void @llvm.dbg.value(metadata i8 %63, i64 0, metadata !67, metadata !53), !dbg !68
+|SW(108)@51\n  br label %54, !dbg !155, !llvm.loop !157
+bb20
+|SW(52)@51\n  %putchar6 = call i32 @putchar(i32 10) #3, !dbg !158
+|SW(53)@52\n  %puts7 = call i32 @puts(i8* getelementptr inbounds ([53 x i8], [53 x i8]* @str.1, i32 0, i32 0)), !dbg !160
+|SW(109)@60\n  ret i32 0, !dbg !161

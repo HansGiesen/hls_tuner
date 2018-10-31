@@ -1,0 +1,494 @@
+#-----------------------------------------------------------
+# Vivado v2017.1_sdx (64-bit)
+# SW Build 1915620 on Thu Jun 22 17:54:59 MDT 2017
+# IP Build 1908669 on Thu Jun 22 19:20:41 MDT 2017
+# Start of session at: Tue Oct 30 16:31:56 2018
+# Process ID: 3555
+# Current directory: /scratch/local/tmp.mnejJh1Zni/_sds/p0/ipi
+# Command line: vivado -mode batch -source /scratch/local/tmp.mnejJh1Zni/_sds/p0/ipi/top.ipi.tcl
+# Log file: /scratch/local/tmp.mnejJh1Zni/_sds/p0/ipi/vivado.log
+# Journal file: /scratch/local/tmp.mnejJh1Zni/_sds/p0/ipi/vivado.jou
+#-----------------------------------------------------------
+INFO: [Common 17-1460] Use of init.tcl in /mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado/scripts/init.tcl is deprecated. Please use Vivado_init.tcl 
+Sourcing tcl script '/mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado/scripts/init.tcl'
+16 Beta devices matching pattern found, 16 enabled.
+Loaded SDSoC Platform Tcl Library
+source /scratch/local/tmp.mnejJh1Zni/_sds/p0/ipi/top.ipi.tcl
+# puts "Running ipi tcl"
+Running ipi tcl
+# open_project /scratch/local/tmp.mnejJh1Zni/_sds/p0/ipi/pynq.xpr
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado/data/ip'.
+# set_param cg.skipHiddenCheck true
+# set_property ip_repo_paths {/scratch/local/tmp.mnejJh1Zni/_sds/iprepo/repo /mnt/icgridio2/safe/SDSoC/SDx/2017.1/data/ip/xilinx /mnt/icgridio2/safe/SDSoC/SDx/2017.1/data/cache/xilinx} [current_fileset]
+# set_param bd.skipSupportedIPCheck true
+# update_ip_catalog -rebuild
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/scratch/local/tmp.mnejJh1Zni/_sds/iprepo/repo'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/mnt/icgridio2/safe/SDSoC/SDx/2017.1/data/ip/xilinx'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/mnt/icgridio2/safe/SDSoC/SDx/2017.1/data/cache/xilinx'.
+update_ip_catalog: Time (s): cpu = 00:00:19 ; elapsed = 00:00:23 . Memory (MB): peak = 1607.699 ; gain = 496.539 ; free physical = 120620 ; free virtual = 126047
+# close_project
+# open_project /scratch/local/tmp.mnejJh1Zni/_sds/p0/ipi/pynq.xpr
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/scratch/local/tmp.mnejJh1Zni/_sds/iprepo/repo'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/mnt/icgridio2/safe/SDSoC/SDx/2017.1/data/ip/xilinx'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/mnt/icgridio2/safe/SDSoC/SDx/2017.1/data/cache/xilinx'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado/data/ip'.
+open_project: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1784.738 ; gain = 177.039 ; free physical = 120482 ; free virtual = 125919
+# set_param bd.get_bd_obj.warning_on_empty_result true
+# set_param bd.propagate.allow_set_readonly_param true
+# source top.bd.tcl
+## if {[llength [get_files *.bd]] == 1} {
+##   set diagram_handle [open_bd_design [get_files *.bd]]
+## } else {
+##   set diagram_handle [open_bd_design [get_files pynq.bd]]
+## }
+Adding cell -- xilinx.com:ip:proc_sys_reset:5.0 - proc_sys_reset_0
+Adding cell -- xilinx.com:ip:proc_sys_reset:5.0 - proc_sys_reset_1
+Adding cell -- xilinx.com:ip:proc_sys_reset:5.0 - proc_sys_reset_2
+Adding cell -- xilinx.com:ip:proc_sys_reset:5.0 - proc_sys_reset_3
+Adding cell -- xilinx.com:ip:processing_system7:5.5 - processing_system7_0
+Adding cell -- xilinx.com:ip:xlconcat:2.1 - xlconcat_0
+Successfully read diagram <pynq> from BD file </scratch/local/tmp.mnejJh1Zni/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/pynq.bd>
+## upgrade_ip -quiet [get_bd_cells * -quiet -hierarchical -filter {VLNV =~ "xilinx.com:ip:processing_system7:*"}]
+## upgrade_ip -quiet [get_bd_cells * -quiet -hierarchical -filter {VLNV =~ "xilinx.com:ip:zynq_ultra_ps_e:*"}]
+## set processing_system7_0 [get_bd_cell /processing_system7_0]
+## set_property -dict [ list \
+##   CONFIG.PCW_USE_M_AXI_GP0 1 \
+##   CONFIG.PCW_USE_S_AXI_ACP 1 \
+##   CONFIG.PCW_USE_DEFAULT_ACP_USER_VAL 1 \
+##   ] $processing_system7_0
+## set xlconcat_0 [get_bd_cell /xlconcat_0]
+## set_property -dict [ list \
+##   CONFIG.NUM_PORTS 16 \
+##   ] $xlconcat_0
+## set dm_0 [create_bd_cell -type ip -vlnv xilinx.com:ip:axi_dma:7.1 dm_0]
+## set_property -dict [ list \
+##   CONFIG.C_DLYTMR_RESOLUTION {1250} \
+##   CONFIG.C_SG_LENGTH_WIDTH {23} \
+##   CONFIG.C_INCLUDE_SG {0} \
+##   CONFIG.C_INCLUDE_MM2S {1} \
+##   CONFIG.C_INCLUDE_S2MM {0} \
+##   CONFIG.C_INCLUDE_MM2S_SF {1} \
+##   CONFIG.C_INCLUDE_MM2S_DRE {1} \
+##   CONFIG.C_MM2S_BURST_SIZE {64} \
+##   CONFIG.C_M_AXI_MM2S_DATA_WIDTH {64} \
+##   CONFIG.C_M_AXIS_MM2S_TDATA_WIDTH {64} \
+##   ] $dm_0
+## set encrypt_1 [create_bd_cell -type ip -vlnv xilinx.com:hls:encrypt:1.0 encrypt_1]
+## set encrypt_1_if [create_bd_cell -type ip -vlnv xilinx.com:ip:adapter_v3_0:1.0 encrypt_1_if]
+## set_property -dict [ list \
+##   CONFIG.M_AXIMM_ADDR_WIDTH {32} \
+##   CONFIG.C_INPUT_SCALAR_0_WIDTH {32} \
+##   CONFIG.S_AXIS_BRAM_0_WIDTH {8} \
+##   CONFIG.S_AXIS_BRAM_0_DMWIDTH {64} \
+##   CONFIG.S_AXIS_BRAM_0_DEPTH {32} \
+##   CONFIG.S_AXIS_BRAM_0_MB_DEPTH {1} \
+##   CONFIG.C_INPUT_SCALAR_1_WIDTH {32} \
+##   CONFIG.C_NUM_INPUT_BRAMs {1} \
+##   CONFIG.C_N_INPUT_SCALARS {2} \
+##   CONFIG.C_NUM_AXIMMs {2} \
+##   ] $encrypt_1_if
+WARNING: [IP_Flow 19-4684] Expected long value for param S_AXIS_BRAM_0_ADDR_WIDTH but, float/scientific notation value 5.0 is provided. The value is converted to long type(5)
+WARNING: [BD 41-1753] The name 'axi_ic_processing_system7_0_M_AXI_GP0' you have specified is long. The Windows OS has path length limitations. It is recommended you use shorter names(less than 25 characters) to reduce the likelihood of issues when/if running on windows OS.
+## set axi_ic_processing_system7_0_M_AXI_GP0 [create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 axi_ic_processing_system7_0_M_AXI_GP0]
+## set_property -dict [ list \
+##   CONFIG.NUM_MI {2} \
+##   CONFIG.NUM_SI {1} \
+##   CONFIG.STRATEGY {2} \
+##   CONFIG.M00_HAS_REGSLICE {1} \
+##   CONFIG.M01_HAS_REGSLICE {1} \
+##   CONFIG.S00_HAS_REGSLICE {1} \
+##   ] $axi_ic_processing_system7_0_M_AXI_GP0
+WARNING: [BD 41-1753] The name 'axi_ic_processing_system7_0_S_AXI_ACP' you have specified is long. The Windows OS has path length limitations. It is recommended you use shorter names(less than 25 characters) to reduce the likelihood of issues when/if running on windows OS.
+## set axi_ic_processing_system7_0_S_AXI_ACP [create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 axi_ic_processing_system7_0_S_AXI_ACP]
+## set_property -dict [ list \
+##   CONFIG.NUM_MI {1} \
+##   CONFIG.NUM_SI {3} \
+##   CONFIG.STRATEGY {2} \
+##   CONFIG.M00_HAS_REGSLICE {1} \
+##   CONFIG.M00_HAS_DATA_FIFO {2} \
+##   CONFIG.S00_HAS_REGSLICE {1} \
+##   CONFIG.S00_HAS_DATA_FIFO {2} \
+##   CONFIG.S01_HAS_REGSLICE {1} \
+##   CONFIG.S01_HAS_DATA_FIFO {2} \
+##   CONFIG.S02_HAS_REGSLICE {1} \
+##   CONFIG.S02_HAS_DATA_FIFO {2} \
+##   ] $axi_ic_processing_system7_0_S_AXI_ACP
+## set sds_irq_const [create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 sds_irq_const]
+## set_property -dict [ list \
+##   CONFIG.CONST_WIDTH {1} \
+##   CONFIG.CONST_VAL {0} \
+##   ] $sds_irq_const
+## set axcache_0xE [create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 axcache_0xE]
+## set_property -dict [ list \
+##   CONFIG.CONST_WIDTH {4} \
+##   CONFIG.CONST_VAL {14} \
+##   ] $axcache_0xE
+## connect_bd_net  \
+##   [get_bd_pins /encrypt_1_if/ap_clk] \
+##   [get_bd_pins /encrypt_1/ap_clk] \
+## 
+## connect_bd_net  \
+##   [get_bd_pins /encrypt_1_if/ap_resetn] \
+##   [get_bd_pins /encrypt_1/ap_rst_n] \
+## 
+## connect_bd_net  \
+##   [get_bd_pins /encrypt_1_if/ap_iscalar_0_dout] \
+##   [get_bd_pins /encrypt_1/ctx_offset] \
+## 
+## connect_bd_net  \
+##   [get_bd_pins /encrypt_1_if/ap_iscalar_1_dout] \
+##   [get_bd_pins /encrypt_1/buf_offset] \
+## 
+## connect_bd_net  \
+##   [get_bd_pins /processing_system7_0/FCLK_CLK3] \
+##   [get_bd_pins /dm_0/s_axi_lite_aclk] \
+##   [get_bd_pins /dm_0/m_axi_mm2s_aclk] \
+##   [get_bd_pins /processing_system7_0/M_AXI_GP0_ACLK] \
+##   [get_bd_pins /encrypt_1_if/s_axi_aclk] \
+##   [get_bd_pins /encrypt_1_if/s_axis_bram_0_aclk] \
+##   [get_bd_pins /axi_ic_processing_system7_0_M_AXI_GP0/S00_ACLK] \
+##   [get_bd_pins /axi_ic_processing_system7_0_M_AXI_GP0/M00_ACLK] \
+##   [get_bd_pins /axi_ic_processing_system7_0_M_AXI_GP0/M01_ACLK] \
+##   [get_bd_pins /axi_ic_processing_system7_0_M_AXI_GP0/ACLK] \
+##   [get_bd_pins /axi_ic_processing_system7_0_S_AXI_ACP/M00_ACLK] \
+##   [get_bd_pins /axi_ic_processing_system7_0_S_AXI_ACP/S02_ACLK] \
+##   [get_bd_pins /axi_ic_processing_system7_0_S_AXI_ACP/ACLK] \
+##   [get_bd_pins /processing_system7_0/S_AXI_ACP_ACLK] \
+## 
+## connect_bd_net  \
+##   [get_bd_pins /proc_sys_reset_3/interconnect_aresetn] \
+##   [get_bd_pins /axi_ic_processing_system7_0_M_AXI_GP0/S00_ARESETN] \
+##   [get_bd_pins /axi_ic_processing_system7_0_M_AXI_GP0/M00_ARESETN] \
+##   [get_bd_pins /axi_ic_processing_system7_0_M_AXI_GP0/M01_ARESETN] \
+##   [get_bd_pins /axi_ic_processing_system7_0_M_AXI_GP0/ARESETN] \
+##   [get_bd_pins /axi_ic_processing_system7_0_S_AXI_ACP/M00_ARESETN] \
+##   [get_bd_pins /axi_ic_processing_system7_0_S_AXI_ACP/S02_ARESETN] \
+##   [get_bd_pins /axi_ic_processing_system7_0_S_AXI_ACP/S00_ARESETN] \
+##   [get_bd_pins /axi_ic_processing_system7_0_S_AXI_ACP/S01_ARESETN] \
+##   [get_bd_pins /axi_ic_processing_system7_0_S_AXI_ACP/ARESETN] \
+## 
+WARNING: [BD 5-235] No pins matched 'get_bd_pins /dm_0/mm2s_prmry_resetn_out_n'
+## connect_bd_net  \
+##   [get_bd_pins /proc_sys_reset_3/peripheral_aresetn] \
+##   [get_bd_pins /dm_0/axi_resetn] \
+##   [get_bd_pins /dm_0/mm2s_prmry_resetn_out_n] \
+##   [get_bd_pins /encrypt_1_if/s_axi_aresetn] \
+##   [get_bd_pins /encrypt_1_if/s_axis_bram_0_aresetn] \
+## 
+## connect_bd_net  \
+##   [get_bd_pins /processing_system7_0/FCLK_CLK0] \
+##   [get_bd_pins /encrypt_1_if/acc_aclk] \
+##   [get_bd_pins /axi_ic_processing_system7_0_S_AXI_ACP/S00_ACLK] \
+##   [get_bd_pins /axi_ic_processing_system7_0_S_AXI_ACP/S01_ACLK] \
+## 
+## connect_bd_net  \
+##   [get_bd_pins /proc_sys_reset_0/peripheral_aresetn] \
+##   [get_bd_pins /encrypt_1_if/acc_aresetn] \
+## 
+## connect_bd_net  \
+##   [get_bd_pins /sds_irq_const/dout] \
+##   [get_bd_pins /xlconcat_0/In0] \
+##   [get_bd_pins /xlconcat_0/In1] \
+##   [get_bd_pins /xlconcat_0/In2] \
+##   [get_bd_pins /xlconcat_0/In3] \
+##   [get_bd_pins /xlconcat_0/In4] \
+##   [get_bd_pins /xlconcat_0/In5] \
+##   [get_bd_pins /xlconcat_0/In6] \
+##   [get_bd_pins /xlconcat_0/In7] \
+##   [get_bd_pins /xlconcat_0/In8] \
+##   [get_bd_pins /xlconcat_0/In9] \
+##   [get_bd_pins /xlconcat_0/In10] \
+##   [get_bd_pins /xlconcat_0/In11] \
+##   [get_bd_pins /xlconcat_0/In12] \
+##   [get_bd_pins /xlconcat_0/In13] \
+##   [get_bd_pins /xlconcat_0/In14] \
+##   [get_bd_pins /xlconcat_0/In15] \
+## 
+## connect_bd_net  \
+##   [get_bd_pins /axcache_0xE/dout] \
+##   [get_bd_pins /axi_ic_processing_system7_0_S_AXI_ACP/S02_AXI_arcache] \
+##   [get_bd_pins /axi_ic_processing_system7_0_S_AXI_ACP/S00_AXI_arcache] \
+##   [get_bd_pins /axi_ic_processing_system7_0_S_AXI_ACP/S00_AXI_awcache] \
+##   [get_bd_pins /axi_ic_processing_system7_0_S_AXI_ACP/S01_AXI_arcache] \
+##   [get_bd_pins /axi_ic_processing_system7_0_S_AXI_ACP/S01_AXI_awcache] \
+## 
+WARNING: [BD 41-1306] The connection to interface pin /axi_ic_processing_system7_0_S_AXI_ACP/S02_AXI_arcache is being overridden by the user. This pin will not be connected as a part of interface connection S02_AXI
+WARNING: [BD 41-1306] The connection to interface pin /axi_ic_processing_system7_0_S_AXI_ACP/S00_AXI_arcache is being overridden by the user. This pin will not be connected as a part of interface connection S00_AXI
+WARNING: [BD 41-1306] The connection to interface pin /axi_ic_processing_system7_0_S_AXI_ACP/S00_AXI_awcache is being overridden by the user. This pin will not be connected as a part of interface connection S00_AXI
+WARNING: [BD 41-1306] The connection to interface pin /axi_ic_processing_system7_0_S_AXI_ACP/S01_AXI_arcache is being overridden by the user. This pin will not be connected as a part of interface connection S01_AXI
+WARNING: [BD 41-1306] The connection to interface pin /axi_ic_processing_system7_0_S_AXI_ACP/S01_AXI_awcache is being overridden by the user. This pin will not be connected as a part of interface connection S01_AXI
+## connect_bd_intf_net \
+##   [get_bd_intf_pins /encrypt_1_if/ap_ctrl] \
+##   [get_bd_intf_pins /encrypt_1/ap_ctrl] \
+## 
+## connect_bd_intf_net \
+##   [get_bd_intf_pins /encrypt_1/m_axi_ctx] \
+##   [get_bd_intf_pins /encrypt_1_if/AP_AXIMM_0] \
+## 
+## connect_bd_intf_net \
+##   [get_bd_intf_pins /encrypt_1/m_axi_buf_r] \
+##   [get_bd_intf_pins /encrypt_1_if/AP_AXIMM_1] \
+## 
+## connect_bd_intf_net \
+##   [get_bd_intf_pins /encrypt_1/k_PORTA] \
+##   [get_bd_intf_pins /encrypt_1_if/AP_BRAM_IARG_0_0] \
+## 
+## connect_bd_intf_net \
+##   [get_bd_intf_pins /processing_system7_0/M_AXI_GP0] \
+##   [get_bd_intf_pins /axi_ic_processing_system7_0_M_AXI_GP0/S00_AXI] \
+## 
+## connect_bd_intf_net \
+##   [get_bd_intf_pins /axi_ic_processing_system7_0_S_AXI_ACP/M00_AXI] \
+##   [get_bd_intf_pins /processing_system7_0/S_AXI_ACP] \
+## 
+## connect_bd_intf_net \
+##   [get_bd_intf_pins /encrypt_1_if/M_AXIMM_0] \
+##   [get_bd_intf_pins /axi_ic_processing_system7_0_S_AXI_ACP/S00_AXI] \
+## 
+## connect_bd_intf_net \
+##   [get_bd_intf_pins /encrypt_1_if/M_AXIMM_1] \
+##   [get_bd_intf_pins /axi_ic_processing_system7_0_S_AXI_ACP/S01_AXI] \
+## 
+## connect_bd_intf_net \
+##   [get_bd_intf_pins /axi_ic_processing_system7_0_M_AXI_GP0/M00_AXI] \
+##   [get_bd_intf_pins /encrypt_1_if/S_AXI] \
+## 
+## connect_bd_intf_net \
+##   [get_bd_intf_pins /axi_ic_processing_system7_0_M_AXI_GP0/M01_AXI] \
+##   [get_bd_intf_pins /dm_0/S_AXI_LITE] \
+## 
+## connect_bd_intf_net \
+##   [get_bd_intf_pins /dm_0/M_AXI_MM2S] \
+##   [get_bd_intf_pins /axi_ic_processing_system7_0_S_AXI_ACP/S02_AXI] \
+## 
+## connect_bd_intf_net \
+##   [get_bd_intf_pins /dm_0/M_AXIS_MM2S] \
+##   [get_bd_intf_pins /encrypt_1_if/S_AXIS_BRAM_0] \
+## 
+## assign_bd_address
+</processing_system7_0/S_AXI_ACP/ACP_DDR_LOWOCM> is being mapped into </dm_0/Data_MM2S> at <0x00000000 [ 512M ]>
+</processing_system7_0/S_AXI_ACP/ACP_DDR_LOWOCM> is being mapped into </encrypt_1_if/M_AXIMM_0> at <0x00000000 [ 512M ]>
+</processing_system7_0/S_AXI_ACP/ACP_DDR_LOWOCM> is being mapped into </encrypt_1_if/M_AXIMM_1> at <0x00000000 [ 512M ]>
+</processing_system7_0/S_AXI_ACP/ACP_QSPI_LINEAR> is being mapped into </dm_0/Data_MM2S> at <0xFC000000 [ 16M ]>
+</processing_system7_0/S_AXI_ACP/ACP_QSPI_LINEAR> is being mapped into </encrypt_1_if/M_AXIMM_0> at <0xFC000000 [ 16M ]>
+</processing_system7_0/S_AXI_ACP/ACP_QSPI_LINEAR> is being mapped into </encrypt_1_if/M_AXIMM_1> at <0xFC000000 [ 16M ]>
+</processing_system7_0/S_AXI_ACP/ACP_IOP> is being mapped into </dm_0/Data_MM2S> at <0xE0000000 [ 4M ]>
+INFO: [BD 41-1051] The usage <register> of peripheral </processing_system7_0/S_AXI_ACP/ACP_IOP> does not match the usage <memory> of master </dm_0/Data_MM2S> and will be excluded using sparse connectivity from its address space. Use the include_bd_addr_seg command to override this precaution and make this peripheral visible within this masters address space.
+Excluding </processing_system7_0/S_AXI_ACP/ACP_IOP> from </dm_0/Data_MM2S>
+</processing_system7_0/S_AXI_ACP/ACP_IOP> is being mapped into </encrypt_1_if/M_AXIMM_0> at <0xE0000000 [ 4M ]>
+</processing_system7_0/S_AXI_ACP/ACP_IOP> is being mapped into </encrypt_1_if/M_AXIMM_1> at <0xE0000000 [ 4M ]>
+</processing_system7_0/S_AXI_ACP/ACP_M_AXI_GP0> is being mapped into </dm_0/Data_MM2S> at <0x40000000 [ 1G ]>
+INFO: [BD 41-1051] The usage <register> of peripheral </processing_system7_0/S_AXI_ACP/ACP_M_AXI_GP0> does not match the usage <memory> of master </dm_0/Data_MM2S> and will be excluded using sparse connectivity from its address space. Use the include_bd_addr_seg command to override this precaution and make this peripheral visible within this masters address space.
+Excluding </processing_system7_0/S_AXI_ACP/ACP_M_AXI_GP0> from </dm_0/Data_MM2S>
+</processing_system7_0/S_AXI_ACP/ACP_M_AXI_GP0> is being mapped into </encrypt_1_if/M_AXIMM_0> at <0x40000000 [ 1G ]>
+</processing_system7_0/S_AXI_ACP/ACP_M_AXI_GP0> is being mapped into </encrypt_1_if/M_AXIMM_1> at <0x40000000 [ 1G ]>
+</encrypt_1_if/AP_AXIMM_0/reg0> is being mapped into </encrypt_1/Data_m_axi_ctx> at <0x000000000 [ 4G ]>
+</encrypt_1_if/AP_AXIMM_1/reg0> is being mapped into </encrypt_1/Data_m_axi_buf_r> at <0x000000000 [ 4G ]>
+</dm_0/S_AXI_LITE/Reg> is being mapped into </processing_system7_0/Data> at <0x40400000 [ 64K ]>
+</encrypt_1_if/S_AXI/reg0> is being mapped into </processing_system7_0/Data> at <0x43C00000 [ 64K ]>
+## include_bd_addr_seg [get_bd_addr_segs -excluded -of_objects [get_bd_addr_segs -of_objects [get_bd_intf_pin -of_objects [get_bd_cells] -filter "Mode==Slave"]]]
+Including </processing_system7_0/S_AXI_ACP/ACP_IOP> into </dm_0/Data_MM2S>
+Including </processing_system7_0/S_AXI_ACP/ACP_M_AXI_GP0> into </dm_0/Data_MM2S>
+## set xml_file address_map.xml
+## set fp [open ${xml_file} w]
+## set addr_segs [get_bd_addr_segs -hier]
+## puts $fp "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
+## puts $fp "<xd:addressMap xmlns:xd=\"http://www.xilinx.com/xd\">"
+## foreach addr_seg $addr_segs {
+##   set path [get_property PATH $addr_seg]
+##   set offset [get_property OFFSET $addr_seg]
+##   if {$offset != ""} {
+##     set range [format 0x%X [get_property RANGE $addr_seg]]
+##     set high_addr [format 0x%X [expr $offset + $range - 1]]
+##     set slave [get_bd_addr_segs -of_object $addr_seg]
+##     regexp {([^/]+)/([^/]+)/([^/]+)$} $path match componentRef addressSpace segment
+##     regexp {([^/]+)/([^/]+)/([^/]+)$} $slave match slaveRef slaveMemoryMap slaveSegment  
+##     set slaveIntfPin [get_bd_intf_pins -of_objects $slave]
+##     regexp {([^/]+)$} $slaveIntfPin match slaveInterface
+##     puts $fp "  <xd:addressRange xd:componentRef=\"${componentRef}\" xd:addressSpace=\"${addressSpace}\" xd:segment=\"${segment}\" xd:slaveRef=\"${slaveRef}\" xd:slaveInterface=\"${slaveInterface}\" xd:slaveSegment=\"${slaveSegment}\" xd:baseAddr=\"${offset}\" xd:range=\"${range}\"/>"
+##   }
+## }
+## puts $fp "</xd:addressMap>"
+## close $fp
+# regenerate_bd_layout
+# bd::util_cmd set_bd_source SDSoC [current_bd_design]
+# save_bd_design
+Wrote  : </scratch/local/tmp.mnejJh1Zni/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/pynq.bd> 
+# report_ip_status
+Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+----------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2017.1_sdx (lin64) Build 1915620 Thu Jun 22 17:54:59 MDT 2017
+| Date         : Tue Oct 30 16:33:08 2018
+| Host         : icgrid44 running 64-bit openSUSE Leap 42.3
+| Command      : report_ip_status
+----------------------------------------------------------------------------------------
+
+IP Status Summary
+
+1. Project IP Status
+--------------------
+Your project uses 13 IP. Some of these IP may have undergone changes in this release of the software. Please review the recommended actions.
+
+More information on the Xilinx versioning policy is available at www.xilinx.com.
+
+Project IP Instances
++----------------------------------------------+------------+---------------------+-----------+--------------------+---------+-----------------------+------------+----------------------+
+| Instance Name                                | Status     | Recommendation      | Change    | IP Name            | IP      | New Version           | New        | Original Part        |
+|                                              |            |                     | Log       |                    | Version |                       | License    |                      |
++----------------------------------------------+------------+---------------------+-----------+--------------------+---------+-----------------------+------------+----------------------+
+| pynq_axcache_0xE_0                           | Up-to-date | No changes required |  *(1)     | Constant           | 1.1     | 1.1 (Rev. 3)          | Included   | xc7z020clg400-1      |
+|                                              |            |                     |           |                    | (Rev.   |                       |            |                      |
+|                                              |            |                     |           |                    | 3)      |                       |            |                      |
++----------------------------------------------+------------+---------------------+-----------+--------------------+---------+-----------------------+------------+----------------------+
+| pynq_axi_ic_processing_system7_0_M_AXI_GP0_0 | Up-to-date | No changes required |  *(2)     | AXI Interconnect   | 2.1     | 2.1 (Rev. 13)         | Included   | xc7z020clg400-1      |
+|                                              |            |                     |           |                    | (Rev.   |                       |            |                      |
+|                                              |            |                     |           |                    | 13)     |                       |            |                      |
++----------------------------------------------+------------+---------------------+-----------+--------------------+---------+-----------------------+------------+----------------------+
+| pynq_axi_ic_processing_system7_0_S_AXI_ACP_0 | Up-to-date | No changes required |  *(3)     | AXI Interconnect   | 2.1     | 2.1 (Rev. 13)         | Included   | xc7z020clg400-1      |
+|                                              |            |                     |           |                    | (Rev.   |                       |            |                      |
+|                                              |            |                     |           |                    | 13)     |                       |            |                      |
++----------------------------------------------+------------+---------------------+-----------+--------------------+---------+-----------------------+------------+----------------------+
+| pynq_dm_0_0                                  | Up-to-date | No changes required |  *(4)     | AXI Direct Memory  | 7.1     | 7.1 (Rev. 13)         | Included   | xc7z020clg400-1      |
+|                                              |            |                     |           | Access             | (Rev.   |                       |            |                      |
+|                                              |            |                     |           |                    | 13)     |                       |            |                      |
++----------------------------------------------+------------+---------------------+-----------+--------------------+---------+-----------------------+------------+----------------------+
+| pynq_encrypt_1_0                             | Up-to-date | No changes required | Change    | Encrypt            | 1.0     | 1.0 (Rev. 1810301630) | Included   | xc7z020clg400-1      |
+|                                              |            |                     | Log not   |                    | (Rev.   |                       |            |                      |
+|                                              |            |                     | available |                    | 1810301 |                       |            |                      |
++----------------------------------------------+------------+---------------------+-----------+--------------------+---------+-----------------------+------------+----------------------+
+| pynq_encrypt_1_if_0                          | Up-to-date | No changes required | Change    | adapter_v3_0       | 1.0     | 1.0 (Rev. 2)          | Included   | xc7z020clg400-1      |
+|                                              |            |                     | Log not   |                    | (Rev.   |                       |            |                      |
+|                                              |            |                     | available |                    | 2)      |                       |            |                      |
++----------------------------------------------+------------+---------------------+-----------+--------------------+---------+-----------------------+------------+----------------------+
+| pynq_proc_sys_reset_0_0                      | Up-to-date | No changes required |  *(5)     | Processor System   | 5.0     | 5.0 (Rev. 10)         | Included   | xc7z020clg400-1      |
+|                                              |            |                     |           | Reset              | (Rev.   |                       |            |                      |
+|                                              |            |                     |           |                    | 10)     |                       |            |                      |
++----------------------------------------------+------------+---------------------+-----------+--------------------+---------+-----------------------+------------+----------------------+
+| pynq_proc_sys_reset_1_0                      | Up-to-date | No changes required |  *(6)     | Processor System   | 5.0     | 5.0 (Rev. 10)         | Included   | xc7z020clg400-1      |
+|                                              |            |                     |           | Reset              | (Rev.   |                       |            |                      |
+|                                              |            |                     |           |                    | 10)     |                       |            |                      |
++----------------------------------------------+------------+---------------------+-----------+--------------------+---------+-----------------------+------------+----------------------+
+| pynq_proc_sys_reset_2_0                      | Up-to-date | No changes required |  *(7)     | Processor System   | 5.0     | 5.0 (Rev. 10)         | Included   | xc7z020clg400-1      |
+|                                              |            |                     |           | Reset              | (Rev.   |                       |            |                      |
+|                                              |            |                     |           |                    | 10)     |                       |            |                      |
++----------------------------------------------+------------+---------------------+-----------+--------------------+---------+-----------------------+------------+----------------------+
+| pynq_proc_sys_reset_3_0                      | Up-to-date | No changes required |  *(8)     | Processor System   | 5.0     | 5.0 (Rev. 10)         | Included   | xc7z020clg400-1      |
+|                                              |            |                     |           | Reset              | (Rev.   |                       |            |                      |
+|                                              |            |                     |           |                    | 10)     |                       |            |                      |
++----------------------------------------------+------------+---------------------+-----------+--------------------+---------+-----------------------+------------+----------------------+
+| pynq_processing_system7_0_0                  | Up-to-date | No changes required |  *(9)     | ZYNQ7 Processing   | 5.5     | 5.5 (Rev. 5)          | Included   | xc7z020clg400-1      |
+|                                              |            |                     |           | System             | (Rev.   |                       |            |                      |
+|                                              |            |                     |           |                    | 5)      |                       |            |                      |
++----------------------------------------------+------------+---------------------+-----------+--------------------+---------+-----------------------+------------+----------------------+
+| pynq_sds_irq_const_0                         | Up-to-date | No changes required |  *(10)    | Constant           | 1.1     | 1.1 (Rev. 3)          | Included   | xc7z020clg400-1      |
+|                                              |            |                     |           |                    | (Rev.   |                       |            |                      |
+|                                              |            |                     |           |                    | 3)      |                       |            |                      |
++----------------------------------------------+------------+---------------------+-----------+--------------------+---------+-----------------------+------------+----------------------+
+| pynq_xlconcat_0_0                            | Up-to-date | No changes required |  *(11)    | Concat             | 2.1     | 2.1 (Rev. 1)          | Included   | xc7z020clg400-1      |
+|                                              |            |                     |           |                    | (Rev.   |                       |            |                      |
+|                                              |            |                     |           |                    | 1)      |                       |            |                      |
++----------------------------------------------+------------+---------------------+-----------+--------------------+---------+-----------------------+------------+----------------------+
+*(1) /mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xilinx/xlconstant_v1_1/doc/xlconstant_v1_1_changelog.txt
+*(2) /mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xilinx/axi_interconnect_v2_1/doc/axi_interconnect_v2_1_changelog.txt
+*(3) /mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xilinx/axi_interconnect_v2_1/doc/axi_interconnect_v2_1_changelog.txt
+*(4) /mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xilinx/axi_dma_v7_1/doc/axi_dma_v7_1_changelog.txt
+*(5) /mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xilinx/proc_sys_reset_v5_0/doc/proc_sys_reset_v5_0_changelog.txt
+*(6) /mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xilinx/proc_sys_reset_v5_0/doc/proc_sys_reset_v5_0_changelog.txt
+*(7) /mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xilinx/proc_sys_reset_v5_0/doc/proc_sys_reset_v5_0_changelog.txt
+*(8) /mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xilinx/proc_sys_reset_v5_0/doc/proc_sys_reset_v5_0_changelog.txt
+*(9) /mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xilinx/processing_system7_v5_5/doc/processing_system7_v5_5_changelog.txt
+*(10) /mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xilinx/xlconstant_v1_1/doc/xlconstant_v1_1_changelog.txt
+*(11) /mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xilinx/xlconcat_v2_1/doc/xlconcat_v2_1_changelog.txt
+
+
+# validate_bd_design
+CRITICAL WARNING: [BD 41-1344] Reset pin /axi_ic_processing_system7_0_S_AXI_ACP/S00_ARESETN (associated clock /axi_ic_processing_system7_0_S_AXI_ACP/S00_ACLK) is connected to reset source /proc_sys_reset_3/interconnect_aresetn (synchronous to clock source /processing_system7_0/FCLK_CLK3).
+This may prevent design from meeting timing. Instead it should be connected to reset source /proc_sys_reset_0/peripheral_aresetn.
+CRITICAL WARNING: [BD 41-1344] Reset pin /axi_ic_processing_system7_0_S_AXI_ACP/S01_ARESETN (associated clock /axi_ic_processing_system7_0_S_AXI_ACP/S01_ACLK) is connected to reset source /proc_sys_reset_3/interconnect_aresetn (synchronous to clock source /processing_system7_0/FCLK_CLK3).
+This may prevent design from meeting timing. Instead it should be connected to reset source /proc_sys_reset_0/peripheral_aresetn.
+WARNING: [BD 41-237] Bus Interface property AWUSER_WIDTH does not match between /processing_system7_0/S_AXI_ACP(5) and /axi_ic_processing_system7_0_S_AXI_ACP/m00_couplers/m00_regslice/M_AXI(0)
+WARNING: [BD 41-237] Bus Interface property ARUSER_WIDTH does not match between /processing_system7_0/S_AXI_ACP(5) and /axi_ic_processing_system7_0_S_AXI_ACP/m00_couplers/m00_regslice/M_AXI(0)
+WARNING: [BD 41-1271] The connection to the pin: /axi_ic_processing_system7_0_S_AXI_ACP/S00_AXI_awcache has been overridden by the user. This pin will not be connected as a part of the interface connection: encrypt_1_if_M_AXIMM_0 
+WARNING: [BD 41-1271] The connection to the pin: /axi_ic_processing_system7_0_S_AXI_ACP/S00_AXI_arcache has been overridden by the user. This pin will not be connected as a part of the interface connection: encrypt_1_if_M_AXIMM_0 
+WARNING: [BD 41-1271] The connection to the pin: /axi_ic_processing_system7_0_S_AXI_ACP/S01_AXI_awcache has been overridden by the user. This pin will not be connected as a part of the interface connection: encrypt_1_if_M_AXIMM_1 
+WARNING: [BD 41-1271] The connection to the pin: /axi_ic_processing_system7_0_S_AXI_ACP/S01_AXI_arcache has been overridden by the user. This pin will not be connected as a part of the interface connection: encrypt_1_if_M_AXIMM_1 
+WARNING: [BD 41-1271] The connection to the pin: /axi_ic_processing_system7_0_S_AXI_ACP/S02_AXI_arcache has been overridden by the user. This pin will not be connected as a part of the interface connection: dm_0_M_AXI_MM2S 
+validate_bd_design: Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2231.246 ; gain = 0.000 ; free physical = 120975 ; free virtual = 126620
+# update_compile_order -fileset sim_1
+# update_compile_order -fileset sources_1
+# if {[llength [get_files *.bd]] == 1 } {
+#   set bd_file [get_files *.bd]
+# } else {
+#   set bd_file [get_files pynq.bd]
+# }
+# set_property synth_checkpoint_mode Hierarchical [get_files $bd_file]
+# check_ip_cache -use_project_cache
+# generate_target all [get_files $bd_file]
+INFO: [BD 41-1662] The design 'pynq.bd' is already validated. Therefore parameter propagation will not be re-run.
+WARNING: [BD 41-1271] The connection to the pin: /axi_ic_processing_system7_0_S_AXI_ACP/S00_AXI_awcache has been overridden by the user. This pin will not be connected as a part of the interface connection: encrypt_1_if_M_AXIMM_0 
+WARNING: [BD 41-1271] The connection to the pin: /axi_ic_processing_system7_0_S_AXI_ACP/S00_AXI_arcache has been overridden by the user. This pin will not be connected as a part of the interface connection: encrypt_1_if_M_AXIMM_0 
+WARNING: [BD 41-1271] The connection to the pin: /axi_ic_processing_system7_0_S_AXI_ACP/S01_AXI_awcache has been overridden by the user. This pin will not be connected as a part of the interface connection: encrypt_1_if_M_AXIMM_1 
+WARNING: [BD 41-1271] The connection to the pin: /axi_ic_processing_system7_0_S_AXI_ACP/S01_AXI_arcache has been overridden by the user. This pin will not be connected as a part of the interface connection: encrypt_1_if_M_AXIMM_1 
+WARNING: [BD 41-1271] The connection to the pin: /axi_ic_processing_system7_0_S_AXI_ACP/S02_AXI_arcache has been overridden by the user. This pin will not be connected as a part of the interface connection: dm_0_M_AXI_MM2S 
+Wrote  : </scratch/local/tmp.mnejJh1Zni/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/pynq.bd> 
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/axi_ic_processing_system7_0_S_AXI_ACP/s00_couplers/s00_regslice/s_axi_arlock'(1) to net 's00_couplers_to_s00_regslice_ARLOCK'(2) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/axi_ic_processing_system7_0_S_AXI_ACP/s00_couplers/s00_regslice/s_axi_awlock'(1) to net 's00_couplers_to_s00_regslice_AWLOCK'(2) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/axi_ic_processing_system7_0_S_AXI_ACP/s01_couplers/s01_regslice/s_axi_arlock'(1) to net 's01_couplers_to_s01_regslice_ARLOCK'(2) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/axi_ic_processing_system7_0_S_AXI_ACP/s01_couplers/s01_regslice/s_axi_awlock'(1) to net 's01_couplers_to_s01_regslice_AWLOCK'(2) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/encrypt_1_if/ap_bram_iarg_0_addr0'(5) to net 'encrypt_1_k_PORTA_ADDR'(32) - Only lower order bits will be connected.
+VHDL Output written to : /scratch/local/tmp.mnejJh1Zni/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/hdl/pynq.vhd
+VHDL Output written to : /scratch/local/tmp.mnejJh1Zni/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/hdl/pynq_wrapper.vhd
+INFO: [BD 41-1029] Generation completed for the IP Integrator block proc_sys_reset_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block proc_sys_reset_1 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block proc_sys_reset_2 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block proc_sys_reset_3 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block processing_system7_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block xlconcat_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block dm_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block encrypt_1 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block encrypt_1_if .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block sds_irq_const .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axcache_0xE .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ic_processing_system7_0_S_AXI_ACP/xbar .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ic_processing_system7_0_M_AXI_GP0/xbar .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file '/scratch/local/tmp.mnejJh1Zni/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ip/pynq_m00_data_fifo_0/pynq_m00_data_fifo_0_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ic_processing_system7_0_S_AXI_ACP/m00_couplers/m00_data_fifo .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ic_processing_system7_0_S_AXI_ACP/m00_couplers/m00_regslice .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file '/scratch/local/tmp.mnejJh1Zni/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ip/pynq_auto_ds_0/pynq_auto_ds_0_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ic_processing_system7_0_S_AXI_ACP/m00_couplers/auto_ds .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file '/scratch/local/tmp.mnejJh1Zni/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ip/pynq_auto_pc_1/pynq_auto_pc_1_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ic_processing_system7_0_S_AXI_ACP/m00_couplers/auto_pc .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ic_processing_system7_0_S_AXI_ACP/s02_couplers/s02_regslice .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file '/scratch/local/tmp.mnejJh1Zni/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ip/pynq_auto_us_df_0/pynq_auto_us_df_0_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ic_processing_system7_0_S_AXI_ACP/s02_couplers/auto_us_df .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ic_processing_system7_0_S_AXI_ACP/s01_couplers/s01_regslice .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file '/scratch/local/tmp.mnejJh1Zni/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ip/pynq_auto_us_cc_df_0/pynq_auto_us_cc_df_0_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ic_processing_system7_0_S_AXI_ACP/s01_couplers/auto_us_cc_df .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ic_processing_system7_0_S_AXI_ACP/s00_couplers/s00_regslice .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file '/scratch/local/tmp.mnejJh1Zni/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ip/pynq_s00_data_fifo_1/pynq_s00_data_fifo_1_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ic_processing_system7_0_S_AXI_ACP/s00_couplers/s00_data_fifo .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file '/scratch/local/tmp.mnejJh1Zni/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ip/pynq_auto_cc_0/pynq_auto_cc_0_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ic_processing_system7_0_S_AXI_ACP/s00_couplers/auto_cc .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ic_processing_system7_0_M_AXI_GP0/m01_couplers/m01_regslice .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ic_processing_system7_0_M_AXI_GP0/m00_couplers/m00_regslice .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ic_processing_system7_0_M_AXI_GP0/s00_couplers/s00_regslice .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file '/scratch/local/tmp.mnejJh1Zni/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ip/pynq_s00_data_fifo_0/pynq_s00_data_fifo_0_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ic_processing_system7_0_M_AXI_GP0/s00_couplers/s00_data_fifo .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file '/scratch/local/tmp.mnejJh1Zni/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ip/pynq_auto_pc_0/pynq_auto_pc_0_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_ic_processing_system7_0_M_AXI_GP0/s00_couplers/auto_pc .
+Exporting to file /scratch/local/tmp.mnejJh1Zni/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/hw_handoff/pynq.hwh
+Generated Block Design Tcl file /scratch/local/tmp.mnejJh1Zni/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/hw_handoff/pynq_bd.tcl
+Generated Hardware Definition File /scratch/local/tmp.mnejJh1Zni/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/hdl/pynq.hwdef
+generate_target: Time (s): cpu = 00:00:22 ; elapsed = 00:00:25 . Memory (MB): peak = 2359.383 ; gain = 128.133 ; free physical = 120909 ; free virtual = 126623
+# file mkdir /scratch/local/tmp.mnejJh1Zni/_sds/p0/ipi/pynq.sdk
+# write_hwdef -force -file /scratch/local/tmp.mnejJh1Zni/_sds/p0/ipi/pynq.sdk/pynq.hdf
+# close_project
+INFO: [Common 17-206] Exiting Vivado at Tue Oct 30 16:33:42 2018...

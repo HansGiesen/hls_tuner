@@ -1,0 +1,26 @@
+#ifdef __cplusplus
+extern "C" {
+#endif
+void _p0_encrypt_1_noasync(aes256_context * ctx, uint8_t k[32], uint8_t buf[16]);
+#ifdef __cplusplus
+}
+#endif
+void _p0_encrypt_1_noasync(aes256_context * ctx, uint8_t k[32], uint8_t buf[16])
+{
+  switch_to_next_partition(0);
+  int start_seq[1];
+  start_seq[0] = 0;
+  cf_request_handle_t _p0_swinst_encrypt_1_cmd;
+  cf_send_i(&(_p0_swinst_encrypt_1.cmd_encrypt), start_seq, 1 * sizeof(int), &_p0_swinst_encrypt_1_cmd);
+  cf_wait(_p0_swinst_encrypt_1_cmd);
+
+  cf_send_ref_i(&(_p0_swinst_encrypt_1.ctx_offset), &ctx, 128, &_p0_request_0);
+  cf_send_i(&(_p0_swinst_encrypt_1.k_PORTA), k, 32, &_p0_request_1);
+  cf_send_ref_i(&(_p0_swinst_encrypt_1.buf_offset), &buf, 16, &_p0_request_2);
+
+
+  cf_wait(_p0_request_0);
+  cf_wait(_p0_request_1);
+  cf_wait(_p0_request_2);
+}
+

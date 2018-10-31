@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<cf:model cf:cpu="cortex_a9" cf:partition="0" cf:prefix="_p0_" cf:name="top" xd:type="design" xmlns:xd="http://www.xilinx.com/xd" xmlns:cf="http://www.xilinx.com/connections">
+  <cf:block cf:name="hwblk_encrypt">
+    <cf:port cf:name="cmd_encrypt" cf:portType="stream" cf:direction="in"/>
+    <cf:port cf:name="ctx_offset" cf:portType="stream" cf:direction="in"/>
+    <cf:port cf:name="k_PORTA" cf:portType="stream" cf:direction="in"/>
+    <cf:port cf:name="buf_offset" cf:portType="stream" cf:direction="in"/>
+  </cf:block>
+  <cf:block cf:name="swblk_encrypt">
+    <cf:port cf:name="cmd_encrypt" cf:portType="stream" cf:direction="out"/>
+    <cf:port cf:name="ctx_offset" cf:portType="stream" cf:direction="out"/>
+    <cf:port cf:name="k_PORTA" cf:portType="stream" cf:direction="out"/>
+    <cf:port cf:name="buf_offset" cf:portType="stream" cf:direction="out"/>
+  </cf:block>
+  <cf:comp cf:name="dm_0" xd:componentRef="axi_dma" xd:clockId="3"/>
+  <cf:comp cf:name="pynq" xd:componentRef="pynq" xd:clockId="3"/>
+  <cf:comp cf:name="encrypt_1" xd:componentRef="encrypt" xd:clockId="0"/>
+  <cf:instance cf:name="hwinst_encrypt_1" cf:blockName="hwblk_encrypt" cf:compName="encrypt_1">
+    <cf:portMap cf:blockPort="cmd_encrypt" cf:compPort="ap_ctrl" xd:register="0x8"/>
+    <cf:portMap cf:blockPort="ctx_offset" cf:compPort="m_axi_ctx" xd:paddedWidth="1024" cf:ctrlPort="ap_ctrl" xd:register="0xC"/>
+    <cf:portMap cf:blockPort="k_PORTA" cf:compPort="k_PORTA" xd:paddedWidth="8"/>
+    <cf:portMap cf:blockPort="buf_offset" cf:compPort="m_axi_buf_r" xd:paddedWidth="8" cf:ctrlPort="ap_ctrl" xd:register="0x10"/>
+  </cf:instance>
+  <cf:instance cf:name="swinst_encrypt_1" cf:blockName="swblk_encrypt" cf:compName="pynq">
+    <cf:portMap cf:blockPort="cmd_encrypt" cf:compPort="processing_system7_0_M_AXI_GP0"/>
+    <cf:portMap cf:blockPort="ctx_offset" cf:compPort="processing_system7_0_S_AXI_ACP" cf:ctrlPort="processing_system7_0_M_AXI_GP0"/>
+    <cf:portMap cf:blockPort="k_PORTA" cf:compPort="processing_system7_0_S_AXI_ACP"/>
+    <cf:portMap cf:blockPort="buf_offset" cf:compPort="processing_system7_0_S_AXI_ACP" cf:ctrlPort="processing_system7_0_M_AXI_GP0"/>
+  </cf:instance>
+  <cf:connection cf:srcInst="swinst_encrypt_1" cf:srcPort="cmd_encrypt" cf:dstInst="hwinst_encrypt_1" cf:dstPort="cmd_encrypt">
+    <cf:dataMover cf:compName="pynq" cf:softwareLib="axi_lite"/>
+  </cf:connection>
+  <cf:connection cf:srcInst="swinst_encrypt_1" cf:srcPort="ctx_offset" cf:dstInst="hwinst_encrypt_1" cf:dstPort="ctx_offset">
+    <cf:dataMover cf:compName="encrypt_1" cf:softwareLib="zero_copy"/>
+  </cf:connection>
+  <cf:connection cf:srcInst="swinst_encrypt_1" cf:srcPort="k_PORTA" cf:dstInst="hwinst_encrypt_1" cf:dstPort="k_PORTA">
+    <cf:dataMover cf:compName="dm_0" cf:softwareLib="axi_dma_simple"/>
+  </cf:connection>
+  <cf:connection cf:srcInst="swinst_encrypt_1" cf:srcPort="buf_offset" cf:dstInst="hwinst_encrypt_1" cf:dstPort="buf_offset">
+    <cf:dataMover cf:compName="encrypt_1" cf:softwareLib="zero_copy"/>
+  </cf:connection>
+</cf:model>

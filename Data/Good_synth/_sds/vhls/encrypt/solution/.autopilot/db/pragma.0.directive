@@ -1,0 +1,49 @@
+<AutoPilot:ProjectResources xmlns:AutoPilot="com.autoesl.autopilot.ui.directiveView">
+<sourceFile name="">
+<directive functionLabel="" functionName="aes_subBytes" label="">
+<pragma name="PIPELINE">
+<option name="ii" value="pipeline_ii_sub"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="aes_addRoundKey" label="">
+<pragma name="PIPELINE">
+<option name="ii" value="pipeline_ii_addkey"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="aes_addRoundKey_cpy" label="">
+<pragma name="UNROLL">
+<option name="factor" value="unroll_factor_cpkey"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="aes_mixColumns" label="">
+<pragma name="PIPELINE">
+<option name="ii" value="pipeline_ii_mix"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="aes_expandEncKey" label="">
+<pragma name="PIPELINE">
+<option name="ii" value="pipeline_ii_exp1"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="aes_expandEncKey" label="">
+<pragma name="UNROLL">
+<option name="factor" value="unroll_factor_exp2"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="encrypt" label="">
+<pragma name="PIPELINE">
+<option name="ii" value="pipeline_ii_ecb1"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="encrypt" label="">
+<pragma name="UNROLL">
+<option name="factor" value="unroll_factor_ecb2"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="encrypt" label="">
+<pragma name="PIPELINE">
+<option name="ii" value="pipeline_ii_ecb3"/>
+</pragma>
+</directive>
+</sourceFile>
+</AutoPilot:ProjectResources>

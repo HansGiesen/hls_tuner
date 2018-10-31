@@ -1,0 +1,684 @@
+
+
+================================================================
+== Vivado HLS Report for 'aes_mixColumns'
+================================================================
+* Date:           Tue Oct 30 16:29:42 2018
+
+* Version:        2017.1 (Build 1846317 on Thu Jun 22 18:17:09 MDT 2017)
+* Project:        encrypt
+* Solution:       solution
+* Product family: zynq
+* Target device:  xc7z020clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |   6.00|      4.38|        1.62|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+---------+
+    |  Latency  |  Interval | Pipeline|
+    | min | max | min | max |   Type  |
+    +-----+-----+-----+-----+---------+
+    |  101|  101|  101|  101|   none  |
+    +-----+-----+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +----------+-----+-----+----------+-----------+-----------+------+----------+
+        |          |  Latency  | Iteration|  Initiation Interval  | Trip |          |
+        | Loop Name| min | max |  Latency |  achieved |   target  | Count| Pipelined|
+        +----------+-----+-----+----------+-----------+-----------+------+----------+
+        |- mix     |  100|  100|        25|          -|          -|     4|    no    |
+        +----------+-----+-----+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states: 26
+* Pipeline: 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+	3  / (!tmp)
+3 --> 
+	4  / true
+4 --> 
+	5  / true
+5 --> 
+	6  / true
+6 --> 
+	7  / true
+7 --> 
+	8  / true
+8 --> 
+	9  / true
+9 --> 
+	10  / true
+10 --> 
+	11  / true
+11 --> 
+	12  / true
+12 --> 
+	13  / true
+13 --> 
+	14  / true
+14 --> 
+	15  / true
+15 --> 
+	16  / true
+16 --> 
+	17  / true
+17 --> 
+	18  / true
+18 --> 
+	19  / true
+19 --> 
+	20  / true
+20 --> 
+	21  / true
+21 --> 
+	22  / true
+22 --> 
+	23  / true
+23 --> 
+	24  / true
+24 --> 
+	25  / true
+25 --> 
+	26  / true
+26 --> 
+	2  / true
+* FSM state operations: 
+
+ <State 1>: 1.77ns
+ST_1: StgValue_27 (3)  [1/1] 0.00ns
+:0  call void (...)* @_ssdm_op_SpecInterface(i8* %buf_r, [6 x i8]* @p_str7, i32 0, i32 0, [1 x i8]* @p_str1, i32 0, i32 0, [4 x i8]* @p_str10, [7 x i8]* @p_str9, [1 x i8]* @p_str1, i32 16, i32 16, i32 16, i32 16, [1 x i8]* @p_str1, [1 x i8]* @p_str1)
+
+ST_1: buf_offset_read (4)  [1/1] 0.00ns
+:1  %buf_offset_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %buf_offset)
+
+ST_1: StgValue_29 (5)  [1/1] 1.77ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:243
+:2  br label %1
+
+
+ <State 2>: 2.55ns
+ST_2: i (7)  [1/1] 0.00ns
+:0  %i = phi i5 [ 0, %0 ], [ %i_3, %2 ]
+
+ST_2: tmp (8)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:243
+:1  %tmp = call i1 @_ssdm_op_BitSelect.i1.i5.i32(i5 %i, i32 4)
+
+ST_2: empty (9)  [1/1] 0.00ns
+:2  %empty = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 4, i64 4, i64 4)
+
+ST_2: StgValue_33 (10)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:243
+:3  br i1 %tmp, label %3, label %2
+
+ST_2: tmp_s (13)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250
+:1  %tmp_s = zext i5 %i to i32
+
+ST_2: tmp_8 (14)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250
+:2  %tmp_8 = trunc i5 %i to i4
+
+ST_2: sum (15)  [1/1] 2.55ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250
+:3  %sum = add i32 %buf_offset_read, %tmp_s
+
+ST_2: buf_addr (16)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250
+:4  %buf_addr = getelementptr i8* %buf_r, i32 %sum
+
+ST_2: tmp_2 (19)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250 (grouped into LUT with out node sum1)
+:7  %tmp_2 = or i4 %tmp_8, 1
+
+ST_2: tmp_2_cast (20)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250 (grouped into LUT with out node sum1)
+:8  %tmp_2_cast = zext i4 %tmp_2 to i32
+
+ST_2: sum1 (21)  [1/1] 2.55ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250 (out node of the LUT)
+:9  %sum1 = add i32 %buf_offset_read, %tmp_2_cast
+
+ST_2: buf_addr_12 (22)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250
+:10  %buf_addr_12 = getelementptr i8* %buf_r, i32 %sum1
+
+ST_2: tmp_3 (25)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250 (grouped into LUT with out node sum2)
+:13  %tmp_3 = or i4 %tmp_8, 2
+
+ST_2: tmp_3_cast (26)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250 (grouped into LUT with out node sum2)
+:14  %tmp_3_cast = zext i4 %tmp_3 to i32
+
+ST_2: sum2 (27)  [1/1] 2.55ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250 (out node of the LUT)
+:15  %sum2 = add i32 %buf_offset_read, %tmp_3_cast
+
+ST_2: buf_addr_13 (28)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250
+:16  %buf_addr_13 = getelementptr i8* %buf_r, i32 %sum2
+
+ST_2: tmp_4 (31)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250 (grouped into LUT with out node sum3)
+:19  %tmp_4 = or i4 %tmp_8, 3
+
+ST_2: tmp_4_cast (32)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250 (grouped into LUT with out node sum3)
+:20  %tmp_4_cast = zext i4 %tmp_4 to i32
+
+ST_2: sum3 (33)  [1/1] 2.55ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250 (out node of the LUT)
+:21  %sum3 = add i32 %buf_offset_read, %tmp_4_cast
+
+ST_2: buf_addr_14 (34)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250
+:22  %buf_addr_14 = getelementptr i8* %buf_r, i32 %sum3
+
+ST_2: i_3 (78)  [1/1] 1.78ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:243
+:66  %i_3 = add i5 4, %i
+
+ST_2: StgValue_51 (81)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:255
+:0  ret void
+
+
+ <State 3>: 4.38ns
+ST_3: a_req (17)  [7/7] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250
+:5  %a_req = call i1 @_ssdm_op_ReadReq.m_axi.i8P(i8* %buf_addr, i32 1)
+
+
+ <State 4>: 4.38ns
+ST_4: a_req (17)  [6/7] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250
+:5  %a_req = call i1 @_ssdm_op_ReadReq.m_axi.i8P(i8* %buf_addr, i32 1)
+
+ST_4: b_req (23)  [7/7] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250
+:11  %b_req = call i1 @_ssdm_op_ReadReq.m_axi.i8P(i8* %buf_addr_12, i32 1)
+
+
+ <State 5>: 4.38ns
+ST_5: a_req (17)  [5/7] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250
+:5  %a_req = call i1 @_ssdm_op_ReadReq.m_axi.i8P(i8* %buf_addr, i32 1)
+
+ST_5: b_req (23)  [6/7] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250
+:11  %b_req = call i1 @_ssdm_op_ReadReq.m_axi.i8P(i8* %buf_addr_12, i32 1)
+
+ST_5: c_req (29)  [7/7] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250
+:17  %c_req = call i1 @_ssdm_op_ReadReq.m_axi.i8P(i8* %buf_addr_13, i32 1)
+
+
+ <State 6>: 4.38ns
+ST_6: a_req (17)  [4/7] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250
+:5  %a_req = call i1 @_ssdm_op_ReadReq.m_axi.i8P(i8* %buf_addr, i32 1)
+
+ST_6: b_req (23)  [5/7] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250
+:11  %b_req = call i1 @_ssdm_op_ReadReq.m_axi.i8P(i8* %buf_addr_12, i32 1)
+
+ST_6: c_req (29)  [6/7] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250
+:17  %c_req = call i1 @_ssdm_op_ReadReq.m_axi.i8P(i8* %buf_addr_13, i32 1)
+
+ST_6: d_req (35)  [7/7] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250
+:23  %d_req = call i1 @_ssdm_op_ReadReq.m_axi.i8P(i8* %buf_addr_14, i32 1)
+
+
+ <State 7>: 4.38ns
+ST_7: a_req (17)  [3/7] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250
+:5  %a_req = call i1 @_ssdm_op_ReadReq.m_axi.i8P(i8* %buf_addr, i32 1)
+
+ST_7: b_req (23)  [4/7] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250
+:11  %b_req = call i1 @_ssdm_op_ReadReq.m_axi.i8P(i8* %buf_addr_12, i32 1)
+
+ST_7: c_req (29)  [5/7] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250
+:17  %c_req = call i1 @_ssdm_op_ReadReq.m_axi.i8P(i8* %buf_addr_13, i32 1)
+
+ST_7: d_req (35)  [6/7] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250
+:23  %d_req = call i1 @_ssdm_op_ReadReq.m_axi.i8P(i8* %buf_addr_14, i32 1)
+
+
+ <State 8>: 4.38ns
+ST_8: a_req (17)  [2/7] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250
+:5  %a_req = call i1 @_ssdm_op_ReadReq.m_axi.i8P(i8* %buf_addr, i32 1)
+
+ST_8: b_req (23)  [3/7] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250
+:11  %b_req = call i1 @_ssdm_op_ReadReq.m_axi.i8P(i8* %buf_addr_12, i32 1)
+
+ST_8: c_req (29)  [4/7] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250
+:17  %c_req = call i1 @_ssdm_op_ReadReq.m_axi.i8P(i8* %buf_addr_13, i32 1)
+
+ST_8: d_req (35)  [5/7] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250
+:23  %d_req = call i1 @_ssdm_op_ReadReq.m_axi.i8P(i8* %buf_addr_14, i32 1)
+
+
+ <State 9>: 4.38ns
+ST_9: a_req (17)  [1/7] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250
+:5  %a_req = call i1 @_ssdm_op_ReadReq.m_axi.i8P(i8* %buf_addr, i32 1)
+
+ST_9: b_req (23)  [2/7] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250
+:11  %b_req = call i1 @_ssdm_op_ReadReq.m_axi.i8P(i8* %buf_addr_12, i32 1)
+
+ST_9: c_req (29)  [3/7] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250
+:17  %c_req = call i1 @_ssdm_op_ReadReq.m_axi.i8P(i8* %buf_addr_13, i32 1)
+
+ST_9: d_req (35)  [4/7] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250
+:23  %d_req = call i1 @_ssdm_op_ReadReq.m_axi.i8P(i8* %buf_addr_14, i32 1)
+
+
+ <State 10>: 4.38ns
+ST_10: a (18)  [1/1] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250
+:6  %a = call i8 @_ssdm_op_Read.m_axi.i8P(i8* %buf_addr)
+
+ST_10: b_req (23)  [1/7] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250
+:11  %b_req = call i1 @_ssdm_op_ReadReq.m_axi.i8P(i8* %buf_addr_12, i32 1)
+
+ST_10: c_req (29)  [2/7] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250
+:17  %c_req = call i1 @_ssdm_op_ReadReq.m_axi.i8P(i8* %buf_addr_13, i32 1)
+
+ST_10: d_req (35)  [3/7] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250
+:23  %d_req = call i1 @_ssdm_op_ReadReq.m_axi.i8P(i8* %buf_addr_14, i32 1)
+
+
+ <State 11>: 4.38ns
+ST_11: b (24)  [1/1] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250
+:12  %b = call i8 @_ssdm_op_Read.m_axi.i8P(i8* %buf_addr_12)
+
+ST_11: c_req (29)  [1/7] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250
+:17  %c_req = call i1 @_ssdm_op_ReadReq.m_axi.i8P(i8* %buf_addr_13, i32 1)
+
+ST_11: d_req (35)  [2/7] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250
+:23  %d_req = call i1 @_ssdm_op_ReadReq.m_axi.i8P(i8* %buf_addr_14, i32 1)
+
+
+ <State 12>: 4.38ns
+ST_12: c (30)  [1/1] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250
+:18  %c = call i8 @_ssdm_op_Read.m_axi.i8P(i8* %buf_addr_13)
+
+ST_12: d_req (35)  [1/7] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250
+:23  %d_req = call i1 @_ssdm_op_ReadReq.m_axi.i8P(i8* %buf_addr_14, i32 1)
+
+
+ <State 13>: 4.38ns
+ST_13: d (36)  [1/1] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250
+:24  %d = call i8 @_ssdm_op_Read.m_axi.i8P(i8* %buf_addr_14)
+
+ST_13: x_assign (37)  [1/1] 1.09ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:251
+:25  %x_assign = xor i8 %b, %a
+
+
+ <State 14>: 4.38ns
+ST_14: tmp_6 (38)  [1/1] 1.09ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:251
+:26  %tmp_6 = xor i8 %c, %x_assign
+
+ST_14: e (39)  [1/1] 1.09ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:251
+:27  %e = xor i8 %d, %tmp_6
+
+ST_14: tmp_10 (40)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:174->/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252 (grouped into LUT with out node tmp_9)
+:28  %tmp_10 = call i1 @_ssdm_op_BitSelect.i1.i8.i32(i8 %x_assign, i32 7)
+
+ST_14: tmp_11 (41)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:174->/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252
+:29  %tmp_11 = shl i8 %x_assign, 1
+
+ST_14: tmp_2_i (42)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:174->/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252 (grouped into LUT with out node tmp_9)
+:30  %tmp_2_i = xor i8 %tmp_11, 27
+
+ST_14: tmp_4_i (43)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:174->/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252 (grouped into LUT with out node tmp_9)
+:31  %tmp_4_i = select i1 %tmp_10, i8 %tmp_2_i, i8 %tmp_11
+
+ST_14: tmp1 (44)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252 (grouped into LUT with out node tmp_9)
+:32  %tmp1 = xor i8 %tmp_4_i, %e
+
+ST_14: tmp_9 (45)  [1/1] 1.37ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252 (out node of the LUT)
+:33  %tmp_9 = xor i8 %tmp1, %a
+
+ST_14: buf_addr_req (46)  [1/1] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252
+:34  %buf_addr_req = call i1 @_ssdm_op_WriteReq.m_axi.i8P(i8* %buf_addr, i32 1)
+
+ST_14: x_assign_1 (49)  [1/1] 1.09ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252
+:37  %x_assign_1 = xor i8 %c, %b
+
+ST_14: tmp_12 (50)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:174->/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252 (grouped into LUT with out node tmp_5)
+:38  %tmp_12 = call i1 @_ssdm_op_BitSelect.i1.i8.i32(i8 %x_assign_1, i32 7)
+
+ST_14: tmp_13 (51)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:174->/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252
+:39  %tmp_13 = shl i8 %x_assign_1, 1
+
+ST_14: tmp_2_i1 (52)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:174->/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252 (grouped into LUT with out node tmp_5)
+:40  %tmp_2_i1 = xor i8 %tmp_13, 27
+
+ST_14: tmp_4_i1 (53)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:174->/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252 (grouped into LUT with out node tmp_5)
+:41  %tmp_4_i1 = select i1 %tmp_12, i8 %tmp_2_i1, i8 %tmp_13
+
+ST_14: tmp2 (54)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252 (grouped into LUT with out node tmp_5)
+:42  %tmp2 = xor i8 %tmp_4_i1, %e
+
+ST_14: tmp_5 (55)  [1/1] 1.37ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252 (out node of the LUT)
+:43  %tmp_5 = xor i8 %tmp2, %b
+
+ST_14: x_assign_2 (59)  [1/1] 1.09ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:253
+:47  %x_assign_2 = xor i8 %d, %c
+
+ST_14: tmp_14 (60)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:174->/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:253 (grouped into LUT with out node tmp_1)
+:48  %tmp_14 = call i1 @_ssdm_op_BitSelect.i1.i8.i32(i8 %x_assign_2, i32 7)
+
+ST_14: tmp_15 (61)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:174->/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:253
+:49  %tmp_15 = shl i8 %x_assign_2, 1
+
+ST_14: tmp_2_i2 (62)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:174->/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:253 (grouped into LUT with out node tmp_1)
+:50  %tmp_2_i2 = xor i8 %tmp_15, 27
+
+ST_14: tmp_4_i2 (63)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:174->/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:253 (grouped into LUT with out node tmp_1)
+:51  %tmp_4_i2 = select i1 %tmp_14, i8 %tmp_2_i2, i8 %tmp_15
+
+ST_14: tmp3 (64)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:253 (grouped into LUT with out node tmp_1)
+:52  %tmp3 = xor i8 %tmp_4_i2, %e
+
+ST_14: tmp_1 (65)  [1/1] 1.37ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:253 (out node of the LUT)
+:53  %tmp_1 = xor i8 %tmp3, %c
+
+ST_14: x_assign_3 (69)  [1/1] 1.09ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:253
+:57  %x_assign_3 = xor i8 %d, %a
+
+ST_14: tmp_16 (70)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:174->/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:253 (grouped into LUT with out node tmp_7)
+:58  %tmp_16 = call i1 @_ssdm_op_BitSelect.i1.i8.i32(i8 %x_assign_3, i32 7)
+
+ST_14: tmp_17 (71)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:174->/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:253
+:59  %tmp_17 = shl i8 %x_assign_3, 1
+
+ST_14: tmp_2_i3 (72)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:174->/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:253 (grouped into LUT with out node tmp_7)
+:60  %tmp_2_i3 = xor i8 %tmp_17, 27
+
+ST_14: tmp_4_i3 (73)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:174->/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:253 (grouped into LUT with out node tmp_7)
+:61  %tmp_4_i3 = select i1 %tmp_16, i8 %tmp_2_i3, i8 %tmp_17
+
+ST_14: tmp_7 (74)  [1/1] 1.37ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:253 (out node of the LUT)
+:62  %tmp_7 = xor i8 %tmp_4_i3, %tmp_6
+
+
+ <State 15>: 4.38ns
+ST_15: StgValue_114 (47)  [1/1] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252
+:35  call void @_ssdm_op_Write.m_axi.i8P(i8* %buf_addr, i8 %tmp_9, i1 true)
+
+
+ <State 16>: 4.38ns
+ST_16: buf_addr_resp (48)  [5/5] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252
+:36  %buf_addr_resp = call i1 @_ssdm_op_WriteResp.m_axi.i8P(i8* %buf_addr)
+
+ST_16: buf_addr_12_req (56)  [1/1] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252
+:44  %buf_addr_12_req = call i1 @_ssdm_op_WriteReq.m_axi.i8P(i8* %buf_addr_12, i32 1)
+
+
+ <State 17>: 4.38ns
+ST_17: buf_addr_resp (48)  [4/5] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252
+:36  %buf_addr_resp = call i1 @_ssdm_op_WriteResp.m_axi.i8P(i8* %buf_addr)
+
+ST_17: StgValue_118 (57)  [1/1] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252
+:45  call void @_ssdm_op_Write.m_axi.i8P(i8* %buf_addr_12, i8 %tmp_5, i1 true)
+
+
+ <State 18>: 4.38ns
+ST_18: buf_addr_resp (48)  [3/5] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252
+:36  %buf_addr_resp = call i1 @_ssdm_op_WriteResp.m_axi.i8P(i8* %buf_addr)
+
+ST_18: buf_addr_12_resp (58)  [5/5] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252
+:46  %buf_addr_12_resp = call i1 @_ssdm_op_WriteResp.m_axi.i8P(i8* %buf_addr_12)
+
+ST_18: buf_addr_13_req (66)  [1/1] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:253
+:54  %buf_addr_13_req = call i1 @_ssdm_op_WriteReq.m_axi.i8P(i8* %buf_addr_13, i32 1)
+
+
+ <State 19>: 4.38ns
+ST_19: buf_addr_resp (48)  [2/5] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252
+:36  %buf_addr_resp = call i1 @_ssdm_op_WriteResp.m_axi.i8P(i8* %buf_addr)
+
+ST_19: buf_addr_12_resp (58)  [4/5] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252
+:46  %buf_addr_12_resp = call i1 @_ssdm_op_WriteResp.m_axi.i8P(i8* %buf_addr_12)
+
+ST_19: StgValue_124 (67)  [1/1] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:253
+:55  call void @_ssdm_op_Write.m_axi.i8P(i8* %buf_addr_13, i8 %tmp_1, i1 true)
+
+
+ <State 20>: 4.38ns
+ST_20: buf_addr_resp (48)  [1/5] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252
+:36  %buf_addr_resp = call i1 @_ssdm_op_WriteResp.m_axi.i8P(i8* %buf_addr)
+
+ST_20: buf_addr_12_resp (58)  [3/5] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252
+:46  %buf_addr_12_resp = call i1 @_ssdm_op_WriteResp.m_axi.i8P(i8* %buf_addr_12)
+
+ST_20: buf_addr_13_resp (68)  [5/5] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:253
+:56  %buf_addr_13_resp = call i1 @_ssdm_op_WriteResp.m_axi.i8P(i8* %buf_addr_13)
+
+ST_20: buf_addr_14_req (75)  [1/1] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:253
+:63  %buf_addr_14_req = call i1 @_ssdm_op_WriteReq.m_axi.i8P(i8* %buf_addr_14, i32 1)
+
+
+ <State 21>: 4.38ns
+ST_21: buf_addr_12_resp (58)  [2/5] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252
+:46  %buf_addr_12_resp = call i1 @_ssdm_op_WriteResp.m_axi.i8P(i8* %buf_addr_12)
+
+ST_21: buf_addr_13_resp (68)  [4/5] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:253
+:56  %buf_addr_13_resp = call i1 @_ssdm_op_WriteResp.m_axi.i8P(i8* %buf_addr_13)
+
+ST_21: StgValue_131 (76)  [1/1] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:253
+:64  call void @_ssdm_op_Write.m_axi.i8P(i8* %buf_addr_14, i8 %tmp_7, i1 true)
+
+
+ <State 22>: 4.38ns
+ST_22: buf_addr_12_resp (58)  [1/5] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252
+:46  %buf_addr_12_resp = call i1 @_ssdm_op_WriteResp.m_axi.i8P(i8* %buf_addr_12)
+
+ST_22: buf_addr_13_resp (68)  [3/5] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:253
+:56  %buf_addr_13_resp = call i1 @_ssdm_op_WriteResp.m_axi.i8P(i8* %buf_addr_13)
+
+ST_22: buf_addr_14_resp (77)  [5/5] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:253
+:65  %buf_addr_14_resp = call i1 @_ssdm_op_WriteResp.m_axi.i8P(i8* %buf_addr_14)
+
+
+ <State 23>: 4.38ns
+ST_23: buf_addr_13_resp (68)  [2/5] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:253
+:56  %buf_addr_13_resp = call i1 @_ssdm_op_WriteResp.m_axi.i8P(i8* %buf_addr_13)
+
+ST_23: buf_addr_14_resp (77)  [4/5] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:253
+:65  %buf_addr_14_resp = call i1 @_ssdm_op_WriteResp.m_axi.i8P(i8* %buf_addr_14)
+
+
+ <State 24>: 4.38ns
+ST_24: buf_addr_13_resp (68)  [1/5] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:253
+:56  %buf_addr_13_resp = call i1 @_ssdm_op_WriteResp.m_axi.i8P(i8* %buf_addr_13)
+
+ST_24: buf_addr_14_resp (77)  [3/5] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:253
+:65  %buf_addr_14_resp = call i1 @_ssdm_op_WriteResp.m_axi.i8P(i8* %buf_addr_14)
+
+
+ <State 25>: 4.38ns
+ST_25: buf_addr_14_resp (77)  [2/5] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:253
+:65  %buf_addr_14_resp = call i1 @_ssdm_op_WriteResp.m_axi.i8P(i8* %buf_addr_14)
+
+
+ <State 26>: 4.38ns
+ST_26: StgValue_140 (12)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:244
+:0  call void (...)* @_ssdm_op_SpecLoopName([4 x i8]* @p_str4) nounwind
+
+ST_26: buf_addr_14_resp (77)  [1/5] 4.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:253
+:65  %buf_addr_14_resp = call i1 @_ssdm_op_WriteResp.m_axi.i8P(i8* %buf_addr_14)
+
+ST_26: StgValue_142 (79)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:243
+:67  br label %1
+
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 6ns, clock uncertainty: 1.62ns.
+
+ <State 1>: 1.77ns
+The critical path consists of the following:
+	multiplexor before 'phi' operation ('i') with incoming values : ('i', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:243) [7]  (1.77 ns)
+
+ <State 2>: 2.55ns
+The critical path consists of the following:
+	'phi' operation ('i') with incoming values : ('i', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:243) [7]  (0 ns)
+	'or' operation ('tmp_2', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250) [19]  (0 ns)
+	'add' operation ('sum1', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250) [21]  (2.55 ns)
+
+ <State 3>: 4.38ns
+The critical path consists of the following:
+	bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250) [17]  (4.38 ns)
+
+ <State 4>: 4.38ns
+The critical path consists of the following:
+	bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250) [17]  (4.38 ns)
+
+ <State 5>: 4.38ns
+The critical path consists of the following:
+	bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250) [17]  (4.38 ns)
+
+ <State 6>: 4.38ns
+The critical path consists of the following:
+	bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250) [17]  (4.38 ns)
+
+ <State 7>: 4.38ns
+The critical path consists of the following:
+	bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250) [17]  (4.38 ns)
+
+ <State 8>: 4.38ns
+The critical path consists of the following:
+	bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250) [17]  (4.38 ns)
+
+ <State 9>: 4.38ns
+The critical path consists of the following:
+	bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250) [17]  (4.38 ns)
+
+ <State 10>: 4.38ns
+The critical path consists of the following:
+	bus read on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250) [18]  (4.38 ns)
+
+ <State 11>: 4.38ns
+The critical path consists of the following:
+	bus read on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250) [24]  (4.38 ns)
+
+ <State 12>: 4.38ns
+The critical path consists of the following:
+	bus read on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250) [30]  (4.38 ns)
+
+ <State 13>: 4.38ns
+The critical path consists of the following:
+	bus read on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250) [36]  (4.38 ns)
+
+ <State 14>: 4.38ns
+The critical path consists of the following:
+	bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252) [46]  (4.38 ns)
+
+ <State 15>: 4.38ns
+The critical path consists of the following:
+	bus write on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252) [47]  (4.38 ns)
+
+ <State 16>: 4.38ns
+The critical path consists of the following:
+	bus access on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252) [48]  (4.38 ns)
+
+ <State 17>: 4.38ns
+The critical path consists of the following:
+	bus access on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252) [48]  (4.38 ns)
+
+ <State 18>: 4.38ns
+The critical path consists of the following:
+	bus access on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252) [48]  (4.38 ns)
+
+ <State 19>: 4.38ns
+The critical path consists of the following:
+	bus access on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252) [48]  (4.38 ns)
+
+ <State 20>: 4.38ns
+The critical path consists of the following:
+	bus access on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252) [48]  (4.38 ns)
+
+ <State 21>: 4.38ns
+The critical path consists of the following:
+	bus access on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252) [58]  (4.38 ns)
+
+ <State 22>: 4.38ns
+The critical path consists of the following:
+	bus access on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252) [58]  (4.38 ns)
+
+ <State 23>: 4.38ns
+The critical path consists of the following:
+	bus access on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:253) [68]  (4.38 ns)
+
+ <State 24>: 4.38ns
+The critical path consists of the following:
+	bus access on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:253) [68]  (4.38 ns)
+
+ <State 25>: 4.38ns
+The critical path consists of the following:
+	bus access on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:253) [77]  (4.38 ns)
+
+ <State 26>: 4.38ns
+The critical path consists of the following:
+	bus access on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:253) [77]  (4.38 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+	State 10
+	State 11
+	State 12
+	State 13
+	State 14
+	State 15
+	State 16
+	State 17
+	State 18
+	State 19
+	State 20
+	State 21
+	State 22
+	State 23
+	State 24
+	State 25
+	State 26
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

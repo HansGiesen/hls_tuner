@@ -3,6 +3,7 @@
 # Tuner for the Matrix Multiplication example in SDSoC
 
 import argparse
+import glob
 import logging
 import math
 import os
@@ -43,8 +44,7 @@ from opentuner.search.manipulator import BooleanParameter
 log = logging.getLogger('AESTuner')
 
 argparser = argparse.ArgumentParser(parents=opentuner.argparsers())
-argparser.add_argument('--append', action = 'store_true',
-                       help = 'append new tuning run to existing runs')
+argparser.add_argument('--append', action = 'store_true', help = 'append new tuning run to existing runs')
 
 class AESTuner(MeasurementInterface):
   """
@@ -66,8 +66,10 @@ class AESTuner(MeasurementInterface):
     self.output_root   = tuner_root + "/TestApps/MachSuite/aes/Output"
     self.template_path = tuner_root + "/Templates"
 
-    self.fake_build        = False
-    self.fake_build_source = tuner_root + '/Data/Successful_build'
+    self.fake_presynth     = False
+    self.fake_synth        = False
+    self.fake_impl         = False
+    self.fake_build_source = tuner_root + '/Data'
 
     self.presynth_timeout = 15 * 60
     self.synth_timeout    = 30 * 60
@@ -96,9 +98,8 @@ class AESTuner(MeasurementInterface):
         old_data_found = True
 
     if old_data_found and not args.append:
-      raise RuntimeError("Old results were found.  Explicitly confirm" \
-                         " appending the results using the --append command" \
-                         " line arguments.")
+      raise RuntimeError("Old results were found.  Explicitly confirm appending the results using the --append" \
+                         " command line arguments.")
 
     self.check_fpga_host()
 
@@ -147,12 +148,16 @@ class AESTuner(MeasurementInterface):
     output_path = self.output_root + "/{0:04d}".format(result_id)
     os.mkdir(output_path)
     presynth_output_path = output_path + '/Presynth'
+    synth_output_path = output_path + '/Synth'
 
     result = self.do_presynth(config_data, result_id, output_path, presynth_output_path)
     if result.state == 'POK':
-      result = self.do_synth(result_id, output_path, presynth_output_path)
+      result = self.do_synth(result_id, output_path, presynth_output_path, synth_output_path)
     if result.state == 'SOK':
-      result = self.do_impl(result_id, output_path)
+      result = self.do_impl(result_id, output_path, synth_output_path)
+
+    if result.state == 'IOK':
+      result.state = 'OK'
 
     return result
 
@@ -177,15 +182,14 @@ class AESTuner(MeasurementInterface):
         log.info("Repeating presynthesis of configuration %d...", result_id)
         os.rename(presynth_output_path, output_path + '/Presynth_failed_' + str(retry - 1))
 
-      os.mkdir(presynth_output_path)
 
-      self.create_presynth_scripts(config_data, build_script_template, build_script)
-
-      if not self.fake_build:
+      if not self.fake_presynth:
+        os.mkdir(presynth_output_path)
+        self.create_presynth_scripts(config_data, build_script_template, build_script)
         self.run_on_grid(result_id, presynth_output_path, build_script, qsub_output_log, qsub_error_log,
                          build_output_log, build_error_log, "Presynth")
       else:
-        pass
+        shutil.copytree(self.fake_build_source + '/Good_presynth', presynth_output_path)
 
       result = self.get_presynth_result(qsub_error_log, build_output_log)
 
@@ -268,14 +272,13 @@ class AESTuner(MeasurementInterface):
 
     return result
 
-  def do_synth(self, result_id, output_path, presynth_output_path):
+  def do_synth(self, result_id, output_path, presynth_output_path, synth_output_path):
     """
     Performs RTL synthesis of one configuration.
     """
 
     log.info("Synthesizing configuration %d...", result_id)
 
-    synth_output_path = output_path + '/Synth'
     shell_script_template = self.template_path + '/Synth.bash'
     shell_script = synth_output_path + '/Synth.bash'
     tcl_script_template = self.template_path + '/Synth.tcl'
@@ -290,17 +293,15 @@ class AESTuner(MeasurementInterface):
       if retry > 0:
         log.info("Repeating synthesis of configuration %d...", result_id)
         os.rename(synth_output_path, output_path + '/Synth_failed_' + str(retry - 1))
-
-      os.mkdir(synth_output_path)
-
-      self.create_synth_scripts(presynth_output_path, shell_script_template, shell_script, tcl_script_template,
-                                tcl_script)
-      
-      if not self.fake_build:
+    
+      if not self.fake_synth:
+        os.mkdir(synth_output_path)
+        self.create_synth_scripts(presynth_output_path, shell_script_template, shell_script, tcl_script_template,
+                                  tcl_script)
         self.run_on_grid(result_id, synth_output_path, shell_script, qsub_output_log, qsub_error_log, build_output_log,
                          build_error_log, "Synth")
       else:
-        pass
+        shutil.copytree(self.fake_build_source + '/Good_synth', synth_output_path)
 
       result = self.get_synth_result(qsub_error_log, build_output_log)
 
@@ -367,12 +368,109 @@ class AESTuner(MeasurementInterface):
 
     return result
 
-  def do_implementation(self):
+  def do_impl(self, result_id, output_path, synth_output_path):
     """
     Performs implementation step on one configuration.
     """
 
-    pass
+    log.info("Implementing configuration %d...", result_id)
+
+    impl_output_path = output_path + '/Impl'
+    shell_script_template = self.template_path + '/Impl.bash'
+    shell_script = impl_output_path + '/Impl.bash'
+    tcl_script_template = self.template_path + '/Impl.tcl'
+    tcl_script = impl_output_path + '/Impl.tcl'
+    qsub_output_log = impl_output_path + '/QSub_output.log'
+    qsub_error_log = impl_output_path + '/QSub_error.log'
+    build_output_log = impl_output_path + '/Impl_output.log'
+    build_error_log = impl_output_path + '/Impl_error.log'
+
+    for retry in range(0, self.impl_retries):
+
+      if retry > 0:
+        log.info("Repeating implementation of configuration %d...", result_id)
+        os.rename(impl_output_path, output_path + '/Impl_failed_' + str(retry - 1))
+    
+      if not self.fake_impl:
+        os.mkdir(impl_output_path)
+        self.create_impl_scripts(synth_output_path, shell_script_template, shell_script, tcl_script_template, tcl_script)
+        self.run_on_grid(result_id, impl_output_path, shell_script, qsub_output_log, qsub_error_log, build_output_log,
+                         build_error_log, "Impl")
+      else:
+        shutil.copytree(self.fake_build_source + '/Good_impl', impl_output_path)
+
+      result = self.get_impl_result(qsub_error_log, build_output_log)
+
+      log.info("Configuration %d, attempt %d: %s (%s)", result_id, retry,
+               result.msg, result.state)
+
+      if not result.state in ['IE0', 'IE1', 'IE2', 'IE?']:
+        break
+
+    if result.state == 'IOK':
+      log.info("Implementation of configuration %d was successful...", result_id)
+    elif result.state == 'ITO':
+      log.error("Implementation timeout on configuration %d", result_id)
+    elif result.state == 'TIMING':
+      log.error('Timing not met on configuration %d', result_id)
+    else:
+      log.error("Implementation error on configuration %d", result_id)
+
+    return result
+
+  def create_impl_scripts(self, synth_output_path, shell_script_template, shell_script, tcl_script_template, tcl_script):
+    """
+    Creates scripts for implementation step.
+    """
+
+    self.fill_in_template(shell_script_template, shell_script,
+                          tuner_root        = tuner_root,
+                          synth_output_path = synth_output_path,
+                          timeout           = self.impl_timeout,
+                          tcl_script        = tcl_script)
+
+    self.fill_in_template(tcl_script_template, tcl_script,
+                          max_jobs    = self.max_jobs,
+                          max_threads = self.max_threads)
+
+  def get_impl_result(self, qsub_error_log, build_output_log):
+    """
+    Analyzes the implementation output to determine the build result.
+    """
+
+    result = None
+
+    try:
+      with open(qsub_error_log, 'r') as log_file:
+        lines = log_file.read()
+    except:
+      result = Result(state = 'IE0', msg = 'Cannot find implementation qsub error log.')
+
+    if result == None and re.search(r'Interrupted!', lines) != None:
+      raise KeyboardException
+    elif re.search(r'Cannot create temporary directory.', lines) != None:
+      result = Result(state = 'IE1', msg = 'Cannot create temporary directory for implementation.')
+
+    try:
+      with open(build_output_log, 'r') as log_file:
+        lines = log_file.read()
+    except:
+      result = Result(state = 'IE2', msg = 'Cannot find implementation output log.')
+
+    if result == None and re.search(r'Implementation timed out.', lines) != None:
+      result = Result(state = 'ITO', msg = 'Implementation timed out.')
+    elif re.search(r'\[Place 30-640\]', lines) != None:
+      result = Result(state = 'IE3', msg = 'Too many BRAMs')
+    elif re.search(r'\[DRC PDCY-4\]', lines) != None:
+      result = Result(state = 'IE4', msg = 'Unconnected carry input')
+    elif re.search(r'\[Timing 38-282\]', lines) != None:
+      result = Result(state = 'TIMING', msg = 'Timing constraints not met')
+    elif re.search(r'Implementation has completed successfully.', lines) == None:
+      result = Result(state = 'IE?', msg = 'Unknown implementation error')
+    else:
+      result = Result(state = 'IOK', msg = 'Implementation was successful.')
+
+    return result
 
   def fill_in_template(self, template_filename, output_filename, **replacements):
     """
@@ -393,7 +491,7 @@ class AESTuner(MeasurementInterface):
     Tests one configuration on the FPGA.
     """
 
-    if compile_result.state != 'OK':
+    if compile_result.state != 'IOK':
       return compile_result
 
     log.info("Running configuration %d...", result_id)
