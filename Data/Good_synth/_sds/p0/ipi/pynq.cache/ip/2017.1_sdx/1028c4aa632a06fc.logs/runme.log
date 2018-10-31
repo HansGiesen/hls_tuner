@@ -14,34 +14,34 @@ Sourcing tcl script '/scratch/safe/SDSoC/SDx/2017.1/Vivado/scripts/init.tcl'
 16 Beta devices matching pattern found, 16 enabled.
 Loaded SDSoC Platform Tcl Library
 source pynq_xlconcat_0_0.tcl -notrace
-Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1329.703 ; gain = 0.000 ; free physical = 118152 ; free virtual = 139879
-INFO: [Synth 8-638] synthesizing module 'pynq_xlconcat_0_0' [/scratch/local/tmp.HG4IAH4zV1/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ip/pynq_xlconcat_0_0/synth/pynq_xlconcat_0_0.v:58]
-INFO: [Synth 8-638] synthesizing module 'xlconcat_v2_1_1_xlconcat' [/scratch/local/tmp.HG4IAH4zV1/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/73b7/hdl/xlconcat_v2_1_vl_rfs.v:14]
-INFO: [Synth 8-256] done synthesizing module 'xlconcat_v2_1_1_xlconcat' (1#1) [/scratch/local/tmp.HG4IAH4zV1/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/73b7/hdl/xlconcat_v2_1_vl_rfs.v:14]
-INFO: [Synth 8-256] done synthesizing module 'pynq_xlconcat_0_0' (2#1) [/scratch/local/tmp.HG4IAH4zV1/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ip/pynq_xlconcat_0_0/synth/pynq_xlconcat_0_0.v:58]
-Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1337.836 ; gain = 8.133 ; free physical = 118089 ; free virtual = 139815
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1337.836 ; gain = 8.133 ; free physical = 118081 ; free virtual = 139808
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1329.703 ; gain = 0.000 ; free physical = 120749 ; free virtual = 141650
+INFO: [Synth 8-638] synthesizing module 'pynq_xlconcat_0_0' [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ip/pynq_xlconcat_0_0/synth/pynq_xlconcat_0_0.v:58]
+INFO: [Synth 8-638] synthesizing module 'xlconcat_v2_1_1_xlconcat' [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/73b7/hdl/xlconcat_v2_1_vl_rfs.v:14]
+INFO: [Synth 8-256] done synthesizing module 'xlconcat_v2_1_1_xlconcat' (1#1) [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/73b7/hdl/xlconcat_v2_1_vl_rfs.v:14]
+INFO: [Synth 8-256] done synthesizing module 'pynq_xlconcat_0_0' (2#1) [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ip/pynq_xlconcat_0_0/synth/pynq_xlconcat_0_0.v:58]
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1338.836 ; gain = 9.133 ; free physical = 120752 ; free virtual = 141653
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1338.836 ; gain = 9.133 ; free physical = 120754 ; free virtual = 141655
 INFO: [Device 21-403] Loading part xc7z020clg400-1
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 1547.973 ; gain = 0.000 ; free physical = 117281 ; free virtual = 138984
-Finished Constraint Validation : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1547.973 ; gain = 218.270 ; free physical = 117008 ; free virtual = 138711
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1547.973 ; gain = 218.270 ; free physical = 117009 ; free virtual = 138712
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1547.973 ; gain = 218.270 ; free physical = 117010 ; free virtual = 138713
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1547.973 ; gain = 218.270 ; free physical = 117009 ; free virtual = 138712
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 1547.973 ; gain = 218.270 ; free physical = 116986 ; free virtual = 138689
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1592.973 ; gain = 263.270 ; free physical = 116173 ; free virtual = 137876
-Finished Timing Optimization : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1592.973 ; gain = 263.270 ; free physical = 116173 ; free virtual = 137876
-Finished Technology Mapping : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1602.863 ; gain = 273.160 ; free physical = 116170 ; free virtual = 137873
-Finished IO Insertion : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 1602.863 ; gain = 273.160 ; free physical = 116127 ; free virtual = 137830
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 1602.863 ; gain = 273.160 ; free physical = 116127 ; free virtual = 137830
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 1602.863 ; gain = 273.160 ; free physical = 116126 ; free virtual = 137829
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 1602.863 ; gain = 273.160 ; free physical = 116126 ; free virtual = 137829
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 1602.863 ; gain = 273.160 ; free physical = 116126 ; free virtual = 137829
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 1602.863 ; gain = 273.160 ; free physical = 116125 ; free virtual = 137828
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.01 . Memory (MB): peak = 1548.832 ; gain = 0.875 ; free physical = 120593 ; free virtual = 141494
+Finished Constraint Validation : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1548.957 ; gain = 219.254 ; free physical = 120603 ; free virtual = 141528
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1548.957 ; gain = 219.254 ; free physical = 120603 ; free virtual = 141528
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1548.957 ; gain = 219.254 ; free physical = 120605 ; free virtual = 141530
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1548.957 ; gain = 219.254 ; free physical = 120605 ; free virtual = 141530
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 1548.957 ; gain = 219.254 ; free physical = 120593 ; free virtual = 141519
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1593.832 ; gain = 264.129 ; free physical = 120498 ; free virtual = 141400
+Finished Timing Optimization : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1593.832 ; gain = 264.129 ; free physical = 120498 ; free virtual = 141400
+Finished Technology Mapping : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1602.848 ; gain = 273.145 ; free physical = 120497 ; free virtual = 141399
+Finished IO Insertion : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 1602.848 ; gain = 273.145 ; free physical = 120501 ; free virtual = 141402
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 1602.848 ; gain = 273.145 ; free physical = 120501 ; free virtual = 141402
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 1602.848 ; gain = 273.145 ; free physical = 120501 ; free virtual = 141402
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 1602.848 ; gain = 273.145 ; free physical = 120501 ; free virtual = 141402
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 1602.848 ; gain = 273.145 ; free physical = 120501 ; free virtual = 141402
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 1602.848 ; gain = 273.145 ; free physical = 120501 ; free virtual = 141402
 
 Report Cell Usage: 
 +-+-----+------+
 | |Cell |Count |
 +-+-----+------+
 +-+-----+------+
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 1602.863 ; gain = 273.160 ; free physical = 116125 ; free virtual = 137828
-synth_design: Time (s): cpu = 00:00:21 ; elapsed = 00:00:21 . Memory (MB): peak = 1607.863 ; gain = 278.160 ; free physical = 116055 ; free virtual = 137758
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 1602.848 ; gain = 273.145 ; free physical = 120501 ; free virtual = 141402
+synth_design: Time (s): cpu = 00:00:21 ; elapsed = 00:00:21 . Memory (MB): peak = 1607.973 ; gain = 278.270 ; free physical = 120518 ; free virtual = 141420

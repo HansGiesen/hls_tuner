@@ -2,9 +2,9 @@
 <Root MajorVersion="0" MinorVersion="33">
   <CompositeFile CompositeFileTopName="pynq" CanBeSetAsTop="false" CanDisplayChildGraph="true">
     <Description>Composite Fileset</Description>
-    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1540931621"/>
-    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1540931621"/>
-    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1540931621"/>
+    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1541011649"/>
+    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1541011649"/>
+    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1541011649"/>
     <FileCollection Name="SOURCES" Type="SOURCES">
       <File Name="ip/pynq_proc_sys_reset_0_0/pynq_proc_sys_reset_0_0.xci" Type="IP">
         <Instance HierarchyPath="proc_sys_reset_0"/>
@@ -85,6 +85,13 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
+      <File Name="ip/pynq_axi_ic_processing_system7_0_S_AXI_HP0_0/pynq_axi_ic_processing_system7_0_S_AXI_HP0_0.xci" Type="IP">
+        <Properties IsEditable="false" IsVisible="false" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
       <File Name="ip/pynq_axi_ic_processing_system7_0_S_AXI_ACP_0/pynq_axi_ic_processing_system7_0_S_AXI_ACP_0.xci" Type="IP">
         <Properties IsEditable="false" IsVisible="false" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
@@ -140,16 +147,24 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip/pynq_auto_ds_0/pynq_auto_ds_0.xci" Type="IP">
-        <Instance HierarchyPath="axi_ic_processing_system7_0_S_AXI_ACP/m00_couplers/auto_ds"/>
+      <File Name="ip/pynq_auto_pc_2/pynq_auto_pc_2.xci" Type="IP">
+        <Instance HierarchyPath="axi_ic_processing_system7_0_S_AXI_ACP/m00_couplers/auto_pc"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip/pynq_auto_pc_1/pynq_auto_pc_1.xci" Type="IP">
-        <Instance HierarchyPath="axi_ic_processing_system7_0_S_AXI_ACP/m00_couplers/auto_pc"/>
+      <File Name="ip/pynq_s03_regslice_0/pynq_s03_regslice_0.xci" Type="IP">
+        <Instance HierarchyPath="axi_ic_processing_system7_0_S_AXI_ACP/s03_couplers/s03_regslice"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/pynq_s03_data_fifo_0/pynq_s03_data_fifo_0.xci" Type="IP">
+        <Instance HierarchyPath="axi_ic_processing_system7_0_S_AXI_ACP/s03_couplers/s03_data_fifo"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>
@@ -164,7 +179,7 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip/pynq_auto_us_df_0/pynq_auto_us_df_0.xci" Type="IP">
+      <File Name="ip/pynq_auto_us_df_3/pynq_auto_us_df_3.xci" Type="IP">
         <Instance HierarchyPath="axi_ic_processing_system7_0_S_AXI_ACP/s02_couplers/auto_us_df"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
@@ -180,15 +195,15 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip/pynq_auto_us_cc_df_0/pynq_auto_us_cc_df_0.xci" Type="IP">
-        <Instance HierarchyPath="axi_ic_processing_system7_0_S_AXI_ACP/s01_couplers/auto_us_cc_df"/>
+      <File Name="ip/pynq_auto_us_df_2/pynq_auto_us_df_2.xci" Type="IP">
+        <Instance HierarchyPath="axi_ic_processing_system7_0_S_AXI_ACP/s01_couplers/auto_us_df"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip/pynq_s00_regslice_1/pynq_s00_regslice_1.xci" Type="IP">
+      <File Name="ip/pynq_s00_regslice_2/pynq_s00_regslice_2.xci" Type="IP">
         <Instance HierarchyPath="axi_ic_processing_system7_0_S_AXI_ACP/s00_couplers/s00_regslice"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
@@ -196,16 +211,32 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip/pynq_s00_data_fifo_1/pynq_s00_data_fifo_1.xci" Type="IP">
-        <Instance HierarchyPath="axi_ic_processing_system7_0_S_AXI_ACP/s00_couplers/s00_data_fifo"/>
+      <File Name="ip/pynq_auto_us_df_1/pynq_auto_us_df_1.xci" Type="IP">
+        <Instance HierarchyPath="axi_ic_processing_system7_0_S_AXI_ACP/s00_couplers/auto_us_df"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip/pynq_auto_cc_0/pynq_auto_cc_0.xci" Type="IP">
-        <Instance HierarchyPath="axi_ic_processing_system7_0_S_AXI_ACP/s00_couplers/auto_cc"/>
+      <File Name="ip/pynq_s00_regslice_1/pynq_s00_regslice_1.xci" Type="IP">
+        <Instance HierarchyPath="axi_ic_processing_system7_0_S_AXI_HP0/s00_couplers/s00_regslice"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/pynq_auto_pc_1/pynq_auto_pc_1.xci" Type="IP">
+        <Instance HierarchyPath="axi_ic_processing_system7_0_S_AXI_HP0/s00_couplers/auto_pc"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/pynq_auto_us_df_0/pynq_auto_us_df_0.xci" Type="IP">
+        <Instance HierarchyPath="axi_ic_processing_system7_0_S_AXI_HP0/s00_couplers/auto_us_df"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>

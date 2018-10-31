@@ -11,31 +11,71 @@ if {${::AESL::PGuard_autoexp_gen}} {
 if {${::AESL::PGuard_simmodel_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::m_axi_gen] == "::AESL_LIB_XILADAPTER::m_axi_gen"} {
 eval "::AESL_LIB_XILADAPTER::m_axi_gen { \
-    id 82 \
+    id 22 \
     corename {m_axi} \
     op interface \
     max_latency -1 \ 
-    delay_budget 4.38 \ 
-    name {a0_encrypt_ctx_m_axi} \
+    delay_budget 5.11 \ 
+    name {a0_encrypt_ctx_key_m_axi} \
 } "
 } else {
-puts "@W \[IMPL-110\] Cannot find AXI interface model in the library. Ignored generation of AXI interface for 'ctx'"
+puts "@W \[IMPL-110\] Cannot find AXI interface model in the library. Ignored generation of AXI interface for 'ctx_key'"
 }
 }
 
 if {${::AESL::PGuard_rtl_comp_handler}} {
-	::AP::rtl_comp_handler a0_encrypt_ctx_m_axi
+	::AP::rtl_comp_handler a0_encrypt_ctx_key_m_axi
 }
 
 # Native M_AXI:
 if {${::AESL::PGuard_simmodel_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::m_axi_gen] == "::AESL_LIB_XILADAPTER::m_axi_gen"} {
 eval "::AESL_LIB_XILADAPTER::m_axi_gen { \
-    id 83 \
+    id 23 \
     corename {m_axi} \
     op interface \
     max_latency -1 \ 
-    delay_budget 4.38 \ 
+    delay_budget 5.11 \ 
+    name {a0_encrypt_ctx_enckey_m_axi} \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find AXI interface model in the library. Ignored generation of AXI interface for 'ctx_enckey'"
+}
+}
+
+if {${::AESL::PGuard_rtl_comp_handler}} {
+	::AP::rtl_comp_handler a0_encrypt_ctx_enckey_m_axi
+}
+
+# Native M_AXI:
+if {${::AESL::PGuard_simmodel_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::m_axi_gen] == "::AESL_LIB_XILADAPTER::m_axi_gen"} {
+eval "::AESL_LIB_XILADAPTER::m_axi_gen { \
+    id 24 \
+    corename {m_axi} \
+    op interface \
+    max_latency -1 \ 
+    delay_budget 5.11 \ 
+    name {a0_encrypt_ctx_deckey_m_axi} \
+} "
+} else {
+puts "@W \[IMPL-110\] Cannot find AXI interface model in the library. Ignored generation of AXI interface for 'ctx_deckey'"
+}
+}
+
+if {${::AESL::PGuard_rtl_comp_handler}} {
+	::AP::rtl_comp_handler a0_encrypt_ctx_deckey_m_axi
+}
+
+# Native M_AXI:
+if {${::AESL::PGuard_simmodel_gen}} {
+if {[info proc ::AESL_LIB_XILADAPTER::m_axi_gen] == "::AESL_LIB_XILADAPTER::m_axi_gen"} {
+eval "::AESL_LIB_XILADAPTER::m_axi_gen { \
+    id 25 \
+    corename {m_axi} \
+    op interface \
+    max_latency -1 \ 
+    delay_budget 5.11 \ 
     name {a0_encrypt_buf_r_m_axi} \
 } "
 } else {
@@ -50,22 +90,52 @@ if {${::AESL::PGuard_rtl_comp_handler}} {
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 84 \
-    name ctx_offset \
+    id 26 \
+    name ctx_key_offset \
     type other \
     dir I \
     reset_level 0 \
     sync_rst true \
-    corename dc_ctx_offset \
+    corename dc_ctx_key_offset \
     op interface \
-    ports { ctx_offset { I 32 vector } } \
+    ports { ctx_key_offset { I 32 vector } } \
 } "
 }
 
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 85 \
+    id 27 \
+    name ctx_enckey_offset \
+    type other \
+    dir I \
+    reset_level 0 \
+    sync_rst true \
+    corename dc_ctx_enckey_offset \
+    op interface \
+    ports { ctx_enckey_offset { I 32 vector } } \
+} "
+}
+
+# Direct connection:
+if {${::AESL::PGuard_autoexp_gen}} {
+eval "cg_default_interface_gen_dc { \
+    id 28 \
+    name ctx_deckey_offset \
+    type other \
+    dir I \
+    reset_level 0 \
+    sync_rst true \
+    corename dc_ctx_deckey_offset \
+    op interface \
+    ports { ctx_deckey_offset { I 32 vector } } \
+} "
+}
+
+# Direct connection:
+if {${::AESL::PGuard_autoexp_gen}} {
+eval "cg_default_interface_gen_dc { \
+    id 29 \
     name buf_offset \
     type other \
     dir I \

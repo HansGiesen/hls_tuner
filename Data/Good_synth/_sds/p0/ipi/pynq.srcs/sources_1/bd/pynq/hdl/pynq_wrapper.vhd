@@ -1,8 +1,8 @@
 --Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2017.1_sdx (lin64) Build 1915620 Thu Jun 22 17:54:59 MDT 2017
---Date        : Tue Oct 30 16:33:19 2018
---Host        : icgrid44 running 64-bit openSUSE Leap 42.3
+--Date        : Wed Oct 31 14:47:07 2018
+--Host        : icgrid43 running 64-bit openSUSE Leap 42.3
 --Command     : generate_target pynq_wrapper.bd
 --Design      : pynq_wrapper
 --Purpose     : IP block netlist

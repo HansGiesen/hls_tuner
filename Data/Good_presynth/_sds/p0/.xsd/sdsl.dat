@@ -3,35 +3,49 @@
   <cf:model cf:cpu="cortex_a9" cf:partition="0" cf:prefix="_p0_" cf:name="top" xd:type="design">
   <cf:block cf:name="hwblk_encrypt">
     <cf:port cf:name="cmd_encrypt" cf:portType="stream" cf:direction="in"/>
-    <cf:port cf:name="ctx_offset" cf:portType="stream" cf:direction="in"/>
+    <cf:port cf:name="ctx_key_offset" cf:portType="stream" cf:direction="in"/>
+    <cf:port cf:name="ctx_enckey_offset" cf:portType="stream" cf:direction="in"/>
+    <cf:port cf:name="ctx_deckey_offset" cf:portType="stream" cf:direction="in"/>
     <cf:port cf:name="k_PORTA" cf:portType="stream" cf:direction="in"/>
     <cf:port cf:name="buf_offset" cf:portType="stream" cf:direction="in"/>
   </cf:block>
   <cf:block cf:name="swblk_encrypt">
     <cf:port cf:name="cmd_encrypt" cf:portType="stream" cf:direction="out"/>
-    <cf:port cf:name="ctx_offset" cf:portType="stream" cf:direction="out"/>
+    <cf:port cf:name="ctx_key_offset" cf:portType="stream" cf:direction="out"/>
+    <cf:port cf:name="ctx_enckey_offset" cf:portType="stream" cf:direction="out"/>
+    <cf:port cf:name="ctx_deckey_offset" cf:portType="stream" cf:direction="out"/>
     <cf:port cf:name="k_PORTA" cf:portType="stream" cf:direction="out"/>
     <cf:port cf:name="buf_offset" cf:portType="stream" cf:direction="out"/>
   </cf:block>
-  <cf:comp cf:name="dm_0" xd:componentRef="axi_dma" xd:clockId="2"/>
-  <cf:comp cf:name="pynq" xd:componentRef="pynq" xd:clockId="2"/>
-  <cf:comp cf:name="encrypt_1" xd:componentRef="encrypt" xd:clockId="0"/>
+  <cf:comp cf:name="dm_0" xd:componentRef="axi_dma" xd:clockId="1"/>
+  <cf:comp cf:name="pynq" xd:componentRef="pynq" xd:clockId="1"/>
+  <cf:comp cf:name="encrypt_1" xd:componentRef="encrypt" xd:clockId="1"/>
   <cf:instance cf:name="hwinst_encrypt_1" cf:blockName="hwblk_encrypt" cf:compName="encrypt_1">
     <cf:portMap cf:blockPort="cmd_encrypt" cf:compPort="ap_ctrl" xd:register="0x8"/>
-    <cf:portMap cf:blockPort="ctx_offset" cf:compPort="m_axi_ctx" xd:paddedWidth="1024" cf:ctrlPort="ap_ctrl" xd:register="0xC"/>
+    <cf:portMap cf:blockPort="ctx_key_offset" cf:compPort="m_axi_ctx_key" xd:paddedWidth="8" cf:ctrlPort="ap_ctrl" xd:register="0xC"/>
+    <cf:portMap cf:blockPort="ctx_enckey_offset" cf:compPort="m_axi_ctx_enckey" xd:paddedWidth="8" cf:ctrlPort="ap_ctrl" xd:register="0x10"/>
+    <cf:portMap cf:blockPort="ctx_deckey_offset" cf:compPort="m_axi_ctx_deckey" xd:paddedWidth="8" cf:ctrlPort="ap_ctrl" xd:register="0x14"/>
     <cf:portMap cf:blockPort="k_PORTA" cf:compPort="k_PORTA" xd:paddedWidth="8"/>
-    <cf:portMap cf:blockPort="buf_offset" cf:compPort="m_axi_buf_r" xd:paddedWidth="8" cf:ctrlPort="ap_ctrl" xd:register="0x10"/>
+    <cf:portMap cf:blockPort="buf_offset" cf:compPort="m_axi_buf_r" xd:paddedWidth="8" cf:ctrlPort="ap_ctrl" xd:register="0x18"/>
   </cf:instance>
   <cf:instance cf:name="swinst_encrypt_1" cf:blockName="swblk_encrypt" cf:compName="pynq">
     <cf:portMap cf:blockPort="cmd_encrypt" cf:compPort="processing_system7_0_M_AXI_GP0"/>
-    <cf:portMap cf:blockPort="ctx_offset" cf:compPort="processing_system7_0_S_AXI_ACP" cf:ctrlPort="processing_system7_0_M_AXI_GP0"/>
+    <cf:portMap cf:blockPort="ctx_key_offset" cf:compPort="processing_system7_0_S_AXI_HP0" cf:ctrlPort="processing_system7_0_M_AXI_GP0"/>
+    <cf:portMap cf:blockPort="ctx_enckey_offset" cf:compPort="processing_system7_0_S_AXI_ACP" cf:ctrlPort="processing_system7_0_M_AXI_GP0"/>
+    <cf:portMap cf:blockPort="ctx_deckey_offset" cf:compPort="processing_system7_0_S_AXI_ACP" cf:ctrlPort="processing_system7_0_M_AXI_GP0"/>
     <cf:portMap cf:blockPort="k_PORTA" cf:compPort="processing_system7_0_S_AXI_ACP"/>
     <cf:portMap cf:blockPort="buf_offset" cf:compPort="processing_system7_0_S_AXI_ACP" cf:ctrlPort="processing_system7_0_M_AXI_GP0"/>
   </cf:instance>
   <cf:connection cf:srcInst="swinst_encrypt_1" cf:srcPort="cmd_encrypt" cf:dstInst="hwinst_encrypt_1" cf:dstPort="cmd_encrypt">
     <cf:dataMover cf:compName="pynq" cf:softwareLib="axi_lite"/>
   </cf:connection>
-  <cf:connection cf:srcInst="swinst_encrypt_1" cf:srcPort="ctx_offset" cf:dstInst="hwinst_encrypt_1" cf:dstPort="ctx_offset">
+  <cf:connection cf:srcInst="swinst_encrypt_1" cf:srcPort="ctx_key_offset" cf:dstInst="hwinst_encrypt_1" cf:dstPort="ctx_key_offset">
+    <cf:dataMover cf:compName="encrypt_1" cf:softwareLib="zero_copy"/>
+  </cf:connection>
+  <cf:connection cf:srcInst="swinst_encrypt_1" cf:srcPort="ctx_enckey_offset" cf:dstInst="hwinst_encrypt_1" cf:dstPort="ctx_enckey_offset">
+    <cf:dataMover cf:compName="encrypt_1" cf:softwareLib="zero_copy"/>
+  </cf:connection>
+  <cf:connection cf:srcInst="swinst_encrypt_1" cf:srcPort="ctx_deckey_offset" cf:dstInst="hwinst_encrypt_1" cf:dstPort="ctx_deckey_offset">
     <cf:dataMover cf:compName="encrypt_1" cf:softwareLib="zero_copy"/>
   </cf:connection>
   <cf:connection cf:srcInst="swinst_encrypt_1" cf:srcPort="k_PORTA" cf:dstInst="hwinst_encrypt_1" cf:dstPort="k_PORTA">
@@ -1048,17 +1062,23 @@
         <xd:busInterface xd:name="ap_clk" xd:busTypeRef="clock" xd:mode="slave" xd:direction="in" xd:library="signal" xd:port="ap_clk"/>
         <xd:busInterface xd:name="ap_rst_n" xd:busTypeRef="reset" xd:mode="slave" xd:direction="in" xd:library="signal" xd:port="ap_rst_n"/>
         <xd:busInterface xd:name="ap_ctrl" xd:busTypeRef="acc_handshake" xd:mode="slave" xd:offset="0x8" xd:dataWidth="4" xd:direction="in"/>
-        <xd:busInterface xd:name="m_axi_ctx" xd:busTypeRef="aximm" xd:mode="master" xd:clockRef="ap_clk" xd:resetRef="ap_rst_n" xd:dataWidth="1024" xd:arraySize=""/>
+        <xd:busInterface xd:name="m_axi_ctx_key" xd:busTypeRef="aximm" xd:mode="master" xd:clockRef="ap_clk" xd:resetRef="ap_rst_n" xd:dataWidth="8" xd:arraySize="32"/>
+        <xd:busInterface xd:name="m_axi_ctx_enckey" xd:busTypeRef="aximm" xd:mode="master" xd:clockRef="ap_clk" xd:resetRef="ap_rst_n" xd:dataWidth="8" xd:arraySize="32"/>
+        <xd:busInterface xd:name="m_axi_ctx_deckey" xd:busTypeRef="aximm" xd:mode="master" xd:clockRef="ap_clk" xd:resetRef="ap_rst_n" xd:dataWidth="8" xd:arraySize="32"/>
         <xd:busInterface xd:name="m_axi_buf_r" xd:busTypeRef="aximm" xd:mode="master" xd:clockRef="ap_clk" xd:resetRef="ap_rst_n" xd:dataWidth="8" xd:arraySize="16"/>
-        <xd:busInterface xd:name="ctx_offset" xd:busTypeRef="register" xd:mode="slave" xd:dataWidth="32" xd:bufferDepth="16" xd:direction="in" xd:portInterfaceType="register" xd:offset="0xC" xd:aximmMasterRef="m_axi_ctx"/>
+        <xd:busInterface xd:name="ctx_key_offset" xd:busTypeRef="register" xd:mode="slave" xd:dataWidth="32" xd:bufferDepth="16" xd:direction="in" xd:portInterfaceType="register" xd:offset="0xC" xd:aximmMasterRef="m_axi_ctx_key"/>
+        <xd:busInterface xd:name="ctx_enckey_offset" xd:busTypeRef="register" xd:mode="slave" xd:dataWidth="32" xd:bufferDepth="16" xd:direction="in" xd:portInterfaceType="register" xd:offset="0x10" xd:aximmMasterRef="m_axi_ctx_enckey"/>
+        <xd:busInterface xd:name="ctx_deckey_offset" xd:busTypeRef="register" xd:mode="slave" xd:dataWidth="32" xd:bufferDepth="16" xd:direction="in" xd:portInterfaceType="register" xd:offset="0x14" xd:aximmMasterRef="m_axi_ctx_deckey"/>
         <xd:busInterface xd:name="k_PORTA" xd:busTypeRef="bram" xd:mode="master" xd:direction="in" xd:arraySize="32" xd:bufferDepth="32" xd:dataWidth="8"/>
-        <xd:busInterface xd:name="buf_offset" xd:busTypeRef="register" xd:mode="slave" xd:dataWidth="32" xd:bufferDepth="16" xd:direction="in" xd:portInterfaceType="register" xd:offset="0x10" xd:aximmMasterRef="m_axi_buf_r"/>
+        <xd:busInterface xd:name="buf_offset" xd:busTypeRef="register" xd:mode="slave" xd:dataWidth="32" xd:bufferDepth="16" xd:direction="in" xd:portInterfaceType="register" xd:offset="0x18" xd:aximmMasterRef="m_axi_buf_r"/>
     </xd:component>
     <xd:component xd:vendor="xilinx.com" xd:library="xd" xd:name="encrypt_if" xd:version="1.0" xd:componentRef="adapter_v3_0" xd:adapteeCompRef="encrypt" xd:type="accelerator">
     <xd:busInterface xd:name="S_AXI" xd:busTypeRef="aximm" xd:mode="slave" xd:clockRef="s_axi_aclk" xd:resetRef="s_axi_aresetn" xd:dataWidth="32">
        <xd:reg xd:name="ap_ctrl" xd:offset="0x8" xd:dataWidth="4"/>
-       <xd:reg xd:name="ctx_offset" xd:offset="0xC" xd:dataWidth="32"/>
-       <xd:reg xd:name="buf_offset" xd:offset="0x10" xd:dataWidth="32"/>
+       <xd:reg xd:name="ctx_key_offset" xd:offset="0xC" xd:dataWidth="32"/>
+       <xd:reg xd:name="ctx_enckey_offset" xd:offset="0x10" xd:dataWidth="32"/>
+       <xd:reg xd:name="ctx_deckey_offset" xd:offset="0x14" xd:dataWidth="32"/>
+       <xd:reg xd:name="buf_offset" xd:offset="0x18" xd:dataWidth="32"/>
     </xd:busInterface>
     <xd:busInterface xd:name="s_axi_aclk" xd:busTypeRef="clock" xd:mode="slave" xd:library="signal" xd:direction="in" xd:port="s_axi_aclk"/>
     <xd:busInterface xd:name="acc_aclk" xd:busTypeRef="clock" xd:mode="slave" xd:library="signal" xd:direction="in" xd:port="acc_aclk"/>
@@ -1067,28 +1087,44 @@
     <xd:busInterface xd:name="S_AXIS_BRAM_0" xd:busTypeRef="axis" xd:portInterfaceType="bram" xd:direction="in" xd:mode="slave" xd:hasTlast="true" xd:clockRef="s_axis_bram_0_aclk" xd:resetRef="s_axis_bram_0_aresetn" xd:dataWidth="8" xd:hlsname="k_PORTA"/>
     <xd:busInterface xd:name="S_AXIS_BRAM_0_aclk" xd:busTypeRef="clock" xd:mode="slave" xd:library="signal" xd:direction="in" xd:port="S_AXIS_BRAM_0_aclk"/>
     <xd:busInterface xd:name="S_AXIS_BRAM_0_aresetn" xd:busTypeRef="reset" xd:mode="slave" xd:library="signal" xd:direction="in" xd:port="S_AXIS_BRAM_0_aresetn"/>
-    <xd:busInterface xd:name="m_axi_ctx" xd:componentRef="encrypt" xd:busTypeRef="aximm" xd:mode="master" xd:clockRef="s_axi_aclk" xd:resetRef="s_axi_aresetn" xd:dataWidth="1024">
-       <xd:reg xd:name="ctx_offset" xd:offset="0xC" xd:dataWidth="32" xd:dataPack="true" xd:bitMapping="1023:0" xd:dataPackWidth="1024"/>
+    <xd:busInterface xd:name="m_axi_ctx_key" xd:componentRef="encrypt" xd:busTypeRef="aximm" xd:mode="master" xd:clockRef="s_axi_aclk" xd:resetRef="s_axi_aresetn" xd:dataWidth="8">
+       <xd:reg xd:name="ctx_key_offset" xd:offset="0xC" xd:dataWidth="32"/>
     </xd:busInterface>
-    <xd:busInterface xd:name="M_AXIMM_0" xd:componentRef="encrypt" xd:busTypeRef="aximm" xd:mode="master" xd:clockRef="acc_aclk" xd:resetRef="acc_aresetn" xd:dataWidth="1024">
+    <xd:busInterface xd:name="M_AXIMM_0" xd:componentRef="encrypt" xd:busTypeRef="aximm" xd:mode="master" xd:clockRef="acc_aclk" xd:resetRef="acc_aresetn" xd:dataWidth="8">
     </xd:busInterface>
-    <xd:busInterface xd:name="AP_AXIMM_0" xd:componentRef="encrypt" xd:busTypeRef="aximm" xd:mode="slave" xd:clockRef="acc_aclk" xd:resetRef="acc_aresetn" xd:dataWidth="1024">
+    <xd:busInterface xd:name="AP_AXIMM_0" xd:componentRef="encrypt" xd:busTypeRef="aximm" xd:mode="slave" xd:clockRef="acc_aclk" xd:resetRef="acc_aresetn" xd:dataWidth="8">
     </xd:busInterface>
-    <xd:busInterface xd:name="m_axi_buf_r" xd:componentRef="encrypt" xd:busTypeRef="aximm" xd:mode="master" xd:clockRef="s_axi_aclk" xd:resetRef="s_axi_aresetn" xd:dataWidth="8">
-       <xd:reg xd:name="buf_offset" xd:offset="0x10" xd:dataWidth="32"/>
+    <xd:busInterface xd:name="m_axi_ctx_enckey" xd:componentRef="encrypt" xd:busTypeRef="aximm" xd:mode="master" xd:clockRef="s_axi_aclk" xd:resetRef="s_axi_aresetn" xd:dataWidth="8">
+       <xd:reg xd:name="ctx_enckey_offset" xd:offset="0x10" xd:dataWidth="32"/>
     </xd:busInterface>
     <xd:busInterface xd:name="M_AXIMM_1" xd:componentRef="encrypt" xd:busTypeRef="aximm" xd:mode="master" xd:clockRef="acc_aclk" xd:resetRef="acc_aresetn" xd:dataWidth="8">
     </xd:busInterface>
     <xd:busInterface xd:name="AP_AXIMM_1" xd:componentRef="encrypt" xd:busTypeRef="aximm" xd:mode="slave" xd:clockRef="acc_aclk" xd:resetRef="acc_aresetn" xd:dataWidth="8">
     </xd:busInterface>
+    <xd:busInterface xd:name="m_axi_ctx_deckey" xd:componentRef="encrypt" xd:busTypeRef="aximm" xd:mode="master" xd:clockRef="s_axi_aclk" xd:resetRef="s_axi_aresetn" xd:dataWidth="8">
+       <xd:reg xd:name="ctx_deckey_offset" xd:offset="0x14" xd:dataWidth="32"/>
+    </xd:busInterface>
+    <xd:busInterface xd:name="M_AXIMM_2" xd:componentRef="encrypt" xd:busTypeRef="aximm" xd:mode="master" xd:clockRef="acc_aclk" xd:resetRef="acc_aresetn" xd:dataWidth="8">
+    </xd:busInterface>
+    <xd:busInterface xd:name="AP_AXIMM_2" xd:componentRef="encrypt" xd:busTypeRef="aximm" xd:mode="slave" xd:clockRef="acc_aclk" xd:resetRef="acc_aresetn" xd:dataWidth="8">
+    </xd:busInterface>
+    <xd:busInterface xd:name="m_axi_buf_r" xd:componentRef="encrypt" xd:busTypeRef="aximm" xd:mode="master" xd:clockRef="s_axi_aclk" xd:resetRef="s_axi_aresetn" xd:dataWidth="8">
+       <xd:reg xd:name="buf_offset" xd:offset="0x18" xd:dataWidth="32"/>
+    </xd:busInterface>
+    <xd:busInterface xd:name="M_AXIMM_3" xd:componentRef="encrypt" xd:busTypeRef="aximm" xd:mode="master" xd:clockRef="acc_aclk" xd:resetRef="acc_aresetn" xd:dataWidth="8">
+    </xd:busInterface>
+    <xd:busInterface xd:name="AP_AXIMM_3" xd:componentRef="encrypt" xd:busTypeRef="aximm" xd:mode="slave" xd:clockRef="acc_aclk" xd:resetRef="acc_aresetn" xd:dataWidth="8">
+    </xd:busInterface>
   </xd:component>
-    <xd:fcnMap xd:fcnName="encrypt" xd:type="hls_adapter" xd:adapterCompRef="encrypt_if" xd:clockId="0" xd:templateInstantiation="__NA__" xd:componentRef="encrypt" xd:initiationInterval="25830" xd:clockPeriod="6.000000" xd:sequential="true" xd:hostMachine="64" xd:reset="control">
+    <xd:fcnMap xd:fcnName="encrypt" xd:type="hls_adapter" xd:adapterCompRef="encrypt_if" xd:clockId="1" xd:templateInstantiation="__NA__" xd:componentRef="encrypt" xd:initiationInterval="21870" xd:clockPeriod="7.000001" xd:sequential="true" xd:hostMachine="64" xd:reset="control">
     <xd:ctrlReg xd:name="control" xd:busInterfaceRef="ap_ctrl" xd:portInterfaceType="acc_handshake" xd:type="axis_acc_adapter" xd:offset="0x8" xd:bufferDepth="16" xd:dataWidth="4"/>
-    <xd:arg xd:name="ctx" xd:swRootName="ctx" xd:direction="in" xd:busInterfaceRef="ctx_offset" xd:hwName="ctx_offset" xd:portInterfaceType="register" xd:handshakeRef="ap_none" xd:aximmMasterRef="m_axi_ctx" xd:aximmMasterDirection="inout" xd:aximmMasterDataWidth="1024" xd:aximmMasterArraySize="" xd:dataPack="true" xd:dataPackWidth="1024" xd:bitMapping="1023:0" xd:dataWidth="32" xd:instanceRef="encrypt_if" xd:index="0" xd:offset="0xC" xd:bufferDepth="16"/>
+    <xd:arg xd:name="ctx_key" xd:swRootName="ctx_key" xd:direction="in" xd:busInterfaceRef="ctx_key_offset" xd:hwName="ctx_key_offset" xd:portInterfaceType="register" xd:handshakeRef="ap_none" xd:aximmMasterRef="m_axi_ctx_key" xd:aximmMasterDirection="inout" xd:aximmMasterDataWidth="8" xd:aximmMasterArraySize="32" xd:dataWidth="32" xd:instanceRef="encrypt_if" xd:index="0" xd:offset="0xC" xd:bufferDepth="16"/>
+    <xd:arg xd:name="ctx_enckey" xd:swRootName="ctx_enckey" xd:direction="in" xd:busInterfaceRef="ctx_enckey_offset" xd:hwName="ctx_enckey_offset" xd:portInterfaceType="register" xd:handshakeRef="ap_none" xd:aximmMasterRef="m_axi_ctx_enckey" xd:aximmMasterDirection="inout" xd:aximmMasterDataWidth="8" xd:aximmMasterArraySize="32" xd:dataWidth="32" xd:instanceRef="encrypt_if" xd:index="1" xd:offset="0x10" xd:bufferDepth="16"/>
+    <xd:arg xd:name="ctx_deckey" xd:swRootName="ctx_deckey" xd:direction="in" xd:busInterfaceRef="ctx_deckey_offset" xd:hwName="ctx_deckey_offset" xd:portInterfaceType="register" xd:handshakeRef="ap_none" xd:aximmMasterRef="m_axi_ctx_deckey" xd:aximmMasterDirection="inout" xd:aximmMasterDataWidth="8" xd:aximmMasterArraySize="32" xd:dataWidth="32" xd:instanceRef="encrypt_if" xd:index="2" xd:offset="0x14" xd:bufferDepth="16"/>
     <xd:arg xd:name="k" xd:swRootName="k" xd:direction="in" xd:busInterfaceRef="k_PORTA" xd:hwName="k_PORTA" xd:portInterfaceType="bram" xd:arraySize="32" xd:dataWidth="8" xd:mode="master" xd:index="0" xd:instanceRef="encrypt_if" xd:bufferDepth="32" xd:multibufferDepth="4"/>
-    <xd:arg xd:name="buf" xd:swRootName="buf" xd:direction="in" xd:busInterfaceRef="buf_offset" xd:hwName="buf_offset" xd:portInterfaceType="register" xd:handshakeRef="ap_none" xd:aximmMasterRef="m_axi_buf_r" xd:aximmMasterDirection="inout" xd:aximmMasterDataWidth="8" xd:aximmMasterArraySize="16" xd:dataWidth="32" xd:instanceRef="encrypt_if" xd:index="1" xd:offset="0x10" xd:bufferDepth="16"/>
-    <xd:latencyEstimates xd:best-case="18512" xd:worst-case="25829" xd:average-case="21921"/>
-    <xd:resourceEstimates xd:LUT="161046" xd:FF="124441" xd:BRAM="60" xd:DSP="0"/>
+    <xd:arg xd:name="buf" xd:swRootName="buf" xd:direction="in" xd:busInterfaceRef="buf_offset" xd:hwName="buf_offset" xd:portInterfaceType="register" xd:handshakeRef="ap_none" xd:aximmMasterRef="m_axi_buf_r" xd:aximmMasterDirection="inout" xd:aximmMasterDataWidth="8" xd:aximmMasterArraySize="16" xd:dataWidth="32" xd:instanceRef="encrypt_if" xd:index="3" xd:offset="0x18" xd:bufferDepth="16"/>
+    <xd:latencyEstimates xd:best-case="15109" xd:worst-case="21869" xd:average-case="18489"/>
+    <xd:resourceEstimates xd:LUT="11732" xd:FF="5268" xd:BRAM="5" xd:DSP="0"/>
   </xd:fcnMap>
   </xd:repository>
 </xd:design>

@@ -3,7 +3,7 @@
 ================================================================
 == Vivado HLS Report for 'aes_shiftRows'
 ================================================================
-* Date:           Tue Oct 30 16:30:08 2018
+* Date:           Wed Oct 31 14:44:17 2018
 
 * Version:        2017.1 (Build 1846317 on Thu Jun 22 18:17:09 MDT 2017)
 * Project:        encrypt
@@ -20,17 +20,17 @@
     +--------+-------+----------+------------+
     |  Clock | Target| Estimated| Uncertainty|
     +--------+-------+----------+------------+
-    |ap_clk  |   6.00|      8.76|        1.62|
+    |ap_clk  |   7.00|      5.11|        1.89|
     +--------+-------+----------+------------+
 
 + Latency (clock cycles): 
     * Summary: 
-    +-----+-----+-----+-----+----------+
-    |  Latency  |  Interval | Pipeline |
-    | min | max | min | max |   Type   |
-    +-----+-----+-----+-----+----------+
-    |  120|  120|  106|  106| function |
-    +-----+-----+-----+-----+----------+
+    +-----+-----+-----+-----+---------+
+    |  Latency  |  Interval | Pipeline|
+    | min | max | min | max |   Type  |
+    +-----+-----+-----+-----+---------+
+    |  124|  124|  124|  124|   none  |
+    +-----+-----+-----+-----+---------+
 
     + Detail: 
         * Instance: 
@@ -49,18 +49,18 @@
 |       Name      | BRAM_18K| DSP48E|   FF   |  LUT  |
 +-----------------+---------+-------+--------+-------+
 |DSP              |        -|      -|       -|      -|
-|Expression       |        -|      -|       0|    900|
+|Expression       |        -|      -|       0|    468|
 |FIFO             |        -|      -|       -|      -|
 |Instance         |        -|      -|       -|      -|
 |Memory           |        -|      -|       -|      -|
-|Multiplexer      |        -|      -|       -|    727|
-|Register         |        -|      -|     591|      -|
+|Multiplexer      |        -|      -|       -|    779|
+|Register         |        -|      -|     608|      -|
 +-----------------+---------+-------+--------+-------+
-|Total            |        0|      0|     591|   1627|
+|Total            |        0|      0|     608|   1247|
 +-----------------+---------+-------+--------+-------+
 |Available        |      280|    220|  106400|  53200|
 +-----------------+---------+-------+--------+-------+
-|Utilization (%)  |        0|      0|   ~0   |      3|
+|Utilization (%)  |        0|      0|   ~0   |      2|
 +-----------------+---------+-------+--------+-------+
 
 + Detail: 
@@ -77,86 +77,30 @@
     N/A
 
     * Expression: 
-    +-------------------------------+----------+-------+---+----+------------+------------+
-    |         Variable Name         | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
-    +-------------------------------+----------+-------+---+----+------------+------------+
-    |sum10_fu_441_p2                |     +    |      0|  0|  39|          32|           4|
-    |sum11_fu_452_p2                |     +    |      0|  0|  39|          32|           3|
-    |sum1_fu_342_p2                 |     +    |      0|  0|  39|          32|           3|
-    |sum2_fu_353_p2                 |     +    |      0|  0|  39|          32|           4|
-    |sum3_fu_364_p2                 |     +    |      0|  0|  39|          32|           4|
-    |sum4_fu_375_p2                 |     +    |      0|  0|  39|          32|           4|
-    |sum5_fu_386_p2                 |     +    |      0|  0|  39|          32|           2|
-    |sum6_fu_397_p2                 |     +    |      0|  0|  39|          32|           2|
-    |sum7_fu_408_p2                 |     +    |      0|  0|  39|          32|           4|
-    |sum8_fu_419_p2                 |     +    |      0|  0|  39|          32|           4|
-    |sum9_fu_430_p2                 |     +    |      0|  0|  39|          32|           3|
-    |sum_fu_330_p2                  |     +    |      0|  0|  39|          32|           1|
-    |ap_block_pp0_stage0_11001      |    and   |      0|  0|   8|           1|           1|
-    |ap_block_pp0_stage101_11001    |    and   |      0|  0|   8|           1|           1|
-    |ap_block_pp0_stage104_11001    |    and   |      0|  0|   8|           1|           1|
-    |ap_block_pp0_stage10_11001     |    and   |      0|  0|   8|           1|           1|
-    |ap_block_pp0_stage12_11001     |    and   |      0|  0|   8|           1|           1|
-    |ap_block_pp0_stage22_11001     |    and   |      0|  0|   8|           1|           1|
-    |ap_block_pp0_stage23_01001     |    and   |      0|  0|   8|           1|           1|
-    |ap_block_pp0_stage23_11001     |    and   |      0|  0|   8|           1|           1|
-    |ap_block_pp0_stage52_11001     |    and   |      0|  0|   8|           1|           1|
-    |ap_block_pp0_stage5_11001      |    and   |      0|  0|   8|           1|           1|
-    |ap_block_pp0_stage6_11001      |    and   |      0|  0|   8|           1|           1|
-    |ap_block_pp0_stage7_11001      |    and   |      0|  0|   8|           1|           1|
-    |ap_condition_1020              |    and   |      0|  0|   8|           1|           1|
-    |ap_condition_1046              |    and   |      0|  0|   8|           1|           1|
-    |ap_condition_1079              |    and   |      0|  0|   8|           1|           1|
-    |ap_condition_1111              |    and   |      0|  0|   8|           1|           1|
-    |ap_condition_1138              |    and   |      0|  0|   8|           1|           1|
-    |ap_condition_1164              |    and   |      0|  0|   8|           1|           1|
-    |ap_condition_1175              |    and   |      0|  0|   8|           1|           1|
-    |ap_condition_1202              |    and   |      0|  0|   8|           1|           1|
-    |ap_condition_1238              |    and   |      0|  0|   8|           1|           1|
-    |ap_condition_1261              |    and   |      0|  0|   8|           1|           1|
-    |ap_condition_1277              |    and   |      0|  0|   8|           1|           1|
-    |ap_condition_1304              |    and   |      0|  0|   8|           1|           1|
-    |ap_condition_1336              |    and   |      0|  0|   8|           1|           1|
-    |ap_condition_1363              |    and   |      0|  0|   8|           1|           1|
-    |ap_condition_1395              |    and   |      0|  0|   8|           1|           1|
-    |ap_condition_1425              |    and   |      0|  0|   8|           1|           1|
-    |ap_condition_1452              |    and   |      0|  0|   8|           1|           1|
-    |ap_condition_1482              |    and   |      0|  0|   8|           1|           1|
-    |ap_condition_1493              |    and   |      0|  0|   8|           1|           1|
-    |ap_condition_1524              |    and   |      0|  0|   8|           1|           1|
-    |ap_condition_1554              |    and   |      0|  0|   8|           1|           1|
-    |ap_condition_1578              |    and   |      0|  0|   8|           1|           1|
-    |ap_condition_1590              |    and   |      0|  0|   8|           1|           1|
-    |ap_condition_2150              |    and   |      0|  0|   8|           1|           1|
-    |ap_condition_989               |    and   |      0|  0|   8|           1|           1|
-    |ap_block_pp0_stage0_subdone    |    or    |      0|  0|   8|           1|           1|
-    |ap_block_pp0_stage101_subdone  |    or    |      0|  0|   8|           1|           1|
-    |ap_block_pp0_stage104_subdone  |    or    |      0|  0|   8|           1|           1|
-    |ap_block_pp0_stage10_subdone   |    or    |      0|  0|   8|           1|           1|
-    |ap_block_pp0_stage12_subdone   |    or    |      0|  0|   8|           1|           1|
-    |ap_block_pp0_stage22_subdone   |    or    |      0|  0|   8|           1|           1|
-    |ap_block_pp0_stage23_subdone   |    or    |      0|  0|   8|           1|           1|
-    |ap_block_pp0_stage51_subdone   |    or    |      0|  0|   8|           1|           1|
-    |ap_block_pp0_stage52_subdone   |    or    |      0|  0|   8|           1|           1|
-    |ap_block_pp0_stage5_subdone    |    or    |      0|  0|   8|           1|           1|
-    |ap_block_pp0_stage6_subdone    |    or    |      0|  0|   8|           1|           1|
-    |ap_block_pp0_stage7_subdone    |    or    |      0|  0|   8|           1|           1|
-    |ap_block_pp0_stage8_11001      |    or    |      0|  0|   8|           1|           1|
-    |ap_block_pp0_stage8_subdone    |    or    |      0|  0|   8|           1|           1|
-    |ap_block_pp0_stage9_11001      |    or    |      0|  0|   8|           1|           1|
-    |ap_block_pp0_stage9_subdone    |    or    |      0|  0|   8|           1|           1|
-    |ap_enable_pp0                  |    xor   |      0|  0|   8|           1|           2|
-    +-------------------------------+----------+-------+---+----+------------+------------+
-    |Total                          |          |      0|  0| 900|         438|          93|
-    +-------------------------------+----------+-------+---+----+------------+------------+
+    +-----------------+----------+-------+---+----+------------+------------+
+    |  Variable Name  | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +-----------------+----------+-------+---+----+------------+------------+
+    |sum10_fu_437_p2  |     +    |      0|  0|  39|          32|           4|
+    |sum11_fu_448_p2  |     +    |      0|  0|  39|          32|           3|
+    |sum1_fu_338_p2   |     +    |      0|  0|  39|          32|           3|
+    |sum2_fu_349_p2   |     +    |      0|  0|  39|          32|           4|
+    |sum3_fu_360_p2   |     +    |      0|  0|  39|          32|           4|
+    |sum4_fu_371_p2   |     +    |      0|  0|  39|          32|           4|
+    |sum5_fu_382_p2   |     +    |      0|  0|  39|          32|           2|
+    |sum6_fu_393_p2   |     +    |      0|  0|  39|          32|           2|
+    |sum7_fu_404_p2   |     +    |      0|  0|  39|          32|           4|
+    |sum8_fu_415_p2   |     +    |      0|  0|  39|          32|           4|
+    |sum9_fu_426_p2   |     +    |      0|  0|  39|          32|           3|
+    |sum_fu_326_p2    |     +    |      0|  0|  39|          32|           1|
+    +-----------------+----------+-------+---+----+------------+------------+
+    |Total            |          |      0|  0| 468|         384|          38|
+    +-----------------+----------+-------+---+----+------------+------------+
 
     * Multiplexer: 
     +------------------------------------+-----+-----------+-----+-----------+
     |                Name                | LUT | Input Size| Bits| Total Bits|
     +------------------------------------+-----+-----------+-----+-----------+
-    |ap_NS_fsm                           |  469|        107|    1|        107|
-    |ap_enable_reg_pp0_iter0             |    9|          2|    1|          2|
-    |ap_enable_reg_pp0_iter1             |    9|          2|    1|          2|
+    |ap_NS_fsm                           |  539|        126|    1|        126|
     |ap_sig_ioackin_m_axi_buf_r_ARREADY  |    9|          2|    1|          2|
     |ap_sig_ioackin_m_axi_buf_r_AWREADY  |    9|          2|    1|          2|
     |ap_sig_ioackin_m_axi_buf_r_WREADY   |    9|          2|    1|          2|
@@ -169,42 +113,43 @@
     |m_axi_buf_r_AWADDR                  |   56|         13|   32|        416|
     |m_axi_buf_r_WDATA                   |   56|         13|    8|        104|
     +------------------------------------+-----+-----------+-----+-----------+
-    |Total                               |  727|        166|   83|       1063|
+    |Total                               |  779|        181|   81|       1078|
     +------------------------------------+-----+-----------+-----+-----------+
 
     * Register: 
     +------------------------------------+-----+----+-----+-----------+
     |                Name                |  FF | LUT| Bits| Const Bits|
     +------------------------------------+-----+----+-----+-----------+
-    |ap_CS_fsm                           |  106|   0|  106|          0|
-    |ap_enable_reg_pp0_iter0_reg         |    1|   0|    1|          0|
-    |ap_enable_reg_pp0_iter1             |    1|   0|    1|          0|
+    |ap_CS_fsm                           |  125|   0|  125|          0|
     |ap_reg_ioackin_m_axi_buf_r_ARREADY  |    1|   0|    1|          0|
     |ap_reg_ioackin_m_axi_buf_r_AWREADY  |    1|   0|    1|          0|
     |ap_reg_ioackin_m_axi_buf_r_WREADY   |    1|   0|    1|          0|
-    |buf_addr_16_read_reg_497            |    8|   0|    8|          0|
-    |buf_addr_16_reg_485                 |   32|   0|   32|          0|
-    |buf_addr_17_reg_502                 |   32|   0|   32|          0|
-    |buf_addr_18_reg_509                 |   32|   0|   32|          0|
-    |buf_addr_19_reg_516                 |   32|   0|   32|          0|
-    |buf_addr_20_read_reg_535            |    8|   0|    8|          0|
-    |buf_addr_20_reg_523                 |   32|   0|   32|          0|
-    |buf_addr_21_reg_540                 |   32|   0|   32|          0|
-    |buf_addr_22_read_reg_559            |    8|   0|    8|          0|
-    |buf_addr_22_reg_547                 |   32|   0|   32|          0|
-    |buf_addr_23_reg_564                 |   32|   0|   32|          0|
-    |buf_addr_24_reg_571                 |   32|   0|   32|          0|
-    |buf_addr_25_reg_578                 |   32|   0|   32|          0|
-    |buf_addr_26_read_reg_597            |    8|   0|    8|          0|
-    |buf_addr_26_reg_585                 |   32|   0|   32|          0|
-    |buf_addr_reg_478                    |   32|   0|   32|          0|
-    |buf_offset_read_reg_463             |   32|   0|   32|          0|
-    |i_2_reg_530                         |    8|   0|    8|          0|
-    |i_reg_492                           |    8|   0|    8|          0|
-    |j_1_reg_592                         |    8|   0|    8|          0|
-    |j_reg_554                           |    8|   0|    8|          0|
+    |buf_addr_10_reg_584                 |   32|   0|   32|          0|
+    |buf_addr_11_read_reg_613            |    8|   0|    8|          0|
+    |buf_addr_11_reg_591                 |   32|   0|   32|          0|
+    |buf_addr_1_read_reg_493             |    8|   0|    8|          0|
+    |buf_addr_1_reg_481                  |   32|   0|   32|          0|
+    |buf_addr_2_read_reg_505             |    8|   0|    8|          0|
+    |buf_addr_2_reg_498                  |   32|   0|   32|          0|
+    |buf_addr_3_read_reg_517             |    8|   0|    8|          0|
+    |buf_addr_3_reg_510                  |   32|   0|   32|          0|
+    |buf_addr_4_reg_522                  |   32|   0|   32|          0|
+    |buf_addr_5_read_reg_541             |    8|   0|    8|          0|
+    |buf_addr_5_reg_529                  |   32|   0|   32|          0|
+    |buf_addr_6_reg_546                  |   32|   0|   32|          0|
+    |buf_addr_7_read_reg_565             |    8|   0|    8|          0|
+    |buf_addr_7_reg_553                  |   32|   0|   32|          0|
+    |buf_addr_8_read_reg_598             |    8|   0|    8|          0|
+    |buf_addr_8_reg_570                  |   32|   0|   32|          0|
+    |buf_addr_9_read_reg_603             |    8|   0|    8|          0|
+    |buf_addr_9_reg_577                  |   32|   0|   32|          0|
+    |buf_addr_reg_474                    |   32|   0|   32|          0|
+    |i_6_reg_536                         |    8|   0|    8|          0|
+    |i_reg_488                           |    8|   0|    8|          0|
+    |j_1_reg_608                         |    8|   0|    8|          0|
+    |j_reg_560                           |    8|   0|    8|          0|
     +------------------------------------+-----+----+-----+-----------+
-    |Total                               |  591|   0|  591|          0|
+    |Total                               |  608|   0|  608|          0|
     +------------------------------------+-----+----+-----+-----------+
 
 
@@ -222,12 +167,6 @@
 |ap_done               | out |    1| ap_ctrl_hs | aes_shiftRows | return value |
 |ap_idle               | out |    1| ap_ctrl_hs | aes_shiftRows | return value |
 |ap_ready              | out |    1| ap_ctrl_hs | aes_shiftRows | return value |
-|ap_ce                 |  in |    1| ap_ctrl_hs | aes_shiftRows | return value |
-|buf_r_blk_n_AR        | out |    1| ap_ctrl_hs | aes_shiftRows | return value |
-|buf_r_blk_n_R         | out |    1| ap_ctrl_hs | aes_shiftRows | return value |
-|buf_r_blk_n_AW        | out |    1| ap_ctrl_hs | aes_shiftRows | return value |
-|buf_r_blk_n_W         | out |    1| ap_ctrl_hs | aes_shiftRows | return value |
-|buf_r_blk_n_B         | out |    1| ap_ctrl_hs | aes_shiftRows | return value |
 |m_axi_buf_r_AWVALID   | out |    1|    m_axi   |     buf_r     |    pointer   |
 |m_axi_buf_r_AWREADY   |  in |    1|    m_axi   |     buf_r     |    pointer   |
 |m_axi_buf_r_AWADDR    | out |   32|    m_axi   |     buf_r     |    pointer   |

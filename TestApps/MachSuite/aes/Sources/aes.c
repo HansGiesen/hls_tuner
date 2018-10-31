@@ -294,21 +294,24 @@ void aes_expandEncKey(uint8_t *k, uint8_t *rc)
 } /* aes_expandEncKey */
 
 /* -------------------------------------------------------------------------- */
-#pragma SDS data zero_copy(ctx)
+#pragma SDS data zero_copy(ctx_key)
+#pragma SDS data zero_copy(ctx_enckey)
+#pragma SDS data zero_copy(ctx_deckey)
 #pragma SDS data zero_copy(buf)
-void encrypt(aes256_context *ctx, uint8_t k[32], uint8_t buf[16])
+void encrypt(uint8_t ctx_key[32], uint8_t ctx_enckey[32],
+             uint8_t ctx_deckey[32], uint8_t k[32], uint8_t buf[16])
 {
     //INIT
     uint8_t rcon = 1;
     uint8_t i;
 
-    ecb1 : for (i = 0; i < sizeof(ctx->key); i++){
+    ecb1 : for (i = 0; i < 32; i++){
 #ifdef PIPELINE_ECB1
 #pragma HLS pipeline ii=pipeline_ii_ecb1
 #else
 #pragma HLS unroll factor = unroll_factor_ecb1
 #endif
-        ctx->enckey[i] = ctx->deckey[i] = k[i];
+        ctx_enckey[i] = ctx_deckey[i] = k[i];
     }
     ecb2 : for (i = 8;--i;){
 #ifdef PIPELINE_ECB2
@@ -316,11 +319,11 @@ void encrypt(aes256_context *ctx, uint8_t k[32], uint8_t buf[16])
 #else
 #pragma HLS unroll factor = unroll_factor_ecb2
 #endif
-        aes_expandEncKey(ctx->deckey, &rcon);
+        aes_expandEncKey(ctx_deckey, &rcon);
     }
 
     //DEC
-    aes_addRoundKey_cpy(buf, ctx->enckey, ctx->key);
+    aes_addRoundKey_cpy(buf, ctx_enckey, ctx_key);
     ecb3 : for(i = 1, rcon = 1; i < 14; ++i)
     {
 #ifdef PIPELINE_ECB3
@@ -331,12 +334,12 @@ void encrypt(aes256_context *ctx, uint8_t k[32], uint8_t buf[16])
         aes_subBytes(buf);
         aes_shiftRows(buf);
         aes_mixColumns(buf);
-        if( i & 1 ) aes_addRoundKey( buf, &ctx->key[16]);
-        else aes_expandEncKey(ctx->key, &rcon), aes_addRoundKey(buf, ctx->key);
+        if( i & 1 ) aes_addRoundKey( buf, ctx_key + 16);
+        else aes_expandEncKey(ctx_key, &rcon), aes_addRoundKey(buf, ctx_key);
     }
     aes_subBytes(buf);
     aes_shiftRows(buf);
-    aes_expandEncKey(ctx->key, &rcon);
-    aes_addRoundKey(buf, ctx->key);
+    aes_expandEncKey(ctx_key, &rcon);
+    aes_addRoundKey(buf, ctx_key);
 } /* aes256_encrypt */
 

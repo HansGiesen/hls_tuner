@@ -1,17 +1,21 @@
 digraph defuse_graph {
-v0 [label = "def: (bb2),sw(14)@36"];
-v1 [label = "def: (bb6),sw(21)@40"];
-v2 [label = "use: (bb10),sw(28)@43"];
-v3 [label = "use: (bb14),sw(37)@44"];
-v4 [label = "use: (bb16),hw, call:encrypt"];
-v5 [label = "def: (bb16),hw, call:encrypt"];
-v6 [label = "use: (bb16),hw, call:encrypt"];
-v7 [label = "use: (bb16),hw, call:encrypt"];
-v8 [label = "def: (bb16),hw, call:encrypt"];
-v9 [label = "use: (bb18),sw(48)@51"];
+v0 [label = "def: (bb2),sw(13)@36"];
+v1 [label = "def: (bb6),sw(20)@40"];
+v2 [label = "use: (bb10),sw(27)@43"];
+v3 [label = "use: (bb14),sw(36)@44"];
+v4 [label = "use: call 'encrypt' in 'aes_test.c' @49 (async_id:-1) (resource id:-1)\n:0: (array:cannot trace)(bb16),hw, call:encrypt"];
+v5 [label = "def: call 'encrypt' in 'aes_test.c' @49 (async_id:-1) (resource id:-1)\n:0: (array:cannot trace)(bb16),hw, call:encrypt"];
+v6 [label = "use: call 'encrypt' in 'aes_test.c' @49 (async_id:-1) (resource id:-1)\n:1: (array:cannot trace)(bb16),hw, call:encrypt"];
+v7 [label = "def: call 'encrypt' in 'aes_test.c' @49 (async_id:-1) (resource id:-1)\n:1: (array:cannot trace)(bb16),hw, call:encrypt"];
+v8 [label = "use: call 'encrypt' in 'aes_test.c' @49 (async_id:-1) (resource id:-1)\n:2: (array:cannot trace)(bb16),hw, call:encrypt"];
+v9 [label = "def: call 'encrypt' in 'aes_test.c' @49 (async_id:-1) (resource id:-1)\n:2: (array:cannot trace)(bb16),hw, call:encrypt"];
+v10 [label = "use: (bb16),hw, call:encrypt"];
+v11 [label = "use: (bb16),hw, call:encrypt"];
+v12 [label = "def: (bb16),hw, call:encrypt"];
+v13 [label = "use: (bb18),sw(46)@51"];
 v0 -> v2;
 v1 -> v3;
-v0 -> v7;
-v1 -> v6;
-v8 -> v9;
+v0 -> v11;
+v1 -> v10;
+v12 -> v13;
 }

@@ -324,7 +324,7 @@ reg   [31:0] buf_addr_3_reg_510;
 reg   [7:0] buf_addr_3_read_reg_517;
 reg   [31:0] buf_addr_4_reg_522;
 reg   [31:0] buf_addr_5_reg_529;
-reg   [7:0] i_2_reg_536;
+reg   [7:0] i_6_reg_536;
 reg   [7:0] buf_addr_5_read_reg_541;
 reg   [31:0] buf_addr_6_reg_546;
 reg   [31:0] buf_addr_7_reg_553;
@@ -515,7 +515,7 @@ end
 
 always @ (posedge ap_clk) begin
     if (((1'b1 == ap_CS_fsm_state54) & (m_axi_buf_r_RVALID == 1'b1))) begin
-        i_2_reg_536 <= m_axi_buf_r_RDATA;
+        i_6_reg_536 <= m_axi_buf_r_RDATA;
     end
 end
 
@@ -740,7 +740,7 @@ always @ (*) begin
         end else if ((1'b1 == ap_CS_fsm_state73)) begin
             m_axi_buf_r_WDATA = buf_addr_7_read_reg_565;
         end else if ((1'b1 == ap_CS_fsm_state58)) begin
-            m_axi_buf_r_WDATA = i_2_reg_536;
+            m_axi_buf_r_WDATA = i_6_reg_536;
         end else if ((1'b1 == ap_CS_fsm_state56)) begin
             m_axi_buf_r_WDATA = buf_addr_5_read_reg_541;
         end else if ((1'b1 == ap_CS_fsm_state41)) begin

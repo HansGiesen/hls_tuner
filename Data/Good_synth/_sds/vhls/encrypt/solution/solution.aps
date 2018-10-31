@@ -13,7 +13,7 @@
         <library value="xilinx/zynq/zynq_fpv6" name="DefaultPlatform"/>
     </libraryList>
     <clockList>
-        <clock default="false" name="default" uncertainty="27.0%" period="6.000000"/>
+        <clock default="false" name="default" uncertainty="27.0%" period="7.000001"/>
     </clockList>
     <config>
         <config_rtl reset_level="low" prefix="a0_"/>

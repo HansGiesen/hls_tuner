@@ -2,10 +2,10 @@
 # hsi v2017.1_sdx (64-bit)
 # SW Build 1915620 on Thu Jun 22 17:54:59 MDT 2017
 # 
-# Start of session at: Tue Oct 30 16:33:52 2018
-# Process ID: 5076
-# Current directory: /scratch/local/tmp.mnejJh1Zni/_sds/swstubs/standalone_bsp
-# Command line: hsi -mode batch -notrace -quiet -source /scratch/local/tmp.mnejJh1Zni/_sds/swstubs/standalone_bsp/create_bsp_post.tcl
-# Log file: /scratch/local/tmp.mnejJh1Zni/_sds/swstubs/standalone_bsp/hsi.log
-# Journal file: /scratch/local/tmp.mnejJh1Zni/_sds/swstubs/standalone_bsp/hsi.jou
+# Start of session at: Wed Oct 31 14:47:43 2018
+# Process ID: 31339
+# Current directory: /scratch/local/tmp.7aow7oM1KP/_sds/swstubs/standalone_bsp
+# Command line: hsi -mode batch -notrace -quiet -source /scratch/local/tmp.7aow7oM1KP/_sds/swstubs/standalone_bsp/create_bsp_post.tcl
+# Log file: /scratch/local/tmp.7aow7oM1KP/_sds/swstubs/standalone_bsp/hsi.log
+# Journal file: /scratch/local/tmp.7aow7oM1KP/_sds/swstubs/standalone_bsp/hsi.jou
 #-----------------------------------------------------------

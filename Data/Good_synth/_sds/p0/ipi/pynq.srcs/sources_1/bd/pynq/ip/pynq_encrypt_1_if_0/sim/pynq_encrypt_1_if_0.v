@@ -86,6 +86,8 @@ module pynq_encrypt_1_if_0 (
   ap_continue,
   ap_iscalar_0_dout,
   ap_iscalar_1_dout,
+  ap_iscalar_2_dout,
+  ap_iscalar_3_dout,
   s_axis_bram_0_aclk,
   s_axis_bram_0_aresetn,
   s_axis_bram_0_tlast,
@@ -240,7 +242,147 @@ module pynq_encrypt_1_if_0 (
   M_AXIMM_1_RRESP,
   M_AXIMM_1_RLAST,
   M_AXIMM_1_RVALID,
-  M_AXIMM_1_RREADY
+  M_AXIMM_1_RREADY,
+  AP_AXIMM_2_AWADDR,
+  AP_AXIMM_2_AWLEN,
+  AP_AXIMM_2_AWSIZE,
+  AP_AXIMM_2_AWBURST,
+  AP_AXIMM_2_AWLOCK,
+  AP_AXIMM_2_AWCACHE,
+  AP_AXIMM_2_AWPROT,
+  AP_AXIMM_2_AWREGION,
+  AP_AXIMM_2_AWQOS,
+  AP_AXIMM_2_AWVALID,
+  AP_AXIMM_2_AWREADY,
+  AP_AXIMM_2_WDATA,
+  AP_AXIMM_2_WSTRB,
+  AP_AXIMM_2_WLAST,
+  AP_AXIMM_2_WVALID,
+  AP_AXIMM_2_WREADY,
+  AP_AXIMM_2_BRESP,
+  AP_AXIMM_2_BVALID,
+  AP_AXIMM_2_BREADY,
+  AP_AXIMM_2_ARADDR,
+  AP_AXIMM_2_ARLEN,
+  AP_AXIMM_2_ARSIZE,
+  AP_AXIMM_2_ARBURST,
+  AP_AXIMM_2_ARLOCK,
+  AP_AXIMM_2_ARCACHE,
+  AP_AXIMM_2_ARPROT,
+  AP_AXIMM_2_ARREGION,
+  AP_AXIMM_2_ARQOS,
+  AP_AXIMM_2_ARVALID,
+  AP_AXIMM_2_ARREADY,
+  AP_AXIMM_2_RDATA,
+  AP_AXIMM_2_RRESP,
+  AP_AXIMM_2_RLAST,
+  AP_AXIMM_2_RVALID,
+  AP_AXIMM_2_RREADY,
+  M_AXIMM_2_AWADDR,
+  M_AXIMM_2_AWLEN,
+  M_AXIMM_2_AWSIZE,
+  M_AXIMM_2_AWBURST,
+  M_AXIMM_2_AWLOCK,
+  M_AXIMM_2_AWCACHE,
+  M_AXIMM_2_AWPROT,
+  M_AXIMM_2_AWREGION,
+  M_AXIMM_2_AWQOS,
+  M_AXIMM_2_AWVALID,
+  M_AXIMM_2_AWREADY,
+  M_AXIMM_2_WDATA,
+  M_AXIMM_2_WSTRB,
+  M_AXIMM_2_WLAST,
+  M_AXIMM_2_WVALID,
+  M_AXIMM_2_WREADY,
+  M_AXIMM_2_BRESP,
+  M_AXIMM_2_BVALID,
+  M_AXIMM_2_BREADY,
+  M_AXIMM_2_ARADDR,
+  M_AXIMM_2_ARLEN,
+  M_AXIMM_2_ARSIZE,
+  M_AXIMM_2_ARBURST,
+  M_AXIMM_2_ARLOCK,
+  M_AXIMM_2_ARCACHE,
+  M_AXIMM_2_ARPROT,
+  M_AXIMM_2_ARREGION,
+  M_AXIMM_2_ARQOS,
+  M_AXIMM_2_ARVALID,
+  M_AXIMM_2_ARREADY,
+  M_AXIMM_2_RDATA,
+  M_AXIMM_2_RRESP,
+  M_AXIMM_2_RLAST,
+  M_AXIMM_2_RVALID,
+  M_AXIMM_2_RREADY,
+  AP_AXIMM_3_AWADDR,
+  AP_AXIMM_3_AWLEN,
+  AP_AXIMM_3_AWSIZE,
+  AP_AXIMM_3_AWBURST,
+  AP_AXIMM_3_AWLOCK,
+  AP_AXIMM_3_AWCACHE,
+  AP_AXIMM_3_AWPROT,
+  AP_AXIMM_3_AWREGION,
+  AP_AXIMM_3_AWQOS,
+  AP_AXIMM_3_AWVALID,
+  AP_AXIMM_3_AWREADY,
+  AP_AXIMM_3_WDATA,
+  AP_AXIMM_3_WSTRB,
+  AP_AXIMM_3_WLAST,
+  AP_AXIMM_3_WVALID,
+  AP_AXIMM_3_WREADY,
+  AP_AXIMM_3_BRESP,
+  AP_AXIMM_3_BVALID,
+  AP_AXIMM_3_BREADY,
+  AP_AXIMM_3_ARADDR,
+  AP_AXIMM_3_ARLEN,
+  AP_AXIMM_3_ARSIZE,
+  AP_AXIMM_3_ARBURST,
+  AP_AXIMM_3_ARLOCK,
+  AP_AXIMM_3_ARCACHE,
+  AP_AXIMM_3_ARPROT,
+  AP_AXIMM_3_ARREGION,
+  AP_AXIMM_3_ARQOS,
+  AP_AXIMM_3_ARVALID,
+  AP_AXIMM_3_ARREADY,
+  AP_AXIMM_3_RDATA,
+  AP_AXIMM_3_RRESP,
+  AP_AXIMM_3_RLAST,
+  AP_AXIMM_3_RVALID,
+  AP_AXIMM_3_RREADY,
+  M_AXIMM_3_AWADDR,
+  M_AXIMM_3_AWLEN,
+  M_AXIMM_3_AWSIZE,
+  M_AXIMM_3_AWBURST,
+  M_AXIMM_3_AWLOCK,
+  M_AXIMM_3_AWCACHE,
+  M_AXIMM_3_AWPROT,
+  M_AXIMM_3_AWREGION,
+  M_AXIMM_3_AWQOS,
+  M_AXIMM_3_AWVALID,
+  M_AXIMM_3_AWREADY,
+  M_AXIMM_3_WDATA,
+  M_AXIMM_3_WSTRB,
+  M_AXIMM_3_WLAST,
+  M_AXIMM_3_WVALID,
+  M_AXIMM_3_WREADY,
+  M_AXIMM_3_BRESP,
+  M_AXIMM_3_BVALID,
+  M_AXIMM_3_BREADY,
+  M_AXIMM_3_ARADDR,
+  M_AXIMM_3_ARLEN,
+  M_AXIMM_3_ARSIZE,
+  M_AXIMM_3_ARBURST,
+  M_AXIMM_3_ARLOCK,
+  M_AXIMM_3_ARCACHE,
+  M_AXIMM_3_ARPROT,
+  M_AXIMM_3_ARREGION,
+  M_AXIMM_3_ARQOS,
+  M_AXIMM_3_ARVALID,
+  M_AXIMM_3_ARREADY,
+  M_AXIMM_3_RDATA,
+  M_AXIMM_3_RRESP,
+  M_AXIMM_3_RLAST,
+  M_AXIMM_3_RVALID,
+  M_AXIMM_3_RREADY
 );
 
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 s_axi_aclk CLK" *)
@@ -305,6 +447,8 @@ input wire ap_ready;
 output wire ap_continue;
 output wire [31 : 0] ap_iscalar_0_dout;
 output wire [31 : 0] ap_iscalar_1_dout;
+output wire [31 : 0] ap_iscalar_2_dout;
+output wire [31 : 0] ap_iscalar_3_dout;
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 s_axis_bram_0_aclk CLK" *)
 input wire s_axis_bram_0_aclk;
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 s_axis_bram_0_aresetn RST" *)
@@ -358,9 +502,9 @@ input wire AP_AXIMM_0_AWVALID;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_0 AWREADY" *)
 output wire AP_AXIMM_0_AWREADY;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_0 WDATA" *)
-input wire [1023 : 0] AP_AXIMM_0_WDATA;
+input wire [31 : 0] AP_AXIMM_0_WDATA;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_0 WSTRB" *)
-input wire [127 : 0] AP_AXIMM_0_WSTRB;
+input wire [3 : 0] AP_AXIMM_0_WSTRB;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_0 WLAST" *)
 input wire AP_AXIMM_0_WLAST;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_0 WVALID" *)
@@ -396,7 +540,7 @@ input wire AP_AXIMM_0_ARVALID;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_0 ARREADY" *)
 output wire AP_AXIMM_0_ARREADY;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_0 RDATA" *)
-output wire [1023 : 0] AP_AXIMM_0_RDATA;
+output wire [31 : 0] AP_AXIMM_0_RDATA;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_0 RRESP" *)
 output wire [1 : 0] AP_AXIMM_0_RRESP;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_0 RLAST" *)
@@ -428,9 +572,9 @@ output wire M_AXIMM_0_AWVALID;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_0 AWREADY" *)
 input wire M_AXIMM_0_AWREADY;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_0 WDATA" *)
-output wire [1023 : 0] M_AXIMM_0_WDATA;
+output wire [31 : 0] M_AXIMM_0_WDATA;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_0 WSTRB" *)
-output wire [127 : 0] M_AXIMM_0_WSTRB;
+output wire [3 : 0] M_AXIMM_0_WSTRB;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_0 WLAST" *)
 output wire M_AXIMM_0_WLAST;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_0 WVALID" *)
@@ -466,7 +610,7 @@ output wire M_AXIMM_0_ARVALID;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_0 ARREADY" *)
 input wire M_AXIMM_0_ARREADY;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_0 RDATA" *)
-input wire [1023 : 0] M_AXIMM_0_RDATA;
+input wire [31 : 0] M_AXIMM_0_RDATA;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_0 RRESP" *)
 input wire [1 : 0] M_AXIMM_0_RRESP;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_0 RLAST" *)
@@ -615,19 +759,299 @@ input wire M_AXIMM_1_RLAST;
 input wire M_AXIMM_1_RVALID;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_1 RREADY" *)
 output wire M_AXIMM_1_RREADY;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_2 AWADDR" *)
+input wire [31 : 0] AP_AXIMM_2_AWADDR;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_2 AWLEN" *)
+input wire [7 : 0] AP_AXIMM_2_AWLEN;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_2 AWSIZE" *)
+input wire [2 : 0] AP_AXIMM_2_AWSIZE;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_2 AWBURST" *)
+input wire [1 : 0] AP_AXIMM_2_AWBURST;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_2 AWLOCK" *)
+input wire [1 : 0] AP_AXIMM_2_AWLOCK;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_2 AWCACHE" *)
+input wire [3 : 0] AP_AXIMM_2_AWCACHE;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_2 AWPROT" *)
+input wire [2 : 0] AP_AXIMM_2_AWPROT;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_2 AWREGION" *)
+input wire [3 : 0] AP_AXIMM_2_AWREGION;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_2 AWQOS" *)
+input wire [3 : 0] AP_AXIMM_2_AWQOS;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_2 AWVALID" *)
+input wire AP_AXIMM_2_AWVALID;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_2 AWREADY" *)
+output wire AP_AXIMM_2_AWREADY;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_2 WDATA" *)
+input wire [31 : 0] AP_AXIMM_2_WDATA;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_2 WSTRB" *)
+input wire [3 : 0] AP_AXIMM_2_WSTRB;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_2 WLAST" *)
+input wire AP_AXIMM_2_WLAST;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_2 WVALID" *)
+input wire AP_AXIMM_2_WVALID;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_2 WREADY" *)
+output wire AP_AXIMM_2_WREADY;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_2 BRESP" *)
+output wire [1 : 0] AP_AXIMM_2_BRESP;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_2 BVALID" *)
+output wire AP_AXIMM_2_BVALID;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_2 BREADY" *)
+input wire AP_AXIMM_2_BREADY;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_2 ARADDR" *)
+input wire [31 : 0] AP_AXIMM_2_ARADDR;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_2 ARLEN" *)
+input wire [7 : 0] AP_AXIMM_2_ARLEN;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_2 ARSIZE" *)
+input wire [2 : 0] AP_AXIMM_2_ARSIZE;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_2 ARBURST" *)
+input wire [1 : 0] AP_AXIMM_2_ARBURST;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_2 ARLOCK" *)
+input wire [1 : 0] AP_AXIMM_2_ARLOCK;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_2 ARCACHE" *)
+input wire [3 : 0] AP_AXIMM_2_ARCACHE;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_2 ARPROT" *)
+input wire [2 : 0] AP_AXIMM_2_ARPROT;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_2 ARREGION" *)
+input wire [3 : 0] AP_AXIMM_2_ARREGION;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_2 ARQOS" *)
+input wire [3 : 0] AP_AXIMM_2_ARQOS;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_2 ARVALID" *)
+input wire AP_AXIMM_2_ARVALID;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_2 ARREADY" *)
+output wire AP_AXIMM_2_ARREADY;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_2 RDATA" *)
+output wire [31 : 0] AP_AXIMM_2_RDATA;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_2 RRESP" *)
+output wire [1 : 0] AP_AXIMM_2_RRESP;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_2 RLAST" *)
+output wire AP_AXIMM_2_RLAST;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_2 RVALID" *)
+output wire AP_AXIMM_2_RVALID;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_2 RREADY" *)
+input wire AP_AXIMM_2_RREADY;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_2 AWADDR" *)
+output wire [31 : 0] M_AXIMM_2_AWADDR;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_2 AWLEN" *)
+output wire [7 : 0] M_AXIMM_2_AWLEN;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_2 AWSIZE" *)
+output wire [2 : 0] M_AXIMM_2_AWSIZE;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_2 AWBURST" *)
+output wire [1 : 0] M_AXIMM_2_AWBURST;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_2 AWLOCK" *)
+output wire [1 : 0] M_AXIMM_2_AWLOCK;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_2 AWCACHE" *)
+output wire [3 : 0] M_AXIMM_2_AWCACHE;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_2 AWPROT" *)
+output wire [2 : 0] M_AXIMM_2_AWPROT;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_2 AWREGION" *)
+output wire [3 : 0] M_AXIMM_2_AWREGION;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_2 AWQOS" *)
+output wire [3 : 0] M_AXIMM_2_AWQOS;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_2 AWVALID" *)
+output wire M_AXIMM_2_AWVALID;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_2 AWREADY" *)
+input wire M_AXIMM_2_AWREADY;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_2 WDATA" *)
+output wire [31 : 0] M_AXIMM_2_WDATA;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_2 WSTRB" *)
+output wire [3 : 0] M_AXIMM_2_WSTRB;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_2 WLAST" *)
+output wire M_AXIMM_2_WLAST;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_2 WVALID" *)
+output wire M_AXIMM_2_WVALID;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_2 WREADY" *)
+input wire M_AXIMM_2_WREADY;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_2 BRESP" *)
+input wire [1 : 0] M_AXIMM_2_BRESP;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_2 BVALID" *)
+input wire M_AXIMM_2_BVALID;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_2 BREADY" *)
+output wire M_AXIMM_2_BREADY;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_2 ARADDR" *)
+output wire [31 : 0] M_AXIMM_2_ARADDR;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_2 ARLEN" *)
+output wire [7 : 0] M_AXIMM_2_ARLEN;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_2 ARSIZE" *)
+output wire [2 : 0] M_AXIMM_2_ARSIZE;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_2 ARBURST" *)
+output wire [1 : 0] M_AXIMM_2_ARBURST;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_2 ARLOCK" *)
+output wire [1 : 0] M_AXIMM_2_ARLOCK;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_2 ARCACHE" *)
+output wire [3 : 0] M_AXIMM_2_ARCACHE;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_2 ARPROT" *)
+output wire [2 : 0] M_AXIMM_2_ARPROT;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_2 ARREGION" *)
+output wire [3 : 0] M_AXIMM_2_ARREGION;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_2 ARQOS" *)
+output wire [3 : 0] M_AXIMM_2_ARQOS;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_2 ARVALID" *)
+output wire M_AXIMM_2_ARVALID;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_2 ARREADY" *)
+input wire M_AXIMM_2_ARREADY;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_2 RDATA" *)
+input wire [31 : 0] M_AXIMM_2_RDATA;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_2 RRESP" *)
+input wire [1 : 0] M_AXIMM_2_RRESP;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_2 RLAST" *)
+input wire M_AXIMM_2_RLAST;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_2 RVALID" *)
+input wire M_AXIMM_2_RVALID;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_2 RREADY" *)
+output wire M_AXIMM_2_RREADY;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_3 AWADDR" *)
+input wire [31 : 0] AP_AXIMM_3_AWADDR;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_3 AWLEN" *)
+input wire [7 : 0] AP_AXIMM_3_AWLEN;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_3 AWSIZE" *)
+input wire [2 : 0] AP_AXIMM_3_AWSIZE;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_3 AWBURST" *)
+input wire [1 : 0] AP_AXIMM_3_AWBURST;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_3 AWLOCK" *)
+input wire [1 : 0] AP_AXIMM_3_AWLOCK;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_3 AWCACHE" *)
+input wire [3 : 0] AP_AXIMM_3_AWCACHE;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_3 AWPROT" *)
+input wire [2 : 0] AP_AXIMM_3_AWPROT;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_3 AWREGION" *)
+input wire [3 : 0] AP_AXIMM_3_AWREGION;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_3 AWQOS" *)
+input wire [3 : 0] AP_AXIMM_3_AWQOS;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_3 AWVALID" *)
+input wire AP_AXIMM_3_AWVALID;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_3 AWREADY" *)
+output wire AP_AXIMM_3_AWREADY;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_3 WDATA" *)
+input wire [31 : 0] AP_AXIMM_3_WDATA;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_3 WSTRB" *)
+input wire [3 : 0] AP_AXIMM_3_WSTRB;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_3 WLAST" *)
+input wire AP_AXIMM_3_WLAST;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_3 WVALID" *)
+input wire AP_AXIMM_3_WVALID;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_3 WREADY" *)
+output wire AP_AXIMM_3_WREADY;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_3 BRESP" *)
+output wire [1 : 0] AP_AXIMM_3_BRESP;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_3 BVALID" *)
+output wire AP_AXIMM_3_BVALID;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_3 BREADY" *)
+input wire AP_AXIMM_3_BREADY;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_3 ARADDR" *)
+input wire [31 : 0] AP_AXIMM_3_ARADDR;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_3 ARLEN" *)
+input wire [7 : 0] AP_AXIMM_3_ARLEN;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_3 ARSIZE" *)
+input wire [2 : 0] AP_AXIMM_3_ARSIZE;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_3 ARBURST" *)
+input wire [1 : 0] AP_AXIMM_3_ARBURST;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_3 ARLOCK" *)
+input wire [1 : 0] AP_AXIMM_3_ARLOCK;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_3 ARCACHE" *)
+input wire [3 : 0] AP_AXIMM_3_ARCACHE;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_3 ARPROT" *)
+input wire [2 : 0] AP_AXIMM_3_ARPROT;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_3 ARREGION" *)
+input wire [3 : 0] AP_AXIMM_3_ARREGION;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_3 ARQOS" *)
+input wire [3 : 0] AP_AXIMM_3_ARQOS;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_3 ARVALID" *)
+input wire AP_AXIMM_3_ARVALID;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_3 ARREADY" *)
+output wire AP_AXIMM_3_ARREADY;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_3 RDATA" *)
+output wire [31 : 0] AP_AXIMM_3_RDATA;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_3 RRESP" *)
+output wire [1 : 0] AP_AXIMM_3_RRESP;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_3 RLAST" *)
+output wire AP_AXIMM_3_RLAST;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_3 RVALID" *)
+output wire AP_AXIMM_3_RVALID;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AP_AXIMM_3 RREADY" *)
+input wire AP_AXIMM_3_RREADY;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_3 AWADDR" *)
+output wire [31 : 0] M_AXIMM_3_AWADDR;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_3 AWLEN" *)
+output wire [7 : 0] M_AXIMM_3_AWLEN;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_3 AWSIZE" *)
+output wire [2 : 0] M_AXIMM_3_AWSIZE;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_3 AWBURST" *)
+output wire [1 : 0] M_AXIMM_3_AWBURST;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_3 AWLOCK" *)
+output wire [1 : 0] M_AXIMM_3_AWLOCK;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_3 AWCACHE" *)
+output wire [3 : 0] M_AXIMM_3_AWCACHE;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_3 AWPROT" *)
+output wire [2 : 0] M_AXIMM_3_AWPROT;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_3 AWREGION" *)
+output wire [3 : 0] M_AXIMM_3_AWREGION;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_3 AWQOS" *)
+output wire [3 : 0] M_AXIMM_3_AWQOS;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_3 AWVALID" *)
+output wire M_AXIMM_3_AWVALID;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_3 AWREADY" *)
+input wire M_AXIMM_3_AWREADY;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_3 WDATA" *)
+output wire [31 : 0] M_AXIMM_3_WDATA;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_3 WSTRB" *)
+output wire [3 : 0] M_AXIMM_3_WSTRB;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_3 WLAST" *)
+output wire M_AXIMM_3_WLAST;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_3 WVALID" *)
+output wire M_AXIMM_3_WVALID;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_3 WREADY" *)
+input wire M_AXIMM_3_WREADY;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_3 BRESP" *)
+input wire [1 : 0] M_AXIMM_3_BRESP;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_3 BVALID" *)
+input wire M_AXIMM_3_BVALID;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_3 BREADY" *)
+output wire M_AXIMM_3_BREADY;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_3 ARADDR" *)
+output wire [31 : 0] M_AXIMM_3_ARADDR;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_3 ARLEN" *)
+output wire [7 : 0] M_AXIMM_3_ARLEN;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_3 ARSIZE" *)
+output wire [2 : 0] M_AXIMM_3_ARSIZE;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_3 ARBURST" *)
+output wire [1 : 0] M_AXIMM_3_ARBURST;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_3 ARLOCK" *)
+output wire [1 : 0] M_AXIMM_3_ARLOCK;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_3 ARCACHE" *)
+output wire [3 : 0] M_AXIMM_3_ARCACHE;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_3 ARPROT" *)
+output wire [2 : 0] M_AXIMM_3_ARPROT;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_3 ARREGION" *)
+output wire [3 : 0] M_AXIMM_3_ARREGION;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_3 ARQOS" *)
+output wire [3 : 0] M_AXIMM_3_ARQOS;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_3 ARVALID" *)
+output wire M_AXIMM_3_ARVALID;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_3 ARREADY" *)
+input wire M_AXIMM_3_ARREADY;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_3 RDATA" *)
+input wire [31 : 0] M_AXIMM_3_RDATA;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_3 RRESP" *)
+input wire [1 : 0] M_AXIMM_3_RRESP;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_3 RLAST" *)
+input wire M_AXIMM_3_RLAST;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_3 RVALID" *)
+input wire M_AXIMM_3_RVALID;
+(* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXIMM_3 RREADY" *)
+output wire M_AXIMM_3_RREADY;
 
   top #(
     .C_HAS_CTRL(1),
     .C_ACC_RESET_POLARITY(0),
     .C_QUEUE_DEPTH(16),
-    .C_N_INPUT_SCALARS(2),
+    .C_N_INPUT_SCALARS(4),
     .C_N_OUTPUT_SCALARS(0),
     .C_FIFO_DEPTH(16),
     .C_HAS_RETURN(0),
     .C_INPUT_SCALAR_0_WIDTH(32),
     .C_INPUT_SCALAR_1_WIDTH(32),
-    .C_INPUT_SCALAR_2_WIDTH(1),
-    .C_INPUT_SCALAR_3_WIDTH(1),
+    .C_INPUT_SCALAR_2_WIDTH(32),
+    .C_INPUT_SCALAR_3_WIDTH(32),
     .C_INPUT_SCALAR_4_WIDTH(1),
     .C_INPUT_SCALAR_5_WIDTH(1),
     .C_INPUT_SCALAR_6_WIDTH(1),
@@ -6518,9 +6942,9 @@ output wire M_AXIMM_1_RREADY;
     .M_AXIS_OARG_125_GEN_TLAST(0),
     .M_AXIS_OARG_126_GEN_TLAST(0),
     .M_AXIS_OARG_127_GEN_TLAST(0),
-    .C_NUM_AXIMMs(2),
+    .C_NUM_AXIMMs(4),
     .M_AXIMM_ADDR_WIDTH(32),
-    .M_AXIMM_0_DATA_WIDTH(1024),
+    .M_AXIMM_0_DATA_WIDTH(32),
     .M_AXIMM_1_DATA_WIDTH(32),
     .M_AXIMM_2_DATA_WIDTH(32),
     .M_AXIMM_3_DATA_WIDTH(32),
@@ -7961,8 +8385,8 @@ output wire M_AXIMM_1_RREADY;
     .ap_continue(ap_continue),
     .ap_iscalar_0_dout(ap_iscalar_0_dout),
     .ap_iscalar_1_dout(ap_iscalar_1_dout),
-    .ap_iscalar_2_dout(),
-    .ap_iscalar_3_dout(),
+    .ap_iscalar_2_dout(ap_iscalar_2_dout),
+    .ap_iscalar_3_dout(ap_iscalar_3_dout),
     .ap_iscalar_4_dout(),
     .ap_iscalar_5_dout(),
     .ap_iscalar_6_dout(),
@@ -23587,146 +24011,146 @@ output wire M_AXIMM_1_RREADY;
     .M_AXIMM_1_RLAST(M_AXIMM_1_RLAST),
     .M_AXIMM_1_RVALID(M_AXIMM_1_RVALID),
     .M_AXIMM_1_RREADY(M_AXIMM_1_RREADY),
-    .AP_AXIMM_2_AWADDR(32'B0),
-    .AP_AXIMM_2_AWLEN(8'B0),
-    .AP_AXIMM_2_AWSIZE(3'B0),
-    .AP_AXIMM_2_AWBURST(2'B1),
-    .AP_AXIMM_2_AWLOCK(2'B0),
-    .AP_AXIMM_2_AWCACHE(3),
-    .AP_AXIMM_2_AWPROT(3'B0),
-    .AP_AXIMM_2_AWREGION(4'B0),
-    .AP_AXIMM_2_AWQOS(4'B0),
-    .AP_AXIMM_2_AWVALID(1'B0),
-    .AP_AXIMM_2_AWREADY(),
-    .AP_AXIMM_2_WDATA(32'B0),
-    .AP_AXIMM_2_WSTRB(4'B1),
-    .AP_AXIMM_2_WLAST(1'B0),
-    .AP_AXIMM_2_WVALID(1'B0),
-    .AP_AXIMM_2_WREADY(),
-    .AP_AXIMM_2_BRESP(),
-    .AP_AXIMM_2_BVALID(),
-    .AP_AXIMM_2_BREADY(1'B0),
-    .AP_AXIMM_2_ARADDR(32'B0),
-    .AP_AXIMM_2_ARLEN(8'B0),
-    .AP_AXIMM_2_ARSIZE(3'B0),
-    .AP_AXIMM_2_ARBURST(2'B1),
-    .AP_AXIMM_2_ARLOCK(2'B0),
-    .AP_AXIMM_2_ARCACHE(3),
-    .AP_AXIMM_2_ARPROT(3'B0),
-    .AP_AXIMM_2_ARREGION(4'B0),
-    .AP_AXIMM_2_ARQOS(4'B0),
-    .AP_AXIMM_2_ARVALID(1'B0),
-    .AP_AXIMM_2_ARREADY(),
-    .AP_AXIMM_2_RDATA(),
-    .AP_AXIMM_2_RRESP(),
-    .AP_AXIMM_2_RLAST(),
-    .AP_AXIMM_2_RVALID(),
-    .AP_AXIMM_2_RREADY(1'B0),
-    .M_AXIMM_2_AWADDR(),
-    .M_AXIMM_2_AWLEN(),
-    .M_AXIMM_2_AWSIZE(),
-    .M_AXIMM_2_AWBURST(),
-    .M_AXIMM_2_AWLOCK(),
-    .M_AXIMM_2_AWCACHE(),
-    .M_AXIMM_2_AWPROT(),
-    .M_AXIMM_2_AWREGION(),
-    .M_AXIMM_2_AWQOS(),
-    .M_AXIMM_2_AWVALID(),
-    .M_AXIMM_2_AWREADY(1'B0),
-    .M_AXIMM_2_WDATA(),
-    .M_AXIMM_2_WSTRB(),
-    .M_AXIMM_2_WLAST(),
-    .M_AXIMM_2_WVALID(),
-    .M_AXIMM_2_WREADY(1'B0),
-    .M_AXIMM_2_BRESP(2'B0),
-    .M_AXIMM_2_BVALID(1'B0),
-    .M_AXIMM_2_BREADY(),
-    .M_AXIMM_2_ARADDR(),
-    .M_AXIMM_2_ARLEN(),
-    .M_AXIMM_2_ARSIZE(),
-    .M_AXIMM_2_ARBURST(),
-    .M_AXIMM_2_ARLOCK(),
-    .M_AXIMM_2_ARCACHE(),
-    .M_AXIMM_2_ARPROT(),
-    .M_AXIMM_2_ARREGION(),
-    .M_AXIMM_2_ARQOS(),
-    .M_AXIMM_2_ARVALID(),
-    .M_AXIMM_2_ARREADY(1'B0),
-    .M_AXIMM_2_RDATA(32'B0),
-    .M_AXIMM_2_RRESP(2'B0),
-    .M_AXIMM_2_RLAST(1'B0),
-    .M_AXIMM_2_RVALID(1'B0),
-    .M_AXIMM_2_RREADY(),
-    .AP_AXIMM_3_AWADDR(32'B0),
-    .AP_AXIMM_3_AWLEN(8'B0),
-    .AP_AXIMM_3_AWSIZE(3'B0),
-    .AP_AXIMM_3_AWBURST(2'B1),
-    .AP_AXIMM_3_AWLOCK(2'B0),
-    .AP_AXIMM_3_AWCACHE(3),
-    .AP_AXIMM_3_AWPROT(3'B0),
-    .AP_AXIMM_3_AWREGION(4'B0),
-    .AP_AXIMM_3_AWQOS(4'B0),
-    .AP_AXIMM_3_AWVALID(1'B0),
-    .AP_AXIMM_3_AWREADY(),
-    .AP_AXIMM_3_WDATA(32'B0),
-    .AP_AXIMM_3_WSTRB(4'B1),
-    .AP_AXIMM_3_WLAST(1'B0),
-    .AP_AXIMM_3_WVALID(1'B0),
-    .AP_AXIMM_3_WREADY(),
-    .AP_AXIMM_3_BRESP(),
-    .AP_AXIMM_3_BVALID(),
-    .AP_AXIMM_3_BREADY(1'B0),
-    .AP_AXIMM_3_ARADDR(32'B0),
-    .AP_AXIMM_3_ARLEN(8'B0),
-    .AP_AXIMM_3_ARSIZE(3'B0),
-    .AP_AXIMM_3_ARBURST(2'B1),
-    .AP_AXIMM_3_ARLOCK(2'B0),
-    .AP_AXIMM_3_ARCACHE(3),
-    .AP_AXIMM_3_ARPROT(3'B0),
-    .AP_AXIMM_3_ARREGION(4'B0),
-    .AP_AXIMM_3_ARQOS(4'B0),
-    .AP_AXIMM_3_ARVALID(1'B0),
-    .AP_AXIMM_3_ARREADY(),
-    .AP_AXIMM_3_RDATA(),
-    .AP_AXIMM_3_RRESP(),
-    .AP_AXIMM_3_RLAST(),
-    .AP_AXIMM_3_RVALID(),
-    .AP_AXIMM_3_RREADY(1'B0),
-    .M_AXIMM_3_AWADDR(),
-    .M_AXIMM_3_AWLEN(),
-    .M_AXIMM_3_AWSIZE(),
-    .M_AXIMM_3_AWBURST(),
-    .M_AXIMM_3_AWLOCK(),
-    .M_AXIMM_3_AWCACHE(),
-    .M_AXIMM_3_AWPROT(),
-    .M_AXIMM_3_AWREGION(),
-    .M_AXIMM_3_AWQOS(),
-    .M_AXIMM_3_AWVALID(),
-    .M_AXIMM_3_AWREADY(1'B0),
-    .M_AXIMM_3_WDATA(),
-    .M_AXIMM_3_WSTRB(),
-    .M_AXIMM_3_WLAST(),
-    .M_AXIMM_3_WVALID(),
-    .M_AXIMM_3_WREADY(1'B0),
-    .M_AXIMM_3_BRESP(2'B0),
-    .M_AXIMM_3_BVALID(1'B0),
-    .M_AXIMM_3_BREADY(),
-    .M_AXIMM_3_ARADDR(),
-    .M_AXIMM_3_ARLEN(),
-    .M_AXIMM_3_ARSIZE(),
-    .M_AXIMM_3_ARBURST(),
-    .M_AXIMM_3_ARLOCK(),
-    .M_AXIMM_3_ARCACHE(),
-    .M_AXIMM_3_ARPROT(),
-    .M_AXIMM_3_ARREGION(),
-    .M_AXIMM_3_ARQOS(),
-    .M_AXIMM_3_ARVALID(),
-    .M_AXIMM_3_ARREADY(1'B0),
-    .M_AXIMM_3_RDATA(32'B0),
-    .M_AXIMM_3_RRESP(2'B0),
-    .M_AXIMM_3_RLAST(1'B0),
-    .M_AXIMM_3_RVALID(1'B0),
-    .M_AXIMM_3_RREADY(),
+    .AP_AXIMM_2_AWADDR(AP_AXIMM_2_AWADDR),
+    .AP_AXIMM_2_AWLEN(AP_AXIMM_2_AWLEN),
+    .AP_AXIMM_2_AWSIZE(AP_AXIMM_2_AWSIZE),
+    .AP_AXIMM_2_AWBURST(AP_AXIMM_2_AWBURST),
+    .AP_AXIMM_2_AWLOCK(AP_AXIMM_2_AWLOCK),
+    .AP_AXIMM_2_AWCACHE(AP_AXIMM_2_AWCACHE),
+    .AP_AXIMM_2_AWPROT(AP_AXIMM_2_AWPROT),
+    .AP_AXIMM_2_AWREGION(AP_AXIMM_2_AWREGION),
+    .AP_AXIMM_2_AWQOS(AP_AXIMM_2_AWQOS),
+    .AP_AXIMM_2_AWVALID(AP_AXIMM_2_AWVALID),
+    .AP_AXIMM_2_AWREADY(AP_AXIMM_2_AWREADY),
+    .AP_AXIMM_2_WDATA(AP_AXIMM_2_WDATA),
+    .AP_AXIMM_2_WSTRB(AP_AXIMM_2_WSTRB),
+    .AP_AXIMM_2_WLAST(AP_AXIMM_2_WLAST),
+    .AP_AXIMM_2_WVALID(AP_AXIMM_2_WVALID),
+    .AP_AXIMM_2_WREADY(AP_AXIMM_2_WREADY),
+    .AP_AXIMM_2_BRESP(AP_AXIMM_2_BRESP),
+    .AP_AXIMM_2_BVALID(AP_AXIMM_2_BVALID),
+    .AP_AXIMM_2_BREADY(AP_AXIMM_2_BREADY),
+    .AP_AXIMM_2_ARADDR(AP_AXIMM_2_ARADDR),
+    .AP_AXIMM_2_ARLEN(AP_AXIMM_2_ARLEN),
+    .AP_AXIMM_2_ARSIZE(AP_AXIMM_2_ARSIZE),
+    .AP_AXIMM_2_ARBURST(AP_AXIMM_2_ARBURST),
+    .AP_AXIMM_2_ARLOCK(AP_AXIMM_2_ARLOCK),
+    .AP_AXIMM_2_ARCACHE(AP_AXIMM_2_ARCACHE),
+    .AP_AXIMM_2_ARPROT(AP_AXIMM_2_ARPROT),
+    .AP_AXIMM_2_ARREGION(AP_AXIMM_2_ARREGION),
+    .AP_AXIMM_2_ARQOS(AP_AXIMM_2_ARQOS),
+    .AP_AXIMM_2_ARVALID(AP_AXIMM_2_ARVALID),
+    .AP_AXIMM_2_ARREADY(AP_AXIMM_2_ARREADY),
+    .AP_AXIMM_2_RDATA(AP_AXIMM_2_RDATA),
+    .AP_AXIMM_2_RRESP(AP_AXIMM_2_RRESP),
+    .AP_AXIMM_2_RLAST(AP_AXIMM_2_RLAST),
+    .AP_AXIMM_2_RVALID(AP_AXIMM_2_RVALID),
+    .AP_AXIMM_2_RREADY(AP_AXIMM_2_RREADY),
+    .M_AXIMM_2_AWADDR(M_AXIMM_2_AWADDR),
+    .M_AXIMM_2_AWLEN(M_AXIMM_2_AWLEN),
+    .M_AXIMM_2_AWSIZE(M_AXIMM_2_AWSIZE),
+    .M_AXIMM_2_AWBURST(M_AXIMM_2_AWBURST),
+    .M_AXIMM_2_AWLOCK(M_AXIMM_2_AWLOCK),
+    .M_AXIMM_2_AWCACHE(M_AXIMM_2_AWCACHE),
+    .M_AXIMM_2_AWPROT(M_AXIMM_2_AWPROT),
+    .M_AXIMM_2_AWREGION(M_AXIMM_2_AWREGION),
+    .M_AXIMM_2_AWQOS(M_AXIMM_2_AWQOS),
+    .M_AXIMM_2_AWVALID(M_AXIMM_2_AWVALID),
+    .M_AXIMM_2_AWREADY(M_AXIMM_2_AWREADY),
+    .M_AXIMM_2_WDATA(M_AXIMM_2_WDATA),
+    .M_AXIMM_2_WSTRB(M_AXIMM_2_WSTRB),
+    .M_AXIMM_2_WLAST(M_AXIMM_2_WLAST),
+    .M_AXIMM_2_WVALID(M_AXIMM_2_WVALID),
+    .M_AXIMM_2_WREADY(M_AXIMM_2_WREADY),
+    .M_AXIMM_2_BRESP(M_AXIMM_2_BRESP),
+    .M_AXIMM_2_BVALID(M_AXIMM_2_BVALID),
+    .M_AXIMM_2_BREADY(M_AXIMM_2_BREADY),
+    .M_AXIMM_2_ARADDR(M_AXIMM_2_ARADDR),
+    .M_AXIMM_2_ARLEN(M_AXIMM_2_ARLEN),
+    .M_AXIMM_2_ARSIZE(M_AXIMM_2_ARSIZE),
+    .M_AXIMM_2_ARBURST(M_AXIMM_2_ARBURST),
+    .M_AXIMM_2_ARLOCK(M_AXIMM_2_ARLOCK),
+    .M_AXIMM_2_ARCACHE(M_AXIMM_2_ARCACHE),
+    .M_AXIMM_2_ARPROT(M_AXIMM_2_ARPROT),
+    .M_AXIMM_2_ARREGION(M_AXIMM_2_ARREGION),
+    .M_AXIMM_2_ARQOS(M_AXIMM_2_ARQOS),
+    .M_AXIMM_2_ARVALID(M_AXIMM_2_ARVALID),
+    .M_AXIMM_2_ARREADY(M_AXIMM_2_ARREADY),
+    .M_AXIMM_2_RDATA(M_AXIMM_2_RDATA),
+    .M_AXIMM_2_RRESP(M_AXIMM_2_RRESP),
+    .M_AXIMM_2_RLAST(M_AXIMM_2_RLAST),
+    .M_AXIMM_2_RVALID(M_AXIMM_2_RVALID),
+    .M_AXIMM_2_RREADY(M_AXIMM_2_RREADY),
+    .AP_AXIMM_3_AWADDR(AP_AXIMM_3_AWADDR),
+    .AP_AXIMM_3_AWLEN(AP_AXIMM_3_AWLEN),
+    .AP_AXIMM_3_AWSIZE(AP_AXIMM_3_AWSIZE),
+    .AP_AXIMM_3_AWBURST(AP_AXIMM_3_AWBURST),
+    .AP_AXIMM_3_AWLOCK(AP_AXIMM_3_AWLOCK),
+    .AP_AXIMM_3_AWCACHE(AP_AXIMM_3_AWCACHE),
+    .AP_AXIMM_3_AWPROT(AP_AXIMM_3_AWPROT),
+    .AP_AXIMM_3_AWREGION(AP_AXIMM_3_AWREGION),
+    .AP_AXIMM_3_AWQOS(AP_AXIMM_3_AWQOS),
+    .AP_AXIMM_3_AWVALID(AP_AXIMM_3_AWVALID),
+    .AP_AXIMM_3_AWREADY(AP_AXIMM_3_AWREADY),
+    .AP_AXIMM_3_WDATA(AP_AXIMM_3_WDATA),
+    .AP_AXIMM_3_WSTRB(AP_AXIMM_3_WSTRB),
+    .AP_AXIMM_3_WLAST(AP_AXIMM_3_WLAST),
+    .AP_AXIMM_3_WVALID(AP_AXIMM_3_WVALID),
+    .AP_AXIMM_3_WREADY(AP_AXIMM_3_WREADY),
+    .AP_AXIMM_3_BRESP(AP_AXIMM_3_BRESP),
+    .AP_AXIMM_3_BVALID(AP_AXIMM_3_BVALID),
+    .AP_AXIMM_3_BREADY(AP_AXIMM_3_BREADY),
+    .AP_AXIMM_3_ARADDR(AP_AXIMM_3_ARADDR),
+    .AP_AXIMM_3_ARLEN(AP_AXIMM_3_ARLEN),
+    .AP_AXIMM_3_ARSIZE(AP_AXIMM_3_ARSIZE),
+    .AP_AXIMM_3_ARBURST(AP_AXIMM_3_ARBURST),
+    .AP_AXIMM_3_ARLOCK(AP_AXIMM_3_ARLOCK),
+    .AP_AXIMM_3_ARCACHE(AP_AXIMM_3_ARCACHE),
+    .AP_AXIMM_3_ARPROT(AP_AXIMM_3_ARPROT),
+    .AP_AXIMM_3_ARREGION(AP_AXIMM_3_ARREGION),
+    .AP_AXIMM_3_ARQOS(AP_AXIMM_3_ARQOS),
+    .AP_AXIMM_3_ARVALID(AP_AXIMM_3_ARVALID),
+    .AP_AXIMM_3_ARREADY(AP_AXIMM_3_ARREADY),
+    .AP_AXIMM_3_RDATA(AP_AXIMM_3_RDATA),
+    .AP_AXIMM_3_RRESP(AP_AXIMM_3_RRESP),
+    .AP_AXIMM_3_RLAST(AP_AXIMM_3_RLAST),
+    .AP_AXIMM_3_RVALID(AP_AXIMM_3_RVALID),
+    .AP_AXIMM_3_RREADY(AP_AXIMM_3_RREADY),
+    .M_AXIMM_3_AWADDR(M_AXIMM_3_AWADDR),
+    .M_AXIMM_3_AWLEN(M_AXIMM_3_AWLEN),
+    .M_AXIMM_3_AWSIZE(M_AXIMM_3_AWSIZE),
+    .M_AXIMM_3_AWBURST(M_AXIMM_3_AWBURST),
+    .M_AXIMM_3_AWLOCK(M_AXIMM_3_AWLOCK),
+    .M_AXIMM_3_AWCACHE(M_AXIMM_3_AWCACHE),
+    .M_AXIMM_3_AWPROT(M_AXIMM_3_AWPROT),
+    .M_AXIMM_3_AWREGION(M_AXIMM_3_AWREGION),
+    .M_AXIMM_3_AWQOS(M_AXIMM_3_AWQOS),
+    .M_AXIMM_3_AWVALID(M_AXIMM_3_AWVALID),
+    .M_AXIMM_3_AWREADY(M_AXIMM_3_AWREADY),
+    .M_AXIMM_3_WDATA(M_AXIMM_3_WDATA),
+    .M_AXIMM_3_WSTRB(M_AXIMM_3_WSTRB),
+    .M_AXIMM_3_WLAST(M_AXIMM_3_WLAST),
+    .M_AXIMM_3_WVALID(M_AXIMM_3_WVALID),
+    .M_AXIMM_3_WREADY(M_AXIMM_3_WREADY),
+    .M_AXIMM_3_BRESP(M_AXIMM_3_BRESP),
+    .M_AXIMM_3_BVALID(M_AXIMM_3_BVALID),
+    .M_AXIMM_3_BREADY(M_AXIMM_3_BREADY),
+    .M_AXIMM_3_ARADDR(M_AXIMM_3_ARADDR),
+    .M_AXIMM_3_ARLEN(M_AXIMM_3_ARLEN),
+    .M_AXIMM_3_ARSIZE(M_AXIMM_3_ARSIZE),
+    .M_AXIMM_3_ARBURST(M_AXIMM_3_ARBURST),
+    .M_AXIMM_3_ARLOCK(M_AXIMM_3_ARLOCK),
+    .M_AXIMM_3_ARCACHE(M_AXIMM_3_ARCACHE),
+    .M_AXIMM_3_ARPROT(M_AXIMM_3_ARPROT),
+    .M_AXIMM_3_ARREGION(M_AXIMM_3_ARREGION),
+    .M_AXIMM_3_ARQOS(M_AXIMM_3_ARQOS),
+    .M_AXIMM_3_ARVALID(M_AXIMM_3_ARVALID),
+    .M_AXIMM_3_ARREADY(M_AXIMM_3_ARREADY),
+    .M_AXIMM_3_RDATA(M_AXIMM_3_RDATA),
+    .M_AXIMM_3_RRESP(M_AXIMM_3_RRESP),
+    .M_AXIMM_3_RLAST(M_AXIMM_3_RLAST),
+    .M_AXIMM_3_RVALID(M_AXIMM_3_RVALID),
+    .M_AXIMM_3_RREADY(M_AXIMM_3_RREADY),
     .AP_AXIMM_4_AWADDR(32'B0),
     .AP_AXIMM_4_AWLEN(8'B0),
     .AP_AXIMM_4_AWSIZE(3'B0),

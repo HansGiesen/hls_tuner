@@ -3,7 +3,7 @@
 ================================================================
 == Vivado HLS Report for 'aes_expandEncKey'
 ================================================================
-* Date:           Tue Oct 30 16:30:10 2018
+* Date:           Wed Oct 31 14:44:16 2018
 
 * Version:        2017.1 (Build 1846317 on Thu Jun 22 18:17:09 MDT 2017)
 * Project:        encrypt
@@ -20,24 +20,30 @@
     +--------+-------+----------+------------+
     |  Clock | Target| Estimated| Uncertainty|
     +--------+-------+----------+------------+
-    |ap_clk  |   6.00|      4.38|        1.62|
+    |ap_clk  |   7.00|      5.11|        1.89|
     +--------+-------+----------+------------+
 
 + Latency (clock cycles): 
     * Summary: 
-    +-----+-----+-----+-----+----------+
-    |  Latency  |  Interval | Pipeline |
-    | min | max | min | max |   Type   |
-    +-----+-----+-----+-----+----------+
-    |   23|   23|   24|   24| function |
-    +-----+-----+-----+-----+----------+
+    +-----+-----+-----+-----+---------+
+    |  Latency  |  Interval | Pipeline|
+    | min | max | min | max |   Type  |
+    +-----+-----+-----+-----+---------+
+    |  520|  520|  520|  520|   none  |
+    +-----+-----+-----+-----+---------+
 
     + Detail: 
         * Instance: 
         N/A
 
         * Loop: 
-        N/A
+        +----------+-----+-----+----------+-----------+-----------+------+----------+
+        |          |  Latency  | Iteration|  Initiation Interval  | Trip |          |
+        | Loop Name| min | max |  Latency |  achieved |   target  | Count| Pipelined|
+        +----------+-----+-----+----------+-----------+-----------+------+----------+
+        |- exp1    |  195|  195|        65|          -|          -|     3|    no    |
+        |- exp2    |  195|  195|        65|          -|          -|     3|    no    |
+        +----------+-----+-----+----------+-----------+-----------+------+----------+
 
 
 
@@ -49,18 +55,18 @@
 |       Name      | BRAM_18K| DSP48E|   FF   |  LUT  |
 +-----------------+---------+-------+--------+-------+
 |DSP              |        -|      -|       -|      -|
-|Expression       |        -|      -|       0|    515|
+|Expression       |        -|      -|       0|   1695|
 |FIFO             |        -|      -|       -|      -|
 |Instance         |        -|      -|       -|      -|
 |Memory           |        1|      -|       0|      0|
-|Multiplexer      |        -|      -|       -|    233|
-|Register         |        -|      -|    1596|      -|
+|Multiplexer      |        -|      -|       -|   1638|
+|Register         |        -|      -|    1709|      -|
 +-----------------+---------+-------+--------+-------+
-|Total            |        1|      0|    1596|    748|
+|Total            |        1|      0|    1709|   3333|
 +-----------------+---------+-------+--------+-------+
 |Available        |      280|    220|  106400|  53200|
 +-----------------+---------+-------+--------+-------+
-|Utilization (%)  |    ~0   |      0|       1|      1|
+|Utilization (%)  |    ~0   |      0|       1|      6|
 +-----------------+---------+-------+--------+-------+
 
 + Detail: 
@@ -71,13 +77,13 @@
     N/A
 
     * Memory: 
-    +--------+-------------------+---------+---+----+------+-----+------+-------------+
-    | Memory |       Module      | BRAM_18K| FF| LUT| Words| Bits| Banks| W*Bits*Banks|
-    +--------+-------------------+---------+---+----+------+-----+------+-------------+
-    |sbox_U  |aes_subBytes_sbox  |        1|  0|   0|   256|    8|     1|         2048|
-    +--------+-------------------+---------+---+----+------+-----+------+-------------+
-    |Total   |                   |        1|  0|   0|   256|    8|     1|         2048|
-    +--------+-------------------+---------+---+----+------+-----+------+-------------+
+    +--------+----------------------+---------+---+----+------+-----+------+-------------+
+    | Memory |        Module        | BRAM_18K| FF| LUT| Words| Bits| Banks| W*Bits*Banks|
+    +--------+----------------------+---------+---+----+------+-----+------+-------------+
+    |sbox_U  |aes_expandEncKey_bkb  |        1|  0|   0|   256|    8|     1|         2048|
+    +--------+----------------------+---------+---+----+------+-----+------+-------------+
+    |Total   |                      |        1|  0|   0|   256|    8|     1|         2048|
+    +--------+----------------------+---------+---+----+------+-----+------+-------------+
 
     * FIFO: 
     N/A
@@ -86,141 +92,197 @@
     +----------------------------+----------+-------+---+----+------------+------------+
     |        Variable Name       | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
     +----------------------------+----------+-------+---+----+------------+------------+
-    |tmp_31_cast_cast_fu_636_p3  |  select  |      0|  0|   5|           1|           5|
-    |tmp1_fu_606_p2              |    xor   |      0|  0|  15|           8|           8|
-    |tmp_22_fu_612_p2            |    xor   |      0|  0|  15|           8|           8|
-    |tmp_24_fu_650_p2            |    xor   |      0|  0|  15|           8|           8|
-    |tmp_26_fu_659_p2            |    xor   |      0|  0|  15|           8|           8|
-    |tmp_28_fu_677_p2            |    xor   |      0|  0|  15|           8|           8|
-    |tmp_32_fu_644_p2            |    xor   |      0|  0|  15|           8|           8|
-    |tmp_36_1_fu_672_p2          |    xor   |      0|  0|  15|           8|           8|
-    |tmp_36_2_fu_691_p2          |    xor   |      0|  0|  15|           8|           8|
-    |tmp_36_fu_668_p2            |    xor   |      0|  0|  15|           8|           8|
-    |tmp_39_1_fu_686_p2          |    xor   |      0|  0|  15|           8|           8|
-    |tmp_39_2_fu_709_p2          |    xor   |      0|  0|  15|           8|           8|
-    |tmp_39_fu_682_p2            |    xor   |      0|  0|  15|           8|           8|
-    |tmp_42_1_fu_704_p2          |    xor   |      0|  0|  15|           8|           8|
-    |tmp_42_2_fu_732_p2          |    xor   |      0|  0|  15|           8|           8|
-    |tmp_42_fu_700_p2            |    xor   |      0|  0|  15|           8|           8|
-    |tmp_45_1_fu_727_p2          |    xor   |      0|  0|  15|           8|           8|
-    |tmp_45_2_fu_746_p2          |    xor   |      0|  0|  15|           8|           8|
-    |tmp_45_fu_723_p2            |    xor   |      0|  0|  15|           8|           8|
-    |tmp_47_fu_713_p2            |    xor   |      0|  0|  15|           8|           8|
-    |tmp_49_fu_736_p2            |    xor   |      0|  0|  15|           8|           8|
-    |tmp_51_fu_750_p2            |    xor   |      0|  0|  15|           8|           8|
-    |tmp_53_fu_760_p2            |    xor   |      0|  0|  15|           8|           8|
-    |tmp_57_1_fu_781_p2          |    xor   |      0|  0|  15|           8|           8|
-    |tmp_57_2_fu_801_p2          |    xor   |      0|  0|  15|           8|           8|
-    |tmp_57_fu_765_p2            |    xor   |      0|  0|  15|           8|           8|
-    |tmp_60_1_fu_786_p2          |    xor   |      0|  0|  15|           8|           8|
-    |tmp_60_2_fu_806_p2          |    xor   |      0|  0|  15|           8|           8|
-    |tmp_60_fu_769_p2            |    xor   |      0|  0|  15|           8|           8|
-    |tmp_63_1_fu_791_p2          |    xor   |      0|  0|  15|           8|           8|
-    |tmp_63_2_fu_811_p2          |    xor   |      0|  0|  15|           8|           8|
-    |tmp_63_fu_773_p2            |    xor   |      0|  0|  15|           8|           8|
-    |tmp_66_1_fu_796_p2          |    xor   |      0|  0|  15|           8|           8|
-    |tmp_66_2_fu_816_p2          |    xor   |      0|  0|  15|           8|           8|
-    |tmp_66_fu_777_p2            |    xor   |      0|  0|  15|           8|           8|
+    |i_8_fu_989_p2               |     +    |      0|  0|  15|           3|           5|
+    |i_9_fu_1292_p2              |     +    |      0|  0|  15|           3|           6|
+    |sum10_fu_837_p2             |     +    |      0|  0|  39|           5|          32|
+    |sum11_fu_848_p2             |     +    |      0|  0|  39|           1|          32|
+    |sum12_fu_868_p2             |     +    |      0|  0|  39|           5|          32|
+    |sum13_fu_879_p2             |     +    |      0|  0|  39|           2|          32|
+    |sum14_fu_899_p2             |     +    |      0|  0|  39|           5|          32|
+    |sum15_fu_910_p2             |     +    |      0|  0|  39|           2|          32|
+    |sum16_fu_952_p2             |     +    |      0|  0|  39|          32|          32|
+    |sum17_fu_978_p2             |     +    |      0|  0|  39|          32|          32|
+    |sum18_fu_1008_p2            |     +    |      0|  0|  39|          32|          32|
+    |sum19_fu_1028_p2            |     +    |      0|  0|  39|          32|          32|
+    |sum1_fu_999_p2              |     +    |      0|  0|  13|           3|           4|
+    |sum20_fu_1052_p2            |     +    |      0|  0|  39|          32|          32|
+    |sum21_fu_1072_p2            |     +    |      0|  0|  39|          32|          32|
+    |sum22_fu_1096_p2            |     +    |      0|  0|  39|          32|          32|
+    |sum23_fu_1116_p2            |     +    |      0|  0|  39|          32|          32|
+    |sum24_fu_963_p2             |     +    |      0|  0|  39|          32|           4|
+    |sum25_fu_1131_p2            |     +    |      0|  0|  39|          32|           5|
+    |sum26_fu_1151_p2            |     +    |      0|  0|  39|          32|           4|
+    |sum27_fu_1162_p2            |     +    |      0|  0|  39|          32|           5|
+    |sum28_fu_1182_p2            |     +    |      0|  0|  39|          32|           4|
+    |sum29_fu_1193_p2            |     +    |      0|  0|  39|          32|           5|
+    |sum2_fu_1043_p2             |     +    |      0|  0|  13|           3|           4|
+    |sum30_fu_1213_p2            |     +    |      0|  0|  39|          32|           4|
+    |sum31_fu_1224_p2            |     +    |      0|  0|  39|          32|           5|
+    |sum32_fu_1266_p2            |     +    |      0|  0|  39|          32|          32|
+    |sum33_fu_1281_p2            |     +    |      0|  0|  39|          32|          32|
+    |sum34_fu_1311_p2            |     +    |      0|  0|  39|          32|          32|
+    |sum35_fu_1331_p2            |     +    |      0|  0|  39|          32|          32|
+    |sum36_fu_1355_p2            |     +    |      0|  0|  39|          32|          32|
+    |sum37_fu_1375_p2            |     +    |      0|  0|  39|          32|          32|
+    |sum38_fu_1395_p2            |     +    |      0|  0|  39|          32|          32|
+    |sum39_fu_1415_p2            |     +    |      0|  0|  39|          32|          32|
+    |sum3_fu_1087_p2             |     +    |      0|  0|  13|           2|           4|
+    |sum4_fu_1256_p2             |     +    |      0|  0|  15|           4|           5|
+    |sum5_fu_1302_p2             |     +    |      0|  0|  15|           3|           5|
+    |sum6_fu_1346_p2             |     +    |      0|  0|  15|           3|           5|
+    |sum7_fu_1386_p2             |     +    |      0|  0|  15|           2|           5|
+    |sum9_fu_776_p2              |     +    |      0|  0|  39|           5|          32|
+    |sum_fu_942_p2               |     +    |      0|  0|  13|           4|           4|
+    |tmp_14_fu_1019_p2           |    or    |      0|  0|  11|           4|           1|
+    |tmp_16_fu_1063_p2           |    or    |      0|  0|  11|           4|           2|
+    |tmp_18_fu_1107_p2           |    or    |      0|  0|  11|           4|           2|
+    |tmp_26_fu_1322_p2           |    or    |      0|  0|  12|           5|           1|
+    |tmp_29_fu_1366_p2           |    or    |      0|  0|  12|           5|           2|
+    |tmp_31_fu_1406_p2           |    or    |      0|  0|  12|           5|           2|
+    |tmp_22_cast_cast_fu_823_p3  |  select  |      0|  0|   5|           1|           5|
+    |tmp1_fu_798_p2              |    xor   |      0|  0|  15|           8|           8|
+    |tmp_12_fu_995_p2            |    xor   |      0|  0|  15|           8|           8|
+    |tmp_13_fu_1177_p2           |    xor   |      0|  0|  15|           8|           8|
+    |tmp_15_fu_1039_p2           |    xor   |      0|  0|  15|           8|           8|
+    |tmp_17_fu_1083_p2           |    xor   |      0|  0|  15|           8|           8|
+    |tmp_19_fu_1127_p2           |    xor   |      0|  0|  15|           8|           8|
+    |tmp_21_fu_1208_p2           |    xor   |      0|  0|  15|           8|           8|
+    |tmp_23_fu_1239_p2           |    xor   |      0|  0|  15|           8|           8|
+    |tmp_25_fu_1298_p2           |    xor   |      0|  0|  15|           8|           8|
+    |tmp_27_fu_1342_p2           |    xor   |      0|  0|  15|           8|           8|
+    |tmp_30_fu_1426_p2           |    xor   |      0|  0|  15|           8|           8|
+    |tmp_32_fu_1430_p2           |    xor   |      0|  0|  15|           8|           8|
+    |tmp_3_fu_894_p2             |    xor   |      0|  0|  15|           8|           8|
+    |tmp_5_fu_925_p2             |    xor   |      0|  0|  15|           8|           8|
+    |tmp_6_fu_1146_p2            |    xor   |      0|  0|  15|           8|           8|
+    |tmp_7_fu_831_p2             |    xor   |      0|  0|  15|           8|           8|
+    |tmp_9_fu_863_p2             |    xor   |      0|  0|  15|           8|           8|
+    |tmp_s_fu_803_p2             |    xor   |      0|  0|  15|           8|           8|
     +----------------------------+----------+-------+---+----+------------+------------+
-    |Total                       |          |      0|  0| 515|         273|         277|
+    |Total                       |          |      0|  0|1695|         995|         978|
     +----------------------------+----------+-------+---+----+------------+------------+
 
     * Multiplexer: 
-    +--------------------------------+-----+-----------+-----+-----------+
-    |              Name              | LUT | Input Size| Bits| Total Bits|
-    +--------------------------------+-----+-----------+-----+-----------+
-    |ap_NS_fsm                       |  117|         25|    1|         25|
-    |ap_sig_ioackin_m_axi_k_ARREADY  |    9|          2|    1|          2|
-    |ap_sig_ioackin_m_axi_k_AWREADY  |    9|          2|    1|          2|
-    |ap_sig_ioackin_m_axi_k_WREADY   |    9|          2|    1|          2|
-    |k_blk_n_AR                      |    9|          2|    1|          2|
-    |k_blk_n_AW                      |    9|          2|    1|          2|
-    |k_blk_n_B                       |    9|          2|    1|          2|
-    |k_blk_n_R                       |    9|          2|    1|          2|
-    |k_blk_n_W                       |    9|          2|    1|          2|
-    |sbox_address0                   |   44|          9|    8|         72|
-    +--------------------------------+-----+-----------+-----+-----------+
-    |Total                           |  233|         50|   17|        113|
-    +--------------------------------+-----+-----------+-----+-----------+
+    +--------------------------------+------+-----------+-----+-----------+
+    |              Name              |  LUT | Input Size| Bits| Total Bits|
+    +--------------------------------+------+-----------+-----+-----------+
+    |ap_NS_fsm                       |  1185|        260|    1|        260|
+    |ap_sig_ioackin_m_axi_k_ARREADY  |     9|          2|    1|          2|
+    |ap_sig_ioackin_m_axi_k_AWREADY  |     9|          2|    1|          2|
+    |ap_sig_ioackin_m_axi_k_WREADY   |     9|          2|    1|          2|
+    |i_1_reg_764                     |     9|          2|    6|         12|
+    |i_reg_752                       |     9|          2|    5|         10|
+    |k_blk_n_AR                      |     9|          2|    1|          2|
+    |k_blk_n_AW                      |     9|          2|    1|          2|
+    |k_blk_n_B                       |     9|          2|    1|          2|
+    |k_blk_n_R                       |     9|          2|    1|          2|
+    |k_blk_n_W                       |     9|          2|    1|          2|
+    |m_axi_k_ARADDR                  |   149|         33|   32|       1056|
+    |m_axi_k_AWADDR                  |    85|         17|   32|        544|
+    |m_axi_k_WDATA                   |    85|         17|    8|        136|
+    |sbox_address0                   |    44|          9|    8|         72|
+    +--------------------------------+------+-----------+-----+-----------+
+    |Total                           |  1638|        356|  100|       2106|
+    +--------------------------------+------+-----------+-----+-----------+
 
     * Register: 
-    +--------------------------------+------+----+------+-----------+
-    |              Name              |  FF  | LUT| Bits | Const Bits|
-    +--------------------------------+------+----+------+-----------+
-    |ap_CS_fsm                       |    24|   0|    24|          0|
-    |ap_port_reg_rc_read             |     8|   0|     8|          0|
-    |ap_reg_ioackin_m_axi_k_ARREADY  |     1|   0|     1|          0|
-    |ap_reg_ioackin_m_axi_k_AWREADY  |     1|   0|     1|          0|
-    |ap_reg_ioackin_m_axi_k_WREADY   |     1|   0|     1|          0|
-    |k_addr_read_reg_869             |  1024|   0|  1024|          0|
-    |k_addr_reg_862                  |    25|   0|    32|          7|
-    |tmp_147_reg_880                 |     8|   0|     8|          0|
-    |tmp_148_reg_886                 |     8|   0|     8|          0|
-    |tmp_149_reg_891                 |     8|   0|     8|          0|
-    |tmp_150_reg_897                 |     8|   0|     8|          0|
-    |tmp_151_reg_902                 |     8|   0|     8|          0|
-    |tmp_152_reg_908                 |     8|   0|     8|          0|
-    |tmp_153_reg_913                 |     8|   0|     8|          0|
-    |tmp_154_reg_918                 |     8|   0|     8|          0|
-    |tmp_155_reg_923                 |     8|   0|     8|          0|
-    |tmp_156_reg_928                 |     8|   0|     8|          0|
-    |tmp_157_reg_933                 |     8|   0|     8|          0|
-    |tmp_158_reg_938                 |     8|   0|     8|          0|
-    |tmp_159_reg_943                 |     8|   0|     8|          0|
-    |tmp_160_reg_948                 |     8|   0|     8|          0|
-    |tmp_161_reg_953                 |     8|   0|     8|          0|
-    |tmp_162_reg_958                 |     8|   0|     8|          0|
-    |tmp_163_reg_963                 |     8|   0|     8|          0|
-    |tmp_164_reg_968                 |     8|   0|     8|          0|
-    |tmp_165_reg_973                 |     8|   0|     8|          0|
-    |tmp_166_reg_978                 |     8|   0|     8|          0|
-    |tmp_167_reg_983                 |     8|   0|     8|          0|
-    |tmp_168_reg_988                 |     8|   0|     8|          0|
-    |tmp_169_reg_993                 |     8|   0|     8|          0|
-    |tmp_170_reg_998                 |     8|   0|     8|          0|
-    |tmp_171_reg_1003                |     8|   0|     8|          0|
-    |tmp_172_reg_1008                |     8|   0|     8|          0|
-    |tmp_173_reg_1013                |     8|   0|     8|          0|
-    |tmp_174_reg_1018                |     8|   0|     8|          0|
-    |tmp_175_reg_1023                |     8|   0|     8|          0|
-    |tmp_176_reg_1028                |     8|   0|     8|          0|
-    |tmp_22_reg_1038                 |     8|   0|     8|          0|
-    |tmp_24_reg_1053                 |     8|   0|     8|          0|
-    |tmp_26_reg_1064                 |     8|   0|     8|          0|
-    |tmp_28_reg_1086                 |     8|   0|     8|          0|
-    |tmp_32_reg_1049                 |     8|   0|     8|          0|
-    |tmp_36_1_reg_1080               |     8|   0|     8|          0|
-    |tmp_36_2_reg_1103               |     8|   0|     8|          0|
-    |tmp_36_reg_1075                 |     8|   0|     8|          0|
-    |tmp_39_1_reg_1097               |     8|   0|     8|          0|
-    |tmp_39_2_reg_1124               |     8|   0|     8|          0|
-    |tmp_39_reg_1092                 |     8|   0|     8|          0|
-    |tmp_42_1_reg_1118               |     8|   0|     8|          0|
-    |tmp_42_2_reg_1151               |     8|   0|     8|          0|
-    |tmp_42_reg_1113                 |     8|   0|     8|          0|
-    |tmp_45_1_reg_1145               |     8|   0|     8|          0|
-    |tmp_45_2_reg_1167               |     8|   0|     8|          0|
-    |tmp_45_reg_1140                 |     8|   0|     8|          0|
-    |tmp_47_reg_1129                 |     8|   0|     8|          0|
-    |tmp_49_reg_1156                 |     8|   0|     8|          0|
-    |tmp_51_reg_1172                 |     8|   0|     8|          0|
-    |tmp_53_reg_1183                 |     8|   0|     8|          0|
-    |tmp_57_1_reg_1209               |     8|   0|     8|          0|
-    |tmp_57_2_reg_1229               |     8|   0|     8|          0|
-    |tmp_57_reg_1189                 |     8|   0|     8|          0|
-    |tmp_60_1_reg_1214               |     8|   0|     8|          0|
-    |tmp_60_2_reg_1234               |     8|   0|     8|          0|
-    |tmp_60_reg_1194                 |     8|   0|     8|          0|
-    |tmp_63_1_reg_1219               |     8|   0|     8|          0|
-    |tmp_63_2_reg_1239               |     8|   0|     8|          0|
-    |tmp_63_reg_1199                 |     8|   0|     8|          0|
-    |tmp_66_1_reg_1224               |     8|   0|     8|          0|
-    |tmp_66_2_reg_1244               |     8|   0|     8|          0|
-    |tmp_66_reg_1204                 |     8|   0|     8|          0|
-    |tmp_s_reg_874                   |     8|   0|     8|          0|
-    +--------------------------------+------+----+------+-----------+
-    |Total                           |  1596|   0|  1603|          7|
-    +--------------------------------+------+----+------+-----------+
+    +--------------------------------+-----+----+-----+-----------+
+    |              Name              |  FF | LUT| Bits| Const Bits|
+    +--------------------------------+-----+----+-----+-----------+
+    |ap_CS_fsm                       |  259|   0|  259|          0|
+    |ap_reg_ioackin_m_axi_k_ARREADY  |    1|   0|    1|          0|
+    |ap_reg_ioackin_m_axi_k_AWREADY  |    1|   0|    1|          0|
+    |ap_reg_ioackin_m_axi_k_WREADY   |    1|   0|    1|          0|
+    |i_1_reg_764                     |    6|   0|    6|          0|
+    |i_8_reg_1637                    |    5|   0|    5|          0|
+    |i_9_reg_1893                    |    6|   0|    6|          0|
+    |i_reg_752                       |    5|   0|    5|          0|
+    |k_addr_10_read_reg_1670         |    8|   0|    8|          0|
+    |k_addr_10_reg_1657              |   32|   0|   32|          0|
+    |k_addr_11_read_reg_1675         |    8|   0|    8|          0|
+    |k_addr_11_reg_1663              |   32|   0|   32|          0|
+    |k_addr_12_read_reg_1698         |    8|   0|    8|          0|
+    |k_addr_12_reg_1685              |   32|   0|   32|          0|
+    |k_addr_13_read_reg_1703         |    8|   0|    8|          0|
+    |k_addr_13_reg_1691              |   32|   0|   32|          0|
+    |k_addr_14_read_reg_1726         |    8|   0|    8|          0|
+    |k_addr_14_reg_1713              |   32|   0|   32|          0|
+    |k_addr_15_read_reg_1731         |    8|   0|    8|          0|
+    |k_addr_15_reg_1719              |   32|   0|   32|          0|
+    |k_addr_16_read_reg_1748         |    8|   0|    8|          0|
+    |k_addr_16_reg_1624              |   32|   0|   32|          0|
+    |k_addr_17_read_reg_1758         |    8|   0|    8|          0|
+    |k_addr_17_reg_1741              |   32|   0|   32|          0|
+    |k_addr_18_read_reg_1781         |    8|   0|    8|          0|
+    |k_addr_18_reg_1768              |   32|   0|   32|          0|
+    |k_addr_19_read_reg_1791         |    8|   0|    8|          0|
+    |k_addr_19_reg_1774              |   32|   0|   32|          0|
+    |k_addr_1_read_reg_1482          |    8|   0|    8|          0|
+    |k_addr_1_reg_1469               |   32|   0|   32|          0|
+    |k_addr_20_read_reg_1814         |    8|   0|    8|          0|
+    |k_addr_20_reg_1801              |   32|   0|   32|          0|
+    |k_addr_21_read_reg_1824         |    8|   0|    8|          0|
+    |k_addr_21_reg_1807              |   32|   0|   32|          0|
+    |k_addr_22_read_reg_1847         |    8|   0|    8|          0|
+    |k_addr_22_reg_1834              |   32|   0|   32|          0|
+    |k_addr_23_read_reg_1857         |    8|   0|    8|          0|
+    |k_addr_23_reg_1840              |   32|   0|   32|          0|
+    |k_addr_24_read_reg_1898         |    8|   0|    8|          0|
+    |k_addr_24_reg_1880              |   32|   0|   32|          0|
+    |k_addr_25_read_reg_1903         |    8|   0|    8|          0|
+    |k_addr_25_reg_1886              |   32|   0|   32|          0|
+    |k_addr_26_read_reg_1926         |    8|   0|    8|          0|
+    |k_addr_26_reg_1913              |   32|   0|   32|          0|
+    |k_addr_27_read_reg_1931         |    8|   0|    8|          0|
+    |k_addr_27_reg_1919              |   32|   0|   32|          0|
+    |k_addr_28_read_reg_1967         |    8|   0|    8|          0|
+    |k_addr_28_reg_1941              |   32|   0|   32|          0|
+    |k_addr_29_read_reg_1972         |    8|   0|    8|          0|
+    |k_addr_29_reg_1947              |   32|   0|   32|          0|
+    |k_addr_2_read_reg_1519          |    8|   0|    8|          0|
+    |k_addr_2_reg_1506               |   32|   0|   32|          0|
+    |k_addr_30_read_reg_1982         |    8|   0|    8|          0|
+    |k_addr_30_reg_1954              |   32|   0|   32|          0|
+    |k_addr_31_read_reg_1987         |    8|   0|    8|          0|
+    |k_addr_31_reg_1960              |   32|   0|   32|          0|
+    |k_addr_3_read_reg_1529          |    8|   0|    8|          0|
+    |k_addr_3_reg_1512               |   32|   0|   32|          0|
+    |k_addr_4_read_reg_1552          |    8|   0|    8|          0|
+    |k_addr_4_reg_1539               |   32|   0|   32|          0|
+    |k_addr_5_read_reg_1562          |    8|   0|    8|          0|
+    |k_addr_5_reg_1545               |   32|   0|   32|          0|
+    |k_addr_6_read_reg_1585          |    8|   0|    8|          0|
+    |k_addr_6_reg_1572               |   32|   0|   32|          0|
+    |k_addr_7_read_reg_1595          |    8|   0|    8|          0|
+    |k_addr_7_reg_1578               |   32|   0|   32|          0|
+    |k_addr_8_read_reg_1642          |    8|   0|    8|          0|
+    |k_addr_8_reg_1618               |   32|   0|   32|          0|
+    |k_addr_9_read_reg_1647          |    8|   0|    8|          0|
+    |k_addr_9_reg_1630               |   32|   0|   32|          0|
+    |k_addr_read_reg_1492            |    8|   0|    8|          0|
+    |k_addr_reg_1475                 |   32|   0|   32|          0|
+    |tmp_12_reg_1652                 |    8|   0|    8|          0|
+    |tmp_13_reg_1796                 |    8|   0|    8|          0|
+    |tmp_15_reg_1680                 |    8|   0|    8|          0|
+    |tmp_17_reg_1708                 |    8|   0|    8|          0|
+    |tmp_19_reg_1736                 |    8|   0|    8|          0|
+    |tmp_21_reg_1829                 |    8|   0|    8|          0|
+    |tmp_23_reg_1862                 |    8|   0|    8|          0|
+    |tmp_25_reg_1908                 |    8|   0|    8|          0|
+    |tmp_27_reg_1936                 |    8|   0|    8|          0|
+    |tmp_30_reg_1977                 |    8|   0|    8|          0|
+    |tmp_32_reg_1992                 |    8|   0|    8|          0|
+    |tmp_39_reg_1608                 |    4|   0|    4|          0|
+    |tmp_3_reg_1567                  |    8|   0|    8|          0|
+    |tmp_41_reg_1870                 |    5|   0|    5|          0|
+    |tmp_5_reg_1600                  |    8|   0|    8|          0|
+    |tmp_6_reg_1763                  |    8|   0|    8|          0|
+    |tmp_7_reg_1502                  |    8|   0|    8|          0|
+    |tmp_9_reg_1534                  |    8|   0|    8|          0|
+    |tmp_s_reg_1497                  |    8|   0|    8|          0|
+    +--------------------------------+-----+----+-----+-----------+
+    |Total                           | 1709|   0| 1709|          0|
+    +--------------------------------+-----+----+-----+-----------+
 
 
 
@@ -228,68 +290,62 @@
 == Interface
 ================================================================
 * Summary: 
-+------------------+-----+------+------------+------------------+--------------+
-|     RTL Ports    | Dir | Bits |  Protocol  |   Source Object  |    C Type    |
-+------------------+-----+------+------------+------------------+--------------+
-|ap_clk            |  in |     1| ap_ctrl_hs | aes_expandEncKey | return value |
-|ap_rst            |  in |     1| ap_ctrl_hs | aes_expandEncKey | return value |
-|ap_start          |  in |     1| ap_ctrl_hs | aes_expandEncKey | return value |
-|ap_done           | out |     1| ap_ctrl_hs | aes_expandEncKey | return value |
-|ap_idle           | out |     1| ap_ctrl_hs | aes_expandEncKey | return value |
-|ap_ready          | out |     1| ap_ctrl_hs | aes_expandEncKey | return value |
-|ap_return         | out |     8| ap_ctrl_hs | aes_expandEncKey | return value |
-|k_blk_n_AR        | out |     1| ap_ctrl_hs | aes_expandEncKey | return value |
-|k_blk_n_R         | out |     1| ap_ctrl_hs | aes_expandEncKey | return value |
-|k_blk_n_AW        | out |     1| ap_ctrl_hs | aes_expandEncKey | return value |
-|k_blk_n_W         | out |     1| ap_ctrl_hs | aes_expandEncKey | return value |
-|k_blk_n_B         | out |     1| ap_ctrl_hs | aes_expandEncKey | return value |
-|ap_ce             |  in |     1| ap_ctrl_hs | aes_expandEncKey | return value |
-|m_axi_k_AWVALID   | out |     1|    m_axi   |         k        |    pointer   |
-|m_axi_k_AWREADY   |  in |     1|    m_axi   |         k        |    pointer   |
-|m_axi_k_AWADDR    | out |    32|    m_axi   |         k        |    pointer   |
-|m_axi_k_AWID      | out |     1|    m_axi   |         k        |    pointer   |
-|m_axi_k_AWLEN     | out |    32|    m_axi   |         k        |    pointer   |
-|m_axi_k_AWSIZE    | out |     3|    m_axi   |         k        |    pointer   |
-|m_axi_k_AWBURST   | out |     2|    m_axi   |         k        |    pointer   |
-|m_axi_k_AWLOCK    | out |     2|    m_axi   |         k        |    pointer   |
-|m_axi_k_AWCACHE   | out |     4|    m_axi   |         k        |    pointer   |
-|m_axi_k_AWPROT    | out |     3|    m_axi   |         k        |    pointer   |
-|m_axi_k_AWQOS     | out |     4|    m_axi   |         k        |    pointer   |
-|m_axi_k_AWREGION  | out |     4|    m_axi   |         k        |    pointer   |
-|m_axi_k_AWUSER    | out |     1|    m_axi   |         k        |    pointer   |
-|m_axi_k_WVALID    | out |     1|    m_axi   |         k        |    pointer   |
-|m_axi_k_WREADY    |  in |     1|    m_axi   |         k        |    pointer   |
-|m_axi_k_WDATA     | out |  1024|    m_axi   |         k        |    pointer   |
-|m_axi_k_WSTRB     | out |   128|    m_axi   |         k        |    pointer   |
-|m_axi_k_WLAST     | out |     1|    m_axi   |         k        |    pointer   |
-|m_axi_k_WID       | out |     1|    m_axi   |         k        |    pointer   |
-|m_axi_k_WUSER     | out |     1|    m_axi   |         k        |    pointer   |
-|m_axi_k_ARVALID   | out |     1|    m_axi   |         k        |    pointer   |
-|m_axi_k_ARREADY   |  in |     1|    m_axi   |         k        |    pointer   |
-|m_axi_k_ARADDR    | out |    32|    m_axi   |         k        |    pointer   |
-|m_axi_k_ARID      | out |     1|    m_axi   |         k        |    pointer   |
-|m_axi_k_ARLEN     | out |    32|    m_axi   |         k        |    pointer   |
-|m_axi_k_ARSIZE    | out |     3|    m_axi   |         k        |    pointer   |
-|m_axi_k_ARBURST   | out |     2|    m_axi   |         k        |    pointer   |
-|m_axi_k_ARLOCK    | out |     2|    m_axi   |         k        |    pointer   |
-|m_axi_k_ARCACHE   | out |     4|    m_axi   |         k        |    pointer   |
-|m_axi_k_ARPROT    | out |     3|    m_axi   |         k        |    pointer   |
-|m_axi_k_ARQOS     | out |     4|    m_axi   |         k        |    pointer   |
-|m_axi_k_ARREGION  | out |     4|    m_axi   |         k        |    pointer   |
-|m_axi_k_ARUSER    | out |     1|    m_axi   |         k        |    pointer   |
-|m_axi_k_RVALID    |  in |     1|    m_axi   |         k        |    pointer   |
-|m_axi_k_RREADY    | out |     1|    m_axi   |         k        |    pointer   |
-|m_axi_k_RDATA     |  in |  1024|    m_axi   |         k        |    pointer   |
-|m_axi_k_RLAST     |  in |     1|    m_axi   |         k        |    pointer   |
-|m_axi_k_RID       |  in |     1|    m_axi   |         k        |    pointer   |
-|m_axi_k_RUSER     |  in |     1|    m_axi   |         k        |    pointer   |
-|m_axi_k_RRESP     |  in |     2|    m_axi   |         k        |    pointer   |
-|m_axi_k_BVALID    |  in |     1|    m_axi   |         k        |    pointer   |
-|m_axi_k_BREADY    | out |     1|    m_axi   |         k        |    pointer   |
-|m_axi_k_BRESP     |  in |     2|    m_axi   |         k        |    pointer   |
-|m_axi_k_BID       |  in |     1|    m_axi   |         k        |    pointer   |
-|m_axi_k_BUSER     |  in |     1|    m_axi   |         k        |    pointer   |
-|k_offset          |  in |    25|   ap_none  |     k_offset     |    scalar    |
-|rc_read           |  in |     8|   ap_none  |      rc_read     |    scalar    |
-+------------------+-----+------+------------+------------------+--------------+
++------------------+-----+-----+------------+------------------+--------------+
+|     RTL Ports    | Dir | Bits|  Protocol  |   Source Object  |    C Type    |
++------------------+-----+-----+------------+------------------+--------------+
+|ap_clk            |  in |    1| ap_ctrl_hs | aes_expandEncKey | return value |
+|ap_rst            |  in |    1| ap_ctrl_hs | aes_expandEncKey | return value |
+|ap_start          |  in |    1| ap_ctrl_hs | aes_expandEncKey | return value |
+|ap_done           | out |    1| ap_ctrl_hs | aes_expandEncKey | return value |
+|ap_idle           | out |    1| ap_ctrl_hs | aes_expandEncKey | return value |
+|ap_ready          | out |    1| ap_ctrl_hs | aes_expandEncKey | return value |
+|ap_return         | out |    8| ap_ctrl_hs | aes_expandEncKey | return value |
+|m_axi_k_AWVALID   | out |    1|    m_axi   |         k        |    pointer   |
+|m_axi_k_AWREADY   |  in |    1|    m_axi   |         k        |    pointer   |
+|m_axi_k_AWADDR    | out |   32|    m_axi   |         k        |    pointer   |
+|m_axi_k_AWID      | out |    1|    m_axi   |         k        |    pointer   |
+|m_axi_k_AWLEN     | out |   32|    m_axi   |         k        |    pointer   |
+|m_axi_k_AWSIZE    | out |    3|    m_axi   |         k        |    pointer   |
+|m_axi_k_AWBURST   | out |    2|    m_axi   |         k        |    pointer   |
+|m_axi_k_AWLOCK    | out |    2|    m_axi   |         k        |    pointer   |
+|m_axi_k_AWCACHE   | out |    4|    m_axi   |         k        |    pointer   |
+|m_axi_k_AWPROT    | out |    3|    m_axi   |         k        |    pointer   |
+|m_axi_k_AWQOS     | out |    4|    m_axi   |         k        |    pointer   |
+|m_axi_k_AWREGION  | out |    4|    m_axi   |         k        |    pointer   |
+|m_axi_k_AWUSER    | out |    1|    m_axi   |         k        |    pointer   |
+|m_axi_k_WVALID    | out |    1|    m_axi   |         k        |    pointer   |
+|m_axi_k_WREADY    |  in |    1|    m_axi   |         k        |    pointer   |
+|m_axi_k_WDATA     | out |    8|    m_axi   |         k        |    pointer   |
+|m_axi_k_WSTRB     | out |    1|    m_axi   |         k        |    pointer   |
+|m_axi_k_WLAST     | out |    1|    m_axi   |         k        |    pointer   |
+|m_axi_k_WID       | out |    1|    m_axi   |         k        |    pointer   |
+|m_axi_k_WUSER     | out |    1|    m_axi   |         k        |    pointer   |
+|m_axi_k_ARVALID   | out |    1|    m_axi   |         k        |    pointer   |
+|m_axi_k_ARREADY   |  in |    1|    m_axi   |         k        |    pointer   |
+|m_axi_k_ARADDR    | out |   32|    m_axi   |         k        |    pointer   |
+|m_axi_k_ARID      | out |    1|    m_axi   |         k        |    pointer   |
+|m_axi_k_ARLEN     | out |   32|    m_axi   |         k        |    pointer   |
+|m_axi_k_ARSIZE    | out |    3|    m_axi   |         k        |    pointer   |
+|m_axi_k_ARBURST   | out |    2|    m_axi   |         k        |    pointer   |
+|m_axi_k_ARLOCK    | out |    2|    m_axi   |         k        |    pointer   |
+|m_axi_k_ARCACHE   | out |    4|    m_axi   |         k        |    pointer   |
+|m_axi_k_ARPROT    | out |    3|    m_axi   |         k        |    pointer   |
+|m_axi_k_ARQOS     | out |    4|    m_axi   |         k        |    pointer   |
+|m_axi_k_ARREGION  | out |    4|    m_axi   |         k        |    pointer   |
+|m_axi_k_ARUSER    | out |    1|    m_axi   |         k        |    pointer   |
+|m_axi_k_RVALID    |  in |    1|    m_axi   |         k        |    pointer   |
+|m_axi_k_RREADY    | out |    1|    m_axi   |         k        |    pointer   |
+|m_axi_k_RDATA     |  in |    8|    m_axi   |         k        |    pointer   |
+|m_axi_k_RLAST     |  in |    1|    m_axi   |         k        |    pointer   |
+|m_axi_k_RID       |  in |    1|    m_axi   |         k        |    pointer   |
+|m_axi_k_RUSER     |  in |    1|    m_axi   |         k        |    pointer   |
+|m_axi_k_RRESP     |  in |    2|    m_axi   |         k        |    pointer   |
+|m_axi_k_BVALID    |  in |    1|    m_axi   |         k        |    pointer   |
+|m_axi_k_BREADY    | out |    1|    m_axi   |         k        |    pointer   |
+|m_axi_k_BRESP     |  in |    2|    m_axi   |         k        |    pointer   |
+|m_axi_k_BID       |  in |    1|    m_axi   |         k        |    pointer   |
+|m_axi_k_BUSER     |  in |    1|    m_axi   |         k        |    pointer   |
+|k_offset          |  in |   32|   ap_none  |     k_offset     |    scalar    |
+|rc_read           |  in |    8|   ap_none  |      rc_read     |    scalar    |
++------------------+-----+-----+------------+------------------+--------------+
 

@@ -4,7 +4,13 @@
 #pragma line 1 "<built-in>" 3
 #pragma line 146 "<built-in>" 3
 #pragma line 1 "<command line>" 1
-#pragma line 32 "<command line>"
+#pragma empty_line
+#pragma empty_line
+#pragma empty_line
+#pragma empty_line
+#pragma empty_line
+#pragma empty_line
+#pragma empty_line
 #pragma line 1 "/mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado_HLS/common/technology/autopilot/etc/autopilot_ssdm_op.h" 1
 /* autopilot_ssdm_op.h*/
 /*
@@ -187,7 +193,7 @@
 #define _ssdm_op_Delayed(X) X */
 #pragma line 427 "/mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado_HLS/common/technology/autopilot/etc/autopilot_ssdm_op.h"
 // 67d7842dbbe25473c3c32b93c0da8047785f30d78e8a024de1b57352245f9689
-#pragma line 33 "<command line>" 2
+#pragma line 9 "<command line>" 2
 #pragma line 1 "<built-in>" 2
 #pragma line 1 "/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c" 2
 /*
@@ -4230,10 +4236,10 @@ typedef struct {
   uint8_t key[32];
   uint8_t enckey[32];
   uint8_t deckey[32];
-  uint8_t dummy[32];
 } aes256_context;
 #pragma empty_line
-void encrypt(aes256_context *ctx, uint8_t k[32], uint8_t buf[16]);
+void encrypt(uint8_t ctx_key[32], uint8_t ctx_enckey[32],
+             uint8_t ctx_deckey[32], uint8_t k[32], uint8_t buf[16]);
 #pragma empty_line
 ////////////////////////////////////////////////////////////////////////////////
 // Test harness interface code.
@@ -4245,25 +4251,25 @@ struct bench_args_t {
 };
 #pragma line 6 "/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c" 2
 #pragma line 66 "/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c"
-const unsigned pipeline_ii_sub = 13;
+const unsigned pipeline_ii_sub = 1;
 const unsigned pipeline_ii_addkey = 1;
-const unsigned pipeline_ii_cpkey = 14;
-const unsigned pipeline_ii_mix = 2;
+const unsigned pipeline_ii_cpkey = 1;
+const unsigned pipeline_ii_mix = 1;
 const unsigned pipeline_ii_exp1 = 1;
 const unsigned pipeline_ii_exp2 = 1;
-const unsigned pipeline_ii_ecb1 = 13;
-const unsigned pipeline_ii_ecb2 = 2;
-const unsigned pipeline_ii_ecb3 = 13;
+const unsigned pipeline_ii_ecb1 = 1;
+const unsigned pipeline_ii_ecb2 = 1;
+const unsigned pipeline_ii_ecb3 = 1;
 #pragma empty_line
-const unsigned unroll_factor_sub = 4;
-const unsigned unroll_factor_addkey = 9;
-const unsigned unroll_factor_cpkey = 9;
+const unsigned unroll_factor_sub = 1;
+const unsigned unroll_factor_addkey = 1;
+const unsigned unroll_factor_cpkey = 1;
 const unsigned unroll_factor_mix = 1;
-const unsigned unroll_factor_exp1 = 2;
-const unsigned unroll_factor_exp2 = 2;
-const unsigned unroll_factor_ecb1 = 22;
+const unsigned unroll_factor_exp1 = 1;
+const unsigned unroll_factor_exp2 = 1;
+const unsigned unroll_factor_ecb1 = 1;
 const unsigned unroll_factor_ecb2 = 1;
-const unsigned unroll_factor_ecb3 = 8;
+const unsigned unroll_factor_ecb3 = 1;
 #pragma empty_line
 #pragma empty_line
 #pragma empty_line
@@ -4317,9 +4323,9 @@ void aes_subBytes(uint8_t *buf)
     sub : while (i--)
     {
 #pragma empty_line
-#pragma HLS pipeline ii=pipeline_ii_sub
 #pragma empty_line
 #pragma empty_line
+#pragma HLS unroll factor = unroll_factor_sub
 #pragma empty_line
  buf[i] = sbox[(buf[i])];
     }
@@ -4333,9 +4339,9 @@ void aes_addRoundKey(uint8_t *buf, uint8_t *key)
     addkey : while (i--)
     {
 #pragma empty_line
-#pragma HLS pipeline ii=pipeline_ii_addkey
 #pragma empty_line
 #pragma empty_line
+#pragma HLS unroll factor = unroll_factor_addkey
 #pragma empty_line
  buf[i] ^= key[i];
     }
@@ -4378,9 +4384,9 @@ void aes_mixColumns(uint8_t *buf)
     mix : for (i = 0; i < 16; i += 4)
     {
 #pragma empty_line
-#pragma HLS pipeline ii=pipeline_ii_mix
 #pragma empty_line
 #pragma empty_line
+#pragma HLS unroll factor = unroll_factor_mix
 #pragma empty_line
  a = buf[i]; b = buf[i + 1]; c = buf[i + 2]; d = buf[i + 3];
         e = a ^ b ^ c ^ d;
@@ -4403,9 +4409,9 @@ void aes_expandEncKey(uint8_t *k, uint8_t *rc)
     exp1 : for(i = 4; i < 16; i += 4)
     {
 #pragma empty_line
-#pragma HLS pipeline ii=pipeline_ii_exp1
 #pragma empty_line
 #pragma empty_line
+#pragma HLS unroll factor = unroll_factor_exp1
 #pragma empty_line
  k[i] ^= k[i-4], k[i+1] ^= k[i-3],
         k[i+2] ^= k[i-2], k[i+3] ^= k[i-1];
@@ -4429,39 +4435,45 @@ void aes_expandEncKey(uint8_t *k, uint8_t *rc)
 } /* aes_expandEncKey */
 #pragma empty_line
 /* -------------------------------------------------------------------------- */
-#pragma SDS data zero_copy(ctx)
+#pragma SDS data zero_copy(ctx_key)
+#pragma SDS data zero_copy(ctx_enckey)
+#pragma SDS data zero_copy(ctx_deckey)
 #pragma SDS data zero_copy(buf)
-void encrypt(aes256_context *ctx, uint8_t k[32], uint8_t buf[16])
-{_ssdm_SpecArrayDimSize(buf,16);_ssdm_SpecArrayDimSize(k,32);
+void encrypt(uint8_t ctx_key[32], uint8_t ctx_enckey[32],
+             uint8_t ctx_deckey[32], uint8_t k[32], uint8_t buf[16])
+{_ssdm_SpecArrayDimSize(ctx_enckey,32);_ssdm_SpecArrayDimSize(buf,16);_ssdm_SpecArrayDimSize(ctx_key,32);_ssdm_SpecArrayDimSize(k,32);_ssdm_SpecArrayDimSize(ctx_deckey,32);
 #pragma HLS LATENCY min=1
-#pragma line 300 "/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c"
-
-#pragma HLS INTERFACE m_axi port=ctx offset=direct bundle=ctx
-#pragma line 300 "/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c"
-
-#pragma HLS DATA_PACK variable=ctx
-#pragma line 300 "/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c"
-
-#pragma HLS INTERFACE m_axi port=buf offset=direct bundle=buf
-#pragma line 300 "/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c"
+#pragma line 303 "/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c"
 
 #pragma HLS RESOURCE variable=k core=RAM_1P
-#pragma line 300 "/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c"
+#pragma line 303 "/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c"
 
 #pragma HLS INTERFACE bram port=k
-#pragma line 300 "/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c"
+#pragma line 303 "/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c"
+
+#pragma HLS INTERFACE m_axi port=ctx_deckey offset=direct bundle=ctx_deckey
+#pragma line 303 "/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c"
+
+#pragma HLS INTERFACE m_axi port=ctx_enckey offset=direct bundle=ctx_enckey
+#pragma line 303 "/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c"
+
+#pragma HLS INTERFACE m_axi port=ctx_key offset=direct bundle=ctx_key
+#pragma line 303 "/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c"
+
+#pragma HLS INTERFACE m_axi port=buf offset=direct bundle=buf
+#pragma line 303 "/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c"
 
     //INIT
     uint8_t rcon = 1;
     uint8_t i;
 #pragma empty_line
-    ecb1 : for (i = 0; i < sizeof(ctx->key); i++){
-#pragma empty_line
-#pragma HLS pipeline ii=pipeline_ii_ecb1
+    ecb1 : for (i = 0; i < 32; i++){
 #pragma empty_line
 #pragma empty_line
 #pragma empty_line
- ctx->enckey[i] = ctx->deckey[i] = k[i];
+#pragma HLS unroll factor = unroll_factor_ecb1
+#pragma empty_line
+ ctx_enckey[i] = ctx_deckey[i] = k[i];
     }
     ecb2 : for (i = 8;--i;){
 #pragma empty_line
@@ -4469,26 +4481,26 @@ void encrypt(aes256_context *ctx, uint8_t k[32], uint8_t buf[16])
 #pragma empty_line
 #pragma HLS unroll factor = unroll_factor_ecb2
 #pragma empty_line
- aes_expandEncKey(ctx->deckey, &rcon);
+ aes_expandEncKey(ctx_deckey, &rcon);
     }
 #pragma empty_line
     //DEC
-    aes_addRoundKey_cpy(buf, ctx->enckey, ctx->key);
+    aes_addRoundKey_cpy(buf, ctx_enckey, ctx_key);
     ecb3 : for(i = 1, rcon = 1; i < 14; ++i)
     {
 #pragma empty_line
-#pragma HLS pipeline ii=pipeline_ii_ecb3
 #pragma empty_line
 #pragma empty_line
+#pragma HLS unroll factor = unroll_factor_ecb3
 #pragma empty_line
  aes_subBytes(buf);
         aes_shiftRows(buf);
         aes_mixColumns(buf);
-        if( i & 1 ) aes_addRoundKey( buf, &ctx->key[16]);
-        else aes_expandEncKey(ctx->key, &rcon), aes_addRoundKey(buf, ctx->key);
+        if( i & 1 ) aes_addRoundKey( buf, ctx_key + 16);
+        else aes_expandEncKey(ctx_key, &rcon), aes_addRoundKey(buf, ctx_key);
     }
     aes_subBytes(buf);
     aes_shiftRows(buf);
-    aes_expandEncKey(ctx->key, &rcon);
-    aes_addRoundKey(buf, ctx->key);
+    aes_expandEncKey(ctx_key, &rcon);
+    aes_addRoundKey(buf, ctx_key);
 } /* aes256_encrypt */

@@ -3,7 +3,7 @@
 <!--                                                         -->
 <!-- Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="20" Path="/scratch/local/tmp.HG4IAH4zV1/_sds/p0/ipi/pynq.xpr">
+<Project Version="7" Minor="20" Path="/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="7f7dfcff565f40b1ad97586e9648f9bf"/>
@@ -63,35 +63,32 @@
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
-        <CompFileExtendedInfo CompFileName="pynq.bd" FileRelPathName="ip/pynq_auto_us_cc_df_0/pynq_auto_us_cc_df_0.xci">
-          <Proxy FileSetName="pynq_auto_us_cc_df_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="pynq.bd" FileRelPathName="ip/pynq_s00_regslice_1/pynq_s00_regslice_1.xci">
-          <Proxy FileSetName="pynq_s00_regslice_1"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="pynq.bd" FileRelPathName="ip/pynq_s00_data_fifo_1/pynq_s00_data_fifo_1.xci">
-          <Proxy FileSetName="pynq_s00_data_fifo_1"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="pynq.bd" FileRelPathName="ip/pynq_auto_cc_0/pynq_auto_cc_0.xci">
-          <Proxy FileSetName="pynq_auto_cc_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="pynq.bd" FileRelPathName="ip/pynq_m01_regslice_0/pynq_m01_regslice_0.xci">
-          <Proxy FileSetName="pynq_m01_regslice_0"/>
+        <CompFileExtendedInfo CompFileName="pynq.bd" FileRelPathName="ip/pynq_auto_us_df_3/pynq_auto_us_df_3.xci">
+          <Proxy FileSetName="pynq_auto_us_df_3"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="pynq.bd" FileRelPathName="ip/pynq_s01_regslice_0/pynq_s01_regslice_0.xci">
           <Proxy FileSetName="pynq_s01_regslice_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="pynq.bd" FileRelPathName="ip/pynq_auto_us_df_0/pynq_auto_us_df_0.xci">
-          <Proxy FileSetName="pynq_auto_us_df_0"/>
+        <CompFileExtendedInfo CompFileName="pynq.bd" FileRelPathName="ip/pynq_auto_us_df_2/pynq_auto_us_df_2.xci">
+          <Proxy FileSetName="pynq_auto_us_df_2"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="pynq.bd" FileRelPathName="ip/pynq_s00_regslice_2/pynq_s00_regslice_2.xci">
+          <Proxy FileSetName="pynq_s00_regslice_2"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="pynq.bd" FileRelPathName="ip/pynq_auto_us_df_1/pynq_auto_us_df_1.xci">
+          <Proxy FileSetName="pynq_auto_us_df_1"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="pynq.bd" FileRelPathName="ip/pynq_s02_regslice_0/pynq_s02_regslice_0.xci">
           <Proxy FileSetName="pynq_s02_regslice_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="pynq.bd" FileRelPathName="ip/pynq_auto_pc_1/pynq_auto_pc_1.xci">
-          <Proxy FileSetName="pynq_auto_pc_1"/>
+        <CompFileExtendedInfo CompFileName="pynq.bd" FileRelPathName="ip/pynq_s03_data_fifo_0/pynq_s03_data_fifo_0.xci">
+          <Proxy FileSetName="pynq_s03_data_fifo_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="pynq.bd" FileRelPathName="ip/pynq_auto_ds_0/pynq_auto_ds_0.xci">
-          <Proxy FileSetName="pynq_auto_ds_0"/>
+        <CompFileExtendedInfo CompFileName="pynq.bd" FileRelPathName="ip/pynq_s03_regslice_0/pynq_s03_regslice_0.xci">
+          <Proxy FileSetName="pynq_s03_regslice_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="pynq.bd" FileRelPathName="ip/pynq_auto_pc_2/pynq_auto_pc_2.xci">
+          <Proxy FileSetName="pynq_auto_pc_2"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="pynq.bd" FileRelPathName="ip/pynq_m00_regslice_1/pynq_m00_regslice_1.xci">
           <Proxy FileSetName="pynq_m00_regslice_1"/>
@@ -138,6 +135,18 @@
         <CompFileExtendedInfo CompFileName="pynq.bd" FileRelPathName="ip/pynq_proc_sys_reset_0_0/pynq_proc_sys_reset_0_0.xci">
           <Proxy FileSetName="pynq_proc_sys_reset_0_0"/>
         </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="pynq.bd" FileRelPathName="ip/pynq_s00_regslice_1/pynq_s00_regslice_1.xci">
+          <Proxy FileSetName="pynq_s00_regslice_1"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="pynq.bd" FileRelPathName="ip/pynq_auto_pc_1/pynq_auto_pc_1.xci">
+          <Proxy FileSetName="pynq_auto_pc_1"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="pynq.bd" FileRelPathName="ip/pynq_auto_us_df_0/pynq_auto_us_df_0.xci">
+          <Proxy FileSetName="pynq_auto_us_df_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="pynq.bd" FileRelPathName="ip/pynq_m01_regslice_0/pynq_m01_regslice_0.xci">
+          <Proxy FileSetName="pynq_m01_regslice_0"/>
+        </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="pynq.bd" FileRelPathName="ip/pynq_m00_regslice_0/pynq_m00_regslice_0.xci">
           <Proxy FileSetName="pynq_m00_regslice_0"/>
         </CompFileExtendedInfo>
@@ -183,33 +192,9 @@
         <Option Name="SrcSet" Val="sources_1"/>
       </Config>
     </FileSet>
-    <FileSet Name="pynq_auto_us_cc_df_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/pynq_auto_us_cc_df_0">
+    <FileSet Name="pynq_auto_us_df_3" Type="BlockSrcs" RelSrcDir="$PSRCDIR/pynq_auto_us_df_3">
       <Config>
-        <Option Name="TopModule" Val="pynq_auto_us_cc_df_0"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
-    <FileSet Name="pynq_s00_regslice_1" Type="BlockSrcs" RelSrcDir="$PSRCDIR/pynq_s00_regslice_1">
-      <Config>
-        <Option Name="TopModule" Val="pynq_s00_regslice_1"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
-    <FileSet Name="pynq_s00_data_fifo_1" Type="BlockSrcs" RelSrcDir="$PSRCDIR/pynq_s00_data_fifo_1">
-      <Config>
-        <Option Name="TopModule" Val="pynq_s00_data_fifo_1"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
-    <FileSet Name="pynq_auto_cc_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/pynq_auto_cc_0">
-      <Config>
-        <Option Name="TopModule" Val="pynq_auto_cc_0"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
-    <FileSet Name="pynq_m01_regslice_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/pynq_m01_regslice_0">
-      <Config>
-        <Option Name="TopModule" Val="pynq_m01_regslice_0"/>
+        <Option Name="TopModule" Val="pynq_auto_us_df_3"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
@@ -219,9 +204,21 @@
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
-    <FileSet Name="pynq_auto_us_df_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/pynq_auto_us_df_0">
+    <FileSet Name="pynq_auto_us_df_2" Type="BlockSrcs" RelSrcDir="$PSRCDIR/pynq_auto_us_df_2">
       <Config>
-        <Option Name="TopModule" Val="pynq_auto_us_df_0"/>
+        <Option Name="TopModule" Val="pynq_auto_us_df_2"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="pynq_s00_regslice_2" Type="BlockSrcs" RelSrcDir="$PSRCDIR/pynq_s00_regslice_2">
+      <Config>
+        <Option Name="TopModule" Val="pynq_s00_regslice_2"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="pynq_auto_us_df_1" Type="BlockSrcs" RelSrcDir="$PSRCDIR/pynq_auto_us_df_1">
+      <Config>
+        <Option Name="TopModule" Val="pynq_auto_us_df_1"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
@@ -231,15 +228,21 @@
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
-    <FileSet Name="pynq_auto_pc_1" Type="BlockSrcs" RelSrcDir="$PSRCDIR/pynq_auto_pc_1">
+    <FileSet Name="pynq_s03_data_fifo_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/pynq_s03_data_fifo_0">
       <Config>
-        <Option Name="TopModule" Val="pynq_auto_pc_1"/>
+        <Option Name="TopModule" Val="pynq_s03_data_fifo_0"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
-    <FileSet Name="pynq_auto_ds_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/pynq_auto_ds_0">
+    <FileSet Name="pynq_s03_regslice_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/pynq_s03_regslice_0">
       <Config>
-        <Option Name="TopModule" Val="pynq_auto_ds_0"/>
+        <Option Name="TopModule" Val="pynq_s03_regslice_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="pynq_auto_pc_2" Type="BlockSrcs" RelSrcDir="$PSRCDIR/pynq_auto_pc_2">
+      <Config>
+        <Option Name="TopModule" Val="pynq_auto_pc_2"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
@@ -333,6 +336,30 @@
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
+    <FileSet Name="pynq_s00_regslice_1" Type="BlockSrcs" RelSrcDir="$PSRCDIR/pynq_s00_regslice_1">
+      <Config>
+        <Option Name="TopModule" Val="pynq_s00_regslice_1"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="pynq_auto_pc_1" Type="BlockSrcs" RelSrcDir="$PSRCDIR/pynq_auto_pc_1">
+      <Config>
+        <Option Name="TopModule" Val="pynq_auto_pc_1"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="pynq_auto_us_df_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/pynq_auto_us_df_0">
+      <Config>
+        <Option Name="TopModule" Val="pynq_auto_us_df_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="pynq_m01_regslice_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/pynq_m01_regslice_0">
+      <Config>
+        <Option Name="TopModule" Val="pynq_m01_regslice_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
     <FileSet Name="pynq_m00_regslice_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/pynq_m00_regslice_0">
       <Config>
         <Option Name="TopModule" Val="pynq_m00_regslice_0"/>
@@ -389,51 +416,7 @@
       <ReportStrategy/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="pynq_auto_us_cc_df_0_synth_1" Type="Ft3:Synth" SrcSet="pynq_auto_us_cc_df_0" Part="xc7z020clg400-1" ConstrsSet="pynq_auto_us_cc_df_0" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/pynq_auto_us_cc_df_0_synth_1" IncludeInArchive="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2017">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <ReportStrategy/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="pynq_s00_regslice_1_synth_1" Type="Ft3:Synth" SrcSet="pynq_s00_regslice_1" Part="xc7z020clg400-1" ConstrsSet="pynq_s00_regslice_1" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/pynq_s00_regslice_1_synth_1" IncludeInArchive="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2017">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <ReportStrategy/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="pynq_s00_data_fifo_1_synth_1" Type="Ft3:Synth" SrcSet="pynq_s00_data_fifo_1" Part="xc7z020clg400-1" ConstrsSet="pynq_s00_data_fifo_1" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/pynq_s00_data_fifo_1_synth_1" IncludeInArchive="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2017">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <ReportStrategy/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="pynq_auto_cc_0_synth_1" Type="Ft3:Synth" SrcSet="pynq_auto_cc_0" Part="xc7z020clg400-1" ConstrsSet="pynq_auto_cc_0" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/pynq_auto_cc_0_synth_1" IncludeInArchive="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2017">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <ReportStrategy/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="pynq_m01_regslice_0_synth_1" Type="Ft3:Synth" SrcSet="pynq_m01_regslice_0" Part="xc7z020clg400-1" ConstrsSet="pynq_m01_regslice_0" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/pynq_m01_regslice_0_synth_1" IncludeInArchive="true">
+    <Run Id="pynq_auto_us_df_3_synth_1" Type="Ft3:Synth" SrcSet="pynq_auto_us_df_3" Part="xc7z020clg400-1" ConstrsSet="pynq_auto_us_df_3" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/pynq_auto_us_df_3_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2017">
           <Desc>Vivado Synthesis Defaults</Desc>
@@ -455,7 +438,29 @@
       <ReportStrategy/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="pynq_auto_us_df_0_synth_1" Type="Ft3:Synth" SrcSet="pynq_auto_us_df_0" Part="xc7z020clg400-1" ConstrsSet="pynq_auto_us_df_0" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/pynq_auto_us_df_0_synth_1" IncludeInArchive="true">
+    <Run Id="pynq_auto_us_df_2_synth_1" Type="Ft3:Synth" SrcSet="pynq_auto_us_df_2" Part="xc7z020clg400-1" ConstrsSet="pynq_auto_us_df_2" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/pynq_auto_us_df_2_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2017">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="pynq_s00_regslice_2_synth_1" Type="Ft3:Synth" SrcSet="pynq_s00_regslice_2" Part="xc7z020clg400-1" ConstrsSet="pynq_s00_regslice_2" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/pynq_s00_regslice_2_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2017">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="pynq_auto_us_df_1_synth_1" Type="Ft3:Synth" SrcSet="pynq_auto_us_df_1" Part="xc7z020clg400-1" ConstrsSet="pynq_auto_us_df_1" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/pynq_auto_us_df_1_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2017">
           <Desc>Vivado Synthesis Defaults</Desc>
@@ -477,7 +482,7 @@
       <ReportStrategy/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="pynq_auto_pc_1_synth_1" Type="Ft3:Synth" SrcSet="pynq_auto_pc_1" Part="xc7z020clg400-1" ConstrsSet="pynq_auto_pc_1" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/pynq_auto_pc_1_synth_1" IncludeInArchive="true">
+    <Run Id="pynq_s03_data_fifo_0_synth_1" Type="Ft3:Synth" SrcSet="pynq_s03_data_fifo_0" Part="xc7z020clg400-1" ConstrsSet="pynq_s03_data_fifo_0" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/pynq_s03_data_fifo_0_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2017">
           <Desc>Vivado Synthesis Defaults</Desc>
@@ -488,7 +493,18 @@
       <ReportStrategy/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="pynq_auto_ds_0_synth_1" Type="Ft3:Synth" SrcSet="pynq_auto_ds_0" Part="xc7z020clg400-1" ConstrsSet="pynq_auto_ds_0" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/pynq_auto_ds_0_synth_1" IncludeInArchive="true">
+    <Run Id="pynq_s03_regslice_0_synth_1" Type="Ft3:Synth" SrcSet="pynq_s03_regslice_0" Part="xc7z020clg400-1" ConstrsSet="pynq_s03_regslice_0" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/pynq_s03_regslice_0_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2017">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="pynq_auto_pc_2_synth_1" Type="Ft3:Synth" SrcSet="pynq_auto_pc_2" Part="xc7z020clg400-1" ConstrsSet="pynq_auto_pc_2" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/pynq_auto_pc_2_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2017">
           <Desc>Vivado Synthesis Defaults</Desc>
@@ -664,6 +680,50 @@
       <ReportStrategy/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
+    <Run Id="pynq_s00_regslice_1_synth_1" Type="Ft3:Synth" SrcSet="pynq_s00_regslice_1" Part="xc7z020clg400-1" ConstrsSet="pynq_s00_regslice_1" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/pynq_s00_regslice_1_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2017">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="pynq_auto_pc_1_synth_1" Type="Ft3:Synth" SrcSet="pynq_auto_pc_1" Part="xc7z020clg400-1" ConstrsSet="pynq_auto_pc_1" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/pynq_auto_pc_1_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2017">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="pynq_auto_us_df_0_synth_1" Type="Ft3:Synth" SrcSet="pynq_auto_us_df_0" Part="xc7z020clg400-1" ConstrsSet="pynq_auto_us_df_0" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/pynq_auto_us_df_0_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2017">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="pynq_m01_regslice_0_synth_1" Type="Ft3:Synth" SrcSet="pynq_m01_regslice_0" Part="xc7z020clg400-1" ConstrsSet="pynq_m01_regslice_0" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/pynq_m01_regslice_0_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2017">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
     <Run Id="pynq_m00_regslice_0_synth_1" Type="Ft3:Synth" SrcSet="pynq_m00_regslice_0" Part="xc7z020clg400-1" ConstrsSet="pynq_m00_regslice_0" Description="Vivado Synthesis Defaults" Dir="$PRUNDIR/pynq_m00_regslice_0_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2017">
@@ -724,79 +784,7 @@
       <ReportStrategy/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="pynq_auto_us_cc_df_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="pynq_auto_us_cc_df_0" Description="Default settings for Implementation." SynthRun="pynq_auto_us_cc_df_0_synth_1" IncludeInArchive="false">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2017">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <ReportStrategy/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="pynq_s00_regslice_1_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="pynq_s00_regslice_1" Description="Default settings for Implementation." SynthRun="pynq_s00_regslice_1_synth_1" IncludeInArchive="false">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2017">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <ReportStrategy/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="pynq_s00_data_fifo_1_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="pynq_s00_data_fifo_1" Description="Default settings for Implementation." SynthRun="pynq_s00_data_fifo_1_synth_1" IncludeInArchive="false">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2017">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <ReportStrategy/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="pynq_auto_cc_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="pynq_auto_cc_0" Description="Default settings for Implementation." SynthRun="pynq_auto_cc_0_synth_1" IncludeInArchive="false">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2017">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <ReportStrategy/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="pynq_m01_regslice_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="pynq_m01_regslice_0" Description="Default settings for Implementation." SynthRun="pynq_m01_regslice_0_synth_1" IncludeInArchive="false">
+    <Run Id="pynq_auto_us_df_3_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="pynq_auto_us_df_3" Description="Default settings for Implementation." SynthRun="pynq_auto_us_df_3_synth_1" IncludeInArchive="false">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2017">
           <Desc>Default settings for Implementation.</Desc>
@@ -832,7 +820,43 @@
       <ReportStrategy/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="pynq_auto_us_df_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="pynq_auto_us_df_0" Description="Default settings for Implementation." SynthRun="pynq_auto_us_df_0_synth_1" IncludeInArchive="false">
+    <Run Id="pynq_auto_us_df_2_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="pynq_auto_us_df_2" Description="Default settings for Implementation." SynthRun="pynq_auto_us_df_2_synth_1" IncludeInArchive="false">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2017">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="pynq_s00_regslice_2_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="pynq_s00_regslice_2" Description="Default settings for Implementation." SynthRun="pynq_s00_regslice_2_synth_1" IncludeInArchive="false">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2017">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="pynq_auto_us_df_1_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="pynq_auto_us_df_1" Description="Default settings for Implementation." SynthRun="pynq_auto_us_df_1_synth_1" IncludeInArchive="false">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2017">
           <Desc>Default settings for Implementation.</Desc>
@@ -868,7 +892,7 @@
       <ReportStrategy/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="pynq_auto_pc_1_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="pynq_auto_pc_1" Description="Default settings for Implementation." SynthRun="pynq_auto_pc_1_synth_1" IncludeInArchive="false">
+    <Run Id="pynq_s03_data_fifo_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="pynq_s03_data_fifo_0" Description="Default settings for Implementation." SynthRun="pynq_s03_data_fifo_0_synth_1" IncludeInArchive="false">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2017">
           <Desc>Default settings for Implementation.</Desc>
@@ -886,7 +910,25 @@
       <ReportStrategy/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="pynq_auto_ds_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="pynq_auto_ds_0" Description="Default settings for Implementation." SynthRun="pynq_auto_ds_0_synth_1" IncludeInArchive="false">
+    <Run Id="pynq_s03_regslice_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="pynq_s03_regslice_0" Description="Default settings for Implementation." SynthRun="pynq_s03_regslice_0_synth_1" IncludeInArchive="false">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2017">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="pynq_auto_pc_2_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="pynq_auto_pc_2" Description="Default settings for Implementation." SynthRun="pynq_auto_pc_2_synth_1" IncludeInArchive="false">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2017">
           <Desc>Default settings for Implementation.</Desc>
@@ -1157,6 +1199,78 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
     <Run Id="pynq_proc_sys_reset_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="pynq_proc_sys_reset_0_0" Description="Default settings for Implementation." SynthRun="pynq_proc_sys_reset_0_0_synth_1" IncludeInArchive="false">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2017">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="pynq_s00_regslice_1_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="pynq_s00_regslice_1" Description="Default settings for Implementation." SynthRun="pynq_s00_regslice_1_synth_1" IncludeInArchive="false">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2017">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="pynq_auto_pc_1_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="pynq_auto_pc_1" Description="Default settings for Implementation." SynthRun="pynq_auto_pc_1_synth_1" IncludeInArchive="false">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2017">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="pynq_auto_us_df_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="pynq_auto_us_df_0" Description="Default settings for Implementation." SynthRun="pynq_auto_us_df_0_synth_1" IncludeInArchive="false">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2017">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="pynq_m01_regslice_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="pynq_m01_regslice_0" Description="Default settings for Implementation." SynthRun="pynq_m01_regslice_0_synth_1" IncludeInArchive="false">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2017">
           <Desc>Default settings for Implementation.</Desc>

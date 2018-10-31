@@ -1,7 +1,7 @@
 # ***************************************************
 # Open the Vivado Project
 # ***************************************************
-open_project /scratch/local/tmp.mnejJh1Zni/_sds/p0/ipi/pynq.xpr
+open_project /scratch/local/tmp.7aow7oM1KP/_sds/p0/ipi/pynq.xpr
 set_param general.maxThreads 1
 # ***************************************************
 # Run synthesis and implementation

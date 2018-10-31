@@ -4,72 +4,19 @@ set moduleIsExternC "0"
 set rawDecl ""
 set globalVariable ""
 set PortList ""
-set PortName0 "ctx"
+set PortName0 "ctx_key"
 set BitWidth0 "32"
 set ArrayOpt0 ""
 set Const0 "0"
 set Volatile0 "0"
-set Pointer0 "1"
+set Pointer0 "0"
 set Reference0 "0"
-set Dims0 [list 0]
+set Dims0 [list 32]
 set Interface0 "wire"
-set structMem0 ""
-set PortName00 "key"
-set BitWidth00 "256"
-set ArrayOpt00 ""
-set Const00 "0"
-set Volatile00 "0"
-set Pointer00 "0"
-set Reference00 "0"
-set Dims00 [list  32]
-set Interface00 "wire"
-set DataType00 "unsigned char"
-set Port00 [list $PortName00 $Interface00 $DataType00 $Pointer00 $Dims00 $Const00 $Volatile00 $ArrayOpt00]
-lappend structMem0 $Port00
-set PortName01 "enckey"
-set BitWidth01 "256"
-set ArrayOpt01 ""
-set Const01 "0"
-set Volatile01 "0"
-set Pointer01 "0"
-set Reference01 "0"
-set Dims01 [list  32]
-set Interface01 "wire"
-set DataType01 "unsigned char"
-set Port01 [list $PortName01 $Interface01 $DataType01 $Pointer01 $Dims01 $Const01 $Volatile01 $ArrayOpt01]
-lappend structMem0 $Port01
-set PortName02 "deckey"
-set BitWidth02 "256"
-set ArrayOpt02 ""
-set Const02 "0"
-set Volatile02 "0"
-set Pointer02 "0"
-set Reference02 "0"
-set Dims02 [list  32]
-set Interface02 "wire"
-set DataType02 "unsigned char"
-set Port02 [list $PortName02 $Interface02 $DataType02 $Pointer02 $Dims02 $Const02 $Volatile02 $ArrayOpt02]
-lappend structMem0 $Port02
-set PortName03 "dummy"
-set BitWidth03 "256"
-set ArrayOpt03 ""
-set Const03 "0"
-set Volatile03 "0"
-set Pointer03 "0"
-set Reference03 "0"
-set Dims03 [list  32]
-set Interface03 "wire"
-set DataType03 "unsigned char"
-set Port03 [list $PortName03 $Interface03 $DataType03 $Pointer03 $Dims03 $Const03 $Volatile03 $ArrayOpt03]
-lappend structMem0 $Port03
-set structParameter0 [list ]
-set structArgument0 [list ]
-set NameSpace0 [list ]
-set structIsPacked0 "0"
-set DataType0 [list "aes256_context" "struct " $structMem0 0 0 $structParameter0 $structArgument0 $NameSpace0 $structIsPacked0]
+set DataType0 "unsigned char"
 set Port0 [list $PortName0 $Interface0 $DataType0 $Pointer0 $Dims0 $Const0 $Volatile0 $ArrayOpt0]
 lappend PortList $Port0
-set PortName1 "k"
+set PortName1 "ctx_enckey"
 set BitWidth1 "32"
 set ArrayOpt1 ""
 set Const1 "0"
@@ -81,18 +28,42 @@ set Interface1 "wire"
 set DataType1 "unsigned char"
 set Port1 [list $PortName1 $Interface1 $DataType1 $Pointer1 $Dims1 $Const1 $Volatile1 $ArrayOpt1]
 lappend PortList $Port1
-set PortName2 "buf"
+set PortName2 "ctx_deckey"
 set BitWidth2 "32"
 set ArrayOpt2 ""
 set Const2 "0"
 set Volatile2 "0"
 set Pointer2 "0"
 set Reference2 "0"
-set Dims2 [list 16]
+set Dims2 [list 32]
 set Interface2 "wire"
 set DataType2 "unsigned char"
 set Port2 [list $PortName2 $Interface2 $DataType2 $Pointer2 $Dims2 $Const2 $Volatile2 $ArrayOpt2]
 lappend PortList $Port2
+set PortName3 "k"
+set BitWidth3 "32"
+set ArrayOpt3 ""
+set Const3 "0"
+set Volatile3 "0"
+set Pointer3 "0"
+set Reference3 "0"
+set Dims3 [list 32]
+set Interface3 "wire"
+set DataType3 "unsigned char"
+set Port3 [list $PortName3 $Interface3 $DataType3 $Pointer3 $Dims3 $Const3 $Volatile3 $ArrayOpt3]
+lappend PortList $Port3
+set PortName4 "buf"
+set BitWidth4 "32"
+set ArrayOpt4 ""
+set Const4 "0"
+set Volatile4 "0"
+set Pointer4 "0"
+set Reference4 "0"
+set Dims4 [list 16]
+set Interface4 "wire"
+set DataType4 "unsigned char"
+set Port4 [list $PortName4 $Interface4 $DataType4 $Pointer4 $Dims4 $Const4 $Volatile4 $ArrayOpt4]
+lappend PortList $Port4
 set globalAPint "" 
 set returnAPInt "" 
 set hasCPPAPInt 0 

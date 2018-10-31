@@ -1,10 +1,10 @@
 rm -fr aes_test.o aes.o aes.elf _sds HLS
-source /mnt/icgridio2/safe/SDSoC/SDx/2017.1/settings64.sh; sds++ -sds-sys-config standalone -sds-pf /mnt/icgridio2/safe/giesen/HLS_tuner/1/Platforms/Vivado_2017.1/pynq -sds-proc a9_0 -sds-hw encrypt /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c -clkid 0 -sds-end -maxjobs 4 -maxthreads 1 -Wall -O3 -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/common -DPIPELINE_CPKEY -DUNROLL_FACTOR_EXP1=2 -DUNROLL_FACTOR_EXP2=2 -DUNROLL_FACTOR_ECB1=28 -DUNROLL_FACTOR_ECB3=12 -DUNROLL_FACTOR_ECB2=1 -DPIPELINE_II_ADDKEY=4 -DPIPELINE_II_ECB1=31 -DPIPELINE_II_ECB2=5 -DPIPELINE_II_ECB3=4 -DPIPELINE_II_EXP1=1 -DPIPELINE_II_EXP2=2 -DPIPELINE_EXP1 -DUNROLL_FACTOR_ADDKEY=15 -DUNROLL_FACTOR_SUB=13 -DUNROLL_FACTOR_MIX=1 -DPIPELINE_SUB -DPIPELINE_II_CPKEY=2 -DPIPELINE_II_MIX=2 -DPIPELINE_ECB2 -DPIPELINE_ECB1 -DPIPELINE_ADDKEY -DUNROLL_FACTOR_CPKEY=15 -DPIPELINE_II_SUB=9 -c -o aes_test.o /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes_test.c
+source /mnt/icgridio2/safe/SDSoC/SDx/2017.1/settings64.sh; sds++ -sds-sys-config standalone -sds-pf /mnt/icgridio2/safe/giesen/HLS_tuner/1/Platforms/Vivado_2017.1/pynq -sds-proc a9_0 -sds-hw encrypt /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c -sds-end -maxjobs 4 -maxthreads 1 -Wall -O3 -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/common -c -o aes_test.o /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes_test.c
 Create data motion intermediate representation
 Compiling /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes_test.c
-sds++ log file saved as /scratch/local/tmp.wBr2TBiwTt/_sds/reports/sds_aes_test.log
+sds++ log file saved as /scratch/local/tmp.7aow7oM1KP/_sds/reports/sds_aes_test.log
 
-source /mnt/icgridio2/safe/SDSoC/SDx/2017.1/settings64.sh; sds++ -sds-sys-config standalone -sds-pf /mnt/icgridio2/safe/giesen/HLS_tuner/1/Platforms/Vivado_2017.1/pynq -sds-proc a9_0 -sds-hw encrypt /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c -clkid 0 -sds-end -maxjobs 4 -maxthreads 1 -Wall -O3 -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/common -DPIPELINE_CPKEY -DUNROLL_FACTOR_EXP1=2 -DUNROLL_FACTOR_EXP2=2 -DUNROLL_FACTOR_ECB1=28 -DUNROLL_FACTOR_ECB3=12 -DUNROLL_FACTOR_ECB2=1 -DPIPELINE_II_ADDKEY=4 -DPIPELINE_II_ECB1=31 -DPIPELINE_II_ECB2=5 -DPIPELINE_II_ECB3=4 -DPIPELINE_II_EXP1=1 -DPIPELINE_II_EXP2=2 -DPIPELINE_EXP1 -DUNROLL_FACTOR_ADDKEY=15 -DUNROLL_FACTOR_SUB=13 -DUNROLL_FACTOR_MIX=1 -DPIPELINE_SUB -DPIPELINE_II_CPKEY=2 -DPIPELINE_II_MIX=2 -DPIPELINE_ECB2 -DPIPELINE_ECB1 -DPIPELINE_ADDKEY -DUNROLL_FACTOR_CPKEY=15 -DPIPELINE_II_SUB=9 -c -o aes.o /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c
+source /mnt/icgridio2/safe/SDSoC/SDx/2017.1/settings64.sh; sds++ -sds-sys-config standalone -sds-pf /mnt/icgridio2/safe/giesen/HLS_tuner/1/Platforms/Vivado_2017.1/pynq -sds-proc a9_0 -sds-hw encrypt /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c -sds-end -maxjobs 4 -maxthreads 1 -Wall -O3 -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/common -c -o aes.o /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c
 Processing -sds-hw block for encrypt
 Create data motion intermediate representation
 /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:182:5: warning: unused label 'sub' [-Wunused-label]
@@ -25,43 +25,49 @@ Create data motion intermediate representation
 /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:283:5: warning: unused label 'exp2' [-Wunused-label]
     exp2 : for(i = 20; i < 32; i += 4)
     ^~~~~~~
-/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:305:5: warning: unused label 'ecb1' [-Wunused-label]
-    ecb1 : for (i = 0; i < sizeof(ctx->key); i++){
+/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:308:5: warning: unused label 'ecb1' [-Wunused-label]
+    ecb1 : for (i = 0; i < 32; i++){
     ^~~~~~~
-/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:313:5: warning: unused label 'ecb2' [-Wunused-label]
+/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:316:5: warning: unused label 'ecb2' [-Wunused-label]
     ecb2 : for (i = 8;--i;){
     ^~~~~~~
-/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:324:5: warning: unused label 'ecb3' [-Wunused-label]
+/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:327:5: warning: unused label 'ecb3' [-Wunused-label]
     ecb3 : for(i = 1, rcon = 1; i < 14; ++i)
     ^~~~~~~
 Performing accelerator source linting for encrypt
 INFO: [Linting 83-3001] encrypt
 INFO: [Linting 83-3001] encrypt
 Performing pragma generation
-INFO: [PragmaGen 83-3231] Successfully generated tcl script: /scratch/local/tmp.wBr2TBiwTt/_sds/vhls/encrypt.tcl
+INFO: [PragmaGen 83-3231] Successfully generated tcl script: /scratch/local/tmp.7aow7oM1KP/_sds/vhls/encrypt.tcl
 Moving function encrypt to Programmable Logic
-sds++ log file saved as /scratch/local/tmp.wBr2TBiwTt/_sds/reports/sds_aes.log
+sds++ log file saved as /scratch/local/tmp.7aow7oM1KP/_sds/reports/sds_aes.log
 
-source /mnt/icgridio2/safe/SDSoC/SDx/2017.1/settings64.sh; sds++ -sds-sys-config standalone -sds-pf /mnt/icgridio2/safe/giesen/HLS_tuner/1/Platforms/Vivado_2017.1/pynq -sds-proc a9_0 -sds-hw encrypt /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c -clkid 0 -sds-end -maxjobs 4 -maxthreads 1 -dmclkid 2 -mno-boot-files -mno-bitstream -o aes.elf aes_test.o aes.o
+source /mnt/icgridio2/safe/SDSoC/SDx/2017.1/settings64.sh; sds++ -sds-sys-config standalone -sds-pf /mnt/icgridio2/safe/giesen/HLS_tuner/1/Platforms/Vivado_2017.1/pynq -sds-proc a9_0 -sds-hw encrypt /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c -sds-end -maxjobs 4 -maxthreads 1 -mno-boot-files -mno-bitstream -o aes.elf aes_test.o aes.o
 Analyzing object files
-... /scratch/local/tmp.wBr2TBiwTt/aes_test.o
-... /scratch/local/tmp.wBr2TBiwTt/aes.o
+... /scratch/local/tmp.7aow7oM1KP/aes_test.o
+... /scratch/local/tmp.7aow7oM1KP/aes.o
 Generating data motion network
 INFO: [DMAnalysis 83-4494] Analyzing hardware accelerators...
 INFO: [DMAnalysis 83-4497] Analyzing callers to hardware accelerators...
+WARNING: [DMAnalysis 83-4492] Unable to determine the memory attributes passed to ctx_key of function encrypt at /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes_test.c:49
+INFO: [DMAnalysis 83-4493] Please use #pragma SDS data mem_attribute to specify the memory attributes for function encrypt
+WARNING: [DMAnalysis 83-4492] Unable to determine the memory attributes passed to ctx_enckey of function encrypt at /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes_test.c:49
+INFO: [DMAnalysis 83-4493] Please use #pragma SDS data mem_attribute to specify the memory attributes for function encrypt
+WARNING: [DMAnalysis 83-4492] Unable to determine the memory attributes passed to ctx_deckey of function encrypt at /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes_test.c:49
+INFO: [DMAnalysis 83-4493] Please use #pragma SDS data mem_attribute to specify the memory attributes for function encrypt
 INFO: [DMAnalysis 83-4444] Scheduling data transfer graph for partition 0
 INFO: [DMAnalysis 83-4446] Creating data motion network hardware for partition 0
 INFO: [DMAnalysis 83-4448] Creating software stub functions for partition 0
 INFO: [DMAnalysis 83-4450] Generating data motion network report for partition 0
 INFO: [DMAnalysis 83-4454] Rewriting caller code
 Creating block diagram (BD), address map, port information and device registration for partition 0 (this may take a few minutes)
-system_linker started at Tue Oct 30 16:31:03 EDT 2018
+system_linker started at Wed Oct 31 14:45:25 EDT 2018
 Copying address map
 Creating port and device registration data
-system_linker completed at Tue Oct 30 16:33:06 EDT 2018
+system_linker completed at Wed Oct 31 14:47:32 EDT 2018
 Software tracing enabled
 Rewrite caller functions
-Compile caller rewrite file /scratch/local/tmp.wBr2TBiwTt/_sds/swstubs/aes_test.c
+Compile caller rewrite file /scratch/local/tmp.7aow7oM1KP/_sds/swstubs/aes_test.c
 Prepare hardware access API functions
 Create accelerator stub functions
 Compile hardware access API functions
@@ -85,23 +91,23 @@ aes.c:268:5: warning: label 'exp1' defined but not used [-Wunused-label]
 aes.c:283:5: warning: label 'exp2' defined but not used [-Wunused-label]
      exp2 : for(i = 20; i < 32; i += 4)
      ^~~~
-aes.c: In function 'void encrypt(aes256_context*, uint8_t*, uint8_t*)':
-aes.c:305:5: warning: label 'ecb1' defined but not used [-Wunused-label]
-     ecb1 : for (i = 0; i < sizeof(ctx->key); i++){
+aes.c: In function 'void encrypt(uint8_t*, uint8_t*, uint8_t*, uint8_t*, uint8_t*)':
+aes.c:308:5: warning: label 'ecb1' defined but not used [-Wunused-label]
+     ecb1 : for (i = 0; i < 32; i++){
      ^~~~
-aes.c:313:5: warning: label 'ecb2' defined but not used [-Wunused-label]
+aes.c:316:5: warning: label 'ecb2' defined but not used [-Wunused-label]
      ecb2 : for (i = 8;--i;){
      ^~~~
-aes.c:324:5: warning: label 'ecb3' defined but not used [-Wunused-label]
+aes.c:327:5: warning: label 'ecb3' defined but not used [-Wunused-label]
      ecb3 : for(i = 1, rcon = 1; i < 14; ++i)
      ^~~~
 Create board support package library
 Link application ELF file
 Not creating bitstream due to the -mno-bitstream switch
 Calling system_linker for partition 0
-system_linker started at Tue Oct 30 16:33:46 EDT 2018
-system_linker completed at Tue Oct 30 16:33:57 EDT 2018
-sds++ log file saved as /scratch/local/tmp.wBr2TBiwTt/_sds/reports/sds.log
+system_linker started at Wed Oct 31 14:48:13 EDT 2018
+system_linker completed at Wed Oct 31 14:48:24 EDT 2018
+sds++ log file saved as /scratch/local/tmp.7aow7oM1KP/_sds/reports/sds.log
 
 /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Output/0001/Presynth
 Presynthesis has completed successfully.

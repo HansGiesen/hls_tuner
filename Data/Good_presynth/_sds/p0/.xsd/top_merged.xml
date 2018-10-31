@@ -19,20 +19,23 @@
     <xd:parameter xd:name="PCW_USE_M_AXI_GP0" xd:value="1" xd:instanceRef="processing_system7_0"/>
     <xd:parameter xd:name="PCW_USE_S_AXI_ACP" xd:value="1" xd:instanceRef="processing_system7_0"/>
     <xd:parameter xd:name="PCW_USE_DEFAULT_ACP_USER_VAL" xd:value="1" xd:instanceRef="processing_system7_0"/>
+    <xd:parameter xd:name="PCW_USE_S_AXI_HP0" xd:value="1" xd:instanceRef="processing_system7_0"/>
     <xd:parameter xd:name="NUM_PORTS" xd:value="16" xd:instanceRef="xlconcat_0"/>
   </xd:instance>
   <xd:instance xd:componentVdr="xilinx.com" xd:componentLib="hls" xd:componentVer="1.0" xd:componentType="accelerator" xd:name="encrypt_1" xd:componentRef="encrypt"/>
   <xd:instance xd:componentVdr="xilinx.com" xd:componentLib="ip" xd:componentVer="1.0" xd:name="encrypt_1_if" xd:componentRef="adapter_v3_0">
     <xd:parameter xd:name="M_AXIMM_ADDR_WIDTH" xd:value="32"/>
     <xd:parameter xd:name="C_INPUT_SCALAR_0_WIDTH" xd:value="32"/>
+    <xd:parameter xd:name="C_INPUT_SCALAR_1_WIDTH" xd:value="32"/>
+    <xd:parameter xd:name="C_INPUT_SCALAR_2_WIDTH" xd:value="32"/>
     <xd:parameter xd:name="S_AXIS_BRAM_0_WIDTH" xd:value="8"/>
     <xd:parameter xd:name="S_AXIS_BRAM_0_DMWIDTH" xd:value="64"/>
     <xd:parameter xd:name="S_AXIS_BRAM_0_DEPTH" xd:value="32"/>
     <xd:parameter xd:name="S_AXIS_BRAM_0_MB_DEPTH" xd:value="1"/>
-    <xd:parameter xd:name="C_INPUT_SCALAR_1_WIDTH" xd:value="32"/>
+    <xd:parameter xd:name="C_INPUT_SCALAR_3_WIDTH" xd:value="32"/>
     <xd:parameter xd:name="C_NUM_INPUT_BRAMs" xd:value="1"/>
-    <xd:parameter xd:name="C_N_INPUT_SCALARS" xd:value="2"/>
-    <xd:parameter xd:name="C_NUM_AXIMMs" xd:value="2"/>
+    <xd:parameter xd:name="C_N_INPUT_SCALARS" xd:value="4"/>
+    <xd:parameter xd:name="C_NUM_AXIMMs" xd:value="4"/>
   </xd:instance>
   <xd:instance xd:componentVdr="xilinx.com" xd:componentLib="ip" xd:componentVer="2.1" xd:componentType="interconnect" xd:name="axi_ic_processing_system7_0_M_AXI_GP0" xd:componentRef="axi_interconnect">
     <xd:parameter xd:name="NUM_MI" xd:value="2"/>
@@ -42,9 +45,18 @@
     <xd:parameter xd:name="M01_HAS_REGSLICE" xd:value="1"/>
     <xd:parameter xd:name="S00_HAS_REGSLICE" xd:value="1"/>
   </xd:instance>
+  <xd:instance xd:componentVdr="xilinx.com" xd:componentLib="ip" xd:componentVer="2.1" xd:componentType="interconnect" xd:name="axi_ic_processing_system7_0_S_AXI_HP0" xd:componentRef="axi_interconnect">
+    <xd:parameter xd:name="NUM_MI" xd:value="1"/>
+    <xd:parameter xd:name="NUM_SI" xd:value="1"/>
+    <xd:parameter xd:name="STRATEGY" xd:value="2"/>
+    <xd:parameter xd:name="M00_HAS_REGSLICE" xd:value="1"/>
+    <xd:parameter xd:name="M00_HAS_DATA_FIFO" xd:value="2"/>
+    <xd:parameter xd:name="S00_HAS_REGSLICE" xd:value="1"/>
+    <xd:parameter xd:name="S00_HAS_DATA_FIFO" xd:value="2"/>
+  </xd:instance>
   <xd:instance xd:componentVdr="xilinx.com" xd:componentLib="ip" xd:componentVer="2.1" xd:componentType="interconnect" xd:name="axi_ic_processing_system7_0_S_AXI_ACP" xd:componentRef="axi_interconnect">
     <xd:parameter xd:name="NUM_MI" xd:value="1"/>
-    <xd:parameter xd:name="NUM_SI" xd:value="3"/>
+    <xd:parameter xd:name="NUM_SI" xd:value="4"/>
     <xd:parameter xd:name="STRATEGY" xd:value="2"/>
     <xd:parameter xd:name="M00_HAS_REGSLICE" xd:value="1"/>
     <xd:parameter xd:name="M00_HAS_DATA_FIFO" xd:value="2"/>
@@ -54,6 +66,8 @@
     <xd:parameter xd:name="S01_HAS_DATA_FIFO" xd:value="2"/>
     <xd:parameter xd:name="S02_HAS_REGSLICE" xd:value="1"/>
     <xd:parameter xd:name="S02_HAS_DATA_FIFO" xd:value="2"/>
+    <xd:parameter xd:name="S03_HAS_REGSLICE" xd:value="1"/>
+    <xd:parameter xd:name="S03_HAS_DATA_FIFO" xd:value="2"/>
   </xd:instance>
   <xd:instance xd:componentVdr="xilinx.com" xd:componentLib="ip" xd:componentVer="1.1" xd:name="sds_irq_const" xd:componentRef="xlconstant">
     <xd:parameter xd:name="CONST_WIDTH" xd:value="1"/>
@@ -76,23 +90,39 @@
     <xd:busInterface xd:name="ap_ctrl" xd:instanceRef="encrypt_1"/>
   </xd:connection>
   <xd:connection>
-    <xd:busInterface xd:name="m_axi_ctx" xd:instanceRef="encrypt_1"/>
+    <xd:busInterface xd:name="m_axi_ctx_key" xd:instanceRef="encrypt_1"/>
     <xd:busInterface xd:name="AP_AXIMM_0" xd:instanceRef="encrypt_1_if"/>
   </xd:connection>
   <xd:connection>
-    <xd:busInterface xd:name="m_axi_buf_r" xd:instanceRef="encrypt_1"/>
+    <xd:busInterface xd:name="m_axi_ctx_enckey" xd:instanceRef="encrypt_1"/>
     <xd:busInterface xd:name="AP_AXIMM_1" xd:instanceRef="encrypt_1_if"/>
   </xd:connection>
   <xd:connection>
+    <xd:busInterface xd:name="m_axi_ctx_deckey" xd:instanceRef="encrypt_1"/>
+    <xd:busInterface xd:name="AP_AXIMM_2" xd:instanceRef="encrypt_1_if"/>
+  </xd:connection>
+  <xd:connection>
+    <xd:busInterface xd:name="m_axi_buf_r" xd:instanceRef="encrypt_1"/>
+    <xd:busInterface xd:name="AP_AXIMM_3" xd:instanceRef="encrypt_1_if"/>
+  </xd:connection>
+  <xd:connection>
     <xd:port xd:name="ap_iscalar_0_dout" xd:instanceRef="encrypt_1_if"/>
-    <xd:port xd:name="ctx_offset" xd:instanceRef="encrypt_1"/>
+    <xd:port xd:name="ctx_key_offset" xd:instanceRef="encrypt_1"/>
+  </xd:connection>
+  <xd:connection>
+    <xd:port xd:name="ap_iscalar_1_dout" xd:instanceRef="encrypt_1_if"/>
+    <xd:port xd:name="ctx_enckey_offset" xd:instanceRef="encrypt_1"/>
+  </xd:connection>
+  <xd:connection>
+    <xd:port xd:name="ap_iscalar_2_dout" xd:instanceRef="encrypt_1_if"/>
+    <xd:port xd:name="ctx_deckey_offset" xd:instanceRef="encrypt_1"/>
   </xd:connection>
   <xd:connection>
     <xd:busInterface xd:name="k_PORTA" xd:instanceRef="encrypt_1"/>
     <xd:busInterface xd:name="AP_BRAM_IARG_0_0" xd:instanceRef="encrypt_1_if"/>
   </xd:connection>
   <xd:connection>
-    <xd:port xd:name="ap_iscalar_1_dout" xd:instanceRef="encrypt_1_if"/>
+    <xd:port xd:name="ap_iscalar_3_dout" xd:instanceRef="encrypt_1_if"/>
     <xd:port xd:name="buf_offset" xd:instanceRef="encrypt_1"/>
   </xd:connection>
   <xd:connection>
@@ -100,16 +130,28 @@
     <xd:busInterface xd:name="S00_AXI" xd:instanceRef="axi_ic_processing_system7_0_M_AXI_GP0"/>
   </xd:connection>
   <xd:connection>
+    <xd:busInterface xd:name="M00_AXI" xd:instanceRef="axi_ic_processing_system7_0_S_AXI_HP0"/>
+    <xd:busInterface xd:name="processing_system7_0_S_AXI_HP0" xd:instanceRef="pynq"/>
+  </xd:connection>
+  <xd:connection>
     <xd:busInterface xd:name="M00_AXI" xd:instanceRef="axi_ic_processing_system7_0_S_AXI_ACP"/>
     <xd:busInterface xd:name="processing_system7_0_S_AXI_ACP" xd:instanceRef="pynq"/>
   </xd:connection>
   <xd:connection>
     <xd:busInterface xd:name="M_AXIMM_0" xd:instanceRef="encrypt_1_if"/>
-    <xd:busInterface xd:name="S00_AXI" xd:instanceRef="axi_ic_processing_system7_0_S_AXI_ACP"/>
+    <xd:busInterface xd:name="S00_AXI" xd:instanceRef="axi_ic_processing_system7_0_S_AXI_HP0"/>
   </xd:connection>
   <xd:connection>
     <xd:busInterface xd:name="M_AXIMM_1" xd:instanceRef="encrypt_1_if"/>
+    <xd:busInterface xd:name="S00_AXI" xd:instanceRef="axi_ic_processing_system7_0_S_AXI_ACP"/>
+  </xd:connection>
+  <xd:connection>
+    <xd:busInterface xd:name="M_AXIMM_2" xd:instanceRef="encrypt_1_if"/>
     <xd:busInterface xd:name="S01_AXI" xd:instanceRef="axi_ic_processing_system7_0_S_AXI_ACP"/>
+  </xd:connection>
+  <xd:connection>
+    <xd:busInterface xd:name="M_AXIMM_3" xd:instanceRef="encrypt_1_if"/>
+    <xd:busInterface xd:name="S02_AXI" xd:instanceRef="axi_ic_processing_system7_0_S_AXI_ACP"/>
   </xd:connection>
   <xd:connection>
     <xd:busInterface xd:name="M00_AXI" xd:instanceRef="axi_ic_processing_system7_0_M_AXI_GP0"/>
@@ -121,59 +163,59 @@
   </xd:connection>
   <xd:connection>
     <xd:busInterface xd:name="M_AXI_MM2S" xd:instanceRef="dm_0"/>
-    <xd:busInterface xd:name="S02_AXI" xd:instanceRef="axi_ic_processing_system7_0_S_AXI_ACP"/>
+    <xd:busInterface xd:name="S03_AXI" xd:instanceRef="axi_ic_processing_system7_0_S_AXI_ACP"/>
   </xd:connection>
   <xd:connection>
     <xd:busInterface xd:name="M_AXIS_MM2S" xd:instanceRef="dm_0"/>
     <xd:busInterface xd:name="S_AXIS_BRAM_0" xd:instanceRef="encrypt_1_if"/>
   </xd:connection>
   <xd:connection>
-    <xd:port xd:name="processing_system7_0_FCLK_CLK2" xd:instanceRef="pynq"/>
+    <xd:port xd:name="processing_system7_0_FCLK_CLK1" xd:instanceRef="pynq"/>
     <xd:port xd:name="s_axi_lite_aclk" xd:instanceRef="dm_0"/>
     <xd:port xd:name="m_axi_mm2s_aclk" xd:instanceRef="dm_0"/>
     <xd:port xd:name="processing_system7_0_M_AXI_GP0_ACLK" xd:instanceRef="pynq"/>
     <xd:port xd:name="s_axi_aclk" xd:instanceRef="encrypt_1_if"/>
+    <xd:port xd:name="acc_aclk" xd:instanceRef="encrypt_1_if"/>
     <xd:port xd:name="s_axis_bram_0_aclk" xd:instanceRef="encrypt_1_if"/>
     <xd:port xd:name="S00_ACLK" xd:instanceRef="axi_ic_processing_system7_0_M_AXI_GP0"/>
     <xd:port xd:name="M00_ACLK" xd:instanceRef="axi_ic_processing_system7_0_M_AXI_GP0"/>
     <xd:port xd:name="M01_ACLK" xd:instanceRef="axi_ic_processing_system7_0_M_AXI_GP0"/>
     <xd:port xd:name="ACLK" xd:instanceRef="axi_ic_processing_system7_0_M_AXI_GP0"/>
-    <xd:port xd:name="S02_ACLK" xd:instanceRef="axi_ic_processing_system7_0_S_AXI_ACP"/>
-  </xd:connection>
-  <xd:connection>
-    <xd:port xd:name="proc_sys_reset_2_interconnect_aresetn" xd:instanceRef="pynq"/>
-    <xd:port xd:name="S00_ARESETN" xd:instanceRef="axi_ic_processing_system7_0_M_AXI_GP0"/>
-    <xd:port xd:name="M00_ARESETN" xd:instanceRef="axi_ic_processing_system7_0_M_AXI_GP0"/>
-    <xd:port xd:name="M01_ARESETN" xd:instanceRef="axi_ic_processing_system7_0_M_AXI_GP0"/>
-    <xd:port xd:name="ARESETN" xd:instanceRef="axi_ic_processing_system7_0_M_AXI_GP0"/>
-    <xd:port xd:name="S02_ARESETN" xd:instanceRef="axi_ic_processing_system7_0_S_AXI_ACP"/>
-  </xd:connection>
-  <xd:connection>
-    <xd:port xd:name="proc_sys_reset_2_peripheral_aresetn" xd:instanceRef="pynq"/>
-    <xd:port xd:name="axi_resetn" xd:instanceRef="dm_0"/>
-    <xd:port xd:name="mm2s_prmry_resetn_out_n" xd:instanceRef="dm_0"/>
-    <xd:port xd:name="s_axi_aresetn" xd:instanceRef="encrypt_1_if"/>
-    <xd:port xd:name="s_axis_bram_0_aresetn" xd:instanceRef="encrypt_1_if"/>
-  </xd:connection>
-  <xd:connection>
-    <xd:port xd:name="processing_system7_0_FCLK_CLK0" xd:instanceRef="pynq"/>
-    <xd:port xd:name="acc_aclk" xd:instanceRef="encrypt_1_if"/>
+    <xd:port xd:name="M00_ACLK" xd:instanceRef="axi_ic_processing_system7_0_S_AXI_HP0"/>
+    <xd:port xd:name="S00_ACLK" xd:instanceRef="axi_ic_processing_system7_0_S_AXI_HP0"/>
     <xd:port xd:name="M00_ACLK" xd:instanceRef="axi_ic_processing_system7_0_S_AXI_ACP"/>
     <xd:port xd:name="S00_ACLK" xd:instanceRef="axi_ic_processing_system7_0_S_AXI_ACP"/>
     <xd:port xd:name="S01_ACLK" xd:instanceRef="axi_ic_processing_system7_0_S_AXI_ACP"/>
+    <xd:port xd:name="S02_ACLK" xd:instanceRef="axi_ic_processing_system7_0_S_AXI_ACP"/>
+    <xd:port xd:name="S03_ACLK" xd:instanceRef="axi_ic_processing_system7_0_S_AXI_ACP"/>
+    <xd:port xd:name="ACLK" xd:instanceRef="axi_ic_processing_system7_0_S_AXI_HP0"/>
+    <xd:port xd:name="processing_system7_0_S_AXI_HP0_ACLK" xd:instanceRef="pynq"/>
     <xd:port xd:name="ACLK" xd:instanceRef="axi_ic_processing_system7_0_S_AXI_ACP"/>
     <xd:port xd:name="processing_system7_0_S_AXI_ACP_ACLK" xd:instanceRef="pynq"/>
   </xd:connection>
   <xd:connection>
-    <xd:port xd:name="proc_sys_reset_0_interconnect_aresetn" xd:instanceRef="pynq"/>
+    <xd:port xd:name="proc_sys_reset_1_interconnect_aresetn" xd:instanceRef="pynq"/>
+    <xd:port xd:name="S00_ARESETN" xd:instanceRef="axi_ic_processing_system7_0_M_AXI_GP0"/>
+    <xd:port xd:name="M00_ARESETN" xd:instanceRef="axi_ic_processing_system7_0_M_AXI_GP0"/>
+    <xd:port xd:name="M01_ARESETN" xd:instanceRef="axi_ic_processing_system7_0_M_AXI_GP0"/>
+    <xd:port xd:name="ARESETN" xd:instanceRef="axi_ic_processing_system7_0_M_AXI_GP0"/>
+    <xd:port xd:name="M00_ARESETN" xd:instanceRef="axi_ic_processing_system7_0_S_AXI_HP0"/>
+    <xd:port xd:name="S00_ARESETN" xd:instanceRef="axi_ic_processing_system7_0_S_AXI_HP0"/>
     <xd:port xd:name="M00_ARESETN" xd:instanceRef="axi_ic_processing_system7_0_S_AXI_ACP"/>
     <xd:port xd:name="S00_ARESETN" xd:instanceRef="axi_ic_processing_system7_0_S_AXI_ACP"/>
     <xd:port xd:name="S01_ARESETN" xd:instanceRef="axi_ic_processing_system7_0_S_AXI_ACP"/>
+    <xd:port xd:name="S02_ARESETN" xd:instanceRef="axi_ic_processing_system7_0_S_AXI_ACP"/>
+    <xd:port xd:name="S03_ARESETN" xd:instanceRef="axi_ic_processing_system7_0_S_AXI_ACP"/>
+    <xd:port xd:name="ARESETN" xd:instanceRef="axi_ic_processing_system7_0_S_AXI_HP0"/>
     <xd:port xd:name="ARESETN" xd:instanceRef="axi_ic_processing_system7_0_S_AXI_ACP"/>
   </xd:connection>
   <xd:connection>
-    <xd:port xd:name="proc_sys_reset_0_peripheral_aresetn" xd:instanceRef="pynq"/>
+    <xd:port xd:name="proc_sys_reset_1_peripheral_aresetn" xd:instanceRef="pynq"/>
+    <xd:port xd:name="axi_resetn" xd:instanceRef="dm_0"/>
+    <xd:port xd:name="mm2s_prmry_resetn_out_n" xd:instanceRef="dm_0"/>
+    <xd:port xd:name="s_axi_aresetn" xd:instanceRef="encrypt_1_if"/>
     <xd:port xd:name="acc_aresetn" xd:instanceRef="encrypt_1_if"/>
+    <xd:port xd:name="s_axis_bram_0_aresetn" xd:instanceRef="encrypt_1_if"/>
   </xd:connection>
   <xd:connection>
     <xd:port xd:name="dout" xd:instanceRef="sds_irq_const"/>
@@ -196,10 +238,12 @@
   </xd:connection>
   <xd:connection>
     <xd:port xd:name="dout" xd:instanceRef="axcache_0xE"/>
-    <xd:port xd:name="S02_AXI_arcache" xd:instanceRef="axi_ic_processing_system7_0_S_AXI_ACP"/>
+    <xd:port xd:name="S03_AXI_arcache" xd:instanceRef="axi_ic_processing_system7_0_S_AXI_ACP"/>
     <xd:port xd:name="S00_AXI_arcache" xd:instanceRef="axi_ic_processing_system7_0_S_AXI_ACP"/>
     <xd:port xd:name="S00_AXI_awcache" xd:instanceRef="axi_ic_processing_system7_0_S_AXI_ACP"/>
     <xd:port xd:name="S01_AXI_arcache" xd:instanceRef="axi_ic_processing_system7_0_S_AXI_ACP"/>
     <xd:port xd:name="S01_AXI_awcache" xd:instanceRef="axi_ic_processing_system7_0_S_AXI_ACP"/>
+    <xd:port xd:name="S02_AXI_arcache" xd:instanceRef="axi_ic_processing_system7_0_S_AXI_ACP"/>
+    <xd:port xd:name="S02_AXI_awcache" xd:instanceRef="axi_ic_processing_system7_0_S_AXI_ACP"/>
   </xd:connection>
 </xd:component>

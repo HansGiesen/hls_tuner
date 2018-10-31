@@ -3,26 +3,24 @@ source_filename = "/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes
 target datalayout = "e-m:e-p:32:32-i64:64-v128:64:128-a:0:32-n32-S64"
 target triple = "armv7-none--eabi"
 
-%struct.aes256_context = type { [32 x i8], [32 x i8], [32 x i8], [32 x i8] }
-
-@pipeline_ii_sub = constant i32 13, align 4
+@pipeline_ii_sub = constant i32 1, align 4
 @pipeline_ii_addkey = constant i32 1, align 4
-@pipeline_ii_cpkey = constant i32 14, align 4
-@pipeline_ii_mix = constant i32 2, align 4
+@pipeline_ii_cpkey = constant i32 1, align 4
+@pipeline_ii_mix = constant i32 1, align 4
 @pipeline_ii_exp1 = constant i32 1, align 4
 @pipeline_ii_exp2 = constant i32 1, align 4
-@pipeline_ii_ecb1 = constant i32 13, align 4
-@pipeline_ii_ecb2 = constant i32 2, align 4
-@pipeline_ii_ecb3 = constant i32 13, align 4
-@unroll_factor_sub = constant i32 4, align 4
-@unroll_factor_addkey = constant i32 9, align 4
-@unroll_factor_cpkey = constant i32 9, align 4
+@pipeline_ii_ecb1 = constant i32 1, align 4
+@pipeline_ii_ecb2 = constant i32 1, align 4
+@pipeline_ii_ecb3 = constant i32 1, align 4
+@unroll_factor_sub = constant i32 1, align 4
+@unroll_factor_addkey = constant i32 1, align 4
+@unroll_factor_cpkey = constant i32 1, align 4
 @unroll_factor_mix = constant i32 1, align 4
-@unroll_factor_exp1 = constant i32 2, align 4
-@unroll_factor_exp2 = constant i32 2, align 4
-@unroll_factor_ecb1 = constant i32 22, align 4
+@unroll_factor_exp1 = constant i32 1, align 4
+@unroll_factor_exp2 = constant i32 1, align 4
+@unroll_factor_ecb1 = constant i32 1, align 4
 @unroll_factor_ecb2 = constant i32 1, align 4
-@unroll_factor_ecb3 = constant i32 8, align 4
+@unroll_factor_ecb3 = constant i32 1, align 4
 @sbox = constant [256 x i8] c"c|w{\F2ko\C50\01g+\FE\D7\ABv\CA\82\C9}\FAYG\F0\AD\D4\A2\AF\9C\A4r\C0\B7\FD\93&6?\F7\CC4\A5\E5\F1q\D81\15\04\C7#\C3\18\96\05\9A\07\12\80\E2\EB'\B2u\09\83,\1A\1BnZ\A0R;\D6\B3)\E3/\84S\D1\00\ED \FC\B1[j\CB\BE9JLX\CF\D0\EF\AA\FBCM3\85E\F9\02\7FP<\9F\A8Q\A3@\8F\92\9D8\F5\BC\B6\DA!\10\FF\F3\D2\CD\0C\13\EC_\97D\17\C4\A7~=d]\19s`\81O\DC\22*\90\88F\EE\B8\14\DE^\0B\DB\E02:\0AI\06$\5C\C2\D3\ACb\91\95\E4y\E7\C87m\8D\D5N\A9lV\F4\EAez\AE\08\BAx%.\1C\A6\B4\C6\E8\DDt\1FK\BD\8B\8Ap>\B5fH\03\F6\0Ea5W\B9\86\C1\1D\9E\E1\F8\98\11i\D9\8E\94\9B\1E\87\E9\CEU(\DF\8C\A1\89\0D\BF\E6BhA\99-\0F\B0T\BB\16", align 1
 
 ; Function Attrs: nounwind
@@ -793,159 +791,148 @@ define void @aes_expandEncKey(i8*, i8*) #0 !dbg !304 !xidane.fname !305 !xidane.
 }
 
 ; Function Attrs: nounwind
-define void @encrypt(%struct.aes256_context*, i8*, i8*) #0 !dbg !429 !xidane.fname !444 !xidane.function_declaration_type !445 !xidane.function_declaration_filename !446 !xidane.ExternC !45 !xidane.function_argument_annotation !447 {
-  %4 = alloca %struct.aes256_context*, align 4
-  %5 = alloca i8*, align 4
+define void @encrypt(i8*, i8*, i8*, i8*, i8*) #0 !dbg !429 !xidane.fname !432 !xidane.function_declaration_type !433 !xidane.function_declaration_filename !434 !xidane.ExternC !45 !xidane.function_argument_annotation !435 {
   %6 = alloca i8*, align 4
-  %7 = alloca i8, align 1
-  %8 = alloca i8, align 1
-  store %struct.aes256_context* %0, %struct.aes256_context** %4, align 4
-  call void @llvm.dbg.declare(metadata %struct.aes256_context** %4, metadata !448, metadata !47), !dbg !449
-  store i8* %1, i8** %5, align 4
-  call void @llvm.dbg.declare(metadata i8** %5, metadata !450, metadata !47), !dbg !451
-  store i8* %2, i8** %6, align 4
-  call void @llvm.dbg.declare(metadata i8** %6, metadata !452, metadata !47), !dbg !453
-  call void @llvm.dbg.declare(metadata i8* %7, metadata !454, metadata !47), !dbg !455
-  store i8 1, i8* %7, align 1, !dbg !455
-  call void @llvm.dbg.declare(metadata i8* %8, metadata !456, metadata !47), !dbg !457
-  br label %9, !dbg !458
+  %7 = alloca i8*, align 4
+  %8 = alloca i8*, align 4
+  %9 = alloca i8*, align 4
+  %10 = alloca i8*, align 4
+  %11 = alloca i8, align 1
+  %12 = alloca i8, align 1
+  store i8* %0, i8** %6, align 4
+  call void @llvm.dbg.declare(metadata i8** %6, metadata !436, metadata !47), !dbg !437
+  store i8* %1, i8** %7, align 4
+  call void @llvm.dbg.declare(metadata i8** %7, metadata !438, metadata !47), !dbg !439
+  store i8* %2, i8** %8, align 4
+  call void @llvm.dbg.declare(metadata i8** %8, metadata !440, metadata !47), !dbg !441
+  store i8* %3, i8** %9, align 4
+  call void @llvm.dbg.declare(metadata i8** %9, metadata !442, metadata !47), !dbg !443
+  store i8* %4, i8** %10, align 4
+  call void @llvm.dbg.declare(metadata i8** %10, metadata !444, metadata !47), !dbg !445
+  call void @llvm.dbg.declare(metadata i8* %11, metadata !446, metadata !47), !dbg !447
+  store i8 1, i8* %11, align 1, !dbg !447
+  call void @llvm.dbg.declare(metadata i8* %12, metadata !448, metadata !47), !dbg !449
+  br label %13, !dbg !450
 
-; <label>:9:                                      ; preds = %3
-  store i8 0, i8* %8, align 1, !dbg !459
-  br label %10, !dbg !461
+; <label>:13:                                     ; preds = %5
+  store i8 0, i8* %12, align 1, !dbg !451
+  br label %14, !dbg !453
 
-; <label>:10:                                     ; preds = %30, %9
-  %11 = load i8, i8* %8, align 1, !dbg !462
-  %12 = zext i8 %11 to i32, !dbg !462
-  %13 = icmp ult i32 %12, 32, !dbg !465
-  br i1 %13, label %14, label %33, !dbg !466
+; <label>:14:                                     ; preds = %32, %13
+  %15 = load i8, i8* %12, align 1, !dbg !454
+  %16 = zext i8 %15 to i32, !dbg !454
+  %17 = icmp slt i32 %16, 32, !dbg !457
+  br i1 %17, label %18, label %35, !dbg !458
 
-; <label>:14:                                     ; preds = %10
-  %15 = load i8, i8* %8, align 1, !dbg !467
-  %16 = zext i8 %15 to i32, !dbg !469
-  %17 = load i8*, i8** %5, align 4, !dbg !469
-  %18 = getelementptr inbounds i8, i8* %17, i32 %16, !dbg !469
-  %19 = load i8, i8* %18, align 1, !dbg !469
-  %20 = load i8, i8* %8, align 1, !dbg !470
-  %21 = zext i8 %20 to i32, !dbg !471
-  %22 = load %struct.aes256_context*, %struct.aes256_context** %4, align 4, !dbg !471
-  %23 = getelementptr inbounds %struct.aes256_context, %struct.aes256_context* %22, i32 0, i32 2, !dbg !472
-  %24 = getelementptr inbounds [32 x i8], [32 x i8]* %23, i32 0, i32 %21, !dbg !471
-  store i8 %19, i8* %24, align 1, !dbg !473
-  %25 = load i8, i8* %8, align 1, !dbg !474
-  %26 = zext i8 %25 to i32, !dbg !475
-  %27 = load %struct.aes256_context*, %struct.aes256_context** %4, align 4, !dbg !475
-  %28 = getelementptr inbounds %struct.aes256_context, %struct.aes256_context* %27, i32 0, i32 1, !dbg !476
-  %29 = getelementptr inbounds [32 x i8], [32 x i8]* %28, i32 0, i32 %26, !dbg !475
-  store i8 %19, i8* %29, align 1, !dbg !477
-  br label %30, !dbg !478
+; <label>:18:                                     ; preds = %14
+  %19 = load i8, i8* %12, align 1, !dbg !459
+  %20 = zext i8 %19 to i32, !dbg !461
+  %21 = load i8*, i8** %9, align 4, !dbg !461
+  %22 = getelementptr inbounds i8, i8* %21, i32 %20, !dbg !461
+  %23 = load i8, i8* %22, align 1, !dbg !461
+  %24 = load i8, i8* %12, align 1, !dbg !462
+  %25 = zext i8 %24 to i32, !dbg !463
+  %26 = load i8*, i8** %8, align 4, !dbg !463
+  %27 = getelementptr inbounds i8, i8* %26, i32 %25, !dbg !463
+  store i8 %23, i8* %27, align 1, !dbg !464
+  %28 = load i8, i8* %12, align 1, !dbg !465
+  %29 = zext i8 %28 to i32, !dbg !466
+  %30 = load i8*, i8** %7, align 4, !dbg !466
+  %31 = getelementptr inbounds i8, i8* %30, i32 %29, !dbg !466
+  store i8 %23, i8* %31, align 1, !dbg !467
+  br label %32, !dbg !468
 
-; <label>:30:                                     ; preds = %14
-  %31 = load i8, i8* %8, align 1, !dbg !479
-  %32 = add i8 %31, 1, !dbg !479
-  store i8 %32, i8* %8, align 1, !dbg !479
-  br label %10, !dbg !481, !llvm.loop !482
+; <label>:32:                                     ; preds = %18
+  %33 = load i8, i8* %12, align 1, !dbg !469
+  %34 = add i8 %33, 1, !dbg !469
+  store i8 %34, i8* %12, align 1, !dbg !469
+  br label %14, !dbg !471, !llvm.loop !472
 
-; <label>:33:                                     ; preds = %10
-  br label %34, !dbg !484
+; <label>:35:                                     ; preds = %14
+  br label %36, !dbg !474
 
-; <label>:34:                                     ; preds = %33
-  store i8 8, i8* %8, align 1, !dbg !486
-  br label %35, !dbg !488
+; <label>:36:                                     ; preds = %35
+  store i8 8, i8* %12, align 1, !dbg !476
+  br label %37, !dbg !478
 
-; <label>:35:                                     ; preds = %39, %34
-  %36 = load i8, i8* %8, align 1, !dbg !489
-  %37 = add i8 %36, -1, !dbg !489
-  store i8 %37, i8* %8, align 1, !dbg !489
-  %38 = icmp ne i8 %37, 0, !dbg !492
-  br i1 %38, label %39, label %43, !dbg !492
+; <label>:37:                                     ; preds = %41, %36
+  %38 = load i8, i8* %12, align 1, !dbg !479
+  %39 = add i8 %38, -1, !dbg !479
+  store i8 %39, i8* %12, align 1, !dbg !479
+  %40 = icmp ne i8 %39, 0, !dbg !482
+  br i1 %40, label %41, label %43, !dbg !482
 
-; <label>:39:                                     ; preds = %35
-  %40 = load %struct.aes256_context*, %struct.aes256_context** %4, align 4, !dbg !493
-  %41 = getelementptr inbounds %struct.aes256_context, %struct.aes256_context* %40, i32 0, i32 2, !dbg !495
-  %42 = getelementptr inbounds [32 x i8], [32 x i8]* %41, i32 0, i32 0, !dbg !493
-  call void @aes_expandEncKey(i8* %42, i8* %7), !dbg !496
-  br label %35, !dbg !497, !llvm.loop !499
+; <label>:41:                                     ; preds = %37
+  %42 = load i8*, i8** %8, align 4, !dbg !483
+  call void @aes_expandEncKey(i8* %42, i8* %11), !dbg !485
+  br label %37, !dbg !486, !llvm.loop !488
 
-; <label>:43:                                     ; preds = %35
-  %44 = load i8*, i8** %6, align 4, !dbg !501
-  %45 = load %struct.aes256_context*, %struct.aes256_context** %4, align 4, !dbg !502
-  %46 = getelementptr inbounds %struct.aes256_context, %struct.aes256_context* %45, i32 0, i32 1, !dbg !503
-  %47 = getelementptr inbounds [32 x i8], [32 x i8]* %46, i32 0, i32 0, !dbg !502
-  %48 = load %struct.aes256_context*, %struct.aes256_context** %4, align 4, !dbg !504
-  %49 = getelementptr inbounds %struct.aes256_context, %struct.aes256_context* %48, i32 0, i32 0, !dbg !505
-  %50 = getelementptr inbounds [32 x i8], [32 x i8]* %49, i32 0, i32 0, !dbg !504
-  call void @aes_addRoundKey_cpy(i8* %44, i8* %47, i8* %50), !dbg !506
-  br label %51, !dbg !506
+; <label>:43:                                     ; preds = %37
+  %44 = load i8*, i8** %10, align 4, !dbg !490
+  %45 = load i8*, i8** %7, align 4, !dbg !491
+  %46 = load i8*, i8** %6, align 4, !dbg !492
+  call void @aes_addRoundKey_cpy(i8* %44, i8* %45, i8* %46), !dbg !493
+  br label %47, !dbg !493
 
-; <label>:51:                                     ; preds = %43
-  store i8 1, i8* %8, align 1, !dbg !507
-  store i8 1, i8* %7, align 1, !dbg !509
-  br label %52, !dbg !510
+; <label>:47:                                     ; preds = %43
+  store i8 1, i8* %12, align 1, !dbg !494
+  store i8 1, i8* %11, align 1, !dbg !496
+  br label %48, !dbg !497
 
-; <label>:52:                                     ; preds = %78, %51
-  %53 = load i8, i8* %8, align 1, !dbg !511
-  %54 = zext i8 %53 to i32, !dbg !511
-  %55 = icmp slt i32 %54, 14, !dbg !514
-  br i1 %55, label %56, label %81, !dbg !515
+; <label>:48:                                     ; preds = %69, %47
+  %49 = load i8, i8* %12, align 1, !dbg !498
+  %50 = zext i8 %49 to i32, !dbg !498
+  %51 = icmp slt i32 %50, 14, !dbg !501
+  br i1 %51, label %52, label %72, !dbg !502
 
-; <label>:56:                                     ; preds = %52
-  %57 = load i8*, i8** %6, align 4, !dbg !516
-  call void @aes_subBytes(i8* %57), !dbg !518
-  %58 = load i8*, i8** %6, align 4, !dbg !519
-  call void @aes_shiftRows(i8* %58), !dbg !520
-  %59 = load i8*, i8** %6, align 4, !dbg !521
-  call void @aes_mixColumns(i8* %59), !dbg !522
-  %60 = load i8, i8* %8, align 1, !dbg !523
-  %61 = zext i8 %60 to i32, !dbg !523
-  %62 = and i32 %61, 1, !dbg !525
-  %63 = icmp ne i32 %62, 0, !dbg !525
-  br i1 %63, label %64, label %69, !dbg !526
+; <label>:52:                                     ; preds = %48
+  %53 = load i8*, i8** %10, align 4, !dbg !503
+  call void @aes_subBytes(i8* %53), !dbg !505
+  %54 = load i8*, i8** %10, align 4, !dbg !506
+  call void @aes_shiftRows(i8* %54), !dbg !507
+  %55 = load i8*, i8** %10, align 4, !dbg !508
+  call void @aes_mixColumns(i8* %55), !dbg !509
+  %56 = load i8, i8* %12, align 1, !dbg !510
+  %57 = zext i8 %56 to i32, !dbg !510
+  %58 = and i32 %57, 1, !dbg !512
+  %59 = icmp ne i32 %58, 0, !dbg !512
+  br i1 %59, label %60, label %64, !dbg !513
 
-; <label>:64:                                     ; preds = %56
-  %65 = load i8*, i8** %6, align 4, !dbg !527
-  %66 = load %struct.aes256_context*, %struct.aes256_context** %4, align 4, !dbg !529
-  %67 = getelementptr inbounds %struct.aes256_context, %struct.aes256_context* %66, i32 0, i32 0, !dbg !530
-  %68 = getelementptr inbounds [32 x i8], [32 x i8]* %67, i32 0, i32 16, !dbg !529
-  call void @aes_addRoundKey(i8* %65, i8* %68), !dbg !531
-  br label %77, !dbg !531
+; <label>:60:                                     ; preds = %52
+  %61 = load i8*, i8** %10, align 4, !dbg !514
+  %62 = load i8*, i8** %6, align 4, !dbg !516
+  %63 = getelementptr inbounds i8, i8* %62, i32 16, !dbg !517
+  call void @aes_addRoundKey(i8* %61, i8* %63), !dbg !518
+  br label %68, !dbg !518
 
-; <label>:69:                                     ; preds = %56
-  %70 = load %struct.aes256_context*, %struct.aes256_context** %4, align 4, !dbg !532
-  %71 = getelementptr inbounds %struct.aes256_context, %struct.aes256_context* %70, i32 0, i32 0, !dbg !533
-  %72 = getelementptr inbounds [32 x i8], [32 x i8]* %71, i32 0, i32 0, !dbg !532
-  call void @aes_expandEncKey(i8* %72, i8* %7), !dbg !534
-  %73 = load i8*, i8** %6, align 4, !dbg !535
-  %74 = load %struct.aes256_context*, %struct.aes256_context** %4, align 4, !dbg !536
-  %75 = getelementptr inbounds %struct.aes256_context, %struct.aes256_context* %74, i32 0, i32 0, !dbg !537
-  %76 = getelementptr inbounds [32 x i8], [32 x i8]* %75, i32 0, i32 0, !dbg !536
-  call void @aes_addRoundKey(i8* %73, i8* %76), !dbg !538
-  br label %77
+; <label>:64:                                     ; preds = %52
+  %65 = load i8*, i8** %6, align 4, !dbg !519
+  call void @aes_expandEncKey(i8* %65, i8* %11), !dbg !520
+  %66 = load i8*, i8** %10, align 4, !dbg !521
+  %67 = load i8*, i8** %6, align 4, !dbg !522
+  call void @aes_addRoundKey(i8* %66, i8* %67), !dbg !523
+  br label %68
 
-; <label>:77:                                     ; preds = %69, %64
-  br label %78, !dbg !539
+; <label>:68:                                     ; preds = %64, %60
+  br label %69, !dbg !524
 
-; <label>:78:                                     ; preds = %77
-  %79 = load i8, i8* %8, align 1, !dbg !540
-  %80 = add i8 %79, 1, !dbg !540
-  store i8 %80, i8* %8, align 1, !dbg !540
-  br label %52, !dbg !542, !llvm.loop !543
+; <label>:69:                                     ; preds = %68
+  %70 = load i8, i8* %12, align 1, !dbg !525
+  %71 = add i8 %70, 1, !dbg !525
+  store i8 %71, i8* %12, align 1, !dbg !525
+  br label %48, !dbg !527, !llvm.loop !528
 
-; <label>:81:                                     ; preds = %52
-  %82 = load i8*, i8** %6, align 4, !dbg !545
-  call void @aes_subBytes(i8* %82), !dbg !546
-  %83 = load i8*, i8** %6, align 4, !dbg !547
-  call void @aes_shiftRows(i8* %83), !dbg !548
-  %84 = load %struct.aes256_context*, %struct.aes256_context** %4, align 4, !dbg !549
-  %85 = getelementptr inbounds %struct.aes256_context, %struct.aes256_context* %84, i32 0, i32 0, !dbg !550
-  %86 = getelementptr inbounds [32 x i8], [32 x i8]* %85, i32 0, i32 0, !dbg !549
-  call void @aes_expandEncKey(i8* %86, i8* %7), !dbg !551
-  %87 = load i8*, i8** %6, align 4, !dbg !552
-  %88 = load %struct.aes256_context*, %struct.aes256_context** %4, align 4, !dbg !553
-  %89 = getelementptr inbounds %struct.aes256_context, %struct.aes256_context* %88, i32 0, i32 0, !dbg !554
-  %90 = getelementptr inbounds [32 x i8], [32 x i8]* %89, i32 0, i32 0, !dbg !553
-  call void @aes_addRoundKey(i8* %87, i8* %90), !dbg !555
-  ret void, !dbg !556
+; <label>:72:                                     ; preds = %48
+  %73 = load i8*, i8** %10, align 4, !dbg !530
+  call void @aes_subBytes(i8* %73), !dbg !531
+  %74 = load i8*, i8** %10, align 4, !dbg !532
+  call void @aes_shiftRows(i8* %74), !dbg !533
+  %75 = load i8*, i8** %6, align 4, !dbg !534
+  call void @aes_expandEncKey(i8* %75, i8* %11), !dbg !535
+  %76 = load i8*, i8** %10, align 4, !dbg !536
+  %77 = load i8*, i8** %6, align 4, !dbg !537
+  call void @aes_addRoundKey(i8* %76, i8* %77), !dbg !538
+  ret void, !dbg !539
 }
 
 attributes #0 = { nounwind "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-jump-tables"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="cortex-a9" "target-features"="+dsp,+strict-align,+vfp3,-crypto,-d16,-fp-armv8,-fp-only-sp,-fp16,-neon,-vfp4" "unsafe-fp-math"="false" "use-soft-float"="false" }
@@ -956,7 +943,7 @@ attributes #1 = { nounwind readnone }
 !llvm.ident = !{!38}
 
 !0 = distinct !DICompileUnit(language: DW_LANG_C99, file: !1, producer: "clang version 3.9.0 (tags/RELEASE_390/final)", isOptimized: false, runtimeVersion: 0, emissionKind: FullDebug, enums: !2, globals: !3)
-!1 = !DIFile(filename: "/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c", directory: "/scratch/local/tmp.mnejJh1Zni")
+!1 = !DIFile(filename: "/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c", directory: "/scratch/local/tmp.7aow7oM1KP")
 !2 = !{}
 !3 = !{!4, !7, !8, !9, !10, !11, !12, !13, !14, !15, !16, !17, !18, !19, !20, !21, !22, !23, !24}
 !4 = distinct !DIGlobalVariable(name: "pipeline_ii_sub", scope: !0, file: !1, line: 66, type: !5, isLocal: false, isDefinition: true, variable: i32* @pipeline_ii_sub)
@@ -983,9 +970,9 @@ attributes #1 = { nounwind readnone }
 !25 = !DICompositeType(tag: DW_TAG_array_type, baseType: !26, size: 2048, align: 8, elements: !32)
 !26 = !DIDerivedType(tag: DW_TAG_const_type, baseType: !27)
 !27 = !DIDerivedType(tag: DW_TAG_typedef, name: "uint8_t", file: !28, line: 20, baseType: !29)
-!28 = !DIFile(filename: "/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/libc/usr/include/sys/_stdint.h", directory: "/scratch/local/tmp.mnejJh1Zni")
+!28 = !DIFile(filename: "/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/libc/usr/include/sys/_stdint.h", directory: "/scratch/local/tmp.7aow7oM1KP")
 !29 = !DIDerivedType(tag: DW_TAG_typedef, name: "__uint8_t", file: !30, line: 29, baseType: !31)
-!30 = !DIFile(filename: "/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/libc/usr/include/machine/_default_types.h", directory: "/scratch/local/tmp.mnejJh1Zni")
+!30 = !DIFile(filename: "/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/libc/usr/include/machine/_default_types.h", directory: "/scratch/local/tmp.7aow7oM1KP")
 !31 = !DIBasicType(name: "unsigned char", size: 8, align: 8, encoding: DW_ATE_unsigned_char)
 !32 = !{!33}
 !33 = !DISubrange(count: 256)
@@ -1384,131 +1371,114 @@ attributes #1 = { nounwind readnone }
 !426 = distinct !{!426, !427}
 !427 = !DILocation(line: 283, column: 12, scope: !304)
 !428 = !DILocation(line: 294, column: 1, scope: !304)
-!429 = distinct !DISubprogram(name: "encrypt", scope: !1, file: !1, line: 299, type: !430, isLocal: false, isDefinition: true, scopeLine: 300, flags: DIFlagPrototyped, isOptimized: false, unit: !0, variables: !2)
+!429 = distinct !DISubprogram(name: "encrypt", scope: !1, file: !1, line: 301, type: !430, isLocal: false, isDefinition: true, scopeLine: 303, flags: DIFlagPrototyped, isOptimized: false, unit: !0, variables: !2)
 !430 = !DISubroutineType(types: !431)
-!431 = !{null, !432, !67, !67}
-!432 = !DIDerivedType(tag: DW_TAG_pointer_type, baseType: !433, size: 32, align: 32)
-!433 = !DIDerivedType(tag: DW_TAG_typedef, name: "aes256_context", file: !434, line: 12, baseType: !435)
-!434 = !DIFile(filename: "/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.h", directory: "/scratch/local/tmp.mnejJh1Zni")
-!435 = distinct !DICompositeType(tag: DW_TAG_structure_type, file: !434, line: 7, size: 1024, align: 8, elements: !436)
-!436 = !{!437, !441, !442, !443}
-!437 = !DIDerivedType(tag: DW_TAG_member, name: "key", scope: !435, file: !434, line: 8, baseType: !438, size: 256, align: 8)
-!438 = !DICompositeType(tag: DW_TAG_array_type, baseType: !27, size: 256, align: 8, elements: !439)
-!439 = !{!440}
-!440 = !DISubrange(count: 32)
-!441 = !DIDerivedType(tag: DW_TAG_member, name: "enckey", scope: !435, file: !434, line: 9, baseType: !438, size: 256, align: 8, offset: 256)
-!442 = !DIDerivedType(tag: DW_TAG_member, name: "deckey", scope: !435, file: !434, line: 10, baseType: !438, size: 256, align: 8, offset: 512)
-!443 = !DIDerivedType(tag: DW_TAG_member, name: "dummy", scope: !435, file: !434, line: 11, baseType: !438, size: 256, align: 8, offset: 768)
-!444 = !{!"encrypt"}
-!445 = !{!"void.aes256_context *.1.uint8_t [32].1.uint8_t [16].1"}
-!446 = !{!"/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.h"}
-!447 = !{!"buf,,,,,,,zero_copy,,,, ctx,,,,,,,zero_copy,,,, "}
-!448 = !DILocalVariable(name: "ctx", arg: 1, scope: !429, file: !1, line: 299, type: !432)
-!449 = !DILocation(line: 299, column: 30, scope: !429)
-!450 = !DILocalVariable(name: "k", arg: 2, scope: !429, file: !1, line: 299, type: !67)
-!451 = !DILocation(line: 299, column: 43, scope: !429)
-!452 = !DILocalVariable(name: "buf", arg: 3, scope: !429, file: !1, line: 299, type: !67)
-!453 = !DILocation(line: 299, column: 58, scope: !429)
-!454 = !DILocalVariable(name: "rcon", scope: !429, file: !1, line: 302, type: !27)
-!455 = !DILocation(line: 302, column: 13, scope: !429)
-!456 = !DILocalVariable(name: "i", scope: !429, file: !1, line: 303, type: !27)
-!457 = !DILocation(line: 303, column: 13, scope: !429)
-!458 = !DILocation(line: 303, column: 5, scope: !429)
-!459 = !DILocation(line: 305, column: 19, scope: !460)
-!460 = distinct !DILexicalBlock(scope: !429, file: !1, line: 305, column: 12)
-!461 = !DILocation(line: 305, column: 17, scope: !460)
-!462 = !DILocation(line: 305, column: 24, scope: !463)
-!463 = !DILexicalBlockFile(scope: !464, file: !1, discriminator: 1)
-!464 = distinct !DILexicalBlock(scope: !460, file: !1, line: 305, column: 12)
-!465 = !DILocation(line: 305, column: 26, scope: !463)
-!466 = !DILocation(line: 305, column: 12, scope: !463)
-!467 = !DILocation(line: 311, column: 45, scope: !468)
-!468 = distinct !DILexicalBlock(scope: !464, file: !1, line: 305, column: 50)
-!469 = !DILocation(line: 311, column: 43, scope: !468)
-!470 = !DILocation(line: 311, column: 38, scope: !468)
-!471 = !DILocation(line: 311, column: 26, scope: !468)
-!472 = !DILocation(line: 311, column: 31, scope: !468)
-!473 = !DILocation(line: 311, column: 41, scope: !468)
-!474 = !DILocation(line: 311, column: 21, scope: !468)
-!475 = !DILocation(line: 311, column: 9, scope: !468)
-!476 = !DILocation(line: 311, column: 14, scope: !468)
-!477 = !DILocation(line: 311, column: 24, scope: !468)
-!478 = !DILocation(line: 312, column: 5, scope: !468)
-!479 = !DILocation(line: 305, column: 47, scope: !480)
-!480 = !DILexicalBlockFile(scope: !464, file: !1, discriminator: 2)
-!481 = !DILocation(line: 305, column: 12, scope: !480)
-!482 = distinct !{!482, !483}
-!483 = !DILocation(line: 305, column: 12, scope: !429)
-!484 = !DILocation(line: 312, column: 5, scope: !485)
-!485 = !DILexicalBlockFile(scope: !460, file: !1, discriminator: 1)
-!486 = !DILocation(line: 313, column: 19, scope: !487)
-!487 = distinct !DILexicalBlock(scope: !429, file: !1, line: 313, column: 12)
-!488 = !DILocation(line: 313, column: 17, scope: !487)
-!489 = !DILocation(line: 313, column: 23, scope: !490)
-!490 = !DILexicalBlockFile(scope: !491, file: !1, discriminator: 1)
-!491 = distinct !DILexicalBlock(scope: !487, file: !1, line: 313, column: 12)
-!492 = !DILocation(line: 313, column: 12, scope: !490)
-!493 = !DILocation(line: 319, column: 26, scope: !494)
-!494 = distinct !DILexicalBlock(scope: !491, file: !1, line: 313, column: 28)
-!495 = !DILocation(line: 319, column: 31, scope: !494)
-!496 = !DILocation(line: 319, column: 9, scope: !494)
-!497 = !DILocation(line: 313, column: 12, scope: !498)
-!498 = !DILexicalBlockFile(scope: !491, file: !1, discriminator: 2)
-!499 = distinct !{!499, !500}
-!500 = !DILocation(line: 313, column: 12, scope: !429)
-!501 = !DILocation(line: 323, column: 25, scope: !429)
-!502 = !DILocation(line: 323, column: 30, scope: !429)
-!503 = !DILocation(line: 323, column: 35, scope: !429)
-!504 = !DILocation(line: 323, column: 43, scope: !429)
-!505 = !DILocation(line: 323, column: 48, scope: !429)
-!506 = !DILocation(line: 323, column: 5, scope: !429)
-!507 = !DILocation(line: 324, column: 18, scope: !508)
-!508 = distinct !DILexicalBlock(scope: !429, file: !1, line: 324, column: 12)
-!509 = !DILocation(line: 324, column: 28, scope: !508)
-!510 = !DILocation(line: 324, column: 16, scope: !508)
-!511 = !DILocation(line: 324, column: 33, scope: !512)
-!512 = !DILexicalBlockFile(scope: !513, file: !1, discriminator: 1)
-!513 = distinct !DILexicalBlock(scope: !508, file: !1, line: 324, column: 12)
-!514 = !DILocation(line: 324, column: 35, scope: !512)
-!515 = !DILocation(line: 324, column: 12, scope: !512)
-!516 = !DILocation(line: 331, column: 22, scope: !517)
-!517 = distinct !DILexicalBlock(scope: !513, file: !1, line: 325, column: 5)
-!518 = !DILocation(line: 331, column: 9, scope: !517)
-!519 = !DILocation(line: 332, column: 23, scope: !517)
-!520 = !DILocation(line: 332, column: 9, scope: !517)
-!521 = !DILocation(line: 333, column: 24, scope: !517)
-!522 = !DILocation(line: 333, column: 9, scope: !517)
-!523 = !DILocation(line: 334, column: 13, scope: !524)
-!524 = distinct !DILexicalBlock(scope: !517, file: !1, line: 334, column: 13)
-!525 = !DILocation(line: 334, column: 15, scope: !524)
-!526 = !DILocation(line: 334, column: 13, scope: !517)
-!527 = !DILocation(line: 334, column: 38, scope: !528)
-!528 = !DILexicalBlockFile(scope: !524, file: !1, discriminator: 1)
-!529 = !DILocation(line: 334, column: 44, scope: !528)
-!530 = !DILocation(line: 334, column: 49, scope: !528)
-!531 = !DILocation(line: 334, column: 21, scope: !528)
-!532 = !DILocation(line: 335, column: 31, scope: !524)
-!533 = !DILocation(line: 335, column: 36, scope: !524)
-!534 = !DILocation(line: 335, column: 14, scope: !524)
-!535 = !DILocation(line: 335, column: 65, scope: !524)
-!536 = !DILocation(line: 335, column: 70, scope: !524)
-!537 = !DILocation(line: 335, column: 75, scope: !524)
-!538 = !DILocation(line: 335, column: 49, scope: !528)
-!539 = !DILocation(line: 336, column: 5, scope: !517)
-!540 = !DILocation(line: 324, column: 41, scope: !541)
-!541 = !DILexicalBlockFile(scope: !513, file: !1, discriminator: 2)
-!542 = !DILocation(line: 324, column: 12, scope: !541)
-!543 = distinct !{!543, !544}
-!544 = !DILocation(line: 324, column: 12, scope: !429)
-!545 = !DILocation(line: 337, column: 18, scope: !429)
-!546 = !DILocation(line: 337, column: 5, scope: !429)
-!547 = !DILocation(line: 338, column: 19, scope: !429)
-!548 = !DILocation(line: 338, column: 5, scope: !429)
-!549 = !DILocation(line: 339, column: 22, scope: !429)
-!550 = !DILocation(line: 339, column: 27, scope: !429)
-!551 = !DILocation(line: 339, column: 5, scope: !429)
-!552 = !DILocation(line: 340, column: 21, scope: !429)
-!553 = !DILocation(line: 340, column: 26, scope: !429)
-!554 = !DILocation(line: 340, column: 31, scope: !429)
-!555 = !DILocation(line: 340, column: 5, scope: !429)
-!556 = !DILocation(line: 341, column: 1, scope: !429)
+!431 = !{null, !67, !67, !67, !67, !67}
+!432 = !{!"encrypt"}
+!433 = !{!"void.uint8_t [32].1.uint8_t [32].1.uint8_t [32].1.uint8_t [32].1.uint8_t [16].1"}
+!434 = !{!"/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.h"}
+!435 = !{!"buf,,,,,,,zero_copy,,,, ctx_deckey,,,,,,,zero_copy,,,, ctx_enckey,,,,,,,zero_copy,,,, ctx_key,,,,,,,zero_copy,,,, "}
+!436 = !DILocalVariable(name: "ctx_key", arg: 1, scope: !429, file: !1, line: 301, type: !67)
+!437 = !DILocation(line: 301, column: 22, scope: !429)
+!438 = !DILocalVariable(name: "ctx_enckey", arg: 2, scope: !429, file: !1, line: 301, type: !67)
+!439 = !DILocation(line: 301, column: 43, scope: !429)
+!440 = !DILocalVariable(name: "ctx_deckey", arg: 3, scope: !429, file: !1, line: 302, type: !67)
+!441 = !DILocation(line: 302, column: 22, scope: !429)
+!442 = !DILocalVariable(name: "k", arg: 4, scope: !429, file: !1, line: 302, type: !67)
+!443 = !DILocation(line: 302, column: 46, scope: !429)
+!444 = !DILocalVariable(name: "buf", arg: 5, scope: !429, file: !1, line: 302, type: !67)
+!445 = !DILocation(line: 302, column: 61, scope: !429)
+!446 = !DILocalVariable(name: "rcon", scope: !429, file: !1, line: 305, type: !27)
+!447 = !DILocation(line: 305, column: 13, scope: !429)
+!448 = !DILocalVariable(name: "i", scope: !429, file: !1, line: 306, type: !27)
+!449 = !DILocation(line: 306, column: 13, scope: !429)
+!450 = !DILocation(line: 306, column: 5, scope: !429)
+!451 = !DILocation(line: 308, column: 19, scope: !452)
+!452 = distinct !DILexicalBlock(scope: !429, file: !1, line: 308, column: 12)
+!453 = !DILocation(line: 308, column: 17, scope: !452)
+!454 = !DILocation(line: 308, column: 24, scope: !455)
+!455 = !DILexicalBlockFile(scope: !456, file: !1, discriminator: 1)
+!456 = distinct !DILexicalBlock(scope: !452, file: !1, line: 308, column: 12)
+!457 = !DILocation(line: 308, column: 26, scope: !455)
+!458 = !DILocation(line: 308, column: 12, scope: !455)
+!459 = !DILocation(line: 314, column: 43, scope: !460)
+!460 = distinct !DILexicalBlock(scope: !456, file: !1, line: 308, column: 36)
+!461 = !DILocation(line: 314, column: 41, scope: !460)
+!462 = !DILocation(line: 314, column: 36, scope: !460)
+!463 = !DILocation(line: 314, column: 25, scope: !460)
+!464 = !DILocation(line: 314, column: 39, scope: !460)
+!465 = !DILocation(line: 314, column: 20, scope: !460)
+!466 = !DILocation(line: 314, column: 9, scope: !460)
+!467 = !DILocation(line: 314, column: 23, scope: !460)
+!468 = !DILocation(line: 315, column: 5, scope: !460)
+!469 = !DILocation(line: 308, column: 33, scope: !470)
+!470 = !DILexicalBlockFile(scope: !456, file: !1, discriminator: 2)
+!471 = !DILocation(line: 308, column: 12, scope: !470)
+!472 = distinct !{!472, !473}
+!473 = !DILocation(line: 308, column: 12, scope: !429)
+!474 = !DILocation(line: 315, column: 5, scope: !475)
+!475 = !DILexicalBlockFile(scope: !452, file: !1, discriminator: 1)
+!476 = !DILocation(line: 316, column: 19, scope: !477)
+!477 = distinct !DILexicalBlock(scope: !429, file: !1, line: 316, column: 12)
+!478 = !DILocation(line: 316, column: 17, scope: !477)
+!479 = !DILocation(line: 316, column: 23, scope: !480)
+!480 = !DILexicalBlockFile(scope: !481, file: !1, discriminator: 1)
+!481 = distinct !DILexicalBlock(scope: !477, file: !1, line: 316, column: 12)
+!482 = !DILocation(line: 316, column: 12, scope: !480)
+!483 = !DILocation(line: 322, column: 26, scope: !484)
+!484 = distinct !DILexicalBlock(scope: !481, file: !1, line: 316, column: 28)
+!485 = !DILocation(line: 322, column: 9, scope: !484)
+!486 = !DILocation(line: 316, column: 12, scope: !487)
+!487 = !DILexicalBlockFile(scope: !481, file: !1, discriminator: 2)
+!488 = distinct !{!488, !489}
+!489 = !DILocation(line: 316, column: 12, scope: !429)
+!490 = !DILocation(line: 326, column: 25, scope: !429)
+!491 = !DILocation(line: 326, column: 30, scope: !429)
+!492 = !DILocation(line: 326, column: 42, scope: !429)
+!493 = !DILocation(line: 326, column: 5, scope: !429)
+!494 = !DILocation(line: 327, column: 18, scope: !495)
+!495 = distinct !DILexicalBlock(scope: !429, file: !1, line: 327, column: 12)
+!496 = !DILocation(line: 327, column: 28, scope: !495)
+!497 = !DILocation(line: 327, column: 16, scope: !495)
+!498 = !DILocation(line: 327, column: 33, scope: !499)
+!499 = !DILexicalBlockFile(scope: !500, file: !1, discriminator: 1)
+!500 = distinct !DILexicalBlock(scope: !495, file: !1, line: 327, column: 12)
+!501 = !DILocation(line: 327, column: 35, scope: !499)
+!502 = !DILocation(line: 327, column: 12, scope: !499)
+!503 = !DILocation(line: 334, column: 22, scope: !504)
+!504 = distinct !DILexicalBlock(scope: !500, file: !1, line: 328, column: 5)
+!505 = !DILocation(line: 334, column: 9, scope: !504)
+!506 = !DILocation(line: 335, column: 23, scope: !504)
+!507 = !DILocation(line: 335, column: 9, scope: !504)
+!508 = !DILocation(line: 336, column: 24, scope: !504)
+!509 = !DILocation(line: 336, column: 9, scope: !504)
+!510 = !DILocation(line: 337, column: 13, scope: !511)
+!511 = distinct !DILexicalBlock(scope: !504, file: !1, line: 337, column: 13)
+!512 = !DILocation(line: 337, column: 15, scope: !511)
+!513 = !DILocation(line: 337, column: 13, scope: !504)
+!514 = !DILocation(line: 337, column: 38, scope: !515)
+!515 = !DILexicalBlockFile(scope: !511, file: !1, discriminator: 1)
+!516 = !DILocation(line: 337, column: 43, scope: !515)
+!517 = !DILocation(line: 337, column: 51, scope: !515)
+!518 = !DILocation(line: 337, column: 21, scope: !515)
+!519 = !DILocation(line: 338, column: 31, scope: !511)
+!520 = !DILocation(line: 338, column: 14, scope: !511)
+!521 = !DILocation(line: 338, column: 64, scope: !511)
+!522 = !DILocation(line: 338, column: 69, scope: !511)
+!523 = !DILocation(line: 338, column: 48, scope: !515)
+!524 = !DILocation(line: 339, column: 5, scope: !504)
+!525 = !DILocation(line: 327, column: 41, scope: !526)
+!526 = !DILexicalBlockFile(scope: !500, file: !1, discriminator: 2)
+!527 = !DILocation(line: 327, column: 12, scope: !526)
+!528 = distinct !{!528, !529}
+!529 = !DILocation(line: 327, column: 12, scope: !429)
+!530 = !DILocation(line: 340, column: 18, scope: !429)
+!531 = !DILocation(line: 340, column: 5, scope: !429)
+!532 = !DILocation(line: 341, column: 19, scope: !429)
+!533 = !DILocation(line: 341, column: 5, scope: !429)
+!534 = !DILocation(line: 342, column: 22, scope: !429)
+!535 = !DILocation(line: 342, column: 5, scope: !429)
+!536 = !DILocation(line: 343, column: 21, scope: !429)
+!537 = !DILocation(line: 343, column: 26, scope: !429)
+!538 = !DILocation(line: 343, column: 5, scope: !429)
+!539 = !DILocation(line: 344, column: 1, scope: !429)

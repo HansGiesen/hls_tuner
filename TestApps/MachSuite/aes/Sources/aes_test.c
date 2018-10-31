@@ -46,7 +46,7 @@ int main (int argc, char *argv[])
     printf("---\n");
 
     //aes256_init(&ctx, key);
-    encrypt(&ctx,key, buf);
+    encrypt(ctx.key, ctx.enckey, ctx.deckey, key, buf);
 
     DUMP("enc: ", i, buf, sizeof(buf));
     printf("tst: 8e a2 b7 ca 51 67 45 bf ea fc 49 90 4b 49 60 89\n");

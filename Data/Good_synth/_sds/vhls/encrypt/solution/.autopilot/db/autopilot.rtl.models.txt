@@ -1,13 +1,12 @@
-a0_encrypt_lshr_256ncud
 a0_aes_expandEncKey_bkb
-a0_aes_subBytes_sbox
-a0_encrypt_ctx_m_axi
+a0_encrypt_ctx_key_m_axi
+a0_encrypt_ctx_enckey_m_axi
+a0_encrypt_ctx_deckey_m_axi
 a0_encrypt_buf_r_m_axi
-aes_expandEncKey_1
+aes_expandEncKey
 aes_addRoundKey_cpy
 aes_subBytes
 aes_shiftRows
 aes_mixColumns
-aes_expandEncKey
 aes_addRoundKey
 encrypt

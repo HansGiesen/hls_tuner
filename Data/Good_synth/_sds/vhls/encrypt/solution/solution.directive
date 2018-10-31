@@ -2,6 +2,38 @@
     <sourceFile name="">
         <directive functionName="encrypt" label="" functionLabel="">
             <pragma name="INTERFACE">
+                <option name="m_axi" value="" positionalBoolean="mode"/>
+                <option name="port" value="buf" positionalBoolean="4"/>
+                <option name="offset" value="direct"/>
+                <option name="bundle" value="buf"/>
+            </pragma>
+        </directive>
+        <directive functionName="encrypt" label="" functionLabel="">
+            <pragma name="INTERFACE">
+                <option name="m_axi" value="" positionalBoolean="mode"/>
+                <option name="port" value="ctx_key" positionalBoolean="4"/>
+                <option name="offset" value="direct"/>
+                <option name="bundle" value="ctx_key"/>
+            </pragma>
+        </directive>
+        <directive functionName="encrypt" label="" functionLabel="">
+            <pragma name="INTERFACE">
+                <option name="m_axi" value="" positionalBoolean="mode"/>
+                <option name="port" value="ctx_enckey" positionalBoolean="4"/>
+                <option name="offset" value="direct"/>
+                <option name="bundle" value="ctx_enckey"/>
+            </pragma>
+        </directive>
+        <directive functionName="encrypt" label="" functionLabel="">
+            <pragma name="INTERFACE">
+                <option name="m_axi" value="" positionalBoolean="mode"/>
+                <option name="port" value="ctx_deckey" positionalBoolean="4"/>
+                <option name="offset" value="direct"/>
+                <option name="bundle" value="ctx_deckey"/>
+            </pragma>
+        </directive>
+        <directive functionName="encrypt" label="" functionLabel="">
+            <pragma name="INTERFACE">
                 <option name="bram" value="" positionalBoolean="mode"/>
                 <option name="port" value="k" positionalBoolean="4"/>
             </pragma>
@@ -10,27 +42,6 @@
             <pragma name="RESOURCE">
                 <option name="variable" value="k" positionalBoolean="4"/>
                 <option name="core" value="RAM_1P"/>
-            </pragma>
-        </directive>
-        <directive functionName="encrypt" label="" functionLabel="">
-            <pragma name="INTERFACE">
-                <option name="m_axi" value="" positionalBoolean="mode"/>
-                <option name="port" value="buf" positionalBoolean="4"/>
-                <option name="offset" value="direct"/>
-                <option name="bundle" value="buf"/>
-            </pragma>
-        </directive>
-        <directive functionName="encrypt" label="" functionLabel="">
-            <pragma name="DATA_PACK">
-                <option name="variable" value="ctx" positionalBoolean="4"/>
-            </pragma>
-        </directive>
-        <directive functionName="encrypt" label="" functionLabel="">
-            <pragma name="INTERFACE">
-                <option name="m_axi" value="" positionalBoolean="mode"/>
-                <option name="port" value="ctx" positionalBoolean="4"/>
-                <option name="offset" value="direct"/>
-                <option name="bundle" value="ctx"/>
             </pragma>
         </directive>
         <directive functionName="encrypt" label="" functionLabel="">

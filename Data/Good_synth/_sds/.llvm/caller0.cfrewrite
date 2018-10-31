@@ -7,7 +7,7 @@
 		}],
 	"parents":	[{
 			"function":	"main",
-			"proto":	"#ifdef __cplusplus\nextern \"C\" {\n#endif\nvoid _p0_encrypt_1_noasync(aes256_context * ctx, uint8_t k[32], uint8_t buf[16]);\n#ifdef __cplusplus\n}\n#endif\n"
+			"proto":	"#ifdef __cplusplus\nextern \"C\" {\n#endif\nvoid _p0_encrypt_1_noasync(uint8_t ctx_key[32], uint8_t ctx_enckey[32], uint8_t ctx_deckey[32], uint8_t k[32], uint8_t buf[16]);\n#ifdef __cplusplus\n}\n#endif\n"
 		}],
 	"waits":	[]
 }

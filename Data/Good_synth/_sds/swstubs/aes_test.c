@@ -28,7 +28,7 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-void _p0_encrypt_1_noasync(aes256_context * ctx, uint8_t k[32], uint8_t buf[16]);
+void _p0_encrypt_1_noasync(uint8_t ctx_key[32], uint8_t ctx_enckey[32], uint8_t ctx_deckey[32], uint8_t k[32], uint8_t buf[16]);
 #ifdef __cplusplus
 }
 #endif
@@ -53,7 +53,7 @@ int main (int argc, char *argv[])
     printf("---\n");
 
     //aes256_init(&ctx, key);
-    _p0_encrypt_1_noasync(&ctx,key, buf);
+    _p0_encrypt_1_noasync(ctx.key, ctx.enckey, ctx.deckey, key, buf);
 
     DUMP("enc: ", i, buf, sizeof(buf));
     printf("tst: 8e a2 b7 ca 51 67 45 bf ea fc 49 90 4b 49 60 89\n");

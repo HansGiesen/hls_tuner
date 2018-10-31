@@ -1,13 +1,15 @@
 #ifndef _SDS_PORTINFO_H
 #define _SDS_PORTINFO_H
-/* File: /scratch/local/tmp.mnejJh1Zni/_sds/p0/.cf_work/portinfo.h */
+/* File: /scratch/local/tmp.7aow7oM1KP/_sds/p0/.cf_work/portinfo.h */
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 struct _p0_swblk_encrypt {
   cf_port_send_t cmd_encrypt;
-  cf_port_send_t ctx_offset;
+  cf_port_send_t ctx_key_offset;
+  cf_port_send_t ctx_enckey_offset;
+  cf_port_send_t ctx_deckey_offset;
   cf_port_send_t k_PORTA;
   cf_port_send_t buf_offset;
 };

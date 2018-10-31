@@ -66,8 +66,8 @@ class AESTuner(MeasurementInterface):
     self.output_root   = tuner_root + "/TestApps/MachSuite/aes/Output"
     self.template_path = tuner_root + "/Templates"
 
-    self.fake_presynth     = False
-    self.fake_synth        = False
+    self.fake_presynth     = True
+    self.fake_synth        = True
     self.fake_impl         = False
     self.fake_build_source = tuner_root + '/Data'
 
@@ -155,9 +155,6 @@ class AESTuner(MeasurementInterface):
       result = self.do_synth(result_id, output_path, presynth_output_path, synth_output_path)
     if result.state == 'SOK':
       result = self.do_impl(result_id, output_path, synth_output_path)
-
-    if result.state == 'IOK':
-      result.state = 'OK'
 
     return result
 
@@ -496,11 +493,14 @@ class AESTuner(MeasurementInterface):
 
     log.info("Running configuration %d...", result_id)
 
-    output_path = self.output_root + "/Build_{0:04d}".format(result_id)
+    output_path = self.output_root + "/{0:04d}".format(result_id)
 
     # SDSoC 2017.1 is not loading symbols from ELF file properly, so we have to
     # obtain the address of the exit function ourselves.  Otherwise, we could
     # just have used the command "bpadd -addr &exit" in TCL.
+    with open(self.make_file, 'r') as file_handle:
+      data = file_handle.read()
+    self.target_file = re.search(r'^EXE_FILE\s*:=\s*(\S+)', data, re.MULTILINE).group(1)
     symbols = subprocess.check_output(['nm', output_path + '/' + self.target_file])
     exit_address = re.search(r'^(\S+) T exit$', symbols, re.MULTILINE).group(1)
     

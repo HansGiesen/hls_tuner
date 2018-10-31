@@ -12,16 +12,20 @@ set C_modelType { void 0 }
 set C_modelArgList {
 	{ buf_r int 8 regular {axi_master 2}  }
 	{ buf_offset int 32 regular  }
-	{ ctx int 1024 regular {axi_master 2}  }
-	{ ctx_offset int 25 regular  }
+	{ key int 8 regular {axi_master 0}  }
+	{ key_offset int 32 regular  }
+	{ cpk int 8 regular {axi_master 1}  }
+	{ cpk_offset int 32 regular  }
 }
 set C_modelArgMapList {[ 
 	{ "Name" : "buf_r", "interface" : "axi_master", "bitwidth" : 8, "direction" : "READWRITE"} , 
  	{ "Name" : "buf_offset", "interface" : "wire", "bitwidth" : 32, "direction" : "READONLY"} , 
- 	{ "Name" : "ctx", "interface" : "axi_master", "bitwidth" : 1024, "direction" : "READWRITE"} , 
- 	{ "Name" : "ctx_offset", "interface" : "wire", "bitwidth" : 25, "direction" : "READONLY"} ]}
+ 	{ "Name" : "key", "interface" : "axi_master", "bitwidth" : 8, "direction" : "READONLY"} , 
+ 	{ "Name" : "key_offset", "interface" : "wire", "bitwidth" : 32, "direction" : "READONLY"} , 
+ 	{ "Name" : "cpk", "interface" : "axi_master", "bitwidth" : 8, "direction" : "WRITEONLY"} , 
+ 	{ "Name" : "cpk_offset", "interface" : "wire", "bitwidth" : 32, "direction" : "READONLY"} ]}
 # RTL Port declarations: 
-set portNum 98
+set portNum 144
 set portList { 
 	{ ap_clk sc_in sc_logic 1 clock -1 } 
 	{ ap_rst sc_in sc_logic 1 reset -1 active_high_sync } 
@@ -75,52 +79,98 @@ set portList {
 	{ m_axi_buf_r_BID sc_in sc_lv 1 signal 0 } 
 	{ m_axi_buf_r_BUSER sc_in sc_lv 1 signal 0 } 
 	{ buf_offset sc_in sc_lv 32 signal 1 } 
-	{ m_axi_ctx_AWVALID sc_out sc_logic 1 signal 2 } 
-	{ m_axi_ctx_AWREADY sc_in sc_logic 1 signal 2 } 
-	{ m_axi_ctx_AWADDR sc_out sc_lv 32 signal 2 } 
-	{ m_axi_ctx_AWID sc_out sc_lv 1 signal 2 } 
-	{ m_axi_ctx_AWLEN sc_out sc_lv 32 signal 2 } 
-	{ m_axi_ctx_AWSIZE sc_out sc_lv 3 signal 2 } 
-	{ m_axi_ctx_AWBURST sc_out sc_lv 2 signal 2 } 
-	{ m_axi_ctx_AWLOCK sc_out sc_lv 2 signal 2 } 
-	{ m_axi_ctx_AWCACHE sc_out sc_lv 4 signal 2 } 
-	{ m_axi_ctx_AWPROT sc_out sc_lv 3 signal 2 } 
-	{ m_axi_ctx_AWQOS sc_out sc_lv 4 signal 2 } 
-	{ m_axi_ctx_AWREGION sc_out sc_lv 4 signal 2 } 
-	{ m_axi_ctx_AWUSER sc_out sc_lv 1 signal 2 } 
-	{ m_axi_ctx_WVALID sc_out sc_logic 1 signal 2 } 
-	{ m_axi_ctx_WREADY sc_in sc_logic 1 signal 2 } 
-	{ m_axi_ctx_WDATA sc_out sc_lv 1024 signal 2 } 
-	{ m_axi_ctx_WSTRB sc_out sc_lv 128 signal 2 } 
-	{ m_axi_ctx_WLAST sc_out sc_logic 1 signal 2 } 
-	{ m_axi_ctx_WID sc_out sc_lv 1 signal 2 } 
-	{ m_axi_ctx_WUSER sc_out sc_lv 1 signal 2 } 
-	{ m_axi_ctx_ARVALID sc_out sc_logic 1 signal 2 } 
-	{ m_axi_ctx_ARREADY sc_in sc_logic 1 signal 2 } 
-	{ m_axi_ctx_ARADDR sc_out sc_lv 32 signal 2 } 
-	{ m_axi_ctx_ARID sc_out sc_lv 1 signal 2 } 
-	{ m_axi_ctx_ARLEN sc_out sc_lv 32 signal 2 } 
-	{ m_axi_ctx_ARSIZE sc_out sc_lv 3 signal 2 } 
-	{ m_axi_ctx_ARBURST sc_out sc_lv 2 signal 2 } 
-	{ m_axi_ctx_ARLOCK sc_out sc_lv 2 signal 2 } 
-	{ m_axi_ctx_ARCACHE sc_out sc_lv 4 signal 2 } 
-	{ m_axi_ctx_ARPROT sc_out sc_lv 3 signal 2 } 
-	{ m_axi_ctx_ARQOS sc_out sc_lv 4 signal 2 } 
-	{ m_axi_ctx_ARREGION sc_out sc_lv 4 signal 2 } 
-	{ m_axi_ctx_ARUSER sc_out sc_lv 1 signal 2 } 
-	{ m_axi_ctx_RVALID sc_in sc_logic 1 signal 2 } 
-	{ m_axi_ctx_RREADY sc_out sc_logic 1 signal 2 } 
-	{ m_axi_ctx_RDATA sc_in sc_lv 1024 signal 2 } 
-	{ m_axi_ctx_RLAST sc_in sc_logic 1 signal 2 } 
-	{ m_axi_ctx_RID sc_in sc_lv 1 signal 2 } 
-	{ m_axi_ctx_RUSER sc_in sc_lv 1 signal 2 } 
-	{ m_axi_ctx_RRESP sc_in sc_lv 2 signal 2 } 
-	{ m_axi_ctx_BVALID sc_in sc_logic 1 signal 2 } 
-	{ m_axi_ctx_BREADY sc_out sc_logic 1 signal 2 } 
-	{ m_axi_ctx_BRESP sc_in sc_lv 2 signal 2 } 
-	{ m_axi_ctx_BID sc_in sc_lv 1 signal 2 } 
-	{ m_axi_ctx_BUSER sc_in sc_lv 1 signal 2 } 
-	{ ctx_offset sc_in sc_lv 25 signal 3 } 
+	{ m_axi_key_AWVALID sc_out sc_logic 1 signal 2 } 
+	{ m_axi_key_AWREADY sc_in sc_logic 1 signal 2 } 
+	{ m_axi_key_AWADDR sc_out sc_lv 32 signal 2 } 
+	{ m_axi_key_AWID sc_out sc_lv 1 signal 2 } 
+	{ m_axi_key_AWLEN sc_out sc_lv 32 signal 2 } 
+	{ m_axi_key_AWSIZE sc_out sc_lv 3 signal 2 } 
+	{ m_axi_key_AWBURST sc_out sc_lv 2 signal 2 } 
+	{ m_axi_key_AWLOCK sc_out sc_lv 2 signal 2 } 
+	{ m_axi_key_AWCACHE sc_out sc_lv 4 signal 2 } 
+	{ m_axi_key_AWPROT sc_out sc_lv 3 signal 2 } 
+	{ m_axi_key_AWQOS sc_out sc_lv 4 signal 2 } 
+	{ m_axi_key_AWREGION sc_out sc_lv 4 signal 2 } 
+	{ m_axi_key_AWUSER sc_out sc_lv 1 signal 2 } 
+	{ m_axi_key_WVALID sc_out sc_logic 1 signal 2 } 
+	{ m_axi_key_WREADY sc_in sc_logic 1 signal 2 } 
+	{ m_axi_key_WDATA sc_out sc_lv 8 signal 2 } 
+	{ m_axi_key_WSTRB sc_out sc_lv 1 signal 2 } 
+	{ m_axi_key_WLAST sc_out sc_logic 1 signal 2 } 
+	{ m_axi_key_WID sc_out sc_lv 1 signal 2 } 
+	{ m_axi_key_WUSER sc_out sc_lv 1 signal 2 } 
+	{ m_axi_key_ARVALID sc_out sc_logic 1 signal 2 } 
+	{ m_axi_key_ARREADY sc_in sc_logic 1 signal 2 } 
+	{ m_axi_key_ARADDR sc_out sc_lv 32 signal 2 } 
+	{ m_axi_key_ARID sc_out sc_lv 1 signal 2 } 
+	{ m_axi_key_ARLEN sc_out sc_lv 32 signal 2 } 
+	{ m_axi_key_ARSIZE sc_out sc_lv 3 signal 2 } 
+	{ m_axi_key_ARBURST sc_out sc_lv 2 signal 2 } 
+	{ m_axi_key_ARLOCK sc_out sc_lv 2 signal 2 } 
+	{ m_axi_key_ARCACHE sc_out sc_lv 4 signal 2 } 
+	{ m_axi_key_ARPROT sc_out sc_lv 3 signal 2 } 
+	{ m_axi_key_ARQOS sc_out sc_lv 4 signal 2 } 
+	{ m_axi_key_ARREGION sc_out sc_lv 4 signal 2 } 
+	{ m_axi_key_ARUSER sc_out sc_lv 1 signal 2 } 
+	{ m_axi_key_RVALID sc_in sc_logic 1 signal 2 } 
+	{ m_axi_key_RREADY sc_out sc_logic 1 signal 2 } 
+	{ m_axi_key_RDATA sc_in sc_lv 8 signal 2 } 
+	{ m_axi_key_RLAST sc_in sc_logic 1 signal 2 } 
+	{ m_axi_key_RID sc_in sc_lv 1 signal 2 } 
+	{ m_axi_key_RUSER sc_in sc_lv 1 signal 2 } 
+	{ m_axi_key_RRESP sc_in sc_lv 2 signal 2 } 
+	{ m_axi_key_BVALID sc_in sc_logic 1 signal 2 } 
+	{ m_axi_key_BREADY sc_out sc_logic 1 signal 2 } 
+	{ m_axi_key_BRESP sc_in sc_lv 2 signal 2 } 
+	{ m_axi_key_BID sc_in sc_lv 1 signal 2 } 
+	{ m_axi_key_BUSER sc_in sc_lv 1 signal 2 } 
+	{ key_offset sc_in sc_lv 32 signal 3 } 
+	{ m_axi_cpk_AWVALID sc_out sc_logic 1 signal 4 } 
+	{ m_axi_cpk_AWREADY sc_in sc_logic 1 signal 4 } 
+	{ m_axi_cpk_AWADDR sc_out sc_lv 32 signal 4 } 
+	{ m_axi_cpk_AWID sc_out sc_lv 1 signal 4 } 
+	{ m_axi_cpk_AWLEN sc_out sc_lv 32 signal 4 } 
+	{ m_axi_cpk_AWSIZE sc_out sc_lv 3 signal 4 } 
+	{ m_axi_cpk_AWBURST sc_out sc_lv 2 signal 4 } 
+	{ m_axi_cpk_AWLOCK sc_out sc_lv 2 signal 4 } 
+	{ m_axi_cpk_AWCACHE sc_out sc_lv 4 signal 4 } 
+	{ m_axi_cpk_AWPROT sc_out sc_lv 3 signal 4 } 
+	{ m_axi_cpk_AWQOS sc_out sc_lv 4 signal 4 } 
+	{ m_axi_cpk_AWREGION sc_out sc_lv 4 signal 4 } 
+	{ m_axi_cpk_AWUSER sc_out sc_lv 1 signal 4 } 
+	{ m_axi_cpk_WVALID sc_out sc_logic 1 signal 4 } 
+	{ m_axi_cpk_WREADY sc_in sc_logic 1 signal 4 } 
+	{ m_axi_cpk_WDATA sc_out sc_lv 8 signal 4 } 
+	{ m_axi_cpk_WSTRB sc_out sc_lv 1 signal 4 } 
+	{ m_axi_cpk_WLAST sc_out sc_logic 1 signal 4 } 
+	{ m_axi_cpk_WID sc_out sc_lv 1 signal 4 } 
+	{ m_axi_cpk_WUSER sc_out sc_lv 1 signal 4 } 
+	{ m_axi_cpk_ARVALID sc_out sc_logic 1 signal 4 } 
+	{ m_axi_cpk_ARREADY sc_in sc_logic 1 signal 4 } 
+	{ m_axi_cpk_ARADDR sc_out sc_lv 32 signal 4 } 
+	{ m_axi_cpk_ARID sc_out sc_lv 1 signal 4 } 
+	{ m_axi_cpk_ARLEN sc_out sc_lv 32 signal 4 } 
+	{ m_axi_cpk_ARSIZE sc_out sc_lv 3 signal 4 } 
+	{ m_axi_cpk_ARBURST sc_out sc_lv 2 signal 4 } 
+	{ m_axi_cpk_ARLOCK sc_out sc_lv 2 signal 4 } 
+	{ m_axi_cpk_ARCACHE sc_out sc_lv 4 signal 4 } 
+	{ m_axi_cpk_ARPROT sc_out sc_lv 3 signal 4 } 
+	{ m_axi_cpk_ARQOS sc_out sc_lv 4 signal 4 } 
+	{ m_axi_cpk_ARREGION sc_out sc_lv 4 signal 4 } 
+	{ m_axi_cpk_ARUSER sc_out sc_lv 1 signal 4 } 
+	{ m_axi_cpk_RVALID sc_in sc_logic 1 signal 4 } 
+	{ m_axi_cpk_RREADY sc_out sc_logic 1 signal 4 } 
+	{ m_axi_cpk_RDATA sc_in sc_lv 8 signal 4 } 
+	{ m_axi_cpk_RLAST sc_in sc_logic 1 signal 4 } 
+	{ m_axi_cpk_RID sc_in sc_lv 1 signal 4 } 
+	{ m_axi_cpk_RUSER sc_in sc_lv 1 signal 4 } 
+	{ m_axi_cpk_RRESP sc_in sc_lv 2 signal 4 } 
+	{ m_axi_cpk_BVALID sc_in sc_logic 1 signal 4 } 
+	{ m_axi_cpk_BREADY sc_out sc_logic 1 signal 4 } 
+	{ m_axi_cpk_BRESP sc_in sc_lv 2 signal 4 } 
+	{ m_axi_cpk_BID sc_in sc_lv 1 signal 4 } 
+	{ m_axi_cpk_BUSER sc_in sc_lv 1 signal 4 } 
+	{ cpk_offset sc_in sc_lv 32 signal 5 } 
 }
 set NewPortList {[ 
 	{ "name": "ap_clk", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "clock", "bundle":{"name": "ap_clk", "role": "default" }} , 
@@ -175,55 +225,101 @@ set NewPortList {[
  	{ "name": "m_axi_buf_r_BID", "direction": "in", "datatype": "sc_lv", "bitwidth":1, "type": "signal", "bundle":{"name": "buf_r", "role": "BID" }} , 
  	{ "name": "m_axi_buf_r_BUSER", "direction": "in", "datatype": "sc_lv", "bitwidth":1, "type": "signal", "bundle":{"name": "buf_r", "role": "BUSER" }} , 
  	{ "name": "buf_offset", "direction": "in", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "buf_offset", "role": "default" }} , 
- 	{ "name": "m_axi_ctx_AWVALID", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "ctx", "role": "AWVALID" }} , 
- 	{ "name": "m_axi_ctx_AWREADY", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "ctx", "role": "AWREADY" }} , 
- 	{ "name": "m_axi_ctx_AWADDR", "direction": "out", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "ctx", "role": "AWADDR" }} , 
- 	{ "name": "m_axi_ctx_AWID", "direction": "out", "datatype": "sc_lv", "bitwidth":1, "type": "signal", "bundle":{"name": "ctx", "role": "AWID" }} , 
- 	{ "name": "m_axi_ctx_AWLEN", "direction": "out", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "ctx", "role": "AWLEN" }} , 
- 	{ "name": "m_axi_ctx_AWSIZE", "direction": "out", "datatype": "sc_lv", "bitwidth":3, "type": "signal", "bundle":{"name": "ctx", "role": "AWSIZE" }} , 
- 	{ "name": "m_axi_ctx_AWBURST", "direction": "out", "datatype": "sc_lv", "bitwidth":2, "type": "signal", "bundle":{"name": "ctx", "role": "AWBURST" }} , 
- 	{ "name": "m_axi_ctx_AWLOCK", "direction": "out", "datatype": "sc_lv", "bitwidth":2, "type": "signal", "bundle":{"name": "ctx", "role": "AWLOCK" }} , 
- 	{ "name": "m_axi_ctx_AWCACHE", "direction": "out", "datatype": "sc_lv", "bitwidth":4, "type": "signal", "bundle":{"name": "ctx", "role": "AWCACHE" }} , 
- 	{ "name": "m_axi_ctx_AWPROT", "direction": "out", "datatype": "sc_lv", "bitwidth":3, "type": "signal", "bundle":{"name": "ctx", "role": "AWPROT" }} , 
- 	{ "name": "m_axi_ctx_AWQOS", "direction": "out", "datatype": "sc_lv", "bitwidth":4, "type": "signal", "bundle":{"name": "ctx", "role": "AWQOS" }} , 
- 	{ "name": "m_axi_ctx_AWREGION", "direction": "out", "datatype": "sc_lv", "bitwidth":4, "type": "signal", "bundle":{"name": "ctx", "role": "AWREGION" }} , 
- 	{ "name": "m_axi_ctx_AWUSER", "direction": "out", "datatype": "sc_lv", "bitwidth":1, "type": "signal", "bundle":{"name": "ctx", "role": "AWUSER" }} , 
- 	{ "name": "m_axi_ctx_WVALID", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "ctx", "role": "WVALID" }} , 
- 	{ "name": "m_axi_ctx_WREADY", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "ctx", "role": "WREADY" }} , 
- 	{ "name": "m_axi_ctx_WDATA", "direction": "out", "datatype": "sc_lv", "bitwidth":1024, "type": "signal", "bundle":{"name": "ctx", "role": "WDATA" }} , 
- 	{ "name": "m_axi_ctx_WSTRB", "direction": "out", "datatype": "sc_lv", "bitwidth":128, "type": "signal", "bundle":{"name": "ctx", "role": "WSTRB" }} , 
- 	{ "name": "m_axi_ctx_WLAST", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "ctx", "role": "WLAST" }} , 
- 	{ "name": "m_axi_ctx_WID", "direction": "out", "datatype": "sc_lv", "bitwidth":1, "type": "signal", "bundle":{"name": "ctx", "role": "WID" }} , 
- 	{ "name": "m_axi_ctx_WUSER", "direction": "out", "datatype": "sc_lv", "bitwidth":1, "type": "signal", "bundle":{"name": "ctx", "role": "WUSER" }} , 
- 	{ "name": "m_axi_ctx_ARVALID", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "ctx", "role": "ARVALID" }} , 
- 	{ "name": "m_axi_ctx_ARREADY", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "ctx", "role": "ARREADY" }} , 
- 	{ "name": "m_axi_ctx_ARADDR", "direction": "out", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "ctx", "role": "ARADDR" }} , 
- 	{ "name": "m_axi_ctx_ARID", "direction": "out", "datatype": "sc_lv", "bitwidth":1, "type": "signal", "bundle":{"name": "ctx", "role": "ARID" }} , 
- 	{ "name": "m_axi_ctx_ARLEN", "direction": "out", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "ctx", "role": "ARLEN" }} , 
- 	{ "name": "m_axi_ctx_ARSIZE", "direction": "out", "datatype": "sc_lv", "bitwidth":3, "type": "signal", "bundle":{"name": "ctx", "role": "ARSIZE" }} , 
- 	{ "name": "m_axi_ctx_ARBURST", "direction": "out", "datatype": "sc_lv", "bitwidth":2, "type": "signal", "bundle":{"name": "ctx", "role": "ARBURST" }} , 
- 	{ "name": "m_axi_ctx_ARLOCK", "direction": "out", "datatype": "sc_lv", "bitwidth":2, "type": "signal", "bundle":{"name": "ctx", "role": "ARLOCK" }} , 
- 	{ "name": "m_axi_ctx_ARCACHE", "direction": "out", "datatype": "sc_lv", "bitwidth":4, "type": "signal", "bundle":{"name": "ctx", "role": "ARCACHE" }} , 
- 	{ "name": "m_axi_ctx_ARPROT", "direction": "out", "datatype": "sc_lv", "bitwidth":3, "type": "signal", "bundle":{"name": "ctx", "role": "ARPROT" }} , 
- 	{ "name": "m_axi_ctx_ARQOS", "direction": "out", "datatype": "sc_lv", "bitwidth":4, "type": "signal", "bundle":{"name": "ctx", "role": "ARQOS" }} , 
- 	{ "name": "m_axi_ctx_ARREGION", "direction": "out", "datatype": "sc_lv", "bitwidth":4, "type": "signal", "bundle":{"name": "ctx", "role": "ARREGION" }} , 
- 	{ "name": "m_axi_ctx_ARUSER", "direction": "out", "datatype": "sc_lv", "bitwidth":1, "type": "signal", "bundle":{"name": "ctx", "role": "ARUSER" }} , 
- 	{ "name": "m_axi_ctx_RVALID", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "ctx", "role": "RVALID" }} , 
- 	{ "name": "m_axi_ctx_RREADY", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "ctx", "role": "RREADY" }} , 
- 	{ "name": "m_axi_ctx_RDATA", "direction": "in", "datatype": "sc_lv", "bitwidth":1024, "type": "signal", "bundle":{"name": "ctx", "role": "RDATA" }} , 
- 	{ "name": "m_axi_ctx_RLAST", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "ctx", "role": "RLAST" }} , 
- 	{ "name": "m_axi_ctx_RID", "direction": "in", "datatype": "sc_lv", "bitwidth":1, "type": "signal", "bundle":{"name": "ctx", "role": "RID" }} , 
- 	{ "name": "m_axi_ctx_RUSER", "direction": "in", "datatype": "sc_lv", "bitwidth":1, "type": "signal", "bundle":{"name": "ctx", "role": "RUSER" }} , 
- 	{ "name": "m_axi_ctx_RRESP", "direction": "in", "datatype": "sc_lv", "bitwidth":2, "type": "signal", "bundle":{"name": "ctx", "role": "RRESP" }} , 
- 	{ "name": "m_axi_ctx_BVALID", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "ctx", "role": "BVALID" }} , 
- 	{ "name": "m_axi_ctx_BREADY", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "ctx", "role": "BREADY" }} , 
- 	{ "name": "m_axi_ctx_BRESP", "direction": "in", "datatype": "sc_lv", "bitwidth":2, "type": "signal", "bundle":{"name": "ctx", "role": "BRESP" }} , 
- 	{ "name": "m_axi_ctx_BID", "direction": "in", "datatype": "sc_lv", "bitwidth":1, "type": "signal", "bundle":{"name": "ctx", "role": "BID" }} , 
- 	{ "name": "m_axi_ctx_BUSER", "direction": "in", "datatype": "sc_lv", "bitwidth":1, "type": "signal", "bundle":{"name": "ctx", "role": "BUSER" }} , 
- 	{ "name": "ctx_offset", "direction": "in", "datatype": "sc_lv", "bitwidth":25, "type": "signal", "bundle":{"name": "ctx_offset", "role": "default" }}  ]}
+ 	{ "name": "m_axi_key_AWVALID", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "key", "role": "AWVALID" }} , 
+ 	{ "name": "m_axi_key_AWREADY", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "key", "role": "AWREADY" }} , 
+ 	{ "name": "m_axi_key_AWADDR", "direction": "out", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "key", "role": "AWADDR" }} , 
+ 	{ "name": "m_axi_key_AWID", "direction": "out", "datatype": "sc_lv", "bitwidth":1, "type": "signal", "bundle":{"name": "key", "role": "AWID" }} , 
+ 	{ "name": "m_axi_key_AWLEN", "direction": "out", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "key", "role": "AWLEN" }} , 
+ 	{ "name": "m_axi_key_AWSIZE", "direction": "out", "datatype": "sc_lv", "bitwidth":3, "type": "signal", "bundle":{"name": "key", "role": "AWSIZE" }} , 
+ 	{ "name": "m_axi_key_AWBURST", "direction": "out", "datatype": "sc_lv", "bitwidth":2, "type": "signal", "bundle":{"name": "key", "role": "AWBURST" }} , 
+ 	{ "name": "m_axi_key_AWLOCK", "direction": "out", "datatype": "sc_lv", "bitwidth":2, "type": "signal", "bundle":{"name": "key", "role": "AWLOCK" }} , 
+ 	{ "name": "m_axi_key_AWCACHE", "direction": "out", "datatype": "sc_lv", "bitwidth":4, "type": "signal", "bundle":{"name": "key", "role": "AWCACHE" }} , 
+ 	{ "name": "m_axi_key_AWPROT", "direction": "out", "datatype": "sc_lv", "bitwidth":3, "type": "signal", "bundle":{"name": "key", "role": "AWPROT" }} , 
+ 	{ "name": "m_axi_key_AWQOS", "direction": "out", "datatype": "sc_lv", "bitwidth":4, "type": "signal", "bundle":{"name": "key", "role": "AWQOS" }} , 
+ 	{ "name": "m_axi_key_AWREGION", "direction": "out", "datatype": "sc_lv", "bitwidth":4, "type": "signal", "bundle":{"name": "key", "role": "AWREGION" }} , 
+ 	{ "name": "m_axi_key_AWUSER", "direction": "out", "datatype": "sc_lv", "bitwidth":1, "type": "signal", "bundle":{"name": "key", "role": "AWUSER" }} , 
+ 	{ "name": "m_axi_key_WVALID", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "key", "role": "WVALID" }} , 
+ 	{ "name": "m_axi_key_WREADY", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "key", "role": "WREADY" }} , 
+ 	{ "name": "m_axi_key_WDATA", "direction": "out", "datatype": "sc_lv", "bitwidth":8, "type": "signal", "bundle":{"name": "key", "role": "WDATA" }} , 
+ 	{ "name": "m_axi_key_WSTRB", "direction": "out", "datatype": "sc_lv", "bitwidth":1, "type": "signal", "bundle":{"name": "key", "role": "WSTRB" }} , 
+ 	{ "name": "m_axi_key_WLAST", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "key", "role": "WLAST" }} , 
+ 	{ "name": "m_axi_key_WID", "direction": "out", "datatype": "sc_lv", "bitwidth":1, "type": "signal", "bundle":{"name": "key", "role": "WID" }} , 
+ 	{ "name": "m_axi_key_WUSER", "direction": "out", "datatype": "sc_lv", "bitwidth":1, "type": "signal", "bundle":{"name": "key", "role": "WUSER" }} , 
+ 	{ "name": "m_axi_key_ARVALID", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "key", "role": "ARVALID" }} , 
+ 	{ "name": "m_axi_key_ARREADY", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "key", "role": "ARREADY" }} , 
+ 	{ "name": "m_axi_key_ARADDR", "direction": "out", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "key", "role": "ARADDR" }} , 
+ 	{ "name": "m_axi_key_ARID", "direction": "out", "datatype": "sc_lv", "bitwidth":1, "type": "signal", "bundle":{"name": "key", "role": "ARID" }} , 
+ 	{ "name": "m_axi_key_ARLEN", "direction": "out", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "key", "role": "ARLEN" }} , 
+ 	{ "name": "m_axi_key_ARSIZE", "direction": "out", "datatype": "sc_lv", "bitwidth":3, "type": "signal", "bundle":{"name": "key", "role": "ARSIZE" }} , 
+ 	{ "name": "m_axi_key_ARBURST", "direction": "out", "datatype": "sc_lv", "bitwidth":2, "type": "signal", "bundle":{"name": "key", "role": "ARBURST" }} , 
+ 	{ "name": "m_axi_key_ARLOCK", "direction": "out", "datatype": "sc_lv", "bitwidth":2, "type": "signal", "bundle":{"name": "key", "role": "ARLOCK" }} , 
+ 	{ "name": "m_axi_key_ARCACHE", "direction": "out", "datatype": "sc_lv", "bitwidth":4, "type": "signal", "bundle":{"name": "key", "role": "ARCACHE" }} , 
+ 	{ "name": "m_axi_key_ARPROT", "direction": "out", "datatype": "sc_lv", "bitwidth":3, "type": "signal", "bundle":{"name": "key", "role": "ARPROT" }} , 
+ 	{ "name": "m_axi_key_ARQOS", "direction": "out", "datatype": "sc_lv", "bitwidth":4, "type": "signal", "bundle":{"name": "key", "role": "ARQOS" }} , 
+ 	{ "name": "m_axi_key_ARREGION", "direction": "out", "datatype": "sc_lv", "bitwidth":4, "type": "signal", "bundle":{"name": "key", "role": "ARREGION" }} , 
+ 	{ "name": "m_axi_key_ARUSER", "direction": "out", "datatype": "sc_lv", "bitwidth":1, "type": "signal", "bundle":{"name": "key", "role": "ARUSER" }} , 
+ 	{ "name": "m_axi_key_RVALID", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "key", "role": "RVALID" }} , 
+ 	{ "name": "m_axi_key_RREADY", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "key", "role": "RREADY" }} , 
+ 	{ "name": "m_axi_key_RDATA", "direction": "in", "datatype": "sc_lv", "bitwidth":8, "type": "signal", "bundle":{"name": "key", "role": "RDATA" }} , 
+ 	{ "name": "m_axi_key_RLAST", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "key", "role": "RLAST" }} , 
+ 	{ "name": "m_axi_key_RID", "direction": "in", "datatype": "sc_lv", "bitwidth":1, "type": "signal", "bundle":{"name": "key", "role": "RID" }} , 
+ 	{ "name": "m_axi_key_RUSER", "direction": "in", "datatype": "sc_lv", "bitwidth":1, "type": "signal", "bundle":{"name": "key", "role": "RUSER" }} , 
+ 	{ "name": "m_axi_key_RRESP", "direction": "in", "datatype": "sc_lv", "bitwidth":2, "type": "signal", "bundle":{"name": "key", "role": "RRESP" }} , 
+ 	{ "name": "m_axi_key_BVALID", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "key", "role": "BVALID" }} , 
+ 	{ "name": "m_axi_key_BREADY", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "key", "role": "BREADY" }} , 
+ 	{ "name": "m_axi_key_BRESP", "direction": "in", "datatype": "sc_lv", "bitwidth":2, "type": "signal", "bundle":{"name": "key", "role": "BRESP" }} , 
+ 	{ "name": "m_axi_key_BID", "direction": "in", "datatype": "sc_lv", "bitwidth":1, "type": "signal", "bundle":{"name": "key", "role": "BID" }} , 
+ 	{ "name": "m_axi_key_BUSER", "direction": "in", "datatype": "sc_lv", "bitwidth":1, "type": "signal", "bundle":{"name": "key", "role": "BUSER" }} , 
+ 	{ "name": "key_offset", "direction": "in", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "key_offset", "role": "default" }} , 
+ 	{ "name": "m_axi_cpk_AWVALID", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "cpk", "role": "AWVALID" }} , 
+ 	{ "name": "m_axi_cpk_AWREADY", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "cpk", "role": "AWREADY" }} , 
+ 	{ "name": "m_axi_cpk_AWADDR", "direction": "out", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "cpk", "role": "AWADDR" }} , 
+ 	{ "name": "m_axi_cpk_AWID", "direction": "out", "datatype": "sc_lv", "bitwidth":1, "type": "signal", "bundle":{"name": "cpk", "role": "AWID" }} , 
+ 	{ "name": "m_axi_cpk_AWLEN", "direction": "out", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "cpk", "role": "AWLEN" }} , 
+ 	{ "name": "m_axi_cpk_AWSIZE", "direction": "out", "datatype": "sc_lv", "bitwidth":3, "type": "signal", "bundle":{"name": "cpk", "role": "AWSIZE" }} , 
+ 	{ "name": "m_axi_cpk_AWBURST", "direction": "out", "datatype": "sc_lv", "bitwidth":2, "type": "signal", "bundle":{"name": "cpk", "role": "AWBURST" }} , 
+ 	{ "name": "m_axi_cpk_AWLOCK", "direction": "out", "datatype": "sc_lv", "bitwidth":2, "type": "signal", "bundle":{"name": "cpk", "role": "AWLOCK" }} , 
+ 	{ "name": "m_axi_cpk_AWCACHE", "direction": "out", "datatype": "sc_lv", "bitwidth":4, "type": "signal", "bundle":{"name": "cpk", "role": "AWCACHE" }} , 
+ 	{ "name": "m_axi_cpk_AWPROT", "direction": "out", "datatype": "sc_lv", "bitwidth":3, "type": "signal", "bundle":{"name": "cpk", "role": "AWPROT" }} , 
+ 	{ "name": "m_axi_cpk_AWQOS", "direction": "out", "datatype": "sc_lv", "bitwidth":4, "type": "signal", "bundle":{"name": "cpk", "role": "AWQOS" }} , 
+ 	{ "name": "m_axi_cpk_AWREGION", "direction": "out", "datatype": "sc_lv", "bitwidth":4, "type": "signal", "bundle":{"name": "cpk", "role": "AWREGION" }} , 
+ 	{ "name": "m_axi_cpk_AWUSER", "direction": "out", "datatype": "sc_lv", "bitwidth":1, "type": "signal", "bundle":{"name": "cpk", "role": "AWUSER" }} , 
+ 	{ "name": "m_axi_cpk_WVALID", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "cpk", "role": "WVALID" }} , 
+ 	{ "name": "m_axi_cpk_WREADY", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "cpk", "role": "WREADY" }} , 
+ 	{ "name": "m_axi_cpk_WDATA", "direction": "out", "datatype": "sc_lv", "bitwidth":8, "type": "signal", "bundle":{"name": "cpk", "role": "WDATA" }} , 
+ 	{ "name": "m_axi_cpk_WSTRB", "direction": "out", "datatype": "sc_lv", "bitwidth":1, "type": "signal", "bundle":{"name": "cpk", "role": "WSTRB" }} , 
+ 	{ "name": "m_axi_cpk_WLAST", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "cpk", "role": "WLAST" }} , 
+ 	{ "name": "m_axi_cpk_WID", "direction": "out", "datatype": "sc_lv", "bitwidth":1, "type": "signal", "bundle":{"name": "cpk", "role": "WID" }} , 
+ 	{ "name": "m_axi_cpk_WUSER", "direction": "out", "datatype": "sc_lv", "bitwidth":1, "type": "signal", "bundle":{"name": "cpk", "role": "WUSER" }} , 
+ 	{ "name": "m_axi_cpk_ARVALID", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "cpk", "role": "ARVALID" }} , 
+ 	{ "name": "m_axi_cpk_ARREADY", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "cpk", "role": "ARREADY" }} , 
+ 	{ "name": "m_axi_cpk_ARADDR", "direction": "out", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "cpk", "role": "ARADDR" }} , 
+ 	{ "name": "m_axi_cpk_ARID", "direction": "out", "datatype": "sc_lv", "bitwidth":1, "type": "signal", "bundle":{"name": "cpk", "role": "ARID" }} , 
+ 	{ "name": "m_axi_cpk_ARLEN", "direction": "out", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "cpk", "role": "ARLEN" }} , 
+ 	{ "name": "m_axi_cpk_ARSIZE", "direction": "out", "datatype": "sc_lv", "bitwidth":3, "type": "signal", "bundle":{"name": "cpk", "role": "ARSIZE" }} , 
+ 	{ "name": "m_axi_cpk_ARBURST", "direction": "out", "datatype": "sc_lv", "bitwidth":2, "type": "signal", "bundle":{"name": "cpk", "role": "ARBURST" }} , 
+ 	{ "name": "m_axi_cpk_ARLOCK", "direction": "out", "datatype": "sc_lv", "bitwidth":2, "type": "signal", "bundle":{"name": "cpk", "role": "ARLOCK" }} , 
+ 	{ "name": "m_axi_cpk_ARCACHE", "direction": "out", "datatype": "sc_lv", "bitwidth":4, "type": "signal", "bundle":{"name": "cpk", "role": "ARCACHE" }} , 
+ 	{ "name": "m_axi_cpk_ARPROT", "direction": "out", "datatype": "sc_lv", "bitwidth":3, "type": "signal", "bundle":{"name": "cpk", "role": "ARPROT" }} , 
+ 	{ "name": "m_axi_cpk_ARQOS", "direction": "out", "datatype": "sc_lv", "bitwidth":4, "type": "signal", "bundle":{"name": "cpk", "role": "ARQOS" }} , 
+ 	{ "name": "m_axi_cpk_ARREGION", "direction": "out", "datatype": "sc_lv", "bitwidth":4, "type": "signal", "bundle":{"name": "cpk", "role": "ARREGION" }} , 
+ 	{ "name": "m_axi_cpk_ARUSER", "direction": "out", "datatype": "sc_lv", "bitwidth":1, "type": "signal", "bundle":{"name": "cpk", "role": "ARUSER" }} , 
+ 	{ "name": "m_axi_cpk_RVALID", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "cpk", "role": "RVALID" }} , 
+ 	{ "name": "m_axi_cpk_RREADY", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "cpk", "role": "RREADY" }} , 
+ 	{ "name": "m_axi_cpk_RDATA", "direction": "in", "datatype": "sc_lv", "bitwidth":8, "type": "signal", "bundle":{"name": "cpk", "role": "RDATA" }} , 
+ 	{ "name": "m_axi_cpk_RLAST", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "cpk", "role": "RLAST" }} , 
+ 	{ "name": "m_axi_cpk_RID", "direction": "in", "datatype": "sc_lv", "bitwidth":1, "type": "signal", "bundle":{"name": "cpk", "role": "RID" }} , 
+ 	{ "name": "m_axi_cpk_RUSER", "direction": "in", "datatype": "sc_lv", "bitwidth":1, "type": "signal", "bundle":{"name": "cpk", "role": "RUSER" }} , 
+ 	{ "name": "m_axi_cpk_RRESP", "direction": "in", "datatype": "sc_lv", "bitwidth":2, "type": "signal", "bundle":{"name": "cpk", "role": "RRESP" }} , 
+ 	{ "name": "m_axi_cpk_BVALID", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "cpk", "role": "BVALID" }} , 
+ 	{ "name": "m_axi_cpk_BREADY", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "cpk", "role": "BREADY" }} , 
+ 	{ "name": "m_axi_cpk_BRESP", "direction": "in", "datatype": "sc_lv", "bitwidth":2, "type": "signal", "bundle":{"name": "cpk", "role": "BRESP" }} , 
+ 	{ "name": "m_axi_cpk_BID", "direction": "in", "datatype": "sc_lv", "bitwidth":1, "type": "signal", "bundle":{"name": "cpk", "role": "BID" }} , 
+ 	{ "name": "m_axi_cpk_BUSER", "direction": "in", "datatype": "sc_lv", "bitwidth":1, "type": "signal", "bundle":{"name": "cpk", "role": "BUSER" }} , 
+ 	{ "name": "cpk_offset", "direction": "in", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "cpk_offset", "role": "default" }}  ]}
 
 set RtlHierarchyInfo {[
-	{"ID" : "0", "Level" : "0", "Path" : "`AUTOTB_DUT_INST", "Parent" : "", "Child" : ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18"],
+	{"ID" : "0", "Level" : "0", "Path" : "`AUTOTB_DUT_INST", "Parent" : "",
 		"CDFG" : "aes_addRoundKey_cpy",
 		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1",
 		"Pipeline" : "None", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
@@ -240,46 +336,33 @@ set RtlHierarchyInfo {[
 					{"Name" : "buf_r_blk_n_W", "Type" : "RtlSignal"},
 					{"Name" : "buf_r_blk_n_B", "Type" : "RtlSignal"}]},
 			{"Name" : "buf_offset", "Type" : "None", "Direction" : "I"},
-			{"Name" : "ctx", "Type" : "MAXI", "Direction" : "IO",
+			{"Name" : "key", "Type" : "MAXI", "Direction" : "I",
 				"BlockSignal" : [
-					{"Name" : "ctx_blk_n_AR", "Type" : "RtlSignal"},
-					{"Name" : "ctx_blk_n_R", "Type" : "RtlSignal"},
-					{"Name" : "ctx_blk_n_AW", "Type" : "RtlSignal"},
-					{"Name" : "ctx_blk_n_W", "Type" : "RtlSignal"},
-					{"Name" : "ctx_blk_n_B", "Type" : "RtlSignal"}]},
-			{"Name" : "ctx_offset", "Type" : "None", "Direction" : "I"}]},
-	{"ID" : "1", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.encrypt_lshr_256ncud_x_U29", "Parent" : "0"},
-	{"ID" : "2", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.encrypt_lshr_256ncud_x_U30", "Parent" : "0"},
-	{"ID" : "3", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.encrypt_lshr_256ncud_x_U31", "Parent" : "0"},
-	{"ID" : "4", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.encrypt_lshr_256ncud_x_U32", "Parent" : "0"},
-	{"ID" : "5", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.encrypt_lshr_256ncud_x_U33", "Parent" : "0"},
-	{"ID" : "6", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.encrypt_lshr_256ncud_x_U34", "Parent" : "0"},
-	{"ID" : "7", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.encrypt_lshr_256ncud_x_U35", "Parent" : "0"},
-	{"ID" : "8", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.encrypt_lshr_256ncud_x_U36", "Parent" : "0"},
-	{"ID" : "9", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.encrypt_lshr_256ncud_x_U37", "Parent" : "0"},
-	{"ID" : "10", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.encrypt_lshr_256ncud_x_U38", "Parent" : "0"},
-	{"ID" : "11", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.encrypt_lshr_256ncud_x_U39", "Parent" : "0"},
-	{"ID" : "12", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.encrypt_lshr_256ncud_x_U40", "Parent" : "0"},
-	{"ID" : "13", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.encrypt_lshr_256ncud_x_U41", "Parent" : "0"},
-	{"ID" : "14", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.encrypt_lshr_256ncud_x_U42", "Parent" : "0"},
-	{"ID" : "15", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.encrypt_lshr_256ncud_x_U43", "Parent" : "0"},
-	{"ID" : "16", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.encrypt_lshr_256ncud_x_U44", "Parent" : "0"},
-	{"ID" : "17", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.encrypt_lshr_256ncud_x_U45", "Parent" : "0"},
-	{"ID" : "18", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.encrypt_lshr_256ncud_x_U46", "Parent" : "0"}]}
+					{"Name" : "key_blk_n_AR", "Type" : "RtlSignal"},
+					{"Name" : "key_blk_n_R", "Type" : "RtlSignal"}]},
+			{"Name" : "key_offset", "Type" : "None", "Direction" : "I"},
+			{"Name" : "cpk", "Type" : "MAXI", "Direction" : "O",
+				"BlockSignal" : [
+					{"Name" : "cpk_blk_n_AW", "Type" : "RtlSignal"},
+					{"Name" : "cpk_blk_n_W", "Type" : "RtlSignal"},
+					{"Name" : "cpk_blk_n_B", "Type" : "RtlSignal"}]},
+			{"Name" : "cpk_offset", "Type" : "None", "Direction" : "I"}]}]}
 
 
 set ArgLastReadFirstWriteLatency {
 	aes_addRoundKey_cpy {
-		buf_r {Type IO LastRead 140 FirstWrite 18}
+		buf_r {Type IO LastRead 12 FirstWrite 11}
 		buf_offset {Type I LastRead 0 FirstWrite -1}
-		ctx {Type IO LastRead 125 FirstWrite 33}
-		ctx_offset {Type I LastRead 0 FirstWrite -1}}}
+		key {Type I LastRead 12 FirstWrite -1}
+		key_offset {Type I LastRead 0 FirstWrite -1}
+		cpk {Type O LastRead 14 FirstWrite 11}
+		cpk_offset {Type I LastRead 0 FirstWrite -1}}}
 
 set hasDtUnsupportedChannel 0
 
 set PerformanceInfo {[
-	{"Name" : "Latency", "Min" : "257", "Max" : "257"}
-	, {"Name" : "Interval", "Min" : "257", "Max" : "257"}
+	{"Name" : "Latency", "Min" : "289", "Max" : "289"}
+	, {"Name" : "Interval", "Min" : "289", "Max" : "289"}
 ]}
 
 set PipelineEnableSignalInfo {[
@@ -288,6 +371,8 @@ set PipelineEnableSignalInfo {[
 set Spec2ImplPortList { 
 	buf_r { m_axi {  { m_axi_buf_r_AWVALID VALID 1 1 }  { m_axi_buf_r_AWREADY READY 0 1 }  { m_axi_buf_r_AWADDR ADDR 1 32 }  { m_axi_buf_r_AWID ID 1 1 }  { m_axi_buf_r_AWLEN LEN 1 32 }  { m_axi_buf_r_AWSIZE SIZE 1 3 }  { m_axi_buf_r_AWBURST BURST 1 2 }  { m_axi_buf_r_AWLOCK LOCK 1 2 }  { m_axi_buf_r_AWCACHE CACHE 1 4 }  { m_axi_buf_r_AWPROT PROT 1 3 }  { m_axi_buf_r_AWQOS QOS 1 4 }  { m_axi_buf_r_AWREGION REGION 1 4 }  { m_axi_buf_r_AWUSER USER 1 1 }  { m_axi_buf_r_WVALID VALID 1 1 }  { m_axi_buf_r_WREADY READY 0 1 }  { m_axi_buf_r_WDATA DATA 1 8 }  { m_axi_buf_r_WSTRB STRB 1 1 }  { m_axi_buf_r_WLAST LAST 1 1 }  { m_axi_buf_r_WID ID 1 1 }  { m_axi_buf_r_WUSER USER 1 1 }  { m_axi_buf_r_ARVALID VALID 1 1 }  { m_axi_buf_r_ARREADY READY 0 1 }  { m_axi_buf_r_ARADDR ADDR 1 32 }  { m_axi_buf_r_ARID ID 1 1 }  { m_axi_buf_r_ARLEN LEN 1 32 }  { m_axi_buf_r_ARSIZE SIZE 1 3 }  { m_axi_buf_r_ARBURST BURST 1 2 }  { m_axi_buf_r_ARLOCK LOCK 1 2 }  { m_axi_buf_r_ARCACHE CACHE 1 4 }  { m_axi_buf_r_ARPROT PROT 1 3 }  { m_axi_buf_r_ARQOS QOS 1 4 }  { m_axi_buf_r_ARREGION REGION 1 4 }  { m_axi_buf_r_ARUSER USER 1 1 }  { m_axi_buf_r_RVALID VALID 0 1 }  { m_axi_buf_r_RREADY READY 1 1 }  { m_axi_buf_r_RDATA DATA 0 8 }  { m_axi_buf_r_RLAST LAST 0 1 }  { m_axi_buf_r_RID ID 0 1 }  { m_axi_buf_r_RUSER USER 0 1 }  { m_axi_buf_r_RRESP RESP 0 2 }  { m_axi_buf_r_BVALID VALID 0 1 }  { m_axi_buf_r_BREADY READY 1 1 }  { m_axi_buf_r_BRESP RESP 0 2 }  { m_axi_buf_r_BID ID 0 1 }  { m_axi_buf_r_BUSER USER 0 1 } } }
 	buf_offset { ap_none {  { buf_offset in_data 0 32 } } }
-	ctx { m_axi {  { m_axi_ctx_AWVALID VALID 1 1 }  { m_axi_ctx_AWREADY READY 0 1 }  { m_axi_ctx_AWADDR ADDR 1 32 }  { m_axi_ctx_AWID ID 1 1 }  { m_axi_ctx_AWLEN LEN 1 32 }  { m_axi_ctx_AWSIZE SIZE 1 3 }  { m_axi_ctx_AWBURST BURST 1 2 }  { m_axi_ctx_AWLOCK LOCK 1 2 }  { m_axi_ctx_AWCACHE CACHE 1 4 }  { m_axi_ctx_AWPROT PROT 1 3 }  { m_axi_ctx_AWQOS QOS 1 4 }  { m_axi_ctx_AWREGION REGION 1 4 }  { m_axi_ctx_AWUSER USER 1 1 }  { m_axi_ctx_WVALID VALID 1 1 }  { m_axi_ctx_WREADY READY 0 1 }  { m_axi_ctx_WDATA DATA 1 1024 }  { m_axi_ctx_WSTRB STRB 1 128 }  { m_axi_ctx_WLAST LAST 1 1 }  { m_axi_ctx_WID ID 1 1 }  { m_axi_ctx_WUSER USER 1 1 }  { m_axi_ctx_ARVALID VALID 1 1 }  { m_axi_ctx_ARREADY READY 0 1 }  { m_axi_ctx_ARADDR ADDR 1 32 }  { m_axi_ctx_ARID ID 1 1 }  { m_axi_ctx_ARLEN LEN 1 32 }  { m_axi_ctx_ARSIZE SIZE 1 3 }  { m_axi_ctx_ARBURST BURST 1 2 }  { m_axi_ctx_ARLOCK LOCK 1 2 }  { m_axi_ctx_ARCACHE CACHE 1 4 }  { m_axi_ctx_ARPROT PROT 1 3 }  { m_axi_ctx_ARQOS QOS 1 4 }  { m_axi_ctx_ARREGION REGION 1 4 }  { m_axi_ctx_ARUSER USER 1 1 }  { m_axi_ctx_RVALID VALID 0 1 }  { m_axi_ctx_RREADY READY 1 1 }  { m_axi_ctx_RDATA DATA 0 1024 }  { m_axi_ctx_RLAST LAST 0 1 }  { m_axi_ctx_RID ID 0 1 }  { m_axi_ctx_RUSER USER 0 1 }  { m_axi_ctx_RRESP RESP 0 2 }  { m_axi_ctx_BVALID VALID 0 1 }  { m_axi_ctx_BREADY READY 1 1 }  { m_axi_ctx_BRESP RESP 0 2 }  { m_axi_ctx_BID ID 0 1 }  { m_axi_ctx_BUSER USER 0 1 } } }
-	ctx_offset { ap_none {  { ctx_offset in_data 0 25 } } }
+	key { m_axi {  { m_axi_key_AWVALID VALID 1 1 }  { m_axi_key_AWREADY READY 0 1 }  { m_axi_key_AWADDR ADDR 1 32 }  { m_axi_key_AWID ID 1 1 }  { m_axi_key_AWLEN LEN 1 32 }  { m_axi_key_AWSIZE SIZE 1 3 }  { m_axi_key_AWBURST BURST 1 2 }  { m_axi_key_AWLOCK LOCK 1 2 }  { m_axi_key_AWCACHE CACHE 1 4 }  { m_axi_key_AWPROT PROT 1 3 }  { m_axi_key_AWQOS QOS 1 4 }  { m_axi_key_AWREGION REGION 1 4 }  { m_axi_key_AWUSER USER 1 1 }  { m_axi_key_WVALID VALID 1 1 }  { m_axi_key_WREADY READY 0 1 }  { m_axi_key_WDATA DATA 1 8 }  { m_axi_key_WSTRB STRB 1 1 }  { m_axi_key_WLAST LAST 1 1 }  { m_axi_key_WID ID 1 1 }  { m_axi_key_WUSER USER 1 1 }  { m_axi_key_ARVALID VALID 1 1 }  { m_axi_key_ARREADY READY 0 1 }  { m_axi_key_ARADDR ADDR 1 32 }  { m_axi_key_ARID ID 1 1 }  { m_axi_key_ARLEN LEN 1 32 }  { m_axi_key_ARSIZE SIZE 1 3 }  { m_axi_key_ARBURST BURST 1 2 }  { m_axi_key_ARLOCK LOCK 1 2 }  { m_axi_key_ARCACHE CACHE 1 4 }  { m_axi_key_ARPROT PROT 1 3 }  { m_axi_key_ARQOS QOS 1 4 }  { m_axi_key_ARREGION REGION 1 4 }  { m_axi_key_ARUSER USER 1 1 }  { m_axi_key_RVALID VALID 0 1 }  { m_axi_key_RREADY READY 1 1 }  { m_axi_key_RDATA DATA 0 8 }  { m_axi_key_RLAST LAST 0 1 }  { m_axi_key_RID ID 0 1 }  { m_axi_key_RUSER USER 0 1 }  { m_axi_key_RRESP RESP 0 2 }  { m_axi_key_BVALID VALID 0 1 }  { m_axi_key_BREADY READY 1 1 }  { m_axi_key_BRESP RESP 0 2 }  { m_axi_key_BID ID 0 1 }  { m_axi_key_BUSER USER 0 1 } } }
+	key_offset { ap_none {  { key_offset in_data 0 32 } } }
+	cpk { m_axi {  { m_axi_cpk_AWVALID VALID 1 1 }  { m_axi_cpk_AWREADY READY 0 1 }  { m_axi_cpk_AWADDR ADDR 1 32 }  { m_axi_cpk_AWID ID 1 1 }  { m_axi_cpk_AWLEN LEN 1 32 }  { m_axi_cpk_AWSIZE SIZE 1 3 }  { m_axi_cpk_AWBURST BURST 1 2 }  { m_axi_cpk_AWLOCK LOCK 1 2 }  { m_axi_cpk_AWCACHE CACHE 1 4 }  { m_axi_cpk_AWPROT PROT 1 3 }  { m_axi_cpk_AWQOS QOS 1 4 }  { m_axi_cpk_AWREGION REGION 1 4 }  { m_axi_cpk_AWUSER USER 1 1 }  { m_axi_cpk_WVALID VALID 1 1 }  { m_axi_cpk_WREADY READY 0 1 }  { m_axi_cpk_WDATA DATA 1 8 }  { m_axi_cpk_WSTRB STRB 1 1 }  { m_axi_cpk_WLAST LAST 1 1 }  { m_axi_cpk_WID ID 1 1 }  { m_axi_cpk_WUSER USER 1 1 }  { m_axi_cpk_ARVALID VALID 1 1 }  { m_axi_cpk_ARREADY READY 0 1 }  { m_axi_cpk_ARADDR ADDR 1 32 }  { m_axi_cpk_ARID ID 1 1 }  { m_axi_cpk_ARLEN LEN 1 32 }  { m_axi_cpk_ARSIZE SIZE 1 3 }  { m_axi_cpk_ARBURST BURST 1 2 }  { m_axi_cpk_ARLOCK LOCK 1 2 }  { m_axi_cpk_ARCACHE CACHE 1 4 }  { m_axi_cpk_ARPROT PROT 1 3 }  { m_axi_cpk_ARQOS QOS 1 4 }  { m_axi_cpk_ARREGION REGION 1 4 }  { m_axi_cpk_ARUSER USER 1 1 }  { m_axi_cpk_RVALID VALID 0 1 }  { m_axi_cpk_RREADY READY 1 1 }  { m_axi_cpk_RDATA DATA 0 8 }  { m_axi_cpk_RLAST LAST 0 1 }  { m_axi_cpk_RID ID 0 1 }  { m_axi_cpk_RUSER USER 0 1 }  { m_axi_cpk_RRESP RESP 0 2 }  { m_axi_cpk_BVALID VALID 0 1 }  { m_axi_cpk_BREADY READY 1 1 }  { m_axi_cpk_BRESP RESP 0 2 }  { m_axi_cpk_BID ID 0 1 }  { m_axi_cpk_BUSER USER 0 1 } } }
+	cpk_offset { ap_none {  { cpk_offset in_data 0 32 } } }
 }

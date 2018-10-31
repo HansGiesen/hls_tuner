@@ -6,355 +6,163 @@ Copyright (C) 1986-2017 Xilinx, Inc. All Rights Reserved.
 ==============================================================
 
 INFO: [HLS 200-10] Setting target device to ' xc7z020clg400-1 '
-INFO: [SYN 201-201] Setting up clock 'default' with a period of 6ns.
-INFO: [SYN 201-201] Setting up clock 'default' with an uncertainty of 1.62ns.
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 7ns.
+INFO: [SYN 201-201] Setting up clock 'default' with an uncertainty of 1.89ns.
 INFO: [HLS 200-10] Analyzing design file '/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c' ... 
 INFO: [HLS 200-10] Validating synthesis directives ...
-INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 331.207 ; gain = 12.918 ; free physical = 123411 ; free virtual = 127613
-INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 331.207 ; gain = 12.918 ; free physical = 123404 ; free virtual = 127609
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 331.211 ; gain = 12.918 ; free physical = 123879 ; free virtual = 144247
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 331.211 ; gain = 12.918 ; free physical = 123874 ; free virtual = 144247
 INFO: [HLS 200-10] Starting code transformations ...
-INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 331.207 ; gain = 12.918 ; free physical = 123397 ; free virtual = 127607
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 331.211 ; gain = 12.918 ; free physical = 123867 ; free virtual = 144243
 INFO: [HLS 200-10] Checking synthesizability ...
-INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 331.207 ; gain = 12.918 ; free physical = 123396 ; free virtual = 127606
-INFO: [XFORM 203-1101] Packing variable 'ctx' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:299) into a 1024-bit variable.
-INFO: [XFORM 203-502] Unrolling all loops for pipelining in function 'aes_mixColumns' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:239).
-WARNING: [XFORM 203-505] Ignored pipeline directive for loop 'mix' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:244) because its parent loop or function is pipelined.
-INFO: [XFORM 203-502] Unrolling all loops for pipelining in function 'aes_subBytes' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:178).
-WARNING: [XFORM 203-505] Ignored pipeline directive for loop 'sub' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:183) because its parent loop or function is pipelined.
-INFO: [XFORM 203-502] Unrolling all loops for pipelining in function 'aes_expandEncKey' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:258).
-WARNING: [XFORM 203-505] Ignored pipeline directive for loop 'exp1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:269) because its parent loop or function is pipelined.
-WARNING: [XFORM 203-503] Ignored partial unroll directive for loop 'exp2' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:284) because its parent loop or function is pipelined.
-INFO: [XFORM 203-502] Unrolling all loops for pipelining in function 'aes_addRoundKey' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:194).
-WARNING: [XFORM 203-505] Ignored pipeline directive for loop 'addkey' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:199) because its parent loop or function is pipelined.
-INFO: [XFORM 203-501] Unrolling loop 'mix' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:244) in function 'aes_mixColumns' completely.
-INFO: [XFORM 203-501] Unrolling loop 'sub' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:183) in function 'aes_subBytes' completely.
-WARNING: [XFORM 203-503] Ignored unroll directive 'ecb1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:305) in function 'encrypt': multiple loop unroll directives in one loop, use the first one and ignore the rest.
-INFO: [XFORM 203-501] Unrolling loop 'ecb1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:305) in function 'encrypt' completely.
-WARNING: [XFORM 203-505] Pipeline directive for loop 'ecb1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:305) in function 'encrypt' has been removed because the loop is unrolled completely.
-WARNING: [XFORM 203-503] Cannot unroll loop 'ecb2' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:313) in function 'encrypt': invalid partial unroll factor 1.
-INFO: [XFORM 203-501] Unrolling loop 'cpkey' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:215) in function 'aes_addRoundKey_cpy' partially with a factor of 9.
-INFO: [XFORM 203-501] Unrolling loop 'exp1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:269) in function 'aes_expandEncKey' completely.
-INFO: [XFORM 203-501] Unrolling loop 'exp2' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:284) in function 'aes_expandEncKey' completely.
-INFO: [XFORM 203-501] Unrolling loop 'addkey' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:199) in function 'aes_addRoundKey' completely.
-INFO: [XFORM 203-501] Unrolling loop 'exp2' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:284) in function 'aes_expandEncKey.1' partially with a factor of 2.
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 331.211 ; gain = 12.918 ; free physical = 123865 ; free virtual = 144241
+WARNING: [XFORM 203-503] Cannot unroll loop 'ecb1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:308) in function 'encrypt': invalid partial unroll factor 1.
+WARNING: [XFORM 203-503] Cannot unroll loop 'ecb2' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:316) in function 'encrypt': invalid partial unroll factor 1.
+WARNING: [XFORM 203-503] Cannot unroll loop 'ecb3' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:328) in function 'encrypt': invalid partial unroll factor 1.
+WARNING: [XFORM 203-503] Cannot unroll loop 'mix' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:244) in function 'aes_mixColumns': invalid partial unroll factor 1.
+WARNING: [XFORM 203-503] Cannot unroll loop 'sub' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:183) in function 'aes_subBytes': invalid partial unroll factor 1.
+WARNING: [XFORM 203-503] Cannot unroll loop 'cpkey' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:215) in function 'aes_addRoundKey_cpy': invalid partial unroll factor 1.
+WARNING: [XFORM 203-503] Cannot unroll loop 'exp1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:269) in function 'aes_expandEncKey': invalid partial unroll factor 1.
+WARNING: [XFORM 203-503] Cannot unroll loop 'exp2' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:284) in function 'aes_expandEncKey': invalid partial unroll factor 1.
+WARNING: [XFORM 203-503] Cannot unroll loop 'addkey' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:199) in function 'aes_addRoundKey': invalid partial unroll factor 1.
 INFO: [XFORM 203-602] Inlining function 'rj_xtime' into 'aes_mixColumns' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252) automatically.
-INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 459.082 ; gain = 140.793 ; free physical = 123358 ; free virtual = 127568
-WARNING: [XFORM 203-561] Updating loop upper bound from 2 to 1 for loop 'cpkey' in function 'aes_addRoundKey_cpy'.
-WARNING: [XFORM 203-561] Updating loop lower bound from 2 to 1 for loop 'cpkey' in function 'aes_addRoundKey_cpy'.
-WARNING: [XFORM 203-803] Argument name  'ctx' is equal to bundle name 'ctx.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 459.086 ; gain = 140.793 ; free physical = 123833 ; free virtual = 144210
+WARNING: [XFORM 203-803] Argument name  'ctx_key' is equal to bundle name 'ctx_key.
+' WARNING: [XFORM 203-803] Argument name  'ctx_enckey' is equal to bundle name 'ctx_enckey.
+' WARNING: [XFORM 203-803] Argument name  'ctx_deckey' is equal to bundle name 'ctx_deckey.
 ' WARNING: [XFORM 203-803] Argument name  'buf' is equal to bundle name 'buf.
-' INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:07 ; elapsed = 00:00:09 . Memory (MB): peak = 523.082 ; gain = 204.793 ; free physical = 123278 ; free virtual = 127491
+' INFO: [XFORM 203-811] Inferring bus burst write of length 32 on port 'ctx_deckey' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:314:2).
+INFO: [XFORM 203-811] Inferring bus burst write of length 32 on port 'ctx_enckey' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:314:2).
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 459.086 ; gain = 140.793 ; free physical = 123733 ; free virtual = 144111
 INFO: [HLS 200-10] Starting hardware synthesis ...
 INFO: [HLS 200-10] Synthesizing 'encrypt' ...
-WARNING: [SYN 201-103] Legalizing function name 'aes_expandEncKey.1' to 'aes_expandEncKey_1'.
 WARNING: [SYN 201-107] Renaming port name 'encrypt/buf' to 'encrypt/buf_r' to avoid the conflict with HDL keywords or other object names.
 INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'aes_expandEncKey_1' 
+INFO: [HLS 200-42] -- Implementing module 'aes_expandEncKey' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-61] Pipelining loop 'exp1'.
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 0)
-   between 'partset' operation ('gep17128130_part_set', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:275) and 'partselect' operation ('p_new2', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:275).
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 2, distance = 1, offset = 0)
-   between 'partset' operation ('gep17128130_part_set', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:275) and 'partselect' operation ('p_new2', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:275).
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 3, distance = 1, offset = 0)
-   between 'partset' operation ('gep17128130_part_set', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:275) and 'partselect' operation ('p_new2', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:275).
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 4, distance = 1, offset = 0)
-   between 'partset' operation ('gep17128130_part_set', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:275) and 'partselect' operation ('p_new2', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:275).
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 19, distance = 1, offset = 0)
-   between 'partset' operation ('gep17128130_part_set', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:275) and 'partselect' operation ('p_new2', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:275).
-INFO: [SCHED 204-61] Pipelining result: Target II: 1, Final II: 20, Depth: 23.
-WARNING: [SCHED 204-21] Estimated clock period (17ns) exceeds the target (target clock period: 6ns, clock uncertainty: 1.62ns, effective delay budget: 4.38ns).
-WARNING: [SCHED 204-21] The critical path consists of the following:
-	'lshr' operation ('tmp_85', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:275) (3.89 ns)
-	'and' operation ('tmp_92', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:275) (0 ns)
-	'xor' operation ('tmp_33', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:275) (3.25 ns)
-	'shl' operation ('tmp_153', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:275) (3.25 ns)
-	'select' operation ('tmp_155', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:275) (0 ns)
-	'and' operation ('tmp_160', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:275) (0 ns)
-	'or' operation ('tmp_161', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:275) (1.37 ns)
-	'select' operation ('tmp_187', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:275) (1.37 ns)
-	'lshr' operation ('tmp_192', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:275) (3.89 ns)
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111]  Elapsed time: 9.93 seconds; current allocated memory: 144.481 MB.
+INFO: [HLS 200-111]  Elapsed time: 7.27 seconds; current allocated memory: 123.279 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111]  Elapsed time: 0.95 seconds; current allocated memory: 148.265 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.12 seconds; current allocated memory: 125.190 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'aes_addRoundKey_cpy' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111]  Elapsed time: 1.9 seconds; current allocated memory: 151.963 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.18 seconds; current allocated memory: 125.484 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111]  Elapsed time: 0.73 seconds; current allocated memory: 155.623 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.02 seconds; current allocated memory: 125.739 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'aes_subBytes' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-61] Pipelining function 'aes_subBytes'.
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 13, distance = 1, offset = 1)
-   between bus access on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:189) and bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:189).
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 14, distance = 1, offset = 1)
-   between bus access on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:189) and bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:189).
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 15, distance = 1, offset = 1)
-   between bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:189) and bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:189).
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 16, distance = 1, offset = 1)
-   between bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:189) and bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:189).
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 136, distance = 1, offset = 1)
-   between bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:189) and bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:189).
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 196, distance = 1, offset = 1)
-   between bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:189) and bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:189).
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 211, distance = 1, offset = 1)
-   between bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:189) and bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:189).
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 218, distance = 1, offset = 1)
-   between bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:189) and bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:189).
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 222, distance = 1, offset = 1)
-   between bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:189) and bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:189).
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 224, distance = 1, offset = 1)
-   between bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:189) and bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:189).
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 225, distance = 1, offset = 1)
-   between bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:189) and bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:189).
-INFO: [SCHED 204-61] Pipelining result: Target II: 13, Final II: 226, Depth: 241.
-WARNING: [SCHED 204-21] Estimated clock period (7.63ns) exceeds the target (target clock period: 6ns, clock uncertainty: 1.62ns, effective delay budget: 4.38ns).
-WARNING: [SCHED 204-21] The critical path consists of the following:
-	'load' operation ('sbox_load', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:189) on array 'sbox' (3.25 ns)
-	bus write on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:189) (4.38 ns)
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111]  Elapsed time: 1.66 seconds; current allocated memory: 157.677 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.03 seconds; current allocated memory: 125.912 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111]  Elapsed time: 0.58 seconds; current allocated memory: 159.100 MB.
+INFO: [HLS 200-111]  Elapsed time: 0 seconds; current allocated memory: 126.041 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'aes_shiftRows' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-61] Pipelining function 'aes_shiftRows'.
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 13, distance = 1, offset = 1)
-   between bus access on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:231) and bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:231).
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 14, distance = 1, offset = 1)
-   between bus access on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:231) and bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:231).
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 15, distance = 1, offset = 1)
-   between bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:231) and bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:231).
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 16, distance = 1, offset = 1)
-   between bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:231) and bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:231).
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 76, distance = 1, offset = 1)
-   between bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:233) and bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:231).
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 91, distance = 1, offset = 1)
-   between bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:234) and bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:231).
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 98, distance = 1, offset = 1)
-   between bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:234) and bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:231).
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 102, distance = 1, offset = 1)
-   between bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:234) and bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:231).
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 104, distance = 1, offset = 1)
-   between bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:234) and bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:231).
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 105, distance = 1, offset = 1)
-   between bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:234) and bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:231).
-INFO: [SCHED 204-61] Pipelining result: Target II: 13, Final II: 106, Depth: 121.
-WARNING: [SCHED 204-21] Estimated clock period (8.76ns) exceeds the target (target clock period: 6ns, clock uncertainty: 1.62ns, effective delay budget: 4.38ns).
-WARNING: [SCHED 204-21] The critical path consists of the following:
-	bus read on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:231) (4.38 ns)
-	bus write on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:231) (4.38 ns)
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111]  Elapsed time: 0.49 seconds; current allocated memory: 160.006 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.06 seconds; current allocated memory: 126.793 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111]  Elapsed time: 0.28 seconds; current allocated memory: 160.739 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.03 seconds; current allocated memory: 127.428 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'aes_mixColumns' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-61] Pipelining function 'aes_mixColumns'.
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 13, distance = 1, offset = 1)
-   between bus access on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252) and bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250).
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 14, distance = 1, offset = 1)
-   between bus access on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252) and bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250).
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 15, distance = 1, offset = 1)
-   between bus access on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252) and bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250).
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 16, distance = 1, offset = 1)
-   between bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250) and bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250).
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 46, distance = 1, offset = 1)
-   between bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250) and bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250).
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 61, distance = 1, offset = 1)
-   between bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250) and bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250).
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 68, distance = 1, offset = 1)
-   between bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250) and bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250).
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 72, distance = 1, offset = 1)
-   between bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:253) and bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252).
-INFO: [SCHED 204-61] Pipelining result: Target II: 13, Final II: 73, Depth: 90.
-WARNING: [SCHED 204-21] Estimated clock period (11.2ns) exceeds the target (target clock period: 6ns, clock uncertainty: 1.62ns, effective delay budget: 4.38ns).
-WARNING: [SCHED 204-21] The critical path consists of the following:
-	bus read on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250) (4.38 ns)
-	'xor' operation ('e_1', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:251) (1.09 ns)
-	'xor' operation ('tmp3', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252) (0 ns)
-	'xor' operation ('tmp_9_1', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252) (1.37 ns)
-	bus write on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252) (4.38 ns)
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111]  Elapsed time: 0.82 seconds; current allocated memory: 161.950 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.07 seconds; current allocated memory: 127.785 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111]  Elapsed time: 0.34 seconds; current allocated memory: 163.229 MB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'aes_expandEncKey' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-61] Pipelining function 'aes_expandEncKey'.
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 13, distance = 1, offset = 1)
-   between bus access on port 'k' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:290) and bus request on port 'k' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:262).
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 14, distance = 1, offset = 1)
-   between bus access on port 'k' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:290) and bus request on port 'k' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:262).
-WARNING: [SCHED 204-69] Unable to schedule 'load' operation ('sbox_load', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:262) on array 'sbox' due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'sbox'.
-INFO: [SCHED 204-61] Pipelining result: Target II: 13, Final II: 24, Depth: 24.
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111]  Elapsed time: 0.36 seconds; current allocated memory: 163.754 MB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111]  Elapsed time: 0.11 seconds; current allocated memory: 164.368 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.03 seconds; current allocated memory: 128.134 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'aes_addRoundKey' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-61] Pipelining function 'aes_addRoundKey'.
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 1)
-   between bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:205) and bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:205).
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 2, distance = 1, offset = 1)
-   between bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:205) and bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:205).
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 3, distance = 1, offset = 1)
-   between bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:205) and bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:205).
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 4, distance = 1, offset = 1)
-   between bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:205) and bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:205).
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 130, distance = 1, offset = 1)
-   between bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:205) and bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:205).
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 193, distance = 1, offset = 1)
-   between bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:205) and bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:205).
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 225, distance = 1, offset = 1)
-   between bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:205) and bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:205).
-INFO: [SCHED 204-61] Pipelining result: Target II: 1, Final II: 226, Depth: 247.
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111]  Elapsed time: 1.19 seconds; current allocated memory: 166.926 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.07 seconds; current allocated memory: 128.310 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111]  Elapsed time: 0.96 seconds; current allocated memory: 169.835 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.01 seconds; current allocated memory: 128.482 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'encrypt' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-61] Pipelining loop 'ecb3'.
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 226, distance = 1, offset = 1)
-   between 'call' operation (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:332) to 'aes_shiftRows' and 'call' operation (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:331) to 'aes_subBytes'.
-WARNING: [SCHED 204-62] II = 227 is infeasible due to multiple pipeline iteration latency = 241 and incompatible II = 226 of 'call' operation (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:331) to 'aes_subBytes'.
-WARNING: [SCHED 204-62] II = 228 is infeasible due to multiple pipeline iteration latency = 241 and incompatible II = 226 of 'call' operation (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:331) to 'aes_subBytes'.
-WARNING: [SCHED 204-62] II = 229 is infeasible due to multiple pipeline iteration latency = 241 and incompatible II = 226 of 'call' operation (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:331) to 'aes_subBytes'.
-WARNING: [SCHED 204-62] II = 230 is infeasible due to multiple pipeline iteration latency = 241 and incompatible II = 226 of 'call' operation (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:331) to 'aes_subBytes'.
-WARNING: [SCHED 204-62] II = 231 is infeasible due to multiple pipeline iteration latency = 241 and incompatible II = 226 of 'call' operation (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:331) to 'aes_subBytes'.
-WARNING: [SCHED 204-62] II = 232 is infeasible due to multiple pipeline iteration latency = 241 and incompatible II = 226 of 'call' operation (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:331) to 'aes_subBytes'.
-WARNING: [SCHED 204-62] II = 233 is infeasible due to multiple pipeline iteration latency = 241 and incompatible II = 226 of 'call' operation (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:331) to 'aes_subBytes'.
-WARNING: [SCHED 204-62] II = 234 is infeasible due to multiple pipeline iteration latency = 241 and incompatible II = 226 of 'call' operation (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:331) to 'aes_subBytes'.
-WARNING: [SCHED 204-62] II = 235 is infeasible due to multiple pipeline iteration latency = 241 and incompatible II = 226 of 'call' operation (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:331) to 'aes_subBytes'.
-WARNING: [SCHED 204-62] II = 236 is infeasible due to multiple pipeline iteration latency = 241 and incompatible II = 226 of 'call' operation (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:331) to 'aes_subBytes'.
-WARNING: [SCHED 204-62] II = 237 is infeasible due to multiple pipeline iteration latency = 241 and incompatible II = 226 of 'call' operation (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:331) to 'aes_subBytes'.
-WARNING: [SCHED 204-62] II = 238 is infeasible due to multiple pipeline iteration latency = 241 and incompatible II = 226 of 'call' operation (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:331) to 'aes_subBytes'.
-WARNING: [SCHED 204-62] II = 239 is infeasible due to multiple pipeline iteration latency = 241 and incompatible II = 226 of 'call' operation (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:331) to 'aes_subBytes'.
-WARNING: [SCHED 204-62] II = 240 is infeasible due to multiple pipeline iteration latency = 241 and incompatible II = 226 of 'call' operation (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:331) to 'aes_subBytes'.
-WARNING: [SCHED 204-62] II = 241 is infeasible due to multiple pipeline iteration latency = 247 and incompatible II = 226 of 'call' operation to 'aes_addRoundKey'.
-WARNING: [SCHED 204-62] II = 242 is infeasible due to multiple pipeline iteration latency = 247 and incompatible II = 226 of 'call' operation to 'aes_addRoundKey'.
-WARNING: [SCHED 204-62] II = 243 is infeasible due to multiple pipeline iteration latency = 247 and incompatible II = 226 of 'call' operation to 'aes_addRoundKey'.
-WARNING: [SCHED 204-62] II = 244 is infeasible due to multiple pipeline iteration latency = 247 and incompatible II = 226 of 'call' operation to 'aes_addRoundKey'.
-WARNING: [SCHED 204-62] II = 245 is infeasible due to multiple pipeline iteration latency = 247 and incompatible II = 226 of 'call' operation to 'aes_addRoundKey'.
-WARNING: [SCHED 204-62] II = 246 is infeasible due to multiple pipeline iteration latency = 247 and incompatible II = 226 of 'call' operation to 'aes_addRoundKey'.
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 247, distance = 1, offset = 1)
-   between 'call' operation (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:332) to 'aes_shiftRows' and 'call' operation (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:331) to 'aes_subBytes'.
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 248, distance = 1, offset = 1)
-   between 'call' operation (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:332) to 'aes_shiftRows' and 'call' operation (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:331) to 'aes_subBytes'.
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 249, distance = 1, offset = 1)
-   between 'call' operation (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:332) to 'aes_shiftRows' and 'call' operation (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:331) to 'aes_subBytes'.
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 253, distance = 1, offset = 1)
-   between 'call' operation (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:332) to 'aes_shiftRows' and 'call' operation (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:331) to 'aes_subBytes'.
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 255, distance = 1, offset = 1)
-   between 'call' operation (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:332) to 'aes_shiftRows' and 'call' operation (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:331) to 'aes_subBytes'.
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 256, distance = 1, offset = 1)
-   between 'call' operation (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:332) to 'aes_shiftRows' and 'call' operation (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:331) to 'aes_subBytes'.
-INFO: [SCHED 204-61] Unable to satisfy pipeline directive: Unable to pipeline the region.
 WARNING: [SCHED 204-71] Latency directive discarded for region encrypt since it contains subloops.
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111]  Elapsed time: 1.51 seconds; current allocated memory: 178.181 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.05 seconds; current allocated memory: 128.815 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111]  Elapsed time: 8.81 seconds; current allocated memory: 199.072 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.35 seconds; current allocated memory: 129.353 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'aes_expandEncKey_1' 
+INFO: [HLS 200-10] -- Generating RTL for module 'aes_expandEncKey' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SYN 201-210] Renamed object name 'aes_expandEncKey_1_sbox' to 'aes_expandEncKey_bkb' due to the length limit 20
-INFO: [SYN 201-210] Renamed object name 'encrypt_lshr_256ns_9ns_256_6' to 'encrypt_lshr_256ncud' due to the length limit 20
-INFO: [RTGEN 206-100] Generating core module 'encrypt_lshr_256ncud': 24 instance(s).
-INFO: [RTGEN 206-100] Finished creating RTL model for 'aes_expandEncKey_1'.
-INFO: [HLS 200-111]  Elapsed time: 3.64 seconds; current allocated memory: 207.252 MB.
+INFO: [SYN 201-210] Renamed object name 'aes_expandEncKey_sbox' to 'aes_expandEncKey_bkb' due to the length limit 20
+INFO: [RTGEN 206-100] Finished creating RTL model for 'aes_expandEncKey'.
+INFO: [HLS 200-111]  Elapsed time: 0.35 seconds; current allocated memory: 133.292 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'aes_addRoundKey_cpy' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
-WARNING: [RTGEN 206-101] RTL name 'encrypt_lshr_256ncud' is changed to 'encrypt_lshr_256ncud_x' due to conflict.
-INFO: [RTGEN 206-100] Generating core module 'encrypt_lshr_256ncud': 18 instance(s).
 INFO: [RTGEN 206-100] Finished creating RTL model for 'aes_addRoundKey_cpy'.
-INFO: [HLS 200-111]  Elapsed time: 3.42 seconds; current allocated memory: 227.768 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.5 seconds; current allocated memory: 139.858 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'aes_subBytes' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [RTGEN 206-100] Finished creating RTL model for 'aes_subBytes'.
-INFO: [HLS 200-111]  Elapsed time: 3.44 seconds; current allocated memory: 246.476 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.14 seconds; current allocated memory: 141.063 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'aes_shiftRows' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [RTGEN 206-100] Finished creating RTL model for 'aes_shiftRows'.
-INFO: [HLS 200-111]  Elapsed time: 0.87 seconds; current allocated memory: 251.613 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.12 seconds; current allocated memory: 143.096 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'aes_mixColumns' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [RTGEN 206-100] Finished creating RTL model for 'aes_mixColumns'.
-INFO: [HLS 200-111]  Elapsed time: 0.77 seconds; current allocated memory: 256.431 MB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'aes_expandEncKey' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SYN 201-210] Renamed object name 'aes_expandEncKey_sbox' to 'aes_expandEncKey_dEe' due to the length limit 20
-INFO: [RTGEN 206-100] Finished creating RTL model for 'aes_expandEncKey'.
-INFO: [HLS 200-111]  Elapsed time: 1.14 seconds; current allocated memory: 261.491 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.16 seconds; current allocated memory: 145.297 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'aes_addRoundKey' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
-WARNING: [RTGEN 206-101] RTL name 'encrypt_lshr_256ncud' is changed to 'encrypt_lshr_256ncud_x' due to conflict.
-INFO: [RTGEN 206-100] Generating core module 'encrypt_lshr_256ncud': 16 instance(s).
 INFO: [RTGEN 206-100] Finished creating RTL model for 'aes_addRoundKey'.
-INFO: [HLS 200-111]  Elapsed time: 0.94 seconds; current allocated memory: 270.311 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.2 seconds; current allocated memory: 147.113 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'encrypt' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [RTGEN 206-500] Setting interface mode on port 'encrypt/ctx' to 'm_axi'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'encrypt/ctx_key' to 'm_axi'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'encrypt/ctx_enckey' to 'm_axi'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'encrypt/ctx_deckey' to 'm_axi'.
 INFO: [RTGEN 206-500] Setting interface mode on port 'encrypt/buf_r' to 'm_axi'.
-INFO: [RTGEN 206-500] Setting interface mode on port 'encrypt/ctx_offset' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'encrypt/ctx_key_offset' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'encrypt/ctx_enckey_offset' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'encrypt/ctx_deckey_offset' to 'ap_none'.
 INFO: [RTGEN 206-500] Setting interface mode on port 'encrypt/k' to 'bram'.
 INFO: [RTGEN 206-500] Setting interface mode on port 'encrypt/buf_offset' to 'ap_none'.
 INFO: [RTGEN 206-500] Setting interface mode on function 'encrypt' to 'ap_ctrl_hs'.
@@ -362,13 +170,11 @@ WARNING: [RTGEN 206-101] Global array 'sbox' will not be exposed as RTL port.
 WARNING: [RTGEN 206-101] Setting dangling out port 'encrypt/k_WEN_A' to 0.
 WARNING: [RTGEN 206-101] Setting dangling out port 'encrypt/k_Din_A' to 0.
 INFO: [RTGEN 206-100] Finished creating RTL model for 'encrypt'.
-INFO: [HLS 200-111]  Elapsed time: 18.92 seconds; current allocated memory: 324.166 MB.
-INFO: [RTMG 210-286] Generating pipelined shifter : 'a0_encrypt_lshr_256ncud'
-INFO: [RTMG 210-279] Implementing memory 'a0_aes_expandEncKey_bkb_rom' using block ROMs.
-INFO: [RTMG 210-279] Implementing memory 'a0_aes_subBytes_sbox_rom' using auto ROMs.
-INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:01:00 ; elapsed = 00:01:12 . Memory (MB): peak = 651.207 ; gain = 332.918 ; free physical = 122493 ; free virtual = 127351
+INFO: [HLS 200-111]  Elapsed time: 0.28 seconds; current allocated memory: 150.889 MB.
+INFO: [RTMG 210-279] Implementing memory 'a0_aes_expandEncKey_bkb_rom' using auto ROMs.
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:08 ; elapsed = 00:00:11 . Memory (MB): peak = 523.086 ; gain = 204.793 ; free physical = 123627 ; free virtual = 144036
 INFO: [SYSC 207-301] Generating SystemC RTL for encrypt with prefix a0_.
 INFO: [VHDL 208-304] Generating VHDL RTL for encrypt with prefix a0_.
 INFO: [VLOG 209-307] Generating Verilog RTL for encrypt with prefix a0_.
 INFO: [IMPL 213-8] Exporting RTL as an IP in IP-XACT.
-INFO: [HLS 200-112] Total elapsed time: 117.94 seconds; peak allocated memory: 324.166 MB.
+INFO: [HLS 200-112] Total elapsed time: 56.99 seconds; peak allocated memory: 150.889 MB.

@@ -3,8 +3,10 @@
   <xd:component xd:vendor="xilinx.com" xd:library="xd" xd:name="encrypt_if" xd:version="1.0" xd:componentRef="adapter_v3_0" xd:adapteeCompRef="encrypt" xd:type="accelerator">
     <xd:busInterface xd:name="S_AXI" xd:busTypeRef="aximm" xd:mode="slave" xd:clockRef="s_axi_aclk" xd:resetRef="s_axi_aresetn" xd:dataWidth="32">
        <xd:reg xd:name="ap_ctrl" xd:offset="0x8" xd:dataWidth="4"/>
-       <xd:reg xd:name="ctx_offset" xd:offset="0xC" xd:dataWidth="32"/>
-       <xd:reg xd:name="buf_offset" xd:offset="0x10" xd:dataWidth="32"/>
+       <xd:reg xd:name="ctx_key_offset" xd:offset="0xC" xd:dataWidth="32"/>
+       <xd:reg xd:name="ctx_enckey_offset" xd:offset="0x10" xd:dataWidth="32"/>
+       <xd:reg xd:name="ctx_deckey_offset" xd:offset="0x14" xd:dataWidth="32"/>
+       <xd:reg xd:name="buf_offset" xd:offset="0x18" xd:dataWidth="32"/>
     </xd:busInterface>
     <xd:busInterface xd:name="s_axi_aclk" xd:busTypeRef="clock" xd:mode="slave" xd:library="signal" xd:direction="in" xd:port="s_axi_aclk"/>
     <xd:busInterface xd:name="acc_aclk" xd:busTypeRef="clock" xd:mode="slave" xd:library="signal" xd:direction="in" xd:port="acc_aclk"/>
@@ -13,19 +15,33 @@
     <xd:busInterface xd:name="S_AXIS_BRAM_0" xd:busTypeRef="axis" xd:portInterfaceType="bram" xd:direction="in" xd:mode="slave" xd:hasTlast="true" xd:clockRef="s_axis_bram_0_aclk" xd:resetRef="s_axis_bram_0_aresetn" xd:dataWidth="8" xd:hlsname="k_PORTA"/>
     <xd:busInterface xd:name="S_AXIS_BRAM_0_aclk" xd:busTypeRef="clock" xd:mode="slave" xd:library="signal" xd:direction="in" xd:port="S_AXIS_BRAM_0_aclk"/>
     <xd:busInterface xd:name="S_AXIS_BRAM_0_aresetn" xd:busTypeRef="reset" xd:mode="slave" xd:library="signal" xd:direction="in" xd:port="S_AXIS_BRAM_0_aresetn"/>
-    <xd:busInterface xd:name="m_axi_ctx" xd:componentRef="encrypt" xd:busTypeRef="aximm" xd:mode="master" xd:clockRef="s_axi_aclk" xd:resetRef="s_axi_aresetn" xd:dataWidth="1024">
-       <xd:reg xd:name="ctx_offset" xd:offset="0xC" xd:dataWidth="32" xd:dataPack="true" xd:bitMapping="1023:0" xd:dataPackWidth="1024"/>
+    <xd:busInterface xd:name="m_axi_ctx_key" xd:componentRef="encrypt" xd:busTypeRef="aximm" xd:mode="master" xd:clockRef="s_axi_aclk" xd:resetRef="s_axi_aresetn" xd:dataWidth="8">
+       <xd:reg xd:name="ctx_key_offset" xd:offset="0xC" xd:dataWidth="32"/>
     </xd:busInterface>
-    <xd:busInterface xd:name="M_AXIMM_0" xd:componentRef="encrypt" xd:busTypeRef="aximm" xd:mode="master" xd:clockRef="acc_aclk" xd:resetRef="acc_aresetn" xd:dataWidth="1024">
+    <xd:busInterface xd:name="M_AXIMM_0" xd:componentRef="encrypt" xd:busTypeRef="aximm" xd:mode="master" xd:clockRef="acc_aclk" xd:resetRef="acc_aresetn" xd:dataWidth="8">
     </xd:busInterface>
-    <xd:busInterface xd:name="AP_AXIMM_0" xd:componentRef="encrypt" xd:busTypeRef="aximm" xd:mode="slave" xd:clockRef="acc_aclk" xd:resetRef="acc_aresetn" xd:dataWidth="1024">
+    <xd:busInterface xd:name="AP_AXIMM_0" xd:componentRef="encrypt" xd:busTypeRef="aximm" xd:mode="slave" xd:clockRef="acc_aclk" xd:resetRef="acc_aresetn" xd:dataWidth="8">
     </xd:busInterface>
-    <xd:busInterface xd:name="m_axi_buf_r" xd:componentRef="encrypt" xd:busTypeRef="aximm" xd:mode="master" xd:clockRef="s_axi_aclk" xd:resetRef="s_axi_aresetn" xd:dataWidth="8">
-       <xd:reg xd:name="buf_offset" xd:offset="0x10" xd:dataWidth="32"/>
+    <xd:busInterface xd:name="m_axi_ctx_enckey" xd:componentRef="encrypt" xd:busTypeRef="aximm" xd:mode="master" xd:clockRef="s_axi_aclk" xd:resetRef="s_axi_aresetn" xd:dataWidth="8">
+       <xd:reg xd:name="ctx_enckey_offset" xd:offset="0x10" xd:dataWidth="32"/>
     </xd:busInterface>
     <xd:busInterface xd:name="M_AXIMM_1" xd:componentRef="encrypt" xd:busTypeRef="aximm" xd:mode="master" xd:clockRef="acc_aclk" xd:resetRef="acc_aresetn" xd:dataWidth="8">
     </xd:busInterface>
     <xd:busInterface xd:name="AP_AXIMM_1" xd:componentRef="encrypt" xd:busTypeRef="aximm" xd:mode="slave" xd:clockRef="acc_aclk" xd:resetRef="acc_aresetn" xd:dataWidth="8">
+    </xd:busInterface>
+    <xd:busInterface xd:name="m_axi_ctx_deckey" xd:componentRef="encrypt" xd:busTypeRef="aximm" xd:mode="master" xd:clockRef="s_axi_aclk" xd:resetRef="s_axi_aresetn" xd:dataWidth="8">
+       <xd:reg xd:name="ctx_deckey_offset" xd:offset="0x14" xd:dataWidth="32"/>
+    </xd:busInterface>
+    <xd:busInterface xd:name="M_AXIMM_2" xd:componentRef="encrypt" xd:busTypeRef="aximm" xd:mode="master" xd:clockRef="acc_aclk" xd:resetRef="acc_aresetn" xd:dataWidth="8">
+    </xd:busInterface>
+    <xd:busInterface xd:name="AP_AXIMM_2" xd:componentRef="encrypt" xd:busTypeRef="aximm" xd:mode="slave" xd:clockRef="acc_aclk" xd:resetRef="acc_aresetn" xd:dataWidth="8">
+    </xd:busInterface>
+    <xd:busInterface xd:name="m_axi_buf_r" xd:componentRef="encrypt" xd:busTypeRef="aximm" xd:mode="master" xd:clockRef="s_axi_aclk" xd:resetRef="s_axi_aresetn" xd:dataWidth="8">
+       <xd:reg xd:name="buf_offset" xd:offset="0x18" xd:dataWidth="32"/>
+    </xd:busInterface>
+    <xd:busInterface xd:name="M_AXIMM_3" xd:componentRef="encrypt" xd:busTypeRef="aximm" xd:mode="master" xd:clockRef="acc_aclk" xd:resetRef="acc_aresetn" xd:dataWidth="8">
+    </xd:busInterface>
+    <xd:busInterface xd:name="AP_AXIMM_3" xd:componentRef="encrypt" xd:busTypeRef="aximm" xd:mode="slave" xd:clockRef="acc_aclk" xd:resetRef="acc_aresetn" xd:dataWidth="8">
     </xd:busInterface>
   </xd:component>
 </xd:repository>

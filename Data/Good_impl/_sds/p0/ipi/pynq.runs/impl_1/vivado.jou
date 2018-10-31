@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2017.1_sdx (64-bit)
+# SW Build 1915620 on Thu Jun 22 17:54:59 MDT 2017
+# IP Build 1908669 on Thu Jun 22 19:20:41 MDT 2017
+# Start of session at: Wed Oct 31 15:31:39 2018
+# Process ID: 30550
+# Current directory: /scratch/local/tmp.q0OTExnNEs/_sds/p0/ipi/pynq.runs/impl_1
+# Command line: vivado -log pynq_wrapper.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source pynq_wrapper.tcl -notrace
+# Log file: /scratch/local/tmp.q0OTExnNEs/_sds/p0/ipi/pynq.runs/impl_1/pynq_wrapper.vdi
+# Journal file: /scratch/local/tmp.q0OTExnNEs/_sds/p0/ipi/pynq.runs/impl_1/vivado.jou
+#-----------------------------------------------------------
+source pynq_wrapper.tcl -notrace

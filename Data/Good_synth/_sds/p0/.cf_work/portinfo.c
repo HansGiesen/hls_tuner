@@ -18,6 +18,13 @@ sysport_info_t _sds_sysport_p0_processing_system7_0_S_AXI_ACP = {
   .cmd_type = sysport_commands_type_no_action,
 };
 
+sysport_info_t _sds_sysport_p0_processing_system7_0_S_AXI_HP0 = {
+  .name = "processing_system7_0_S_AXI_HP0",
+  .id = 2,
+  .address_space = 0,
+  .cmd_type = sysport_commands_type_non_coherent,
+};
+
 accel_info_t _sds__p0_encrypt_1 = {
   .device_id = 1,
   .phys_base_addr = 0x43c00000,
@@ -52,19 +59,19 @@ axi_lite_info_t _p0_swinst_encrypt_1_cmd_encrypt_info = {
   .acc_info = &_sds__p0_encrypt_1,
 };
 
-zero_copy_info_t _p0_swinst_encrypt_1_ctx_offset_info = {
+zero_copy_info_t _p0_swinst_encrypt_1_ctx_key_offset_info = {
   .phys_base_addr = 0x43c00000,
   .data_reg_offset = 0xc,
   .status_reg_offset = 0x40c,
   .config = XLNK_ZERO_COPY_KEYHOLE |
     XLNK_ZERO_COPY_STAT_REG_WRITE(XLNK_ZERO_COPY_STAT_REG_QUEUING),
-  .data_sysport = &_sds_sysport_p0_processing_system7_0_S_AXI_ACP,
+  .data_sysport = &_sds_sysport_p0_processing_system7_0_S_AXI_HP0,
   .dir = XLNK_BI_DIRECTIONAL,
   .cache = 0,
   .acc_info = &_sds__p0_encrypt_1,
 };
 
-zero_copy_info_t _p0_swinst_encrypt_1_buf_offset_info = {
+zero_copy_info_t _p0_swinst_encrypt_1_ctx_enckey_offset_info = {
   .phys_base_addr = 0x43c00000,
   .data_reg_offset = 0x10,
   .status_reg_offset = 0x410,
@@ -76,10 +83,38 @@ zero_copy_info_t _p0_swinst_encrypt_1_buf_offset_info = {
   .acc_info = &_sds__p0_encrypt_1,
 };
 
+zero_copy_info_t _p0_swinst_encrypt_1_ctx_deckey_offset_info = {
+  .phys_base_addr = 0x43c00000,
+  .data_reg_offset = 0x14,
+  .status_reg_offset = 0x414,
+  .config = XLNK_ZERO_COPY_KEYHOLE |
+    XLNK_ZERO_COPY_STAT_REG_WRITE(XLNK_ZERO_COPY_STAT_REG_QUEUING),
+  .data_sysport = &_sds_sysport_p0_processing_system7_0_S_AXI_ACP,
+  .dir = XLNK_BI_DIRECTIONAL,
+  .cache = 0,
+  .acc_info = &_sds__p0_encrypt_1,
+};
+
+zero_copy_info_t _p0_swinst_encrypt_1_buf_offset_info = {
+  .phys_base_addr = 0x43c00000,
+  .data_reg_offset = 0x18,
+  .status_reg_offset = 0x418,
+  .config = XLNK_ZERO_COPY_KEYHOLE |
+    XLNK_ZERO_COPY_STAT_REG_WRITE(XLNK_ZERO_COPY_STAT_REG_QUEUING),
+  .data_sysport = &_sds_sysport_p0_processing_system7_0_S_AXI_ACP,
+  .dir = XLNK_BI_DIRECTIONAL,
+  .cache = 0,
+  .acc_info = &_sds__p0_encrypt_1,
+};
+
 struct _p0_swblk_encrypt _p0_swinst_encrypt_1 = {
   .cmd_encrypt = { .base = { .channel_info = &_p0_swinst_encrypt_1_cmd_encrypt_info}, 
     .send_i = &axi_lite_send },
-  .ctx_offset = { .base = { .channel_info = &_p0_swinst_encrypt_1_ctx_offset_info}, 
+  .ctx_key_offset = { .base = { .channel_info = &_p0_swinst_encrypt_1_ctx_key_offset_info}, 
+    .send_ref_i = &zero_copy_send_ref_i },
+  .ctx_enckey_offset = { .base = { .channel_info = &_p0_swinst_encrypt_1_ctx_enckey_offset_info}, 
+    .send_ref_i = &zero_copy_send_ref_i },
+  .ctx_deckey_offset = { .base = { .channel_info = &_p0_swinst_encrypt_1_ctx_deckey_offset_info}, 
     .send_ref_i = &zero_copy_send_ref_i },
   .k_PORTA = { .base = { .channel_info = &_p0_dm_0},
     .send_i = &axi_dma_simple_send_i },
@@ -104,15 +139,20 @@ void _p0_cf_framework_open(int first)
   }
   cf_get_current_context();
   sysport_open(&_sds_sysport_p0_processing_system7_0_S_AXI_ACP);
+  sysport_open(&_sds_sysport_p0_processing_system7_0_S_AXI_HP0);
   axi_dma_simple_open(&_p0_dm_0);
   axi_lite_open(&_p0_swinst_encrypt_1_cmd_encrypt_info);
-  zero_copy_open(&_p0_swinst_encrypt_1_ctx_offset_info);
+  zero_copy_open(&_p0_swinst_encrypt_1_ctx_key_offset_info);
+  zero_copy_open(&_p0_swinst_encrypt_1_ctx_enckey_offset_info);
+  zero_copy_open(&_p0_swinst_encrypt_1_ctx_deckey_offset_info);
   zero_copy_open(&_p0_swinst_encrypt_1_buf_offset_info);
   _sds__p0_encrypt_1.arg_dm_id[0] = _p0_swinst_encrypt_1_cmd_encrypt_info.dm_id;
-  _sds__p0_encrypt_1.arg_dm_id[1] = _p0_swinst_encrypt_1_ctx_offset_info.dm_id;
-  _sds__p0_encrypt_1.arg_dm_id[2] = _p0_dm_0.dm_id;
-  _sds__p0_encrypt_1.arg_dm_id[3] = _p0_swinst_encrypt_1_buf_offset_info.dm_id;
-  _sds__p0_encrypt_1.arg_dm_id_count = 4;
+  _sds__p0_encrypt_1.arg_dm_id[1] = _p0_swinst_encrypt_1_ctx_key_offset_info.dm_id;
+  _sds__p0_encrypt_1.arg_dm_id[2] = _p0_swinst_encrypt_1_ctx_enckey_offset_info.dm_id;
+  _sds__p0_encrypt_1.arg_dm_id[3] = _p0_swinst_encrypt_1_ctx_deckey_offset_info.dm_id;
+  _sds__p0_encrypt_1.arg_dm_id[4] = _p0_dm_0.dm_id;
+  _sds__p0_encrypt_1.arg_dm_id[5] = _p0_swinst_encrypt_1_buf_offset_info.dm_id;
+  _sds__p0_encrypt_1.arg_dm_id_count = 6;
   accel_open(&_sds__p0_encrypt_1);
 }
 
@@ -121,9 +161,12 @@ void _p0_cf_framework_close(int last)
   accel_close(&_sds__p0_encrypt_1);
   axi_dma_simple_close(&_p0_dm_0);
   axi_lite_close(&_p0_swinst_encrypt_1_cmd_encrypt_info);
-  zero_copy_close(&_p0_swinst_encrypt_1_ctx_offset_info);
+  zero_copy_close(&_p0_swinst_encrypt_1_ctx_key_offset_info);
+  zero_copy_close(&_p0_swinst_encrypt_1_ctx_enckey_offset_info);
+  zero_copy_close(&_p0_swinst_encrypt_1_ctx_deckey_offset_info);
   zero_copy_close(&_p0_swinst_encrypt_1_buf_offset_info);
   sysport_close(&_sds_sysport_p0_processing_system7_0_S_AXI_ACP);
+  sysport_close(&_sds_sysport_p0_processing_system7_0_S_AXI_HP0);
   pfm_hook_shutdown();
   xlnkClose(last, NULL);
 }

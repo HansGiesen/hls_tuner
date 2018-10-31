@@ -1,6 +1,7 @@
 lappend pragmaStatus0 {pragma "INTERFACE" source "/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c" location "encrypt" found 1 funcFound 1 applied 1 ambiguous 0 reason "null"}
-lappend pragmaStatus1 {pragma "RESOURCE" source "/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c" location "encrypt" found 1 funcFound 1 applied 1 ambiguous 0 reason "null" variable "k"}
+lappend pragmaStatus1 {pragma "INTERFACE" source "/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c" location "encrypt" found 1 funcFound 1 applied 1 ambiguous 0 reason "null"}
 lappend pragmaStatus2 {pragma "INTERFACE" source "/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c" location "encrypt" found 1 funcFound 1 applied 1 ambiguous 0 reason "null"}
-lappend pragmaStatus3 {pragma "DATA_PACK" source "/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c" location "encrypt" found 1 funcFound 1 applied 1 ambiguous 0 reason "null" variable "ctx"}
+lappend pragmaStatus3 {pragma "INTERFACE" source "/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c" location "encrypt" found 1 funcFound 1 applied 1 ambiguous 0 reason "null"}
 lappend pragmaStatus4 {pragma "INTERFACE" source "/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c" location "encrypt" found 1 funcFound 1 applied 1 ambiguous 0 reason "null"}
-lappend pragmaStatus5 {pragma "LATENCY" source "/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c" location "encrypt" found 1 funcFound 1 applied 1 ambiguous 0 reason "null"}
+lappend pragmaStatus5 {pragma "RESOURCE" source "/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c" location "encrypt" found 1 funcFound 1 applied 1 ambiguous 0 reason "null" variable "k"}
+lappend pragmaStatus6 {pragma "LATENCY" source "/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c" location "encrypt" found 1 funcFound 1 applied 1 ambiguous 0 reason "null"}

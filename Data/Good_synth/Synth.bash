@@ -20,14 +20,14 @@ fi
 
 # Store the hostname and directory in a text file such that we can find the temporary directory back should we want to
 # do that.
-echo $(hostname) ${DIR} > Synth_host.txt
+echo $(hostname) ${DIR} > Host.txt
 
 # Go to the temporary directory.
 cd ${DIR}
 
 # Copy the Vivado project to the temporary directory, making sure hidden files are copied as well.
 shopt -s dotglob
-cp -r /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Output/0003/Presynth/* .
+cp -r /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Output/0001/Presynth/* .
 
 # Remove files from presynthesis that are not relevant.
 rm *.log Presynth.bash
@@ -40,7 +40,7 @@ source ${SDSOC_ROOT}/settings64.sh
 # The /usr/bin/timeout tool changes its process group, which means that the children do not receive TERM signals, so we
 # use a custom timeout script.
 ${HLS_TUNER_ROOT}/Scripts/Timeout.sh -t 1800 \
-  vivado -nolog -nojournal -mode batch -source /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Output/0003/Synth/Synth.tcl && EXIT_CODE=0 || EXIT_CODE=$?
+  vivado -nolog -nojournal -mode batch -source /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Output/0001/Synth/Synth.tcl && EXIT_CODE=0 || EXIT_CODE=$?
 
 # Move everything from the temporary directory to the output directory.  We make sure that hidden files are moved as
 # well.

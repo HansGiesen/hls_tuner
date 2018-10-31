@@ -387,7 +387,7 @@ architecture behav of a0_aes_shiftRows is
     signal buf_addr_3_read_reg_517 : STD_LOGIC_VECTOR (7 downto 0);
     signal buf_addr_4_reg_522 : STD_LOGIC_VECTOR (31 downto 0);
     signal buf_addr_5_reg_529 : STD_LOGIC_VECTOR (31 downto 0);
-    signal i_2_reg_536 : STD_LOGIC_VECTOR (7 downto 0);
+    signal i_6_reg_536 : STD_LOGIC_VECTOR (7 downto 0);
     signal buf_addr_5_read_reg_541 : STD_LOGIC_VECTOR (7 downto 0);
     signal buf_addr_6_reg_546 : STD_LOGIC_VECTOR (31 downto 0);
     signal buf_addr_7_reg_553 : STD_LOGIC_VECTOR (31 downto 0);
@@ -627,7 +627,7 @@ begin
     begin
         if (ap_clk'event and ap_clk = '1') then
             if (((ap_const_logic_1 = ap_CS_fsm_state54) and (m_axi_buf_r_RVALID = ap_const_logic_1))) then
-                i_2_reg_536 <= m_axi_buf_r_RDATA;
+                i_6_reg_536 <= m_axi_buf_r_RDATA;
             end if;
         end if;
     end process;
@@ -1421,7 +1421,7 @@ begin
     end process;
 
 
-    m_axi_buf_r_WDATA_assign_proc : process(ap_CS_fsm_state11, ap_CS_fsm_state25, ap_CS_fsm_state39, ap_CS_fsm_state41, ap_CS_fsm_state56, ap_CS_fsm_state58, ap_CS_fsm_state73, ap_CS_fsm_state87, ap_CS_fsm_state101, ap_CS_fsm_state103, ap_CS_fsm_state118, ap_CS_fsm_state120, i_reg_488, buf_addr_1_read_reg_493, buf_addr_2_read_reg_505, buf_addr_3_read_reg_517, i_2_reg_536, buf_addr_5_read_reg_541, j_reg_560, buf_addr_7_read_reg_565, buf_addr_8_read_reg_598, buf_addr_9_read_reg_603, j_1_reg_608, buf_addr_11_read_reg_613, ap_reg_ioackin_m_axi_buf_r_WREADY)
+    m_axi_buf_r_WDATA_assign_proc : process(ap_CS_fsm_state11, ap_CS_fsm_state25, ap_CS_fsm_state39, ap_CS_fsm_state41, ap_CS_fsm_state56, ap_CS_fsm_state58, ap_CS_fsm_state73, ap_CS_fsm_state87, ap_CS_fsm_state101, ap_CS_fsm_state103, ap_CS_fsm_state118, ap_CS_fsm_state120, i_reg_488, buf_addr_1_read_reg_493, buf_addr_2_read_reg_505, buf_addr_3_read_reg_517, i_6_reg_536, buf_addr_5_read_reg_541, j_reg_560, buf_addr_7_read_reg_565, buf_addr_8_read_reg_598, buf_addr_9_read_reg_603, j_1_reg_608, buf_addr_11_read_reg_613, ap_reg_ioackin_m_axi_buf_r_WREADY)
     begin
         if ((ap_const_logic_0 = ap_reg_ioackin_m_axi_buf_r_WREADY)) then
             if ((ap_const_logic_1 = ap_CS_fsm_state120)) then 
@@ -1437,7 +1437,7 @@ begin
             elsif ((ap_const_logic_1 = ap_CS_fsm_state73)) then 
                 m_axi_buf_r_WDATA <= buf_addr_7_read_reg_565;
             elsif ((ap_const_logic_1 = ap_CS_fsm_state58)) then 
-                m_axi_buf_r_WDATA <= i_2_reg_536;
+                m_axi_buf_r_WDATA <= i_6_reg_536;
             elsif ((ap_const_logic_1 = ap_CS_fsm_state56)) then 
                 m_axi_buf_r_WDATA <= buf_addr_5_read_reg_541;
             elsif ((ap_const_logic_1 = ap_CS_fsm_state41)) then 

@@ -9,33 +9,30 @@
 <ProductFamily>zynq</ProductFamily>
 <Part>xc7z020clg400-1</Part>
 <TopModelName>aes_shiftRows</TopModelName>
-<TargetClockPeriod>6.00</TargetClockPeriod>
-<ClockUncertainty>1.62</ClockUncertainty>
-<TargetInitiationInterval>13</TargetInitiationInterval>
+<TargetClockPeriod>7.00</TargetClockPeriod>
+<ClockUncertainty>1.89</ClockUncertainty>
 </UserAssignments>
 
 <PerformanceEstimates>
-<PipelineType>function</PipelineType>
+<PipelineType>none</PipelineType>
 <SummaryOfTimingAnalysis>
 <unit>ns</unit>
-<EstimatedClockPeriod>8.76</EstimatedClockPeriod>
+<EstimatedClockPeriod>5.11</EstimatedClockPeriod>
 </SummaryOfTimingAnalysis>
 <SummaryOfOverallLatency>
 <unit>clock cycles</unit>
-<Best-caseLatency>120</Best-caseLatency>
-<Average-caseLatency>120</Average-caseLatency>
-<Worst-caseLatency>120</Worst-caseLatency>
-<PipelineInitiationInterval>106</PipelineInitiationInterval>
-<PipelineDepth>121</PipelineDepth>
-<Interval-min>106</Interval-min>
-<Interval-max>106</Interval-max>
+<Best-caseLatency>124</Best-caseLatency>
+<Average-caseLatency>124</Average-caseLatency>
+<Worst-caseLatency>124</Worst-caseLatency>
+<Interval-min>124</Interval-min>
+<Interval-max>124</Interval-max>
 </SummaryOfOverallLatency>
 </PerformanceEstimates>
 
 <AreaEstimates>
 <Resources>
-<FF>591</FF>
-<LUT>1627</LUT>
+<FF>608</FF>
+<LUT>1247</LUT>
 <BRAM_18K>0</BRAM_18K>
 <DSP48E>0</DSP48E>
 </Resources>
@@ -113,72 +110,6 @@
 <Dir>out</Dir>
 <Bits>1</Bits>
 <Attribute>control</Attribute>
-</RtlPorts>
-<RtlPorts>
-<name>ap_ce</name>
-<Object>aes_shiftRows</Object>
-<Type>return value</Type>
-<Scope></Scope>
-<IOProtocol>ap_ctrl_hs</IOProtocol>
-<IOConfig></IOConfig>
-<Dir>in</Dir>
-<Bits>1</Bits>
-<Attribute>control</Attribute>
-</RtlPorts>
-<RtlPorts>
-<name>buf_r_blk_n_AR</name>
-<Object>aes_shiftRows</Object>
-<Type>return value</Type>
-<Scope></Scope>
-<IOProtocol>ap_ctrl_hs</IOProtocol>
-<IOConfig></IOConfig>
-<Dir>out</Dir>
-<Bits>1</Bits>
-<Attribute>data</Attribute>
-</RtlPorts>
-<RtlPorts>
-<name>buf_r_blk_n_R</name>
-<Object>aes_shiftRows</Object>
-<Type>return value</Type>
-<Scope></Scope>
-<IOProtocol>ap_ctrl_hs</IOProtocol>
-<IOConfig></IOConfig>
-<Dir>out</Dir>
-<Bits>1</Bits>
-<Attribute>data</Attribute>
-</RtlPorts>
-<RtlPorts>
-<name>buf_r_blk_n_AW</name>
-<Object>aes_shiftRows</Object>
-<Type>return value</Type>
-<Scope></Scope>
-<IOProtocol>ap_ctrl_hs</IOProtocol>
-<IOConfig></IOConfig>
-<Dir>out</Dir>
-<Bits>1</Bits>
-<Attribute>data</Attribute>
-</RtlPorts>
-<RtlPorts>
-<name>buf_r_blk_n_W</name>
-<Object>aes_shiftRows</Object>
-<Type>return value</Type>
-<Scope></Scope>
-<IOProtocol>ap_ctrl_hs</IOProtocol>
-<IOConfig></IOConfig>
-<Dir>out</Dir>
-<Bits>1</Bits>
-<Attribute>data</Attribute>
-</RtlPorts>
-<RtlPorts>
-<name>buf_r_blk_n_B</name>
-<Object>aes_shiftRows</Object>
-<Type>return value</Type>
-<Scope></Scope>
-<IOProtocol>ap_ctrl_hs</IOProtocol>
-<IOConfig></IOConfig>
-<Dir>out</Dir>
-<Bits>1</Bits>
-<Attribute>data</Attribute>
 </RtlPorts>
 <RtlPorts>
 <name>m_axi_buf_r_AWVALID</name>

@@ -21,6 +21,7 @@ set_property -dict [ list \
   CONFIG.PCW_USE_M_AXI_GP0 1 \
   CONFIG.PCW_USE_S_AXI_ACP 1 \
   CONFIG.PCW_USE_DEFAULT_ACP_USER_VAL 1 \
+  CONFIG.PCW_USE_S_AXI_HP0 1 \
   ] $processing_system7_0
 set xlconcat_0 [get_bd_cell /xlconcat_0]
     
@@ -60,14 +61,16 @@ set encrypt_1_if [create_bd_cell -type ip -vlnv xilinx.com:ip:adapter_v3_0:1.0 e
 set_property -dict [ list \
   CONFIG.M_AXIMM_ADDR_WIDTH {32} \
   CONFIG.C_INPUT_SCALAR_0_WIDTH {32} \
+  CONFIG.C_INPUT_SCALAR_1_WIDTH {32} \
+  CONFIG.C_INPUT_SCALAR_2_WIDTH {32} \
   CONFIG.S_AXIS_BRAM_0_WIDTH {8} \
   CONFIG.S_AXIS_BRAM_0_DMWIDTH {64} \
   CONFIG.S_AXIS_BRAM_0_DEPTH {32} \
   CONFIG.S_AXIS_BRAM_0_MB_DEPTH {1} \
-  CONFIG.C_INPUT_SCALAR_1_WIDTH {32} \
+  CONFIG.C_INPUT_SCALAR_3_WIDTH {32} \
   CONFIG.C_NUM_INPUT_BRAMs {1} \
-  CONFIG.C_N_INPUT_SCALARS {2} \
-  CONFIG.C_NUM_AXIMMs {2} \
+  CONFIG.C_N_INPUT_SCALARS {4} \
+  CONFIG.C_NUM_AXIMMs {4} \
   ] $encrypt_1_if
 
 #---------------------------
@@ -85,13 +88,28 @@ set_property -dict [ list \
   ] $axi_ic_processing_system7_0_M_AXI_GP0
 
 #---------------------------
+# Instantiating axi_ic_processing_system7_0_S_AXI_HP0
+#---------------------------
+set axi_ic_processing_system7_0_S_AXI_HP0 [create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 axi_ic_processing_system7_0_S_AXI_HP0]
+  
+set_property -dict [ list \
+  CONFIG.NUM_MI {1} \
+  CONFIG.NUM_SI {1} \
+  CONFIG.STRATEGY {2} \
+  CONFIG.M00_HAS_REGSLICE {1} \
+  CONFIG.M00_HAS_DATA_FIFO {2} \
+  CONFIG.S00_HAS_REGSLICE {1} \
+  CONFIG.S00_HAS_DATA_FIFO {2} \
+  ] $axi_ic_processing_system7_0_S_AXI_HP0
+
+#---------------------------
 # Instantiating axi_ic_processing_system7_0_S_AXI_ACP
 #---------------------------
 set axi_ic_processing_system7_0_S_AXI_ACP [create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 axi_ic_processing_system7_0_S_AXI_ACP]
   
 set_property -dict [ list \
   CONFIG.NUM_MI {1} \
-  CONFIG.NUM_SI {3} \
+  CONFIG.NUM_SI {4} \
   CONFIG.STRATEGY {2} \
   CONFIG.M00_HAS_REGSLICE {1} \
   CONFIG.M00_HAS_DATA_FIFO {2} \
@@ -101,6 +119,8 @@ set_property -dict [ list \
   CONFIG.S01_HAS_DATA_FIFO {2} \
   CONFIG.S02_HAS_REGSLICE {1} \
   CONFIG.S02_HAS_DATA_FIFO {2} \
+  CONFIG.S03_HAS_REGSLICE {1} \
+  CONFIG.S03_HAS_DATA_FIFO {2} \
   ] $axi_ic_processing_system7_0_S_AXI_ACP
 
 #---------------------------
@@ -136,59 +156,67 @@ connect_bd_net  \
 
 connect_bd_net  \
   [get_bd_pins /encrypt_1_if/ap_iscalar_0_dout] \
-  [get_bd_pins /encrypt_1/ctx_offset] \
+  [get_bd_pins /encrypt_1/ctx_key_offset] \
 
 connect_bd_net  \
   [get_bd_pins /encrypt_1_if/ap_iscalar_1_dout] \
+  [get_bd_pins /encrypt_1/ctx_enckey_offset] \
+
+connect_bd_net  \
+  [get_bd_pins /encrypt_1_if/ap_iscalar_2_dout] \
+  [get_bd_pins /encrypt_1/ctx_deckey_offset] \
+
+connect_bd_net  \
+  [get_bd_pins /encrypt_1_if/ap_iscalar_3_dout] \
   [get_bd_pins /encrypt_1/buf_offset] \
 
 connect_bd_net  \
-  [get_bd_pins /processing_system7_0/FCLK_CLK2] \
+  [get_bd_pins /processing_system7_0/FCLK_CLK1] \
   [get_bd_pins /dm_0/s_axi_lite_aclk] \
   [get_bd_pins /dm_0/m_axi_mm2s_aclk] \
   [get_bd_pins /processing_system7_0/M_AXI_GP0_ACLK] \
   [get_bd_pins /encrypt_1_if/s_axi_aclk] \
+  [get_bd_pins /encrypt_1_if/acc_aclk] \
   [get_bd_pins /encrypt_1_if/s_axis_bram_0_aclk] \
   [get_bd_pins /axi_ic_processing_system7_0_M_AXI_GP0/S00_ACLK] \
   [get_bd_pins /axi_ic_processing_system7_0_M_AXI_GP0/M00_ACLK] \
   [get_bd_pins /axi_ic_processing_system7_0_M_AXI_GP0/M01_ACLK] \
   [get_bd_pins /axi_ic_processing_system7_0_M_AXI_GP0/ACLK] \
-  [get_bd_pins /axi_ic_processing_system7_0_S_AXI_ACP/S02_ACLK] \
-
-connect_bd_net  \
-  [get_bd_pins /proc_sys_reset_2/interconnect_aresetn] \
-  [get_bd_pins /axi_ic_processing_system7_0_M_AXI_GP0/S00_ARESETN] \
-  [get_bd_pins /axi_ic_processing_system7_0_M_AXI_GP0/M00_ARESETN] \
-  [get_bd_pins /axi_ic_processing_system7_0_M_AXI_GP0/M01_ARESETN] \
-  [get_bd_pins /axi_ic_processing_system7_0_M_AXI_GP0/ARESETN] \
-  [get_bd_pins /axi_ic_processing_system7_0_S_AXI_ACP/S02_ARESETN] \
-
-connect_bd_net  \
-  [get_bd_pins /proc_sys_reset_2/peripheral_aresetn] \
-  [get_bd_pins /dm_0/axi_resetn] \
-  [get_bd_pins /dm_0/mm2s_prmry_resetn_out_n] \
-  [get_bd_pins /encrypt_1_if/s_axi_aresetn] \
-  [get_bd_pins /encrypt_1_if/s_axis_bram_0_aresetn] \
-
-connect_bd_net  \
-  [get_bd_pins /processing_system7_0/FCLK_CLK0] \
-  [get_bd_pins /encrypt_1_if/acc_aclk] \
+  [get_bd_pins /axi_ic_processing_system7_0_S_AXI_HP0/M00_ACLK] \
+  [get_bd_pins /axi_ic_processing_system7_0_S_AXI_HP0/S00_ACLK] \
   [get_bd_pins /axi_ic_processing_system7_0_S_AXI_ACP/M00_ACLK] \
   [get_bd_pins /axi_ic_processing_system7_0_S_AXI_ACP/S00_ACLK] \
   [get_bd_pins /axi_ic_processing_system7_0_S_AXI_ACP/S01_ACLK] \
+  [get_bd_pins /axi_ic_processing_system7_0_S_AXI_ACP/S02_ACLK] \
+  [get_bd_pins /axi_ic_processing_system7_0_S_AXI_ACP/S03_ACLK] \
+  [get_bd_pins /axi_ic_processing_system7_0_S_AXI_HP0/ACLK] \
+  [get_bd_pins /processing_system7_0/S_AXI_HP0_ACLK] \
   [get_bd_pins /axi_ic_processing_system7_0_S_AXI_ACP/ACLK] \
   [get_bd_pins /processing_system7_0/S_AXI_ACP_ACLK] \
 
 connect_bd_net  \
-  [get_bd_pins /proc_sys_reset_0/interconnect_aresetn] \
+  [get_bd_pins /proc_sys_reset_1/interconnect_aresetn] \
+  [get_bd_pins /axi_ic_processing_system7_0_M_AXI_GP0/S00_ARESETN] \
+  [get_bd_pins /axi_ic_processing_system7_0_M_AXI_GP0/M00_ARESETN] \
+  [get_bd_pins /axi_ic_processing_system7_0_M_AXI_GP0/M01_ARESETN] \
+  [get_bd_pins /axi_ic_processing_system7_0_M_AXI_GP0/ARESETN] \
+  [get_bd_pins /axi_ic_processing_system7_0_S_AXI_HP0/M00_ARESETN] \
+  [get_bd_pins /axi_ic_processing_system7_0_S_AXI_HP0/S00_ARESETN] \
   [get_bd_pins /axi_ic_processing_system7_0_S_AXI_ACP/M00_ARESETN] \
   [get_bd_pins /axi_ic_processing_system7_0_S_AXI_ACP/S00_ARESETN] \
   [get_bd_pins /axi_ic_processing_system7_0_S_AXI_ACP/S01_ARESETN] \
+  [get_bd_pins /axi_ic_processing_system7_0_S_AXI_ACP/S02_ARESETN] \
+  [get_bd_pins /axi_ic_processing_system7_0_S_AXI_ACP/S03_ARESETN] \
+  [get_bd_pins /axi_ic_processing_system7_0_S_AXI_HP0/ARESETN] \
   [get_bd_pins /axi_ic_processing_system7_0_S_AXI_ACP/ARESETN] \
 
 connect_bd_net  \
-  [get_bd_pins /proc_sys_reset_0/peripheral_aresetn] \
+  [get_bd_pins /proc_sys_reset_1/peripheral_aresetn] \
+  [get_bd_pins /dm_0/axi_resetn] \
+  [get_bd_pins /dm_0/mm2s_prmry_resetn_out_n] \
+  [get_bd_pins /encrypt_1_if/s_axi_aresetn] \
   [get_bd_pins /encrypt_1_if/acc_aresetn] \
+  [get_bd_pins /encrypt_1_if/s_axis_bram_0_aresetn] \
 
 connect_bd_net  \
   [get_bd_pins /sds_irq_const/dout] \
@@ -211,23 +239,33 @@ connect_bd_net  \
 
 connect_bd_net  \
   [get_bd_pins /axcache_0xE/dout] \
-  [get_bd_pins /axi_ic_processing_system7_0_S_AXI_ACP/S02_AXI_arcache] \
+  [get_bd_pins /axi_ic_processing_system7_0_S_AXI_ACP/S03_AXI_arcache] \
   [get_bd_pins /axi_ic_processing_system7_0_S_AXI_ACP/S00_AXI_arcache] \
   [get_bd_pins /axi_ic_processing_system7_0_S_AXI_ACP/S00_AXI_awcache] \
   [get_bd_pins /axi_ic_processing_system7_0_S_AXI_ACP/S01_AXI_arcache] \
   [get_bd_pins /axi_ic_processing_system7_0_S_AXI_ACP/S01_AXI_awcache] \
+  [get_bd_pins /axi_ic_processing_system7_0_S_AXI_ACP/S02_AXI_arcache] \
+  [get_bd_pins /axi_ic_processing_system7_0_S_AXI_ACP/S02_AXI_awcache] \
 
 connect_bd_intf_net \
   [get_bd_intf_pins /encrypt_1_if/ap_ctrl] \
   [get_bd_intf_pins /encrypt_1/ap_ctrl] \
 
 connect_bd_intf_net \
-  [get_bd_intf_pins /encrypt_1/m_axi_ctx] \
+  [get_bd_intf_pins /encrypt_1/m_axi_ctx_key] \
   [get_bd_intf_pins /encrypt_1_if/AP_AXIMM_0] \
 
 connect_bd_intf_net \
-  [get_bd_intf_pins /encrypt_1/m_axi_buf_r] \
+  [get_bd_intf_pins /encrypt_1/m_axi_ctx_enckey] \
   [get_bd_intf_pins /encrypt_1_if/AP_AXIMM_1] \
+
+connect_bd_intf_net \
+  [get_bd_intf_pins /encrypt_1/m_axi_ctx_deckey] \
+  [get_bd_intf_pins /encrypt_1_if/AP_AXIMM_2] \
+
+connect_bd_intf_net \
+  [get_bd_intf_pins /encrypt_1/m_axi_buf_r] \
+  [get_bd_intf_pins /encrypt_1_if/AP_AXIMM_3] \
 
 connect_bd_intf_net \
   [get_bd_intf_pins /encrypt_1/k_PORTA] \
@@ -238,16 +276,28 @@ connect_bd_intf_net \
   [get_bd_intf_pins /axi_ic_processing_system7_0_M_AXI_GP0/S00_AXI] \
 
 connect_bd_intf_net \
+  [get_bd_intf_pins /axi_ic_processing_system7_0_S_AXI_HP0/M00_AXI] \
+  [get_bd_intf_pins /processing_system7_0/S_AXI_HP0] \
+
+connect_bd_intf_net \
   [get_bd_intf_pins /axi_ic_processing_system7_0_S_AXI_ACP/M00_AXI] \
   [get_bd_intf_pins /processing_system7_0/S_AXI_ACP] \
 
 connect_bd_intf_net \
   [get_bd_intf_pins /encrypt_1_if/M_AXIMM_0] \
-  [get_bd_intf_pins /axi_ic_processing_system7_0_S_AXI_ACP/S00_AXI] \
+  [get_bd_intf_pins /axi_ic_processing_system7_0_S_AXI_HP0/S00_AXI] \
 
 connect_bd_intf_net \
   [get_bd_intf_pins /encrypt_1_if/M_AXIMM_1] \
+  [get_bd_intf_pins /axi_ic_processing_system7_0_S_AXI_ACP/S00_AXI] \
+
+connect_bd_intf_net \
+  [get_bd_intf_pins /encrypt_1_if/M_AXIMM_2] \
   [get_bd_intf_pins /axi_ic_processing_system7_0_S_AXI_ACP/S01_AXI] \
+
+connect_bd_intf_net \
+  [get_bd_intf_pins /encrypt_1_if/M_AXIMM_3] \
+  [get_bd_intf_pins /axi_ic_processing_system7_0_S_AXI_ACP/S02_AXI] \
 
 connect_bd_intf_net \
   [get_bd_intf_pins /axi_ic_processing_system7_0_M_AXI_GP0/M00_AXI] \
@@ -259,7 +309,7 @@ connect_bd_intf_net \
 
 connect_bd_intf_net \
   [get_bd_intf_pins /dm_0/M_AXI_MM2S] \
-  [get_bd_intf_pins /axi_ic_processing_system7_0_S_AXI_ACP/S02_AXI] \
+  [get_bd_intf_pins /axi_ic_processing_system7_0_S_AXI_ACP/S03_AXI] \
 
 connect_bd_intf_net \
   [get_bd_intf_pins /dm_0/M_AXIS_MM2S] \

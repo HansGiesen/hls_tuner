@@ -10,7 +10,7 @@ if {${::AESL::PGuard_autoexp_gen}} {
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 77 \
+    id 17 \
     name buf_r \
     type other \
     dir IO \
@@ -25,7 +25,7 @@ eval "cg_default_interface_gen_dc { \
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 78 \
+    id 18 \
     name buf_offset \
     type other \
     dir I \
@@ -40,7 +40,7 @@ eval "cg_default_interface_gen_dc { \
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 79 \
+    id 19 \
     name key \
     type other \
     dir I \
@@ -48,14 +48,14 @@ eval "cg_default_interface_gen_dc { \
     sync_rst true \
     corename dc_key \
     op interface \
-    ports { m_axi_key_AWVALID { O 1 bit } m_axi_key_AWREADY { I 1 bit } m_axi_key_AWADDR { O 32 vector } m_axi_key_AWID { O 1 vector } m_axi_key_AWLEN { O 32 vector } m_axi_key_AWSIZE { O 3 vector } m_axi_key_AWBURST { O 2 vector } m_axi_key_AWLOCK { O 2 vector } m_axi_key_AWCACHE { O 4 vector } m_axi_key_AWPROT { O 3 vector } m_axi_key_AWQOS { O 4 vector } m_axi_key_AWREGION { O 4 vector } m_axi_key_AWUSER { O 1 vector } m_axi_key_WVALID { O 1 bit } m_axi_key_WREADY { I 1 bit } m_axi_key_WDATA { O 1024 vector } m_axi_key_WSTRB { O 128 vector } m_axi_key_WLAST { O 1 bit } m_axi_key_WID { O 1 vector } m_axi_key_WUSER { O 1 vector } m_axi_key_ARVALID { O 1 bit } m_axi_key_ARREADY { I 1 bit } m_axi_key_ARADDR { O 32 vector } m_axi_key_ARID { O 1 vector } m_axi_key_ARLEN { O 32 vector } m_axi_key_ARSIZE { O 3 vector } m_axi_key_ARBURST { O 2 vector } m_axi_key_ARLOCK { O 2 vector } m_axi_key_ARCACHE { O 4 vector } m_axi_key_ARPROT { O 3 vector } m_axi_key_ARQOS { O 4 vector } m_axi_key_ARREGION { O 4 vector } m_axi_key_ARUSER { O 1 vector } m_axi_key_RVALID { I 1 bit } m_axi_key_RREADY { O 1 bit } m_axi_key_RDATA { I 1024 vector } m_axi_key_RLAST { I 1 bit } m_axi_key_RID { I 1 vector } m_axi_key_RUSER { I 1 vector } m_axi_key_RRESP { I 2 vector } m_axi_key_BVALID { I 1 bit } m_axi_key_BREADY { O 1 bit } m_axi_key_BRESP { I 2 vector } m_axi_key_BID { I 1 vector } m_axi_key_BUSER { I 1 vector } } \
+    ports { m_axi_key_AWVALID { O 1 bit } m_axi_key_AWREADY { I 1 bit } m_axi_key_AWADDR { O 32 vector } m_axi_key_AWID { O 1 vector } m_axi_key_AWLEN { O 32 vector } m_axi_key_AWSIZE { O 3 vector } m_axi_key_AWBURST { O 2 vector } m_axi_key_AWLOCK { O 2 vector } m_axi_key_AWCACHE { O 4 vector } m_axi_key_AWPROT { O 3 vector } m_axi_key_AWQOS { O 4 vector } m_axi_key_AWREGION { O 4 vector } m_axi_key_AWUSER { O 1 vector } m_axi_key_WVALID { O 1 bit } m_axi_key_WREADY { I 1 bit } m_axi_key_WDATA { O 8 vector } m_axi_key_WSTRB { O 1 vector } m_axi_key_WLAST { O 1 bit } m_axi_key_WID { O 1 vector } m_axi_key_WUSER { O 1 vector } m_axi_key_ARVALID { O 1 bit } m_axi_key_ARREADY { I 1 bit } m_axi_key_ARADDR { O 32 vector } m_axi_key_ARID { O 1 vector } m_axi_key_ARLEN { O 32 vector } m_axi_key_ARSIZE { O 3 vector } m_axi_key_ARBURST { O 2 vector } m_axi_key_ARLOCK { O 2 vector } m_axi_key_ARCACHE { O 4 vector } m_axi_key_ARPROT { O 3 vector } m_axi_key_ARQOS { O 4 vector } m_axi_key_ARREGION { O 4 vector } m_axi_key_ARUSER { O 1 vector } m_axi_key_RVALID { I 1 bit } m_axi_key_RREADY { O 1 bit } m_axi_key_RDATA { I 8 vector } m_axi_key_RLAST { I 1 bit } m_axi_key_RID { I 1 vector } m_axi_key_RUSER { I 1 vector } m_axi_key_RRESP { I 2 vector } m_axi_key_BVALID { I 1 bit } m_axi_key_BREADY { O 1 bit } m_axi_key_BRESP { I 2 vector } m_axi_key_BID { I 1 vector } m_axi_key_BUSER { I 1 vector } } \
 } "
 }
 
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 80 \
+    id 20 \
     name key_offset \
     type other \
     dir I \
@@ -63,14 +63,14 @@ eval "cg_default_interface_gen_dc { \
     sync_rst true \
     corename dc_key_offset \
     op interface \
-    ports { key_offset { I 25 vector } } \
+    ports { key_offset { I 32 vector } } \
 } "
 }
 
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 81 \
+    id 21 \
     name key_offset_offset \
     type other \
     dir I \
@@ -133,26 +133,6 @@ eval "cg_default_interface_gen_reset { \
 }"
 } else {
 puts "@W \[IMPL-114\] Cannot find bus interface model in the library. Ignored generation of bus interface for '${PortName}'"
-}
-}
-
-
-# Adapter definition:
-set PortName ap_ce
-set DataWd 1 
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc cg_default_interface_gen_ce] == "cg_default_interface_gen_ce"} {
-eval "cg_default_interface_gen_ce { \
-    id -4 \
-    name ${PortName} \
-    reset_level 1 \
-    sync_rst true \
-    corename apif_ap_ce \
-    data_wd ${DataWd} \
-    op interface \
-}"
-} else {
-puts "@W \[IMPL-113\] Cannot find bus interface model in the library. Ignored generation of bus interface for '${PortName}'"
 }
 }
 

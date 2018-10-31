@@ -1,8 +1,8 @@
 set moduleName aes_subBytes
 set isCombinational 0
 set isDatapathOnly 0
-set isPipelined 1
-set pipeline_type function
+set isPipelined 0
+set pipeline_type none
 set FunctionProtocol ap_ctrl_hs
 set isOneStateSeq 0
 set ProfileFlag 0
@@ -17,7 +17,7 @@ set C_modelArgMapList {[
 	{ "Name" : "buf_r", "interface" : "axi_master", "bitwidth" : 8, "direction" : "READWRITE"} , 
  	{ "Name" : "buf_offset", "interface" : "wire", "bitwidth" : 32, "direction" : "READONLY"} ]}
 # RTL Port declarations: 
-set portNum 58
+set portNum 52
 set portList { 
 	{ ap_clk sc_in sc_logic 1 clock -1 } 
 	{ ap_rst sc_in sc_logic 1 reset -1 active_high_sync } 
@@ -70,13 +70,7 @@ set portList {
 	{ m_axi_buf_r_BRESP sc_in sc_lv 2 signal 0 } 
 	{ m_axi_buf_r_BID sc_in sc_lv 1 signal 0 } 
 	{ m_axi_buf_r_BUSER sc_in sc_lv 1 signal 0 } 
-	{ ap_ce sc_in sc_logic 1 ce -1 } 
 	{ buf_offset sc_in sc_lv 32 signal 1 } 
-	{ buf_r_blk_n_AR sc_out sc_logic 1 signal -1 } 
-	{ buf_r_blk_n_R sc_out sc_logic 1 signal -1 } 
-	{ buf_r_blk_n_AW sc_out sc_logic 1 signal -1 } 
-	{ buf_r_blk_n_W sc_out sc_logic 1 signal -1 } 
-	{ buf_r_blk_n_B sc_out sc_logic 1 signal -1 } 
 }
 set NewPortList {[ 
 	{ "name": "ap_clk", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "clock", "bundle":{"name": "ap_clk", "role": "default" }} , 
@@ -130,31 +124,25 @@ set NewPortList {[
  	{ "name": "m_axi_buf_r_BRESP", "direction": "in", "datatype": "sc_lv", "bitwidth":2, "type": "signal", "bundle":{"name": "buf_r", "role": "BRESP" }} , 
  	{ "name": "m_axi_buf_r_BID", "direction": "in", "datatype": "sc_lv", "bitwidth":1, "type": "signal", "bundle":{"name": "buf_r", "role": "BID" }} , 
  	{ "name": "m_axi_buf_r_BUSER", "direction": "in", "datatype": "sc_lv", "bitwidth":1, "type": "signal", "bundle":{"name": "buf_r", "role": "BUSER" }} , 
- 	{ "name": "ap_ce", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "ce", "bundle":{"name": "ap_ce", "role": "default" }} , 
- 	{ "name": "buf_offset", "direction": "in", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "buf_offset", "role": "default" }} , 
- 	{ "name": "buf_r_blk_n_AR", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "buf_r_blk_n_AR", "role": "default" }} , 
- 	{ "name": "buf_r_blk_n_R", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "buf_r_blk_n_R", "role": "default" }} , 
- 	{ "name": "buf_r_blk_n_AW", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "buf_r_blk_n_AW", "role": "default" }} , 
- 	{ "name": "buf_r_blk_n_W", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "buf_r_blk_n_W", "role": "default" }} , 
- 	{ "name": "buf_r_blk_n_B", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "buf_r_blk_n_B", "role": "default" }}  ]}
+ 	{ "name": "buf_offset", "direction": "in", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "buf_offset", "role": "default" }}  ]}
 
 set RtlHierarchyInfo {[
 	{"ID" : "0", "Level" : "0", "Path" : "`AUTOTB_DUT_INST", "Parent" : "", "Child" : ["1"],
 		"CDFG" : "aes_subBytes",
 		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1",
-		"Pipeline" : "Aligned", "AlignedPipeline" : "1", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
+		"Pipeline" : "None", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
 		"Combinational" : "0",
 		"Datapath" : "0",
-		"ClockEnable" : "1",
-		"VariableLatency" : "0",
+		"ClockEnable" : "0",
+		"VariableLatency" : "1",
 		"Port" : [
 			{"Name" : "buf_r", "Type" : "MAXI", "Direction" : "IO",
 				"BlockSignal" : [
-					{"Name" : "buf_r_blk_n_AR", "Type" : "RtlPort"},
-					{"Name" : "buf_r_blk_n_R", "Type" : "RtlPort"},
-					{"Name" : "buf_r_blk_n_AW", "Type" : "RtlPort"},
-					{"Name" : "buf_r_blk_n_W", "Type" : "RtlPort"},
-					{"Name" : "buf_r_blk_n_B", "Type" : "RtlPort"}]},
+					{"Name" : "buf_r_blk_n_AR", "Type" : "RtlSignal"},
+					{"Name" : "buf_r_blk_n_R", "Type" : "RtlSignal"},
+					{"Name" : "buf_r_blk_n_AW", "Type" : "RtlSignal"},
+					{"Name" : "buf_r_blk_n_W", "Type" : "RtlSignal"},
+					{"Name" : "buf_r_blk_n_B", "Type" : "RtlSignal"}]},
 			{"Name" : "buf_offset", "Type" : "None", "Direction" : "I"},
 			{"Name" : "sbox", "Type" : "Memory", "Direction" : "I"}]},
 	{"ID" : "1", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.sbox_U", "Parent" : "0"}]}
@@ -162,19 +150,18 @@ set RtlHierarchyInfo {[
 
 set ArgLastReadFirstWriteLatency {
 	aes_subBytes {
-		buf_r {Type IO LastRead 236 FirstWrite 10}
+		buf_r {Type IO LastRead 13 FirstWrite 12}
 		buf_offset {Type I LastRead 0 FirstWrite -1}
 		sbox {Type I LastRead -1 FirstWrite -1}}}
 
 set hasDtUnsupportedChannel 0
 
 set PerformanceInfo {[
-	{"Name" : "Latency", "Min" : "240", "Max" : "240"}
-	, {"Name" : "Interval", "Min" : "226", "Max" : "226"}
+	{"Name" : "Latency", "Min" : "273", "Max" : "273"}
+	, {"Name" : "Interval", "Min" : "273", "Max" : "273"}
 ]}
 
 set PipelineEnableSignalInfo {[
-	{"Pipeline" : "0", "EnableSignal" : "ap_enable_pp0"}
 ]}
 
 set Spec2ImplPortList { 

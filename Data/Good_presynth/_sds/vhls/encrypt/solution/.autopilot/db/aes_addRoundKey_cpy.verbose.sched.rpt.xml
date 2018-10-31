@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vivado HLS Report for 'aes_addRoundKey_cpy'" level="0">
-<item name = "Date">Tue Oct 30 16:29:41 2018
+<item name = "Date">Wed Oct 31 14:44:15 2018
 </item>
 <item name = "Version">2017.1 (Build 1846317 on Thu Jun 22 18:17:09 MDT 2017)</item>
 <item name = "Project">encrypt</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">6.00, 17.52, 1.62</column>
+<column name="ap_clk">7.00, 5.11, 1.89</column>
 </table>
 </item>
 </section>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="6">, min, max, min, max, Type</keys>
-<column name="">291, 291, 291, 291, none</column>
+<column name="">289, 289, 289, 289, none</column>
 </table>
 </item>
 <item name = "Detail">
@@ -35,7 +35,7 @@
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- cpkey">289, 289, 20, 18, 2, 16, yes</column>
+<column name="- cpkey">288, 288, 18, -, -, 16, no</column>
 </table>
 </item>
 </section>

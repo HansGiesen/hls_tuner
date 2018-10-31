@@ -8,10 +8,10 @@ typedef struct {
   uint8_t key[32];
   uint8_t enckey[32];
   uint8_t deckey[32];
-  uint8_t dummy[32];
 } aes256_context;
 
-void encrypt(aes256_context *ctx, uint8_t k[32], uint8_t buf[16]);
+void encrypt(uint8_t ctx_key[32], uint8_t ctx_enckey[32],
+             uint8_t ctx_deckey[32], uint8_t k[32], uint8_t buf[16]);
 
 ////////////////////////////////////////////////////////////////////////////////
 // Test harness interface code.
