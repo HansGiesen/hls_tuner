@@ -2,6 +2,110 @@
 #
 # Tuner for the Matrix Multiplication example in SDSoC
 
+# Location of makefile
+MAKEFILE = "TestApps/MachSuite/aes/Sources/Makefile"
+
+# Output directory
+OUTPUT_ROOT = "TestApps/MachSuite/aes/Output"
+
+# Template directory
+TEMPLATE_DIR = "Templates"
+# Data directory
+PREBUILT_DIR = "Prebuilt"
+
+# Output directories for each build step
+PRESYNTH_OUTPUT_DIR = "Presynth"
+SYNTH_OUTPUT_DIR    = "Synth"
+IMPL_OUTPUT_DIR     = "Impl"
+
+# Directories in which results of failed build steps are stored.  These get extended with a number to distinguish
+# multiple retries.
+FAILED_PRESYNTH_DIR = "Presynth_failed"
+FAILED_SYNTH_DIR    = "Synth_failed"
+FAILED_IMPL_DIR     = "Impl_failed"
+
+# Directories with prebuilt hardware
+PREBUILT_PRESYNTH_DIR = PREBUILT_DIR + "/Presynth"
+PREBUILT_SYNTH_DIR    = PREBUILT_DIR + "/Synth"
+PREBUILT_IMPL_DIR     = PREBUILT_DIR + "/Impl"
+
+# Name of qsub output and error logs
+QSUB_OUTPUT_LOG = "QSub_output.log"
+QSUB_ERROR_LOG  = "QSub_error.log"
+
+# Templates for the script files performing build steps
+PRESYNTH_BASH_TEMPLATE = TEMPLATE_DIR + "/Presynth.bash"
+SYNTH_BASH_TEMPLATE    = TEMPLATE_DIR + "/Synth.bash"
+SYNTH_TCL_TEMPLATE     = TEMPLATE_DIR + "/Synth.tcl"
+IMPL_BASH_TEMPLATE     = TEMPLATE_DIR + "/Impl.bash"
+IMPL_TCL_TEMPLATE      = TEMPLATE_DIR + "/Impl.tcl"
+RUN_BASH_TEMPLATE      = TEMPLATE_DIR + "/Run.bash"
+RUN_TCL_TEMPLATE       = TEMPLATE_DIR + "/Run.tcl"
+
+# Script files generated from templates for build steps
+PRESYNTH_BASH_SCRIPT = "Presynth.bash"
+SYNTH_BASH_SCRIPT    = "Synth.bash"
+IMPL_BASH_SCRIPT     = "Impl.bash"
+RUN_BASH_SCRIPT      = "Run.bash"
+SYNTH_TCL_SCRIPT     = "Synth.tcl"
+IMPL_TCL_SCRIPT      = "Impl.tcl"
+RUN_TCL_SCRIPT       = "Run.tcl"
+
+# Template for checking whether host with FPGA is setup correctly
+CHECK_FPGA_TEMPLATE    = TEMPLATE_DIR + "/Check_FPGA_host.bash"
+
+# Script generated from template for host check
+CHECK_FPGA_SCRIPT    = "Check_FPGA_host.bash"
+
+# Standard output and error logs for build steps
+PRESYNTH_OUTPUT_LOG = "Presynth_output.log"
+PRESYNTH_ERROR_LOG  = "Presynth_error.log"
+SYNTH_OUTPUT_LOG    = "Synth_output.log"
+SYNTH_ERROR_LOG     = "Synth_error.log"
+IMPL_OUTPUT_LOG     = "Impl_output.log"
+IMPL_ERROR_LOG      = "Impl_error.log"
+RUN_OUTPUT_LOG      = "Run_output.log"
+RUN_ERROR_LOG       = "Run_output.log"
+
+# File with output of serial line 
+SERIAL_LOG = "Serial_output.log"
+
+# Names of grid jobs for build steps.  A sequence number is appended as well.
+PRESYNTH_JOB = "AES_presynth"
+SYNTH_JOB    = "AES_synth"
+IMPL_JOB     = "AES_impl"
+
+# Enable these to use prebuilt results for various build steps
+USE_PREBUILT_PRESYNTH = False
+USE_PREBUILT_SYNTH    = False
+USE_PREBUILT_IMPL     = False
+
+# Timeout in seconds for each build step  
+PRESYNTH_TIMEOUT = 15 * 60
+SYNTH_TIMEOUT    = 30 * 60
+IMPL_TIMEOUT     = 30 * 60
+RUN_TIMEOUT      = 5 * 60
+
+# Number of retries for each build step.  Note that only builds with errors that may disappear are retried.
+PRESYNTH_RETRIES = 5
+SYNTH_RETRIES    = 5
+IMPL_RETRIES     = 5
+
+# Maximum number of modules that are synthesized concurrently
+MAX_JOBS      = 4
+# Maximum number of threads that Vivado can use
+MAX_THREADS   = 1
+# Expected memory usage of a job in GB
+MAX_MEM_USAGE = 16
+
+# Serial device used for communicating with FPGA
+SERIAL_DEVICE   = "/dev/ttyUSB2"
+# Baudrate for communicating with FPGA
+SERIAL_BAUDRATE = 115200
+# Host to which FPGA is attached
+FPGA_HOST = "hactar.seas.upenn.edu"
+
+# Import system modules.
 import argparse
 import glob
 import logging
@@ -15,22 +119,19 @@ import subprocess
 import sys
 import threading
 
-def find_tuner_root():
-  """
-  Returns the root directory of the HLS tuner repository in which the current working directory resides.
-  """
-  prefix = sys.path[0]
-  while True:
-    [prefix, last_dir] = os.path.split(prefix)
-    if os.path.isdir(prefix + "/.git"):
-      break
-    if prefix == "/":
-      raise RuntimeError("Cannot find root of HLS tuner workspace.")
-  return prefix
+# Locate the root directory of the HLS tuner repository.
+tuner_root = sys.path[0]
+while True:
+  [tuner_root, last_dir] = os.path.split(tuner_root)
+  if os.path.isdir(tuner_root + "/.git"):
+    break
+  if tuner_root == "/":
+    raise RuntimeError("Cannot find root of HLS tuner workspace.")
 
-tuner_root = find_tuner_root()
+# Add the OpenTuner repository to the search path for importing modules.
 sys.path.insert(0, tuner_root + '/OpenTuner')
 
+# Import OpenTuner classes that are used.
 import opentuner
 from opentuner import ConfigurationManipulator
 from opentuner import EnumParameter
@@ -40,11 +141,6 @@ from opentuner import LogIntegerParameter
 from opentuner import MeasurementInterface
 from opentuner import Result
 from opentuner.search.manipulator import BooleanParameter
-
-log = logging.getLogger('AESTuner')
-
-argparser = argparse.ArgumentParser(parents=opentuner.argparsers())
-argparser.add_argument('--append', action = 'store_true', help = 'append new tuning run to existing runs')
 
 class AESTuner(MeasurementInterface):
   """
@@ -56,51 +152,13 @@ class AESTuner(MeasurementInterface):
     Initializes a tuner object and performs a few sanity checks.
     """
 
+    # Call the parent constructor.
     super(AESTuner, self).__init__(*pargs, **kwargs)
 
-    self.sdsoc_root = os.environ["SDSOC_ROOT"]
-    if self.sdsoc_root == "":
-      raise RuntimeError("Environment variable SDSOC_ROOT was not set.")
-
-    self.make_file     = tuner_root + "/TestApps/MachSuite/aes/Sources/Makefile"
-    self.output_root   = tuner_root + "/TestApps/MachSuite/aes/Output"
-    self.template_path = tuner_root + "/Templates"
-
-    self.fake_presynth     = True
-    self.fake_synth        = True
-    self.fake_impl         = False
-    self.fake_build_source = tuner_root + '/Data'
-
-    self.presynth_timeout = 15 * 60
-    self.synth_timeout    = 30 * 60
-    self.impl_timeout     = 30 * 60
-    self.run_timeout      = 5 * 60
-
-    self.presynth_retries = 5
-    self.synth_retries    = 5
-    self.impl_retries     = 5
-
+    # Always perform multiple builds in parallel.
     self.parallel_compile = True
 
-    self.max_jobs = 4
-    self.max_threads = 1
-    self.max_mem_usage = 16
-
-    self.serial_device   = '/dev/ttyUSB13'
-    self.serial_baudrate = 115200
-
-    self.fpga_host = 'hactar.seas.upenn.edu'
-
-    old_data_found = False
-    for name in os.listdir(self.output_root):
-      path = self.output_root + '/' + name
-      if os.path.isdir(path) and re.match('[0-9]{4}$', os.path.basename(path)):
-        old_data_found = True
-
-    if old_data_found and not args.append:
-      raise RuntimeError("Old results were found.  Explicitly confirm appending the results using the --append" \
-                         " command line arguments.")
-
+    # Check whether the FPGA is setup.
     self.check_fpga_host()
 
   def manipulator(self):
@@ -145,57 +203,79 @@ class AESTuner(MeasurementInterface):
     Builds hardware and software for one configuration.
     """
 
-    output_path = self.output_root + "/{0:04d}".format(result_id)
-    os.mkdir(output_path)
-    presynth_output_path = output_path + '/Presynth'
-    synth_output_path = output_path + '/Synth'
+    # Create a new output directory for the build.
+    output_dir = output_root + "/{0:04d}".format(result_id)
+    os.mkdir(output_dir)
 
-    result = self.do_presynth(config_data, result_id, output_path, presynth_output_path)
+    # Determine the names of several subdirectories in the output directory.
+    presynth_output_dir = output_dir + '/' + PRESYNTH_OUTPUT_DIR
+    synth_output_dir = output_dir + '/' + SYNTH_OUTPUT_DIR
+
+    # Perform the presynthesis step.
+    result = self.do_presynth(config_data, result_id, output_dir, presynth_output_dir)
+
+    # Perform the synthesis step if presynthesis was successful.
     if result.state == 'POK':
-      result = self.do_synth(result_id, output_path, presynth_output_path, synth_output_path)
-    if result.state == 'SOK':
-      result = self.do_impl(result_id, output_path, synth_output_path)
+      result = self.do_synth(result_id, output_dir, presynth_output_dir, synth_output_dir)
 
+    # Perform the implementation step if synthesis was successful.
+    if result.state == 'SOK':
+      result = self.do_impl(result_id, output_dir, synth_output_dir)
+
+    # Return the result.
     return result
 
-  def do_presynth(self, config_data, result_id, output_path, presynth_output_path):
+  def do_presynth(self, config_data, result_id, output_dir, presynth_output_dir):
     """
     Creates software and performs all hardware generation steps before RTL synthesis on one configuration, including
     HLS.
     """
 
+    # Report start of presynthesis.
     log.info("Presynthesize configuration %d...", result_id)
 
-    build_script_template = self.template_path + '/Presynth.bash'
-    build_script = presynth_output_path + '/Presynth.bash'
-    qsub_output_log = presynth_output_path + '/QSub_output.log'
-    qsub_error_log = presynth_output_path + '/QSub_error.log'
-    build_output_log = presynth_output_path + '/Presynth_output.log'
-    build_error_log = presynth_output_path + '/Presynth_error.log'
+    # Determine the locations of several files.
+    bash_template = tuner_root + '/' + PRESYNTH_BASH_TEMPLATE
+    bash_script = presynth_output_dir + '/' + PRESYNTH_BASH_SCRIPT
+    qsub_output_log = presynth_output_dir + '/' + QSUB_OUTPUT_LOG
+    qsub_error_log = presynth_output_dir + '/' + QSUB_ERROR_LOG
+    build_output_log = presynth_output_dir + '/' + PRESYNTH_OUTPUT_LOG
+    build_error_log = presynth_output_dir + '/' + PRESYNTH_ERROR_LOG
 
-    for retry in range(0, self.presynth_retries):
+    # Try to presynthesize the sources a number of times.
+    for retry in range(0, PRESYNTH_RETRIES):
 
+      # Backup the presynthesis results if the last build has failed.
       if retry > 0:
         log.info("Repeating presynthesis of configuration %d...", result_id)
-        os.rename(presynth_output_path, output_path + '/Presynth_failed_' + str(retry - 1))
+        os.rename(presynth_output_dir, output_dir + '/' + FAILED_PRESYNTH_DIR + '_' + str(retry - 1))
 
+      if not USE_PREBUILT_PRESYNTH:
+        # Create a directory for presynthesis results.
+        os.mkdir(presynth_output_dir)
 
-      if not self.fake_presynth:
-        os.mkdir(presynth_output_path)
-        self.create_presynth_scripts(config_data, build_script_template, build_script)
-        self.run_on_grid(result_id, presynth_output_path, build_script, qsub_output_log, qsub_error_log,
-                         build_output_log, build_error_log, "Presynth")
+        # Create the presynthesis scripts.
+        self.create_presynth_scripts(config_data, bash_template, bash_script)
+
+        # Run presynthesis on the IC grid.
+        self.run_on_grid(result_id, presynth_output_dir, bash_script, qsub_output_log, qsub_error_log,
+                         build_output_log, build_error_log, PRESYNTH_JOB, 1, MAX_MEM_USAGE)
       else:
-        shutil.copytree(self.fake_build_source + '/Good_presynth', presynth_output_path)
+        # Copy the prebuilt results instead of performing presynthesis.
+        shutil.copytree(tuner_root + '/' + PREBUILT_PRESYNTH_DIR, presynth_output_dir)
 
+      # Analyze the presynthesis output to determine whether it was successful.
       result = self.get_presynth_result(qsub_error_log, build_output_log)
 
+      # Log the result of this retry.
       log.info("Configuration %d, attempt %d: %s (%s)", result_id, retry,
                result.msg, result.state)
 
+      # Stop presynthesis if we do not expect better results when we try again.
       if not result.state in ['PE0', 'PE1', 'PE2', 'PE?']:
         break
 
+    # Log the result of presynthesis.
     if result.state == 'POK':
       log.info("Presynthesis of configuration %d was successful...", result_id)
     elif result.state == 'PTO':
@@ -203,13 +283,15 @@ class AESTuner(MeasurementInterface):
     else:
       log.error("Presynthesis error on configuration %d", result_id)
 
+    # Return the result.
     return result
 
-  def create_presynth_scripts(self, config_data, script_template, script):
+  def create_presynth_scripts(self, config_data, template_file, script_file):
     """
     Creates scripts for presynthesis build step.
     """
 
+    # Convert the tuner parameters to defines and makefile variables.
     defines = ''
     for param, value in config_data.items():
       if param == 'DATA_MOVER_CLOCK':
@@ -222,12 +304,13 @@ class AESTuner(MeasurementInterface):
       else:
         defines += ' -D{0}={1}'.format(param, value)
 
-    self.fill_in_template(script_template, script,
+    # Generate a bash file for the presynthesis.
+    self.fill_in_template(template_file, script_file,
                           tuner_root       = tuner_root,
-                          timeout          = self.presynth_timeout,
-                          make_file        = self.make_file,
-                          max_jobs         = self.max_jobs,
-                          max_threads      = self.max_threads,
+                          timeout          = PRESYNTH_TIMEOUT,
+                          make_file        = tuner_root + "/" + MAKEFILE,
+                          max_jobs         = MAX_JOBS,
+                          max_threads      = MAX_THREADS,
                           defines          = defines,
                           data_mover_clock = data_mover_clock,
                           kernel_clock     = kernel_clock)
@@ -237,77 +320,99 @@ class AESTuner(MeasurementInterface):
     Analyzes the presynthesis output to determine the build result.
     """
 
+    # Read the entire qsub standard error log.
     result = None
-
     try:
       with open(qsub_error_log, 'r') as log_file:
         lines = log_file.read()
     except:
       result = Result(state = 'PE0', msg = 'Cannot find presynthesis qsub error log.')
 
+    # Throw a keyboard exception if the job was terminated by a keyboard interrupt.
     if result == None and re.search(r'Interrupted!', lines) != None:
       raise KeyboardException
+    # Check if the temporary directory could be created.  The generated bash script can throw this error.
     elif re.search(r'Cannot create temporary directory.', lines) != None:
       result = Result(state = 'PE1', msg = 'Cannot create temporary directory for presynthesis.')
 
+    # Read the entire standard output log of the presynthesis.
     try:
       with open(build_output_log, 'r') as log_file:
         lines = log_file.read()
     except:
       result = Result(state = 'PE2', msg = 'Cannot find presynthesis output log.')
 
+    # Check if presynthesis timed out.  The generated bash script can throw this error.
     if result == None and re.search(r'Presynthesis timed out.', lines) != None:
       result = Result(state = 'PTO', msg = 'Presynthesis timed out.')
+    # Check for known Vivado HLS errors.
     elif re.search(r'\[XFORM 203-504\]', lines) != None:
       result = Result(state = 'PE3', msg = 'Too much unrolling')
     elif re.search(r'\[XFORM 203-1403\]', lines) != None:
       result = Result(state = 'PE4', msg = 'Too many load/store instructions')
+    # We haven't encountered a known error.  Check whether everything went well.
     elif re.search(r'Presynthesis has completed successfully.', lines) == None:
+      # We don't know this error.  It may be worth adding to this script.
       result = Result(state = 'PE?', msg = 'Unknown presynthesis error')
     else:
+      # Presynthesis was successful.
       result = Result(state = 'POK', msg = 'Presynthesis was successful.')
 
+    # Return the presynthesis result.
     return result
 
-  def do_synth(self, result_id, output_path, presynth_output_path, synth_output_path):
+  def do_synth(self, result_id, output_dir, presynth_output_dir, synth_output_dir):
     """
     Performs RTL synthesis of one configuration.
     """
 
+    # Report start of synthesis.
     log.info("Synthesizing configuration %d...", result_id)
 
-    shell_script_template = self.template_path + '/Synth.bash'
-    shell_script = synth_output_path + '/Synth.bash'
-    tcl_script_template = self.template_path + '/Synth.tcl'
-    tcl_script = synth_output_path + '/Synth.tcl'
-    qsub_output_log = synth_output_path + '/QSub_output.log'
-    qsub_error_log = synth_output_path + '/QSub_error.log'
-    build_output_log = synth_output_path + '/Synth_output.log'
-    build_error_log = synth_output_path + '/Synth_error.log'
+    # Determine the locations of several files.
+    bash_template = tuner_root + '/' + SYNTH_BASH_TEMPLATE
+    bash_script = synth_output_dir + '/' + SYNTH_BASH_SCRIPT
+    tcl_template = tuner_root + '/' + SYNTH_TCL_TEMPLATE
+    tcl_script = synth_output_dir + '/' + SYNTH_TCL_SCRIPT
+    qsub_output_log = synth_output_dir + '/' + QSUB_OUTPUT_LOG
+    qsub_error_log = synth_output_dir + '/' + QSUB_ERROR_LOG
+    build_output_log = synth_output_dir + '/' + SYNTH_OUTPUT_LOG
+    build_error_log = synth_output_dir + '/' + SYNTH_ERROR_LOG
 
-    for retry in range(0, self.synth_retries):
+    # Try to synthesize the sources a number of times.
+    for retry in range(0, SYNTH_RETRIES):
 
+      # Backup the synthesis results if the last build has failed.
       if retry > 0:
         log.info("Repeating synthesis of configuration %d...", result_id)
-        os.rename(synth_output_path, output_path + '/Synth_failed_' + str(retry - 1))
+        os.rename(synth_output_dir, output_dir + '/' + FAILED_SYNTH_DIR + '_' + str(retry - 1))
     
-      if not self.fake_synth:
-        os.mkdir(synth_output_path)
-        self.create_synth_scripts(presynth_output_path, shell_script_template, shell_script, tcl_script_template,
-                                  tcl_script)
-        self.run_on_grid(result_id, synth_output_path, shell_script, qsub_output_log, qsub_error_log, build_output_log,
-                         build_error_log, "Synth")
-      else:
-        shutil.copytree(self.fake_build_source + '/Good_synth', synth_output_path)
+      if not USE_PREBUILT_SYNTH:
+        # Create a directory for synthesis results.
+        os.mkdir(synth_output_dir)
 
+        # Create the synthesis scripts.
+        self.create_synth_scripts(presynth_output_dir, bash_template, bash_script, tcl_template, tcl_script)
+
+        # Run synthesis on the IC grid.
+        self.run_on_grid(result_id, synth_output_dir, bash_script, qsub_output_log, qsub_error_log, build_output_log,
+                         build_error_log, SYNTH_JOB, MAX_JOBS, MAX_MEM_USAGE)
+      else:
+        # Copy the prebuilt results instead of performing synthesis.
+        shutil.copytree(tuner_root + '/' + PREBUILT_SYNTH_DIR, synth_output_dir)
+
+      # Analyze the synthesis output to determine whether it was successful.
       result = self.get_synth_result(qsub_error_log, build_output_log)
 
+      # Log the result of this retry.
       log.info("Configuration %d, attempt %d: %s (%s)", result_id, retry,
                result.msg, result.state)
 
+      # Stop synthesis if we do not expect better results when we try again.
       if not result.state in ['SE0', 'SE1', 'SE2', 'SE?']:
         break
 
+    # Log the result of synthesis.
     if result.state == 'SOK':
       log.info("Synthesis of configuration %d was successful...", result_id)
     elif result.state == 'STO':
@@ -315,95 +420,120 @@ class AESTuner(MeasurementInterface):
     else:
       log.error("Synthesis error on configuration %d", result_id)
 
+    # Return the result.
     return result
 
-  def create_synth_scripts(self, presynth_output_path, shell_script_template, shell_script, tcl_script_template, tcl_script):
+  def create_synth_scripts(self, presynth_output_dir, bash_template, bash_script, tcl_template, tcl_script):
     """
     Creates scripts for RTL synthesis step.
     """
 
-    self.fill_in_template(shell_script_template, shell_script,
-                          tuner_root           = tuner_root,
-                          presynth_output_path = presynth_output_path,
-                          timeout              = self.synth_timeout,
-                          tcl_script           = tcl_script)
+    # Generate a bash file for the synthesis.
+    self.fill_in_template(bash_template, bash_script,
+                          tuner_root          = tuner_root,
+                          presynth_output_dir = presynth_output_dir,
+                          timeout             = SYNTH_TIMEOUT,
+                          tcl_script          = tcl_script)
 
-    self.fill_in_template(tcl_script_template, tcl_script,
-                          max_jobs    = self.max_jobs,
-                          max_threads = self.max_threads)
+    # Generate a TCL file for the synthesis.
+    self.fill_in_template(tcl_template, tcl_script,
+                          max_jobs    = MAX_JOBS,
+                          max_threads = MAX_THREADS)
 
   def get_synth_result(self, qsub_error_log, build_output_log):
     """
     Analyzes the synthesis output to determine the build result.
     """
 
+    # Read the entire qsub standard error log.
     result = None
-
     try:
       with open(qsub_error_log, 'r') as log_file:
         lines = log_file.read()
     except:
       result = Result(state = 'SE0', msg = 'Cannot find synthesis qsub error log.')
 
+    # Throw a keyboard exception if the job was terminated by a keyboard interrupt.
     if result == None and re.search(r'Interrupted!', lines) != None:
       raise KeyboardException
+    # Check if the temporary directory could be created.  The generated bash script can throw this error.
     elif re.search(r'Cannot create temporary directory.', lines) != None:
       result = Result(state = 'SE1', msg = 'Cannot create temporary directory for synthesis.')
 
+    # Read the entire standard output log of the synthesis.
     try:
       with open(build_output_log, 'r') as log_file:
         lines = log_file.read()
     except:
       result = Result(state = 'SE2', msg = 'Cannot find synthesis output log.')
 
+    # Check if synthesis timed out.  The generated bash script can throw this error.
     if result == None and re.search(r'Synthesis timed out.', lines) != None:
       result = Result(state = 'STO', msg = 'Synthesis timed out.')
+    # We haven't encountered a known error.  Check whether everything went well.
     elif re.search(r'Synthesis has completed successfully.', lines) == None:
+      # We don't know this error.  It may be worth adding to this script.
       result = Result(state = 'SE?', msg = 'Unknown synthesis error')
     else:
+      # Synthesis was successful.
       result = Result(state = 'SOK', msg = 'Synthesis was successful.')
 
+    # Return the synthesis result.
     return result
 
-  def do_impl(self, result_id, output_path, synth_output_path):
+  def do_impl(self, result_id, output_dir, synth_output_dir):
     """
     Performs implementation step on one configuration.
     """
 
+    # Report start of implementation.
     log.info("Implementing configuration %d...", result_id)
 
-    impl_output_path = output_path + '/Impl'
-    shell_script_template = self.template_path + '/Impl.bash'
-    shell_script = impl_output_path + '/Impl.bash'
-    tcl_script_template = self.template_path + '/Impl.tcl'
-    tcl_script = impl_output_path + '/Impl.tcl'
-    qsub_output_log = impl_output_path + '/QSub_output.log'
-    qsub_error_log = impl_output_path + '/QSub_error.log'
-    build_output_log = impl_output_path + '/Impl_output.log'
-    build_error_log = impl_output_path + '/Impl_error.log'
+    # Determine the locations of several files and directories.
+    impl_output_dir = output_dir + '/' + IMPL_OUTPUT_DIR
+    bash_template = tuner_root + '/' + IMPL_BASH_TEMPLATE
+    bash_script = impl_output_dir + '/' + IMPL_BASH_SCRIPT
+    tcl_template = tuner_root + '/' + IMPL_TCL_TEMPLATE
+    tcl_script = impl_output_dir + '/' + IMPL_TCL_SCRIPT
+    qsub_output_log = impl_output_dir + '/' + QSUB_OUTPUT_LOG
+    qsub_error_log = impl_output_dir + '/' + QSUB_ERROR_LOG
+    build_output_log = impl_output_dir + '/' + IMPL_OUTPUT_LOG
+    build_error_log = impl_output_dir + '/' + IMPL_ERROR_LOG
 
-    for retry in range(0, self.impl_retries):
+    # Try to implement the sources a number of times.
+    for retry in range(0, IMPL_RETRIES):
 
+      # Backup the implementation results if the last build has failed.
       if retry > 0:
         log.info("Repeating implementation of configuration %d...", result_id)
-        os.rename(impl_output_path, output_path + '/Impl_failed_' + str(retry - 1))
+        os.rename(impl_output_dir, output_dir + '/' + FAILED_IMPL_DIR + '_' + str(retry - 1))
     
-      if not self.fake_impl:
-        os.mkdir(impl_output_path)
-        self.create_impl_scripts(synth_output_path, shell_script_template, shell_script, tcl_script_template, tcl_script)
-        self.run_on_grid(result_id, impl_output_path, shell_script, qsub_output_log, qsub_error_log, build_output_log,
-                         build_error_log, "Impl")
-      else:
-        shutil.copytree(self.fake_build_source + '/Good_impl', impl_output_path)
+      if not USE_PREBUILT_IMPL:
+        # Create a directory for implementation results.
+        os.mkdir(impl_output_dir)
 
+        # Create the implementation scripts.
+        self.create_impl_scripts(synth_output_dir, bash_template, bash_script, tcl_template, tcl_script)
+
+        # Run implementation on the IC grid.
+        self.run_on_grid(result_id, impl_output_dir, bash_script, qsub_output_log, qsub_error_log, build_output_log,
+                         build_error_log, IMPL_JOB, MAX_THREADS, MAX_MEM_USAGE)
+      else:
+        # Copy the prebuilt results instead of performing implementation.
+        shutil.copytree(tuner_root + '/' + PREBUILT_IMPL_DIR, impl_output_dir)
+
+      # Analyze the implementation output to determine whether it was successful.
       result = self.get_impl_result(qsub_error_log, build_output_log)
 
+      # Log the result of this retry.
       log.info("Configuration %d, attempt %d: %s (%s)", result_id, retry,
                result.msg, result.state)
 
+      # Stop implementation if we do not expect better results when we try again.
       if not result.state in ['IE0', 'IE1', 'IE2', 'IE?']:
         break
 
+    # Log the result of implementation.
     if result.state == 'IOK':
       log.info("Implementation of configuration %d was successful...", result_id)
     elif result.state == 'ITO':
@@ -413,242 +543,294 @@ class AESTuner(MeasurementInterface):
     else:
       log.error("Implementation error on configuration %d", result_id)
 
+    # Return the result.
     return result
 
-  def create_impl_scripts(self, synth_output_path, shell_script_template, shell_script, tcl_script_template, tcl_script):
+  def create_impl_scripts(self, synth_output_dir, bash_template, bash_script, tcl_template, tcl_script):
     """
     Creates scripts for implementation step.
     """
 
-    self.fill_in_template(shell_script_template, shell_script,
-                          tuner_root        = tuner_root,
-                          synth_output_path = synth_output_path,
-                          timeout           = self.impl_timeout,
-                          tcl_script        = tcl_script)
+    # Generate a bash file for the implementation.
+    self.fill_in_template(bash_template, bash_script,
+                          tuner_root       = tuner_root,
+                          synth_output_dir = synth_output_dir,
+                          timeout          = IMPL_TIMEOUT,
+                          tcl_script       = tcl_script)
 
-    self.fill_in_template(tcl_script_template, tcl_script,
-                          max_jobs    = self.max_jobs,
-                          max_threads = self.max_threads)
+    # Generate a TCL file for the implementation.
+    self.fill_in_template(tcl_template, tcl_script,
+                          max_jobs    = MAX_JOBS,
+                          max_threads = MAX_THREADS)
 
   def get_impl_result(self, qsub_error_log, build_output_log):
     """
     Analyzes the implementation output to determine the build result.
     """
 
+    # Read the entire qsub standard error log.
     result = None
-
     try:
       with open(qsub_error_log, 'r') as log_file:
         lines = log_file.read()
     except:
       result = Result(state = 'IE0', msg = 'Cannot find implementation qsub error log.')
 
+    # Throw a keyboard exception if the job was terminated by a keyboard interrupt.
     if result == None and re.search(r'Interrupted!', lines) != None:
       raise KeyboardException
+    # Check if the temporary directory could be created.  The generated bash script can throw this error.
     elif re.search(r'Cannot create temporary directory.', lines) != None:
       result = Result(state = 'IE1', msg = 'Cannot create temporary directory for implementation.')
 
+    # Read the entire standard output log of the implementation.
     try:
       with open(build_output_log, 'r') as log_file:
         lines = log_file.read()
     except:
       result = Result(state = 'IE2', msg = 'Cannot find implementation output log.')
 
+    # Check if implementation timed out.  The generated bash script can throw this error.
     if result == None and re.search(r'Implementation timed out.', lines) != None:
       result = Result(state = 'ITO', msg = 'Implementation timed out.')
+    # Check for known placer errors.
     elif re.search(r'\[Place 30-640\]', lines) != None:
       result = Result(state = 'IE3', msg = 'Too many BRAMs')
+    # Check for known design rule checker errors.
     elif re.search(r'\[DRC PDCY-4\]', lines) != None:
       result = Result(state = 'IE4', msg = 'Unconnected carry input')
+    # Check if the timing was met.
     elif re.search(r'\[Timing 38-282\]', lines) != None:
       result = Result(state = 'TIMING', msg = 'Timing constraints not met')
+    # We haven't encountered a known error.  Check whether everything went well.
     elif re.search(r'Implementation has completed successfully.', lines) == None:
+      # We don't know this error.  It may be worth adding to this script.
       result = Result(state = 'IE?', msg = 'Unknown implementation error')
     else:
+      # Implementation was successful.
       result = Result(state = 'IOK', msg = 'Implementation was successful.')
 
+    # Return the implementation result.
     return result
 
+  def run_precompiled(self, desired_result, inp, limit, compile_result, result_id):
+    """
+    Tests one configuration on the FPGA.
+    """
+
+    # Make sure that the build was successful.
+    if compile_result.state != 'IOK':
+      return compile_result
+
+    # Log that we are goint to try the implementation on the FPGA.
+    log.info("Running configuration %d...", result_id)
+
+    # Determine the location of a number of paths and directories.
+    output_dir = output_root + "/{0:04d}".format(result_id)
+    impl_output_dir = output_dir + '/' + IMPL_OUTPUT_DIR
+    bash_template = tuner_root + '/' + RUN_BASH_TEMPLATE
+    bash_script = output_dir + '/' + RUN_BASH_SCRIPT
+    tcl_template = tuner_root + '/' + RUN_TCL_TEMPLATE
+    tcl_script = output_dir + '/' + RUN_TCL_SCRIPT
+    run_output_log = output_dir + '/' + RUN_OUTPUT_LOG
+    run_error_log = output_dir + '/' + RUN_ERROR_LOG
+    serial_log = output_dir + '/' + SERIAL_LOG
+
+    # Create the implementation scripts.
+    self.create_run_scripts(output_dir, impl_output_dir, tcl_template, tcl_script, bash_template, bash_script,
+                            serial_log)
+
+    # Run the scripts on the host with the FPGA.
+    result = self.run_on_fpga(bash_script, run_output_log, run_error_log)
+
+    # Analyze the run output to determine whether it was successful.
+    return self.get_run_result(result_id, result, serial_log)
+
+  def create_run_scripts(self, output_dir, impl_output_dir, tcl_template, tcl_script, bash_template, bash_script,
+                         serial_log):
+    """
+    Creates scripts for running implementation on FPGA.
+    """
+
+    # Generate a bash file to run the implementation on FPGA.
+    self.fill_in_template(bash_template, bash_script,
+                          sdsoc_root      = sdsoc_root,
+                          output_dir      = output_dir,
+                          serial_device   = SERIAL_DEVICE,
+                          serial_baudrate = SERIAL_BAUDRATE,
+                          tcl_script      = tcl_script,
+                          serial_log      = serial_log)
+
+    # Give execute permission to the bash script.
+    os.chmod(bash_script, os.stat(bash_script).st_mode | stat.S_IXUSR)
+
+    # Determine the name of the make target (ELF file).
+    target_file = self.get_make_target()
+
+    # Generate a TCL file to run the implementation on FPGA.
+    self.fill_in_template(tcl_template, tcl_script,
+                          impl_output_dir = impl_output_dir,
+                          target_file     = target_file)
+
+  def run_on_fpga(self, bash_script, run_output_log, run_error_log):
+    """
+    Run the provided shell script on the host attached to the FPGA.
+    """
+
+    # Run the bash script via SSH on the host.
+    try:
+      result = self.call_program('ssh ' + FPGA_HOST + ' ' + bash_script, limit = RUN_TIMEOUT)
+    except OSError:
+      return Result(state='RE?', msg = 'Unknown error while running.')
+
+    # Store the contents of standard output and error in log files.
+    with open(run_output_log, 'w') as log_file:
+      log_file.write(result['stdout'])
+    with open(run_error_log, 'w') as log_file:
+      log_file.write(result['stderr'])
+
+    # Return the result.
+    return result
+
+  def get_run_result(self, result_id, result, serial_log):
+    """
+    Analyzes the output of the FPGA to determine whether a run was successful.
+    """
+
+    # Check whether the run timed out.
+    if result['returncode'] != 0 and result['timeout']:
+      log.error('Run timeout on configuration %d', result_id)
+      return Result(state='RTO', msg = 'Timeout while running.')
+
+    # Read the entire contents of the serial port log.
+    with open(serial_log, 'r') as output_file:
+      lines = output_file.read()
+
+    # Check whether the application reported that it completed successfully.
+    if result['returncode'] != 0 or re.search(r'TEST PASSED', lines) == None:
+      log.error('Run error on configuration %d', result_id)
+      return Result(state = 'RE1')
+
+    # Retrieve the number of cycles that the run took.
+    match = re.search(r'The hardware test took (\S+) cycles.', lines)
+    if match != None:
+      cycles = match.group(1)
+    else:
+      log.error('Serial port produced invalid output for configuration %d.', result_id)
+      return Result(state = 'RE2')
+
+    # The application ran successfully on the FPGA.
+    log.info("Run of configuration %d was successful...", result_id)
+    return Result(state = 'OK', msg = 'Test successful.', time = cycles)
+    
   def fill_in_template(self, template_filename, output_filename, **replacements):
     """
     Copies a template file and fills in fields surrounded by curly braces.
     """
 
+    # Read the template from the file.
     with open(template_filename, "r") as template_file:
       template = template_file.read()
 
+    # Make the specified substitutions.
     template = template.format(**replacements)
 
+    # Output the filled-in template to a file.
     with open(output_filename, "w") as output_file:
       output_file.write(template)
 
-  def run_precompiled(self, desired_result, inp, limit, compile_result,
-                      result_id):
+  def get_make_target(self):
     """
-    Tests one configuration on the FPGA.
+    Obtain the name of the make target.
     """
 
-    if compile_result.state != 'IOK':
-      return compile_result
-
-    log.info("Running configuration %d...", result_id)
-
-    output_path = self.output_root + "/{0:04d}".format(result_id)
-
-    # SDSoC 2017.1 is not loading symbols from ELF file properly, so we have to
-    # obtain the address of the exit function ourselves.  Otherwise, we could
-    # just have used the command "bpadd -addr &exit" in TCL.
-    with open(self.make_file, 'r') as file_handle:
+    # Read the entire makefile.
+    with open(tuner_root + "/" + MAKEFILE, 'r') as file_handle:
       data = file_handle.read()
-    self.target_file = re.search(r'^EXE_FILE\s*:=\s*(\S+)', data, re.MULTILINE).group(1)
-    symbols = subprocess.check_output(['nm', output_path + '/' + self.target_file])
-    exit_address = re.search(r'^(\S+) T exit$', symbols, re.MULTILINE).group(1)
-    
-    TCL_script = output_path + '/Run.tcl'
-    with open(TCL_script, 'w') as script_file:
-      script_file.write('''\
-connect
-source {output_path}/_sds/p0/ipi/zed.sdk/ps7_init.tcl
-targets -set -nocase -filter {{name =~"APU*" && jtag_cable_name =~ "Digilent Zed*"}} -index 0
-rst -system
-after 3000
-targets -set -filter {{jtag_cable_name =~ "Digilent Zed*" && level==0}} -index 1
-fpga -file {target_file}.bit
-targets -set -nocase -filter {{name =~"APU*" && jtag_cable_name =~ "Digilent Zed*"}} -index 0
-loadhw {output_path}/_sds/p0/ipi/zed.sdk/zed.hdf
-ps7_init
-ps7_post_config
-targets -set -nocase -filter {{name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Zed*"}} -index 0
-dow {target_file}
-bpadd -addr 0x{exit_address}
-con -block
-'''.format(output_path = output_path, target_file = self.target_file,
-                     exit_address = exit_address))
 
-    run_script = output_path + '/Run.sh'
-    with open(run_script, 'w') as script_file:
-      script_file.write('''\
-#!/bin/bash -e
-source {sdsoc_root}/settings64.sh
-cd {output_path}
-stty -F {serial_device} {serial_baudrate} raw
-cat {serial_device} > Serial_output.log &
-sdx -batch -source {TCL_script}
-kill $!
-'''.format(sdsoc_root = self.sdsoc_root, output_path = output_path,
-           serial_device = self.serial_device, serial_baudrate =
-           self.serial_baudrate, TCL_script = TCL_script))
-    os.chmod(run_script, os.stat(run_script).st_mode | stat.S_IXUSR)
-
-    try:
-      run_result = self.call_program('ssh ' + self.fpga_host + ' ' + run_script,
-                                     limit = self.run_timeout)
-    except OSError:
-      return Result(state='RE?', msg = 'Unknown error while running.')
-
-    with open(output_path + '/Run_output.log', 'w') as log_file:
-      log_file.write(run_result['stdout'])
-    with open(output_path + '/Run_error.log', 'w') as log_file:
-      log_file.write(run_result['stderr'])
-
-    if run_result['returncode'] != 0 and run_result['timeout']:
-      log.error('Run timeout on configuration %d', result_id)
-      return Result(state='RTO', msg = 'Timeout while running.')
-
-    test_failed = True
-    cycles = float('inf')
-    with open(output_path + '/Serial_output.log', 'r') as output_file:
-      for line in output_file:
-        if line == "TEST PASSED\r\n":
-          test_failed = False
-        match = re.match(r'The hardware test took (\S+) cycles.\r\n', line)
-        if match != None:
-          cycles = match.group(1)
-        else:
-          log.error('Serial port produced invalid output.', result_id)
-          return Result(state = 'RE2')          
-
-    if run_result['returncode'] != 0 or test_failed:
-      log.error('Run error on configuration %d', result_id)
-      return Result(state = 'RE1')
-
-    log.info("Run of configuration %d was successful...", result_id)
-
-    return Result(state = 'OK', msg = 'Test successful.', time = cycles)
+    # Search for a line that assigns a value to EXE_FILE, which is the main target.
+    return re.search(r'^EXE_FILE\s*:=\s*(\S+)', data, re.MULTILINE).group(1)
 
   def check_fpga_host(self):
     """
     Check whether the FPGA is ready to be used.
     """
 
-    check_script = self.output_root + '/Check_FPGA_host.sh'
-    with open(check_script, 'w') as script_file:
-      script_file.write('''\
-#!/bin/bash -e
-[ ! -c '{serial_device}' ] && echo "Not found" && exit
-[ ! -r '{serial_device}' -o ! -w '{serial_device}' ] && echo 'Not accessible' && exit
-echo "Success"
-'''.format(serial_device = self.serial_device))
-    os.chmod(check_script, os.stat(check_script).st_mode | stat.S_IXUSR)
+    # Determine a couple of filenames that we will use.
+    template_file = tuner_root + '/' + CHECK_FPGA_TEMPLATE
+    script_file = output_root + '/' + CHECK_FPGA_SCRIPT
 
-    output = subprocess.check_output(['ssh', self.fpga_host, check_script])
+    # Generate a bash script for checking whether the host is set up correctly for using the FPGA.
+    self.fill_in_template(template_file, script_file,
+                          serial_device = SERIAL_DEVICE)
+
+    # Give the bash script execute permission.
+    os.chmod(script_file, os.stat(script_file).st_mode | stat.S_IXUSR)
+
+    # Log in on the FPGA host and run the script.
+    output = subprocess.check_output(['ssh', FPGA_HOST, script_file])
+
+    # Check the output of the script and throw the appropriate exception.
     if output == 'Not found\n':
-      raise RuntimeError("The serial device could not be found.  The FPGA may" \
-                         " not be powered on.")
+      raise RuntimeError("The serial device could not be found.  The FPGA may not be powered on.")
     elif output == 'Not accessible\n':
-      raise RuntimeError("The user has no permission to access the serial" \
-                         " device.  Perhaps the user must be added to the" \
-                         " 'dialout' group.")
+      raise RuntimeError("The user has no permission to access the serial device.  Perhaps the user must be added to" \
+                         " the 'dialout' group.")
     elif output != 'Success\n':
       raise RuntimeError("Check_FPGA_host.sh returned an unknown error.")
 
-  def run_on_grid(self, result_id, output_path, build_script, qsub_output_log, qsub_error_log, build_output_log,
-                  build_error_log, build_step):
+  def run_on_grid(self, result_id, output_dir, build_script, qsub_output_log, qsub_error_log, build_output_log,
+                  build_error_log, build_step, max_threads, max_mem):
     """
     Run a script on the IC grid.  Initially, jobs are only issued to the 70s because they have the highest
     performance.  If they cannot schedule the jobs immediately, we issue the scripts to icsafe machines too.  If
     they cannot schedule jobs immediately either, the jobs are issued to any available machine.
     """
 
-    build_result = self.run_on_grid_core(result_id, output_path, build_script, qsub_output_log, qsub_error_log,
-                                         build_output_log, build_error_log, build_step, '-q \'70s*\' -now y')
+    # Try to run the job immediately on the 70s.
+    build_result = self.run_on_grid_core(result_id, output_dir, build_script, qsub_output_log, qsub_error_log,
+                                         build_output_log, build_error_log, build_step, max_threads, max_mem,
+                                         '-q \'70s*\' -now y')
 
+    # Try to run the job immediately on the icsafe machines as well if we could not run it on the 70s.
     if self.grid_unavailable(build_result):
       log.info('No 70s are available.  Configuration %d will fall back to icsafe machines.', result_id)
-      build_result = self.run_on_grid_core(result_id, output_path, build_script, qsub_output_log, qsub_error_log,
-                                           build_output_log, build_error_log, build_step, '-q \'!60s*\' -now y')
+      build_result = self.run_on_grid_core(result_id, output_dir, build_script, qsub_output_log, qsub_error_log,
+                                           build_output_log, build_error_log, build_step, max_threads, max_mem,
+                                           '-q \'!60s*\' -now y')
 
+    # If we still cannot run the job, try to run it on any grid node and do not demand that it starts immediately
+    # anymore.
     if self.grid_unavailable(build_result):
       log.info('No icsafe machines are available.  Configuration %d will fall back to 60s.', result_id)
-      self.run_on_grid_core(result_id, output_path, build_script, qsub_output_log, qsub_error_log, build_output_log,
-                            build_error_log, build_step, '')
+      self.run_on_grid_core(result_id, output_dir, build_script, qsub_output_log, qsub_error_log, build_output_log,
+                            build_error_log, build_step, max_threads, max_mem, '')
       
-  def run_on_grid_core(self, result_id, output_path, build_script, qsub_output_log, qsub_error_log, build_output_log,
-                       build_error_log, build_step, qsub_params):
+  def run_on_grid_core(self, result_id, output_dir, build_script, qsub_output_log, qsub_error_log, build_output_log,
+                       build_error_log, build_step, max_threads, max_mem, qsub_params):
     """
     Run a script on the IC grid.  All output is stored in log files.
     """
 
-    max_mem_per_core = self.max_mem_usage / self.max_jobs
-    build_cmd_template = 'qsub -S /bin/bash' \
-                         ' -wd ' + output_path + \
-                         ' -o ' + build_output_log + \
-                         ' -e ' + build_error_log + \
-                         ' -N ' + build_step + '_' + str(result_id) + \
-                         ' {}' \
-                         ' -sync y' \
-                         ' -pe onenode ' + str(self.max_jobs) + \
-                         ' -l mem=' + str(max_mem_per_core) + 'g' \
-                         ' ' + build_script
+    # Submit the job to the IC grid.  This process will block until the job has completed.
+    build_result = self.call_program('qsub -S /bin/bash' \
+                                     ' -wd ' + output_dir + \
+                                     ' -o ' + build_output_log + \
+                                     ' -e ' + build_error_log + \
+                                     ' -N ' + build_step + '_' + str(result_id) + \
+                                     ' ' + qsub_params + \
+                                     ' -sync y' \
+                                     ' -pe onenode ' + str(max_threads) + \
+                                     ' -l mem=' + str(max_mem / max_threads) + 'g' \
+                                     ' ' + build_script)
 
-    build_cmd = build_cmd_template.format(qsub_params)
-    build_result = self.call_program(build_cmd)
-
+    # Store the output of standard output and standard error to log files.
     with open(qsub_output_log, 'w') as log_file:
       log_file.write(build_result['stdout'])
     with open(qsub_error_log, 'w') as log_file:
       log_file.write(build_result['stderr'])
 
+    # Return the result of the build.
     return build_result
 
   def grid_unavailable(self, build_result):
@@ -669,15 +851,15 @@ echo "Success"
     Remove any files that were left behind on /scratch/local.
     """
 
-    output_path = self.output_root + "/Build_{0:04d}".format(result_id)
-    host_file = output_path + '/Host.txt'
+    output_dir = output_root + "/Build_{0:04d}".format(result_id)
+    host_file = output_dir + '/Host.txt'
 
     if os.path.isfile(host_file):
       with open(host_file, 'r') as file_handle:
         info = file_handle.readline()
       host, temp_dir = re.search(r'(\S+)\s+(\S+)', info).groups()
 
-      cleanup_script = output_path + '/Cleanup.sh'
+      cleanup_script = output_dir + '/Cleanup.sh'
       with open(cleanup_script, 'w') as cleanup_file:
         cleanup_file.write('''\
 #!/bin/bash -e
@@ -690,18 +872,49 @@ rmdir {temp_dir}
 '''.format(temp_dir = temp_dir))
 
       subprocess.check_output(['qsub', '-S', '/bin/bash', \
-                              '-wd', output_path, \
-                              '-o', output_path + '/Cleanup_output.log', \
-                              '-e', output_path + '/Cleanup_error.log', \
+                              '-wd', output_dir, \
+                              '-o', output_dir + '/Cleanup_output.log', \
+                              '-e', output_dir + '/Cleanup_error.log', \
                               '-N', 'Cleanup_' + str(result_id), \
                               '-q', '*@' + host + '*', \
                               cleanup_script])
 
 if __name__ == '__main__':
+
+  # Start the logging.
+  log = logging.getLogger('AESTuner')
   opentuner.init_logging()
+
+  # Make sure that information messages are also logged.
   for handler in logging.getLogger().handlers:
     handler.setLevel(logging.INFO)
+
+  # Parse the command line arguments.
+  argparser = argparse.ArgumentParser(parents = opentuner.argparsers())
+  argparser.add_argument('--append', action = 'store_true', help = 'append new tuning run to existing runs')
   args = argparser.parse_args()
-  tuner = AESTuner
-  tuner.main(args)
+
+  # Check if the SDSOC_ROOT environment variable is set.  We need it because when we use SSH to log in to a host, the
+  # scripts that set up the environment are not run.
+  sdsoc_root = os.environ["SDSOC_ROOT"]
+  if sdsoc_root == "":
+    raise RuntimeError("Environment variable SDSOC_ROOT was not set.")
+
+  # Determine the absolute location of the output directory.
+  output_root = tuner_root + "/" + OUTPUT_ROOT
+
+  # Check if there is still old data in the output directory.
+  old_data_found = False
+  for name in os.listdir(output_root):
+    path = output_root + '/' + name
+    if os.path.isdir(path) and re.match('[0-9]{4}$', os.path.basename(path)):
+      old_data_found = True
+
+  # Throw an exception if there is still old data.
+  if old_data_found and not args.append:
+    raise RuntimeError("Old results were found.  Explicitly confirm appending the results using the --append" \
+                       " command line arguments.")
+
+  # Start the tuner.
+  AESTuner.main(args)
 

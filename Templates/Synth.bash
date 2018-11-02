@@ -27,7 +27,7 @@ cd ${{DIR}}
 
 # Copy the Vivado project to the temporary directory, making sure hidden files are copied as well.
 shopt -s dotglob
-cp -r {presynth_output_path}/* .
+cp -r {presynth_output_dir}/* .
 
 # Remove files from presynthesis that are not relevant.
 rm *.log Presynth.bash
