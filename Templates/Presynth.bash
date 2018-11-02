@@ -27,15 +27,13 @@ cd ${{DIR}}
 
 # Run presynthesis.  If there is an error, we do not exit this script because we still have to move (intermediate)
 # results back.
-# The /usr/bin/timeout tool changes its process group, which means that the children do not receive TERM signals, so we
-# use a custom timeout script.
-${{HLS_TUNER_ROOT}}/Scripts/Timeout.sh -t {timeout} \
+/usr/bin/time -f "Maximum residential set size: %M KB" \
   make -f {make_file} clean all \
-  JOBS={max_jobs} \
-  THREADS={max_threads} \
-  HLS_TUNER_DEFINES='{defines}' \
-  DATA_MOVER_CLOCK={data_mover_clock} \
-  KERNEL_CLOCK={kernel_clock} && EXIT_CODE=0 || EXIT_CODE=$?
+    JOBS={max_jobs} \
+    THREADS={max_threads} \
+    HLS_TUNER_DEFINES='{defines}' \
+    DATA_MOVER_CLOCK={data_mover_clock} \
+    KERNEL_CLOCK={kernel_clock} && EXIT_CODE=0 || EXIT_CODE=$?
 
 # Make sure that there is something in the temporary directory.
 if [ -d ${{DIR}} -a -z "$(find ${{DIR}} -prune -empty -type d 2> /dev/null)" ]
@@ -49,7 +47,6 @@ then
 fi
 
 # Output messages about the build result.  The tuner script relies on these messages.
-[ "${{EXIT_CODE}}" == 143 ] && echo "Presynthesis timed out."
 [ "${{EXIT_CODE}}" == 0 ] && echo "Presynthesis has completed successfully."
 
 # Output the exit code.

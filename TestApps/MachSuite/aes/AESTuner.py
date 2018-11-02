@@ -94,7 +94,7 @@ IMPL_RETRIES     = 5
 # Maximum number of modules that are synthesized concurrently
 MAX_JOBS      = 4
 # Maximum number of threads that Vivado can use
-MAX_THREADS   = 1
+MAX_THREADS   = 4
 # Expected memory usage of a job in GB
 MAX_MEM_USAGE = 16
 
@@ -258,14 +258,17 @@ class AESTuner(MeasurementInterface):
         self.create_presynth_scripts(config_data, bash_template, bash_script)
 
         # Run presynthesis on the IC grid.
-        self.run_on_grid(result_id, presynth_output_dir, bash_script, qsub_output_log, qsub_error_log,
-                         build_output_log, build_error_log, PRESYNTH_JOB, 1, MAX_MEM_USAGE)
+        result = self.run_on_grid(result_id, presynth_output_dir, bash_script, qsub_output_log, qsub_error_log,
+                                  build_output_log, build_error_log, PRESYNTH_JOB, 1, MAX_MEM_USAGE, PRESYNTH_TIMEOUT)
       else:
         # Copy the prebuilt results instead of performing presynthesis.
         shutil.copytree(tuner_root + '/' + PREBUILT_PRESYNTH_DIR, presynth_output_dir)
 
+        # Make sure that we do not time out.
+        result = {'timeout': False}
+
       # Analyze the presynthesis output to determine whether it was successful.
-      result = self.get_presynth_result(qsub_error_log, build_output_log)
+      result = self.get_presynth_result(result, qsub_error_log, build_output_log)
 
       # Log the result of this retry.
       log.info("Configuration %d, attempt %d: %s (%s)", result_id, retry,
@@ -307,7 +310,6 @@ class AESTuner(MeasurementInterface):
     # Generate a bash file for the presynthesis.
     self.fill_in_template(template_file, script_file,
                           tuner_root       = tuner_root,
-                          timeout          = PRESYNTH_TIMEOUT,
                           make_file        = tuner_root + "/" + MAKEFILE,
                           max_jobs         = MAX_JOBS,
                           max_threads      = MAX_THREADS,
@@ -315,51 +317,48 @@ class AESTuner(MeasurementInterface):
                           data_mover_clock = data_mover_clock,
                           kernel_clock     = kernel_clock)
 
-  def get_presynth_result(self, qsub_error_log, build_output_log):
+  def get_presynth_result(self, result, qsub_error_log, build_output_log):
     """
     Analyzes the presynthesis output to determine the build result.
     """
 
+    # Check if presynthesis timed out.
+    if result['timeout']:
+      return Result(state = 'PTO', msg = 'Presynthesis timed out.')
+
     # Read the entire qsub standard error log.
-    result = None
     try:
       with open(qsub_error_log, 'r') as log_file:
         lines = log_file.read()
     except:
-      result = Result(state = 'PE0', msg = 'Cannot find presynthesis qsub error log.')
+      return Result(state = 'PE0', msg = 'Cannot find presynthesis qsub error log.')
 
     # Throw a keyboard exception if the job was terminated by a keyboard interrupt.
-    if result == None and re.search(r'Interrupted!', lines) != None:
+    if re.search(r'Interrupted!', lines) != None:
       raise KeyboardException
     # Check if the temporary directory could be created.  The generated bash script can throw this error.
     elif re.search(r'Cannot create temporary directory.', lines) != None:
-      result = Result(state = 'PE1', msg = 'Cannot create temporary directory for presynthesis.')
+      return Result(state = 'PE1', msg = 'Cannot create temporary directory for presynthesis.')
 
     # Read the entire standard output log of the presynthesis.
     try:
       with open(build_output_log, 'r') as log_file:
         lines = log_file.read()
     except:
-      result = Result(state = 'PE2', msg = 'Cannot find presynthesis output log.')
+      return Result(state = 'PE2', msg = 'Cannot find presynthesis output log.')
 
-    # Check if presynthesis timed out.  The generated bash script can throw this error.
-    if result == None and re.search(r'Presynthesis timed out.', lines) != None:
-      result = Result(state = 'PTO', msg = 'Presynthesis timed out.')
     # Check for known Vivado HLS errors.
-    elif re.search(r'\[XFORM 203-504\]', lines) != None:
-      result = Result(state = 'PE3', msg = 'Too much unrolling')
+    if re.search(r'\[XFORM 203-504\]', lines) != None:
+      return Result(state = 'PE3', msg = 'Too much unrolling')
     elif re.search(r'\[XFORM 203-1403\]', lines) != None:
-      result = Result(state = 'PE4', msg = 'Too many load/store instructions')
+      return Result(state = 'PE4', msg = 'Too many load/store instructions')
     # We haven't encountered a known error.  Check whether everything went well.
     elif re.search(r'Presynthesis has completed successfully.', lines) == None:
       # We don't know this error.  It may be worth adding to this script.
-      result = Result(state = 'PE?', msg = 'Unknown presynthesis error')
+      return Result(state = 'PE?', msg = 'Unknown presynthesis error')
     else:
       # Presynthesis was successful.
-      result = Result(state = 'POK', msg = 'Presynthesis was successful.')
-
-    # Return the presynthesis result.
-    return result
+      return Result(state = 'POK', msg = 'Presynthesis was successful.')
 
   def do_synth(self, result_id, output_dir, presynth_output_dir, synth_output_dir):
     """
@@ -395,14 +394,17 @@ class AESTuner(MeasurementInterface):
         self.create_synth_scripts(presynth_output_dir, bash_template, bash_script, tcl_template, tcl_script)
 
         # Run synthesis on the IC grid.
-        self.run_on_grid(result_id, synth_output_dir, bash_script, qsub_output_log, qsub_error_log, build_output_log,
-                         build_error_log, SYNTH_JOB, MAX_JOBS, MAX_MEM_USAGE)
+        result = self.run_on_grid(result_id, synth_output_dir, bash_script, qsub_output_log, qsub_error_log,
+                                  build_output_log, build_error_log, SYNTH_JOB, MAX_JOBS, MAX_MEM_USAGE, SYNTH_TIMEOUT)
       else:
         # Copy the prebuilt results instead of performing synthesis.
         shutil.copytree(tuner_root + '/' + PREBUILT_SYNTH_DIR, synth_output_dir)
 
+        # Make sure that we do not time out.
+        result = {'timeout': False}
+
       # Analyze the synthesis output to determine whether it was successful.
-      result = self.get_synth_result(qsub_error_log, build_output_log)
+      result = self.get_synth_result(result, qsub_error_log, build_output_log)
 
       # Log the result of this retry.
       log.info("Configuration %d, attempt %d: %s (%s)", result_id, retry,
@@ -440,46 +442,43 @@ class AESTuner(MeasurementInterface):
                           max_jobs    = MAX_JOBS,
                           max_threads = MAX_THREADS)
 
-  def get_synth_result(self, qsub_error_log, build_output_log):
+  def get_synth_result(self, result, qsub_error_log, build_output_log):
     """
     Analyzes the synthesis output to determine the build result.
     """
 
+    # Check if synthesis timed out.
+    if result['timeout']:
+      return Result(state = 'STO', msg = 'Synthesis timed out.')
+
     # Read the entire qsub standard error log.
-    result = None
     try:
       with open(qsub_error_log, 'r') as log_file:
         lines = log_file.read()
     except:
-      result = Result(state = 'SE0', msg = 'Cannot find synthesis qsub error log.')
+      return Result(state = 'SE0', msg = 'Cannot find synthesis qsub error log.')
 
     # Throw a keyboard exception if the job was terminated by a keyboard interrupt.
-    if result == None and re.search(r'Interrupted!', lines) != None:
+    if re.search(r'Interrupted!', lines) != None:
       raise KeyboardException
     # Check if the temporary directory could be created.  The generated bash script can throw this error.
     elif re.search(r'Cannot create temporary directory.', lines) != None:
-      result = Result(state = 'SE1', msg = 'Cannot create temporary directory for synthesis.')
+      return Result(state = 'SE1', msg = 'Cannot create temporary directory for synthesis.')
 
     # Read the entire standard output log of the synthesis.
     try:
       with open(build_output_log, 'r') as log_file:
         lines = log_file.read()
     except:
-      result = Result(state = 'SE2', msg = 'Cannot find synthesis output log.')
+      return Result(state = 'SE2', msg = 'Cannot find synthesis output log.')
 
-    # Check if synthesis timed out.  The generated bash script can throw this error.
-    if result == None and re.search(r'Synthesis timed out.', lines) != None:
-      result = Result(state = 'STO', msg = 'Synthesis timed out.')
     # We haven't encountered a known error.  Check whether everything went well.
-    elif re.search(r'Synthesis has completed successfully.', lines) == None:
+    if re.search(r'Synthesis has completed successfully.', lines) == None:
       # We don't know this error.  It may be worth adding to this script.
-      result = Result(state = 'SE?', msg = 'Unknown synthesis error')
+      return Result(state = 'SE?', msg = 'Unknown synthesis error')
     else:
       # Synthesis was successful.
-      result = Result(state = 'SOK', msg = 'Synthesis was successful.')
-
-    # Return the synthesis result.
-    return result
+      return Result(state = 'SOK', msg = 'Synthesis was successful.')
 
   def do_impl(self, result_id, output_dir, synth_output_dir):
     """
@@ -516,14 +515,18 @@ class AESTuner(MeasurementInterface):
         self.create_impl_scripts(synth_output_dir, bash_template, bash_script, tcl_template, tcl_script)
 
         # Run implementation on the IC grid.
-        self.run_on_grid(result_id, impl_output_dir, bash_script, qsub_output_log, qsub_error_log, build_output_log,
-                         build_error_log, IMPL_JOB, MAX_THREADS, MAX_MEM_USAGE)
+        result = self.run_on_grid(result_id, impl_output_dir, bash_script, qsub_output_log, qsub_error_log,
+                                  build_output_log, build_error_log, IMPL_JOB, MAX_THREADS, MAX_MEM_USAGE,
+                                  IMPL_TIMEOUT)
       else:
         # Copy the prebuilt results instead of performing implementation.
         shutil.copytree(tuner_root + '/' + PREBUILT_IMPL_DIR, impl_output_dir)
 
+        # Make sure that we do not time out.
+        result = {'timeout': False}
+
       # Analyze the implementation output to determine whether it was successful.
-      result = self.get_impl_result(qsub_error_log, build_output_log)
+      result = self.get_impl_result(result, qsub_error_log, build_output_log)
 
       # Log the result of this retry.
       log.info("Configuration %d, attempt %d: %s (%s)", result_id, retry,
@@ -563,52 +566,52 @@ class AESTuner(MeasurementInterface):
                           max_jobs    = MAX_JOBS,
                           max_threads = MAX_THREADS)
 
-  def get_impl_result(self, qsub_error_log, build_output_log):
+  def get_impl_result(self, result, qsub_error_log, build_output_log):
     """
     Analyzes the implementation output to determine the build result.
     """
 
+    # Check if implementation timed out.
+    if result['timeout']:
+      return Result(state = 'ITO', msg = 'Implementation timed out.')
+
     # Read the entire qsub standard error log.
-    result = None
     try:
       with open(qsub_error_log, 'r') as log_file:
         lines = log_file.read()
     except:
-      result = Result(state = 'IE0', msg = 'Cannot find implementation qsub error log.')
+      return Result(state = 'IE0', msg = 'Cannot find implementation qsub error log.')
 
     # Throw a keyboard exception if the job was terminated by a keyboard interrupt.
-    if result == None and re.search(r'Interrupted!', lines) != None:
+    if re.search(r'Interrupted!', lines) != None:
       raise KeyboardException
     # Check if the temporary directory could be created.  The generated bash script can throw this error.
     elif re.search(r'Cannot create temporary directory.', lines) != None:
-      result = Result(state = 'IE1', msg = 'Cannot create temporary directory for implementation.')
+      return Result(state = 'IE1', msg = 'Cannot create temporary directory for implementation.')
 
     # Read the entire standard output log of the implementation.
     try:
       with open(build_output_log, 'r') as log_file:
         lines = log_file.read()
     except:
-      result = Result(state = 'IE2', msg = 'Cannot find implementation output log.')
+      return Result(state = 'IE2', msg = 'Cannot find implementation output log.')
 
-    # Check if implementation timed out.  The generated bash script can throw this error.
-    if result == None and re.search(r'Implementation timed out.', lines) != None:
-      result = Result(state = 'ITO', msg = 'Implementation timed out.')
     # Check for known placer errors.
-    elif re.search(r'\[Place 30-640\]', lines) != None:
-      result = Result(state = 'IE3', msg = 'Too many BRAMs')
+    if re.search(r'\[Place 30-640\]', lines) != None:
+      return Result(state = 'IE3', msg = 'Too many BRAMs')
     # Check for known design rule checker errors.
     elif re.search(r'\[DRC PDCY-4\]', lines) != None:
-      result = Result(state = 'IE4', msg = 'Unconnected carry input')
+      return Result(state = 'IE4', msg = 'Unconnected carry input')
     # Check if the timing was met.
     elif re.search(r'\[Timing 38-282\]', lines) != None:
-      result = Result(state = 'TIMING', msg = 'Timing constraints not met')
+      return Result(state = 'TIMING', msg = 'Timing constraints not met')
     # We haven't encountered a known error.  Check whether everything went well.
     elif re.search(r'Implementation has completed successfully.', lines) == None:
       # We don't know this error.  It may be worth adding to this script.
-      result = Result(state = 'IE?', msg = 'Unknown implementation error')
+      return Result(state = 'IE?', msg = 'Unknown implementation error')
     else:
       # Implementation was successful.
-      result = Result(state = 'IOK', msg = 'Implementation was successful.')
+      return Result(state = 'IOK', msg = 'Implementation was successful.')
 
     # Return the implementation result.
     return result
@@ -780,7 +783,7 @@ class AESTuner(MeasurementInterface):
       raise RuntimeError("Check_FPGA_host.sh returned an unknown error.")
 
   def run_on_grid(self, result_id, output_dir, build_script, qsub_output_log, qsub_error_log, build_output_log,
-                  build_error_log, build_step, max_threads, max_mem):
+                  build_error_log, build_step, max_threads, max_mem, timeout):
     """
     Run a script on the IC grid.  Initially, jobs are only issued to the 70s because they have the highest
     performance.  If they cannot schedule the jobs immediately, we issue the scripts to icsafe machines too.  If
@@ -788,56 +791,59 @@ class AESTuner(MeasurementInterface):
     """
 
     # Try to run the job immediately on the 70s.
-    build_result = self.run_on_grid_core(result_id, output_dir, build_script, qsub_output_log, qsub_error_log,
-                                         build_output_log, build_error_log, build_step, max_threads, max_mem,
-                                         '-q \'70s*\' -now y')
+    result = self.run_on_grid_core(result_id, output_dir, build_script, qsub_output_log, qsub_error_log,
+                                   build_output_log, build_error_log, build_step, max_threads, max_mem,
+                                   timeout, '-q \'70s*\' -now y')
 
     # Try to run the job immediately on the icsafe machines as well if we could not run it on the 70s.
-    if self.grid_unavailable(build_result):
+    if self.grid_unavailable(result):
       log.info('No 70s are available.  Configuration %d will fall back to icsafe machines.', result_id)
-      build_result = self.run_on_grid_core(result_id, output_dir, build_script, qsub_output_log, qsub_error_log,
-                                           build_output_log, build_error_log, build_step, max_threads, max_mem,
-                                           '-q \'!60s*\' -now y')
+      result = self.run_on_grid_core(result_id, output_dir, build_script, qsub_output_log, qsub_error_log,
+                                     build_output_log, build_error_log, build_step, max_threads, max_mem,
+                                     timeout, '-q \'!60s*\' -now y')
 
     # If we still cannot run the job, try to run it on any grid node and do not demand that it starts immediately
     # anymore.
-    if self.grid_unavailable(build_result):
+    if self.grid_unavailable(result):
       log.info('No icsafe machines are available.  Configuration %d will fall back to 60s.', result_id)
-      self.run_on_grid_core(result_id, output_dir, build_script, qsub_output_log, qsub_error_log, build_output_log,
-                            build_error_log, build_step, max_threads, max_mem, '')
+      result = self.run_on_grid_core(result_id, output_dir, build_script, qsub_output_log, qsub_error_log,
+                                     build_output_log, build_error_log, build_step, max_threads, max_mem, timeout, '')
+
+    # Return the result of the run.
+    return result
       
   def run_on_grid_core(self, result_id, output_dir, build_script, qsub_output_log, qsub_error_log, build_output_log,
-                       build_error_log, build_step, max_threads, max_mem, qsub_params):
+                       build_error_log, build_step, max_threads, max_mem, timeout, qsub_params):
     """
     Run a script on the IC grid.  All output is stored in log files.
     """
 
     # Submit the job to the IC grid.  This process will block until the job has completed.
-    build_result = self.call_program('qsub -S /bin/bash' \
-                                     ' -wd ' + output_dir + \
-                                     ' -o ' + build_output_log + \
-                                     ' -e ' + build_error_log + \
-                                     ' -N ' + build_step + '_' + str(result_id) + \
-                                     ' ' + qsub_params + \
-                                     ' -sync y' \
-                                     ' -pe onenode ' + str(max_threads) + \
-                                     ' -l mem=' + str(max_mem / max_threads) + 'g' \
-                                     ' ' + build_script)
+    result = self.call_program('qsub -S /bin/bash' \
+                               ' -wd ' + output_dir + \
+                               ' -o ' + build_output_log + \
+                               ' -e ' + build_error_log + \
+                               ' -N ' + build_step + '_' + str(result_id) + \
+                               ' ' + qsub_params + \
+                               ' -sync y' \
+                               ' -pe onenode ' + str(max_threads) + \
+                               ' -l mem=' + str(max_mem / max_threads) + 'g' \
+                               ' ' + build_script, limit = timeout)
 
     # Store the output of standard output and standard error to log files.
     with open(qsub_output_log, 'w') as log_file:
-      log_file.write(build_result['stdout'])
+      log_file.write(result['stdout'])
     with open(qsub_error_log, 'w') as log_file:
-      log_file.write(build_result['stderr'])
+      log_file.write(result['stderr'])
 
-    # Return the result of the build.
-    return build_result
+    # Return the result of the run.
+    return result
 
-  def grid_unavailable(self, build_result):
+  def grid_unavailable(self, result):
     """
     Returns True if the output of qsub indicates that a job cannot be executed immediately.
     """
-    output = build_result['stderr']
+    output = result['stderr']
     return re.search("Your qsub request could not be scheduled", output) != None
 
   def save_final_config(self, configuration):
