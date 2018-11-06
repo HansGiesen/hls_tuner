@@ -76,9 +76,9 @@ SYNTH_JOB    = "AES_synth"
 IMPL_JOB     = "AES_impl"
 
 # Enable these to use prebuilt results for various build steps
-USE_PREBUILT_PRESYNTH = False
-USE_PREBUILT_SYNTH    = False
-USE_PREBUILT_IMPL     = False
+USE_PREBUILT_PRESYNTH = True
+USE_PREBUILT_SYNTH    = True
+USE_PREBUILT_IMPL     = True
 
 # Timeout in seconds for each build step  
 PRESYNTH_TIMEOUT = 15 * 60
@@ -104,6 +104,7 @@ SERIAL_DEVICE   = "/dev/ttyUSB2"
 SERIAL_BAUDRATE = 115200
 # Host to which FPGA is attached
 FPGA_HOST = "hactar.seas.upenn.edu"
+
 
 # Import system modules.
 import argparse
@@ -142,6 +143,7 @@ from opentuner import MeasurementInterface
 from opentuner import Result
 from opentuner.search.manipulator import BooleanParameter
 
+
 class AESTuner(MeasurementInterface):
   """
   Main tuner class for AES benchmark of MachSuite
@@ -160,6 +162,7 @@ class AESTuner(MeasurementInterface):
 
     # Check whether the FPGA is setup.
     self.check_fpga_host()
+
 
   def manipulator(self):
     """
@@ -198,6 +201,7 @@ class AESTuner(MeasurementInterface):
     manipulator.add_parameter(EnumParameter("DATA_MOVER_CLOCK", ['0', '1', '2', '3']))
     return manipulator
 
+
   def compile(self, config_data, result_id):
     """
     Builds hardware and software for one configuration.
@@ -224,6 +228,7 @@ class AESTuner(MeasurementInterface):
 
     # Return the result.
     return result
+
 
   def do_presynth(self, config_data, result_id, output_dir, presynth_output_dir):
     """
@@ -289,6 +294,7 @@ class AESTuner(MeasurementInterface):
     # Return the result.
     return result
 
+
   def create_presynth_scripts(self, config_data, template_file, script_file):
     """
     Creates scripts for presynthesis build step.
@@ -316,6 +322,7 @@ class AESTuner(MeasurementInterface):
                           defines          = defines,
                           data_mover_clock = data_mover_clock,
                           kernel_clock     = kernel_clock)
+
 
   def get_presynth_result(self, result, qsub_error_log, build_output_log):
     """
@@ -359,6 +366,7 @@ class AESTuner(MeasurementInterface):
     else:
       # Presynthesis was successful.
       return Result(state = 'POK', msg = 'Presynthesis was successful.')
+
 
   def do_synth(self, result_id, output_dir, presynth_output_dir, synth_output_dir):
     """
@@ -425,6 +433,7 @@ class AESTuner(MeasurementInterface):
     # Return the result.
     return result
 
+
   def create_synth_scripts(self, presynth_output_dir, bash_template, bash_script, tcl_template, tcl_script):
     """
     Creates scripts for RTL synthesis step.
@@ -441,6 +450,7 @@ class AESTuner(MeasurementInterface):
     self.fill_in_template(tcl_template, tcl_script,
                           max_jobs    = MAX_JOBS,
                           max_threads = MAX_THREADS)
+
 
   def get_synth_result(self, result, qsub_error_log, build_output_log):
     """
@@ -479,6 +489,7 @@ class AESTuner(MeasurementInterface):
     else:
       # Synthesis was successful.
       return Result(state = 'SOK', msg = 'Synthesis was successful.')
+
 
   def do_impl(self, result_id, output_dir, synth_output_dir):
     """
@@ -549,6 +560,7 @@ class AESTuner(MeasurementInterface):
     # Return the result.
     return result
 
+
   def create_impl_scripts(self, synth_output_dir, bash_template, bash_script, tcl_template, tcl_script):
     """
     Creates scripts for implementation step.
@@ -565,6 +577,7 @@ class AESTuner(MeasurementInterface):
     self.fill_in_template(tcl_template, tcl_script,
                           max_jobs    = MAX_JOBS,
                           max_threads = MAX_THREADS)
+
 
   def get_impl_result(self, result, qsub_error_log, build_output_log):
     """
@@ -616,6 +629,7 @@ class AESTuner(MeasurementInterface):
     # Return the implementation result.
     return result
 
+
   def run_precompiled(self, desired_result, inp, limit, compile_result, result_id):
     """
     Tests one configuration on the FPGA.
@@ -649,6 +663,7 @@ class AESTuner(MeasurementInterface):
     # Analyze the run output to determine whether it was successful.
     return self.get_run_result(result_id, result, serial_log)
 
+
   def create_run_scripts(self, output_dir, impl_output_dir, tcl_template, tcl_script, bash_template, bash_script,
                          serial_log):
     """
@@ -675,6 +690,7 @@ class AESTuner(MeasurementInterface):
                           impl_output_dir = impl_output_dir,
                           target_file     = target_file)
 
+
   def run_on_fpga(self, bash_script, run_output_log, run_error_log):
     """
     Run the provided shell script on the host attached to the FPGA.
@@ -694,6 +710,7 @@ class AESTuner(MeasurementInterface):
 
     # Return the result.
     return result
+
 
   def get_run_result(self, result_id, result, serial_log):
     """
@@ -725,6 +742,7 @@ class AESTuner(MeasurementInterface):
     # The application ran successfully on the FPGA.
     log.info("Run of configuration %d was successful...", result_id)
     return Result(state = 'OK', msg = 'Test successful.', time = cycles)
+
     
   def fill_in_template(self, template_filename, output_filename, **replacements):
     """
@@ -741,6 +759,7 @@ class AESTuner(MeasurementInterface):
     # Output the filled-in template to a file.
     with open(output_filename, "w") as output_file:
       output_file.write(template)
+
 
   def get_make_target(self):
     """
@@ -782,6 +801,7 @@ class AESTuner(MeasurementInterface):
     elif output != 'Success\n':
       raise RuntimeError("Check_FPGA_host.sh returned an unknown error.")
 
+
   def run_on_grid(self, result_id, output_dir, build_script, qsub_output_log, qsub_error_log, build_output_log,
                   build_error_log, build_step, max_threads, max_mem, timeout):
     """
@@ -811,6 +831,7 @@ class AESTuner(MeasurementInterface):
 
     # Return the result of the run.
     return result
+
       
   def run_on_grid_core(self, result_id, output_dir, build_script, qsub_output_log, qsub_error_log, build_output_log,
                        build_error_log, build_step, max_threads, max_mem, timeout, qsub_params):
@@ -826,6 +847,7 @@ class AESTuner(MeasurementInterface):
                                ' -N ' + build_step + '_' + str(result_id) + \
                                ' ' + qsub_params + \
                                ' -sync y' \
+                               ' -notify' \
                                ' -pe onenode ' + str(max_threads) + \
                                ' -l mem=' + str(max_mem / max_threads) + 'g' \
                                ' ' + build_script, limit = timeout)
@@ -839,6 +861,7 @@ class AESTuner(MeasurementInterface):
     # Return the result of the run.
     return result
 
+
   def grid_unavailable(self, result):
     """
     Returns True if the output of qsub indicates that a job cannot be executed immediately.
@@ -846,50 +869,18 @@ class AESTuner(MeasurementInterface):
     output = result['stderr']
     return re.search("Your qsub request could not be scheduled", output) != None
 
+
   def save_final_config(self, configuration):
     """
     Store the final configuration in a JSON file.
     """
     self.manipulator().save_to_file(configuration.data, 'aes_final_config.json')
 
-  def cleanup(self, result_id):
-    """
-    Remove any files that were left behind on /scratch/local.
-    """
-
-    output_dir = output_root + "/Build_{0:04d}".format(result_id)
-    host_file = output_dir + '/Host.txt'
-
-    if os.path.isfile(host_file):
-      with open(host_file, 'r') as file_handle:
-        info = file_handle.readline()
-      host, temp_dir = re.search(r'(\S+)\s+(\S+)', info).groups()
-
-      cleanup_script = output_dir + '/Cleanup.sh'
-      with open(cleanup_script, 'w') as cleanup_file:
-        cleanup_file.write('''\
-#!/bin/bash -e
-[[ "{temp_dir}" != /scratch/local* ]] && exit 1
-[ ! -d {temp_dir} ] && exit 0
-[ -n "$(find {temp_dir} -prune -empty -type d 2> /dev/null)" ] && exit 0
-shopt -s dotglob
-mv {temp_dir}/* .
-rmdir {temp_dir}
-'''.format(temp_dir = temp_dir))
-
-      subprocess.check_output(['qsub', '-S', '/bin/bash', \
-                              '-wd', output_dir, \
-                              '-o', output_dir + '/Cleanup_output.log', \
-                              '-e', output_dir + '/Cleanup_error.log', \
-                              '-N', 'Cleanup_' + str(result_id), \
-                              '-q', '*@' + host + '*', \
-                              cleanup_script])
 
 if __name__ == '__main__':
 
   # Start the logging.
   log = logging.getLogger('AESTuner')
-  opentuner.init_logging()
 
   # Make sure that information messages are also logged.
   for handler in logging.getLogger().handlers:
