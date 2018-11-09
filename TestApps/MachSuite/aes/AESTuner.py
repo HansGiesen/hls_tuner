@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 #
 # Tuner for the Matrix Multiplication example in SDSoC
+#
+# Author: Hans Giesen (giesen@seas.upenn.edu)
+#######################################################################################################################
 
 # Location of makefile
 MAKEFILE = "TestApps/MachSuite/aes/Sources/Makefile"
@@ -76,9 +79,9 @@ SYNTH_JOB    = "AES_synth"
 IMPL_JOB     = "AES_impl"
 
 # Enable these to use prebuilt results for various build steps
-USE_PREBUILT_PRESYNTH = True
-USE_PREBUILT_SYNTH    = True
-USE_PREBUILT_IMPL     = True
+USE_PREBUILT_PRESYNTH = False
+USE_PREBUILT_SYNTH    = False
+USE_PREBUILT_IMPL     = False
 
 # Timeout in seconds for each build step  
 PRESYNTH_TIMEOUT = 15 * 60
@@ -95,16 +98,20 @@ IMPL_RETRIES     = 5
 MAX_JOBS      = 4
 # Maximum number of threads that Vivado can use
 MAX_THREADS   = 4
+
 # Expected memory usage of a job in GB
-MAX_MEM_USAGE = 16
+PRESYNTH_MAX_MEM_USAGE = 2 # Maximum observed was 1874920 KB.
+SYNTH_MAX_MEM_USAGE = 11 # Maximum observed was 10063352 KB.
+IMPL_MAX_MEM_USAGE = 1 # Maximum observed was 842348 KB.
 
 # Serial device used for communicating with FPGA
-SERIAL_DEVICE   = "/dev/ttyUSB2"
+SERIAL_DEVICE   = "/dev/ttyUSB13"
 # Baudrate for communicating with FPGA
 SERIAL_BAUDRATE = 115200
 # Host to which FPGA is attached
 FPGA_HOST = "hactar.seas.upenn.edu"
 
+#######################################################################################################################
 
 # Import system modules.
 import argparse
@@ -143,6 +150,7 @@ from opentuner import MeasurementInterface
 from opentuner import Result
 from opentuner.search.manipulator import BooleanParameter
 
+#######################################################################################################################
 
 class AESTuner(MeasurementInterface):
   """
@@ -179,24 +187,24 @@ class AESTuner(MeasurementInterface):
     manipulator.add_parameter(BooleanParameter("PIPELINE_ECB1"))
     manipulator.add_parameter(BooleanParameter("PIPELINE_ECB2"))
     manipulator.add_parameter(BooleanParameter("PIPELINE_ECB3"))
-    manipulator.add_parameter(IntegerParameter("UNROLL_FACTOR_SUB", 1, 16))
-    manipulator.add_parameter(IntegerParameter("UNROLL_FACTOR_ADDKEY", 1, 16))
-    manipulator.add_parameter(IntegerParameter("UNROLL_FACTOR_CPKEY", 1, 16))
-    manipulator.add_parameter(IntegerParameter("UNROLL_FACTOR_MIX", 1, 4))
-    manipulator.add_parameter(IntegerParameter("UNROLL_FACTOR_EXP1", 1, 3))
-    manipulator.add_parameter(IntegerParameter("UNROLL_FACTOR_EXP2", 1, 3))
-    manipulator.add_parameter(IntegerParameter("UNROLL_FACTOR_ECB1", 1, 32))
-    manipulator.add_parameter(IntegerParameter("UNROLL_FACTOR_ECB2", 1, 8))
-    manipulator.add_parameter(IntegerParameter("UNROLL_FACTOR_ECB3", 1, 13))
-    manipulator.add_parameter(IntegerParameter("PIPELINE_II_SUB", 1, 16))
-    manipulator.add_parameter(IntegerParameter("PIPELINE_II_ADDKEY", 1, 16))
-    manipulator.add_parameter(IntegerParameter("PIPELINE_II_CPKEY", 1, 16))
-    manipulator.add_parameter(IntegerParameter("PIPELINE_II_MIX", 1, 4))
-    manipulator.add_parameter(IntegerParameter("PIPELINE_II_EXP1", 1, 3))
-    manipulator.add_parameter(IntegerParameter("PIPELINE_II_EXP2", 1, 3))
-    manipulator.add_parameter(IntegerParameter("PIPELINE_II_ECB1", 1, 32))
-    manipulator.add_parameter(IntegerParameter("PIPELINE_II_ECB2", 1, 8))
-    manipulator.add_parameter(IntegerParameter("PIPELINE_II_ECB3", 1, 13))
+    manipulator.add_parameter(IntegerParameter("UNROLL_FACTOR_SUB", 1, 16, prior = "inc"))
+    manipulator.add_parameter(IntegerParameter("UNROLL_FACTOR_ADDKEY", 1, 16, prior = "inc"))
+    manipulator.add_parameter(IntegerParameter("UNROLL_FACTOR_CPKEY", 1, 16, prior = "inc"))
+    manipulator.add_parameter(IntegerParameter("UNROLL_FACTOR_MIX", 1, 4, prior = "inc"))
+    manipulator.add_parameter(IntegerParameter("UNROLL_FACTOR_EXP1", 1, 3, prior = "inc"))
+    manipulator.add_parameter(IntegerParameter("UNROLL_FACTOR_EXP2", 1, 3, prior = "inc"))
+    manipulator.add_parameter(IntegerParameter("UNROLL_FACTOR_ECB1", 1, 32, prior = "inc"))
+    manipulator.add_parameter(IntegerParameter("UNROLL_FACTOR_ECB2", 1, 8, prior = "inc"))
+    manipulator.add_parameter(IntegerParameter("UNROLL_FACTOR_ECB3", 1, 13, prior = "inc"))
+    manipulator.add_parameter(IntegerParameter("PIPELINE_II_SUB", 1, 16, prior = "dec"))
+    manipulator.add_parameter(IntegerParameter("PIPELINE_II_ADDKEY", 1, 16, prior = "dec"))
+    manipulator.add_parameter(IntegerParameter("PIPELINE_II_CPKEY", 1, 16, prior = "dec"))
+    manipulator.add_parameter(IntegerParameter("PIPELINE_II_MIX", 1, 4, prior = "dec"))
+    manipulator.add_parameter(IntegerParameter("PIPELINE_II_EXP1", 1, 3, prior = "dec"))
+    manipulator.add_parameter(IntegerParameter("PIPELINE_II_EXP2", 1, 3, prior = "dec"))
+    manipulator.add_parameter(IntegerParameter("PIPELINE_II_ECB1", 1, 32, prior = "dec"))
+    manipulator.add_parameter(IntegerParameter("PIPELINE_II_ECB2", 1, 8, prior = "dec"))
+    manipulator.add_parameter(IntegerParameter("PIPELINE_II_ECB3", 1, 13, prior = "dec"))
     manipulator.add_parameter(EnumParameter("KERNEL_CLOCK", ['0', '1', '2', '3']))
     manipulator.add_parameter(EnumParameter("DATA_MOVER_CLOCK", ['0', '1', '2', '3']))
     return manipulator
@@ -264,13 +272,10 @@ class AESTuner(MeasurementInterface):
 
         # Run presynthesis on the IC grid.
         result = self.run_on_grid(result_id, presynth_output_dir, bash_script, qsub_output_log, qsub_error_log,
-                                  build_output_log, build_error_log, PRESYNTH_JOB, 1, MAX_MEM_USAGE, PRESYNTH_TIMEOUT)
+                                  build_output_log, build_error_log, PRESYNTH_JOB, 1, PRESYNTH_MAX_MEM_USAGE)
       else:
         # Copy the prebuilt results instead of performing presynthesis.
         shutil.copytree(tuner_root + '/' + PREBUILT_PRESYNTH_DIR, presynth_output_dir)
-
-        # Make sure that we do not time out.
-        result = {'timeout': False}
 
       # Analyze the presynthesis output to determine whether it was successful.
       result = self.get_presynth_result(result, qsub_error_log, build_output_log)
@@ -317,6 +322,7 @@ class AESTuner(MeasurementInterface):
     self.fill_in_template(template_file, script_file,
                           tuner_root       = tuner_root,
                           make_file        = tuner_root + "/" + MAKEFILE,
+                          timeout          = PRESYNTH_TIMEOUT,
                           max_jobs         = MAX_JOBS,
                           max_threads      = MAX_THREADS,
                           defines          = defines,
@@ -329,10 +335,6 @@ class AESTuner(MeasurementInterface):
     Analyzes the presynthesis output to determine the build result.
     """
 
-    # Check if presynthesis timed out.
-    if result['timeout']:
-      return Result(state = 'PTO', msg = 'Presynthesis timed out.')
-
     # Read the entire qsub standard error log.
     try:
       with open(qsub_error_log, 'r') as log_file:
@@ -344,7 +346,7 @@ class AESTuner(MeasurementInterface):
     if re.search(r'Interrupted!', lines) != None:
       raise KeyboardException
     # Check if the temporary directory could be created.  The generated bash script can throw this error.
-    elif re.search(r'Cannot create temporary directory.', lines) != None:
+    if re.search(r'Cannot create temporary directory.', lines) != None:
       return Result(state = 'PE1', msg = 'Cannot create temporary directory for presynthesis.')
 
     # Read the entire standard output log of the presynthesis.
@@ -354,18 +356,20 @@ class AESTuner(MeasurementInterface):
     except:
       return Result(state = 'PE2', msg = 'Cannot find presynthesis output log.')
 
+    # Check if presynthesis timed out.  The generated bash script can throw this error.
+    if re.search(r'Presynthesis timed out.', lines) != None:
+      return Result(state = 'PTO', msg = 'Presynthesis timed out.')
     # Check for known Vivado HLS errors.
     if re.search(r'\[XFORM 203-504\]', lines) != None:
       return Result(state = 'PE3', msg = 'Too much unrolling')
-    elif re.search(r'\[XFORM 203-1403\]', lines) != None:
+    if re.search(r'\[XFORM 203-1403\]', lines) != None:
       return Result(state = 'PE4', msg = 'Too many load/store instructions')
     # We haven't encountered a known error.  Check whether everything went well.
-    elif re.search(r'Presynthesis has completed successfully.', lines) == None:
+    if re.search(r'Presynthesis has completed successfully.', lines) == None:
       # We don't know this error.  It may be worth adding to this script.
       return Result(state = 'PE?', msg = 'Unknown presynthesis error')
-    else:
-      # Presynthesis was successful.
-      return Result(state = 'POK', msg = 'Presynthesis was successful.')
+    # Presynthesis was successful.
+    return Result(state = 'POK', msg = 'Presynthesis was successful.')
 
 
   def do_synth(self, result_id, output_dir, presynth_output_dir, synth_output_dir):
@@ -403,13 +407,10 @@ class AESTuner(MeasurementInterface):
 
         # Run synthesis on the IC grid.
         result = self.run_on_grid(result_id, synth_output_dir, bash_script, qsub_output_log, qsub_error_log,
-                                  build_output_log, build_error_log, SYNTH_JOB, MAX_JOBS, MAX_MEM_USAGE, SYNTH_TIMEOUT)
+                                  build_output_log, build_error_log, SYNTH_JOB, MAX_JOBS, SYNTH_MAX_MEM_USAGE)
       else:
         # Copy the prebuilt results instead of performing synthesis.
         shutil.copytree(tuner_root + '/' + PREBUILT_SYNTH_DIR, synth_output_dir)
-
-        # Make sure that we do not time out.
-        result = {'timeout': False}
 
       # Analyze the synthesis output to determine whether it was successful.
       result = self.get_synth_result(result, qsub_error_log, build_output_log)
@@ -457,10 +458,6 @@ class AESTuner(MeasurementInterface):
     Analyzes the synthesis output to determine the build result.
     """
 
-    # Check if synthesis timed out.
-    if result['timeout']:
-      return Result(state = 'STO', msg = 'Synthesis timed out.')
-
     # Read the entire qsub standard error log.
     try:
       with open(qsub_error_log, 'r') as log_file:
@@ -472,7 +469,7 @@ class AESTuner(MeasurementInterface):
     if re.search(r'Interrupted!', lines) != None:
       raise KeyboardException
     # Check if the temporary directory could be created.  The generated bash script can throw this error.
-    elif re.search(r'Cannot create temporary directory.', lines) != None:
+    if re.search(r'Cannot create temporary directory.', lines) != None:
       return Result(state = 'SE1', msg = 'Cannot create temporary directory for synthesis.')
 
     # Read the entire standard output log of the synthesis.
@@ -482,13 +479,15 @@ class AESTuner(MeasurementInterface):
     except:
       return Result(state = 'SE2', msg = 'Cannot find synthesis output log.')
 
+    # Check if synthesis timed out.  The generated bash script can throw this error.
+    if re.search(r'Synthesis timed out.', lines) != None:
+      return Result(state = 'STO', msg = 'Synthesis timed out.')
     # We haven't encountered a known error.  Check whether everything went well.
     if re.search(r'Synthesis has completed successfully.', lines) == None:
       # We don't know this error.  It may be worth adding to this script.
       return Result(state = 'SE?', msg = 'Unknown synthesis error')
-    else:
-      # Synthesis was successful.
-      return Result(state = 'SOK', msg = 'Synthesis was successful.')
+    # Synthesis was successful.
+    return Result(state = 'SOK', msg = 'Synthesis was successful.')
 
 
   def do_impl(self, result_id, output_dir, synth_output_dir):
@@ -527,14 +526,10 @@ class AESTuner(MeasurementInterface):
 
         # Run implementation on the IC grid.
         result = self.run_on_grid(result_id, impl_output_dir, bash_script, qsub_output_log, qsub_error_log,
-                                  build_output_log, build_error_log, IMPL_JOB, MAX_THREADS, MAX_MEM_USAGE,
-                                  IMPL_TIMEOUT)
+                                  build_output_log, build_error_log, IMPL_JOB, MAX_THREADS, IMPL_MAX_MEM_USAGE)
       else:
         # Copy the prebuilt results instead of performing implementation.
         shutil.copytree(tuner_root + '/' + PREBUILT_IMPL_DIR, impl_output_dir)
-
-        # Make sure that we do not time out.
-        result = {'timeout': False}
 
       # Analyze the implementation output to determine whether it was successful.
       result = self.get_impl_result(result, qsub_error_log, build_output_log)
@@ -584,10 +579,6 @@ class AESTuner(MeasurementInterface):
     Analyzes the implementation output to determine the build result.
     """
 
-    # Check if implementation timed out.
-    if result['timeout']:
-      return Result(state = 'ITO', msg = 'Implementation timed out.')
-
     # Read the entire qsub standard error log.
     try:
       with open(qsub_error_log, 'r') as log_file:
@@ -599,7 +590,7 @@ class AESTuner(MeasurementInterface):
     if re.search(r'Interrupted!', lines) != None:
       raise KeyboardException
     # Check if the temporary directory could be created.  The generated bash script can throw this error.
-    elif re.search(r'Cannot create temporary directory.', lines) != None:
+    if re.search(r'Cannot create temporary directory.', lines) != None:
       return Result(state = 'IE1', msg = 'Cannot create temporary directory for implementation.')
 
     # Read the entire standard output log of the implementation.
@@ -609,25 +600,24 @@ class AESTuner(MeasurementInterface):
     except:
       return Result(state = 'IE2', msg = 'Cannot find implementation output log.')
 
+    # Check if implementation timed out.  The generated bash script can throw this error.
+    if re.search(r'Implementation timed out.', lines) != None:
+      return Result(state = 'ITO', msg = 'Implementation timed out.')
     # Check for known placer errors.
     if re.search(r'\[Place 30-640\]', lines) != None:
       return Result(state = 'IE3', msg = 'Too many BRAMs')
     # Check for known design rule checker errors.
-    elif re.search(r'\[DRC PDCY-4\]', lines) != None:
+    if re.search(r'\[DRC PDCY-4\]', lines) != None:
       return Result(state = 'IE4', msg = 'Unconnected carry input')
     # Check if the timing was met.
-    elif re.search(r'\[Timing 38-282\]', lines) != None:
+    if re.search(r'\[Timing 38-282\]', lines) != None:
       return Result(state = 'TIMING', msg = 'Timing constraints not met')
     # We haven't encountered a known error.  Check whether everything went well.
-    elif re.search(r'Implementation has completed successfully.', lines) == None:
+    if re.search(r'Implementation has completed successfully.', lines) == None:
       # We don't know this error.  It may be worth adding to this script.
       return Result(state = 'IE?', msg = 'Unknown implementation error')
-    else:
-      # Implementation was successful.
-      return Result(state = 'IOK', msg = 'Implementation was successful.')
-
-    # Return the implementation result.
-    return result
+    # Implementation was successful.
+    return Result(state = 'IOK', msg = 'Implementation was successful.')
 
 
   def run_precompiled(self, desired_result, inp, limit, compile_result, result_id):
@@ -720,7 +710,7 @@ class AESTuner(MeasurementInterface):
     # Check whether the run timed out.
     if result['returncode'] != 0 and result['timeout']:
       log.error('Run timeout on configuration %d', result_id)
-      return Result(state='RTO', msg = 'Timeout while running.')
+      return Result(state='RTO', time = float('inf'))
 
     # Read the entire contents of the serial port log.
     with open(serial_log, 'r') as output_file:
@@ -729,7 +719,7 @@ class AESTuner(MeasurementInterface):
     # Check whether the application reported that it completed successfully.
     if result['returncode'] != 0 or re.search(r'TEST PASSED', lines) == None:
       log.error('Run error on configuration %d', result_id)
-      return Result(state = 'RE1')
+      return Result(state = 'RE1', time = float('inf'))
 
     # Retrieve the number of cycles that the run took.
     match = re.search(r'The hardware test took (\S+) cycles.', lines)
@@ -737,11 +727,11 @@ class AESTuner(MeasurementInterface):
       cycles = match.group(1)
     else:
       log.error('Serial port produced invalid output for configuration %d.', result_id)
-      return Result(state = 'RE2')
+      return Result(state = 'RE2', time = float('inf'))
 
     # The application ran successfully on the FPGA.
     log.info("Run of configuration %d was successful...", result_id)
-    return Result(state = 'OK', msg = 'Test successful.', time = cycles)
+    return Result(state = 'OK', time = cycles)
 
     
   def fill_in_template(self, template_filename, output_filename, **replacements):
@@ -799,11 +789,11 @@ class AESTuner(MeasurementInterface):
       raise RuntimeError("The user has no permission to access the serial device.  Perhaps the user must be added to" \
                          " the 'dialout' group.")
     elif output != 'Success\n':
-      raise RuntimeError("Check_FPGA_host.sh returned an unknown error.")
+      raise RuntimeError("Check_FPGA_host.bash returned an unknown error.")
 
 
   def run_on_grid(self, result_id, output_dir, build_script, qsub_output_log, qsub_error_log, build_output_log,
-                  build_error_log, build_step, max_threads, max_mem, timeout):
+                  build_error_log, build_step, max_threads, max_mem):
     """
     Run a script on the IC grid.  Initially, jobs are only issued to the 70s because they have the highest
     performance.  If they cannot schedule the jobs immediately, we issue the scripts to icsafe machines too.  If
@@ -813,28 +803,28 @@ class AESTuner(MeasurementInterface):
     # Try to run the job immediately on the 70s.
     result = self.run_on_grid_core(result_id, output_dir, build_script, qsub_output_log, qsub_error_log,
                                    build_output_log, build_error_log, build_step, max_threads, max_mem,
-                                   timeout, '-q \'70s*\' -now y')
+                                   '-q \'70s*\' -now y')
 
     # Try to run the job immediately on the icsafe machines as well if we could not run it on the 70s.
     if self.grid_unavailable(result):
       log.info('No 70s are available.  Configuration %d will fall back to icsafe machines.', result_id)
       result = self.run_on_grid_core(result_id, output_dir, build_script, qsub_output_log, qsub_error_log,
                                      build_output_log, build_error_log, build_step, max_threads, max_mem,
-                                     timeout, '-q \'!60s*\' -now y')
+                                     '-q \'!60s*\' -now y')
 
     # If we still cannot run the job, try to run it on any grid node and do not demand that it starts immediately
     # anymore.
     if self.grid_unavailable(result):
       log.info('No icsafe machines are available.  Configuration %d will fall back to 60s.', result_id)
       result = self.run_on_grid_core(result_id, output_dir, build_script, qsub_output_log, qsub_error_log,
-                                     build_output_log, build_error_log, build_step, max_threads, max_mem, timeout, '')
+                                     build_output_log, build_error_log, build_step, max_threads, max_mem, '')
 
     # Return the result of the run.
     return result
 
       
   def run_on_grid_core(self, result_id, output_dir, build_script, qsub_output_log, qsub_error_log, build_output_log,
-                       build_error_log, build_step, max_threads, max_mem, timeout, qsub_params):
+                       build_error_log, build_step, max_threads, max_mem, qsub_params):
     """
     Run a script on the IC grid.  All output is stored in log files.
     """
@@ -850,7 +840,7 @@ class AESTuner(MeasurementInterface):
                                ' -notify' \
                                ' -pe onenode ' + str(max_threads) + \
                                ' -l mem=' + str(max_mem / max_threads) + 'g' \
-                               ' ' + build_script, limit = timeout)
+                               ' ' + build_script)
 
     # Store the output of standard output and standard error to log files.
     with open(qsub_output_log, 'w') as log_file:
@@ -876,11 +866,13 @@ class AESTuner(MeasurementInterface):
     """
     self.manipulator().save_to_file(configuration.data, 'aes_final_config.json')
 
+#######################################################################################################################
 
 if __name__ == '__main__':
 
   # Start the logging.
   log = logging.getLogger('AESTuner')
+  opentuner.init_logging()
 
   # Make sure that information messages are also logged.
   for handler in logging.getLogger().handlers:

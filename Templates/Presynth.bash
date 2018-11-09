@@ -43,15 +43,22 @@ echo $(hostname) ${{TEMP_DIR}} > Host.txt
 cd ${{TEMP_DIR}}
 
 # Run presynthesis.  If there is an error, we do not exit this script because we still have to move (intermediate)
-# results back.
-/usr/bin/time -f "Maximum residential set size: %M KB" \
-  make -f {make_file} clean all \
-    JOBS={max_jobs} \
-    THREADS={max_threads} \
-    HLS_TUNER_DEFINES='{defines}' \
-    DATA_MOVER_CLOCK={data_mover_clock} \
-    KERNEL_CLOCK={kernel_clock}
+# results back.  We check for a timeout here because we don't want limit the time needed for issuing a job to the
+# grid.  The /usr/bin/timeout tool changes its process group, which means that the children do not receive TERM
+# signals, so we use a custom timeout script.
+${{HLS_TUNER_ROOT}}/Scripts/Timeout.bash -t {timeout} \
+  /usr/bin/time -f "Maximum residential set size: %M KB" \
+    make -f {make_file} clean all \
+      JOBS={max_jobs} \
+      THREADS={max_threads} \
+      HLS_TUNER_DEFINES='{defines}' \
+      DATA_MOVER_CLOCK={data_mover_clock} \
+      KERNEL_CLOCK={kernel_clock} && EXIT_CODE=0 || EXIT_CODE=$?
 
-# Output a message that presynthesis completed successfully.  The tuner relies on this message.
-echo "Presynthesis has completed successfully."
+# Output a message about the build result.  The tuner script relies on these messages.
+[ "${{EXIT_CODE}}" == 143 ] && echo "Presynthesis timed out."
+[ "${{EXIT_CODE}}" == 0 ] && echo "Presynthesis has completed successfully."
+ 
+# Output the exit code.
+exit ${{EXIT_CODE}}
 
