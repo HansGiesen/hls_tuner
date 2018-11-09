@@ -839,7 +839,7 @@ class AESTuner(MeasurementInterface):
                                ' -sync y' \
                                ' -notify' \
                                ' -pe onenode ' + str(max_threads) + \
-                               ' -l mem=' + str(max_mem / max_threads) + 'g' \
+                               ' -l mem=' + str(float(max_mem) / max_threads) + 'g' \
                                ' ' + build_script)
 
     # Store the output of standard output and standard error to log files.
