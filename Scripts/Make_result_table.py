@@ -1,8 +1,22 @@
 #!/usr/bin/env python
 
-import sys
-import csv
 import argparse
+import csv
+import os
+import sys
+
+# Locate the root directory of the HLS tuner repository.
+tuner_root = sys.path[0]
+while True:
+  [tuner_root, last_dir] = os.path.split(tuner_root)
+  if os.path.isdir(tuner_root + "/.git"):
+    break
+  if tuner_root == "/":
+    raise RuntimeError("Cannot find root of HLS tuner workspace.")
+
+# Add the OpenTuner repository to the search path for importing modules.
+sys.path.insert(0, tuner_root + '/OpenTuner')
+
 import opentuner
 from opentuner import resultsdb
 
