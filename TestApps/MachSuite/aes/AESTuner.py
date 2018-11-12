@@ -724,7 +724,7 @@ class AESTuner(MeasurementInterface):
     # Retrieve the number of cycles that the run took.
     match = re.search(r'The hardware test took (\S+) cycles.', lines)
     if match != None:
-      cycles = match.group(1)
+      cycles = int(match.group(1))
     else:
       log.error('Serial port produced invalid output for configuration %d.', result_id)
       return Result(state = 'RE2', time = float('inf'))
