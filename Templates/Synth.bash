@@ -57,7 +57,7 @@ source ${{SDSOC_ROOT}}/settings64.sh
 # to the grid.  The /usr/bin/timeout tool changes its process group, which means that the children do not receive TERM
 # signals, so we use a custom timeout script.
 ${{HLS_TUNER_ROOT}}/Scripts/Timeout.bash -t {timeout} \
-  /usr/bin/time -f "Maximum residential set size: %M KB" \
+  /usr/bin/time -f "Runtime: %e s\nMaximum residential set size: %M KB" -o /dev/stdout \
     vivado -nolog -nojournal -mode batch -source {tcl_script} && EXIT_CODE=0 || EXIT_CODE=$?
 
 # Output a message about the build result.  The tuner script relies on these messages.

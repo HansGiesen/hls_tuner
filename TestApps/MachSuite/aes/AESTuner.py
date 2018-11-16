@@ -68,7 +68,7 @@ SYNTH_ERROR_LOG     = "Synth_error.log"
 IMPL_OUTPUT_LOG     = "Impl_output.log"
 IMPL_ERROR_LOG      = "Impl_error.log"
 RUN_OUTPUT_LOG      = "Run_output.log"
-RUN_ERROR_LOG       = "Run_output.log"
+RUN_ERROR_LOG       = "Run_error.log"
 
 # File with output of serial line 
 SERIAL_LOG = "Serial_output.log"
@@ -163,6 +163,8 @@ class AESTuner(MeasurementInterface):
     """
 
     # Call the parent constructor.
+    kwargs['project_name'] = "MachSuite"
+    kwargs['program_name'] = "aes"
     super(AESTuner, self).__init__(*pargs, **kwargs)
 
     # Always perform multiple builds in parallel.
@@ -228,11 +230,11 @@ class AESTuner(MeasurementInterface):
 
     # Perform the synthesis step if presynthesis was successful.
     if result.state == 'POK':
-      result = self.do_synth(result_id, output_dir, presynth_output_dir, synth_output_dir)
+      result = self.do_synth(result_id, output_dir, presynth_output_dir, synth_output_dir, result)
 
     # Perform the implementation step if synthesis was successful.
     if result.state == 'SOK':
-      result = self.do_impl(result_id, output_dir, synth_output_dir)
+      result = self.do_impl(result_id, output_dir, synth_output_dir, result)
 
     # Return the result.
     return result
@@ -271,14 +273,14 @@ class AESTuner(MeasurementInterface):
         self.create_presynth_scripts(config_data, bash_template, bash_script)
 
         # Run presynthesis on the IC grid.
-        result = self.run_on_grid(result_id, presynth_output_dir, bash_script, qsub_output_log, qsub_error_log,
-                                  build_output_log, build_error_log, PRESYNTH_JOB, 1, PRESYNTH_MAX_MEM_USAGE)
+        self.run_on_grid(result_id, presynth_output_dir, bash_script, qsub_output_log, qsub_error_log,
+                         build_output_log, build_error_log, PRESYNTH_JOB, 1, PRESYNTH_MAX_MEM_USAGE)
       else:
         # Copy the prebuilt results instead of performing presynthesis.
         shutil.copytree(tuner_root + '/' + PREBUILT_PRESYNTH_DIR, presynth_output_dir)
 
       # Analyze the presynthesis output to determine whether it was successful.
-      result = self.get_presynth_result(result, qsub_error_log, build_output_log)
+      result = self.get_presynth_result(qsub_error_log, build_output_log)
 
       # Log the result of this retry.
       log.info("Configuration %d, attempt %d: %s (%s)", result_id, retry,
@@ -330,7 +332,7 @@ class AESTuner(MeasurementInterface):
                           kernel_clock     = kernel_clock)
 
 
-  def get_presynth_result(self, result, qsub_error_log, build_output_log):
+  def get_presynth_result(self, qsub_error_log, build_output_log):
     """
     Analyzes the presynthesis output to determine the build result.
     """
@@ -368,11 +370,19 @@ class AESTuner(MeasurementInterface):
     if re.search(r'Presynthesis has completed successfully.', lines) == None:
       # We don't know this error.  It may be worth adding to this script.
       return Result(state = 'PE?', msg = 'Unknown presynthesis error')
+
+    # Retrieve the time that presynthesis took.
+    match = re.search(r'Runtime: (\S+) s', lines)
+    if match != None:
+      time = float(match.group(1))
+    else:
+      return Result(state = 'PE5', msg = 'Cannot find presynthesis time.')
+
     # Presynthesis was successful.
-    return Result(state = 'POK', msg = 'Presynthesis was successful.')
+    return Result(state = 'POK', msg = 'Presynthesis was successful.', presynth_time = time)
 
 
-  def do_synth(self, result_id, output_dir, presynth_output_dir, synth_output_dir):
+  def do_synth(self, result_id, output_dir, presynth_output_dir, synth_output_dir, result):
     """
     Performs RTL synthesis of one configuration.
     """
@@ -406,8 +416,8 @@ class AESTuner(MeasurementInterface):
         self.create_synth_scripts(presynth_output_dir, bash_template, bash_script, tcl_template, tcl_script)
 
         # Run synthesis on the IC grid.
-        result = self.run_on_grid(result_id, synth_output_dir, bash_script, qsub_output_log, qsub_error_log,
-                                  build_output_log, build_error_log, SYNTH_JOB, MAX_JOBS, SYNTH_MAX_MEM_USAGE)
+        self.run_on_grid(result_id, synth_output_dir, bash_script, qsub_output_log, qsub_error_log,
+                         build_output_log, build_error_log, SYNTH_JOB, MAX_JOBS, SYNTH_MAX_MEM_USAGE)
       else:
         # Copy the prebuilt results instead of performing synthesis.
         shutil.copytree(tuner_root + '/' + PREBUILT_SYNTH_DIR, synth_output_dir)
@@ -463,34 +473,42 @@ class AESTuner(MeasurementInterface):
       with open(qsub_error_log, 'r') as log_file:
         lines = log_file.read()
     except:
-      return Result(state = 'SE0', msg = 'Cannot find synthesis qsub error log.')
+      return self.update_result(result, state = 'SE0', msg = 'Cannot find synthesis qsub error log.')
 
     # Throw a keyboard exception if the job was terminated by a keyboard interrupt.
     if re.search(r'Interrupted!', lines) != None:
       raise KeyboardException
     # Check if the temporary directory could be created.  The generated bash script can throw this error.
     if re.search(r'Cannot create temporary directory.', lines) != None:
-      return Result(state = 'SE1', msg = 'Cannot create temporary directory for synthesis.')
+      return self.update_result(result, state = 'SE1', msg = 'Cannot create temporary directory for synthesis.')
 
     # Read the entire standard output log of the synthesis.
     try:
       with open(build_output_log, 'r') as log_file:
         lines = log_file.read()
     except:
-      return Result(state = 'SE2', msg = 'Cannot find synthesis output log.')
+      return self.update_result(result, state = 'SE2', msg = 'Cannot find synthesis output log.')
 
     # Check if synthesis timed out.  The generated bash script can throw this error.
     if re.search(r'Synthesis timed out.', lines) != None:
-      return Result(state = 'STO', msg = 'Synthesis timed out.')
+      return self.update_result(result, state = 'STO', msg = 'Synthesis timed out.')
     # We haven't encountered a known error.  Check whether everything went well.
     if re.search(r'Synthesis has completed successfully.', lines) == None:
       # We don't know this error.  It may be worth adding to this script.
-      return Result(state = 'SE?', msg = 'Unknown synthesis error')
+      return self.update_result(result, state = 'SE?', msg = 'Unknown synthesis error')
+
+    # Retrieve the time that synthesis took.
+    match = re.search(r'Runtime: (\S+) s', lines)
+    if match != None:
+      time = float(match.group(1))
+    else:
+      self.update_result(result, state = 'SE3', msg = 'Cannot find synthesis time.')
+
     # Synthesis was successful.
-    return Result(state = 'SOK', msg = 'Synthesis was successful.')
+    return self.update_result(result, state = 'SOK', msg = 'Synthesis was successful.', synth_time = time)
 
 
-  def do_impl(self, result_id, output_dir, synth_output_dir):
+  def do_impl(self, result_id, output_dir, synth_output_dir, result):
     """
     Performs implementation step on one configuration.
     """
@@ -525,8 +543,8 @@ class AESTuner(MeasurementInterface):
         self.create_impl_scripts(synth_output_dir, bash_template, bash_script, tcl_template, tcl_script)
 
         # Run implementation on the IC grid.
-        result = self.run_on_grid(result_id, impl_output_dir, bash_script, qsub_output_log, qsub_error_log,
-                                  build_output_log, build_error_log, IMPL_JOB, MAX_THREADS, IMPL_MAX_MEM_USAGE)
+        self.run_on_grid(result_id, impl_output_dir, bash_script, qsub_output_log, qsub_error_log,
+                         build_output_log, build_error_log, IMPL_JOB, MAX_THREADS, IMPL_MAX_MEM_USAGE)
       else:
         # Copy the prebuilt results instead of performing implementation.
         shutil.copytree(tuner_root + '/' + PREBUILT_IMPL_DIR, impl_output_dir)
@@ -584,40 +602,48 @@ class AESTuner(MeasurementInterface):
       with open(qsub_error_log, 'r') as log_file:
         lines = log_file.read()
     except:
-      return Result(state = 'IE0', msg = 'Cannot find implementation qsub error log.')
+      return self.update_result(result, state = 'IE0', msg = 'Cannot find implementation qsub error log.')
 
     # Throw a keyboard exception if the job was terminated by a keyboard interrupt.
     if re.search(r'Interrupted!', lines) != None:
       raise KeyboardException
     # Check if the temporary directory could be created.  The generated bash script can throw this error.
     if re.search(r'Cannot create temporary directory.', lines) != None:
-      return Result(state = 'IE1', msg = 'Cannot create temporary directory for implementation.')
+      return self.update_result(result, state = 'IE1', msg = 'Cannot create temporary directory for implementation.')
 
     # Read the entire standard output log of the implementation.
     try:
       with open(build_output_log, 'r') as log_file:
         lines = log_file.read()
     except:
-      return Result(state = 'IE2', msg = 'Cannot find implementation output log.')
+      return self.update_result(result, state = 'IE2', msg = 'Cannot find implementation output log.')
 
     # Check if implementation timed out.  The generated bash script can throw this error.
     if re.search(r'Implementation timed out.', lines) != None:
-      return Result(state = 'ITO', msg = 'Implementation timed out.')
+      return self.update_result(result, state = 'ITO', msg = 'Implementation timed out.')
     # Check for known placer errors.
     if re.search(r'\[Place 30-640\]', lines) != None:
-      return Result(state = 'IE3', msg = 'Too many BRAMs')
+      return self.update_result(result, state = 'IE3', msg = 'Too many BRAMs')
     # Check for known design rule checker errors.
     if re.search(r'\[DRC PDCY-4\]', lines) != None:
-      return Result(state = 'IE4', msg = 'Unconnected carry input')
+      return self.update_result(result, state = 'IE4', msg = 'Unconnected carry input')
     # Check if the timing was met.
     if re.search(r'\[Timing 38-282\]', lines) != None:
-      return Result(state = 'TIMING', msg = 'Timing constraints not met')
+      return self.update_result(result, state = 'TIMING', msg = 'Timing constraints not met')
     # We haven't encountered a known error.  Check whether everything went well.
     if re.search(r'Implementation has completed successfully.', lines) == None:
       # We don't know this error.  It may be worth adding to this script.
-      return Result(state = 'IE?', msg = 'Unknown implementation error')
+      return self.update_result(result, state = 'IE?', msg = 'Unknown implementation error')
+
+    # Retrieve the time that implementation took.
+    match = re.search(r'Runtime: (\S+) s', lines)
+    if match != None:
+      time = float(match.group(1))
+    else:
+      return self.update_result(result, state = 'IE5', msg = 'Cannot find implementation time.')
+
     # Implementation was successful.
-    return Result(state = 'IOK', msg = 'Implementation was successful.')
+    return self.update_result(result, state = 'IOK', msg = 'Implementation was successful.', impl_time = time)
 
 
   def run_precompiled(self, desired_result, inp, limit, compile_result, result_id):
@@ -651,7 +677,7 @@ class AESTuner(MeasurementInterface):
     result = self.run_on_fpga(bash_script, run_output_log, run_error_log)
 
     # Analyze the run output to determine whether it was successful.
-    return self.get_run_result(result_id, result, serial_log)
+    return self.get_run_result(result_id, result, serial_log, compile_result)
 
 
   def create_run_scripts(self, output_dir, impl_output_dir, tcl_template, tcl_script, bash_template, bash_script,
@@ -702,24 +728,24 @@ class AESTuner(MeasurementInterface):
     return result
 
 
-  def get_run_result(self, result_id, result, serial_log):
+  def get_run_result(self, result_id, run_result, serial_log, compile_result):
     """
     Analyzes the output of the FPGA to determine whether a run was successful.
     """
 
     # Check whether the run timed out.
-    if result['returncode'] != 0 and result['timeout']:
+    if run_result['returncode'] != 0 and run_result['timeout']:
       log.error('Run timeout on configuration %d', result_id)
-      return Result(state='RTO', time = float('inf'))
+      return self.update_result(compile_result, state = 'RTO', msg = "Run timed out.")
 
     # Read the entire contents of the serial port log.
     with open(serial_log, 'r') as output_file:
       lines = output_file.read()
 
     # Check whether the application reported that it completed successfully.
-    if result['returncode'] != 0 or re.search(r'TEST PASSED', lines) == None:
+    if run_result['returncode'] != 0 or re.search(r'TEST PASSED', lines) == None:
       log.error('Run error on configuration %d', result_id)
-      return Result(state = 'RE1', time = float('inf'))
+      return self.update_result(compile_result, state = 'RE1', msg = "Test failed.")
 
     # Retrieve the number of cycles that the run took.
     match = re.search(r'The hardware test took (\S+) cycles.', lines)
@@ -727,11 +753,20 @@ class AESTuner(MeasurementInterface):
       cycles = int(match.group(1))
     else:
       log.error('Serial port produced invalid output for configuration %d.', result_id)
-      return Result(state = 'RE2', time = float('inf'))
+      return self.update_result(compile_result, state = 'RE2', msg = "Cannot find test duration in serial port log.")
 
     # The application ran successfully on the FPGA.
     log.info("Run of configuration %d was successful...", result_id)
-    return Result(state = 'OK', time = cycles)
+    return self.update_result(compile_result, state = 'OK', msg = "Run was successful.", run_time = cycles)
+
+
+  def update_result(self, result, **keywords):
+    """
+    Adds or changes new information in a Result object.
+    """
+    for key, value in keywords.items():
+      setattr(result, key, value)
+    return result
 
     
   def fill_in_template(self, template_filename, output_filename, **replacements):
@@ -762,6 +797,7 @@ class AESTuner(MeasurementInterface):
 
     # Search for a line that assigns a value to EXE_FILE, which is the main target.
     return re.search(r'^EXE_FILE\s*:=\s*(\S+)', data, re.MULTILINE).group(1)
+
 
   def check_fpga_host(self):
     """
