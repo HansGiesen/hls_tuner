@@ -48,25 +48,25 @@ start_step init_design
 set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
-  set_param general.maxThreads 1
+  set_param general.maxThreads 4
   create_project -in_memory -part xc7z020clg400-1
   set_property design_mode GateLvl [current_fileset]
   set_param project.singleFileAddWarning.threshold 0
-  set_property webtalk.parent_dir /scratch/local/tmp.q0OTExnNEs/_sds/p0/ipi/pynq.cache/wt [current_project]
-  set_property parent.project_path /scratch/local/tmp.q0OTExnNEs/_sds/p0/ipi/pynq.xpr [current_project]
+  set_property webtalk.parent_dir /scratch/local/tmp.RRQwkCDDMw/_sds/p0/ipi/pynq.cache/wt [current_project]
+  set_property parent.project_path /scratch/local/tmp.RRQwkCDDMw/_sds/p0/ipi/pynq.xpr [current_project]
   set_property ip_repo_paths {
-  /scratch/local/tmp.q0OTExnNEs/_sds/iprepo/repo
+  /scratch/local/tmp.RRQwkCDDMw/_sds/iprepo/repo
   /mnt/icgridio2/safe/SDSoC/SDx/2017.1/data/ip/xilinx
   /mnt/icgridio2/safe/SDSoC/SDx/2017.1/data/cache/xilinx
 } [current_project]
-  set_property ip_output_repo /scratch/local/tmp.q0OTExnNEs/_sds/p0/ipi/pynq.cache/ip [current_project]
+  set_property ip_output_repo /scratch/local/tmp.RRQwkCDDMw/_sds/p0/ipi/pynq.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
   set_property XPM_LIBRARIES {XPM_CDC XPM_FIFO XPM_MEMORY} [current_project]
-  add_files -quiet /scratch/local/tmp.q0OTExnNEs/_sds/p0/ipi/pynq.runs/synth_1/pynq_wrapper.dcp
+  add_files -quiet /scratch/local/tmp.RRQwkCDDMw/_sds/p0/ipi/pynq.runs/synth_1/pynq_wrapper.dcp
   set_msg_config -source 4 -id {BD 41-1661} -suppress
   set_param project.isImplRun true
-  add_files /scratch/local/tmp.q0OTExnNEs/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/pynq.bd
-  set_property is_locked true [get_files /scratch/local/tmp.q0OTExnNEs/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/pynq.bd]
+  add_files /scratch/local/tmp.RRQwkCDDMw/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/pynq.bd
+  set_property is_locked true [get_files /scratch/local/tmp.RRQwkCDDMw/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/pynq.bd]
   set_param project.isImplRun false
   set_param project.isImplRun true
   link_design -top pynq_wrapper -part xc7z020clg400-1

@@ -1,11 +1,11 @@
 // Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2017.1_sdx (lin64) Build 1915620 Thu Jun 22 17:54:59 MDT 2017
-// Date        : Wed Oct 31 14:49:51 2018
-// Host        : icgrid46 running 64-bit openSUSE Leap 42.3
+// Date        : Mon Nov 19 14:21:26 2018
+// Host        : icgrid48 running 64-bit openSUSE Leap 42.3
 // Command     : write_verilog -force -mode synth_stub -rename_top pynq_s02_regslice_0 -prefix
-//               pynq_s02_regslice_0_ pynq_s00_regslice_2_stub.v
-// Design      : pynq_s00_regslice_2
+//               pynq_s02_regslice_0_ pynq_s01_regslice_0_stub.v
+// Design      : pynq_s01_regslice_0
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7z020clg400-1
 // --------------------------------------------------------------------------------

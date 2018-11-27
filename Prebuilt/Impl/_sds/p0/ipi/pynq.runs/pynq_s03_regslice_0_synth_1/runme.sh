@@ -20,7 +20,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.runs/pynq_s03_regslice_0_synth_1'
+HD_PWD='/scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.runs/pynq_s03_regslice_0_synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

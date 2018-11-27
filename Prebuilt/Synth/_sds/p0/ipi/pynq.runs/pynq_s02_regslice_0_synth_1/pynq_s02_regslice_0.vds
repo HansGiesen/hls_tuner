@@ -2,16 +2,16 @@
 # Vivado v2017.1_sdx (64-bit)
 # SW Build 1915620 on Thu Jun 22 17:54:59 MDT 2017
 # IP Build 1908669 on Thu Jun 22 19:20:41 MDT 2017
-# Start of session at: Wed Oct 31 14:49:54 2018
-# Process ID: 7342
-# Current directory: /scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.runs/pynq_s02_regslice_0_synth_1
+# Start of session at: Mon Nov 19 14:21:30 2018
+# Process ID: 13207
+# Current directory: /scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.runs/pynq_s02_regslice_0_synth_1
 # Command line: vivado -log pynq_s02_regslice_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source pynq_s02_regslice_0.tcl
-# Log file: /scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.runs/pynq_s02_regslice_0_synth_1/pynq_s02_regslice_0.vds
-# Journal file: /scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.runs/pynq_s02_regslice_0_synth_1/vivado.jou
+# Log file: /scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.runs/pynq_s02_regslice_0_synth_1/pynq_s02_regslice_0.vds
+# Journal file: /scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.runs/pynq_s02_regslice_0_synth_1/vivado.jou
 #-----------------------------------------------------------
 INFO: [Common 17-1460] Use of init.tcl in /scratch/safe/SDSoC/SDx/2017.1/Vivado/scripts/init.tcl is deprecated. Please use Vivado_init.tcl 
 Sourcing tcl script '/scratch/safe/SDSoC/SDx/2017.1/Vivado/scripts/init.tcl'
 16 Beta devices matching pattern found, 16 enabled.
 Loaded SDSoC Platform Tcl Library
 source pynq_s02_regslice_0.tcl -notrace
-INFO: [IP_Flow 19-4838] Using cached IP synthesis design for IP pynq_s02_regslice_0, cache-ID = 96dc5c0f01f0d715.
+INFO: [IP_Flow 19-4838] Using cached IP synthesis design for IP pynq_s02_regslice_0, cache-ID = 485422bb0526f8b4.

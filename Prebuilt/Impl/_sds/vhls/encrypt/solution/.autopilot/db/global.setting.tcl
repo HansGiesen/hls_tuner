@@ -1,6 +1,6 @@
 
 set TopModule "encrypt"
-set ClockPeriod "7.000001"
+set ClockPeriod "10.000000"
 set ClockList {ap_clk}
 set multiClockList {}
 set PortClockMap {}
@@ -42,8 +42,8 @@ set SCTraceFileFormat "vcd"
 set SCTraceOption "all"
 set TargetInfo "xc7z020:clg400:-1"
 set SourceFiles {sc {} c /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c}
-set SourceFlags {sc {} c {{-I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/common -Wall -O3 -D__SDSCC__ -m32 -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/target/aarch32-none/include -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources -D__SDSVHLS__ -D__SDSVHLS_SYNTHESIS__ -I/scratch/local/tmp.7aow7oM1KP -w}}}
-set DirectiveFile {/scratch/local/tmp.7aow7oM1KP/_sds/vhls/encrypt/solution/solution.directive}
+set SourceFlags {sc {} c {{-I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/common -Wall -O3 -DPIPELINE_II_SUB=11 -DUNROLL_FACTOR_EXP1=2 -DUNROLL_FACTOR_EXP2=1 -DUNROLL_FACTOR_ECB1=32 -DUNROLL_FACTOR_ECB3=7 -DUNROLL_FACTOR_ECB2=4 -DPIPELINE_II_ADDKEY=8 -DPIPELINE_II_ECB1=16 -DPIPELINE_II_ECB2=6 -DPIPELINE_II_ECB3=12 -DPIPELINE_II_EXP1=1 -DPIPELINE_II_EXP2=2 -DPIPELINE_EXP2 -DPIPELINE_EXP1 -DUNROLL_FACTOR_ADDKEY=9 -DUNROLL_FACTOR_SUB=14 -DUNROLL_FACTOR_MIX=4 -DPIPELINE_II_CPKEY=6 -DPIPELINE_II_MIX=1 -DPIPELINE_ECB2 -DUNROLL_FACTOR_CPKEY=4 -DPIPELINE_MIX -D__SDSCC__ -m32 -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/target/aarch32-none/include -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources -D__SDSVHLS__ -D__SDSVHLS_SYNTHESIS__ -I/scratch/local/tmp.soPlafqy6w -w}}}
+set DirectiveFile {/scratch/local/tmp.soPlafqy6w/_sds/vhls/encrypt/solution/solution.directive}
 set TBFiles {bc {} c {} sc {} cas {} vhdl {} verilog {}}
 set SpecLanguage "C"
 set TVInFiles {bc {} c {} sc {} cas {} vhdl {} verilog {}}

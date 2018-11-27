@@ -1,8 +1,8 @@
 Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2017.1_sdx (lin64) Build 1915620 Thu Jun 22 17:54:59 MDT 2017
-| Date         : Wed Oct 31 15:37:09 2018
-| Host         : icgrid47 running 64-bit openSUSE Leap 42.3
+| Date         : Mon Nov 19 14:38:00 2018
+| Host         : icgrid46 running 64-bit openSUSE Leap 42.3
 | Command      : report_methodology -file pynq_wrapper_methodology_drc_routed.rpt -rpx pynq_wrapper_methodology_drc_routed.rpx
 | Design       : pynq_wrapper
 | Device       : xc7z020clg400-1
@@ -35,17 +35,17 @@ Table of Contents
 -----------------
 PDRC-190#1 Warning
 Suboptimally placed synchronized register chain  
-The FDPE cell pynq_i/axi_ic_processing_system7_0_S_AXI_ACP/m00_couplers/m00_data_fifo/inst/gen_fifo.fifo_gen_inst/inst_fifo_gen/gaxi_full_lite.gread_ch.grdch2.axi_rdch/grf.rf/rstblk/ngwrdrst.grst.g7serrst.rst_wr_reg2_reg in site SLICE_X32Y106 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell pynq_i/axi_ic_processing_system7_0_S_AXI_ACP/m00_couplers/m00_data_fifo/inst/gen_fifo.fifo_gen_inst/inst_fifo_gen/gaxi_full_lite.gread_ch.grdch2.axi_rdch/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gsckt_wrst.garst_sync[1].arst_sync_inst/Q_reg_reg[0] is not placed in the same (SLICE) site.
+The FDPE cell pynq_i/axi_ic_processing_system7_0_S_AXI_ACP/m00_couplers/m00_data_fifo/inst/gen_fifo.fifo_gen_inst/inst_fifo_gen/gaxi_full_lite.gread_ch.grdch2.axi_rdch/grf.rf/rstblk/ngwrdrst.grst.g7serrst.rst_wr_reg2_reg in site SLICE_X39Y113 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell pynq_i/axi_ic_processing_system7_0_S_AXI_ACP/m00_couplers/m00_data_fifo/inst/gen_fifo.fifo_gen_inst/inst_fifo_gen/gaxi_full_lite.gread_ch.grdch2.axi_rdch/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gsckt_wrst.garst_sync[1].arst_sync_inst/Q_reg_reg[0] is not placed in the same (SLICE) site.
 Related violations: <none>
 
 PDRC-190#2 Warning
 Suboptimally placed synchronized register chain  
-The FDPE cell pynq_i/axi_ic_processing_system7_0_S_AXI_ACP/m00_couplers/m00_data_fifo/inst/gen_fifo.fifo_gen_inst/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwdch2.axi_wdch/grf.rf/rstblk/ngwrdrst.grst.g7serrst.rst_wr_reg2_reg in site SLICE_X32Y64 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell pynq_i/axi_ic_processing_system7_0_S_AXI_ACP/m00_couplers/m00_data_fifo/inst/gen_fifo.fifo_gen_inst/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwdch2.axi_wdch/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gsckt_wrst.garst_sync[1].arst_sync_inst/Q_reg_reg[0] is not placed in the same (SLICE) site.
+The FDPE cell pynq_i/axi_ic_processing_system7_0_S_AXI_ACP/m00_couplers/m00_data_fifo/inst/gen_fifo.fifo_gen_inst/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwdch2.axi_wdch/grf.rf/rstblk/ngwrdrst.grst.g7serrst.rst_wr_reg2_reg in site SLICE_X26Y70 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell pynq_i/axi_ic_processing_system7_0_S_AXI_ACP/m00_couplers/m00_data_fifo/inst/gen_fifo.fifo_gen_inst/inst_fifo_gen/gaxi_full_lite.gwrite_ch.gwdch2.axi_wdch/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gsckt_wrst.garst_sync[1].arst_sync_inst/Q_reg_reg[0] is not placed in the same (SLICE) site.
 Related violations: <none>
 
 PDRC-190#3 Warning
 Suboptimally placed synchronized register chain  
-The FDPE cell pynq_i/axi_ic_processing_system7_0_S_AXI_ACP/s03_couplers/s03_data_fifo/inst/gen_fifo.fifo_gen_inst/inst_fifo_gen/gaxi_full_lite.gread_ch.grdch2.axi_rdch/grf.rf/rstblk/ngwrdrst.grst.g7serrst.rst_wr_reg2_reg in site SLICE_X44Y123 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell pynq_i/axi_ic_processing_system7_0_S_AXI_ACP/s03_couplers/s03_data_fifo/inst/gen_fifo.fifo_gen_inst/inst_fifo_gen/gaxi_full_lite.gread_ch.grdch2.axi_rdch/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gsckt_wrst.garst_sync[1].arst_sync_inst/Q_reg_reg[0] is not placed in the same (SLICE) site.
+The FDPE cell pynq_i/axi_ic_processing_system7_0_S_AXI_ACP/s03_couplers/s03_data_fifo/inst/gen_fifo.fifo_gen_inst/inst_fifo_gen/gaxi_full_lite.gread_ch.grdch2.axi_rdch/grf.rf/rstblk/ngwrdrst.grst.g7serrst.rst_wr_reg2_reg in site SLICE_X51Y131 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell pynq_i/axi_ic_processing_system7_0_S_AXI_ACP/s03_couplers/s03_data_fifo/inst/gen_fifo.fifo_gen_inst/inst_fifo_gen/gaxi_full_lite.gread_ch.grdch2.axi_rdch/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gsckt_wrst.garst_sync[1].arst_sync_inst/Q_reg_reg[0] is not placed in the same (SLICE) site.
 Related violations: <none>
 
 TIMING-20#1 Warning

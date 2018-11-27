@@ -164,7 +164,7 @@
     <xd:busInterface xd:name="S_AXIS_BRAM_0" xd:instanceRef="encrypt_1_if"/>
   </xd:connection>
     <xd:connection>
-    <xd:port xd:name="processing_system7_0_FCLK_CLK1" xd:instanceRef="pynq"/>
+    <xd:port xd:name="processing_system7_0_FCLK_CLK2" xd:instanceRef="pynq"/>
     <xd:port xd:name="s_axi_lite_aclk" xd:instanceRef="dm_0"/>
     <xd:port xd:name="m_axi_mm2s_aclk" xd:instanceRef="dm_0"/>
     <xd:port xd:name="processing_system7_0_M_AXI_GP0_ACLK" xd:instanceRef="pynq"/>
@@ -188,7 +188,7 @@
     <xd:port xd:name="processing_system7_0_S_AXI_ACP_ACLK" xd:instanceRef="pynq"/>
   </xd:connection>
     <xd:connection>
-    <xd:port xd:name="proc_sys_reset_1_interconnect_aresetn" xd:instanceRef="pynq"/>
+    <xd:port xd:name="proc_sys_reset_2_interconnect_aresetn" xd:instanceRef="pynq"/>
     <xd:port xd:name="S00_ARESETN" xd:instanceRef="axi_ic_processing_system7_0_M_AXI_GP0"/>
     <xd:port xd:name="M00_ARESETN" xd:instanceRef="axi_ic_processing_system7_0_M_AXI_GP0"/>
     <xd:port xd:name="M01_ARESETN" xd:instanceRef="axi_ic_processing_system7_0_M_AXI_GP0"/>
@@ -204,7 +204,7 @@
     <xd:port xd:name="ARESETN" xd:instanceRef="axi_ic_processing_system7_0_S_AXI_ACP"/>
   </xd:connection>
     <xd:connection>
-    <xd:port xd:name="proc_sys_reset_1_peripheral_aresetn" xd:instanceRef="pynq"/>
+    <xd:port xd:name="proc_sys_reset_2_peripheral_aresetn" xd:instanceRef="pynq"/>
     <xd:port xd:name="axi_resetn" xd:instanceRef="dm_0"/>
     <xd:port xd:name="mm2s_prmry_resetn_out_n" xd:instanceRef="dm_0"/>
     <xd:port xd:name="s_axi_aresetn" xd:instanceRef="encrypt_1_if"/>

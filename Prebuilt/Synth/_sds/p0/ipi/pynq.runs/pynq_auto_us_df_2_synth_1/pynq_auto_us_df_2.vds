@@ -2,74 +2,74 @@
 # Vivado v2017.1_sdx (64-bit)
 # SW Build 1915620 on Thu Jun 22 17:54:59 MDT 2017
 # IP Build 1908669 on Thu Jun 22 19:20:41 MDT 2017
-# Start of session at: Wed Oct 31 14:49:11 2018
-# Process ID: 6751
-# Current directory: /scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.runs/pynq_auto_us_df_2_synth_1
+# Start of session at: Mon Nov 19 14:20:44 2018
+# Process ID: 12098
+# Current directory: /scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.runs/pynq_auto_us_df_2_synth_1
 # Command line: vivado -log pynq_auto_us_df_2.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source pynq_auto_us_df_2.tcl
-# Log file: /scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.runs/pynq_auto_us_df_2_synth_1/pynq_auto_us_df_2.vds
-# Journal file: /scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.runs/pynq_auto_us_df_2_synth_1/vivado.jou
+# Log file: /scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.runs/pynq_auto_us_df_2_synth_1/pynq_auto_us_df_2.vds
+# Journal file: /scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.runs/pynq_auto_us_df_2_synth_1/vivado.jou
 #-----------------------------------------------------------
 INFO: [Common 17-1460] Use of init.tcl in /scratch/safe/SDSoC/SDx/2017.1/Vivado/scripts/init.tcl is deprecated. Please use Vivado_init.tcl 
 Sourcing tcl script '/scratch/safe/SDSoC/SDx/2017.1/Vivado/scripts/init.tcl'
 16 Beta devices matching pattern found, 16 enabled.
 Loaded SDSoC Platform Tcl Library
 source pynq_auto_us_df_2.tcl -notrace
-Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1331.707 ; gain = 0.000 ; free physical = 121629 ; free virtual = 142444
-INFO: [Synth 8-638] synthesizing module 'pynq_auto_us_df_2' [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ip/pynq_auto_us_df_2/synth/pynq_auto_us_df_2.v:58]
-INFO: [Synth 8-638] synthesizing module 'axi_dwidth_converter_v2_1_12_top' [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/fef9/hdl/axi_dwidth_converter_v2_1_vlsyn_rfs.v:14450]
-INFO: [Synth 8-638] synthesizing module 'axi_dwidth_converter_v2_1_12_axi_upsizer' [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/fef9/hdl/axi_dwidth_converter_v2_1_vlsyn_rfs.v:7038]
-INFO: [Synth 8-638] synthesizing module 'axi_dwidth_converter_v2_1_12_w_upsizer_pktfifo' [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/fef9/hdl/axi_dwidth_converter_v2_1_vlsyn_rfs.v:8667]
-INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_12_axi_register_slice' [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:791]
-INFO: [Synth 8-638] synthesizing module 'axi_infrastructure_v1_1_0_axi2vector' [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/7e3a/hdl/axi_infrastructure_v1_1_vl_rfs.v:60]
-INFO: [Synth 8-256] done synthesizing module 'axi_infrastructure_v1_1_0_axi2vector' (27#1) [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/7e3a/hdl/axi_infrastructure_v1_1_vl_rfs.v:60]
-INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice' [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
-INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice' (28#1) [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
-INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice__parameterized0' [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
-INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice__parameterized0' (28#1) [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
-INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice__parameterized1' [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
-INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice__parameterized1' (28#1) [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
-INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice__parameterized2' [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
-INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice__parameterized2' (28#1) [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
-INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice__parameterized3' [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
-INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice__parameterized3' (28#1) [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
-INFO: [Synth 8-638] synthesizing module 'axi_infrastructure_v1_1_0_vector2axi' [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/7e3a/hdl/axi_infrastructure_v1_1_vl_rfs.v:474]
-INFO: [Synth 8-256] done synthesizing module 'axi_infrastructure_v1_1_0_vector2axi' (29#1) [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/7e3a/hdl/axi_infrastructure_v1_1_vl_rfs.v:474]
-INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_12_axi_register_slice' (30#1) [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:791]
-INFO: [Synth 8-256] done synthesizing module 'axi_dwidth_converter_v2_1_12_w_upsizer_pktfifo' (31#1) [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/fef9/hdl/axi_dwidth_converter_v2_1_vlsyn_rfs.v:8667]
-INFO: [Synth 8-638] synthesizing module 'axi_dwidth_converter_v2_1_12_a_upsizer' [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/fef9/hdl/axi_dwidth_converter_v2_1_vlsyn_rfs.v:3603]
-INFO: [Synth 8-256] done synthesizing module 'axi_dwidth_converter_v2_1_12_a_upsizer' (32#1) [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/fef9/hdl/axi_dwidth_converter_v2_1_vlsyn_rfs.v:3603]
-INFO: [Synth 8-638] synthesizing module 'axi_dwidth_converter_v2_1_12_r_upsizer_pktfifo' [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/fef9/hdl/axi_dwidth_converter_v2_1_vlsyn_rfs.v:11244]
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1331.707 ; gain = 0.000 ; free physical = 117847 ; free virtual = 138294
+INFO: [Synth 8-638] synthesizing module 'pynq_auto_us_df_2' [/scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ip/pynq_auto_us_df_2/synth/pynq_auto_us_df_2.v:58]
+INFO: [Synth 8-638] synthesizing module 'axi_dwidth_converter_v2_1_12_top' [/scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/fef9/hdl/axi_dwidth_converter_v2_1_vlsyn_rfs.v:14450]
+INFO: [Synth 8-638] synthesizing module 'axi_dwidth_converter_v2_1_12_axi_upsizer' [/scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/fef9/hdl/axi_dwidth_converter_v2_1_vlsyn_rfs.v:7038]
+INFO: [Synth 8-638] synthesizing module 'axi_dwidth_converter_v2_1_12_w_upsizer_pktfifo' [/scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/fef9/hdl/axi_dwidth_converter_v2_1_vlsyn_rfs.v:8667]
+INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_12_axi_register_slice' [/scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:791]
+INFO: [Synth 8-638] synthesizing module 'axi_infrastructure_v1_1_0_axi2vector' [/scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/7e3a/hdl/axi_infrastructure_v1_1_vl_rfs.v:60]
+INFO: [Synth 8-256] done synthesizing module 'axi_infrastructure_v1_1_0_axi2vector' (27#1) [/scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/7e3a/hdl/axi_infrastructure_v1_1_vl_rfs.v:60]
+INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice' [/scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice' (28#1) [/scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice__parameterized0' [/scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice__parameterized0' (28#1) [/scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice__parameterized1' [/scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice__parameterized1' (28#1) [/scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice__parameterized2' [/scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice__parameterized2' (28#1) [/scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice__parameterized3' [/scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice__parameterized3' (28#1) [/scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-638] synthesizing module 'axi_infrastructure_v1_1_0_vector2axi' [/scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/7e3a/hdl/axi_infrastructure_v1_1_vl_rfs.v:474]
+INFO: [Synth 8-256] done synthesizing module 'axi_infrastructure_v1_1_0_vector2axi' (29#1) [/scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/7e3a/hdl/axi_infrastructure_v1_1_vl_rfs.v:474]
+INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_12_axi_register_slice' (30#1) [/scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:791]
+INFO: [Synth 8-256] done synthesizing module 'axi_dwidth_converter_v2_1_12_w_upsizer_pktfifo' (31#1) [/scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/fef9/hdl/axi_dwidth_converter_v2_1_vlsyn_rfs.v:8667]
+INFO: [Synth 8-638] synthesizing module 'axi_dwidth_converter_v2_1_12_a_upsizer' [/scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/fef9/hdl/axi_dwidth_converter_v2_1_vlsyn_rfs.v:3603]
+INFO: [Synth 8-256] done synthesizing module 'axi_dwidth_converter_v2_1_12_a_upsizer' (32#1) [/scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/fef9/hdl/axi_dwidth_converter_v2_1_vlsyn_rfs.v:3603]
+INFO: [Synth 8-638] synthesizing module 'axi_dwidth_converter_v2_1_12_r_upsizer_pktfifo' [/scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/fef9/hdl/axi_dwidth_converter_v2_1_vlsyn_rfs.v:11244]
 INFO: [Synth 8-638] synthesizing module 'RAMB18E1' [/scratch/safe/SDSoC/SDx/2017.1/Vivado/scripts/rt/data/unisim_comp.v:41822]
 INFO: [Synth 8-256] done synthesizing module 'RAMB18E1' (33#1) [/scratch/safe/SDSoC/SDx/2017.1/Vivado/scripts/rt/data/unisim_comp.v:41822]
-INFO: [Synth 8-256] done synthesizing module 'axi_dwidth_converter_v2_1_12_r_upsizer_pktfifo' (34#1) [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/fef9/hdl/axi_dwidth_converter_v2_1_vlsyn_rfs.v:11244]
-INFO: [Synth 8-638] synthesizing module 'axi_dwidth_converter_v2_1_12_a_upsizer__parameterized0' [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/fef9/hdl/axi_dwidth_converter_v2_1_vlsyn_rfs.v:3603]
-INFO: [Synth 8-256] done synthesizing module 'axi_dwidth_converter_v2_1_12_a_upsizer__parameterized0' (34#1) [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/fef9/hdl/axi_dwidth_converter_v2_1_vlsyn_rfs.v:3603]
-INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_12_axi_register_slice__parameterized0' [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:791]
-INFO: [Synth 8-638] synthesizing module 'axi_infrastructure_v1_1_0_axi2vector__parameterized0' [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/7e3a/hdl/axi_infrastructure_v1_1_vl_rfs.v:60]
-INFO: [Synth 8-256] done synthesizing module 'axi_infrastructure_v1_1_0_axi2vector__parameterized0' (34#1) [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/7e3a/hdl/axi_infrastructure_v1_1_vl_rfs.v:60]
-INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice__parameterized4' [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
-INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice__parameterized4' (34#1) [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
-INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice__parameterized5' [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
-INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice__parameterized5' (34#1) [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
-INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice__parameterized6' [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
-INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice__parameterized6' (34#1) [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
-INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice__parameterized7' [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
-INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice__parameterized7' (34#1) [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
-INFO: [Synth 8-638] synthesizing module 'axi_infrastructure_v1_1_0_vector2axi__parameterized0' [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/7e3a/hdl/axi_infrastructure_v1_1_vl_rfs.v:474]
-INFO: [Synth 8-256] done synthesizing module 'axi_infrastructure_v1_1_0_vector2axi__parameterized0' (34#1) [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/7e3a/hdl/axi_infrastructure_v1_1_vl_rfs.v:474]
-INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_12_axi_register_slice__parameterized0' (34#1) [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:791]
-INFO: [Synth 8-256] done synthesizing module 'axi_dwidth_converter_v2_1_12_axi_upsizer' (35#1) [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/fef9/hdl/axi_dwidth_converter_v2_1_vlsyn_rfs.v:7038]
-INFO: [Synth 8-256] done synthesizing module 'axi_dwidth_converter_v2_1_12_top' (36#1) [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/fef9/hdl/axi_dwidth_converter_v2_1_vlsyn_rfs.v:14450]
-INFO: [Synth 8-256] done synthesizing module 'pynq_auto_us_df_2' (37#1) [/scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ip/pynq_auto_us_df_2/synth/pynq_auto_us_df_2.v:58]
-Finished RTL Elaboration : Time (s): cpu = 00:01:34 ; elapsed = 00:01:36 . Memory (MB): peak = 1519.988 ; gain = 188.281 ; free physical = 121237 ; free virtual = 142098
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:01:34 ; elapsed = 00:01:37 . Memory (MB): peak = 1519.988 ; gain = 188.281 ; free physical = 121233 ; free virtual = 142095
+INFO: [Synth 8-256] done synthesizing module 'axi_dwidth_converter_v2_1_12_r_upsizer_pktfifo' (34#1) [/scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/fef9/hdl/axi_dwidth_converter_v2_1_vlsyn_rfs.v:11244]
+INFO: [Synth 8-638] synthesizing module 'axi_dwidth_converter_v2_1_12_a_upsizer__parameterized0' [/scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/fef9/hdl/axi_dwidth_converter_v2_1_vlsyn_rfs.v:3603]
+INFO: [Synth 8-256] done synthesizing module 'axi_dwidth_converter_v2_1_12_a_upsizer__parameterized0' (34#1) [/scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/fef9/hdl/axi_dwidth_converter_v2_1_vlsyn_rfs.v:3603]
+INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_12_axi_register_slice__parameterized0' [/scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:791]
+INFO: [Synth 8-638] synthesizing module 'axi_infrastructure_v1_1_0_axi2vector__parameterized0' [/scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/7e3a/hdl/axi_infrastructure_v1_1_vl_rfs.v:60]
+INFO: [Synth 8-256] done synthesizing module 'axi_infrastructure_v1_1_0_axi2vector__parameterized0' (34#1) [/scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/7e3a/hdl/axi_infrastructure_v1_1_vl_rfs.v:60]
+INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice__parameterized4' [/scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice__parameterized4' (34#1) [/scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice__parameterized5' [/scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice__parameterized5' (34#1) [/scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice__parameterized6' [/scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice__parameterized6' (34#1) [/scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice__parameterized7' [/scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice__parameterized7' (34#1) [/scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-638] synthesizing module 'axi_infrastructure_v1_1_0_vector2axi__parameterized0' [/scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/7e3a/hdl/axi_infrastructure_v1_1_vl_rfs.v:474]
+INFO: [Synth 8-256] done synthesizing module 'axi_infrastructure_v1_1_0_vector2axi__parameterized0' (34#1) [/scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/7e3a/hdl/axi_infrastructure_v1_1_vl_rfs.v:474]
+INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_12_axi_register_slice__parameterized0' (34#1) [/scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:791]
+INFO: [Synth 8-256] done synthesizing module 'axi_dwidth_converter_v2_1_12_axi_upsizer' (35#1) [/scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/fef9/hdl/axi_dwidth_converter_v2_1_vlsyn_rfs.v:7038]
+INFO: [Synth 8-256] done synthesizing module 'axi_dwidth_converter_v2_1_12_top' (36#1) [/scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/fef9/hdl/axi_dwidth_converter_v2_1_vlsyn_rfs.v:14450]
+INFO: [Synth 8-256] done synthesizing module 'pynq_auto_us_df_2' (37#1) [/scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ip/pynq_auto_us_df_2/synth/pynq_auto_us_df_2.v:58]
+Finished RTL Elaboration : Time (s): cpu = 00:01:44 ; elapsed = 00:01:46 . Memory (MB): peak = 1519.988 ; gain = 188.281 ; free physical = 116603 ; free virtual = 137080
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:01:44 ; elapsed = 00:01:46 . Memory (MB): peak = 1519.988 ; gain = 188.281 ; free physical = 116522 ; free virtual = 136999
 INFO: [Device 21-403] Loading part xc7z020clg400-1
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.06 ; elapsed = 00:00:00.06 . Memory (MB): peak = 1684.109 ; gain = 0.125 ; free physical = 120725 ; free virtual = 141586
-Finished Constraint Validation : Time (s): cpu = 00:01:45 ; elapsed = 00:01:48 . Memory (MB): peak = 1684.109 ; gain = 352.402 ; free physical = 121030 ; free virtual = 141892
-Finished Loading Part and Timing Information : Time (s): cpu = 00:01:45 ; elapsed = 00:01:48 . Memory (MB): peak = 1684.109 ; gain = 352.402 ; free physical = 121031 ; free virtual = 141892
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:01:45 ; elapsed = 00:01:48 . Memory (MB): peak = 1684.109 ; gain = 352.402 ; free physical = 121030 ; free virtual = 141892
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:01:47 ; elapsed = 00:01:50 . Memory (MB): peak = 1684.109 ; gain = 352.402 ; free physical = 120920 ; free virtual = 141782
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:50 ; elapsed = 00:01:54 . Memory (MB): peak = 1684.109 ; gain = 352.402 ; free physical = 120804 ; free virtual = 141666
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.10 ; elapsed = 00:00:00.06 . Memory (MB): peak = 1690.121 ; gain = 0.125 ; free physical = 116431 ; free virtual = 136910
+Finished Constraint Validation : Time (s): cpu = 00:01:56 ; elapsed = 00:01:59 . Memory (MB): peak = 1690.121 ; gain = 358.414 ; free physical = 116434 ; free virtual = 136916
+Finished Loading Part and Timing Information : Time (s): cpu = 00:01:56 ; elapsed = 00:01:59 . Memory (MB): peak = 1690.121 ; gain = 358.414 ; free physical = 116434 ; free virtual = 136915
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:01:56 ; elapsed = 00:01:59 . Memory (MB): peak = 1690.121 ; gain = 358.414 ; free physical = 116434 ; free virtual = 136916
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:01:58 ; elapsed = 00:02:01 . Memory (MB): peak = 1690.121 ; gain = 358.414 ; free physical = 116699 ; free virtual = 137184
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:02:02 ; elapsed = 00:02:06 . Memory (MB): peak = 1690.121 ; gain = 358.414 ; free physical = 116281 ; free virtual = 136765
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
 ---------------------------------------------------------------------------------
@@ -89,15 +89,15 @@ Note: The table above is a preliminary report that shows the Distributed RAMs at
 ---------------------------------------------------------------------------------
 Finished ROM, RAM, DSP and Shift Register Reporting
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:57 ; elapsed = 00:02:01 . Memory (MB): peak = 1684.109 ; gain = 352.402 ; free physical = 120487 ; free virtual = 141349
-Finished Timing Optimization : Time (s): cpu = 00:02:00 ; elapsed = 00:02:04 . Memory (MB): peak = 1716.570 ; gain = 384.863 ; free physical = 120409 ; free virtual = 141271
-Finished Technology Mapping : Time (s): cpu = 00:02:00 ; elapsed = 00:02:05 . Memory (MB): peak = 1732.586 ; gain = 400.879 ; free physical = 120394 ; free virtual = 141256
-Finished IO Insertion : Time (s): cpu = 00:02:01 ; elapsed = 00:02:05 . Memory (MB): peak = 1732.586 ; gain = 400.879 ; free physical = 120437 ; free virtual = 141299
-Finished Renaming Generated Instances : Time (s): cpu = 00:02:01 ; elapsed = 00:02:05 . Memory (MB): peak = 1732.586 ; gain = 400.879 ; free physical = 120438 ; free virtual = 141300
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:02:01 ; elapsed = 00:02:06 . Memory (MB): peak = 1732.586 ; gain = 400.879 ; free physical = 120436 ; free virtual = 141298
-Finished Renaming Generated Ports : Time (s): cpu = 00:02:01 ; elapsed = 00:02:06 . Memory (MB): peak = 1732.586 ; gain = 400.879 ; free physical = 120436 ; free virtual = 141298
-Finished Handling Custom Attributes : Time (s): cpu = 00:02:01 ; elapsed = 00:02:06 . Memory (MB): peak = 1732.586 ; gain = 400.879 ; free physical = 120434 ; free virtual = 141296
-Finished Renaming Generated Nets : Time (s): cpu = 00:02:01 ; elapsed = 00:02:06 . Memory (MB): peak = 1732.586 ; gain = 400.879 ; free physical = 120434 ; free virtual = 141296
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:02:10 ; elapsed = 00:02:14 . Memory (MB): peak = 1690.121 ; gain = 358.414 ; free physical = 115552 ; free virtual = 136038
+Finished Timing Optimization : Time (s): cpu = 00:02:13 ; elapsed = 00:02:17 . Memory (MB): peak = 1723.582 ; gain = 391.875 ; free physical = 115181 ; free virtual = 135666
+Finished Technology Mapping : Time (s): cpu = 00:02:14 ; elapsed = 00:02:18 . Memory (MB): peak = 1741.598 ; gain = 409.891 ; free physical = 115050 ; free virtual = 135537
+Finished IO Insertion : Time (s): cpu = 00:02:14 ; elapsed = 00:02:18 . Memory (MB): peak = 1741.598 ; gain = 409.891 ; free physical = 115037 ; free virtual = 135523
+Finished Renaming Generated Instances : Time (s): cpu = 00:02:14 ; elapsed = 00:02:18 . Memory (MB): peak = 1741.598 ; gain = 409.891 ; free physical = 115071 ; free virtual = 135557
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:02:14 ; elapsed = 00:02:19 . Memory (MB): peak = 1741.598 ; gain = 409.891 ; free physical = 115033 ; free virtual = 135519
+Finished Renaming Generated Ports : Time (s): cpu = 00:02:14 ; elapsed = 00:02:19 . Memory (MB): peak = 1741.598 ; gain = 409.891 ; free physical = 115031 ; free virtual = 135517
+Finished Handling Custom Attributes : Time (s): cpu = 00:02:14 ; elapsed = 00:02:19 . Memory (MB): peak = 1741.598 ; gain = 409.891 ; free physical = 115019 ; free virtual = 135505
+Finished Renaming Generated Nets : Time (s): cpu = 00:02:14 ; elapsed = 00:02:19 . Memory (MB): peak = 1741.598 ; gain = 409.891 ; free physical = 115016 ; free virtual = 135502
 
 Report Cell Usage: 
 +------+---------+------+
@@ -121,5 +121,5 @@ Report Cell Usage:
 |16    |FDRE     |   750|
 |17    |FDSE     |    23|
 +------+---------+------+
-Finished Writing Synthesis Report : Time (s): cpu = 00:02:01 ; elapsed = 00:02:06 . Memory (MB): peak = 1732.586 ; gain = 400.879 ; free physical = 120434 ; free virtual = 141296
-synth_design: Time (s): cpu = 00:02:03 ; elapsed = 00:02:08 . Memory (MB): peak = 1732.711 ; gain = 401.004 ; free physical = 120401 ; free virtual = 141263
+Finished Writing Synthesis Report : Time (s): cpu = 00:02:14 ; elapsed = 00:02:19 . Memory (MB): peak = 1741.598 ; gain = 409.891 ; free physical = 115017 ; free virtual = 135503
+synth_design: Time (s): cpu = 00:02:17 ; elapsed = 00:02:21 . Memory (MB): peak = 1741.723 ; gain = 410.016 ; free physical = 115646 ; free virtual = 136132

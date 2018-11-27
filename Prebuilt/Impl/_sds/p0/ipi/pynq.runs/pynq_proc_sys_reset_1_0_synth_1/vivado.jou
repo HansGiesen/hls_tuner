@@ -2,11 +2,11 @@
 # Vivado v2017.1_sdx (64-bit)
 # SW Build 1915620 on Thu Jun 22 17:54:59 MDT 2017
 # IP Build 1908669 on Thu Jun 22 19:20:41 MDT 2017
-# Start of session at: Wed Oct 31 14:56:28 2018
-# Process ID: 11760
-# Current directory: /scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.runs/pynq_proc_sys_reset_1_0_synth_1
+# Start of session at: Mon Nov 19 14:28:52 2018
+# Process ID: 29352
+# Current directory: /scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.runs/pynq_proc_sys_reset_1_0_synth_1
 # Command line: vivado -log pynq_proc_sys_reset_1_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source pynq_proc_sys_reset_1_0.tcl
-# Log file: /scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.runs/pynq_proc_sys_reset_1_0_synth_1/pynq_proc_sys_reset_1_0.vds
-# Journal file: /scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.runs/pynq_proc_sys_reset_1_0_synth_1/vivado.jou
+# Log file: /scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.runs/pynq_proc_sys_reset_1_0_synth_1/pynq_proc_sys_reset_1_0.vds
+# Journal file: /scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.runs/pynq_proc_sys_reset_1_0_synth_1/vivado.jou
 #-----------------------------------------------------------
 source pynq_proc_sys_reset_1_0.tcl -notrace

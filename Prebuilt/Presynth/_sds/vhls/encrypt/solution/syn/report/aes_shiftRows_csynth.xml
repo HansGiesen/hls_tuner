@@ -9,15 +9,15 @@
 <ProductFamily>zynq</ProductFamily>
 <Part>xc7z020clg400-1</Part>
 <TopModelName>aes_shiftRows</TopModelName>
-<TargetClockPeriod>7.00</TargetClockPeriod>
-<ClockUncertainty>1.89</ClockUncertainty>
+<TargetClockPeriod>10.00</TargetClockPeriod>
+<ClockUncertainty>2.70</ClockUncertainty>
 </UserAssignments>
 
 <PerformanceEstimates>
 <PipelineType>none</PipelineType>
 <SummaryOfTimingAnalysis>
 <unit>ns</unit>
-<EstimatedClockPeriod>5.11</EstimatedClockPeriod>
+<EstimatedClockPeriod>7.30</EstimatedClockPeriod>
 </SummaryOfTimingAnalysis>
 <SummaryOfOverallLatency>
 <unit>clock cycles</unit>

@@ -1,11 +1,11 @@
 -- Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2017.1_sdx (lin64) Build 1915620 Thu Jun 22 17:54:59 MDT 2017
--- Date        : Wed Oct 31 14:49:51 2018
--- Host        : icgrid46 running 64-bit openSUSE Leap 42.3
+-- Date        : Mon Nov 19 14:21:27 2018
+-- Host        : icgrid48 running 64-bit openSUSE Leap 42.3
 -- Command     : write_vhdl -force -mode funcsim -rename_top pynq_s02_regslice_0 -prefix
---               pynq_s02_regslice_0_ pynq_s00_regslice_2_sim_netlist.vhdl
--- Design      : pynq_s00_regslice_2
+--               pynq_s02_regslice_0_ pynq_s01_regslice_0_sim_netlist.vhdl
+-- Design      : pynq_s01_regslice_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
 -- Device      : xc7z020clg400-1
@@ -4116,7 +4116,7 @@ entity pynq_s02_regslice_0 is
   attribute NotValidForBitStream : boolean;
   attribute NotValidForBitStream of pynq_s02_regslice_0 : entity is true;
   attribute CHECK_LICENSE_TYPE : string;
-  attribute CHECK_LICENSE_TYPE of pynq_s02_regslice_0 : entity is "pynq_s00_regslice_2,axi_register_slice_v2_1_12_axi_register_slice,{}";
+  attribute CHECK_LICENSE_TYPE of pynq_s02_regslice_0 : entity is "pynq_s01_regslice_0,axi_register_slice_v2_1_12_axi_register_slice,{}";
   attribute DowngradeIPIdentifiedWarnings : string;
   attribute DowngradeIPIdentifiedWarnings of pynq_s02_regslice_0 : entity is "yes";
   attribute X_CORE_INFO : string;

@@ -1,8 +1,8 @@
 --Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2017.1_sdx (lin64) Build 1915620 Thu Jun 22 17:54:59 MDT 2017
---Date        : Wed Oct 31 14:47:07 2018
---Host        : icgrid43 running 64-bit openSUSE Leap 42.3
+--Date        : Mon Nov 19 14:18:09 2018
+--Host        : icgrid44 running 64-bit openSUSE Leap 42.3
 --Command     : generate_target pynq.bd
 --Design      : pynq
 --Purpose     : IP block netlist
@@ -7966,8 +7966,8 @@ architecture STRUCTURE of pynq is
   signal encrypt_1_m_axi_ctx_key_WREADY : STD_LOGIC;
   signal encrypt_1_m_axi_ctx_key_WSTRB : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal encrypt_1_m_axi_ctx_key_WVALID : STD_LOGIC;
-  signal proc_sys_reset_1_interconnect_aresetn : STD_LOGIC_VECTOR ( 0 to 0 );
-  signal proc_sys_reset_1_peripheral_aresetn : STD_LOGIC_VECTOR ( 0 to 0 );
+  signal proc_sys_reset_2_interconnect_aresetn : STD_LOGIC_VECTOR ( 0 to 0 );
+  signal proc_sys_reset_2_peripheral_aresetn : STD_LOGIC_VECTOR ( 0 to 0 );
   signal processing_system7_0_DDR_ADDR : STD_LOGIC_VECTOR ( 14 downto 0 );
   signal processing_system7_0_DDR_BA : STD_LOGIC_VECTOR ( 2 downto 0 );
   signal processing_system7_0_DDR_CAS_N : STD_LOGIC;
@@ -8051,11 +8051,11 @@ architecture STRUCTURE of pynq is
   signal NLW_proc_sys_reset_0_peripheral_reset_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
   signal NLW_proc_sys_reset_1_mb_reset_UNCONNECTED : STD_LOGIC;
   signal NLW_proc_sys_reset_1_bus_struct_reset_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
+  signal NLW_proc_sys_reset_1_interconnect_aresetn_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
+  signal NLW_proc_sys_reset_1_peripheral_aresetn_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
   signal NLW_proc_sys_reset_1_peripheral_reset_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
   signal NLW_proc_sys_reset_2_mb_reset_UNCONNECTED : STD_LOGIC;
   signal NLW_proc_sys_reset_2_bus_struct_reset_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
-  signal NLW_proc_sys_reset_2_interconnect_aresetn_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
-  signal NLW_proc_sys_reset_2_peripheral_aresetn_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
   signal NLW_proc_sys_reset_2_peripheral_reset_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
   signal NLW_proc_sys_reset_3_mb_reset_UNCONNECTED : STD_LOGIC;
   signal NLW_proc_sys_reset_3_bus_struct_reset_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
@@ -8077,10 +8077,10 @@ axcache_0xE: component pynq_axcache_0xE_0
     );
 axi_ic_processing_system7_0_M_AXI_GP0: entity work.pynq_axi_ic_processing_system7_0_M_AXI_GP0_0
      port map (
-      ACLK => processing_system7_0_FCLK_CLK1,
-      ARESETN => proc_sys_reset_1_interconnect_aresetn(0),
-      M00_ACLK => processing_system7_0_FCLK_CLK1,
-      M00_ARESETN => proc_sys_reset_1_interconnect_aresetn(0),
+      ACLK => processing_system7_0_FCLK_CLK2,
+      ARESETN => proc_sys_reset_2_interconnect_aresetn(0),
+      M00_ACLK => processing_system7_0_FCLK_CLK2,
+      M00_ARESETN => proc_sys_reset_2_interconnect_aresetn(0),
       M00_AXI_araddr(31 downto 0) => axi_ic_processing_system7_0_M_AXI_GP0_M00_AXI_ARADDR(31 downto 0),
       M00_AXI_arprot(2 downto 0) => axi_ic_processing_system7_0_M_AXI_GP0_M00_AXI_ARPROT(2 downto 0),
       M00_AXI_arready => axi_ic_processing_system7_0_M_AXI_GP0_M00_AXI_ARREADY,
@@ -8100,8 +8100,8 @@ axi_ic_processing_system7_0_M_AXI_GP0: entity work.pynq_axi_ic_processing_system
       M00_AXI_wready => axi_ic_processing_system7_0_M_AXI_GP0_M00_AXI_WREADY,
       M00_AXI_wstrb(3 downto 0) => axi_ic_processing_system7_0_M_AXI_GP0_M00_AXI_WSTRB(3 downto 0),
       M00_AXI_wvalid => axi_ic_processing_system7_0_M_AXI_GP0_M00_AXI_WVALID,
-      M01_ACLK => processing_system7_0_FCLK_CLK1,
-      M01_ARESETN => proc_sys_reset_1_interconnect_aresetn(0),
+      M01_ACLK => processing_system7_0_FCLK_CLK2,
+      M01_ARESETN => proc_sys_reset_2_interconnect_aresetn(0),
       M01_AXI_araddr(9 downto 0) => axi_ic_processing_system7_0_M_AXI_GP0_M01_AXI_ARADDR(9 downto 0),
       M01_AXI_arready => axi_ic_processing_system7_0_M_AXI_GP0_M01_AXI_ARREADY,
       M01_AXI_arvalid => axi_ic_processing_system7_0_M_AXI_GP0_M01_AXI_ARVALID,
@@ -8118,8 +8118,8 @@ axi_ic_processing_system7_0_M_AXI_GP0: entity work.pynq_axi_ic_processing_system
       M01_AXI_wdata(31 downto 0) => axi_ic_processing_system7_0_M_AXI_GP0_M01_AXI_WDATA(31 downto 0),
       M01_AXI_wready => axi_ic_processing_system7_0_M_AXI_GP0_M01_AXI_WREADY,
       M01_AXI_wvalid => axi_ic_processing_system7_0_M_AXI_GP0_M01_AXI_WVALID,
-      S00_ACLK => processing_system7_0_FCLK_CLK1,
-      S00_ARESETN => proc_sys_reset_1_interconnect_aresetn(0),
+      S00_ACLK => processing_system7_0_FCLK_CLK2,
+      S00_ARESETN => proc_sys_reset_2_interconnect_aresetn(0),
       S00_AXI_araddr(31 downto 0) => processing_system7_0_M_AXI_GP0_ARADDR(31 downto 0),
       S00_AXI_arburst(1 downto 0) => processing_system7_0_M_AXI_GP0_ARBURST(1 downto 0),
       S00_AXI_arcache(3 downto 0) => processing_system7_0_M_AXI_GP0_ARCACHE(3 downto 0),
@@ -8161,10 +8161,10 @@ axi_ic_processing_system7_0_M_AXI_GP0: entity work.pynq_axi_ic_processing_system
     );
 axi_ic_processing_system7_0_S_AXI_ACP: entity work.pynq_axi_ic_processing_system7_0_S_AXI_ACP_0
      port map (
-      ACLK => processing_system7_0_FCLK_CLK1,
-      ARESETN => proc_sys_reset_1_interconnect_aresetn(0),
-      M00_ACLK => processing_system7_0_FCLK_CLK1,
-      M00_ARESETN => proc_sys_reset_1_interconnect_aresetn(0),
+      ACLK => processing_system7_0_FCLK_CLK2,
+      ARESETN => proc_sys_reset_2_interconnect_aresetn(0),
+      M00_ACLK => processing_system7_0_FCLK_CLK2,
+      M00_ARESETN => proc_sys_reset_2_interconnect_aresetn(0),
       M00_AXI_araddr(31 downto 0) => axi_ic_processing_system7_0_S_AXI_ACP_M00_AXI_ARADDR(31 downto 0),
       M00_AXI_arburst(1 downto 0) => axi_ic_processing_system7_0_S_AXI_ACP_M00_AXI_ARBURST(1 downto 0),
       M00_AXI_arcache(3 downto 0) => axi_ic_processing_system7_0_S_AXI_ACP_M00_AXI_ARCACHE(3 downto 0),
@@ -8203,8 +8203,8 @@ axi_ic_processing_system7_0_S_AXI_ACP: entity work.pynq_axi_ic_processing_system
       M00_AXI_wready => axi_ic_processing_system7_0_S_AXI_ACP_M00_AXI_WREADY,
       M00_AXI_wstrb(7 downto 0) => axi_ic_processing_system7_0_S_AXI_ACP_M00_AXI_WSTRB(7 downto 0),
       M00_AXI_wvalid => axi_ic_processing_system7_0_S_AXI_ACP_M00_AXI_WVALID,
-      S00_ACLK => processing_system7_0_FCLK_CLK1,
-      S00_ARESETN => proc_sys_reset_1_interconnect_aresetn(0),
+      S00_ACLK => processing_system7_0_FCLK_CLK2,
+      S00_ARESETN => proc_sys_reset_2_interconnect_aresetn(0),
       S00_AXI_araddr(31 downto 0) => encrypt_1_if_M_AXIMM_1_ARADDR(31 downto 0),
       S00_AXI_arburst(1 downto 0) => encrypt_1_if_M_AXIMM_1_ARBURST(1 downto 0),
       S00_AXI_arcache(3 downto 0) => axcache_0xE_dout(3 downto 0),
@@ -8240,8 +8240,8 @@ axi_ic_processing_system7_0_S_AXI_ACP: entity work.pynq_axi_ic_processing_system
       S00_AXI_wready => encrypt_1_if_M_AXIMM_1_WREADY,
       S00_AXI_wstrb(3 downto 0) => encrypt_1_if_M_AXIMM_1_WSTRB(3 downto 0),
       S00_AXI_wvalid => encrypt_1_if_M_AXIMM_1_WVALID,
-      S01_ACLK => processing_system7_0_FCLK_CLK1,
-      S01_ARESETN => proc_sys_reset_1_interconnect_aresetn(0),
+      S01_ACLK => processing_system7_0_FCLK_CLK2,
+      S01_ARESETN => proc_sys_reset_2_interconnect_aresetn(0),
       S01_AXI_araddr(31 downto 0) => encrypt_1_if_M_AXIMM_2_ARADDR(31 downto 0),
       S01_AXI_arburst(1 downto 0) => encrypt_1_if_M_AXIMM_2_ARBURST(1 downto 0),
       S01_AXI_arcache(3 downto 0) => axcache_0xE_dout(3 downto 0),
@@ -8277,8 +8277,8 @@ axi_ic_processing_system7_0_S_AXI_ACP: entity work.pynq_axi_ic_processing_system
       S01_AXI_wready => encrypt_1_if_M_AXIMM_2_WREADY,
       S01_AXI_wstrb(3 downto 0) => encrypt_1_if_M_AXIMM_2_WSTRB(3 downto 0),
       S01_AXI_wvalid => encrypt_1_if_M_AXIMM_2_WVALID,
-      S02_ACLK => processing_system7_0_FCLK_CLK1,
-      S02_ARESETN => proc_sys_reset_1_interconnect_aresetn(0),
+      S02_ACLK => processing_system7_0_FCLK_CLK2,
+      S02_ARESETN => proc_sys_reset_2_interconnect_aresetn(0),
       S02_AXI_araddr(31 downto 0) => encrypt_1_if_M_AXIMM_3_ARADDR(31 downto 0),
       S02_AXI_arburst(1 downto 0) => encrypt_1_if_M_AXIMM_3_ARBURST(1 downto 0),
       S02_AXI_arcache(3 downto 0) => axcache_0xE_dout(3 downto 0),
@@ -8314,8 +8314,8 @@ axi_ic_processing_system7_0_S_AXI_ACP: entity work.pynq_axi_ic_processing_system
       S02_AXI_wready => encrypt_1_if_M_AXIMM_3_WREADY,
       S02_AXI_wstrb(3 downto 0) => encrypt_1_if_M_AXIMM_3_WSTRB(3 downto 0),
       S02_AXI_wvalid => encrypt_1_if_M_AXIMM_3_WVALID,
-      S03_ACLK => processing_system7_0_FCLK_CLK1,
-      S03_ARESETN => proc_sys_reset_1_interconnect_aresetn(0),
+      S03_ACLK => processing_system7_0_FCLK_CLK2,
+      S03_ARESETN => proc_sys_reset_2_interconnect_aresetn(0),
       S03_AXI_araddr(31 downto 0) => dm_0_M_AXI_MM2S_ARADDR(31 downto 0),
       S03_AXI_arburst(1 downto 0) => dm_0_M_AXI_MM2S_ARBURST(1 downto 0),
       S03_AXI_arcache(3 downto 0) => axcache_0xE_dout(3 downto 0),
@@ -8332,10 +8332,10 @@ axi_ic_processing_system7_0_S_AXI_ACP: entity work.pynq_axi_ic_processing_system
     );
 axi_ic_processing_system7_0_S_AXI_HP0: entity work.pynq_axi_ic_processing_system7_0_S_AXI_HP0_0
      port map (
-      ACLK => processing_system7_0_FCLK_CLK1,
-      ARESETN => proc_sys_reset_1_interconnect_aresetn(0),
-      M00_ACLK => processing_system7_0_FCLK_CLK1,
-      M00_ARESETN => proc_sys_reset_1_interconnect_aresetn(0),
+      ACLK => processing_system7_0_FCLK_CLK2,
+      ARESETN => proc_sys_reset_2_interconnect_aresetn(0),
+      M00_ACLK => processing_system7_0_FCLK_CLK2,
+      M00_ARESETN => proc_sys_reset_2_interconnect_aresetn(0),
       M00_AXI_araddr(31 downto 0) => axi_ic_processing_system7_0_S_AXI_HP0_M00_AXI_ARADDR(31 downto 0),
       M00_AXI_arburst(1 downto 0) => axi_ic_processing_system7_0_S_AXI_HP0_M00_AXI_ARBURST(1 downto 0),
       M00_AXI_arcache(3 downto 0) => axi_ic_processing_system7_0_S_AXI_HP0_M00_AXI_ARCACHE(3 downto 0),
@@ -8369,8 +8369,8 @@ axi_ic_processing_system7_0_S_AXI_HP0: entity work.pynq_axi_ic_processing_system
       M00_AXI_wready => axi_ic_processing_system7_0_S_AXI_HP0_M00_AXI_WREADY,
       M00_AXI_wstrb(7 downto 0) => axi_ic_processing_system7_0_S_AXI_HP0_M00_AXI_WSTRB(7 downto 0),
       M00_AXI_wvalid => axi_ic_processing_system7_0_S_AXI_HP0_M00_AXI_WVALID,
-      S00_ACLK => processing_system7_0_FCLK_CLK1,
-      S00_ARESETN => proc_sys_reset_1_interconnect_aresetn(0),
+      S00_ACLK => processing_system7_0_FCLK_CLK2,
+      S00_ARESETN => proc_sys_reset_2_interconnect_aresetn(0),
       S00_AXI_araddr(31 downto 0) => encrypt_1_if_M_AXIMM_0_ARADDR(31 downto 0),
       S00_AXI_arburst(1 downto 0) => encrypt_1_if_M_AXIMM_0_ARBURST(1 downto 0),
       S00_AXI_arcache(3 downto 0) => encrypt_1_if_M_AXIMM_0_ARCACHE(3 downto 0),
@@ -8409,8 +8409,8 @@ axi_ic_processing_system7_0_S_AXI_HP0: entity work.pynq_axi_ic_processing_system
     );
 dm_0: component pynq_dm_0_0
      port map (
-      axi_resetn => proc_sys_reset_1_peripheral_aresetn(0),
-      m_axi_mm2s_aclk => processing_system7_0_FCLK_CLK1,
+      axi_resetn => proc_sys_reset_2_peripheral_aresetn(0),
+      m_axi_mm2s_aclk => processing_system7_0_FCLK_CLK2,
       m_axi_mm2s_araddr(31 downto 0) => dm_0_M_AXI_MM2S_ARADDR(31 downto 0),
       m_axi_mm2s_arburst(1 downto 0) => dm_0_M_AXI_MM2S_ARBURST(1 downto 0),
       m_axi_mm2s_arcache(3 downto 0) => NLW_dm_0_m_axi_mm2s_arcache_UNCONNECTED(3 downto 0),
@@ -8431,7 +8431,7 @@ dm_0: component pynq_dm_0_0
       m_axis_mm2s_tvalid => dm_0_M_AXIS_MM2S_TVALID,
       mm2s_introut => NLW_dm_0_mm2s_introut_UNCONNECTED,
       mm2s_prmry_reset_out_n => NLW_dm_0_mm2s_prmry_reset_out_n_UNCONNECTED,
-      s_axi_lite_aclk => processing_system7_0_FCLK_CLK1,
+      s_axi_lite_aclk => processing_system7_0_FCLK_CLK2,
       s_axi_lite_araddr(9 downto 0) => axi_ic_processing_system7_0_M_AXI_GP0_M01_AXI_ARADDR(9 downto 0),
       s_axi_lite_arready => axi_ic_processing_system7_0_M_AXI_GP0_M01_AXI_ARREADY,
       s_axi_lite_arvalid => axi_ic_processing_system7_0_M_AXI_GP0_M01_AXI_ARVALID,
@@ -8910,8 +8910,8 @@ encrypt_1_if: component pynq_encrypt_1_if_0
       S_AXI_WREADY => axi_ic_processing_system7_0_M_AXI_GP0_M00_AXI_WREADY,
       S_AXI_WSTRB(3 downto 0) => axi_ic_processing_system7_0_M_AXI_GP0_M00_AXI_WSTRB(3 downto 0),
       S_AXI_WVALID => axi_ic_processing_system7_0_M_AXI_GP0_M00_AXI_WVALID,
-      acc_aclk => processing_system7_0_FCLK_CLK1,
-      acc_aresetn => proc_sys_reset_1_peripheral_aresetn(0),
+      acc_aclk => processing_system7_0_FCLK_CLK2,
+      acc_aresetn => proc_sys_reset_2_peripheral_aresetn(0),
       ap_bram_iarg_0_addr0(4 downto 0) => encrypt_1_k_PORTA_ADDR(4 downto 0),
       ap_bram_iarg_0_clk0 => encrypt_1_k_PORTA_CLK,
       ap_bram_iarg_0_din0(7 downto 0) => encrypt_1_k_PORTA_DIN(7 downto 0),
@@ -8930,10 +8930,10 @@ encrypt_1_if: component pynq_encrypt_1_if_0
       ap_ready => encrypt_1_if_ap_ctrl_ready,
       ap_resetn => encrypt_1_if_ap_resetn,
       ap_start => encrypt_1_if_ap_ctrl_start,
-      s_axi_aclk => processing_system7_0_FCLK_CLK1,
-      s_axi_aresetn => proc_sys_reset_1_peripheral_aresetn(0),
-      s_axis_bram_0_aclk => processing_system7_0_FCLK_CLK1,
-      s_axis_bram_0_aresetn => proc_sys_reset_1_peripheral_aresetn(0),
+      s_axi_aclk => processing_system7_0_FCLK_CLK2,
+      s_axi_aresetn => proc_sys_reset_2_peripheral_aresetn(0),
+      s_axis_bram_0_aclk => processing_system7_0_FCLK_CLK2,
+      s_axis_bram_0_aresetn => proc_sys_reset_2_peripheral_aresetn(0),
       s_axis_bram_0_tdata(63 downto 0) => dm_0_M_AXIS_MM2S_TDATA(63 downto 0),
       s_axis_bram_0_tkeep(7 downto 0) => dm_0_M_AXIS_MM2S_TKEEP(7 downto 0),
       s_axis_bram_0_tlast => dm_0_M_AXIS_MM2S_TLAST,
@@ -8960,10 +8960,10 @@ proc_sys_reset_1: component pynq_proc_sys_reset_1_0
       bus_struct_reset(0) => NLW_proc_sys_reset_1_bus_struct_reset_UNCONNECTED(0),
       dcm_locked => '1',
       ext_reset_in => processing_system7_0_FCLK_RESET0_N,
-      interconnect_aresetn(0) => proc_sys_reset_1_interconnect_aresetn(0),
+      interconnect_aresetn(0) => NLW_proc_sys_reset_1_interconnect_aresetn_UNCONNECTED(0),
       mb_debug_sys_rst => '0',
       mb_reset => NLW_proc_sys_reset_1_mb_reset_UNCONNECTED,
-      peripheral_aresetn(0) => proc_sys_reset_1_peripheral_aresetn(0),
+      peripheral_aresetn(0) => NLW_proc_sys_reset_1_peripheral_aresetn_UNCONNECTED(0),
       peripheral_reset(0) => NLW_proc_sys_reset_1_peripheral_reset_UNCONNECTED(0),
       slowest_sync_clk => processing_system7_0_FCLK_CLK1
     );
@@ -8973,10 +8973,10 @@ proc_sys_reset_2: component pynq_proc_sys_reset_2_0
       bus_struct_reset(0) => NLW_proc_sys_reset_2_bus_struct_reset_UNCONNECTED(0),
       dcm_locked => '1',
       ext_reset_in => processing_system7_0_FCLK_RESET0_N,
-      interconnect_aresetn(0) => NLW_proc_sys_reset_2_interconnect_aresetn_UNCONNECTED(0),
+      interconnect_aresetn(0) => proc_sys_reset_2_interconnect_aresetn(0),
       mb_debug_sys_rst => '0',
       mb_reset => NLW_proc_sys_reset_2_mb_reset_UNCONNECTED,
-      peripheral_aresetn(0) => NLW_proc_sys_reset_2_peripheral_aresetn_UNCONNECTED(0),
+      peripheral_aresetn(0) => proc_sys_reset_2_peripheral_aresetn(0),
       peripheral_reset(0) => NLW_proc_sys_reset_2_peripheral_reset_UNCONNECTED(0),
       slowest_sync_clk => processing_system7_0_FCLK_CLK2
     );
@@ -9019,7 +9019,7 @@ processing_system7_0: component pynq_processing_system7_0_0
       FCLK_RESET0_N => processing_system7_0_FCLK_RESET0_N,
       IRQ_F2P(15 downto 0) => xlconcat_0_dout(15 downto 0),
       MIO(53 downto 0) => FIXED_IO_mio(53 downto 0),
-      M_AXI_GP0_ACLK => processing_system7_0_FCLK_CLK1,
+      M_AXI_GP0_ACLK => processing_system7_0_FCLK_CLK2,
       M_AXI_GP0_ARADDR(31 downto 0) => processing_system7_0_M_AXI_GP0_ARADDR(31 downto 0),
       M_AXI_GP0_ARBURST(1 downto 0) => processing_system7_0_M_AXI_GP0_ARBURST(1 downto 0),
       M_AXI_GP0_ARCACHE(3 downto 0) => processing_system7_0_M_AXI_GP0_ARCACHE(3 downto 0),
@@ -9061,7 +9061,7 @@ processing_system7_0: component pynq_processing_system7_0_0
       PS_CLK => FIXED_IO_ps_clk,
       PS_PORB => FIXED_IO_ps_porb,
       PS_SRSTB => FIXED_IO_ps_srstb,
-      S_AXI_ACP_ACLK => processing_system7_0_FCLK_CLK1,
+      S_AXI_ACP_ACLK => processing_system7_0_FCLK_CLK2,
       S_AXI_ACP_ARADDR(31 downto 0) => axi_ic_processing_system7_0_S_AXI_ACP_M00_AXI_ARADDR(31 downto 0),
       S_AXI_ACP_ARBURST(1 downto 0) => axi_ic_processing_system7_0_S_AXI_ACP_M00_AXI_ARBURST(1 downto 0),
       S_AXI_ACP_ARCACHE(3 downto 0) => axi_ic_processing_system7_0_S_AXI_ACP_M00_AXI_ARCACHE(3 downto 0),
@@ -9105,7 +9105,7 @@ processing_system7_0: component pynq_processing_system7_0_0
       S_AXI_ACP_WREADY => axi_ic_processing_system7_0_S_AXI_ACP_M00_AXI_WREADY,
       S_AXI_ACP_WSTRB(7 downto 0) => axi_ic_processing_system7_0_S_AXI_ACP_M00_AXI_WSTRB(7 downto 0),
       S_AXI_ACP_WVALID => axi_ic_processing_system7_0_S_AXI_ACP_M00_AXI_WVALID,
-      S_AXI_HP0_ACLK => processing_system7_0_FCLK_CLK1,
+      S_AXI_HP0_ACLK => processing_system7_0_FCLK_CLK2,
       S_AXI_HP0_ARADDR(31 downto 0) => axi_ic_processing_system7_0_S_AXI_HP0_M00_AXI_ARADDR(31 downto 0),
       S_AXI_HP0_ARBURST(1 downto 0) => axi_ic_processing_system7_0_S_AXI_HP0_M00_AXI_ARBURST(1 downto 0),
       S_AXI_HP0_ARCACHE(3 downto 0) => axi_ic_processing_system7_0_S_AXI_HP0_M00_AXI_ARCACHE(3 downto 0),

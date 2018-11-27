@@ -1,10 +1,10 @@
 -- Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2017.1_sdx (lin64) Build 1915620 Thu Jun 22 17:54:59 MDT 2017
--- Date        : Wed Oct 31 14:52:48 2018
--- Host        : icgrid46 running 64-bit openSUSE Leap 42.3
+-- Date        : Mon Nov 19 14:24:43 2018
+-- Host        : icgrid48 running 64-bit openSUSE Leap 42.3
 -- Command     : write_vhdl -force -mode synth_stub
---               /scratch/local/tmp.MCX0lb37KH/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ip/pynq_auto_pc_2/pynq_auto_pc_2_stub.vhdl
+--               /scratch/local/tmp.tEdaivbEa4/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ip/pynq_auto_pc_2/pynq_auto_pc_2_stub.vhdl
 -- Design      : pynq_auto_pc_2
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7z020clg400-1

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Oct 31 14:47:29 2018" VIVADOVERSION="2017.1_sdx">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Mon Nov 19 14:18:33 2018" VIVADOVERSION="2017.1_sdx">
 
   <SYSTEMINFO ARCH="zynq" DEVICE="7z020" NAME="pynq" PACKAGE="clg400" SPEEDGRADE="-1"/>
 
@@ -421,44 +421,44 @@
         <PARAMETER NAME="EDK_IPTYPE" VALUE="BUS"/>
       </PARAMETERS>
       <PORTS>
-        <PORT DIR="I" NAME="ACLK" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK1">
+        <PORT DIR="I" NAME="ACLK" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK2">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK1"/>
+            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK2"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="ARESETN" SIGIS="rst" SIGNAME="proc_sys_reset_1_interconnect_aresetn">
+        <PORT DIR="I" NAME="ARESETN" SIGIS="rst" SIGNAME="proc_sys_reset_2_interconnect_aresetn">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="proc_sys_reset_1" PORT="interconnect_aresetn"/>
+            <CONNECTION INSTANCE="proc_sys_reset_2" PORT="interconnect_aresetn"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="S00_ACLK" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK1">
+        <PORT DIR="I" NAME="S00_ACLK" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK2">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK1"/>
+            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK2"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="S00_ARESETN" SIGIS="rst" SIGNAME="proc_sys_reset_1_interconnect_aresetn">
+        <PORT DIR="I" NAME="S00_ARESETN" SIGIS="rst" SIGNAME="proc_sys_reset_2_interconnect_aresetn">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="proc_sys_reset_1" PORT="interconnect_aresetn"/>
+            <CONNECTION INSTANCE="proc_sys_reset_2" PORT="interconnect_aresetn"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="M00_ACLK" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK1">
+        <PORT DIR="I" NAME="M00_ACLK" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK2">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK1"/>
+            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK2"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="M00_ARESETN" SIGIS="rst" SIGNAME="proc_sys_reset_1_interconnect_aresetn">
+        <PORT DIR="I" NAME="M00_ARESETN" SIGIS="rst" SIGNAME="proc_sys_reset_2_interconnect_aresetn">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="proc_sys_reset_1" PORT="interconnect_aresetn"/>
+            <CONNECTION INSTANCE="proc_sys_reset_2" PORT="interconnect_aresetn"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="M01_ACLK" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK1">
+        <PORT DIR="I" NAME="M01_ACLK" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK2">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK1"/>
+            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK2"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="M01_ARESETN" SIGIS="rst" SIGNAME="proc_sys_reset_1_interconnect_aresetn">
+        <PORT DIR="I" NAME="M01_ARESETN" SIGIS="rst" SIGNAME="proc_sys_reset_2_interconnect_aresetn">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="proc_sys_reset_1" PORT="interconnect_aresetn"/>
+            <CONNECTION INSTANCE="proc_sys_reset_2" PORT="interconnect_aresetn"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="31" NAME="S00_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="axi_ic_processing_system7_0_M_AXI_GP0_S00_AXI_awaddr">
@@ -1308,34 +1308,34 @@
         <PARAMETER NAME="EDK_IPTYPE" VALUE="BUS"/>
       </PARAMETERS>
       <PORTS>
-        <PORT DIR="I" NAME="ACLK" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK1">
+        <PORT DIR="I" NAME="ACLK" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK2">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK1"/>
+            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK2"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="ARESETN" SIGIS="rst" SIGNAME="proc_sys_reset_1_interconnect_aresetn">
+        <PORT DIR="I" NAME="ARESETN" SIGIS="rst" SIGNAME="proc_sys_reset_2_interconnect_aresetn">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="proc_sys_reset_1" PORT="interconnect_aresetn"/>
+            <CONNECTION INSTANCE="proc_sys_reset_2" PORT="interconnect_aresetn"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="S00_ACLK" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK1">
+        <PORT DIR="I" NAME="S00_ACLK" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK2">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK1"/>
+            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK2"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="S00_ARESETN" SIGIS="rst" SIGNAME="proc_sys_reset_1_interconnect_aresetn">
+        <PORT DIR="I" NAME="S00_ARESETN" SIGIS="rst" SIGNAME="proc_sys_reset_2_interconnect_aresetn">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="proc_sys_reset_1" PORT="interconnect_aresetn"/>
+            <CONNECTION INSTANCE="proc_sys_reset_2" PORT="interconnect_aresetn"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="M00_ACLK" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK1">
+        <PORT DIR="I" NAME="M00_ACLK" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK2">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK1"/>
+            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK2"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="M00_ARESETN" SIGIS="rst" SIGNAME="proc_sys_reset_1_interconnect_aresetn">
+        <PORT DIR="I" NAME="M00_ARESETN" SIGIS="rst" SIGNAME="proc_sys_reset_2_interconnect_aresetn">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="proc_sys_reset_1" PORT="interconnect_aresetn"/>
+            <CONNECTION INSTANCE="proc_sys_reset_2" PORT="interconnect_aresetn"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="31" NAME="S00_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="axi_ic_processing_system7_0_S_AXI_ACP_S00_AXI_awaddr">
@@ -1676,34 +1676,34 @@
             <CONNECTION INSTANCE="processing_system7_0" PORT="S_AXI_ACP_RREADY"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="S01_ACLK" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK1">
+        <PORT DIR="I" NAME="S01_ACLK" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK2">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK1"/>
+            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK2"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="S01_ARESETN" SIGIS="rst" SIGNAME="proc_sys_reset_1_interconnect_aresetn">
+        <PORT DIR="I" NAME="S01_ARESETN" SIGIS="rst" SIGNAME="proc_sys_reset_2_interconnect_aresetn">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="proc_sys_reset_1" PORT="interconnect_aresetn"/>
+            <CONNECTION INSTANCE="proc_sys_reset_2" PORT="interconnect_aresetn"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="S02_ACLK" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK1">
+        <PORT DIR="I" NAME="S02_ACLK" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK2">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK1"/>
+            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK2"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="S02_ARESETN" SIGIS="rst" SIGNAME="proc_sys_reset_1_interconnect_aresetn">
+        <PORT DIR="I" NAME="S02_ARESETN" SIGIS="rst" SIGNAME="proc_sys_reset_2_interconnect_aresetn">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="proc_sys_reset_1" PORT="interconnect_aresetn"/>
+            <CONNECTION INSTANCE="proc_sys_reset_2" PORT="interconnect_aresetn"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="S03_ACLK" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK1">
+        <PORT DIR="I" NAME="S03_ACLK" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK2">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK1"/>
+            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK2"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="S03_ARESETN" SIGIS="rst" SIGNAME="proc_sys_reset_1_interconnect_aresetn">
+        <PORT DIR="I" NAME="S03_ARESETN" SIGIS="rst" SIGNAME="proc_sys_reset_2_interconnect_aresetn">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="proc_sys_reset_1" PORT="interconnect_aresetn"/>
+            <CONNECTION INSTANCE="proc_sys_reset_2" PORT="interconnect_aresetn"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="31" NAME="S01_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="axi_ic_processing_system7_0_S_AXI_ACP_S01_AXI_awaddr">
@@ -2720,34 +2720,34 @@
         <PARAMETER NAME="EDK_IPTYPE" VALUE="BUS"/>
       </PARAMETERS>
       <PORTS>
-        <PORT DIR="I" NAME="ACLK" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK1">
+        <PORT DIR="I" NAME="ACLK" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK2">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK1"/>
+            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK2"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="ARESETN" SIGIS="rst" SIGNAME="proc_sys_reset_1_interconnect_aresetn">
+        <PORT DIR="I" NAME="ARESETN" SIGIS="rst" SIGNAME="proc_sys_reset_2_interconnect_aresetn">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="proc_sys_reset_1" PORT="interconnect_aresetn"/>
+            <CONNECTION INSTANCE="proc_sys_reset_2" PORT="interconnect_aresetn"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="S00_ACLK" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK1">
+        <PORT DIR="I" NAME="S00_ACLK" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK2">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK1"/>
+            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK2"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="S00_ARESETN" SIGIS="rst" SIGNAME="proc_sys_reset_1_interconnect_aresetn">
+        <PORT DIR="I" NAME="S00_ARESETN" SIGIS="rst" SIGNAME="proc_sys_reset_2_interconnect_aresetn">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="proc_sys_reset_1" PORT="interconnect_aresetn"/>
+            <CONNECTION INSTANCE="proc_sys_reset_2" PORT="interconnect_aresetn"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="M00_ACLK" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK1">
+        <PORT DIR="I" NAME="M00_ACLK" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK2">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK1"/>
+            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK2"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="M00_ARESETN" SIGIS="rst" SIGNAME="proc_sys_reset_1_interconnect_aresetn">
+        <PORT DIR="I" NAME="M00_ARESETN" SIGIS="rst" SIGNAME="proc_sys_reset_2_interconnect_aresetn">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="proc_sys_reset_1" PORT="interconnect_aresetn"/>
+            <CONNECTION INSTANCE="proc_sys_reset_2" PORT="interconnect_aresetn"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="31" NAME="S00_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="axi_ic_processing_system7_0_S_AXI_HP0_S00_AXI_awaddr">
@@ -4056,19 +4056,19 @@
         <PARAMETER NAME="C_HIGHADDR" VALUE="0x4040FFFF"/>
       </PARAMETERS>
       <PORTS>
-        <PORT CLKFREQUENCY="142857132" DIR="I" NAME="s_axi_lite_aclk" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK1">
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="s_axi_lite_aclk" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK2">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK1"/>
+            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK2"/>
           </CONNECTIONS>
         </PORT>
-        <PORT CLKFREQUENCY="142857132" DIR="I" NAME="m_axi_mm2s_aclk" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK1">
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="m_axi_mm2s_aclk" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK2">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK1"/>
+            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK2"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="axi_resetn" SIGIS="rst" SIGNAME="proc_sys_reset_1_peripheral_aresetn">
+        <PORT DIR="I" NAME="axi_resetn" SIGIS="rst" SIGNAME="proc_sys_reset_2_peripheral_aresetn">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="proc_sys_reset_1" PORT="peripheral_aresetn"/>
+            <CONNECTION INSTANCE="proc_sys_reset_2" PORT="peripheral_aresetn"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" NAME="s_axi_lite_awvalid" SIGIS="undef" SIGNAME="axi_ic_processing_system7_0_M_AXI_GP0_M01_AXI_awvalid">
@@ -4248,7 +4248,7 @@
         <BUSINTERFACE BUSNAME="axi_ic_processing_system7_0_M_AXI_GP0_M01_AXI" DATAWIDTH="32" NAME="S_AXI_LITE" TYPE="SLAVE" VLNV="xilinx.com:interface:aximm:1.0">
           <PARAMETER NAME="DATA_WIDTH" VALUE="32"/>
           <PARAMETER NAME="PROTOCOL" VALUE="AXI4LITE"/>
-          <PARAMETER NAME="FREQ_HZ" VALUE="142857132"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
           <PARAMETER NAME="ID_WIDTH" VALUE="0"/>
           <PARAMETER NAME="ADDR_WIDTH" VALUE="10"/>
           <PARAMETER NAME="AWUSER_WIDTH" VALUE="0"/>
@@ -4271,7 +4271,7 @@
           <PARAMETER NAME="NUM_WRITE_OUTSTANDING" VALUE="2"/>
           <PARAMETER NAME="MAX_BURST_LENGTH" VALUE="1"/>
           <PARAMETER NAME="PHASE" VALUE="0.000"/>
-          <PARAMETER NAME="CLK_DOMAIN" VALUE="pynq_processing_system7_0_0_FCLK_CLK1"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="pynq_processing_system7_0_0_FCLK_CLK2"/>
           <PARAMETER NAME="NUM_READ_THREADS" VALUE="1"/>
           <PARAMETER NAME="NUM_WRITE_THREADS" VALUE="1"/>
           <PARAMETER NAME="RUSER_BITS_PER_BYTE" VALUE="0"/>
@@ -4300,7 +4300,7 @@
           <PARAMETER NAME="NUM_READ_OUTSTANDING" VALUE="2"/>
           <PARAMETER NAME="DATA_WIDTH" VALUE="64"/>
           <PARAMETER NAME="PROTOCOL" VALUE="AXI4"/>
-          <PARAMETER NAME="FREQ_HZ" VALUE="142857132"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
           <PARAMETER NAME="ID_WIDTH" VALUE="0"/>
           <PARAMETER NAME="ADDR_WIDTH" VALUE="32"/>
           <PARAMETER NAME="AWUSER_WIDTH" VALUE="0"/>
@@ -4321,7 +4321,7 @@
           <PARAMETER NAME="NUM_WRITE_OUTSTANDING" VALUE="2"/>
           <PARAMETER NAME="MAX_BURST_LENGTH" VALUE="64"/>
           <PARAMETER NAME="PHASE" VALUE="0.000"/>
-          <PARAMETER NAME="CLK_DOMAIN" VALUE="pynq_processing_system7_0_0_FCLK_CLK1"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="pynq_processing_system7_0_0_FCLK_CLK2"/>
           <PARAMETER NAME="NUM_READ_THREADS" VALUE="1"/>
           <PARAMETER NAME="NUM_WRITE_THREADS" VALUE="1"/>
           <PARAMETER NAME="RUSER_BITS_PER_BYTE" VALUE="0"/>
@@ -4351,9 +4351,9 @@
           <PARAMETER NAME="HAS_TSTRB" VALUE="0"/>
           <PARAMETER NAME="HAS_TKEEP" VALUE="1"/>
           <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
-          <PARAMETER NAME="FREQ_HZ" VALUE="142857132"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
           <PARAMETER NAME="PHASE" VALUE="0.000"/>
-          <PARAMETER NAME="CLK_DOMAIN" VALUE="pynq_processing_system7_0_0_FCLK_CLK1"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="pynq_processing_system7_0_0_FCLK_CLK2"/>
           <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
           <PARAMETER NAME="HAS_BURST" VALUE="0"/>
           <PORTMAPS>
@@ -4432,15 +4432,15 @@
         <PARAMETER NAME="C_M_AXI_BUF_R_ENABLE_ID_PORTS" VALUE="false"/>
         <PARAMETER NAME="C_M_AXI_BUF_R_ENABLE_USER_PORTS" VALUE="false"/>
         <PARAMETER NAME="Component_Name" VALUE="pynq_encrypt_1_0"/>
-        <PARAMETER NAME="clk_period" VALUE="7.000001"/>
+        <PARAMETER NAME="clk_period" VALUE="10.000000"/>
         <PARAMETER NAME="machine" VALUE="64"/>
         <PARAMETER NAME="combinational" VALUE="0"/>
-        <PARAMETER NAME="latency" VALUE="15109"/>
+        <PARAMETER NAME="latency" VALUE="14169"/>
         <PARAMETER NAME="II" VALUE="x"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
-        <PORT CLKFREQUENCY="142857132" DIR="I" NAME="ap_clk" SIGIS="clk" SIGNAME="encrypt_1_if_ap_clk">
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="ap_clk" SIGIS="clk" SIGNAME="encrypt_1_if_ap_clk">
           <CONNECTIONS>
             <CONNECTION INSTANCE="encrypt_1_if" PORT="ap_clk"/>
           </CONNECTIONS>
@@ -5248,7 +5248,7 @@
           <PARAMETER NAME="HAS_BURST" VALUE="0"/>
           <PARAMETER NAME="SUPPORTS_NARROW_BURST" VALUE="0"/>
           <PARAMETER NAME="DATA_WIDTH" VALUE="32"/>
-          <PARAMETER NAME="FREQ_HZ" VALUE="142857132"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
           <PARAMETER NAME="ID_WIDTH" VALUE="0"/>
           <PARAMETER NAME="AWUSER_WIDTH" VALUE="0"/>
           <PARAMETER NAME="ARUSER_WIDTH" VALUE="0"/>
@@ -5264,7 +5264,7 @@
           <PARAMETER NAME="HAS_BRESP" VALUE="1"/>
           <PARAMETER NAME="HAS_RRESP" VALUE="1"/>
           <PARAMETER NAME="PHASE" VALUE="0.000"/>
-          <PARAMETER NAME="CLK_DOMAIN" VALUE="pynq_processing_system7_0_0_FCLK_CLK1"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="pynq_processing_system7_0_0_FCLK_CLK2"/>
           <PARAMETER NAME="NUM_READ_THREADS" VALUE="1"/>
           <PARAMETER NAME="NUM_WRITE_THREADS" VALUE="1"/>
           <PARAMETER NAME="RUSER_BITS_PER_BYTE" VALUE="0"/>
@@ -5319,7 +5319,7 @@
           <PARAMETER NAME="HAS_BURST" VALUE="0"/>
           <PARAMETER NAME="SUPPORTS_NARROW_BURST" VALUE="0"/>
           <PARAMETER NAME="DATA_WIDTH" VALUE="32"/>
-          <PARAMETER NAME="FREQ_HZ" VALUE="142857132"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
           <PARAMETER NAME="ID_WIDTH" VALUE="0"/>
           <PARAMETER NAME="AWUSER_WIDTH" VALUE="0"/>
           <PARAMETER NAME="ARUSER_WIDTH" VALUE="0"/>
@@ -5335,7 +5335,7 @@
           <PARAMETER NAME="HAS_BRESP" VALUE="1"/>
           <PARAMETER NAME="HAS_RRESP" VALUE="1"/>
           <PARAMETER NAME="PHASE" VALUE="0.000"/>
-          <PARAMETER NAME="CLK_DOMAIN" VALUE="pynq_processing_system7_0_0_FCLK_CLK1"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="pynq_processing_system7_0_0_FCLK_CLK2"/>
           <PARAMETER NAME="NUM_READ_THREADS" VALUE="1"/>
           <PARAMETER NAME="NUM_WRITE_THREADS" VALUE="1"/>
           <PARAMETER NAME="RUSER_BITS_PER_BYTE" VALUE="0"/>
@@ -5390,7 +5390,7 @@
           <PARAMETER NAME="HAS_BURST" VALUE="0"/>
           <PARAMETER NAME="SUPPORTS_NARROW_BURST" VALUE="0"/>
           <PARAMETER NAME="DATA_WIDTH" VALUE="32"/>
-          <PARAMETER NAME="FREQ_HZ" VALUE="142857132"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
           <PARAMETER NAME="ID_WIDTH" VALUE="0"/>
           <PARAMETER NAME="AWUSER_WIDTH" VALUE="0"/>
           <PARAMETER NAME="ARUSER_WIDTH" VALUE="0"/>
@@ -5406,7 +5406,7 @@
           <PARAMETER NAME="HAS_BRESP" VALUE="1"/>
           <PARAMETER NAME="HAS_RRESP" VALUE="1"/>
           <PARAMETER NAME="PHASE" VALUE="0.000"/>
-          <PARAMETER NAME="CLK_DOMAIN" VALUE="pynq_processing_system7_0_0_FCLK_CLK1"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="pynq_processing_system7_0_0_FCLK_CLK2"/>
           <PARAMETER NAME="NUM_READ_THREADS" VALUE="1"/>
           <PARAMETER NAME="NUM_WRITE_THREADS" VALUE="1"/>
           <PARAMETER NAME="RUSER_BITS_PER_BYTE" VALUE="0"/>
@@ -5461,7 +5461,7 @@
           <PARAMETER NAME="HAS_BURST" VALUE="0"/>
           <PARAMETER NAME="SUPPORTS_NARROW_BURST" VALUE="0"/>
           <PARAMETER NAME="DATA_WIDTH" VALUE="32"/>
-          <PARAMETER NAME="FREQ_HZ" VALUE="142857132"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
           <PARAMETER NAME="ID_WIDTH" VALUE="0"/>
           <PARAMETER NAME="AWUSER_WIDTH" VALUE="0"/>
           <PARAMETER NAME="ARUSER_WIDTH" VALUE="0"/>
@@ -5477,7 +5477,7 @@
           <PARAMETER NAME="HAS_BRESP" VALUE="1"/>
           <PARAMETER NAME="HAS_RRESP" VALUE="1"/>
           <PARAMETER NAME="PHASE" VALUE="0.000"/>
-          <PARAMETER NAME="CLK_DOMAIN" VALUE="pynq_processing_system7_0_0_FCLK_CLK1"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="pynq_processing_system7_0_0_FCLK_CLK2"/>
           <PARAMETER NAME="NUM_READ_THREADS" VALUE="1"/>
           <PARAMETER NAME="NUM_WRITE_THREADS" VALUE="1"/>
           <PARAMETER NAME="RUSER_BITS_PER_BYTE" VALUE="0"/>
@@ -12874,14 +12874,14 @@
         <PARAMETER NAME="C_HIGHADDR" VALUE="0x43C0FFFF"/>
       </PARAMETERS>
       <PORTS>
-        <PORT CLKFREQUENCY="142857132" DIR="I" NAME="s_axi_aclk" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK1">
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="s_axi_aclk" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK2">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK1"/>
+            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK2"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="s_axi_aresetn" SIGIS="rst" SIGNAME="proc_sys_reset_1_peripheral_aresetn">
+        <PORT DIR="I" NAME="s_axi_aresetn" SIGIS="rst" SIGNAME="proc_sys_reset_2_peripheral_aresetn">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="proc_sys_reset_1" PORT="peripheral_aresetn"/>
+            <CONNECTION INSTANCE="proc_sys_reset_2" PORT="peripheral_aresetn"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="31" NAME="S_AXI_AWADDR" RIGHT="0" SIGIS="undef" SIGNAME="axi_ic_processing_system7_0_M_AXI_GP0_M00_AXI_awaddr">
@@ -12979,14 +12979,14 @@
             <CONNECTION INSTANCE="axi_ic_processing_system7_0_M_AXI_GP0" PORT="M00_AXI_rready"/>
           </CONNECTIONS>
         </PORT>
-        <PORT CLKFREQUENCY="142857132" DIR="I" NAME="acc_aclk" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK1">
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="acc_aclk" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK2">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK1"/>
+            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK2"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="acc_aresetn" SIGIS="rst" SIGNAME="proc_sys_reset_1_peripheral_aresetn">
+        <PORT DIR="I" NAME="acc_aresetn" SIGIS="rst" SIGNAME="proc_sys_reset_2_peripheral_aresetn">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="proc_sys_reset_1" PORT="peripheral_aresetn"/>
+            <CONNECTION INSTANCE="proc_sys_reset_2" PORT="peripheral_aresetn"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="ap_resetn" SIGIS="rst" SIGNAME="encrypt_1_if_ap_resetn">
@@ -12994,7 +12994,7 @@
             <CONNECTION INSTANCE="encrypt_1" PORT="ap_rst_n"/>
           </CONNECTIONS>
         </PORT>
-        <PORT CLKFREQUENCY="142857132" DIR="O" NAME="ap_clk" SIGIS="clk" SIGNAME="encrypt_1_if_ap_clk">
+        <PORT CLKFREQUENCY="100000000" DIR="O" NAME="ap_clk" SIGIS="clk" SIGNAME="encrypt_1_if_ap_clk">
           <CONNECTIONS>
             <CONNECTION INSTANCE="encrypt_1" PORT="ap_clk"/>
           </CONNECTIONS>
@@ -13040,14 +13040,14 @@
             <CONNECTION INSTANCE="encrypt_1" PORT="buf_offset"/>
           </CONNECTIONS>
         </PORT>
-        <PORT CLKFREQUENCY="142857132" DIR="I" NAME="s_axis_bram_0_aclk" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK1">
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="s_axis_bram_0_aclk" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK2">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK1"/>
+            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK2"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="s_axis_bram_0_aresetn" SIGIS="rst" SIGNAME="proc_sys_reset_1_peripheral_aresetn">
+        <PORT DIR="I" NAME="s_axis_bram_0_aresetn" SIGIS="rst" SIGNAME="proc_sys_reset_2_peripheral_aresetn">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="proc_sys_reset_1" PORT="peripheral_aresetn"/>
+            <CONNECTION INSTANCE="proc_sys_reset_2" PORT="peripheral_aresetn"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" NAME="s_axis_bram_0_tlast" SIGIS="undef" SIGNAME="dm_0_m_axis_mm2s_tlast">
@@ -14516,7 +14516,7 @@
         <BUSINTERFACE BUSNAME="encrypt_1_m_axi_ctx_key" DATAWIDTH="32" NAME="AP_AXIMM_0" TYPE="SLAVE" VLNV="xilinx.com:interface:aximm:1.0">
           <PARAMETER NAME="DATA_WIDTH" VALUE="32"/>
           <PARAMETER NAME="PROTOCOL" VALUE="AXI4"/>
-          <PARAMETER NAME="FREQ_HZ" VALUE="142857132"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
           <PARAMETER NAME="ID_WIDTH" VALUE="0"/>
           <PARAMETER NAME="ADDR_WIDTH" VALUE="32"/>
           <PARAMETER NAME="AWUSER_WIDTH" VALUE="0"/>
@@ -14539,7 +14539,7 @@
           <PARAMETER NAME="NUM_WRITE_OUTSTANDING" VALUE="16"/>
           <PARAMETER NAME="MAX_BURST_LENGTH" VALUE="256"/>
           <PARAMETER NAME="PHASE" VALUE="0.000"/>
-          <PARAMETER NAME="CLK_DOMAIN" VALUE="pynq_processing_system7_0_0_FCLK_CLK1"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="pynq_processing_system7_0_0_FCLK_CLK2"/>
           <PARAMETER NAME="NUM_READ_THREADS" VALUE="1"/>
           <PARAMETER NAME="NUM_WRITE_THREADS" VALUE="1"/>
           <PARAMETER NAME="RUSER_BITS_PER_BYTE" VALUE="0"/>
@@ -14585,7 +14585,7 @@
         <BUSINTERFACE BUSNAME="encrypt_1_m_axi_ctx_enckey" DATAWIDTH="32" NAME="AP_AXIMM_1" TYPE="SLAVE" VLNV="xilinx.com:interface:aximm:1.0">
           <PARAMETER NAME="DATA_WIDTH" VALUE="32"/>
           <PARAMETER NAME="PROTOCOL" VALUE="AXI4"/>
-          <PARAMETER NAME="FREQ_HZ" VALUE="142857132"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
           <PARAMETER NAME="ID_WIDTH" VALUE="0"/>
           <PARAMETER NAME="ADDR_WIDTH" VALUE="32"/>
           <PARAMETER NAME="AWUSER_WIDTH" VALUE="0"/>
@@ -14608,7 +14608,7 @@
           <PARAMETER NAME="NUM_WRITE_OUTSTANDING" VALUE="16"/>
           <PARAMETER NAME="MAX_BURST_LENGTH" VALUE="256"/>
           <PARAMETER NAME="PHASE" VALUE="0.000"/>
-          <PARAMETER NAME="CLK_DOMAIN" VALUE="pynq_processing_system7_0_0_FCLK_CLK1"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="pynq_processing_system7_0_0_FCLK_CLK2"/>
           <PARAMETER NAME="NUM_READ_THREADS" VALUE="1"/>
           <PARAMETER NAME="NUM_WRITE_THREADS" VALUE="1"/>
           <PARAMETER NAME="RUSER_BITS_PER_BYTE" VALUE="0"/>
@@ -14654,7 +14654,7 @@
         <BUSINTERFACE BUSNAME="encrypt_1_m_axi_ctx_deckey" DATAWIDTH="32" NAME="AP_AXIMM_2" TYPE="SLAVE" VLNV="xilinx.com:interface:aximm:1.0">
           <PARAMETER NAME="DATA_WIDTH" VALUE="32"/>
           <PARAMETER NAME="PROTOCOL" VALUE="AXI4"/>
-          <PARAMETER NAME="FREQ_HZ" VALUE="142857132"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
           <PARAMETER NAME="ID_WIDTH" VALUE="0"/>
           <PARAMETER NAME="ADDR_WIDTH" VALUE="32"/>
           <PARAMETER NAME="AWUSER_WIDTH" VALUE="0"/>
@@ -14677,7 +14677,7 @@
           <PARAMETER NAME="NUM_WRITE_OUTSTANDING" VALUE="16"/>
           <PARAMETER NAME="MAX_BURST_LENGTH" VALUE="256"/>
           <PARAMETER NAME="PHASE" VALUE="0.000"/>
-          <PARAMETER NAME="CLK_DOMAIN" VALUE="pynq_processing_system7_0_0_FCLK_CLK1"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="pynq_processing_system7_0_0_FCLK_CLK2"/>
           <PARAMETER NAME="NUM_READ_THREADS" VALUE="1"/>
           <PARAMETER NAME="NUM_WRITE_THREADS" VALUE="1"/>
           <PARAMETER NAME="RUSER_BITS_PER_BYTE" VALUE="0"/>
@@ -14723,7 +14723,7 @@
         <BUSINTERFACE BUSNAME="encrypt_1_m_axi_buf_r" DATAWIDTH="32" NAME="AP_AXIMM_3" TYPE="SLAVE" VLNV="xilinx.com:interface:aximm:1.0">
           <PARAMETER NAME="DATA_WIDTH" VALUE="32"/>
           <PARAMETER NAME="PROTOCOL" VALUE="AXI4"/>
-          <PARAMETER NAME="FREQ_HZ" VALUE="142857132"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
           <PARAMETER NAME="ID_WIDTH" VALUE="0"/>
           <PARAMETER NAME="ADDR_WIDTH" VALUE="32"/>
           <PARAMETER NAME="AWUSER_WIDTH" VALUE="0"/>
@@ -14746,7 +14746,7 @@
           <PARAMETER NAME="NUM_WRITE_OUTSTANDING" VALUE="16"/>
           <PARAMETER NAME="MAX_BURST_LENGTH" VALUE="256"/>
           <PARAMETER NAME="PHASE" VALUE="0.000"/>
-          <PARAMETER NAME="CLK_DOMAIN" VALUE="pynq_processing_system7_0_0_FCLK_CLK1"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="pynq_processing_system7_0_0_FCLK_CLK2"/>
           <PARAMETER NAME="NUM_READ_THREADS" VALUE="1"/>
           <PARAMETER NAME="NUM_WRITE_THREADS" VALUE="1"/>
           <PARAMETER NAME="RUSER_BITS_PER_BYTE" VALUE="0"/>
@@ -14792,7 +14792,7 @@
         <BUSINTERFACE BUSNAME="axi_ic_processing_system7_0_M_AXI_GP0_M00_AXI" DATAWIDTH="32" NAME="S_AXI" TYPE="SLAVE" VLNV="xilinx.com:interface:aximm:1.0">
           <PARAMETER NAME="DATA_WIDTH" VALUE="32"/>
           <PARAMETER NAME="PROTOCOL" VALUE="AXI4LITE"/>
-          <PARAMETER NAME="FREQ_HZ" VALUE="142857132"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
           <PARAMETER NAME="ID_WIDTH" VALUE="0"/>
           <PARAMETER NAME="ADDR_WIDTH" VALUE="32"/>
           <PARAMETER NAME="AWUSER_WIDTH" VALUE="0"/>
@@ -14815,7 +14815,7 @@
           <PARAMETER NAME="NUM_WRITE_OUTSTANDING" VALUE="2"/>
           <PARAMETER NAME="MAX_BURST_LENGTH" VALUE="1"/>
           <PARAMETER NAME="PHASE" VALUE="0.000"/>
-          <PARAMETER NAME="CLK_DOMAIN" VALUE="pynq_processing_system7_0_0_FCLK_CLK1"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="pynq_processing_system7_0_0_FCLK_CLK2"/>
           <PARAMETER NAME="NUM_READ_THREADS" VALUE="1"/>
           <PARAMETER NAME="NUM_WRITE_THREADS" VALUE="1"/>
           <PARAMETER NAME="RUSER_BITS_PER_BYTE" VALUE="0"/>
@@ -14854,7 +14854,7 @@
         <BUSINTERFACE BUSNAME="encrypt_1_if_M_AXIMM_0" DATAWIDTH="32" NAME="M_AXIMM_0" TYPE="MASTER" VLNV="xilinx.com:interface:aximm:1.0">
           <PARAMETER NAME="DATA_WIDTH" VALUE="32"/>
           <PARAMETER NAME="PROTOCOL" VALUE="AXI4"/>
-          <PARAMETER NAME="FREQ_HZ" VALUE="142857132"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
           <PARAMETER NAME="ID_WIDTH" VALUE="0"/>
           <PARAMETER NAME="ADDR_WIDTH" VALUE="32"/>
           <PARAMETER NAME="AWUSER_WIDTH" VALUE="0"/>
@@ -14877,7 +14877,7 @@
           <PARAMETER NAME="NUM_WRITE_OUTSTANDING" VALUE="8"/>
           <PARAMETER NAME="MAX_BURST_LENGTH" VALUE="256"/>
           <PARAMETER NAME="PHASE" VALUE="0.000"/>
-          <PARAMETER NAME="CLK_DOMAIN" VALUE="pynq_processing_system7_0_0_FCLK_CLK1"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="pynq_processing_system7_0_0_FCLK_CLK2"/>
           <PARAMETER NAME="NUM_READ_THREADS" VALUE="1"/>
           <PARAMETER NAME="NUM_WRITE_THREADS" VALUE="1"/>
           <PARAMETER NAME="RUSER_BITS_PER_BYTE" VALUE="0"/>
@@ -14923,7 +14923,7 @@
         <BUSINTERFACE BUSNAME="encrypt_1_if_M_AXIMM_1" DATAWIDTH="32" NAME="M_AXIMM_1" TYPE="MASTER" VLNV="xilinx.com:interface:aximm:1.0">
           <PARAMETER NAME="DATA_WIDTH" VALUE="32"/>
           <PARAMETER NAME="PROTOCOL" VALUE="AXI4"/>
-          <PARAMETER NAME="FREQ_HZ" VALUE="142857132"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
           <PARAMETER NAME="ID_WIDTH" VALUE="0"/>
           <PARAMETER NAME="ADDR_WIDTH" VALUE="32"/>
           <PARAMETER NAME="AWUSER_WIDTH" VALUE="0"/>
@@ -14946,7 +14946,7 @@
           <PARAMETER NAME="NUM_WRITE_OUTSTANDING" VALUE="2"/>
           <PARAMETER NAME="MAX_BURST_LENGTH" VALUE="256"/>
           <PARAMETER NAME="PHASE" VALUE="0.000"/>
-          <PARAMETER NAME="CLK_DOMAIN" VALUE="pynq_processing_system7_0_0_FCLK_CLK1"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="pynq_processing_system7_0_0_FCLK_CLK2"/>
           <PARAMETER NAME="NUM_READ_THREADS" VALUE="1"/>
           <PARAMETER NAME="NUM_WRITE_THREADS" VALUE="1"/>
           <PARAMETER NAME="RUSER_BITS_PER_BYTE" VALUE="0"/>
@@ -14992,7 +14992,7 @@
         <BUSINTERFACE BUSNAME="encrypt_1_if_M_AXIMM_2" DATAWIDTH="32" NAME="M_AXIMM_2" TYPE="MASTER" VLNV="xilinx.com:interface:aximm:1.0">
           <PARAMETER NAME="DATA_WIDTH" VALUE="32"/>
           <PARAMETER NAME="PROTOCOL" VALUE="AXI4"/>
-          <PARAMETER NAME="FREQ_HZ" VALUE="142857132"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
           <PARAMETER NAME="ID_WIDTH" VALUE="0"/>
           <PARAMETER NAME="ADDR_WIDTH" VALUE="32"/>
           <PARAMETER NAME="AWUSER_WIDTH" VALUE="0"/>
@@ -15015,7 +15015,7 @@
           <PARAMETER NAME="NUM_WRITE_OUTSTANDING" VALUE="2"/>
           <PARAMETER NAME="MAX_BURST_LENGTH" VALUE="256"/>
           <PARAMETER NAME="PHASE" VALUE="0.000"/>
-          <PARAMETER NAME="CLK_DOMAIN" VALUE="pynq_processing_system7_0_0_FCLK_CLK1"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="pynq_processing_system7_0_0_FCLK_CLK2"/>
           <PARAMETER NAME="NUM_READ_THREADS" VALUE="1"/>
           <PARAMETER NAME="NUM_WRITE_THREADS" VALUE="1"/>
           <PARAMETER NAME="RUSER_BITS_PER_BYTE" VALUE="0"/>
@@ -15061,7 +15061,7 @@
         <BUSINTERFACE BUSNAME="encrypt_1_if_M_AXIMM_3" DATAWIDTH="32" NAME="M_AXIMM_3" TYPE="MASTER" VLNV="xilinx.com:interface:aximm:1.0">
           <PARAMETER NAME="DATA_WIDTH" VALUE="32"/>
           <PARAMETER NAME="PROTOCOL" VALUE="AXI4"/>
-          <PARAMETER NAME="FREQ_HZ" VALUE="142857132"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
           <PARAMETER NAME="ID_WIDTH" VALUE="0"/>
           <PARAMETER NAME="ADDR_WIDTH" VALUE="32"/>
           <PARAMETER NAME="AWUSER_WIDTH" VALUE="0"/>
@@ -15084,7 +15084,7 @@
           <PARAMETER NAME="NUM_WRITE_OUTSTANDING" VALUE="2"/>
           <PARAMETER NAME="MAX_BURST_LENGTH" VALUE="256"/>
           <PARAMETER NAME="PHASE" VALUE="0.000"/>
-          <PARAMETER NAME="CLK_DOMAIN" VALUE="pynq_processing_system7_0_0_FCLK_CLK1"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="pynq_processing_system7_0_0_FCLK_CLK2"/>
           <PARAMETER NAME="NUM_READ_THREADS" VALUE="1"/>
           <PARAMETER NAME="NUM_WRITE_THREADS" VALUE="1"/>
           <PARAMETER NAME="RUSER_BITS_PER_BYTE" VALUE="0"/>
@@ -15136,9 +15136,9 @@
           <PARAMETER NAME="HAS_TSTRB" VALUE="1"/>
           <PARAMETER NAME="HAS_TKEEP" VALUE="1"/>
           <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
-          <PARAMETER NAME="FREQ_HZ" VALUE="142857132"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
           <PARAMETER NAME="PHASE" VALUE="0.000"/>
-          <PARAMETER NAME="CLK_DOMAIN" VALUE="pynq_processing_system7_0_0_FCLK_CLK1"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="pynq_processing_system7_0_0_FCLK_CLK2"/>
           <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
           <PORTMAPS>
             <PORTMAP LOGICAL="TDATA" PHYSICAL="s_axis_bram_0_tdata"/>
@@ -15263,31 +15263,8 @@
         <PORT DIR="O" NAME="mb_reset" SIGIS="rst"/>
         <PORT DIR="O" LEFT="0" NAME="bus_struct_reset" RIGHT="0" SIGIS="rst"/>
         <PORT DIR="O" LEFT="0" NAME="peripheral_reset" RIGHT="0" SIGIS="rst"/>
-        <PORT DIR="O" LEFT="0" NAME="interconnect_aresetn" RIGHT="0" SIGIS="rst" SIGNAME="proc_sys_reset_1_interconnect_aresetn">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_ic_processing_system7_0_M_AXI_GP0" PORT="S00_ARESETN"/>
-            <CONNECTION INSTANCE="axi_ic_processing_system7_0_M_AXI_GP0" PORT="M00_ARESETN"/>
-            <CONNECTION INSTANCE="axi_ic_processing_system7_0_M_AXI_GP0" PORT="M01_ARESETN"/>
-            <CONNECTION INSTANCE="axi_ic_processing_system7_0_M_AXI_GP0" PORT="ARESETN"/>
-            <CONNECTION INSTANCE="axi_ic_processing_system7_0_S_AXI_HP0" PORT="M00_ARESETN"/>
-            <CONNECTION INSTANCE="axi_ic_processing_system7_0_S_AXI_HP0" PORT="S00_ARESETN"/>
-            <CONNECTION INSTANCE="axi_ic_processing_system7_0_S_AXI_ACP" PORT="M00_ARESETN"/>
-            <CONNECTION INSTANCE="axi_ic_processing_system7_0_S_AXI_ACP" PORT="S00_ARESETN"/>
-            <CONNECTION INSTANCE="axi_ic_processing_system7_0_S_AXI_ACP" PORT="S01_ARESETN"/>
-            <CONNECTION INSTANCE="axi_ic_processing_system7_0_S_AXI_ACP" PORT="S02_ARESETN"/>
-            <CONNECTION INSTANCE="axi_ic_processing_system7_0_S_AXI_ACP" PORT="S03_ARESETN"/>
-            <CONNECTION INSTANCE="axi_ic_processing_system7_0_S_AXI_HP0" PORT="ARESETN"/>
-            <CONNECTION INSTANCE="axi_ic_processing_system7_0_S_AXI_ACP" PORT="ARESETN"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="0" NAME="peripheral_aresetn" RIGHT="0" SIGIS="rst" SIGNAME="proc_sys_reset_1_peripheral_aresetn">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="dm_0" PORT="axi_resetn"/>
-            <CONNECTION INSTANCE="encrypt_1_if" PORT="s_axi_aresetn"/>
-            <CONNECTION INSTANCE="encrypt_1_if" PORT="acc_aresetn"/>
-            <CONNECTION INSTANCE="encrypt_1_if" PORT="s_axis_bram_0_aresetn"/>
-          </CONNECTIONS>
-        </PORT>
+        <PORT DIR="O" LEFT="0" NAME="interconnect_aresetn" RIGHT="0" SIGIS="rst"/>
+        <PORT DIR="O" LEFT="0" NAME="peripheral_aresetn" RIGHT="0" SIGIS="rst"/>
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
@@ -15327,8 +15304,31 @@
         <PORT DIR="O" NAME="mb_reset" SIGIS="rst"/>
         <PORT DIR="O" LEFT="0" NAME="bus_struct_reset" RIGHT="0" SIGIS="rst"/>
         <PORT DIR="O" LEFT="0" NAME="peripheral_reset" RIGHT="0" SIGIS="rst"/>
-        <PORT DIR="O" LEFT="0" NAME="interconnect_aresetn" RIGHT="0" SIGIS="rst"/>
-        <PORT DIR="O" LEFT="0" NAME="peripheral_aresetn" RIGHT="0" SIGIS="rst"/>
+        <PORT DIR="O" LEFT="0" NAME="interconnect_aresetn" RIGHT="0" SIGIS="rst" SIGNAME="proc_sys_reset_2_interconnect_aresetn">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_ic_processing_system7_0_M_AXI_GP0" PORT="S00_ARESETN"/>
+            <CONNECTION INSTANCE="axi_ic_processing_system7_0_M_AXI_GP0" PORT="M00_ARESETN"/>
+            <CONNECTION INSTANCE="axi_ic_processing_system7_0_M_AXI_GP0" PORT="M01_ARESETN"/>
+            <CONNECTION INSTANCE="axi_ic_processing_system7_0_M_AXI_GP0" PORT="ARESETN"/>
+            <CONNECTION INSTANCE="axi_ic_processing_system7_0_S_AXI_HP0" PORT="M00_ARESETN"/>
+            <CONNECTION INSTANCE="axi_ic_processing_system7_0_S_AXI_HP0" PORT="S00_ARESETN"/>
+            <CONNECTION INSTANCE="axi_ic_processing_system7_0_S_AXI_ACP" PORT="M00_ARESETN"/>
+            <CONNECTION INSTANCE="axi_ic_processing_system7_0_S_AXI_ACP" PORT="S00_ARESETN"/>
+            <CONNECTION INSTANCE="axi_ic_processing_system7_0_S_AXI_ACP" PORT="S01_ARESETN"/>
+            <CONNECTION INSTANCE="axi_ic_processing_system7_0_S_AXI_ACP" PORT="S02_ARESETN"/>
+            <CONNECTION INSTANCE="axi_ic_processing_system7_0_S_AXI_ACP" PORT="S03_ARESETN"/>
+            <CONNECTION INSTANCE="axi_ic_processing_system7_0_S_AXI_HP0" PORT="ARESETN"/>
+            <CONNECTION INSTANCE="axi_ic_processing_system7_0_S_AXI_ACP" PORT="ARESETN"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="0" NAME="peripheral_aresetn" RIGHT="0" SIGIS="rst" SIGNAME="proc_sys_reset_2_peripheral_aresetn">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="dm_0" PORT="axi_resetn"/>
+            <CONNECTION INSTANCE="encrypt_1_if" PORT="s_axi_aresetn"/>
+            <CONNECTION INSTANCE="encrypt_1_if" PORT="acc_aresetn"/>
+            <CONNECTION INSTANCE="encrypt_1_if" PORT="s_axis_bram_0_aresetn"/>
+          </CONNECTIONS>
+        </PORT>
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
@@ -15683,12 +15683,12 @@
         <PARAMETER NAME="PCW_USE_S_AXI_HP1" VALUE="0"/>
         <PARAMETER NAME="PCW_USE_S_AXI_HP2" VALUE="0"/>
         <PARAMETER NAME="PCW_USE_S_AXI_HP3" VALUE="0"/>
-        <PARAMETER NAME="PCW_M_AXI_GP0_FREQMHZ" VALUE="142"/>
+        <PARAMETER NAME="PCW_M_AXI_GP0_FREQMHZ" VALUE="100"/>
         <PARAMETER NAME="PCW_M_AXI_GP1_FREQMHZ" VALUE="10"/>
         <PARAMETER NAME="PCW_S_AXI_GP0_FREQMHZ" VALUE="10"/>
         <PARAMETER NAME="PCW_S_AXI_GP1_FREQMHZ" VALUE="10"/>
-        <PARAMETER NAME="PCW_S_AXI_ACP_FREQMHZ" VALUE="142"/>
-        <PARAMETER NAME="PCW_S_AXI_HP0_FREQMHZ" VALUE="142"/>
+        <PARAMETER NAME="PCW_S_AXI_ACP_FREQMHZ" VALUE="100"/>
+        <PARAMETER NAME="PCW_S_AXI_HP0_FREQMHZ" VALUE="100"/>
         <PARAMETER NAME="PCW_S_AXI_HP1_FREQMHZ" VALUE="10"/>
         <PARAMETER NAME="PCW_S_AXI_HP2_FREQMHZ" VALUE="10"/>
         <PARAMETER NAME="PCW_S_AXI_HP3_FREQMHZ" VALUE="10"/>
@@ -16454,9 +16454,9 @@
             <CONNECTION INSTANCE="axi_ic_processing_system7_0_M_AXI_GP0" PORT="S00_AXI_wstrb"/>
           </CONNECTIONS>
         </PORT>
-        <PORT CLKFREQUENCY="142857132" DIR="I" NAME="M_AXI_GP0_ACLK" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK1">
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="M_AXI_GP0_ACLK" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK2">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK1"/>
+            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK2"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" NAME="M_AXI_GP0_ARREADY" SIGIS="undef" SIGNAME="axi_ic_processing_system7_0_M_AXI_GP0_S00_AXI_arready">
@@ -16569,9 +16569,9 @@
             <CONNECTION INSTANCE="axi_ic_processing_system7_0_S_AXI_ACP" PORT="M00_AXI_rdata"/>
           </CONNECTIONS>
         </PORT>
-        <PORT CLKFREQUENCY="142857132" DIR="I" NAME="S_AXI_ACP_ACLK" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK1">
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="S_AXI_ACP_ACLK" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK2">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK1"/>
+            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK2"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" NAME="S_AXI_ACP_ARVALID" SIGIS="undef" SIGNAME="axi_ic_processing_system7_0_S_AXI_ACP_M00_AXI_arvalid">
@@ -16762,9 +16762,9 @@
         <PORT DIR="O" LEFT="7" NAME="S_AXI_HP0_WCOUNT" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="O" LEFT="2" NAME="S_AXI_HP0_RACOUNT" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="O" LEFT="5" NAME="S_AXI_HP0_WACOUNT" RIGHT="0" SIGIS="undef"/>
-        <PORT CLKFREQUENCY="142857132" DIR="I" NAME="S_AXI_HP0_ACLK" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK1">
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="S_AXI_HP0_ACLK" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK2">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK1"/>
+            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK2"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" NAME="S_AXI_HP0_ARVALID" SIGIS="undef" SIGNAME="axi_ic_processing_system7_0_S_AXI_HP0_M00_AXI_arvalid">
@@ -16905,6 +16905,11 @@
         <PORT CLKFREQUENCY="142857132" DIR="O" NAME="FCLK_CLK1" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK1">
           <CONNECTIONS>
             <CONNECTION INSTANCE="proc_sys_reset_1" PORT="slowest_sync_clk"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT CLKFREQUENCY="100000000" DIR="O" NAME="FCLK_CLK2" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK2">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="proc_sys_reset_2" PORT="slowest_sync_clk"/>
             <CONNECTION INSTANCE="dm_0" PORT="s_axi_lite_aclk"/>
             <CONNECTION INSTANCE="dm_0" PORT="m_axi_mm2s_aclk"/>
             <CONNECTION INSTANCE="processing_system7_0" PORT="M_AXI_GP0_ACLK"/>
@@ -16926,11 +16931,6 @@
             <CONNECTION INSTANCE="processing_system7_0" PORT="S_AXI_HP0_ACLK"/>
             <CONNECTION INSTANCE="axi_ic_processing_system7_0_S_AXI_ACP" PORT="ACLK"/>
             <CONNECTION INSTANCE="processing_system7_0" PORT="S_AXI_ACP_ACLK"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT CLKFREQUENCY="100000000" DIR="O" NAME="FCLK_CLK2" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK2">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="proc_sys_reset_2" PORT="slowest_sync_clk"/>
           </CONNECTIONS>
         </PORT>
         <PORT CLKFREQUENCY="200000000" DIR="O" NAME="FCLK_CLK3" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK3">
@@ -17036,7 +17036,7 @@
           <PARAMETER NAME="NUM_READ_OUTSTANDING" VALUE="8"/>
           <PARAMETER NAME="DATA_WIDTH" VALUE="32"/>
           <PARAMETER NAME="PROTOCOL" VALUE="AXI3"/>
-          <PARAMETER NAME="FREQ_HZ" VALUE="142857132"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
           <PARAMETER NAME="ID_WIDTH" VALUE="12"/>
           <PARAMETER NAME="ADDR_WIDTH" VALUE="32"/>
           <PARAMETER NAME="AWUSER_WIDTH" VALUE="0"/>
@@ -17056,7 +17056,7 @@
           <PARAMETER NAME="HAS_RRESP" VALUE="1"/>
           <PARAMETER NAME="MAX_BURST_LENGTH" VALUE="16"/>
           <PARAMETER NAME="PHASE" VALUE="0.000"/>
-          <PARAMETER NAME="CLK_DOMAIN" VALUE="pynq_processing_system7_0_0_FCLK_CLK1"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="pynq_processing_system7_0_0_FCLK_CLK2"/>
           <PARAMETER NAME="NUM_READ_THREADS" VALUE="4"/>
           <PARAMETER NAME="NUM_WRITE_THREADS" VALUE="4"/>
           <PARAMETER NAME="RUSER_BITS_PER_BYTE" VALUE="0"/>
@@ -17107,7 +17107,7 @@
           <PARAMETER NAME="NUM_READ_OUTSTANDING" VALUE="8"/>
           <PARAMETER NAME="DATA_WIDTH" VALUE="64"/>
           <PARAMETER NAME="PROTOCOL" VALUE="AXI3"/>
-          <PARAMETER NAME="FREQ_HZ" VALUE="142857132"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
           <PARAMETER NAME="ID_WIDTH" VALUE="3"/>
           <PARAMETER NAME="ADDR_WIDTH" VALUE="32"/>
           <PARAMETER NAME="AWUSER_WIDTH" VALUE="5"/>
@@ -17128,7 +17128,7 @@
           <PARAMETER NAME="SUPPORTS_NARROW_BURST" VALUE="1"/>
           <PARAMETER NAME="MAX_BURST_LENGTH" VALUE="16"/>
           <PARAMETER NAME="PHASE" VALUE="0.000"/>
-          <PARAMETER NAME="CLK_DOMAIN" VALUE="pynq_processing_system7_0_0_FCLK_CLK1"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="pynq_processing_system7_0_0_FCLK_CLK2"/>
           <PARAMETER NAME="NUM_READ_THREADS" VALUE="1"/>
           <PARAMETER NAME="NUM_WRITE_THREADS" VALUE="1"/>
           <PARAMETER NAME="RUSER_BITS_PER_BYTE" VALUE="0"/>
@@ -17181,7 +17181,7 @@
           <PARAMETER NAME="NUM_READ_OUTSTANDING" VALUE="8"/>
           <PARAMETER NAME="DATA_WIDTH" VALUE="64"/>
           <PARAMETER NAME="PROTOCOL" VALUE="AXI3"/>
-          <PARAMETER NAME="FREQ_HZ" VALUE="142857132"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
           <PARAMETER NAME="ID_WIDTH" VALUE="6"/>
           <PARAMETER NAME="ADDR_WIDTH" VALUE="32"/>
           <PARAMETER NAME="AWUSER_WIDTH" VALUE="0"/>
@@ -17202,7 +17202,7 @@
           <PARAMETER NAME="SUPPORTS_NARROW_BURST" VALUE="1"/>
           <PARAMETER NAME="MAX_BURST_LENGTH" VALUE="16"/>
           <PARAMETER NAME="PHASE" VALUE="0.000"/>
-          <PARAMETER NAME="CLK_DOMAIN" VALUE="pynq_processing_system7_0_0_FCLK_CLK1"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="pynq_processing_system7_0_0_FCLK_CLK2"/>
           <PARAMETER NAME="NUM_READ_THREADS" VALUE="1"/>
           <PARAMETER NAME="NUM_WRITE_THREADS" VALUE="1"/>
           <PARAMETER NAME="RUSER_BITS_PER_BYTE" VALUE="0"/>

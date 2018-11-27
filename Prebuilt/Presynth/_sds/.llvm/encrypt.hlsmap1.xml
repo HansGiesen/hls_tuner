@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xd:acceleratorMap xmlns:xd="http://www.xilinx.com/xd" xd:fcnName="encrypt" xd:type="hls" xd:clockId="1" xd:templateInstantiation="__NA__" xd:componentRef="encrypt" xd:initiationInterval="21870" xd:clockPeriod="7.000001" xd:sequential="true" xd:hostMachine="64" xd:reset="control">
+<xd:acceleratorMap xmlns:xd="http://www.xilinx.com/xd" xd:fcnName="encrypt" xd:type="hls" xd:clockId="2" xd:templateInstantiation="__NA__" xd:componentRef="encrypt" xd:initiationInterval="20257" xd:clockPeriod="10.000000" xd:sequential="true" xd:hostMachine="64" xd:reset="control">
   <xd:controlReg xd:name="control" xd:busInterfaceRef="ap_ctrl" xd:portInterfaceType="acc_handshake" xd:type="acc_handshake"/>
   <xd:arg xd:name="ctx_key" xd:swRootName="ctx_key" xd:direction="inout" xd:busInterfaceRef="m_axi_ctx_key" xd:hwName="m_axi_ctx_key" xd:portInterfaceType="aximm" xd:arraySize="32" xd:dataWidth="8" xd:bufferDirection="inout"/>
   <xd:arg xd:name="ctx_enckey" xd:swRootName="ctx_enckey" xd:direction="inout" xd:busInterfaceRef="m_axi_ctx_enckey" xd:hwName="m_axi_ctx_enckey" xd:portInterfaceType="aximm" xd:arraySize="32" xd:dataWidth="8" xd:bufferDirection="inout"/>
@@ -10,6 +10,6 @@
   <xd:arg xd:name="ctx_deckey" xd:swRootName="ctx_deckey" xd:direction="in" xd:busInterfaceRef="ctx_deckey_offset" xd:hwName="ctx_deckey_offset" xd:portInterfaceType="register" xd:handshakeRef="ap_none" xd:aximmInterfaceRef="m_axi_ctx_deckey" xd:dataWidth="32"/>
   <xd:arg xd:name="k" xd:swRootName="k" xd:direction="in" xd:busInterfaceRef="k_PORTA" xd:hwName="k_PORTA" xd:portInterfaceType="bram" xd:arraySize="32" xd:dataWidth="8"/>
   <xd:arg xd:name="buf" xd:swRootName="buf" xd:direction="in" xd:busInterfaceRef="buf_offset" xd:hwName="buf_offset" xd:portInterfaceType="register" xd:handshakeRef="ap_none" xd:aximmInterfaceRef="m_axi_buf_r" xd:dataWidth="32"/>
-  <xd:latencyEstimates xd:best-case="15109" xd:worst-case="21869" xd:average-case="18489"/>
-  <xd:resourceEstimates xd:LUT="11732" xd:FF="5268" xd:BRAM="5" xd:DSP="0"/>
+  <xd:latencyEstimates xd:best-case="14169" xd:worst-case="20256" xd:average-case="17219"/>
+  <xd:resourceEstimates xd:LUT="18019" xd:FF="7927" xd:BRAM="5" xd:DSP="0"/>
 </xd:acceleratorMap>

@@ -35,7 +35,7 @@
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>FREQ_HZ</spirit:name>
-          <spirit:value spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.AP_CLK.FREQ_HZ">142857132</spirit:value>
+          <spirit:value spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.AP_CLK.FREQ_HZ">100000000</spirit:value>
           <spirit:vendorExtensions>
             <xilinx:parameterInfo>
               <xilinx:parameterUsage>none</xilinx:parameterUsage>
@@ -53,7 +53,7 @@
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>CLK_DOMAIN</spirit:name>
-          <spirit:value spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.AP_CLK.CLK_DOMAIN">pynq_processing_system7_0_0_FCLK_CLK1</spirit:value>
+          <spirit:value spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.AP_CLK.CLK_DOMAIN">pynq_processing_system7_0_0_FCLK_CLK2</spirit:value>
           <spirit:vendorExtensions>
             <xilinx:parameterInfo>
               <xilinx:parameterUsage>none</xilinx:parameterUsage>
@@ -557,7 +557,7 @@ tatype {name {attribs {resolve_type immediate dependency {} format string minimu
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>FREQ_HZ</spirit:name>
-          <spirit:value spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_CTX_KEY.FREQ_HZ">142857132</spirit:value>
+          <spirit:value spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_CTX_KEY.FREQ_HZ">100000000</spirit:value>
           <spirit:vendorExtensions>
             <xilinx:parameterInfo>
               <xilinx:parameterUsage>none</xilinx:parameterUsage>
@@ -701,7 +701,7 @@ tatype {name {attribs {resolve_type immediate dependency {} format string minimu
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>CLK_DOMAIN</spirit:name>
-          <spirit:value spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_CTX_KEY.CLK_DOMAIN">pynq_processing_system7_0_0_FCLK_CLK1</spirit:value>
+          <spirit:value spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_CTX_KEY.CLK_DOMAIN">pynq_processing_system7_0_0_FCLK_CLK2</spirit:value>
           <spirit:vendorExtensions>
             <xilinx:parameterInfo>
               <xilinx:parameterUsage>none</xilinx:parameterUsage>
@@ -1167,7 +1167,7 @@ tatype {name {attribs {resolve_type immediate dependency {} format string minimu
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>FREQ_HZ</spirit:name>
-          <spirit:value spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_CTX_ENCKEY.FREQ_HZ">142857132</spirit:value>
+          <spirit:value spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_CTX_ENCKEY.FREQ_HZ">100000000</spirit:value>
           <spirit:vendorExtensions>
             <xilinx:parameterInfo>
               <xilinx:parameterUsage>none</xilinx:parameterUsage>
@@ -1311,7 +1311,7 @@ tatype {name {attribs {resolve_type immediate dependency {} format string minimu
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>CLK_DOMAIN</spirit:name>
-          <spirit:value spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_CTX_ENCKEY.CLK_DOMAIN">pynq_processing_system7_0_0_FCLK_CLK1</spirit:value>
+          <spirit:value spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_CTX_ENCKEY.CLK_DOMAIN">pynq_processing_system7_0_0_FCLK_CLK2</spirit:value>
           <spirit:vendorExtensions>
             <xilinx:parameterInfo>
               <xilinx:parameterUsage>none</xilinx:parameterUsage>
@@ -1777,7 +1777,7 @@ tatype {name {attribs {resolve_type immediate dependency {} format string minimu
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>FREQ_HZ</spirit:name>
-          <spirit:value spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_CTX_DECKEY.FREQ_HZ">142857132</spirit:value>
+          <spirit:value spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_CTX_DECKEY.FREQ_HZ">100000000</spirit:value>
           <spirit:vendorExtensions>
             <xilinx:parameterInfo>
               <xilinx:parameterUsage>none</xilinx:parameterUsage>
@@ -1921,7 +1921,7 @@ tatype {name {attribs {resolve_type immediate dependency {} format string minimu
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>CLK_DOMAIN</spirit:name>
-          <spirit:value spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_CTX_DECKEY.CLK_DOMAIN">pynq_processing_system7_0_0_FCLK_CLK1</spirit:value>
+          <spirit:value spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_CTX_DECKEY.CLK_DOMAIN">pynq_processing_system7_0_0_FCLK_CLK2</spirit:value>
           <spirit:vendorExtensions>
             <xilinx:parameterInfo>
               <xilinx:parameterUsage>none</xilinx:parameterUsage>
@@ -2387,7 +2387,7 @@ tatype {name {attribs {resolve_type immediate dependency {} format string minimu
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>FREQ_HZ</spirit:name>
-          <spirit:value spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_BUF_R.FREQ_HZ">142857132</spirit:value>
+          <spirit:value spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_BUF_R.FREQ_HZ">100000000</spirit:value>
           <spirit:vendorExtensions>
             <xilinx:parameterInfo>
               <xilinx:parameterUsage>none</xilinx:parameterUsage>
@@ -2531,7 +2531,7 @@ tatype {name {attribs {resolve_type immediate dependency {} format string minimu
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>CLK_DOMAIN</spirit:name>
-          <spirit:value spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_BUF_R.CLK_DOMAIN">pynq_processing_system7_0_0_FCLK_CLK1</spirit:value>
+          <spirit:value spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.M_AXI_BUF_R.CLK_DOMAIN">pynq_processing_system7_0_0_FCLK_CLK2</spirit:value>
           <spirit:vendorExtensions>
             <xilinx:parameterInfo>
               <xilinx:parameterUsage>none</xilinx:parameterUsage>
@@ -2829,11 +2829,11 @@ attribs {resolve_type immediate dependency {} format long minimum {} maximum {}}
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Oct 31 18:47:21 UTC 2018</spirit:value>
+            <spirit:value>Mon Nov 19 19:18:24 UTC 2018</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>7:4f021e28</spirit:value>
+            <spirit:value>7:57f51684</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -2848,11 +2848,11 @@ attribs {resolve_type immediate dependency {} format long minimum {} maximum {}}
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Oct 31 18:47:21 UTC 2018</spirit:value>
+            <spirit:value>Mon Nov 19 19:18:24 UTC 2018</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>7:4f021e28</spirit:value>
+            <spirit:value>7:57f51684</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -2867,11 +2867,11 @@ attribs {resolve_type immediate dependency {} format long minimum {} maximum {}}
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Oct 31 18:47:21 UTC 2018</spirit:value>
+            <spirit:value>Mon Nov 19 19:18:24 UTC 2018</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>7:a7e8d5f6</spirit:value>
+            <spirit:value>7:3eb9b266</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -2886,11 +2886,11 @@ attribs {resolve_type immediate dependency {} format long minimum {} maximum {}}
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Oct 31 18:47:21 UTC 2018</spirit:value>
+            <spirit:value>Mon Nov 19 19:18:24 UTC 2018</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>7:a7e8d5f6</spirit:value>
+            <spirit:value>7:3eb9b266</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -2904,11 +2904,11 @@ attribs {resolve_type immediate dependency {} format long minimum {} maximum {}}
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Oct 31 18:56:32 UTC 2018</spirit:value>
+            <spirit:value>Mon Nov 19 19:29:44 UTC 2018</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>7:4f021e28</spirit:value>
+            <spirit:value>7:57f51684</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -6735,51 +6735,51 @@ attribs {resolve_type immediate dependency {} format long minimum {} maximum {}}
         <spirit:userFileType>USED_IN_out_of_context</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/01f0/hdl/vhdl/a0_aes_expandEncKey_bkb.vhd</spirit:name>
+        <spirit:name>../../ipshared/72c2/hdl/vhdl/a0_aes_expandEncKey.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/01f0/hdl/vhdl/a0_aes_shiftRows.vhd</spirit:name>
+        <spirit:name>../../ipshared/72c2/hdl/vhdl/a0_aes_mixColumns.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/01f0/hdl/vhdl/a0_encrypt.vhd</spirit:name>
+        <spirit:name>../../ipshared/72c2/hdl/vhdl/a0_encrypt_ctx_enckey_m_axi.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/01f0/hdl/vhdl/a0_encrypt_ctx_key_m_axi.vhd</spirit:name>
+        <spirit:name>../../ipshared/72c2/hdl/vhdl/a0_encrypt_ctx_deckey_m_axi.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/01f0/hdl/vhdl/a0_encrypt_ctx_deckey_m_axi.vhd</spirit:name>
+        <spirit:name>../../ipshared/72c2/hdl/vhdl/a0_encrypt.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/01f0/hdl/vhdl/a0_aes_expandEncKey.vhd</spirit:name>
+        <spirit:name>../../ipshared/72c2/hdl/vhdl/a0_encrypt_buf_r_m_axi.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/01f0/hdl/vhdl/a0_aes_subBytes.vhd</spirit:name>
+        <spirit:name>../../ipshared/72c2/hdl/vhdl/a0_aes_addRoundKey.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/01f0/hdl/vhdl/a0_aes_mixColumns.vhd</spirit:name>
+        <spirit:name>../../ipshared/72c2/hdl/vhdl/a0_aes_shiftRows.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/01f0/hdl/vhdl/a0_aes_addRoundKey.vhd</spirit:name>
+        <spirit:name>../../ipshared/72c2/hdl/vhdl/a0_encrypt_ctx_key_m_axi.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/01f0/hdl/vhdl/a0_encrypt_ctx_enckey_m_axi.vhd</spirit:name>
+        <spirit:name>../../ipshared/72c2/hdl/vhdl/a0_aes_addRoundKey_cpy.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/01f0/hdl/vhdl/a0_encrypt_buf_r_m_axi.vhd</spirit:name>
+        <spirit:name>../../ipshared/72c2/hdl/vhdl/a0_aes_subBytes.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/01f0/hdl/vhdl/a0_aes_addRoundKey_cpy.vhd</spirit:name>
+        <spirit:name>../../ipshared/72c2/hdl/vhdl/a0_aes_expandEncKey_bkb.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
       </spirit:file>
     </spirit:fileSet>
@@ -6794,62 +6794,62 @@ attribs {resolve_type immediate dependency {} format long minimum {} maximum {}}
     <spirit:fileSet>
       <spirit:name>xilinx_vhdlbehavioralsimulation_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>../../ipshared/01f0/hdl/vhdl/a0_aes_expandEncKey_bkb.vhd</spirit:name>
+        <spirit:name>../../ipshared/72c2/hdl/vhdl/a0_aes_expandEncKey.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/01f0/hdl/vhdl/a0_aes_shiftRows.vhd</spirit:name>
+        <spirit:name>../../ipshared/72c2/hdl/vhdl/a0_aes_mixColumns.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/01f0/hdl/vhdl/a0_encrypt.vhd</spirit:name>
+        <spirit:name>../../ipshared/72c2/hdl/vhdl/a0_encrypt_ctx_enckey_m_axi.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/01f0/hdl/vhdl/a0_encrypt_ctx_key_m_axi.vhd</spirit:name>
+        <spirit:name>../../ipshared/72c2/hdl/vhdl/a0_encrypt_ctx_deckey_m_axi.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/01f0/hdl/vhdl/a0_encrypt_ctx_deckey_m_axi.vhd</spirit:name>
+        <spirit:name>../../ipshared/72c2/hdl/vhdl/a0_encrypt.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/01f0/hdl/vhdl/a0_aes_expandEncKey.vhd</spirit:name>
+        <spirit:name>../../ipshared/72c2/hdl/vhdl/a0_encrypt_buf_r_m_axi.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/01f0/hdl/vhdl/a0_aes_subBytes.vhd</spirit:name>
+        <spirit:name>../../ipshared/72c2/hdl/vhdl/a0_aes_addRoundKey.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/01f0/hdl/vhdl/a0_aes_mixColumns.vhd</spirit:name>
+        <spirit:name>../../ipshared/72c2/hdl/vhdl/a0_aes_shiftRows.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/01f0/hdl/vhdl/a0_aes_addRoundKey.vhd</spirit:name>
+        <spirit:name>../../ipshared/72c2/hdl/vhdl/a0_encrypt_ctx_key_m_axi.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/01f0/hdl/vhdl/a0_encrypt_ctx_enckey_m_axi.vhd</spirit:name>
+        <spirit:name>../../ipshared/72c2/hdl/vhdl/a0_aes_addRoundKey_cpy.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/01f0/hdl/vhdl/a0_encrypt_buf_r_m_axi.vhd</spirit:name>
+        <spirit:name>../../ipshared/72c2/hdl/vhdl/a0_aes_subBytes.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/01f0/hdl/vhdl/a0_aes_addRoundKey_cpy.vhd</spirit:name>
+        <spirit:name>../../ipshared/72c2/hdl/vhdl/a0_aes_expandEncKey_bkb.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -7343,7 +7343,7 @@ attribs {resolve_type immediate dependency {} format long minimum {} maximum {}}
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>clk_period</spirit:name>
-      <spirit:value spirit:id="PARAM_VALUE.clk_period" spirit:order="50">7.000001</spirit:value>
+      <spirit:value spirit:id="PARAM_VALUE.clk_period" spirit:order="50">10.000000</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -7376,7 +7376,7 @@ attribs {resolve_type immediate dependency {} format long minimum {} maximum {}}
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>latency</spirit:name>
-      <spirit:value spirit:id="PARAM_VALUE.latency" spirit:order="53">15109</spirit:value>
+      <spirit:value spirit:id="PARAM_VALUE.latency" spirit:order="53">14169</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -7400,7 +7400,7 @@ attribs {resolve_type immediate dependency {} format long minimum {} maximum {}}
   <spirit:vendorExtensions>
     <xilinx:coreExtensions>
       <xilinx:displayName>Encrypt</xilinx:displayName>
-      <xilinx:coreRevision>1810311444</xilinx:coreRevision>
+      <xilinx:coreRevision>1811191415</xilinx:coreRevision>
       <xilinx:configElementInfos>
         <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.AP_CLK.CLK_DOMAIN" xilinx:valueSource="ip_propagated"/>
         <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.AP_CLK.FREQ_HZ" xilinx:valueSource="ip_propagated"/>

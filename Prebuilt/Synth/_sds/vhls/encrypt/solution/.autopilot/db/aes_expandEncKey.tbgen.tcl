@@ -158,7 +158,7 @@ set RtlHierarchyInfo {[
 
 set ArgLastReadFirstWriteLatency {
 	aes_expandEncKey {
-		k {Type IO LastRead 190 FirstWrite 11}
+		k {Type IO LastRead 428 FirstWrite 11}
 		k_offset {Type I LastRead 0 FirstWrite -1}
 		rc_read {Type I LastRead 10 FirstWrite -1}
 		sbox {Type I LastRead -1 FirstWrite -1}}}
@@ -166,8 +166,8 @@ set ArgLastReadFirstWriteLatency {
 set hasDtUnsupportedChannel 0
 
 set PerformanceInfo {[
-	{"Name" : "Latency", "Min" : "520", "Max" : "520"}
-	, {"Name" : "Interval", "Min" : "520", "Max" : "520"}
+	{"Name" : "Latency", "Min" : "432", "Max" : "432"}
+	, {"Name" : "Interval", "Min" : "432", "Max" : "432"}
 ]}
 
 set PipelineEnableSignalInfo {[

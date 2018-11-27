@@ -254,17 +254,17 @@ set RtlHierarchyInfo {[
 
 set ArgLastReadFirstWriteLatency {
 	aes_addRoundKey {
-		buf_r {Type IO LastRead 13 FirstWrite 12}
+		buf_r {Type IO LastRead 132 FirstWrite 11}
 		buf_offset {Type I LastRead 0 FirstWrite -1}
-		key {Type I LastRead 10 FirstWrite -1}
+		key {Type I LastRead 129 FirstWrite -1}
 		key_offset {Type I LastRead 0 FirstWrite -1}
 		key_offset_offset {Type I LastRead 0 FirstWrite -1}}}
 
 set hasDtUnsupportedChannel 0
 
 set PerformanceInfo {[
-	{"Name" : "Latency", "Min" : "273", "Max" : "273"}
-	, {"Name" : "Interval", "Min" : "273", "Max" : "273"}
+	{"Name" : "Latency", "Min" : "242", "Max" : "242"}
+	, {"Name" : "Interval", "Min" : "242", "Max" : "242"}
 ]}
 
 set PipelineEnableSignalInfo {[

@@ -20,10 +20,17 @@
 #include <stdio.h>
 #include "aes.h"
 
+#ifdef __SDSCC__
+#include <sds_lib.h>
+#endif
+
 #define DUMP(s, i, buf, sz)  {printf(s);                   \
                               for (i = 0; i < (sz);i++)    \
                                   printf("%02x ", buf[i]); \
                               printf("\n");}
+
+uint8_t expected[] = {0x8e, 0xa2, 0xb7, 0xca, 0x51, 0x67, 0x45, 0xbf,
+                      0xea, 0xfc, 0x49, 0x90, 0x4b, 0x49, 0x60, 0x89};
 
 #ifdef __cplusplus
 extern "C" {
@@ -37,6 +44,7 @@ int main (int argc, char *argv[])
     aes256_context ctx; 
     uint8_t key[32];
     uint8_t buf[16], i;
+    int equal;
 
     /* put a test vector */
     for (i = 0; i < sizeof(buf);i++){
@@ -53,7 +61,14 @@ int main (int argc, char *argv[])
     printf("---\n");
 
     //aes256_init(&ctx, key);
+
+#ifdef __SDSCC__
+  unsigned long long Start_time_HW = sds_clock_counter();
+#endif
     _p0_encrypt_1_noasync(ctx.key, ctx.enckey, ctx.deckey, key, buf);
+#ifdef __SDSCC__
+  unsigned long long End_time_HW = sds_clock_counter();
+#endif
 
     DUMP("enc: ", i, buf, sizeof(buf));
     printf("tst: 8e a2 b7 ca 51 67 45 bf ea fc 49 90 4b 49 60 89\n");
@@ -64,6 +79,23 @@ int main (int argc, char *argv[])
 
     //aes256_done(&ctx);
 
-    return 0;
+    equal = 1;
+    for (i = 0; i < sizeof(buf); i++){
+        equal = equal && (buf[i] == expected[i]);
+    }
+
+#ifdef __SDSCC__
+  unsigned long long Duration_HW = End_time_HW - Start_time_HW;
+  printf("The hardware test took %llu cycles.\n", Duration_HW);
+#endif
+
+    if (equal){
+        printf("TEST PASSED\n");
+        return 0;
+    }
+    else{
+        printf("TEST FAILED\n");
+        return 1;
+    }
 } /* main */
 

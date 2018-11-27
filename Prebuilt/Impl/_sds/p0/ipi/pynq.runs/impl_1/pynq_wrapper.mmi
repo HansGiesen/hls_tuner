@@ -11,7 +11,7 @@
 <MemInfo Version="1" Minor="5">
   <MemoryArray InstPath="pynq_i/encrypt_1_if/inst/in_bram_args_i/IN_FIFO_GEN[0].axis2bram_i/BRAM_GEN[0].adapter_bram_i/bram_i/xpm_memory_tdpram_inst/xpm_memory_base_inst" MemoryPrimitive="auto" MemoryConfiguration="enabled_configuration">
     <MemoryLayout Name="pynq_i/encrypt_1_if/inst/in_bram_args_i/IN_FIFO_GEN[0].axis2bram_i/BRAM_GEN[0].adapter_bram_i/bram_i/xpm_memory_tdpram_inst/xpm_memory_base_inst" CoreMemory_Width="8" MemoryType="RAM_TDP">
-      <BRAM MemType="RAMB18" Placement="X4Y50">
+      <BRAM MemType="RAMB18" Placement="X4Y38">
         <DataWidth_PortA MSB="7" LSB="0"/>
         <AddressRange_PortA Begin="0" End="1023"/>
         <BitLayout_PortA pattern="p0_d8"/>

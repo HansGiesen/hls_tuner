@@ -15,7 +15,7 @@ eval "::AESL_LIB_XILADAPTER::m_axi_gen { \
     corename {m_axi} \
     op interface \
     max_latency -1 \ 
-    delay_budget 5.11 \ 
+    delay_budget 7.3 \ 
     name {a0_encrypt_ctx_key_m_axi} \
 } "
 } else {
@@ -35,7 +35,7 @@ eval "::AESL_LIB_XILADAPTER::m_axi_gen { \
     corename {m_axi} \
     op interface \
     max_latency -1 \ 
-    delay_budget 5.11 \ 
+    delay_budget 7.3 \ 
     name {a0_encrypt_ctx_enckey_m_axi} \
 } "
 } else {
@@ -55,7 +55,7 @@ eval "::AESL_LIB_XILADAPTER::m_axi_gen { \
     corename {m_axi} \
     op interface \
     max_latency -1 \ 
-    delay_budget 5.11 \ 
+    delay_budget 7.3 \ 
     name {a0_encrypt_ctx_deckey_m_axi} \
 } "
 } else {
@@ -75,7 +75,7 @@ eval "::AESL_LIB_XILADAPTER::m_axi_gen { \
     corename {m_axi} \
     op interface \
     max_latency -1 \ 
-    delay_budget 5.11 \ 
+    delay_budget 7.3 \ 
     name {a0_encrypt_buf_r_m_axi} \
 } "
 } else {

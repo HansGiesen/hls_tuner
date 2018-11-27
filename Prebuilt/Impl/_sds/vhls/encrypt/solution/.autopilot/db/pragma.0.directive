@@ -16,18 +16,18 @@
 </pragma>
 </directive>
 <directive functionLabel="" functionName="aes_mixColumns" label="">
-<pragma name="UNROLL">
-<option name="factor" value="unroll_factor_mix"/>
+<pragma name="PIPELINE">
+<option name="ii" value="pipeline_ii_mix"/>
 </pragma>
 </directive>
 <directive functionLabel="" functionName="aes_expandEncKey" label="">
-<pragma name="UNROLL">
-<option name="factor" value="unroll_factor_exp1"/>
+<pragma name="PIPELINE">
+<option name="ii" value="pipeline_ii_exp1"/>
 </pragma>
 </directive>
 <directive functionLabel="" functionName="aes_expandEncKey" label="">
-<pragma name="UNROLL">
-<option name="factor" value="unroll_factor_exp2"/>
+<pragma name="PIPELINE">
+<option name="ii" value="pipeline_ii_exp2"/>
 </pragma>
 </directive>
 <directive functionLabel="" functionName="encrypt" label="">
@@ -36,8 +36,8 @@
 </pragma>
 </directive>
 <directive functionLabel="" functionName="encrypt" label="">
-<pragma name="UNROLL">
-<option name="factor" value="unroll_factor_ecb2"/>
+<pragma name="PIPELINE">
+<option name="ii" value="pipeline_ii_ecb2"/>
 </pragma>
 </directive>
 <directive functionLabel="" functionName="encrypt" label="">

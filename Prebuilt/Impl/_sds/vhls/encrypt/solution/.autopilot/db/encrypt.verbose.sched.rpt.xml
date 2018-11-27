@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vivado HLS Report for 'encrypt'" level="0">
-<item name = "Date">Wed Oct 31 14:44:15 2018
+<item name = "Date">Mon Nov 19 14:14:57 2018
 </item>
 <item name = "Version">2017.1 (Build 1846317 on Thu Jun 22 18:17:09 MDT 2017)</item>
 <item name = "Project">encrypt</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">7.00, 5.11, 1.89</column>
+<column name="ap_clk">10.00, 17.06, 2.70</column>
 </table>
 </item>
 </section>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="6">, min, max, min, max, Type</keys>
-<column name="">15109, 21869, 15110, 21870, none</column>
+<column name="">14169, 20256, 14170, 20257, none</column>
 </table>
 </item>
 <item name = "Detail">
@@ -35,9 +35,8 @@
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- ecb1">96, 96, 3, -, -, 32, no</column>
-<column name="- ecb2">3654, 3654, 522, -, -, 7, no</column>
-<column name="- ecb3">10140, 16900, 780 ~ 1300, -, -, 13, no</column>
+<column name="- ecb2">3038, 3038, 434, -, -, 7, no</column>
+<column name="- ecb3">10025, 16112, 4999 ~ 8029, -, -, 2, no</column>
 </table>
 </item>
 </section>

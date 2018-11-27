@@ -43,14 +43,18 @@ class MakeConfigTable(object):
     if results.count() == 0:
       return
     with open(self.args.csv_file, 'w') as file:
-      keys = ['id'] + results[0].configuration.data.keys() + ['state', 'time']
+      keys = ['id'] + results[0].configuration.data.keys() + \
+        ['state', 'presynth_time', 'synth_time', 'impl_time', 'run_time']
       writer = csv.DictWriter(file, keys)
       writer.writeheader()
       for result in results:
         row = result.configuration.data
         row['id'] = id_table[result.id]
         row['state'] = result.state
-        row['time'] = result.time
+        row['presynth_time'] = result.presynth_time
+        row['synth_time'] = result.synth_time
+        row['impl_time'] = result.impl_time
+        row['run_time'] = result.run_time
         writer.writerow(row)
 
 if __name__ == '__main__':

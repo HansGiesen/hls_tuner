@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vivado HLS Report for 'encrypt'" level="0">
-<item name = "Date">Wed Oct 31 14:44:18 2018
+<item name = "Date">Mon Nov 19 14:15:02 2018
 </item>
 <item name = "Version">2017.1 (Build 1846317 on Thu Jun 22 18:17:09 MDT 2017)</item>
 <item name = "Project">encrypt</item>
@@ -13,35 +13,34 @@
 <section name = "Performance Estimates" level="0">
 <item name = "Timing (ns)">
 <section name = "" level="1">
-<item name = "Target clock period (ns)">7.00</item>
-<item name = "Clock uncertainty (ns)">1.89</item>
-<item name = "Estimated clock period (ns)">5.11</item>
+<item name = "Target clock period (ns)">10.00</item>
+<item name = "Clock uncertainty (ns)">2.70</item>
+<item name = "Estimated clock period (ns)">17.06</item>
 </section>
 </item>
 <item name = "Latency (clock cycles)">
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="6">, min, max, min, max, Type</keys>
-<column name="">15109, 21869, 15110, 21870, none</column>
+<column name="">14169, 20256, 14170, 20257, none</column>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="7">Instance, Module, min, max, min, max, Type</keys>
-<column name="grp_aes_expandEncKey_fu_236">aes_expandEncKey, 520, 520, 520, 520, none</column>
-<column name="grp_aes_shiftRows_fu_248">aes_shiftRows, 124, 124, 124, 124, none</column>
-<column name="grp_aes_mixColumns_fu_255">aes_mixColumns, 101, 101, 101, 101, none</column>
-<column name="grp_aes_addRoundKey_cpy_fu_262">aes_addRoundKey_cpy, 289, 289, 289, 289, none</column>
-<column name="grp_aes_addRoundKey_fu_275">aes_addRoundKey, 273, 273, 273, 273, none</column>
-<column name="grp_aes_subBytes_fu_288">aes_subBytes, 273, 273, 273, 273, none</column>
+<column name="grp_aes_expandEncKey_fu_1157">aes_expandEncKey, 432, 432, 432, 432, none</column>
+<column name="grp_aes_addRoundKey_fu_1177">aes_addRoundKey, 242, 242, 242, 242, none</column>
+<column name="grp_aes_addRoundKey_cpy_fu_1190">aes_addRoundKey_cpy, 261, 261, 261, 261, none</column>
+<column name="grp_aes_subBytes_fu_1203">aes_subBytes, 258, 258, 258, 258, none</column>
+<column name="grp_aes_shiftRows_fu_1212">aes_shiftRows, 124, 124, 124, 124, none</column>
+<column name="grp_aes_mixColumns_fu_1219">aes_mixColumns, 82, 82, 82, 82, none</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- ecb1">96, 96, 3, -, -, 32, no</column>
-<column name="- ecb2">3654, 3654, 522, -, -, 7, no</column>
-<column name="- ecb3">10140, 16900, 780 ~ 1300, -, -, 13, no</column>
+<column name="- ecb2">3038, 3038, 434, -, -, 7, no</column>
+<column name="- ecb3">10025, 16112, 4999 ~ 8029, -, -, 2, no</column>
 </table>
 </item>
 </section>
@@ -54,26 +53,26 @@
 <item name = "Summary"><table name="" hasTotal="1">
 <keys size="5">Name, BRAM_18K, DSP48E, FF, LUT</keys>
 <column name="DSP">-, -, -, -</column>
-<column name="Expression">-, -, 0, 109</column>
+<column name="Expression">-, -, 0, 98</column>
 <column name="FIFO">-, -, -, -</column>
-<column name="Instance">10, -, 5176, 9334</column>
+<column name="Instance">10, -, 7633, 14969</column>
 <column name="Memory">-, -, -, -</column>
-<column name="Multiplexer">-, -, -, 2289</column>
-<column name="Register">-, -, 92, -</column>
+<column name="Multiplexer">-, -, -, 2952</column>
+<column name="Register">-, -, 294, -</column>
 <specialColumn name="Available">280, 220, 106400, 53200</specialColumn>
-<specialColumn name="Utilization (%)">3, 0, 4, 22</specialColumn>
+<specialColumn name="Utilization (%)">3, 0, 7, 33</specialColumn>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="1">
 <keys size="6">Instance, Module, BRAM_18K, DSP48E, FF, LUT</keys>
-<column name="grp_aes_addRoundKey_fu_275">aes_addRoundKey, 0, 0, 130, 351</column>
-<column name="grp_aes_addRoundKey_cpy_fu_262">aes_addRoundKey_cpy, 0, 0, 227, 586</column>
-<column name="grp_aes_expandEncKey_fu_236">aes_expandEncKey, 1, 0, 1709, 3333</column>
-<column name="grp_aes_mixColumns_fu_255">aes_mixColumns, 0, 0, 231, 778</column>
-<column name="grp_aes_shiftRows_fu_248">aes_shiftRows, 0, 0, 608, 1247</column>
-<column name="grp_aes_subBytes_fu_288">aes_subBytes, 1, 0, 79, 239</column>
+<column name="grp_aes_addRoundKey_fu_1177">aes_addRoundKey, 0, 0, 949, 2047</column>
+<column name="grp_aes_addRoundKey_cpy_fu_1190">aes_addRoundKey_cpy, 0, 0, 850, 1702</column>
+<column name="grp_aes_expandEncKey_fu_1157">aes_expandEncKey, 1, 0, 1980, 4168</column>
+<column name="grp_aes_mixColumns_fu_1219">aes_mixColumns, 0, 0, 246, 998</column>
+<column name="grp_aes_shiftRows_fu_1212">aes_shiftRows, 0, 0, 608, 1247</column>
+<column name="grp_aes_subBytes_fu_1203">aes_subBytes, 1, 0, 808, 2007</column>
 <column name="encrypt_buf_r_m_axi_U">encrypt_buf_r_m_axi, 2, 0, 548, 700</column>
 <column name="encrypt_ctx_deckey_m_axi_U">encrypt_ctx_deckey_m_axi, 2, 0, 548, 700</column>
 <column name="encrypt_ctx_enckey_m_axi_U">encrypt_ctx_enckey_m_axi, 2, 0, 548, 700</column>
@@ -94,22 +93,21 @@
 </item>
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP48E, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
-<column name="i_3_fu_326_p2">+, 0, 0, 15, 6, 1</column>
-<column name="i_4_fu_369_p2">+, 0, 0, 13, 4, 1</column>
-<column name="phitmp_fu_343_p2">+, 0, 0, 12, 3, 2</column>
-<column name="ap_block_state20_on_subcall_done">and, 0, 0, 8, 1, 1</column>
-<column name="exitcond_fu_354_p2">icmp, 0, 0, 9, 4, 3</column>
-<column name="tmp_7_fu_337_p2">icmp, 0, 0, 9, 3, 1</column>
-<column name="tmp_fu_320_p2">icmp, 0, 0, 11, 6, 7</column>
-<column name="ap_block_state1_io">or, 0, 0, 8, 1, 1</column>
-<column name="ap_block_state23_on_subcall_done">or, 0, 0, 8, 1, 1</column>
-<column name="ap_block_state4_io">or, 0, 0, 8, 1, 1</column>
-<column name="ap_block_state8">or, 0, 0, 8, 1, 1</column>
+<column name="i_4_6_fu_1342_p2">+, 0, 0, 15, 8, 3</column>
+<column name="phitmp_fu_1320_p2">+, 0, 0, 12, 3, 2</column>
+<column name="ap_block_state117_on_subcall_done">and, 0, 0, 8, 1, 1</column>
+<column name="exitcond_3_fu_1330_p2">icmp, 0, 0, 11, 8, 4</column>
+<column name="exitcond_6_fu_1336_p2">icmp, 0, 0, 11, 8, 4</column>
+<column name="tmp_7_fu_1314_p2">icmp, 0, 0, 9, 3, 1</column>
+<column name="ap_block_state10_io">or, 0, 0, 8, 1, 1</column>
+<column name="ap_block_state121_on_subcall_done">or, 0, 0, 8, 1, 1</column>
+<column name="ap_block_state2_io">or, 0, 0, 8, 1, 1</column>
+<column name="ap_block_state39">or, 0, 0, 8, 1, 1</column>
 </table>
 </item>
 <item name = "Multiplexer"><table name="" hasTotal="1">
 <keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
-<column name="ap_NS_fsm">129, 28, 1, 28</column>
+<column name="ap_NS_fsm">539, 126, 1, 126</column>
 <column name="ap_sig_ioackin_ctx_deckey_AWREADY">9, 2, 1, 2</column>
 <column name="ap_sig_ioackin_ctx_deckey_WREADY">9, 2, 1, 2</column>
 <column name="ap_sig_ioackin_ctx_enckey_AWREADY">9, 2, 1, 2</column>
@@ -207,52 +205,73 @@
 <column name="ctx_key_WSTRB">15, 3, 1, 3</column>
 <column name="ctx_key_WUSER">15, 3, 1, 3</column>
 <column name="ctx_key_WVALID">15, 3, 1, 3</column>
-<column name="grp_aes_addRoundKey_fu_275_key_offset_offset">15, 3, 6, 18</column>
-<column name="grp_aes_expandEncKey_fu_236_k_offset">15, 3, 32, 96</column>
-<column name="grp_aes_expandEncKey_fu_236_m_axi_k_ARREADY">15, 3, 1, 3</column>
-<column name="grp_aes_expandEncKey_fu_236_m_axi_k_AWREADY">15, 3, 1, 3</column>
-<column name="grp_aes_expandEncKey_fu_236_m_axi_k_BID">15, 3, 1, 3</column>
-<column name="grp_aes_expandEncKey_fu_236_m_axi_k_BRESP">15, 3, 2, 6</column>
-<column name="grp_aes_expandEncKey_fu_236_m_axi_k_BUSER">15, 3, 1, 3</column>
-<column name="grp_aes_expandEncKey_fu_236_m_axi_k_BVALID">15, 3, 1, 3</column>
-<column name="grp_aes_expandEncKey_fu_236_m_axi_k_RDATA">15, 3, 8, 24</column>
-<column name="grp_aes_expandEncKey_fu_236_m_axi_k_RID">15, 3, 1, 3</column>
-<column name="grp_aes_expandEncKey_fu_236_m_axi_k_RLAST">15, 3, 1, 3</column>
-<column name="grp_aes_expandEncKey_fu_236_m_axi_k_RRESP">15, 3, 2, 6</column>
-<column name="grp_aes_expandEncKey_fu_236_m_axi_k_RUSER">15, 3, 1, 3</column>
-<column name="grp_aes_expandEncKey_fu_236_m_axi_k_RVALID">15, 3, 1, 3</column>
-<column name="grp_aes_expandEncKey_fu_236_m_axi_k_WREADY">15, 3, 1, 3</column>
-<column name="grp_aes_expandEncKey_fu_236_rc_read">15, 3, 8, 24</column>
-<column name="i_1_reg_213">9, 2, 3, 6</column>
-<column name="i_2_reg_224">9, 2, 4, 8</column>
-<column name="i_reg_190">9, 2, 6, 12</column>
-<column name="rcon_1_fu_118">9, 2, 8, 16</column>
-<column name="rcon_reg_201">9, 2, 8, 16</column>
+<column name="grp_aes_addRoundKey_fu_1177_key_offset_offset">15, 3, 6, 18</column>
+<column name="grp_aes_expandEncKey_fu_1157_k_offset">15, 3, 32, 96</column>
+<column name="grp_aes_expandEncKey_fu_1157_m_axi_k_ARREADY">15, 3, 1, 3</column>
+<column name="grp_aes_expandEncKey_fu_1157_m_axi_k_AWREADY">15, 3, 1, 3</column>
+<column name="grp_aes_expandEncKey_fu_1157_m_axi_k_BID">15, 3, 1, 3</column>
+<column name="grp_aes_expandEncKey_fu_1157_m_axi_k_BRESP">15, 3, 2, 6</column>
+<column name="grp_aes_expandEncKey_fu_1157_m_axi_k_BUSER">15, 3, 1, 3</column>
+<column name="grp_aes_expandEncKey_fu_1157_m_axi_k_BVALID">15, 3, 1, 3</column>
+<column name="grp_aes_expandEncKey_fu_1157_m_axi_k_RDATA">15, 3, 8, 24</column>
+<column name="grp_aes_expandEncKey_fu_1157_m_axi_k_RID">15, 3, 1, 3</column>
+<column name="grp_aes_expandEncKey_fu_1157_m_axi_k_RLAST">15, 3, 1, 3</column>
+<column name="grp_aes_expandEncKey_fu_1157_m_axi_k_RRESP">15, 3, 2, 6</column>
+<column name="grp_aes_expandEncKey_fu_1157_m_axi_k_RUSER">15, 3, 1, 3</column>
+<column name="grp_aes_expandEncKey_fu_1157_m_axi_k_RVALID">15, 3, 1, 3</column>
+<column name="grp_aes_expandEncKey_fu_1157_m_axi_k_WREADY">15, 3, 1, 3</column>
+<column name="grp_aes_expandEncKey_fu_1157_rc_read">47, 10, 8, 80</column>
+<column name="i_2_reg_1055">9, 2, 8, 16</column>
+<column name="i_reg_1032">9, 2, 3, 6</column>
+<column name="k_Addr_A_orig">149, 33, 32, 1056</column>
+<column name="rcon_1_lcssa_reg_1145">9, 2, 8, 16</column>
+<column name="rcon_2_1_reg_1078">9, 2, 8, 16</column>
+<column name="rcon_2_2_reg_1089">9, 2, 8, 16</column>
+<column name="rcon_2_3_reg_1100">9, 2, 8, 16</column>
+<column name="rcon_2_4_reg_1111">9, 2, 8, 16</column>
+<column name="rcon_2_5_reg_1122">9, 2, 8, 16</column>
+<column name="rcon_2_6_phi_fu_1137_p4">9, 2, 8, 16</column>
+<column name="rcon_2_6_reg_1133">9, 2, 8, 16</column>
+<column name="rcon_2_reg_1067">9, 2, 8, 16</column>
+<column name="rcon_reg_1020">9, 2, 8, 16</column>
+<column name="rcon_s_reg_1043">9, 2, 8, 16</column>
 </table>
 </item>
 <item name = "Register"><table name="" hasTotal="1">
 <keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
-<column name="ap_CS_fsm">27, 0, 27, 0</column>
-<column name="ap_reg_grp_aes_addRoundKey_cpy_fu_262_ap_start">1, 0, 1, 0</column>
-<column name="ap_reg_grp_aes_addRoundKey_fu_275_ap_start">1, 0, 1, 0</column>
-<column name="ap_reg_grp_aes_expandEncKey_fu_236_ap_start">1, 0, 1, 0</column>
-<column name="ap_reg_grp_aes_mixColumns_fu_255_ap_start">1, 0, 1, 0</column>
-<column name="ap_reg_grp_aes_shiftRows_fu_248_ap_start">1, 0, 1, 0</column>
-<column name="ap_reg_grp_aes_subBytes_fu_288_ap_start">1, 0, 1, 0</column>
+<column name="ap_CS_fsm">125, 0, 125, 0</column>
+<column name="ap_reg_grp_aes_addRoundKey_cpy_fu_1190_ap_start">1, 0, 1, 0</column>
+<column name="ap_reg_grp_aes_addRoundKey_fu_1177_ap_start">1, 0, 1, 0</column>
+<column name="ap_reg_grp_aes_expandEncKey_fu_1157_ap_start">1, 0, 1, 0</column>
+<column name="ap_reg_grp_aes_mixColumns_fu_1219_ap_start">1, 0, 1, 0</column>
+<column name="ap_reg_grp_aes_shiftRows_fu_1212_ap_start">1, 0, 1, 0</column>
+<column name="ap_reg_grp_aes_subBytes_fu_1203_ap_start">1, 0, 1, 0</column>
 <column name="ap_reg_ioackin_ctx_deckey_AWREADY">1, 0, 1, 0</column>
 <column name="ap_reg_ioackin_ctx_deckey_WREADY">1, 0, 1, 0</column>
 <column name="ap_reg_ioackin_ctx_enckey_AWREADY">1, 0, 1, 0</column>
 <column name="ap_reg_ioackin_ctx_enckey_WREADY">1, 0, 1, 0</column>
-<column name="i_1_reg_213">3, 0, 3, 0</column>
-<column name="i_2_reg_224">4, 0, 4, 0</column>
-<column name="i_3_reg_416">6, 0, 6, 0</column>
-<column name="i_reg_190">6, 0, 6, 0</column>
-<column name="k_load_reg_426">8, 0, 8, 0</column>
-<column name="phitmp_reg_435">3, 0, 3, 0</column>
-<column name="rcon_1_fu_118">8, 0, 8, 0</column>
-<column name="rcon_reg_201">8, 0, 8, 0</column>
-<column name="reg_301">8, 0, 8, 0</column>
-<column name="tmp_1_reg_455">1, 0, 1, 0</column>
+<column name="i_2_reg_1055">8, 0, 8, 0</column>
+<column name="i_reg_1032">3, 0, 3, 0</column>
+<column name="phitmp_reg_1611">3, 0, 3, 0</column>
+<column name="rcon_1_lcssa_reg_1145">8, 0, 8, 0</column>
+<column name="rcon_2_1_reg_1078">8, 0, 8, 0</column>
+<column name="rcon_2_2_reg_1089">8, 0, 8, 0</column>
+<column name="rcon_2_3_reg_1100">8, 0, 8, 0</column>
+<column name="rcon_2_4_reg_1111">8, 0, 8, 0</column>
+<column name="rcon_2_5_reg_1122">8, 0, 8, 0</column>
+<column name="rcon_2_6_reg_1133">8, 0, 8, 0</column>
+<column name="rcon_2_reg_1067">8, 0, 8, 0</column>
+<column name="rcon_reg_1020">8, 0, 8, 0</column>
+<column name="rcon_s_reg_1043">8, 0, 8, 0</column>
+<column name="reg_1226">8, 0, 8, 0</column>
+<column name="reg_1294">8, 0, 8, 0</column>
+<column name="tmp_1_reg_1616">1, 0, 1, 0</column>
+<column name="tmp_3_reg_1620">8, 0, 8, 0</column>
+<column name="tmp_4_reg_1625">8, 0, 8, 0</column>
+<column name="tmp_5_reg_1633">8, 0, 8, 0</column>
+<column name="tmp_6_reg_1638">8, 0, 8, 0</column>
+<column name="tmp_8_reg_1643">8, 0, 8, 0</column>
+<column name="tmp_9_reg_1651">8, 0, 8, 0</column>
 </table>
 </item>
 </section>
@@ -464,12 +483,12 @@
 </section>
 
 <section name = "Critical Path" level="0">
-<item name = "Max Delay">5.11</item>
+<item name = "Max Delay">7.30</item>
 <item name = "Critical Path Table"><table name="Critical Path Table" hasTotal="0">
 <keys size="15">Name, Operator, Delay, Accumulated Delay, Store Source, Resource, Core, Interface, Type, Port, Array, Scope, Pointer, Callee, Phi Node</keys>
 <column name="'ctx_deckey'">read, 0.00, 0.00, -, -, -, wire, read, &apos;ctx_deckey_offset&apos;, -, -, -, -, -</column>
 <column name="'ctx_deckey_addr'">getelementptr, 0.00, 0.00, -, -, -, -, -, -, -, -, -, -, -</column>
-<column name="'ctx_deckey_addr_wr_r', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:314">writereq, 5.11, 5.11, -, -, -, m_axi, request, &apos;ctx_deckey&apos;, -, -, -, -, -</column>
+<column name="'ctx_deckey_addr_req', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:314">writereq, 7.30, 7.30, -, -, -, m_axi, request, &apos;ctx_deckey&apos;, -, -, -, -, -</column>
 </table>
 </item>
 </section>

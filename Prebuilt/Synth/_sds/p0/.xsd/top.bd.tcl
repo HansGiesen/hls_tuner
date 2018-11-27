@@ -171,7 +171,7 @@ connect_bd_net  \
   [get_bd_pins /encrypt_1/buf_offset] \
 
 connect_bd_net  \
-  [get_bd_pins /processing_system7_0/FCLK_CLK1] \
+  [get_bd_pins /processing_system7_0/FCLK_CLK2] \
   [get_bd_pins /dm_0/s_axi_lite_aclk] \
   [get_bd_pins /dm_0/m_axi_mm2s_aclk] \
   [get_bd_pins /processing_system7_0/M_AXI_GP0_ACLK] \
@@ -195,7 +195,7 @@ connect_bd_net  \
   [get_bd_pins /processing_system7_0/S_AXI_ACP_ACLK] \
 
 connect_bd_net  \
-  [get_bd_pins /proc_sys_reset_1/interconnect_aresetn] \
+  [get_bd_pins /proc_sys_reset_2/interconnect_aresetn] \
   [get_bd_pins /axi_ic_processing_system7_0_M_AXI_GP0/S00_ARESETN] \
   [get_bd_pins /axi_ic_processing_system7_0_M_AXI_GP0/M00_ARESETN] \
   [get_bd_pins /axi_ic_processing_system7_0_M_AXI_GP0/M01_ARESETN] \
@@ -211,7 +211,7 @@ connect_bd_net  \
   [get_bd_pins /axi_ic_processing_system7_0_S_AXI_ACP/ARESETN] \
 
 connect_bd_net  \
-  [get_bd_pins /proc_sys_reset_1/peripheral_aresetn] \
+  [get_bd_pins /proc_sys_reset_2/peripheral_aresetn] \
   [get_bd_pins /dm_0/axi_resetn] \
   [get_bd_pins /dm_0/mm2s_prmry_resetn_out_n] \
   [get_bd_pins /encrypt_1_if/s_axi_aresetn] \

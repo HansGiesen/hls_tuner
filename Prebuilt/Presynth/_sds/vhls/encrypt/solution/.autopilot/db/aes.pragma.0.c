@@ -4,13 +4,7 @@
 #1 "<built-in>" 3
 #146 "<built-in>" 3
 #1 "<command line>" 1
-
-
-
-
-
-
-
+#30 "<command line>"
 #1 "/mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado_HLS/common/technology/autopilot/etc/autopilot_ssdm_op.h" 1
 /* autopilot_ssdm_op.h*/
 /*
@@ -193,7 +187,7 @@
 #define _ssdm_op_Delayed(X) X */
 #427 "/mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado_HLS/common/technology/autopilot/etc/autopilot_ssdm_op.h"
 // 67d7842dbbe25473c3c32b93c0da8047785f30d78e8a024de1b57352245f9689
-#9 "<command line>" 2
+#31 "<command line>" 2
 #1 "<built-in>" 2
 #1 "/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c" 2
 /*
@@ -4251,25 +4245,25 @@ struct bench_args_t {
 };
 #6 "/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c" 2
 #66 "/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c"
-const unsigned pipeline_ii_sub = 1;
-const unsigned pipeline_ii_addkey = 1;
-const unsigned pipeline_ii_cpkey = 1;
+const unsigned pipeline_ii_sub = 11;
+const unsigned pipeline_ii_addkey = 8;
+const unsigned pipeline_ii_cpkey = 6;
 const unsigned pipeline_ii_mix = 1;
 const unsigned pipeline_ii_exp1 = 1;
-const unsigned pipeline_ii_exp2 = 1;
-const unsigned pipeline_ii_ecb1 = 1;
-const unsigned pipeline_ii_ecb2 = 1;
-const unsigned pipeline_ii_ecb3 = 1;
+const unsigned pipeline_ii_exp2 = 2;
+const unsigned pipeline_ii_ecb1 = 16;
+const unsigned pipeline_ii_ecb2 = 6;
+const unsigned pipeline_ii_ecb3 = 12;
 
-const unsigned unroll_factor_sub = 1;
-const unsigned unroll_factor_addkey = 1;
-const unsigned unroll_factor_cpkey = 1;
-const unsigned unroll_factor_mix = 1;
-const unsigned unroll_factor_exp1 = 1;
+const unsigned unroll_factor_sub = 14;
+const unsigned unroll_factor_addkey = 9;
+const unsigned unroll_factor_cpkey = 4;
+const unsigned unroll_factor_mix = 4;
+const unsigned unroll_factor_exp1 = 2;
 const unsigned unroll_factor_exp2 = 1;
-const unsigned unroll_factor_ecb1 = 1;
-const unsigned unroll_factor_ecb2 = 1;
-const unsigned unroll_factor_ecb3 = 1;
+const unsigned unroll_factor_ecb1 = 32;
+const unsigned unroll_factor_ecb2 = 4;
+const unsigned unroll_factor_ecb3 = 7;
 
 
 
@@ -4384,9 +4378,9 @@ void aes_mixColumns(uint8_t *buf)
     mix : for (i = 0; i < 16; i += 4)
     {
 
+#pragma HLS pipeline ii=pipeline_ii_mix
 
 
-#pragma HLS unroll factor = unroll_factor_mix
 
  a = buf[i]; b = buf[i + 1]; c = buf[i + 2]; d = buf[i + 3];
         e = a ^ b ^ c ^ d;
@@ -4409,9 +4403,9 @@ void aes_expandEncKey(uint8_t *k, uint8_t *rc)
     exp1 : for(i = 4; i < 16; i += 4)
     {
 
+#pragma HLS pipeline ii=pipeline_ii_exp1
 
 
-#pragma HLS unroll factor = unroll_factor_exp1
 
  k[i] ^= k[i-4], k[i+1] ^= k[i-3],
         k[i+2] ^= k[i-2], k[i+3] ^= k[i-1];
@@ -4424,9 +4418,9 @@ void aes_expandEncKey(uint8_t *k, uint8_t *rc)
     exp2 : for(i = 20; i < 32; i += 4)
     {
 
+#pragma HLS pipeline ii=pipeline_ii_exp2
 
 
-#pragma HLS unroll factor = unroll_factor_exp2
 
  k[i] ^= k[i-4], k[i+1] ^= k[i-3],
         k[i+2] ^= k[i-2], k[i+3] ^= k[i-1];
@@ -4477,9 +4471,9 @@ void encrypt(uint8_t ctx_key[32], uint8_t ctx_enckey[32],
     }
     ecb2 : for (i = 8;--i;){
 
+#pragma HLS pipeline ii=pipeline_ii_ecb2
 
 
-#pragma HLS unroll factor = unroll_factor_ecb2
 
  aes_expandEncKey(ctx_deckey, &rcon);
     }

@@ -148,17 +148,18 @@ set RtlHierarchyInfo {[
 
 set ArgLastReadFirstWriteLatency {
 	aes_mixColumns {
-		buf_r {Type IO LastRead 21 FirstWrite 14}
+		buf_r {Type IO LastRead 20 FirstWrite 13}
 		buf_offset {Type I LastRead 0 FirstWrite -1}}}
 
 set hasDtUnsupportedChannel 0
 
 set PerformanceInfo {[
-	{"Name" : "Latency", "Min" : "101", "Max" : "101"}
-	, {"Name" : "Interval", "Min" : "101", "Max" : "101"}
+	{"Name" : "Latency", "Min" : "82", "Max" : "82"}
+	, {"Name" : "Interval", "Min" : "82", "Max" : "82"}
 ]}
 
 set PipelineEnableSignalInfo {[
+	{"Pipeline" : "0", "EnableSignal" : "ap_enable_pp0"}
 ]}
 
 set Spec2ImplPortList { 

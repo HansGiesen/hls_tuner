@@ -435,7 +435,7 @@ set NewPortList {[
  	{ "name": "buf_offset", "direction": "in", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "buf_offset", "role": "default" }}  ]}
 
 set RtlHierarchyInfo {[
-	{"ID" : "0", "Level" : "0", "Path" : "`AUTOTB_DUT_INST", "Parent" : "", "Child" : ["1", "2", "3", "4", "5", "7", "8", "9", "10", "11"],
+	{"ID" : "0", "Level" : "0", "Path" : "`AUTOTB_DUT_INST", "Parent" : "", "Child" : ["1", "2", "3", "4", "5", "7", "8", "9", "11", "12"],
 		"CDFG" : "encrypt",
 		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1",
 		"Pipeline" : "None", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
@@ -444,45 +444,81 @@ set RtlHierarchyInfo {[
 		"ClockEnable" : "0",
 		"VariableLatency" : "1",
 		"WaitState" : [
-			{"State" : "ap_ST_fsm_state10", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_expandEncKey_fu_236"},
-			{"State" : "ap_ST_fsm_state23", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_expandEncKey_fu_236"},
-			{"State" : "ap_ST_fsm_state18", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_expandEncKey_fu_236"},
-			{"State" : "ap_ST_fsm_state15", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_shiftRows_fu_248"},
-			{"State" : "ap_ST_fsm_state25", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_shiftRows_fu_248"},
-			{"State" : "ap_ST_fsm_state17", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_mixColumns_fu_255"},
-			{"State" : "ap_ST_fsm_state11", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_addRoundKey_cpy_fu_262"},
-			{"State" : "ap_ST_fsm_state20", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_addRoundKey_fu_275"},
-			{"State" : "ap_ST_fsm_state22", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_addRoundKey_fu_275"},
-			{"State" : "ap_ST_fsm_state27", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_addRoundKey_fu_275"},
-			{"State" : "ap_ST_fsm_state13", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_subBytes_fu_288"},
-			{"State" : "ap_ST_fsm_state23", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_subBytes_fu_288"}],
+			{"State" : "ap_ST_fsm_state41", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_expandEncKey_fu_1157"},
+			{"State" : "ap_ST_fsm_state49", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_expandEncKey_fu_1157"},
+			{"State" : "ap_ST_fsm_state62", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_expandEncKey_fu_1157"},
+			{"State" : "ap_ST_fsm_state71", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_expandEncKey_fu_1157"},
+			{"State" : "ap_ST_fsm_state84", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_expandEncKey_fu_1157"},
+			{"State" : "ap_ST_fsm_state93", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_expandEncKey_fu_1157"},
+			{"State" : "ap_ST_fsm_state106", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_expandEncKey_fu_1157"},
+			{"State" : "ap_ST_fsm_state115", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_expandEncKey_fu_1157"},
+			{"State" : "ap_ST_fsm_state121", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_expandEncKey_fu_1157"},
+			{"State" : "ap_ST_fsm_state51", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_addRoundKey_fu_1177"},
+			{"State" : "ap_ST_fsm_state53", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_addRoundKey_fu_1177"},
+			{"State" : "ap_ST_fsm_state61", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_addRoundKey_fu_1177"},
+			{"State" : "ap_ST_fsm_state64", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_addRoundKey_fu_1177"},
+			{"State" : "ap_ST_fsm_state73", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_addRoundKey_fu_1177"},
+			{"State" : "ap_ST_fsm_state75", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_addRoundKey_fu_1177"},
+			{"State" : "ap_ST_fsm_state83", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_addRoundKey_fu_1177"},
+			{"State" : "ap_ST_fsm_state86", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_addRoundKey_fu_1177"},
+			{"State" : "ap_ST_fsm_state95", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_addRoundKey_fu_1177"},
+			{"State" : "ap_ST_fsm_state97", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_addRoundKey_fu_1177"},
+			{"State" : "ap_ST_fsm_state105", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_addRoundKey_fu_1177"},
+			{"State" : "ap_ST_fsm_state108", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_addRoundKey_fu_1177"},
+			{"State" : "ap_ST_fsm_state117", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_addRoundKey_fu_1177"},
+			{"State" : "ap_ST_fsm_state119", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_addRoundKey_fu_1177"},
+			{"State" : "ap_ST_fsm_state125", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_addRoundKey_fu_1177"},
+			{"State" : "ap_ST_fsm_state42", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_addRoundKey_cpy_fu_1190"},
+			{"State" : "ap_ST_fsm_state44", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_subBytes_fu_1203"},
+			{"State" : "ap_ST_fsm_state55", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_subBytes_fu_1203"},
+			{"State" : "ap_ST_fsm_state66", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_subBytes_fu_1203"},
+			{"State" : "ap_ST_fsm_state77", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_subBytes_fu_1203"},
+			{"State" : "ap_ST_fsm_state88", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_subBytes_fu_1203"},
+			{"State" : "ap_ST_fsm_state99", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_subBytes_fu_1203"},
+			{"State" : "ap_ST_fsm_state110", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_subBytes_fu_1203"},
+			{"State" : "ap_ST_fsm_state121", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_subBytes_fu_1203"},
+			{"State" : "ap_ST_fsm_state46", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_shiftRows_fu_1212"},
+			{"State" : "ap_ST_fsm_state57", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_shiftRows_fu_1212"},
+			{"State" : "ap_ST_fsm_state68", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_shiftRows_fu_1212"},
+			{"State" : "ap_ST_fsm_state79", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_shiftRows_fu_1212"},
+			{"State" : "ap_ST_fsm_state90", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_shiftRows_fu_1212"},
+			{"State" : "ap_ST_fsm_state101", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_shiftRows_fu_1212"},
+			{"State" : "ap_ST_fsm_state112", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_shiftRows_fu_1212"},
+			{"State" : "ap_ST_fsm_state123", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_shiftRows_fu_1212"},
+			{"State" : "ap_ST_fsm_state48", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_mixColumns_fu_1219"},
+			{"State" : "ap_ST_fsm_state59", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_mixColumns_fu_1219"},
+			{"State" : "ap_ST_fsm_state70", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_mixColumns_fu_1219"},
+			{"State" : "ap_ST_fsm_state81", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_mixColumns_fu_1219"},
+			{"State" : "ap_ST_fsm_state92", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_mixColumns_fu_1219"},
+			{"State" : "ap_ST_fsm_state103", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_mixColumns_fu_1219"},
+			{"State" : "ap_ST_fsm_state114", "FSM" : "ap_CS_fsm", "SubInstance" : "grp_aes_mixColumns_fu_1219"}],
 		"Port" : [
 			{"Name" : "ctx_key", "Type" : "MAXI", "Direction" : "IO",
 				"SubConnect" : [
-					{"ID" : "5", "SubInstance" : "grp_aes_expandEncKey_fu_236", "Port" : "k"},
-					{"ID" : "9", "SubInstance" : "grp_aes_addRoundKey_cpy_fu_262", "Port" : "cpk"},
-					{"ID" : "10", "SubInstance" : "grp_aes_addRoundKey_fu_275", "Port" : "key"}]},
+					{"ID" : "5", "SubInstance" : "grp_aes_expandEncKey_fu_1157", "Port" : "k"},
+					{"ID" : "7", "SubInstance" : "grp_aes_addRoundKey_fu_1177", "Port" : "key"},
+					{"ID" : "8", "SubInstance" : "grp_aes_addRoundKey_cpy_fu_1190", "Port" : "cpk"}]},
 			{"Name" : "ctx_enckey", "Type" : "MAXI", "Direction" : "IO",
 				"BlockSignal" : [
 					{"Name" : "ctx_enckey_blk_n_AW", "Type" : "RtlSignal"},
-					{"Name" : "ctx_enckey_blk_n_B", "Type" : "RtlSignal"},
-					{"Name" : "ctx_enckey_blk_n_W", "Type" : "RtlSignal"}],
+					{"Name" : "ctx_enckey_blk_n_W", "Type" : "RtlSignal"},
+					{"Name" : "ctx_enckey_blk_n_B", "Type" : "RtlSignal"}],
 				"SubConnect" : [
-					{"ID" : "9", "SubInstance" : "grp_aes_addRoundKey_cpy_fu_262", "Port" : "key"}]},
+					{"ID" : "8", "SubInstance" : "grp_aes_addRoundKey_cpy_fu_1190", "Port" : "key"}]},
 			{"Name" : "ctx_deckey", "Type" : "MAXI", "Direction" : "IO",
 				"BlockSignal" : [
 					{"Name" : "ctx_deckey_blk_n_AW", "Type" : "RtlSignal"},
-					{"Name" : "ctx_deckey_blk_n_B", "Type" : "RtlSignal"},
-					{"Name" : "ctx_deckey_blk_n_W", "Type" : "RtlSignal"}],
+					{"Name" : "ctx_deckey_blk_n_W", "Type" : "RtlSignal"},
+					{"Name" : "ctx_deckey_blk_n_B", "Type" : "RtlSignal"}],
 				"SubConnect" : [
-					{"ID" : "5", "SubInstance" : "grp_aes_expandEncKey_fu_236", "Port" : "k"}]},
+					{"ID" : "5", "SubInstance" : "grp_aes_expandEncKey_fu_1157", "Port" : "k"}]},
 			{"Name" : "buf_r", "Type" : "MAXI", "Direction" : "IO",
 				"SubConnect" : [
-					{"ID" : "7", "SubInstance" : "grp_aes_shiftRows_fu_248", "Port" : "buf_r"},
-					{"ID" : "11", "SubInstance" : "grp_aes_subBytes_fu_288", "Port" : "buf_r"},
-					{"ID" : "8", "SubInstance" : "grp_aes_mixColumns_fu_255", "Port" : "buf_r"},
-					{"ID" : "9", "SubInstance" : "grp_aes_addRoundKey_cpy_fu_262", "Port" : "buf_r"},
-					{"ID" : "10", "SubInstance" : "grp_aes_addRoundKey_fu_275", "Port" : "buf_r"}]},
+					{"ID" : "12", "SubInstance" : "grp_aes_mixColumns_fu_1219", "Port" : "buf_r"},
+					{"ID" : "7", "SubInstance" : "grp_aes_addRoundKey_fu_1177", "Port" : "buf_r"},
+					{"ID" : "9", "SubInstance" : "grp_aes_subBytes_fu_1203", "Port" : "buf_r"},
+					{"ID" : "11", "SubInstance" : "grp_aes_shiftRows_fu_1212", "Port" : "buf_r"},
+					{"ID" : "8", "SubInstance" : "grp_aes_addRoundKey_cpy_fu_1190", "Port" : "buf_r"}]},
 			{"Name" : "ctx_key_offset", "Type" : "None", "Direction" : "I"},
 			{"Name" : "ctx_enckey_offset", "Type" : "None", "Direction" : "I"},
 			{"Name" : "ctx_deckey_offset", "Type" : "None", "Direction" : "I"},
@@ -490,13 +526,13 @@ set RtlHierarchyInfo {[
 			{"Name" : "buf_offset", "Type" : "None", "Direction" : "I"},
 			{"Name" : "sbox", "Type" : "Memory", "Direction" : "I",
 				"SubConnect" : [
-					{"ID" : "5", "SubInstance" : "grp_aes_expandEncKey_fu_236", "Port" : "sbox"},
-					{"ID" : "11", "SubInstance" : "grp_aes_subBytes_fu_288", "Port" : "sbox"}]}]},
+					{"ID" : "5", "SubInstance" : "grp_aes_expandEncKey_fu_1157", "Port" : "sbox"},
+					{"ID" : "9", "SubInstance" : "grp_aes_subBytes_fu_1203", "Port" : "sbox"}]}]},
 	{"ID" : "1", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.encrypt_ctx_key_m_axi_U", "Parent" : "0"},
 	{"ID" : "2", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.encrypt_ctx_enckey_m_axi_U", "Parent" : "0"},
 	{"ID" : "3", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.encrypt_ctx_deckey_m_axi_U", "Parent" : "0"},
 	{"ID" : "4", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.encrypt_buf_r_m_axi_U", "Parent" : "0"},
-	{"ID" : "5", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_aes_expandEncKey_fu_236", "Parent" : "0", "Child" : ["6"],
+	{"ID" : "5", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_aes_expandEncKey_fu_1157", "Parent" : "0", "Child" : ["6"],
 		"CDFG" : "aes_expandEncKey",
 		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1",
 		"Pipeline" : "None", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
@@ -515,9 +551,9 @@ set RtlHierarchyInfo {[
 			{"Name" : "k_offset", "Type" : "None", "Direction" : "I"},
 			{"Name" : "rc_read", "Type" : "None", "Direction" : "I"},
 			{"Name" : "sbox", "Type" : "Memory", "Direction" : "I"}]},
-	{"ID" : "6", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_aes_expandEncKey_fu_236.sbox_U", "Parent" : "5"},
-	{"ID" : "7", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_aes_shiftRows_fu_248", "Parent" : "0",
-		"CDFG" : "aes_shiftRows",
+	{"ID" : "6", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_aes_expandEncKey_fu_1157.sbox_U", "Parent" : "5"},
+	{"ID" : "7", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_aes_addRoundKey_fu_1177", "Parent" : "0",
+		"CDFG" : "aes_addRoundKey",
 		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1",
 		"Pipeline" : "None", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
 		"Combinational" : "0",
@@ -532,25 +568,14 @@ set RtlHierarchyInfo {[
 					{"Name" : "buf_r_blk_n_AW", "Type" : "RtlSignal"},
 					{"Name" : "buf_r_blk_n_W", "Type" : "RtlSignal"},
 					{"Name" : "buf_r_blk_n_B", "Type" : "RtlSignal"}]},
-			{"Name" : "buf_offset", "Type" : "None", "Direction" : "I"}]},
-	{"ID" : "8", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_aes_mixColumns_fu_255", "Parent" : "0",
-		"CDFG" : "aes_mixColumns",
-		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1",
-		"Pipeline" : "None", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
-		"Combinational" : "0",
-		"Datapath" : "0",
-		"ClockEnable" : "0",
-		"VariableLatency" : "1",
-		"Port" : [
-			{"Name" : "buf_r", "Type" : "MAXI", "Direction" : "IO",
+			{"Name" : "buf_offset", "Type" : "None", "Direction" : "I"},
+			{"Name" : "key", "Type" : "MAXI", "Direction" : "I",
 				"BlockSignal" : [
-					{"Name" : "buf_r_blk_n_AR", "Type" : "RtlSignal"},
-					{"Name" : "buf_r_blk_n_R", "Type" : "RtlSignal"},
-					{"Name" : "buf_r_blk_n_AW", "Type" : "RtlSignal"},
-					{"Name" : "buf_r_blk_n_W", "Type" : "RtlSignal"},
-					{"Name" : "buf_r_blk_n_B", "Type" : "RtlSignal"}]},
-			{"Name" : "buf_offset", "Type" : "None", "Direction" : "I"}]},
-	{"ID" : "9", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_aes_addRoundKey_cpy_fu_262", "Parent" : "0",
+					{"Name" : "key_blk_n_AR", "Type" : "RtlSignal"},
+					{"Name" : "key_blk_n_R", "Type" : "RtlSignal"}]},
+			{"Name" : "key_offset", "Type" : "None", "Direction" : "I"},
+			{"Name" : "key_offset_offset", "Type" : "None", "Direction" : "I"}]},
+	{"ID" : "8", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_aes_addRoundKey_cpy_fu_1190", "Parent" : "0",
 		"CDFG" : "aes_addRoundKey_cpy",
 		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1",
 		"Pipeline" : "None", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
@@ -578,30 +603,7 @@ set RtlHierarchyInfo {[
 					{"Name" : "cpk_blk_n_W", "Type" : "RtlSignal"},
 					{"Name" : "cpk_blk_n_B", "Type" : "RtlSignal"}]},
 			{"Name" : "cpk_offset", "Type" : "None", "Direction" : "I"}]},
-	{"ID" : "10", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_aes_addRoundKey_fu_275", "Parent" : "0",
-		"CDFG" : "aes_addRoundKey",
-		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1",
-		"Pipeline" : "None", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
-		"Combinational" : "0",
-		"Datapath" : "0",
-		"ClockEnable" : "0",
-		"VariableLatency" : "1",
-		"Port" : [
-			{"Name" : "buf_r", "Type" : "MAXI", "Direction" : "IO",
-				"BlockSignal" : [
-					{"Name" : "buf_r_blk_n_AR", "Type" : "RtlSignal"},
-					{"Name" : "buf_r_blk_n_R", "Type" : "RtlSignal"},
-					{"Name" : "buf_r_blk_n_AW", "Type" : "RtlSignal"},
-					{"Name" : "buf_r_blk_n_W", "Type" : "RtlSignal"},
-					{"Name" : "buf_r_blk_n_B", "Type" : "RtlSignal"}]},
-			{"Name" : "buf_offset", "Type" : "None", "Direction" : "I"},
-			{"Name" : "key", "Type" : "MAXI", "Direction" : "I",
-				"BlockSignal" : [
-					{"Name" : "key_blk_n_AR", "Type" : "RtlSignal"},
-					{"Name" : "key_blk_n_R", "Type" : "RtlSignal"}]},
-			{"Name" : "key_offset", "Type" : "None", "Direction" : "I"},
-			{"Name" : "key_offset_offset", "Type" : "None", "Direction" : "I"}]},
-	{"ID" : "11", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_aes_subBytes_fu_288", "Parent" : "0", "Child" : ["12"],
+	{"ID" : "9", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_aes_subBytes_fu_1203", "Parent" : "0", "Child" : ["10"],
 		"CDFG" : "aes_subBytes",
 		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1",
 		"Pipeline" : "None", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
@@ -619,55 +621,89 @@ set RtlHierarchyInfo {[
 					{"Name" : "buf_r_blk_n_B", "Type" : "RtlSignal"}]},
 			{"Name" : "buf_offset", "Type" : "None", "Direction" : "I"},
 			{"Name" : "sbox", "Type" : "Memory", "Direction" : "I"}]},
-	{"ID" : "12", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_aes_subBytes_fu_288.sbox_U", "Parent" : "11"}]}
+	{"ID" : "10", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_aes_subBytes_fu_1203.sbox_U", "Parent" : "9"},
+	{"ID" : "11", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_aes_shiftRows_fu_1212", "Parent" : "0",
+		"CDFG" : "aes_shiftRows",
+		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1",
+		"Pipeline" : "None", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
+		"Combinational" : "0",
+		"Datapath" : "0",
+		"ClockEnable" : "0",
+		"VariableLatency" : "1",
+		"Port" : [
+			{"Name" : "buf_r", "Type" : "MAXI", "Direction" : "IO",
+				"BlockSignal" : [
+					{"Name" : "buf_r_blk_n_AR", "Type" : "RtlSignal"},
+					{"Name" : "buf_r_blk_n_R", "Type" : "RtlSignal"},
+					{"Name" : "buf_r_blk_n_AW", "Type" : "RtlSignal"},
+					{"Name" : "buf_r_blk_n_W", "Type" : "RtlSignal"},
+					{"Name" : "buf_r_blk_n_B", "Type" : "RtlSignal"}]},
+			{"Name" : "buf_offset", "Type" : "None", "Direction" : "I"}]},
+	{"ID" : "12", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_aes_mixColumns_fu_1219", "Parent" : "0",
+		"CDFG" : "aes_mixColumns",
+		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1",
+		"Pipeline" : "None", "AlignedPipeline" : "0", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
+		"Combinational" : "0",
+		"Datapath" : "0",
+		"ClockEnable" : "0",
+		"VariableLatency" : "1",
+		"Port" : [
+			{"Name" : "buf_r", "Type" : "MAXI", "Direction" : "IO",
+				"BlockSignal" : [
+					{"Name" : "buf_r_blk_n_AR", "Type" : "RtlSignal"},
+					{"Name" : "buf_r_blk_n_R", "Type" : "RtlSignal"},
+					{"Name" : "buf_r_blk_n_AW", "Type" : "RtlSignal"},
+					{"Name" : "buf_r_blk_n_W", "Type" : "RtlSignal"},
+					{"Name" : "buf_r_blk_n_B", "Type" : "RtlSignal"}]},
+			{"Name" : "buf_offset", "Type" : "None", "Direction" : "I"}]}]}
 
 
 set ArgLastReadFirstWriteLatency {
 	encrypt {
-		ctx_key {Type IO LastRead 190 FirstWrite -1}
-		ctx_enckey {Type IO LastRead 12 FirstWrite -1}
-		ctx_deckey {Type IO LastRead 190 FirstWrite 3}
-		buf_r {Type IO LastRead 120 FirstWrite 10}
-		ctx_key_offset {Type I LastRead 0 FirstWrite -1}
-		ctx_enckey_offset {Type I LastRead 0 FirstWrite -1}
-		ctx_deckey_offset {Type I LastRead 0 FirstWrite -1}
-		k {Type I LastRead 1 FirstWrite -1}
-		buf_offset {Type I LastRead 0 FirstWrite -1}
+		ctx_key {Type IO LastRead 428 FirstWrite -1}
+		ctx_enckey {Type IO LastRead 59 FirstWrite -1}
+		ctx_deckey {Type IO LastRead 428 FirstWrite 2}
+		buf_r {Type IO LastRead 221 FirstWrite 10}
+		ctx_key_offset {Type I LastRead 38 FirstWrite -1}
+		ctx_enckey_offset {Type I LastRead 1 FirstWrite -1}
+		ctx_deckey_offset {Type I LastRead 1 FirstWrite -1}
+		k {Type I LastRead 31 FirstWrite -1}
+		buf_offset {Type I LastRead 38 FirstWrite -1}
 		sbox {Type I LastRead -1 FirstWrite -1}}
 	aes_expandEncKey {
-		k {Type IO LastRead 190 FirstWrite 11}
+		k {Type IO LastRead 428 FirstWrite 11}
 		k_offset {Type I LastRead 0 FirstWrite -1}
 		rc_read {Type I LastRead 10 FirstWrite -1}
+		sbox {Type I LastRead -1 FirstWrite -1}}
+	aes_addRoundKey {
+		buf_r {Type IO LastRead 132 FirstWrite 11}
+		buf_offset {Type I LastRead 0 FirstWrite -1}
+		key {Type I LastRead 129 FirstWrite -1}
+		key_offset {Type I LastRead 0 FirstWrite -1}
+		key_offset_offset {Type I LastRead 0 FirstWrite -1}}
+	aes_addRoundKey_cpy {
+		buf_r {Type IO LastRead 59 FirstWrite 11}
+		buf_offset {Type I LastRead 0 FirstWrite -1}
+		key {Type I LastRead 59 FirstWrite -1}
+		key_offset {Type I LastRead 0 FirstWrite -1}
+		cpk {Type O LastRead 61 FirstWrite 11}
+		cpk_offset {Type I LastRead 0 FirstWrite -1}}
+	aes_subBytes {
+		buf_r {Type IO LastRead 221 FirstWrite 12}
+		buf_offset {Type I LastRead 0 FirstWrite -1}
 		sbox {Type I LastRead -1 FirstWrite -1}}
 	aes_shiftRows {
 		buf_r {Type IO LastRead 120 FirstWrite 10}
 		buf_offset {Type I LastRead 0 FirstWrite -1}}
 	aes_mixColumns {
-		buf_r {Type IO LastRead 21 FirstWrite 14}
-		buf_offset {Type I LastRead 0 FirstWrite -1}}
-	aes_addRoundKey_cpy {
-		buf_r {Type IO LastRead 12 FirstWrite 11}
-		buf_offset {Type I LastRead 0 FirstWrite -1}
-		key {Type I LastRead 12 FirstWrite -1}
-		key_offset {Type I LastRead 0 FirstWrite -1}
-		cpk {Type O LastRead 14 FirstWrite 11}
-		cpk_offset {Type I LastRead 0 FirstWrite -1}}
-	aes_addRoundKey {
-		buf_r {Type IO LastRead 13 FirstWrite 12}
-		buf_offset {Type I LastRead 0 FirstWrite -1}
-		key {Type I LastRead 10 FirstWrite -1}
-		key_offset {Type I LastRead 0 FirstWrite -1}
-		key_offset_offset {Type I LastRead 0 FirstWrite -1}}
-	aes_subBytes {
-		buf_r {Type IO LastRead 13 FirstWrite 12}
-		buf_offset {Type I LastRead 0 FirstWrite -1}
-		sbox {Type I LastRead -1 FirstWrite -1}}}
+		buf_r {Type IO LastRead 20 FirstWrite 13}
+		buf_offset {Type I LastRead 0 FirstWrite -1}}}
 
 set hasDtUnsupportedChannel 0
 
 set PerformanceInfo {[
-	{"Name" : "Latency", "Min" : "15109", "Max" : "21869"}
-	, {"Name" : "Interval", "Min" : "15110", "Max" : "21870"}
+	{"Name" : "Latency", "Min" : "14169", "Max" : "20256"}
+	, {"Name" : "Interval", "Min" : "14170", "Max" : "20257"}
 ]}
 
 set PipelineEnableSignalInfo {[

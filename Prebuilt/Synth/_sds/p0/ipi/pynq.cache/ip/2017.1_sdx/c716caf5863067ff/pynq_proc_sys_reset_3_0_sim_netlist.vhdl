@@ -1,8 +1,8 @@
 -- Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2017.1_sdx (lin64) Build 1915620 Thu Jun 22 17:54:59 MDT 2017
--- Date        : Wed Oct 31 14:56:26 2018
--- Host        : icgrid46 running 64-bit openSUSE Leap 42.3
+-- Date        : Mon Nov 19 14:28:49 2018
+-- Host        : icgrid48 running 64-bit openSUSE Leap 42.3
 -- Command     : write_vhdl -force -mode funcsim -rename_top decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix -prefix
 --               decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_ pynq_proc_sys_reset_3_0_sim_netlist.vhdl
 -- Design      : pynq_proc_sys_reset_3_0

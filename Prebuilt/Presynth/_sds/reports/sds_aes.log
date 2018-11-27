@@ -1,15 +1,15 @@
 (c) Copyright 2012-2017 Xilinx, Inc. All Rights Reserved.
 #-----------------------------------------------------------
 # Tool version  : sds++ 2017.1 SW Build 1915620 on Jun 22 2017 18:00:35
-# Start time    : Wed Oct 31 14:43:53 EDT 2018
-# Command line  : sds++ -sds-sys-config standalone -sds-pf /mnt/icgridio2/safe/giesen/HLS_tuner/1/Platforms/Vivado_2017.1/pynq -sds-proc a9_0 -sds-hw encrypt /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c -sds-end -maxjobs 4 -maxthreads 1 -Wall -O3 -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/common -c -o aes.o /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c
-# Log file      : /scratch/local/tmp.7aow7oM1KP/_sds/reports/sds_aes.log
-# Journal file  : /scratch/local/tmp.7aow7oM1KP/_sds/reports/sds_aes.jou
-# Report file   : /scratch/local/tmp.7aow7oM1KP/_sds/reports/sds_aes.rpt
+# Start time    : Mon Nov 19 14:14:27 EST 2018
+# Command line  : sds++ -sds-sys-config standalone -sds-pf /mnt/icgridio2/safe/giesen/HLS_tuner/1/Platforms/Vivado_2017.1/pynq -sds-proc a9_0 -sds-hw encrypt /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c -clkid 2 -sds-end -maxjobs 4 -maxthreads 4 -Wall -O3 -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/common -DPIPELINE_II_SUB=11 -DUNROLL_FACTOR_EXP1=2 -DUNROLL_FACTOR_EXP2=1 -DUNROLL_FACTOR_ECB1=32 -DUNROLL_FACTOR_ECB3=7 -DUNROLL_FACTOR_ECB2=4 -DPIPELINE_II_ADDKEY=8 -DPIPELINE_II_ECB1=16 -DPIPELINE_II_ECB2=6 -DPIPELINE_II_ECB3=12 -DPIPELINE_II_EXP1=1 -DPIPELINE_II_EXP2=2 -DPIPELINE_EXP2 -DPIPELINE_EXP1 -DUNROLL_FACTOR_ADDKEY=9 -DUNROLL_FACTOR_SUB=14 -DUNROLL_FACTOR_MIX=4 -DPIPELINE_II_CPKEY=6 -DPIPELINE_II_MIX=1 -DPIPELINE_ECB2 -DUNROLL_FACTOR_CPKEY=4 -DPIPELINE_MIX -c -o aes.o /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c
+# Log file      : /scratch/local/tmp.soPlafqy6w/_sds/reports/sds_aes.log
+# Journal file  : /scratch/local/tmp.soPlafqy6w/_sds/reports/sds_aes.jou
+# Report file   : /scratch/local/tmp.soPlafqy6w/_sds/reports/sds_aes.rpt
 #-----------------------------------------------------------
 
 Create data motion intermediate representation
-/mnt/icgridio2/safe/SDSoC/SDx/2017.1/bin/clang_wrapper -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/common -Wall -D __SDSCC__ -target arm-none-eabi -mcpu=cortex-a9 -mfpu=vfpv3 -O0 -g     -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/target/aarch32-none/include  -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado_HLS/include   -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/6.2.1/include -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/6.2.1/include-fixed -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/include -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/libc/usr/include -emit-llvm -S /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c -o /scratch/local/tmp.7aow7oM1KP/_sds/.llvm/aes.s
+/mnt/icgridio2/safe/SDSoC/SDx/2017.1/bin/clang_wrapper -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/common -Wall -DPIPELINE_II_SUB=11 -DUNROLL_FACTOR_EXP1=2 -DUNROLL_FACTOR_EXP2=1 -DUNROLL_FACTOR_ECB1=32 -DUNROLL_FACTOR_ECB3=7 -DUNROLL_FACTOR_ECB2=4 -DPIPELINE_II_ADDKEY=8 -DPIPELINE_II_ECB1=16 -DPIPELINE_II_ECB2=6 -DPIPELINE_II_ECB3=12 -DPIPELINE_II_EXP1=1 -DPIPELINE_II_EXP2=2 -DPIPELINE_EXP2 -DPIPELINE_EXP1 -DUNROLL_FACTOR_ADDKEY=9 -DUNROLL_FACTOR_SUB=14 -DUNROLL_FACTOR_MIX=4 -DPIPELINE_II_CPKEY=6 -DPIPELINE_II_MIX=1 -DPIPELINE_ECB2 -DUNROLL_FACTOR_CPKEY=4 -DPIPELINE_MIX -D __SDSCC__ -target arm-none-eabi -mcpu=cortex-a9 -mfpu=vfpv3 -O0 -g     -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/target/aarch32-none/include  -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado_HLS/include   -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/6.2.1/include -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/6.2.1/include-fixed -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/include -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/libc/usr/include -emit-llvm -S /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c -o /scratch/local/tmp.soPlafqy6w/_sds/.llvm/aes.s
 /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:182:5: warning: unused label 'sub' [-Wunused-label]
     sub : while (i--)
     ^~~~~~
@@ -38,17 +38,17 @@ Create data motion intermediate representation
     ecb3 : for(i = 1, rcon = 1; i < 14; ++i)
     ^~~~~~~
 Performing accelerator source linting for encrypt
-/mnt/icgridio2/safe/SDSoC/SDx/2017.1/bin/sdslint -target cortex-a9 -func "encrypt" /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c -- -c -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/common -Wall -D __SDSCC__ -target arm-none-eabi -mcpu=cortex-a9 -mfpu=vfpv3 -O0 -g -w    -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/target/aarch32-none/include  -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado_HLS/include   -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/6.2.1/include -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/6.2.1/include-fixed -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/include -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/libc/usr/include
+/mnt/icgridio2/safe/SDSoC/SDx/2017.1/bin/sdslint -target cortex-a9 -func "encrypt" /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c -- -c -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/common -Wall -DPIPELINE_II_SUB=11 -DUNROLL_FACTOR_EXP1=2 -DUNROLL_FACTOR_EXP2=1 -DUNROLL_FACTOR_ECB1=32 -DUNROLL_FACTOR_ECB3=7 -DUNROLL_FACTOR_ECB2=4 -DPIPELINE_II_ADDKEY=8 -DPIPELINE_II_ECB1=16 -DPIPELINE_II_ECB2=6 -DPIPELINE_II_ECB3=12 -DPIPELINE_II_EXP1=1 -DPIPELINE_II_EXP2=2 -DPIPELINE_EXP2 -DPIPELINE_EXP1 -DUNROLL_FACTOR_ADDKEY=9 -DUNROLL_FACTOR_SUB=14 -DUNROLL_FACTOR_MIX=4 -DPIPELINE_II_CPKEY=6 -DPIPELINE_II_MIX=1 -DPIPELINE_ECB2 -DUNROLL_FACTOR_CPKEY=4 -DPIPELINE_MIX -D __SDSCC__ -target arm-none-eabi -mcpu=cortex-a9 -mfpu=vfpv3 -O0 -g -w    -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/target/aarch32-none/include  -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado_HLS/include   -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/6.2.1/include -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/6.2.1/include-fixed -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/include -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/libc/usr/include
 INFO: [Linting 83-3001] encrypt
 INFO: [Linting 83-3001] encrypt
-arm-none-eabi-g++ -c /scratch/local/tmp.7aow7oM1KP/_sds/swstubs/aes.cpp -o /scratch/local/tmp.7aow7oM1KP/_sds/swstubs/aes.o
-arm-none-eabi-objcopy --add-section .xdinfo=/scratch/local/tmp.7aow7oM1KP/_sds/swstubs/aes.o.xml /scratch/local/tmp.7aow7oM1KP/_sds/swstubs/aes.o
+arm-none-eabi-g++ -c /scratch/local/tmp.soPlafqy6w/_sds/swstubs/aes.cpp -o /scratch/local/tmp.soPlafqy6w/_sds/swstubs/aes.o
+arm-none-eabi-objcopy --add-section .xdinfo=/scratch/local/tmp.soPlafqy6w/_sds/swstubs/aes.o.xml /scratch/local/tmp.soPlafqy6w/_sds/swstubs/aes.o
 Performing pragma generation
-/mnt/icgridio2/safe/SDSoC/SDx/2017.1/bin/clang_wrapper -E -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/common -Wall -D __SDSCC__ -m32 -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/target/aarch32-none/include -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources -D __SDSVHLS__ -target arm-none-eabi -mcpu=cortex-a9 -mfpu=vfpv3 -O0 -g -w    -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/target/aarch32-none/include  -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado_HLS/include   -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/6.2.1/include -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/6.2.1/include-fixed -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/include -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/libc/usr/include /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c -o /scratch/local/tmp.7aow7oM1KP/_sds/vhls/aes_pp.c
-/mnt/icgridio2/safe/SDSoC/SDx/2017.1/bin/pragma_gen  -func "encrypt"   -tcl /scratch/local/tmp.7aow7oM1KP/_sds/vhls/encrypt.tcl   /scratch/local/tmp.7aow7oM1KP/_sds/vhls/aes_pp.c -multi_aximm   --  -c  -D __SDSVHLS__ -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/common -Wall -O3 -D __SDSCC__ -m32    -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/target/aarch32-none/include -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources  -target arm-none-eabi -mcpu=cortex-a9 -mfpu=vfpv3 -O0 -g -w    -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/target/aarch32-none/include  -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado_HLS/include   -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/6.2.1/include -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/6.2.1/include-fixed -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/include -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/libc/usr/include
-INFO: [PragmaGen 83-3231] Successfully generated tcl script: /scratch/local/tmp.7aow7oM1KP/_sds/vhls/encrypt.tcl
+/mnt/icgridio2/safe/SDSoC/SDx/2017.1/bin/clang_wrapper -E -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/common -Wall -DPIPELINE_II_SUB=11 -DUNROLL_FACTOR_EXP1=2 -DUNROLL_FACTOR_EXP2=1 -DUNROLL_FACTOR_ECB1=32 -DUNROLL_FACTOR_ECB3=7 -DUNROLL_FACTOR_ECB2=4 -DPIPELINE_II_ADDKEY=8 -DPIPELINE_II_ECB1=16 -DPIPELINE_II_ECB2=6 -DPIPELINE_II_ECB3=12 -DPIPELINE_II_EXP1=1 -DPIPELINE_II_EXP2=2 -DPIPELINE_EXP2 -DPIPELINE_EXP1 -DUNROLL_FACTOR_ADDKEY=9 -DUNROLL_FACTOR_SUB=14 -DUNROLL_FACTOR_MIX=4 -DPIPELINE_II_CPKEY=6 -DPIPELINE_II_MIX=1 -DPIPELINE_ECB2 -DUNROLL_FACTOR_CPKEY=4 -DPIPELINE_MIX -D __SDSCC__ -m32 -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/target/aarch32-none/include -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources -D __SDSVHLS__ -target arm-none-eabi -mcpu=cortex-a9 -mfpu=vfpv3 -O0 -g -w    -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/target/aarch32-none/include  -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado_HLS/include   -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/6.2.1/include -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/6.2.1/include-fixed -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/include -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/libc/usr/include /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c -o /scratch/local/tmp.soPlafqy6w/_sds/vhls/aes_pp.c
+/mnt/icgridio2/safe/SDSoC/SDx/2017.1/bin/pragma_gen  -func "encrypt"   -tcl /scratch/local/tmp.soPlafqy6w/_sds/vhls/encrypt.tcl   /scratch/local/tmp.soPlafqy6w/_sds/vhls/aes_pp.c -multi_aximm   --  -c  -D __SDSVHLS__ -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/common -Wall -O3 -DPIPELINE_II_SUB=11 -DUNROLL_FACTOR_EXP1=2 -DUNROLL_FACTOR_EXP2=1 -DUNROLL_FACTOR_ECB1=32 -DUNROLL_FACTOR_ECB3=7 -DUNROLL_FACTOR_ECB2=4 -DPIPELINE_II_ADDKEY=8 -DPIPELINE_II_ECB1=16 -DPIPELINE_II_ECB2=6 -DPIPELINE_II_ECB3=12 -DPIPELINE_II_EXP1=1 -DPIPELINE_II_EXP2=2 -DPIPELINE_EXP2 -DPIPELINE_EXP1 -DUNROLL_FACTOR_ADDKEY=9 -DUNROLL_FACTOR_SUB=14 -DUNROLL_FACTOR_MIX=4 -DPIPELINE_II_CPKEY=6 -DPIPELINE_II_MIX=1 -DPIPELINE_ECB2 -DUNROLL_FACTOR_CPKEY=4 -DPIPELINE_MIX -D __SDSCC__ -m32    -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/target/aarch32-none/include -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources  -target arm-none-eabi -mcpu=cortex-a9 -mfpu=vfpv3 -O0 -g -w    -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/target/aarch32-none/include  -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado_HLS/include   -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/6.2.1/include -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/6.2.1/include-fixed -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/include -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/libc/usr/include
+INFO: [PragmaGen 83-3231] Successfully generated tcl script: /scratch/local/tmp.soPlafqy6w/_sds/vhls/encrypt.tcl
 Moving function encrypt to Programmable Logic
-/mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado_HLS/bin/vivado_hls /scratch/local/tmp.7aow7oM1KP/_sds/vhls/encrypt_run.tcl
+/mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado_HLS/bin/vivado_hls /scratch/local/tmp.soPlafqy6w/_sds/vhls/encrypt_run.tcl
 ================================================================
   Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC
   Version 2017.1
@@ -56,38 +56,45 @@ Moving function encrypt to Programmable Logic
   Copyright (C) 1986-2017 Xilinx, Inc. All Rights Reserved.
 ================================================================
 INFO: [HLS 200-10] Running '/mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado_HLS/bin/unwrapped/lnx64.o/vivado_hls'
-INFO: [HLS 200-10] For user 'giesen' on host 'icgrid43.seas.upenn.edu' (Linux_x86_64 version 4.4.159-73-default) on Wed Oct 31 14:44:08 EDT 2018
+INFO: [HLS 200-10] For user 'giesen' on host 'icgrid44.seas.upenn.edu' (Linux_x86_64 version 4.4.159-73-default) on Mon Nov 19 14:14:46 EST 2018
 INFO: [HLS 200-10] On os "openSUSE Leap 42.3"
-INFO: [HLS 200-10] In directory '/scratch/local/tmp.7aow7oM1KP/_sds/vhls'
-INFO: [HLS 200-10] Creating and opening project '/scratch/local/tmp.7aow7oM1KP/_sds/vhls/encrypt'.
+INFO: [HLS 200-10] In directory '/scratch/local/tmp.soPlafqy6w/_sds/vhls'
+INFO: [HLS 200-10] Creating and opening project '/scratch/local/tmp.soPlafqy6w/_sds/vhls/encrypt'.
 INFO: [HLS 200-10] Adding design file '/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c' to the project
-INFO: [HLS 200-10] Creating and opening solution '/scratch/local/tmp.7aow7oM1KP/_sds/vhls/encrypt/solution'.
+INFO: [HLS 200-10] Creating and opening solution '/scratch/local/tmp.soPlafqy6w/_sds/vhls/encrypt/solution'.
 INFO: [HLS 200-10] Cleaning up the solution database.
 INFO: [HLS 200-10] Setting target device to ' xc7z020clg400-1 '
-INFO: [SYN 201-201] Setting up clock 'default' with a period of 7ns.
-INFO: [SYN 201-201] Setting up clock 'default' with an uncertainty of 1.89ns.
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [SYN 201-201] Setting up clock 'default' with an uncertainty of 2.7ns.
 INFO: [HLS 200-10] Analyzing design file '/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c' ... 
 INFO: [HLS 200-10] Validating synthesis directives ...
-INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 331.211 ; gain = 12.918 ; free physical = 123879 ; free virtual = 144247
-INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 331.211 ; gain = 12.918 ; free physical = 123874 ; free virtual = 144247
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 331.211 ; gain = 12.918 ; free physical = 124735 ; free virtual = 127543
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 331.211 ; gain = 12.918 ; free physical = 124727 ; free virtual = 127543
 INFO: [HLS 200-10] Starting code transformations ...
-INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 331.211 ; gain = 12.918 ; free physical = 123867 ; free virtual = 144243
+INFO: [XFORM 203-501] Unrolling loop 'ecb1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:308) in function 'encrypt': changing partial unrolling into complete unrolling since the unrolling factor (=32) is no less than the loop trip count (=32).
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 331.211 ; gain = 12.918 ; free physical = 124715 ; free virtual = 127535
 INFO: [HLS 200-10] Checking synthesizability ...
-INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 331.211 ; gain = 12.918 ; free physical = 123865 ; free virtual = 144241
-WARNING: [XFORM 203-503] Cannot unroll loop 'ecb1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:308) in function 'encrypt': invalid partial unroll factor 1.
-WARNING: [XFORM 203-503] Cannot unroll loop 'ecb2' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:316) in function 'encrypt': invalid partial unroll factor 1.
-WARNING: [XFORM 203-503] Cannot unroll loop 'ecb3' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:328) in function 'encrypt': invalid partial unroll factor 1.
-WARNING: [XFORM 203-503] Cannot unroll loop 'mix' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:244) in function 'aes_mixColumns': invalid partial unroll factor 1.
-WARNING: [XFORM 203-503] Cannot unroll loop 'sub' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:183) in function 'aes_subBytes': invalid partial unroll factor 1.
-WARNING: [XFORM 203-503] Cannot unroll loop 'cpkey' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:215) in function 'aes_addRoundKey_cpy': invalid partial unroll factor 1.
-WARNING: [XFORM 203-503] Cannot unroll loop 'exp1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:269) in function 'aes_expandEncKey': invalid partial unroll factor 1.
-WARNING: [XFORM 203-503] Cannot unroll loop 'exp2' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:284) in function 'aes_expandEncKey': invalid partial unroll factor 1.
-WARNING: [XFORM 203-503] Cannot unroll loop 'addkey' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:199) in function 'aes_addRoundKey': invalid partial unroll factor 1.
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 331.211 ; gain = 12.918 ; free physical = 124713 ; free virtual = 127532
+INFO: [XFORM 203-502] Unrolling all loops for pipelining in function 'aes_expandEncKey' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:258).
+WARNING: [XFORM 203-505] Ignored pipeline directive for loop 'exp1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:269) because its parent loop or function is pipelined.
+WARNING: [XFORM 203-505] Ignored pipeline directive for loop 'exp2' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:284) because its parent loop or function is pipelined.
+INFO: [XFORM 203-501] Unrolling loop 'ecb1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:308) in function 'encrypt': changing partial unrolling into complete unrolling since the unrolling factor (=32) is no less than the loop trip count (=32).
+INFO: [XFORM 203-501] Unrolling loop 'ecb1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:308) in function 'encrypt' completely.
+INFO: [XFORM 203-501] Unrolling loop 'ecb3' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:328) in function 'encrypt' partially with a factor of 7.
+INFO: [XFORM 203-501] Unrolling loop 'sub' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:183) in function 'aes_subBytes' partially with a factor of 14.
+INFO: [XFORM 203-501] Unrolling loop 'cpkey' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:215) in function 'aes_addRoundKey_cpy' partially with a factor of 4.
+INFO: [XFORM 203-501] Unrolling loop 'exp1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:269) in function 'aes_expandEncKey' completely.
+INFO: [XFORM 203-501] Unrolling loop 'exp2' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:284) in function 'aes_expandEncKey' completely.
+INFO: [XFORM 203-501] Unrolling loop 'addkey' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:199) in function 'aes_addRoundKey' partially with a factor of 9.
 INFO: [XFORM 203-602] Inlining function 'rj_xtime' into 'aes_mixColumns' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252) automatically.
-INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 459.086 ; gain = 140.793 ; free physical = 123833 ; free virtual = 144210
-INFO: [XFORM 203-811] Inferring bus burst write of length 32 on port 'ctx_deckey' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:314:2).
+WARNING: [XFORM 203-561] Updating loop upper bound from 2 to 1 for loop 'sub' in function 'aes_subBytes'.
+WARNING: [XFORM 203-561] Updating loop lower bound from 2 to 1 for loop 'sub' in function 'aes_subBytes'.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 459.086 ; gain = 140.793 ; free physical = 124618 ; free virtual = 127437
+WARNING: [XFORM 203-561] Updating loop upper bound from 2 to 1 for loop 'addkey' in function 'aes_addRoundKey'.
+WARNING: [XFORM 203-561] Updating loop lower bound from 2 to 1 for loop 'addkey' in function 'aes_addRoundKey'.
 INFO: [XFORM 203-811] Inferring bus burst write of length 32 on port 'ctx_enckey' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:314:2).
-INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 459.086 ; gain = 140.793 ; free physical = 123733 ; free virtual = 144111
+INFO: [XFORM 203-811] Inferring bus burst write of length 32 on port 'ctx_deckey' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:314:2).
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:06 ; elapsed = 00:00:08 . Memory (MB): peak = 459.086 ; gain = 140.793 ; free physical = 124346 ; free virtual = 127169
 INFO: [HLS 200-10] Starting hardware synthesis ...
 INFO: [HLS 200-10] Synthesizing 'encrypt' ...
 WARNING: [SYN 201-107] Renaming port name 'encrypt/buf' to 'encrypt/buf_r' to avoid the conflict with HDL keywords or other object names.
@@ -95,118 +102,170 @@ INFO: [HLS 200-10] -------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'aes_expandEncKey' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'aes_expandEncKey'.
+WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 6, distance = 1, offset = 1)
+   between bus request on port 'k' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:263) and bus request on port 'k' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:262).
+WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 7, distance = 1, offset = 1)
+   between bus request on port 'k' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:263) and bus request on port 'k' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:262).
+WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 8, distance = 1, offset = 1)
+   between bus request on port 'k' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:263) and bus request on port 'k' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:262).
+WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 9, distance = 1, offset = 1)
+   between bus request on port 'k' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:263) and bus request on port 'k' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:262).
+WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 133, distance = 1, offset = 1)
+   between bus request on port 'k' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:275) and bus request on port 'k' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:262).
+WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 195, distance = 1, offset = 1)
+   between bus request on port 'k' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:275) and bus request on port 'k' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:262).
+WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 226, distance = 1, offset = 1)
+   between bus request on port 'k' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:275) and bus request on port 'k' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:262).
+WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 241, distance = 1, offset = 1)
+   between bus request on port 'k' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:278) and bus request on port 'k' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:262).
+WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 249, distance = 1, offset = 1)
+   between bus request on port 'k' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:279) and bus request on port 'k' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:262).
+WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 253, distance = 1, offset = 1)
+   between bus request on port 'k' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:279) and bus request on port 'k' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:262).
+WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 255, distance = 1, offset = 1)
+   between bus request on port 'k' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:279) and bus request on port 'k' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:262).
+WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 256, distance = 1, offset = 1)
+   between bus request on port 'k' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:279) and bus request on port 'k' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:262).
+INFO: [SCHED 204-61] Unable to satisfy pipeline directive: Unable to pipeline the region.
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111]  Elapsed time: 7.27 seconds; current allocated memory: 123.279 MB.
+INFO: [HLS 200-111]  Elapsed time: 8.16 seconds; current allocated memory: 128.653 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111]  Elapsed time: 0.12 seconds; current allocated memory: 125.190 MB.
+INFO: [HLS 200-111]  Elapsed time: 1.38 seconds; current allocated memory: 131.790 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'aes_addRoundKey_cpy' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111]  Elapsed time: 0.18 seconds; current allocated memory: 125.484 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.44 seconds; current allocated memory: 132.628 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111]  Elapsed time: 0.02 seconds; current allocated memory: 125.739 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.06 seconds; current allocated memory: 133.407 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'aes_subBytes' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111]  Elapsed time: 0.03 seconds; current allocated memory: 125.912 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.2 seconds; current allocated memory: 134.838 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111]  Elapsed time: 0 seconds; current allocated memory: 126.041 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.1 seconds; current allocated memory: 135.995 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'aes_shiftRows' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111]  Elapsed time: 0.06 seconds; current allocated memory: 126.793 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.15 seconds; current allocated memory: 136.783 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111]  Elapsed time: 0.03 seconds; current allocated memory: 127.428 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.04 seconds; current allocated memory: 137.420 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'aes_mixColumns' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'mix'.
+WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 1)
+   between bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250) and bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250).
+WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 2, distance = 1, offset = 1)
+   between bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250) and bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250).
+WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 3, distance = 1, offset = 1)
+   between bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250) and bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250).
+WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 4, distance = 1, offset = 1)
+   between bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252) and bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250).
+WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 11, distance = 1, offset = 1)
+   between bus access on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252) and bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250).
+WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 15, distance = 1, offset = 1)
+   between bus access on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252) and bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250).
+WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 17, distance = 1, offset = 1)
+   between bus access on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:253) and bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250).
+WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 18, distance = 1, offset = 1)
+   between bus access on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:253) and bus request on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250).
+INFO: [SCHED 204-61] Pipelining result: Target II: 1, Final II: 19, Depth: 24.
+WARNING: [SCHED 204-21] Estimated clock period (17.1ns) exceeds the target (target clock period: 10ns, clock uncertainty: 2.7ns, effective delay budget: 7.3ns).
+WARNING: [SCHED 204-21] The critical path consists of the following:
+	bus read on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:250) (7.3 ns)
+	'xor' operation ('e', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:251) (1.09 ns)
+	'xor' operation ('tmp1', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252) (0 ns)
+	'xor' operation ('tmp_9', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252) (1.37 ns)
+	bus write on port 'buf_r' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c:252) (7.3 ns)
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111]  Elapsed time: 0.07 seconds; current allocated memory: 127.785 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.15 seconds; current allocated memory: 137.823 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111]  Elapsed time: 0.03 seconds; current allocated memory: 128.134 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.08 seconds; current allocated memory: 138.248 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'aes_addRoundKey' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111]  Elapsed time: 0.07 seconds; current allocated memory: 128.310 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.16 seconds; current allocated memory: 139.308 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111]  Elapsed time: 0.01 seconds; current allocated memory: 128.482 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.08 seconds; current allocated memory: 140.257 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'encrypt' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
+WARNING: [SCHED 204-67] Unable to satisfy pipeline directive: subfunction 'aes_expandEncKey' is not pipelined.
 WARNING: [SCHED 204-71] Latency directive discarded for region encrypt since it contains subloops.
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111]  Elapsed time: 0.05 seconds; current allocated memory: 128.815 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.44 seconds; current allocated memory: 141.560 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111]  Elapsed time: 0.35 seconds; current allocated memory: 129.353 MB.
+INFO: [HLS 200-111]  Elapsed time: 1.04 seconds; current allocated memory: 143.250 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'aes_expandEncKey' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SYN 201-210] Renamed object name 'aes_expandEncKey_sbox' to 'aes_expandEncKey_bkb' due to the length limit 20
 INFO: [RTGEN 206-100] Finished creating RTL model for 'aes_expandEncKey'.
-INFO: [HLS 200-111]  Elapsed time: 0.35 seconds; current allocated memory: 133.292 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.66 seconds; current allocated memory: 149.184 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'aes_addRoundKey_cpy' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [RTGEN 206-100] Finished creating RTL model for 'aes_addRoundKey_cpy'.
-INFO: [HLS 200-111]  Elapsed time: 0.5 seconds; current allocated memory: 139.858 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.73 seconds; current allocated memory: 155.809 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'aes_subBytes' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [RTGEN 206-100] Finished creating RTL model for 'aes_subBytes'.
-INFO: [HLS 200-111]  Elapsed time: 0.14 seconds; current allocated memory: 141.063 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.41 seconds; current allocated memory: 160.815 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'aes_shiftRows' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [RTGEN 206-100] Finished creating RTL model for 'aes_shiftRows'.
-INFO: [HLS 200-111]  Elapsed time: 0.12 seconds; current allocated memory: 143.096 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.36 seconds; current allocated memory: 165.469 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'aes_mixColumns' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [RTGEN 206-100] Finished creating RTL model for 'aes_mixColumns'.
-INFO: [HLS 200-111]  Elapsed time: 0.16 seconds; current allocated memory: 145.297 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.2 seconds; current allocated memory: 168.078 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'aes_addRoundKey' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [RTGEN 206-100] Finished creating RTL model for 'aes_addRoundKey'.
-INFO: [HLS 200-111]  Elapsed time: 0.2 seconds; current allocated memory: 147.113 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.36 seconds; current allocated memory: 171.512 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'encrypt' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
@@ -224,9 +283,9 @@ WARNING: [RTGEN 206-101] Global array 'sbox' will not be exposed as RTL port.
 WARNING: [RTGEN 206-101] Setting dangling out port 'encrypt/k_WEN_A' to 0.
 WARNING: [RTGEN 206-101] Setting dangling out port 'encrypt/k_Din_A' to 0.
 INFO: [RTGEN 206-100] Finished creating RTL model for 'encrypt'.
-INFO: [HLS 200-111]  Elapsed time: 0.28 seconds; current allocated memory: 150.889 MB.
+INFO: [HLS 200-111]  Elapsed time: 1.02 seconds; current allocated memory: 179.463 MB.
 INFO: [RTMG 210-279] Implementing memory 'a0_aes_expandEncKey_bkb_rom' using auto ROMs.
-INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:08 ; elapsed = 00:00:11 . Memory (MB): peak = 523.086 ; gain = 204.793 ; free physical = 123627 ; free virtual = 144036
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:14 ; elapsed = 00:00:18 . Memory (MB): peak = 523.086 ; gain = 204.793 ; free physical = 123878 ; free virtual = 126818
 INFO: [SYSC 207-301] Generating SystemC RTL for encrypt with prefix a0_.
 INFO: [VHDL 208-304] Generating VHDL RTL for encrypt with prefix a0_.
 INFO: [VLOG 209-307] Generating Verilog RTL for encrypt with prefix a0_.
@@ -246,19 +305,19 @@ source run_ippack.tcl -notrace
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip'.
-INFO: [Common 17-206] Exiting Vivado at Wed Oct 31 14:44:39 2018...
-INFO: [HLS 200-112] Total elapsed time: 56.99 seconds; peak allocated memory: 150.889 MB.
-/usr/bin/sed -i -e {s/xilinx\.com\/xidane/xilinx\.com\/xd/g} /scratch/local/tmp.7aow7oM1KP/_sds/vhls/encrypt/solution/impl/ip/auxiliary.xml
-/mnt/icgridio2/safe/SDSoC/SDx/2017.1/bin/xsltproc  --output /scratch/local/tmp.7aow7oM1KP/_sds/.llvm/encrypt.hlsmap1.xml  --stringparam P_CLKID 1  --stringparam P_HLS_TYPE hls   /mnt/icgridio2/safe/SDSoC/SDx/2017.1/scripts/xsd/xdHlsmapRenameAttr.xsl  /scratch/local/tmp.7aow7oM1KP/_sds/.llvm/encrypt_auxiliary.xml
-/mnt/icgridio2/safe/SDSoC/SDx/2017.1/bin/xsltproc  --output /scratch/local/tmp.7aow7oM1KP/_sds/.llvm/encrypt.hlsmap.xml  /mnt/icgridio2/safe/SDSoC/SDx/2017.1/scripts/xsd/xdHlsmapAdapter.xsl  /scratch/local/tmp.7aow7oM1KP/_sds/.llvm/encrypt.hlsmap1.xml
-/mnt/icgridio2/safe/SDSoC/SDx/2017.1/bin/xsltproc    --output /scratch/local/tmp.7aow7oM1KP/_sds/.llvm/encrypt.fcnmap.xml  /mnt/icgridio2/safe/SDSoC/SDx/2017.1/scripts/xsd/xdHlsmapAxi4.xsl  /scratch/local/tmp.7aow7oM1KP/_sds/.llvm/encrypt.hlsmap.xml
-/mnt/icgridio2/safe/SDSoC/SDx/2017.1/bin/xsltproc  --output /scratch/local/tmp.7aow7oM1KP/_sds/.llvm/encrypt_if.xml  --stringparam P_ADAPTER_COMPREF adapter_v3_0  /mnt/icgridio2/safe/SDSoC/SDx/2017.1/scripts/xsd/xdHlsAdapterComp.xsl  /scratch/local/tmp.7aow7oM1KP/_sds/.llvm/encrypt.fcnmap.xml
-arm-none-eabi-objcopy --add-section .xddata=/scratch/local/tmp.7aow7oM1KP/_sds/swstubs/encrypt.xml /scratch/local/tmp.7aow7oM1KP/_sds/swstubs/aes.o
-arm-none-eabi-objcopy --add-section .xdasm=/scratch/local/tmp.7aow7oM1KP/_sds/.llvm/aes.s /scratch/local/tmp.7aow7oM1KP/_sds/swstubs/aes.o
-arm-none-eabi-g++ -E -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/common -Wall -O3 -D __SDSCC__  -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard    -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/target/aarch32-none/include  -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado_HLS/include /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c -o /scratch/local/tmp.7aow7oM1KP/_sds/.pp/aes.ii
-arm-none-eabi-objcopy --add-section .xdpp=/scratch/local/tmp.7aow7oM1KP/_sds/.pp/aes.ii /scratch/local/tmp.7aow7oM1KP/_sds/swstubs/aes.o
-arm-none-eabi-objcopy --add-section .xdfcnmap=/scratch/local/tmp.7aow7oM1KP/_sds/.llvm/encrypt.fcnmap.xml /scratch/local/tmp.7aow7oM1KP/_sds/swstubs/aes.o
-arm-none-eabi-objcopy --add-section .xdhlscore=/scratch/local/tmp.7aow7oM1KP/_sds/vhls/encrypt/solution/impl/ip/xilinx_com_hls_encrypt_1_0.zip /scratch/local/tmp.7aow7oM1KP/_sds/swstubs/aes.o
-arm-none-eabi-objcopy --add-section .xdif=/scratch/local/tmp.7aow7oM1KP/_sds/.llvm/encrypt_if.xml /scratch/local/tmp.7aow7oM1KP/_sds/swstubs/aes.o
-sds++ log file saved as /scratch/local/tmp.7aow7oM1KP/_sds/reports/sds_aes.log
-sds++ completed at Wed Oct 31 14:45:05 EDT 2018
+INFO: [Common 17-206] Exiting Vivado at Mon Nov 19 14:15:26 2018...
+INFO: [HLS 200-112] Total elapsed time: 65.99 seconds; peak allocated memory: 179.463 MB.
+/usr/bin/sed -i -e {s/xilinx\.com\/xidane/xilinx\.com\/xd/g} /scratch/local/tmp.soPlafqy6w/_sds/vhls/encrypt/solution/impl/ip/auxiliary.xml
+/mnt/icgridio2/safe/SDSoC/SDx/2017.1/bin/xsltproc  --output /scratch/local/tmp.soPlafqy6w/_sds/.llvm/encrypt.hlsmap1.xml  --stringparam P_CLKID 2  --stringparam P_HLS_TYPE hls   /mnt/icgridio2/safe/SDSoC/SDx/2017.1/scripts/xsd/xdHlsmapRenameAttr.xsl  /scratch/local/tmp.soPlafqy6w/_sds/.llvm/encrypt_auxiliary.xml
+/mnt/icgridio2/safe/SDSoC/SDx/2017.1/bin/xsltproc  --output /scratch/local/tmp.soPlafqy6w/_sds/.llvm/encrypt.hlsmap.xml  /mnt/icgridio2/safe/SDSoC/SDx/2017.1/scripts/xsd/xdHlsmapAdapter.xsl  /scratch/local/tmp.soPlafqy6w/_sds/.llvm/encrypt.hlsmap1.xml
+/mnt/icgridio2/safe/SDSoC/SDx/2017.1/bin/xsltproc    --output /scratch/local/tmp.soPlafqy6w/_sds/.llvm/encrypt.fcnmap.xml  /mnt/icgridio2/safe/SDSoC/SDx/2017.1/scripts/xsd/xdHlsmapAxi4.xsl  /scratch/local/tmp.soPlafqy6w/_sds/.llvm/encrypt.hlsmap.xml
+/mnt/icgridio2/safe/SDSoC/SDx/2017.1/bin/xsltproc  --output /scratch/local/tmp.soPlafqy6w/_sds/.llvm/encrypt_if.xml  --stringparam P_ADAPTER_COMPREF adapter_v3_0  /mnt/icgridio2/safe/SDSoC/SDx/2017.1/scripts/xsd/xdHlsAdapterComp.xsl  /scratch/local/tmp.soPlafqy6w/_sds/.llvm/encrypt.fcnmap.xml
+arm-none-eabi-objcopy --add-section .xddata=/scratch/local/tmp.soPlafqy6w/_sds/swstubs/encrypt.xml /scratch/local/tmp.soPlafqy6w/_sds/swstubs/aes.o
+arm-none-eabi-objcopy --add-section .xdasm=/scratch/local/tmp.soPlafqy6w/_sds/.llvm/aes.s /scratch/local/tmp.soPlafqy6w/_sds/swstubs/aes.o
+arm-none-eabi-g++ -E -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/common -Wall -O3 -DPIPELINE_II_SUB=11 -DUNROLL_FACTOR_EXP1=2 -DUNROLL_FACTOR_EXP2=1 -DUNROLL_FACTOR_ECB1=32 -DUNROLL_FACTOR_ECB3=7 -DUNROLL_FACTOR_ECB2=4 -DPIPELINE_II_ADDKEY=8 -DPIPELINE_II_ECB1=16 -DPIPELINE_II_ECB2=6 -DPIPELINE_II_ECB3=12 -DPIPELINE_II_EXP1=1 -DPIPELINE_II_EXP2=2 -DPIPELINE_EXP2 -DPIPELINE_EXP1 -DUNROLL_FACTOR_ADDKEY=9 -DUNROLL_FACTOR_SUB=14 -DUNROLL_FACTOR_MIX=4 -DPIPELINE_II_CPKEY=6 -DPIPELINE_II_MIX=1 -DPIPELINE_ECB2 -DUNROLL_FACTOR_CPKEY=4 -DPIPELINE_MIX -D __SDSCC__  -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard    -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/target/aarch32-none/include  -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado_HLS/include /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/MachSuite/aes/Sources/aes.c -o /scratch/local/tmp.soPlafqy6w/_sds/.pp/aes.ii
+arm-none-eabi-objcopy --add-section .xdpp=/scratch/local/tmp.soPlafqy6w/_sds/.pp/aes.ii /scratch/local/tmp.soPlafqy6w/_sds/swstubs/aes.o
+arm-none-eabi-objcopy --add-section .xdfcnmap=/scratch/local/tmp.soPlafqy6w/_sds/.llvm/encrypt.fcnmap.xml /scratch/local/tmp.soPlafqy6w/_sds/swstubs/aes.o
+arm-none-eabi-objcopy --add-section .xdhlscore=/scratch/local/tmp.soPlafqy6w/_sds/vhls/encrypt/solution/impl/ip/xilinx_com_hls_encrypt_1_0.zip /scratch/local/tmp.soPlafqy6w/_sds/swstubs/aes.o
+arm-none-eabi-objcopy --add-section .xdif=/scratch/local/tmp.soPlafqy6w/_sds/.llvm/encrypt_if.xml /scratch/local/tmp.soPlafqy6w/_sds/swstubs/aes.o
+sds++ log file saved as /scratch/local/tmp.soPlafqy6w/_sds/reports/sds_aes.log
+sds++ completed at Mon Nov 19 14:15:52 EST 2018

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xd:acceleratorMap xmlns:xd="http://www.xilinx.com/xd" xd:functionName="encrypt" xd:componentRef="encrypt" xd:initiationInterval="21870" xd:clockPeriod="7.000001" xd:sequential="true" xd:hostMachine="64" xd:reset="control">
+<xd:acceleratorMap xmlns:xd="http://www.xilinx.com/xd" xd:functionName="encrypt" xd:componentRef="encrypt" xd:initiationInterval="20257" xd:clockPeriod="10.000000" xd:sequential="true" xd:hostMachine="64" xd:reset="control">
   <xd:controlReg xd:name="control" xd:interfaceRef="ap_ctrl" xd:busTypeRef="acc_handshake" xd:type="acc_handshake"/>
   <xd:arg xd:name="ctx_key[]" xd:originalName="ctx_key" xd:direction="inout" xd:interfaceRef="m_axi_ctx_key" xd:busTypeRef="aximm" xd:arraySize="32" xd:dataWidth="8" xd:bufferDirection="inout"/>
   <xd:arg xd:name="ctx_enckey[]" xd:originalName="ctx_enckey" xd:direction="inout" xd:interfaceRef="m_axi_ctx_enckey" xd:busTypeRef="aximm" xd:arraySize="32" xd:dataWidth="8" xd:bufferDirection="inout"/>
@@ -10,6 +10,6 @@
   <xd:arg xd:name="ctx_deckey" xd:originalName="ctx_deckey" xd:direction="in" xd:interfaceRef="ctx_deckey_offset" xd:busTypeRef="register" xd:handshakeRef="ap_none" xd:aximmInterfaceRef="m_axi_ctx_deckey" xd:dataWidth="32"/>
   <xd:arg xd:name="k[]" xd:originalName="k" xd:direction="in" xd:interfaceRef="k_PORTA" xd:busTypeRef="bram" xd:arraySize="32" xd:dataWidth="8"/>
   <xd:arg xd:name="buf" xd:originalName="buf" xd:direction="in" xd:interfaceRef="buf_offset" xd:busTypeRef="register" xd:handshakeRef="ap_none" xd:aximmInterfaceRef="m_axi_buf_r" xd:dataWidth="32"/>
-  <xd:latencyEstimates xd:best-case="15109" xd:worst-case="21869" xd:average-case="18489"/>
-  <xd:resourceEstimates xd:LUT="11732" xd:FF="5268" xd:BRAM="10" xd:DSP="0"/>
+  <xd:latencyEstimates xd:best-case="14169" xd:worst-case="20256" xd:average-case="17219"/>
+  <xd:resourceEstimates xd:LUT="18019" xd:FF="7927" xd:BRAM="10" xd:DSP="0"/>
 </xd:acceleratorMap>

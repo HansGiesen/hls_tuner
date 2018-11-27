@@ -3,7 +3,7 @@
 <!--                                                         -->
 <!-- Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="20" Path="/scratch/local/tmp.q0OTExnNEs/_sds/p0/ipi/pynq.xpr">
+<Project Version="7" Minor="20" Path="/scratch/local/tmp.RRQwkCDDMw/_sds/p0/ipi/pynq.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="7f7dfcff565f40b1ad97586e9648f9bf"/>

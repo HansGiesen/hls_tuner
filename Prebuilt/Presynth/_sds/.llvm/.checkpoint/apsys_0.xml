@@ -16,9 +16,9 @@
     <cf:port cf:name="k_PORTA" cf:portType="stream" cf:direction="out"/>
     <cf:port cf:name="buf_offset" cf:portType="stream" cf:direction="out"/>
   </cf:block>
-  <cf:comp cf:name="dm_0" xd:componentRef="axi_dma" xd:clockId="1"/>
-  <cf:comp cf:name="pynq" xd:componentRef="pynq" xd:clockId="1"/>
-  <cf:comp cf:name="encrypt_1" xd:componentRef="encrypt" xd:clockId="1"/>
+  <cf:comp cf:name="dm_0" xd:componentRef="axi_dma" xd:clockId="2"/>
+  <cf:comp cf:name="pynq" xd:componentRef="pynq" xd:clockId="2"/>
+  <cf:comp cf:name="encrypt_1" xd:componentRef="encrypt" xd:clockId="2"/>
   <cf:instance cf:name="hwinst_encrypt_1" cf:blockName="hwblk_encrypt" cf:compName="encrypt_1">
     <cf:portMap cf:blockPort="cmd_encrypt" cf:compPort="ap_ctrl" xd:register="0x8"/>
     <cf:portMap cf:blockPort="ctx_key_offset" cf:compPort="m_axi_ctx_key" xd:paddedWidth="8" cf:ctrlPort="ap_ctrl" xd:register="0xC"/>

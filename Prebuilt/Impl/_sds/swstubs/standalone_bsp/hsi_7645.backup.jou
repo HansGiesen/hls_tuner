@@ -1,0 +1,11 @@
+#-----------------------------------------------------------
+# hsi v2017.1_sdx (64-bit)
+# SW Build 1915620 on Thu Jun 22 17:54:59 MDT 2017
+# 
+# Start of session at: Mon Nov 19 14:18:42 2018
+# Process ID: 7645
+# Current directory: /scratch/local/tmp.soPlafqy6w/_sds/swstubs/standalone_bsp
+# Command line: hsi -mode batch -notrace -quiet -source /scratch/local/tmp.soPlafqy6w/_sds/swstubs/standalone_bsp/create_bsp.tcl
+# Log file: /scratch/local/tmp.soPlafqy6w/_sds/swstubs/standalone_bsp/hsi.log
+# Journal file: /scratch/local/tmp.soPlafqy6w/_sds/swstubs/standalone_bsp/hsi.jou
+#-----------------------------------------------------------
