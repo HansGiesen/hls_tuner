@@ -6,9 +6,6 @@
 # Open Vivado project.
 open_project _sds/p0/ipi/pynq.xpr
 
-# Set the maximum number of threads.
-set_param general.maxThreads {max_threads}
-
 # Reset synthesis runs.
 reset_run synth_1
 

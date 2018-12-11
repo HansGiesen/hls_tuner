@@ -30,5 +30,14 @@ cat {serial_device} > {serial_log} &
 PROCESS=$!
 
 # Run the application on the board.
-sdx -batch -source {tcl_script}
+{tuner_root}/Scripts/Timeout.bash -t {timeout} \
+  /usr/bin/time -f "Runtime: %e s\nMaximum residential set size: %M KB" -o /dev/stdout \
+    sdx -batch -source {tcl_script} && EXIT_CODE=0 || EXIT_CODE=$?
+
+# Output a message about the run result.  The tuner script relies on these messages.
+[ "${{EXIT_CODE}}" == 143 ] && echo "Run timed out."
+[ "${{EXIT_CODE}}" == 0 ] && echo "Run has completed successfully."
+ 
+# Output the exit code.
+exit ${{EXIT_CODE}}
 

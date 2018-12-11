@@ -19,9 +19,6 @@ Cleanup()
 # Install the exit handler.
 trap Cleanup EXIT
 
-# Export the root of the HLS tuner repository.
-export HLS_TUNER_ROOT={tuner_root}
-
 # Remember the output directory.
 OUTPUT_DIR=${{PWD}}
 
@@ -53,10 +50,10 @@ rm *.log Presynth.bash
 source ${{SDSOC_ROOT}}/settings64.sh
 
 # Run synthesis.  If there is an error, we do not exit this script because we still have to move (intermediate) results
-# to the output directory.  We check for a timeout here because we don't want limit the time needed for issuing a job
-# to the grid.  The /usr/bin/timeout tool changes its process group, which means that the children do not receive TERM
-# signals, so we use a custom timeout script.
-${{HLS_TUNER_ROOT}}/Scripts/Timeout.bash -t {timeout} \
+# to the output directory.  We check for a timeout here because we don't want to limit the time needed for issuing a
+# job to the grid.  The /usr/bin/timeout tool changes its process group, which means that the children do not receive
+# TERM signals, so we use a custom timeout script.
+{tuner_root}/Scripts/Timeout.bash -t {timeout} \
   /usr/bin/time -f "Runtime: %e s\nMaximum residential set size: %M KB" -o /dev/stdout \
     vivado -nolog -nojournal -mode batch -source {tcl_script} && EXIT_CODE=0 || EXIT_CODE=$?
 
