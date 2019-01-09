@@ -7,8 +7,6 @@
 
 # Template directory
 TEMPLATE_DIR = "Templates"
-# Data directory
-PREBUILT_DIR = "Prebuilt"
 
 # Output directories for each build step
 PRESYNTH_OUTPUT_DIR = "Presynth"
@@ -20,11 +18,6 @@ IMPL_OUTPUT_DIR     = "Impl"
 FAILED_PRESYNTH_DIR = "Presynth_failed"
 FAILED_SYNTH_DIR    = "Synth_failed"
 FAILED_IMPL_DIR     = "Impl_failed"
-
-# Directories with prebuilt hardware
-PREBUILT_PRESYNTH_DIR = PREBUILT_DIR + "/Presynth"
-PREBUILT_SYNTH_DIR    = PREBUILT_DIR + "/Synth"
-PREBUILT_IMPL_DIR     = PREBUILT_DIR + "/Impl"
 
 # Name of qsub output and error logs
 QSUB_OUTPUT_LOG = "QSub_output.log"
@@ -195,10 +188,10 @@ class MeasurementInterface(opentuner.MeasurementInterface):
 
         # Run presynthesis.
         self.build_interface.run(bash_script, presynth_output_dir, build_output_log, build_error_log,
-                                 PRESYNTH_JOB + '_' + str(result_id), 1, self.presynth_max_mem)
+                                 self.job_name + '_' + PRESYNTH_JOB + '_' + str(result_id), 1, self.presynth_max_mem)
       else:
         # Copy the prebuilt results instead of performing presynthesis.
-        shutil.copytree(self.tuner_root + '/' + PREBUILT_PRESYNTH_DIR, presynth_output_dir)
+        shutil.copytree(self.prebuilt_presynth_dir, presynth_output_dir)
 
       # Analyze the presynthesis output to determine whether it was successful.
       result = self.get_presynth_result(qsub_error_log, build_output_log)
@@ -229,17 +222,7 @@ class MeasurementInterface(opentuner.MeasurementInterface):
     """
 
     # Convert the tuner parameters to defines and makefile variables.
-    defines = ''
-    for param, value in config_data.items():
-      if param == 'DATA_MOVER_CLOCK':
-        data_mover_clock = str(value)
-      elif param == 'KERNEL_CLOCK':
-        kernel_clock = str(value)
-      elif re.match(r'PIPELINE_(?!II_).*', param):
-        if value:
-          defines += ' -D{0}'.format(param)
-      else:
-        defines += ' -D{0}={1}'.format(param, value)
+    parameters = self.pack_parameters(config_data)
 
     # Generate a bash file for the presynthesis.
     self.fill_in_template(template_file, script_file,
@@ -248,9 +231,16 @@ class MeasurementInterface(opentuner.MeasurementInterface):
                           timeout          = self.presynth_timeout,
                           max_jobs         = self.max_jobs,
                           max_threads      = self.max_threads,
-                          defines          = defines,
-                          data_mover_clock = data_mover_clock,
-                          kernel_clock     = kernel_clock)
+                          parameters       = parameters)
+
+
+  @abc.abstractmethod
+  def pack_parameters(self):
+    """
+    Encapsulate all parameters into a single variable that will be expanded inside the makefile.
+    """
+
+    pass
 
 
   def get_presynth_result(self, qsub_error_log, build_output_log):
@@ -337,10 +327,11 @@ class MeasurementInterface(opentuner.MeasurementInterface):
 
         # Run synthesis.
         self.build_interface.run(bash_script, synth_output_dir, build_output_log, build_error_log,
-                                 SYNTH_JOB + '_' + str(result_id), self.max_jobs, self.synth_max_mem)
+                                 self.job_name + '_' + SYNTH_JOB + '_' + str(result_id), self.max_jobs,
+                                 self.synth_max_mem)
       else:
         # Copy the prebuilt results instead of performing synthesis.
-        shutil.copytree(self.tuner_root + '/' + PREBUILT_SYNTH_DIR, synth_output_dir)
+        shutil.copytree(self.prebuilt_synth_dir, synth_output_dir)
 
       # Analyze the synthesis output to determine whether it was successful.
       result = self.get_synth_result(result, qsub_error_log, build_output_log)
@@ -461,10 +452,11 @@ class MeasurementInterface(opentuner.MeasurementInterface):
 
         # Run implementation.
         self.build_interface.run(bash_script, impl_output_dir, build_output_log, build_error_log,
-                                 IMPL_JOB + '_' + str(result_id), self.max_threads, self.impl_max_mem)
+                                 self.job_name + '_' + IMPL_JOB + '_' + str(result_id), self.max_threads,
+                                 self.impl_max_mem)
       else:
         # Copy the prebuilt results instead of performing implementation.
-        shutil.copytree(self.tuner_root + '/' + PREBUILT_IMPL_DIR, impl_output_dir)
+        shutil.copytree(self.prebuilt_impl_dir, impl_output_dir)
 
       # Analyze the implementation output to determine whether it was successful.
       result = self.get_impl_result(result, qsub_error_log, build_output_log)
@@ -590,7 +582,7 @@ class MeasurementInterface(opentuner.MeasurementInterface):
 
     # Run the bash script.
     self.meas_interface.run(bash_script, output_dir, run_output_log, run_error_log,
-                            RUN_JOB + '_' + str(result_id), 1, self.run_max_mem)
+                            self.job_name + '_' + RUN_JOB + '_' + str(result_id), 1, self.run_max_mem)
 
     # Analyze the run output to determine whether it was successful.
     return self.get_run_result(result_id, compile_result, run_output_log, serial_log)

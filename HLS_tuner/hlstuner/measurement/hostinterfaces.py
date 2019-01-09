@@ -11,6 +11,7 @@ QSUB_ERROR_LOG  = "QSub_error.log"
 
 # Import classes that are used.
 import abc
+import re
 
 #######################################################################################################################
 
@@ -139,14 +140,14 @@ class GridHostInterface(HostInterface):
                                            ' ' + program)
 
       # Try the next host if no host was available.
-      if re.search("Your qsub request could not be scheduled", result['stderr']) != None:
-        continue
+      if re.search("Your qsub request could not be scheduled", result['stderr']) == None:
+        break
 
-      # Store the output of standard output and standard error in log files.
-      with open(qsub_output_log, 'w') as log_file:
-        log_file.write(result['stdout'])
-      with open(qsub_error_log, 'w') as log_file:
-        log_file.write(result['stderr'])
+    # Store the output of standard output and standard error in log files.
+    with open(qsub_output_log, 'w') as log_file:
+      log_file.write(result['stdout'])
+    with open(qsub_error_log, 'w') as log_file:
+      log_file.write(result['stderr'])
 
     # Return the result of the run.
     return result

@@ -22,7 +22,9 @@
 //-------------------------------------------------------------------
 // Constants
 //-------------------------------------------------------------------
-const unsigned CONVOLVERS = 2;
+#ifndef CONVOLVERS
+#define CONVOLVERS 2
+#endif
 
 const unsigned WORD_SIZE = 64;
 const unsigned WT_SIZE = 9;

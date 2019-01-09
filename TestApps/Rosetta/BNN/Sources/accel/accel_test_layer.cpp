@@ -13,16 +13,15 @@ int main(int argc, char** argv) {
   #ifdef HLS_COMPILE
   const unsigned l = 2;
   #else
-  if (argc < 2) {
-    printf ("Requires layer number as the first argument\n");
-    exit(-1);
+  if (argc != 3) {
+    printf("Usage: %s <Number of layer> <Data directory>\n", argv[0]);
+    return 0;
   }
   const unsigned l = atoi(argv[1]);
+  const std::string data_dir(argv[2]);
   #endif
 
   assert (l < N_LAYERS);
-
-  const unsigned lconv  = 6;  // last conv
 
   const unsigned Si = S_tab[l-1];
   const unsigned So = S_tab[l];
@@ -49,13 +48,13 @@ int main(int argc, char** argv) {
   // Load reference output from zip and set data_i
   printf ("## Loading test data ##\n");
   if (l == 1) {
-    Cifar10TestInputs X(1);
+    Cifar10TestInputs X(data_dir + "/cifar10_test_inputs.zip", 1);
     binarize_input_images(data_i, X.data, Si);
   } else {
     const float* input_maps = new float[M*Si*Si];
-    std::string l_type = layer_is_conv(l) ? "/data/cpp_conv" : "/data/cpp_dense";
+    std::string l_type = layer_is_conv(l) ? "/cpp_conv" : "/cpp_dense";
     unsigned l_num = layer_is_conv(l) ? l-1 : l-L_CONV-1;
-    std::string input_file = get_root_dir() + l_type + std::to_string(l_num) + "_maps.zip";
+    std::string input_file = data_dir + l_type + std::to_string(l_num) + "_maps.zip";
     unzip_to_array(input_file, input_maps);
     set_bit_array(data_i, input_maps, M*Si*Si);
     delete[] input_maps;
@@ -63,7 +62,7 @@ int main(int argc, char** argv) {
 
   // Binarize weights
   printf ("## Loading parameters ##\n");
-  Params params(get_root_dir() + "/params/cifar10_parameters_nb.zip");
+  Params params(data_dir + "/cifar10_parameters_nb.zip");
   const float* weights = params.float_data(widx_tab[l-1]);
   set_weight_array(wt, weights, l);
 
@@ -78,9 +77,9 @@ int main(int argc, char** argv) {
     bin_ref[0] = 3;
   } else {
     const float* output_maps = new float[N*So*So];
-    std::string l_type = layer_is_conv(l) ? "/data/cpp_conv" : "/data/cpp_dense";
+    std::string l_type = layer_is_conv(l) ? "/cpp_conv" : "/cpp_dense";
     unsigned l_num = layer_is_conv(l) ? l : l-L_CONV;
-    std::string output_file = get_root_dir() + l_type + std::to_string(l_num) + "_maps.zip";
+    std::string output_file = data_dir + l_type + std::to_string(l_num) + "_maps.zip";
     unzip_to_array(output_file, output_maps);
     set_bit_array(bin_ref, output_maps, N*So*So);
     delete[] output_maps;

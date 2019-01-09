@@ -4,39 +4,37 @@
 #include <ff.h>
 #endif
 
-Cifar10TestInputs::Cifar10TestInputs(unsigned n)
+Cifar10TestInputs::Cifar10TestInputs(const std::string & filename, unsigned n)
   : m_size(n*CHANNELS*ROWS*COLS)
 {
 #ifdef RUN_STANDALONE
   data = new float[m_size];
 
-  std::string full_filename = filename;
-  DB_PRINT(2, "Opening data file %s\n", full_filename.c_str());
+  DB_PRINT(2, "Opening data file %s\n", filename.c_str());
   FIL File;
-  if (f_open(&File, full_filename.c_str(), FA_READ) != FR_OK)
+  if (f_open(&File, filename.c_str(), FA_READ) != FR_OK)
   {
-    printf("Cannot open file %s\n", full_filename.c_str());
+    printf("Cannot open file %s\n", filename.c_str());
     exit(1);
   }
 
   unsigned Size;
   if (f_read(&File, data, m_size * 4, &Size) != FR_OK || Size != m_size * 4)
   {
-    printf("Cannot read file %s\n", full_filename.c_str());
+    printf("Cannot read file %s\n", filename.c_str());
     exit(1);
   }
 
   if (f_close(&File) != FR_OK)
   {
-    printf("Cannot close file %s\n", full_filename.c_str());
+    printf("Cannot close file %s\n", filename.c_str());
     exit(1);
   }    
 #else
   data = new float[m_size];
 
-  std::string full_filename = get_root_dir() + filename;
-  DB_PRINT(2, "Opening data archive %s\n", full_filename.c_str());
-  unzFile ar = open_unzip(full_filename.c_str());
+  DB_PRINT(2, "Opening data archive %s\n", filename.c_str());
+  unzFile ar = open_unzip(filename.c_str());
   unsigned nfiles = get_nfiles_in_unzip(ar);
   assert(nfiles == 1);
 
@@ -51,39 +49,37 @@ Cifar10TestInputs::Cifar10TestInputs(unsigned n)
 #endif
 }
 
-Cifar10TestLabels::Cifar10TestLabels(unsigned n)
+Cifar10TestLabels::Cifar10TestLabels(const std::string & filename, unsigned n)
   : m_size(n)
 {
 #ifdef RUN_STANDALONE
   data = new float[m_size];
 
-  std::string full_filename = filename;
-  DB_PRINT(2, "Opening data file %s\n", full_filename.c_str());
+  DB_PRINT(2, "Opening data file %s\n", filename.c_str());
   FIL File;
-  if (f_open(&File, full_filename.c_str(), FA_READ) != FR_OK)
+  if (f_open(&File, filename.c_str(), FA_READ) != FR_OK)
   {
-    printf("Cannot open file %s\n", full_filename.c_str());
+    printf("Cannot open file %s\n", filename.c_str());
     exit(1);
   }
 
   unsigned Size;
   if (f_read(&File, data, m_size * 4, &Size) != FR_OK || Size != m_size * 4)
   {
-    printf("Cannot read file %s\n", full_filename.c_str());
+    printf("Cannot read file %s\n", filename.c_str());
     exit(1);
   }
 
   if (f_close(&File) != FR_OK)
   {
-    printf("Cannot close file %s\n", full_filename.c_str());
+    printf("Cannot close file %s\n", filename.c_str());
     exit(1);
   }    
 #else
   data = new float[m_size];
 
-  std::string full_filename = get_root_dir() + filename;
-  DB_PRINT(2, "Opening data archive %s\n", full_filename.c_str());
-  unzFile ar = open_unzip(full_filename.c_str());
+  DB_PRINT(2, "Opening data archive %s\n", filename.c_str());
+  unzFile ar = open_unzip(filename.c_str());
   unsigned nfiles = get_nfiles_in_unzip(ar);
   assert(nfiles == 1);
 

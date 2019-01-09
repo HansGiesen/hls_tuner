@@ -58,13 +58,13 @@ void run_input_conv_layer(
       } }
 
       // operate on 1 input image
-      for (int r = 0; r < S; ++r) {
-      for (int c = 0; c < S; ++c) {
+      for (unsigned r = 0; r < S; ++r) {
+      for (unsigned c = 0; c < S; ++c) {
         float res = 0;
 
         // perform convolution
-        for (int kr = 0; kr < K; ++kr) {
-        for (int kc = 0; kc < K; ++kc) {
+        for (unsigned kr = 0; kr < K; ++kr) {
+        for (unsigned kc = 0; kc < K; ++kc) {
           float pix = in_buffer[(r+kr)*(S+2) + (c+kc)];
           const bool b = w[w_n*K*K + (8-(kr*K+kc))];
           res += (b==0) ? pix : -pix;

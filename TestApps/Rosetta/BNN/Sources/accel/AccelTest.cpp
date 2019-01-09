@@ -174,21 +174,21 @@ void binarize_input_images(Word* dmem_i, const float* inputs, unsigned S) {
 void padded_conv(Word in[], Word w[], Word out[],
                  unsigned M, unsigned S)
 {
-  for (int r = 0; r < S; ++r) {
-  for (int c = 0; c < S; ++c) {
+  for (unsigned r = 0; r < S; ++r) {
+  for (unsigned c = 0; c < S; ++c) {
     out[r*S + c] = 0;
   }}
 
-  for (int m = 0; m < M; ++m) {
-    for (int r = 0; r < S; ++r) {
-    for (int c = 0; c < S; ++c) {
+  for (unsigned m = 0; m < M; ++m) {
+    for (unsigned r = 0; r < S; ++r) {
+    for (unsigned c = 0; c < S; ++c) {
       Word res = 0;
-      for (int kr = 0; kr < K; ++kr) {
-      for (int kc = 0; kc < K; ++kc) {
+      for (unsigned kr = 0; kr < K; ++kr) {
+      for (unsigned kc = 0; kc < K; ++kc) {
         TwoBit pix = 0;
         int _r = r+kr-K/2;
         int _c = c+kc-K/2;
-        if (_r >= 0 && _c >= 0 && _r < S && _c < S)
+        if (_r >= 0 && _c >= 0 && _r < static_cast<int>(S) && _c < static_cast<int>(S))
           pix = get_bit(in, m*S*S+_r*S+_c) == 0 ? 1 : -1;
 
         Address kaddr = m/CONV_W_PER_WORD;
@@ -258,7 +258,7 @@ void test_conv_layer(
   print_bits3d(bin_ref, 0, 1, So, 8,So);
 
   // Output results.
-  FILE * file = fopen("Output.txt", "wt");
+  FILE * file = fopen("Debug.txt", "wt");
   for (unsigned n = 0; n < N; ++n) {
     for (unsigned r = 0; r < So; ++r) {
       fprintf(file, "n = %d, r = %d: ", n, r);
@@ -279,7 +279,7 @@ void test_conv_layer(
       for (unsigned c = 0; c < So; ++c) {
         if (get_bit(data_o, n*So*So+r*So+c) != get_bit(bin_ref, n*So*So+r*So+c)) {
           n_err++;
-          //printf ("bin out != ref at n=%d, (%d,%d)\n", n, r,c);
+          printf ("bin out != ref at n=%d, (%d,%d)\n", n, r,c);
           //if (n_err > 64) exit(-1);
         }
       }

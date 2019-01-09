@@ -11,7 +11,7 @@ MAKEFILE = "TestApps/Rosetta/BNN/Sources/Makefile"
 # Output directory
 OUTPUT_ROOT = "TestApps/Rosetta/BNN/Output"
 
-# Names of grid job.  The build iteration and step are added later.
+# Name of grid job.  The build iteration and step are added later.
 JOB_NAME = "BNN"
 
 # Enable these to use prebuilt results for various build steps
@@ -19,11 +19,16 @@ USE_PREBUILT_PRESYNTH = False
 USE_PREBUILT_SYNTH    = False
 USE_PREBUILT_IMPL     = False
 
+# Directories with prebuilt hardware
+PREBUILT_PRESYNTH_DIR = "/TestApps/Rosetta/BNN/Prebuilt/Presynth"
+PREBUILT_SYNTH_DIR    = "/TestApps/Rosetta/BNN/Prebuilt/Synth"
+PREBUILT_IMPL_DIR     = "/TestApps/Rosetta/BNN/Prebuilt/Impl"
+
 # Timeout in seconds for each build step  
-PRESYNTH_TIMEOUT = 15 * 60
-SYNTH_TIMEOUT    = 30 * 60
-IMPL_TIMEOUT     = 30 * 60
-RUN_TIMEOUT      = 5 * 60
+PRESYNTH_TIMEOUT = 30 * 60
+SYNTH_TIMEOUT    = 60 * 60
+IMPL_TIMEOUT     = 60 * 60
+RUN_TIMEOUT      = 10 * 60
 
 # Number of retries for each build step.  Note that only builds with errors that may disappear are retried.
 PRESYNTH_RETRIES = 5
@@ -86,9 +91,7 @@ from hlstuner.measurement.hostinterfaces import GridHostInterface, SSHHostInterf
 from hlstuner.measurement.interface import MeasurementInterface
 from hlstuner.search.randomforest import RandomForest
 import opentuner
-from opentuner import ConfigurationManipulator
-from opentuner import EnumParameter
-from opentuner import IntegerParameter
+from opentuner import ConfigurationManipulator, EnumParameter, LogIntegerParameter
 from opentuner.search.manipulator import BooleanParameter
 
 #######################################################################################################################
@@ -127,6 +130,9 @@ class BNNTuner(MeasurementInterface):
     # Run builds on the IC grid.
     cfg.build_interface = GridHostInterface(GRID_QUEUES)
 
+    # Name of grid job.  The build iteration and step are added later.
+    cfg.job_name = JOB_NAME
+
     # Run measurements on Hactar.
     cfg.meas_interface = SSHHostInterface(FPGA_HOST)
 
@@ -134,6 +140,11 @@ class BNNTuner(MeasurementInterface):
     cfg.use_prebuilt_presynth = USE_PREBUILT_PRESYNTH
     cfg.use_prebuilt_synth    = USE_PREBUILT_SYNTH
     cfg.use_prebuilt_impl     = USE_PREBUILT_IMPL
+
+    # Directories with prebuilt hardware
+    cfg.prebuilt_presynth_dir = tuner_root + PREBUILT_PRESYNTH_DIR
+    cfg.prebuilt_synth_dir    = tuner_root + PREBUILT_SYNTH_DIR
+    cfg.prebuilt_impl_dir     = tuner_root + PREBUILT_IMPL_DIR
 
     # Timeout in seconds for each build step  
     cfg.presynth_timeout = PRESYNTH_TIMEOUT
@@ -171,7 +182,23 @@ class BNNTuner(MeasurementInterface):
     manipulator = ConfigurationManipulator()
     manipulator.add_parameter(EnumParameter("KERNEL_CLOCK", ['0', '1', '2', '3']))
     manipulator.add_parameter(EnumParameter("DATA_MOVER_CLOCK", ['0', '1', '2', '3']))
+    manipulator.add_parameter(LogIntegerParameter("CONVOLVERS", 1, 16, prior = "inc"))
     return manipulator
+
+
+  def pack_parameters(self, config_data):
+    """
+    Encapsulate all parameters into a single variable that will be expanded inside the makefile.
+    """
+
+    defines = ''
+    parameters = ''
+    for param, value in config_data.items():
+      if param == 'DATA_MOVER_CLOCK' or param == 'KERNEL_CLOCK':
+        parameters += " " + param + "=" + str(value)
+      else:
+        defines += ' -D{0}={1}'.format(param, value)
+    return parameters + " DEFINES='" + defines + "'"
 
 
   def save_final_config(self, configuration):

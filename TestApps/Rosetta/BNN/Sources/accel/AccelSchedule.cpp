@@ -101,8 +101,8 @@ void run_accel_schedule(
     AccelSchedule& s
 ) {
   // weight mems
-  static Word* wt_i = (Word*) MEM_ALLOC( WT_WORDS*sizeof(Word) );
-  static Word* kh_i = (Word*) MEM_ALLOC( KH_WORDS*sizeof(Word) );
+  Word* wt_i = (Word*) MEM_ALLOC( WT_WORDS*sizeof(Word) );
+  Word* kh_i = (Word*) MEM_ALLOC( KH_WORDS*sizeof(Word) );
   if (!wt_i || !kh_i) {
     fprintf(stderr, "**** ERROR: Alloc wt_i or kh_i failed in %s\n", __FILE__);
     exit(-2);

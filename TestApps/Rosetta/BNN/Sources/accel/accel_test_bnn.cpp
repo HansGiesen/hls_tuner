@@ -1,4 +1,5 @@
-#define IMAGE_COUNT (100)
+#define IMAGE_COUNT        (100)
+#define DESIRED_ERROR_RATE (0.03)
 
 #include <cstddef>
 #include <cstdlib>
@@ -15,15 +16,28 @@
 #include "DataIO.h"
 #include "Timer.h"
 
+#ifdef __SDSCC__
+#include <sds_lib.h>
+#endif
+#include <ff.h>
+
 int main(int argc, char** argv) {
 #ifdef RUN_STANDALONE
   const unsigned n_imgs = IMAGE_COUNT;
+
+  FATFS FS;
+  if (f_mount(&FS, "0:/", 0) != FR_OK)
+  {
+    printf("Cannot mount SD-card.\n");
+    return 0;
+  }
 #else
-  if (argc < 2) {
-    printf ("Give number of images to test as 1st arg\n");
+  if (argc != 3) {
+    printf("Usage: %s <Number of images> <Data directory>\n", argv[0]);
     return 0;
   }
   const unsigned n_imgs = std::stoi(argv[1]);
+  const std::string data_dir(argv[2]);
 #endif
 
   const unsigned lconv  = 6;  // last conv
@@ -41,15 +55,20 @@ int main(int argc, char** argv) {
 
   // Load input data
   printf ("## Loading input data ##\n");
-  Cifar10TestInputs X(n_imgs);
-  Cifar10TestLabels y(n_imgs);
+#ifndef RUN_STANDALONE
+  Cifar10TestInputs X(data_dir + "/cifar10_test_inputs.zip", n_imgs);
+  Cifar10TestLabels y(data_dir + "/cifar10_test_labels.zip", n_imgs);
+#else
+  Cifar10TestInputs X("input.bin", n_imgs);
+  Cifar10TestLabels y("labels.bin", n_imgs);
+#endif
 
   // Load parameters
   printf ("## Loading parameters ##\n");
 #ifdef RUN_STANDALONE
-  Params params("/params/cifar10_parameters_nb_");
+  Params params("par_");
 #else
-  Params params(get_root_dir() + "/params/cifar10_parameters_nb.zip");
+  Params params(data_dir + "/cifar10_parameters_nb.zip");
 #endif
 
   // ---------------------------------------------------------------------
@@ -100,6 +119,9 @@ int main(int argc, char** argv) {
   //--------------------------------------------------------------
   // Run BNN
   //--------------------------------------------------------------
+#ifdef __SDSCC__
+  unsigned long long Start_time_HW = sds_clock_counter();
+#endif
   for (unsigned n = 0; n < n_imgs; ++n) {
     float* data = X.data + n*3*32*32;
     binarize_input_images(data_i, data, 32);
@@ -180,17 +202,36 @@ int main(int argc, char** argv) {
     //assert(prediction >= 0 && prediction <= 9);
     int label = y.data[n];
 
-    printf ("  Pred/Label:\t%2u/%2d\t[%s]\n", prediction, label,
-        ((prediction==label)?" OK ":"FAIL"));
+//    printf ("  Pred/Label:\t%2u/%2d\t[%s]\n", prediction, label,
+//        ((prediction==label)?" OK ":"FAIL"));
 
     n_errors += (prediction!=label);
   }
+#ifdef __SDSCC__
+  unsigned long long End_time_HW = sds_clock_counter();
+#endif
+
+  double error_rate = (1.0 * n_errors) / n_imgs;
 
   printf ("\n");
-  printf ("Errors: %u (%4.2f%%)\n", n_errors, float(n_errors)*100/n_imgs);
+  printf ("Errors: %u (%4.2f%%)\n", n_errors, 100.0 * error_rate);
   printf ("\n");
   printf ("Total accel runtime = %10.4f seconds\n", total_time());
   printf ("\n");
+
+#ifdef __SDSCC__
+  unsigned long long Duration_HW = End_time_HW - Start_time_HW;
+  printf("The hardware test took %llu cycles.\n", Duration_HW);
+#endif
+
+  if (error_rate <= DESIRED_ERROR_RATE){
+    printf("TEST PASSED\n");
+    return 0;
+  }
+  else{
+    printf("TEST FAILED\n");
+    return 1;
+  }
 
   MEM_FREE( data_o );
   MEM_FREE( data_i );

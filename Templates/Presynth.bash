@@ -19,6 +19,9 @@ Cleanup()
 # Install the exit handler.
 trap Cleanup EXIT
 
+# Export the root of the HLS tuner repository.
+export HLS_TUNER_ROOT={tuner_root}
+
 # Remember the output directory.
 OUTPUT_DIR=${{PWD}}
 
@@ -45,12 +48,7 @@ cd ${{TEMP_DIR}}
 # signals, so we use a custom timeout script.
 {tuner_root}/Scripts/Timeout.bash -t {timeout} \
   /usr/bin/time -f "Runtime: %e s\nMaximum residential set size: %M KB" -o /dev/stdout \
-    make -f {make_file} clean all \
-      JOBS={max_jobs} \
-      THREADS={max_threads} \
-      HLS_TUNER_DEFINES='{defines}' \
-      DATA_MOVER_CLOCK={data_mover_clock} \
-      KERNEL_CLOCK={kernel_clock} && EXIT_CODE=0 || EXIT_CODE=$?
+    make -f {make_file} clean all JOBS={max_jobs} THREADS={max_threads} {parameters} && EXIT_CODE=0 || EXIT_CODE=$?
 
 # Output a message about the build result.  The tuner script relies on these messages.
 [ "${{EXIT_CODE}}" == 143 ] && echo "Presynthesis timed out."

@@ -15,31 +15,20 @@ struct Cifar10TestInputs {
   static const unsigned CHANNELS=3;
   static const unsigned ROWS=32;
   static const unsigned COLS=32;
-#ifndef RUN_STANDALONE
-  static constexpr const char* filename = "/data/cifar10_test_inputs.zip";
-#else
-  static constexpr const char* filename = "cifar10_test_inputs.bin";
-#endif
 
   float* data;
   unsigned m_size;
 
-  Cifar10TestInputs(unsigned n);
+  Cifar10TestInputs(const std::string & filename, unsigned n);
   ~Cifar10TestInputs() { delete[] data; }
   unsigned size() { return m_size; }
 };
 
 struct Cifar10TestLabels {
-#ifndef RUN_STANDALONE
-  static constexpr const char* filename = "/data/cifar10_test_labels.zip";
-#else
-  static constexpr const char* filename = "cifar10_test_labels.bin";
-#endif
-
   float* data;
   unsigned m_size;
 
-  Cifar10TestLabels(unsigned n);
+  Cifar10TestLabels(const std::string & filename, unsigned n);
   ~Cifar10TestLabels() { delete[] data; }
   unsigned size() { return m_size; }
 };
