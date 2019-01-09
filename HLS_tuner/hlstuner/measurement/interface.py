@@ -79,6 +79,7 @@ CHECK_FPGA_JOB = "check_fpga"
 
 # Import modules that are used.
 import abc
+import argparse
 import logging
 import opentuner
 import os
@@ -114,6 +115,15 @@ class MeasurementInterface(opentuner.MeasurementInterface):
     # Set the measurement interface on each of the host interfaces.
     self.build_interface.set_interface(self)
     self.meas_interface.set_interface(self)
+
+    # Check if the SDSOC_ROOT environment variable is set.  We need it because when we use SSH to log in to a host, the
+    # scripts that set up the environment are not run.
+    self.sdsoc_root = os.environ["SDSOC_ROOT"]
+    if self.sdsoc_root == "":
+      raise RuntimeError("Environment variable SDSOC_ROOT was not set.")
+
+    # Make sure there was no old data.
+    self.check_output_empty()
 
     # Check whether the FPGA is setup.
     self.check_fpga()
@@ -695,6 +705,24 @@ class MeasurementInterface(opentuner.MeasurementInterface):
     return re.search(r'^EXE_FILE\s*:=\s*(\S+)', data, re.MULTILINE).group(1)
 
 
+  def check_output_empty(self):
+    """
+    Check if there is old data in the output directory.
+    """
+
+    # Check if there is still old data in the output directory.
+    old_data_found = False
+    for name in os.listdir(self.output_root):
+      path = self.output_root + '/' + name
+      if os.path.isdir(path) and re.match('[0-9]{4}$', os.path.basename(path)):
+        old_data_found = True
+
+    # Throw an exception if there is still old data.
+    if old_data_found and not self.args.append:
+      raise RuntimeError("Old results were found.  Explicitly confirm appending the results using the --append" \
+                         " command line arguments.")
+
+
   def check_fpga(self):
     """
     Check whether the FPGA is ready to be used.
@@ -728,4 +756,30 @@ class MeasurementInterface(opentuner.MeasurementInterface):
                          " the 'dialout' group.")
     elif lines != 'Success\n':
       raise RuntimeError("Check_FPGA_host.bash returned an unknown error.")
+
+
+  @classmethod
+  def main(self):
+    """
+    This is the main function of the tuner.
+    """
+
+    # Start logging messages.
+    opentuner.init_logging()
+
+    # Make sure that information messages are also logged.
+    for handler in logging.getLogger().handlers:
+      handler.setLevel(logging.INFO)
+
+    # Parse the command line arguments.
+    argparser = argparse.ArgumentParser(parents = opentuner.argparsers())
+    argparser.add_argument('--append', action = 'store_true', help = 'append new tuning run to existing runs')
+    args = argparser.parse_args()
+
+    # Select the random forest search technique by default.
+    if not args.technique:
+      args.technique = ['RandomForest']
+
+    # Start the tuner.
+    super(MeasurementInterface, self).main(args)
 

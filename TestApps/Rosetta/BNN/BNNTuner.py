@@ -27,7 +27,7 @@ PREBUILT_IMPL_DIR     = "/TestApps/Rosetta/BNN/Prebuilt/Impl"
 # Timeout in seconds for each build step  
 PRESYNTH_TIMEOUT = 30 * 60
 SYNTH_TIMEOUT    = 60 * 60
-IMPL_TIMEOUT     = 60 * 60
+IMPL_TIMEOUT     = 90 * 60
 RUN_TIMEOUT      = 10 * 60
 
 # Number of retries for each build step.  Note that only builds with errors that may disappear are retried.
@@ -61,17 +61,8 @@ FPGA_HOST = "hactar.seas.upenn.edu"
 #######################################################################################################################
 
 # Import system modules.
-import argparse
-import glob
-import logging
-import math
 import os
-import re
-import serial
-import shutil
-import subprocess
 import sys
-import threading
 
 # Locate the root directory of the HLS tuner repository.
 tuner_root = sys.path[0]
@@ -119,10 +110,7 @@ class BNNTuner(MeasurementInterface):
     cfg.tuner_root = tuner_root
 
     # Output directory
-    cfg.output_root = output_root
-
-    # Root directory of SDSoC installation
-    cfg.sdsoc_root = sdsoc_root
+    cfg.output_root = tuner_root + '/' + OUTPUT_ROOT
 
     # Location of makefile
     cfg.makefile = MAKEFILE
@@ -211,44 +199,6 @@ class BNNTuner(MeasurementInterface):
 
 if __name__ == '__main__':
 
-  # Start the logging.
-  log = logging.getLogger('BNNTuner')
-  opentuner.init_logging()
-
-  # Make sure that information messages are also logged.
-  for handler in logging.getLogger().handlers:
-    handler.setLevel(logging.INFO)
-
-  # Parse the command line arguments.
-  argparser = argparse.ArgumentParser(parents = opentuner.argparsers())
-  argparser.add_argument('--append', action = 'store_true', help = 'append new tuning run to existing runs')
-  args = argparser.parse_args()
-
-  # Check if the SDSOC_ROOT environment variable is set.  We need it because when we use SSH to log in to a host, the
-  # scripts that set up the environment are not run.
-  sdsoc_root = os.environ["SDSOC_ROOT"]
-  if sdsoc_root == "":
-    raise RuntimeError("Environment variable SDSOC_ROOT was not set.")
-
-  # Determine the absolute location of the output directory.
-  output_root = tuner_root + "/" + OUTPUT_ROOT
-
-  # Check if there is still old data in the output directory.
-  old_data_found = False
-  for name in os.listdir(output_root):
-    path = output_root + '/' + name
-    if os.path.isdir(path) and re.match('[0-9]{4}$', os.path.basename(path)):
-      old_data_found = True
-
-  # Throw an exception if there is still old data.
-  if old_data_found and not args.append:
-    raise RuntimeError("Old results were found.  Explicitly confirm appending the results using the --append" \
-                       " command line arguments.")
-
-  # Select the random forest search technique by default.
-  if not args.technique:
-    args.technique = ['RandomForest']
-
   # Start the tuner.
-  BNNTuner.main(args)
+  BNNTuner.main()
 
