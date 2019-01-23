@@ -1,0 +1,173 @@
+Runtime: 660.79 s
+Maximum residential set size: 1570308 KB
+ AccelPrint.o Dense.o InputConv.o Common.o Timer.o DataIO.o ParamIO.o BNN.elf _sds HLS
+source /mnt/icgridio2/safe/SDSoC/SDx/2017.1/settings64.sh && \
+sds++ -sds-sys-config standalone -sds-pf /mnt/icgridio2/safe/giesen/HLS_tuner/1/Platforms/Vivado_2017.1/pynq -sds-proc a9_0 -sds-hw top /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp -clkid 2 -sds-end -maxjobs 4 -maxthreads 4 -O3 -DHLS_COMPILE -DRUN_STANDALONE -I /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/utils -Wall -Wno-unused-label  -c /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/accel_test_bnn.cpp -o accel_test_bnn.o
+Create data motion intermediate representation
+Compiling /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/accel_test_bnn.cpp
+                 from /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/accel_test_bnn.cpp:7:
+sds++ log file saved as /var/tmp/tmp.XZ2A6xAjxX/_sds/reports/sds_accel_test_bnn.log
+
+source /mnt/icgridio2/safe/SDSoC/SDx/2017.1/settings64.sh && \
+sds++ -sds-sys-config standalone -sds-pf /mnt/icgridio2/safe/giesen/HLS_tuner/1/Platforms/Vivado_2017.1/pynq -sds-proc a9_0 -sds-hw top /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp -clkid 2 -sds-end -maxjobs 4 -maxthreads 4 -O3 -DHLS_COMPILE -DRUN_STANDALONE -I /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/utils -Wall -Wno-unused-label  -c /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp -o Accel.o
+Processing -sds-hw block for top
+Create data motion intermediate representation
+Performing accelerator source linting for top
+INFO: [Linting 83-3001] top
+INFO: [Linting 83-3001] top
+Performing pragma generation
+INFO: [PragmaGen 83-3231] Successfully generated tcl script: /var/tmp/tmp.XZ2A6xAjxX/_sds/vhls/top.tcl
+Moving function top to Programmable Logic
+sds++ log file saved as /var/tmp/tmp.XZ2A6xAjxX/_sds/reports/sds_Accel.log
+
+source /mnt/icgridio2/safe/SDSoC/SDx/2017.1/settings64.sh && \
+sds++ -sds-sys-config standalone -sds-pf /mnt/icgridio2/safe/giesen/HLS_tuner/1/Platforms/Vivado_2017.1/pynq -sds-proc a9_0 -sds-hw top /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp -clkid 2 -sds-end -maxjobs 4 -maxthreads 4 -O3 -DHLS_COMPILE -DRUN_STANDALONE -I /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/utils -Wall -Wno-unused-label  -c /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/AccelSchedule.cpp -o AccelSchedule.o
+Create data motion intermediate representation
+Compiling /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/AccelSchedule.cpp
+                 from /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/AccelSchedule.h:5,
+                 from /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/AccelSchedule.cpp:1:
+sds++ log file saved as /var/tmp/tmp.XZ2A6xAjxX/_sds/reports/sds_AccelSchedule.log
+
+source /mnt/icgridio2/safe/SDSoC/SDx/2017.1/settings64.sh && \
+sds++ -sds-sys-config standalone -sds-pf /mnt/icgridio2/safe/giesen/HLS_tuner/1/Platforms/Vivado_2017.1/pynq -sds-proc a9_0 -sds-hw top /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp -clkid 2 -sds-end -maxjobs 4 -maxthreads 4 -O3 -DHLS_COMPILE -DRUN_STANDALONE -I /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/utils -Wall -Wno-unused-label  -c /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/AccelTest.cpp -o AccelTest.o
+Create data motion intermediate representation
+Compiling /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/AccelTest.cpp
+                 from /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/AccelTest.h:5,
+                 from /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/AccelTest.cpp:2:
+/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/AccelTest.cpp:178:21: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   for (int c = 0; c < S; ++c) {
+                   ~~^~~
+/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/AccelTest.cpp:182:21: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   for (int m = 0; m < M; ++m) {
+                   ~~^~~
+/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/AccelTest.cpp:183:23: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (int r = 0; r < S; ++r) {
+                     ~~^~~
+/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/AccelTest.cpp:184:23: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (int c = 0; c < S; ++c) {
+                     ~~^~~
+/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/AccelTest.cpp:186:27: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+       for (int kr = 0; kr < K; ++kr) {
+                        ~~~^~~
+/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/AccelTest.cpp:187:27: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+       for (int kc = 0; kc < K; ++kc) {
+                        ~~~^~~
+/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/AccelTest.cpp:191:38: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+         if (_r >= 0 && _c >= 0 && _r < S && _c < S)
+                                   ~~~^~~
+/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/AccelTest.cpp:191:48: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+         if (_r >= 0 && _c >= 0 && _r < S && _c < S)
+                                             ~~~^~~
+                 from /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/utils/Typedefs.h:7,
+                 from /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/AccelTest.h:4,
+                 from /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/AccelTest.cpp:2:
+/mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado_HLS/include/etc/ap_int_sim.h: In function 'void set_bnorm_array1(Word*, const float*, const float*, unsigned int, unsigned int)':
+/mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado_HLS/include/etc/ap_int_sim.h:495:7: warning: assuming signed overflow does not occur when assuming that (X - c) > X is always false [-Wstrict-overflow]
+       if(l_index>h_index)
+       ^~
+sds++ log file saved as /var/tmp/tmp.XZ2A6xAjxX/_sds/reports/sds_AccelTest.log
+
+source /mnt/icgridio2/safe/SDSoC/SDx/2017.1/settings64.sh && \
+sds++ -sds-sys-config standalone -sds-pf /mnt/icgridio2/safe/giesen/HLS_tuner/1/Platforms/Vivado_2017.1/pynq -sds-proc a9_0 -sds-hw top /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp -clkid 2 -sds-end -maxjobs 4 -maxthreads 4 -O3 -DHLS_COMPILE -DRUN_STANDALONE -I /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/utils -Wall -Wno-unused-label  -c /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/AccelPrint.cpp -o AccelPrint.o
+Create data motion intermediate representation
+Compiling /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/AccelPrint.cpp
+                 from /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/AccelPrint.h:4,
+                 from /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/AccelPrint.cpp:1:
+sds++ log file saved as /var/tmp/tmp.XZ2A6xAjxX/_sds/reports/sds_AccelPrint.log
+
+source /mnt/icgridio2/safe/SDSoC/SDx/2017.1/settings64.sh && \
+sds++ -sds-sys-config standalone -sds-pf /mnt/icgridio2/safe/giesen/HLS_tuner/1/Platforms/Vivado_2017.1/pynq -sds-proc a9_0 -sds-hw top /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp -clkid 2 -sds-end -maxjobs 4 -maxthreads 4 -O3 -DHLS_COMPILE -DRUN_STANDALONE -I /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/utils -Wall -Wno-unused-label  -c /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Dense.cpp -o Dense.o
+Create data motion intermediate representation
+Compiling /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Dense.cpp
+                 from /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Dense.h:6,
+                 from /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Dense.cpp:1:
+sds++ log file saved as /var/tmp/tmp.XZ2A6xAjxX/_sds/reports/sds_Dense.log
+
+source /mnt/icgridio2/safe/SDSoC/SDx/2017.1/settings64.sh && \
+sds++ -sds-sys-config standalone -sds-pf /mnt/icgridio2/safe/giesen/HLS_tuner/1/Platforms/Vivado_2017.1/pynq -sds-proc a9_0 -sds-hw top /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp -clkid 2 -sds-end -maxjobs 4 -maxthreads 4 -O3 -DHLS_COMPILE -DRUN_STANDALONE -I /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/utils -Wall -Wno-unused-label  -c /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/InputConv.cpp -o InputConv.o
+Create data motion intermediate representation
+Compiling /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/InputConv.cpp
+                 from /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/InputConv.h:5,
+                 from /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/InputConv.cpp:1:
+/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/InputConv.cpp:62:25: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+       for (int c = 0; c < S; ++c) {
+                       ~~^~~
+/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/InputConv.cpp:66:29: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+         for (int kr = 0; kr < K; ++kr) {
+                          ~~~^~~
+/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/InputConv.cpp:67:29: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+         for (int kc = 0; kc < K; ++kc) {
+                          ~~~^~~
+sds++ log file saved as /var/tmp/tmp.XZ2A6xAjxX/_sds/reports/sds_InputConv.log
+
+source /mnt/icgridio2/safe/SDSoC/SDx/2017.1/settings64.sh && \
+sds++ -sds-sys-config standalone -sds-pf /mnt/icgridio2/safe/giesen/HLS_tuner/1/Platforms/Vivado_2017.1/pynq -sds-proc a9_0 -sds-hw top /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp -clkid 2 -sds-end -maxjobs 4 -maxthreads 4 -O3 -DHLS_COMPILE -DRUN_STANDALONE -I /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/utils -Wall -Wno-unused-label  -c /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/utils/Common.cpp -o Common.o
+Create data motion intermediate representation
+Compiling /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/utils/Common.cpp
+sds++ log file saved as /var/tmp/tmp.XZ2A6xAjxX/_sds/reports/sds_Common.log
+
+source /mnt/icgridio2/safe/SDSoC/SDx/2017.1/settings64.sh && \
+sds++ -sds-sys-config standalone -sds-pf /mnt/icgridio2/safe/giesen/HLS_tuner/1/Platforms/Vivado_2017.1/pynq -sds-proc a9_0 -sds-hw top /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp -clkid 2 -sds-end -maxjobs 4 -maxthreads 4 -O3 -DHLS_COMPILE -DRUN_STANDALONE -I /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/utils -Wall -Wno-unused-label  -c /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/utils/Timer.cpp -o Timer.o
+Create data motion intermediate representation
+Compiling /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/utils/Timer.cpp
+sds++ log file saved as /var/tmp/tmp.XZ2A6xAjxX/_sds/reports/sds_Timer.log
+
+source /mnt/icgridio2/safe/SDSoC/SDx/2017.1/settings64.sh && \
+sds++ -sds-sys-config standalone -sds-pf /mnt/icgridio2/safe/giesen/HLS_tuner/1/Platforms/Vivado_2017.1/pynq -sds-proc a9_0 -sds-hw top /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp -clkid 2 -sds-end -maxjobs 4 -maxthreads 4 -O3 -DHLS_COMPILE -DRUN_STANDALONE -I /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/utils -Wall -Wno-unused-label  -c /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/utils/DataIO.cpp -o DataIO.o
+Create data motion intermediate representation
+Compiling /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/utils/DataIO.cpp
+                 from /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/utils/DataIO.cpp:1:
+sds++ log file saved as /var/tmp/tmp.XZ2A6xAjxX/_sds/reports/sds_DataIO.log
+
+source /mnt/icgridio2/safe/SDSoC/SDx/2017.1/settings64.sh && \
+sds++ -sds-sys-config standalone -sds-pf /mnt/icgridio2/safe/giesen/HLS_tuner/1/Platforms/Vivado_2017.1/pynq -sds-proc a9_0 -sds-hw top /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp -clkid 2 -sds-end -maxjobs 4 -maxthreads 4 -O3 -DHLS_COMPILE -DRUN_STANDALONE -I /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/utils -Wall -Wno-unused-label  -c /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/utils/ParamIO.cpp -o ParamIO.o
+Create data motion intermediate representation
+Compiling /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/utils/ParamIO.cpp
+sds++ log file saved as /var/tmp/tmp.XZ2A6xAjxX/_sds/reports/sds_ParamIO.log
+
+source /mnt/icgridio2/safe/SDSoC/SDx/2017.1/settings64.sh && \
+sds++ -sds-sys-config standalone -sds-pf /mnt/icgridio2/safe/giesen/HLS_tuner/1/Platforms/Vivado_2017.1/pynq -sds-proc a9_0 -sds-hw top /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp -clkid 2 -sds-end -maxjobs 4 -maxthreads 4 -dmclkid 2 -mno-boot-files -mno-bitstream -o BNN.elf accel_test_bnn.o Accel.o AccelSchedule.o AccelTest.o AccelPrint.o Dense.o InputConv.o Common.o Timer.o DataIO.o ParamIO.o
+Analyzing object files
+... /var/tmp/tmp.XZ2A6xAjxX/accel_test_bnn.o
+... /var/tmp/tmp.XZ2A6xAjxX/Accel.o
+... /var/tmp/tmp.XZ2A6xAjxX/AccelSchedule.o
+... /var/tmp/tmp.XZ2A6xAjxX/AccelTest.o
+... /var/tmp/tmp.XZ2A6xAjxX/AccelPrint.o
+... /var/tmp/tmp.XZ2A6xAjxX/Dense.o
+... /var/tmp/tmp.XZ2A6xAjxX/InputConv.o
+... /var/tmp/tmp.XZ2A6xAjxX/Common.o
+... /var/tmp/tmp.XZ2A6xAjxX/Timer.o
+... /var/tmp/tmp.XZ2A6xAjxX/DataIO.o
+... /var/tmp/tmp.XZ2A6xAjxX/ParamIO.o
+Generating data motion network
+INFO: [DMAnalysis 83-4494] Analyzing hardware accelerators...
+INFO: [DMAnalysis 83-4497] Analyzing callers to hardware accelerators...
+INFO: [DMAnalysis 83-4444] Scheduling data transfer graph for partition 0
+INFO: [DMAnalysis 83-4446] Creating data motion network hardware for partition 0
+INFO: [DMAnalysis 83-4448] Creating software stub functions for partition 0
+INFO: [DMAnalysis 83-4450] Generating data motion network report for partition 0
+INFO: [DMAnalysis 83-4454] Rewriting caller code
+Creating block diagram (BD), address map, port information and device registration for partition 0 (this may take a few minutes)
+system_linker started at Fri Jan 04 16:23:32 EST 2019
+Copying address map
+Creating port and device registration data
+system_linker completed at Fri Jan 04 16:25:10 EST 2019
+Software tracing enabled
+Rewrite caller functions
+Compile caller rewrite file /var/tmp/tmp.XZ2A6xAjxX/_sds/swstubs/AccelSchedule.cpp
+                 from /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/AccelSchedule.h:5,
+                 from /var/tmp/tmp.XZ2A6xAjxX/_sds/swstubs/AccelSchedule.cpp:1:
+Prepare hardware access API functions
+Create accelerator stub functions
+Compile hardware access API functions
+Compile accelerator stub functions
+                 from Accel.cpp:4:
+Create board support package library
+Link application ELF file
+Not creating bitstream due to the -mno-bitstream switch
+Calling system_linker for partition 0
+system_linker started at Fri Jan 04 16:25:58 EST 2019
+system_linker completed at Fri Jan 04 16:26:08 EST 2019
+sds++ log file saved as /var/tmp/tmp.XZ2A6xAjxX/_sds/reports/sds.log
+
+Presynthesis has completed successfully.

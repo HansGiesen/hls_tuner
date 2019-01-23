@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xd:acceleratorMap xmlns:xd="http://www.xilinx.com/xd" xd:functionName="top" xd:componentRef="top" xd:initiationInterval="42213" xd:clockPeriod="10.000000" xd:sequential="true" xd:hostMachine="64" xd:reset="control">
+  <xd:controlReg xd:name="control" xd:interfaceRef="ap_ctrl" xd:busTypeRef="acc_handshake" xd:type="acc_handshake"/>
+  <xd:arg xd:name="wt_i[]" xd:originalName="wt_i" xd:direction="in" xd:interfaceRef="wt_i_V" xd:busTypeRef="acc_fifo" xd:arraySize="4682" xd:dataWidth="64"/>
+  <xd:arg xd:name="kh_i[]" xd:originalName="kh_i" xd:direction="in" xd:interfaceRef="kh_i_V" xd:busTypeRef="acc_fifo" xd:arraySize="64" xd:dataWidth="64"/>
+  <xd:arg xd:name="dmem_i[]" xd:originalName="dmem_i" xd:direction="in" xd:interfaceRef="dmem_i_V" xd:busTypeRef="acc_fifo" xd:arraySize="2048" xd:dataWidth="64"/>
+  <xd:arg xd:name="dmem_o[]" xd:originalName="dmem_o" xd:direction="out" xd:interfaceRef="dmem_o_V" xd:busTypeRef="acc_fifo" xd:firstOut="10" xd:arraySize="128" xd:dataWidth="64"/>
+  <xd:arg xd:name="n_inputs" xd:originalName="n_inputs" xd:direction="in" xd:interfaceRef="n_inputs_V" xd:busTypeRef="register" xd:handshakeRef="ap_none" xd:dataWidth="16" xd:firstOut="10"/>
+  <xd:arg xd:name="n_outputs" xd:originalName="n_outputs" xd:direction="in" xd:interfaceRef="n_outputs_V" xd:busTypeRef="register" xd:handshakeRef="ap_none" xd:dataWidth="16" xd:firstOut="10"/>
+  <xd:arg xd:name="input_words" xd:originalName="input_words" xd:direction="in" xd:interfaceRef="input_words_V" xd:busTypeRef="register" xd:handshakeRef="ap_none" xd:dataWidth="16" xd:firstOut="10"/>
+  <xd:arg xd:name="output_words" xd:originalName="output_words" xd:direction="in" xd:interfaceRef="output_words_V" xd:busTypeRef="register" xd:handshakeRef="ap_none" xd:dataWidth="16" xd:firstOut="10"/>
+  <xd:arg xd:name="layer_mode" xd:originalName="layer_mode" xd:direction="in" xd:interfaceRef="layer_mode_V" xd:busTypeRef="register" xd:handshakeRef="ap_none" xd:dataWidth="3" xd:firstOut="10"/>
+  <xd:arg xd:name="dmem_mode" xd:originalName="dmem_mode" xd:direction="in" xd:interfaceRef="dmem_mode_V" xd:busTypeRef="register" xd:handshakeRef="ap_none" xd:dataWidth="1" xd:firstOut="10"/>
+  <xd:arg xd:name="width_mode" xd:originalName="width_mode" xd:direction="in" xd:interfaceRef="width_mode_V" xd:busTypeRef="register" xd:handshakeRef="ap_none" xd:dataWidth="2" xd:firstOut="10"/>
+  <xd:arg xd:name="norm_mode" xd:originalName="norm_mode" xd:direction="in" xd:interfaceRef="norm_mode_V" xd:busTypeRef="register" xd:handshakeRef="ap_none" xd:dataWidth="2" xd:firstOut="10"/>
+  <xd:latencyEstimates xd:best-case="4774" xd:worst-case="42212" xd:average-case="undef"/>
+  <xd:resourceEstimates xd:LUT="91263" xd:FF="39965" xd:BRAM="114" xd:DSP="4"/>
+</xd:acceleratorMap>

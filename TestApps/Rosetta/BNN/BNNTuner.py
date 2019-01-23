@@ -24,10 +24,19 @@ PREBUILT_PRESYNTH_DIR = "/TestApps/Rosetta/BNN/Prebuilt/Presynth"
 PREBUILT_SYNTH_DIR    = "/TestApps/Rosetta/BNN/Prebuilt/Synth"
 PREBUILT_IMPL_DIR     = "/TestApps/Rosetta/BNN/Prebuilt/Impl"
 
+# Location of tuner database
+TUNER_DB_FILE = '/HLS_tuner.db'
+
+# Location of log file
+LOG_FILE = '/HLS_tuner.log'
+
+# Location of results cache
+RESULTS_CACHE_FILE = "/TestApps/Rosetta/BNN/Cache/Cache.db"
+
 # Timeout in seconds for each build step  
-PRESYNTH_TIMEOUT = 30 * 60
-SYNTH_TIMEOUT    = 60 * 60
-IMPL_TIMEOUT     = 90 * 60
+PRESYNTH_TIMEOUT = 90 * 60
+SYNTH_TIMEOUT    = 30 * 60
+IMPL_TIMEOUT     = 30 * 60
 RUN_TIMEOUT      = 10 * 60
 
 # Number of retries for each build step.  Note that only builds with errors that may disappear are retried.
@@ -80,10 +89,12 @@ sys.path.insert(0, tuner_root + '/HLS_tuner')
 # Import OpenTuner and HLSTuner classes.
 from hlstuner.measurement.hostinterfaces import GridHostInterface, SSHHostInterface
 from hlstuner.measurement.interface import MeasurementInterface
-from hlstuner.search.randomforest import RandomForest
 import opentuner
 from opentuner import ConfigurationManipulator, EnumParameter, LogIntegerParameter
 from opentuner.search.manipulator import BooleanParameter
+
+# Determine the output directory.
+output_root = tuner_root + '/' + OUTPUT_ROOT
 
 #######################################################################################################################
 
@@ -110,7 +121,7 @@ class BNNTuner(MeasurementInterface):
     cfg.tuner_root = tuner_root
 
     # Output directory
-    cfg.output_root = tuner_root + '/' + OUTPUT_ROOT
+    cfg.output_root = output_root
 
     # Location of makefile
     cfg.makefile = MAKEFILE
@@ -133,6 +144,9 @@ class BNNTuner(MeasurementInterface):
     cfg.prebuilt_presynth_dir = tuner_root + PREBUILT_PRESYNTH_DIR
     cfg.prebuilt_synth_dir    = tuner_root + PREBUILT_SYNTH_DIR
     cfg.prebuilt_impl_dir     = tuner_root + PREBUILT_IMPL_DIR
+
+    # Location of results cache
+    cfg.results_cache_file = tuner_root + RESULTS_CACHE_FILE
 
     # Timeout in seconds for each build step  
     cfg.presynth_timeout = PRESYNTH_TIMEOUT
@@ -200,5 +214,5 @@ class BNNTuner(MeasurementInterface):
 if __name__ == '__main__':
 
   # Start the tuner.
-  BNNTuner.main()
+  BNNTuner.main(output_root + TUNER_DB_FILE, output_root + LOG_FILE)
 

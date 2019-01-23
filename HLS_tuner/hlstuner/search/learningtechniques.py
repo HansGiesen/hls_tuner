@@ -119,9 +119,13 @@ class GreedyLearningTechnique(LearningTechnique):
     # Explore the model.
     cfg = tuner.tune()
 
+    # Create a new unique Configuration object for the obtained configuration dictionary.
+    cfg = self.driver.get_configuration(cfg)
+
     # Use a random configuration if we have already evaluated this configuration or are planning to evaluate it.
     if (cfg in [result.configuration for result in self.data_set]) or (cfg in self.pending_cfgs):
-      cfg = self.manipulator.random()
+      log.info("Subtechnique suggests already evaluated point.  Falling back to random point.");
+      cfg = self.driver.get_configuration(self.manipulator.random())
 
     # Add the configuration to the list with pending configurations.
     self.pending_cfgs.add(cfg)

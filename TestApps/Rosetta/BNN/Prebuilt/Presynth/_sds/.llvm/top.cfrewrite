@@ -1,0 +1,46 @@
+void _p0_top_1_noasync(Word wt_i[4682], Word kh_i[64], Word dmem_i[2048], Word dmem_o[128], const Address n_inputs, const Address n_outputs, const Address input_words, const Address output_words, const ap_uint<3> layer_mode, const ap_uint<1> dmem_mode, const ap_uint<2> width_mode, const ap_uint<2> norm_mode);
+void _p0_top_1_noasync(Word wt_i[4682], Word kh_i[64], Word dmem_i[2048], Word dmem_o[128], const Address n_inputs, const Address n_outputs, const Address input_words, const Address output_words, const ap_uint<3> layer_mode, const ap_uint<1> dmem_mode, const ap_uint<2> width_mode, const ap_uint<2> norm_mode)
+{
+  switch_to_next_partition(0);
+  int start_seq[1];
+  start_seq[0] = 0;
+  cf_request_handle_t _p0_swinst_top_1_cmd;
+  cf_send_i(&(_p0_swinst_top_1.cmd_top), start_seq, 1 * sizeof(int), &_p0_swinst_top_1_cmd);
+  cf_wait(_p0_swinst_top_1_cmd);
+
+
+#ifdef SDS_DEBUG
+  if ((input_words) * 8 != 2048*8)
+    printf("dmem_i of function top transfer size is different from declared size, system may hang!\n");
+  if ((output_words) * 8 != 128*8)
+    printf("dmem_o of function top transfer size is different from declared size, system may hang!\n");
+#endif
+
+  cf_send_i(&(_p0_swinst_top_1.wt_i_V), wt_i, 37456, &_p0_request_0);
+  cf_send_i(&(_p0_swinst_top_1.kh_i_V), kh_i, 512, &_p0_request_1);
+  cf_send_i(&(_p0_swinst_top_1.dmem_i_V), dmem_i, (input_words) * 8, &_p0_request_2);
+  cf_send_i(&(_p0_swinst_top_1.n_inputs_V), &n_inputs, 2, &_p0_request_4);
+  cf_send_i(&(_p0_swinst_top_1.n_outputs_V), &n_outputs, 2, &_p0_request_5);
+  cf_send_i(&(_p0_swinst_top_1.input_words_V), &input_words, 2, &_p0_request_6);
+  cf_send_i(&(_p0_swinst_top_1.output_words_V), &output_words, 2, &_p0_request_7);
+  cf_send_i(&(_p0_swinst_top_1.layer_mode_V), &layer_mode, 1, &_p0_request_8);
+  cf_send_i(&(_p0_swinst_top_1.dmem_mode_V), &dmem_mode, 1, &_p0_request_9);
+  cf_send_i(&(_p0_swinst_top_1.width_mode_V), &width_mode, 1, &_p0_request_10);
+  cf_send_i(&(_p0_swinst_top_1.norm_mode_V), &norm_mode, 1, &_p0_request_11);
+
+  cf_receive_i(&(_p0_swinst_top_1.dmem_o_V), dmem_o, (output_words) * 8, &_p0_top_1_noasync_num_dmem_o_V, &_p0_request_3);
+
+  cf_wait(_p0_request_0);
+  cf_wait(_p0_request_1);
+  cf_wait(_p0_request_2);
+  cf_wait(_p0_request_3);
+  cf_wait(_p0_request_4);
+  cf_wait(_p0_request_5);
+  cf_wait(_p0_request_6);
+  cf_wait(_p0_request_7);
+  cf_wait(_p0_request_8);
+  cf_wait(_p0_request_9);
+  cf_wait(_p0_request_10);
+  cf_wait(_p0_request_11);
+}
+

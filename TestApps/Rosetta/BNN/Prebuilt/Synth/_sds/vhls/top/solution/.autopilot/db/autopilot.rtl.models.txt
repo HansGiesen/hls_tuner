@@ -1,0 +1,17 @@
+a0_top_mul_mul_20s_1bkb
+a0_top_mux_83_2_1
+a0_top_mul_mul_10ns_bek
+a0_top_mul_mul_15ns_bfk
+a0_bin_conv_fixed_bucud
+a0_top_mux_32_20_1
+a0_top_mux_325_20_1
+a0_top_mux_164_64_1
+a0_top_mac_muladd_15bgk
+a0_top_kh_mem_V
+a0_top_wt_mem_V_0
+a0_top_dmem_V_0_0
+bin_dense
+conv_word
+bin_conv
+fp_conv
+top

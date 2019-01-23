@@ -1,0 +1,4 @@
+digraph defuse_graph {
+v0 [label = "use: (bb91),sw(480)@117"];
+v1 [label = "def: (bb91),sw(480)@117"];
+}

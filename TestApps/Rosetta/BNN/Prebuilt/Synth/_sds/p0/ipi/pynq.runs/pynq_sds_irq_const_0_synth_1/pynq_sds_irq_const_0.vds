@@ -1,0 +1,47 @@
+#-----------------------------------------------------------
+# Vivado v2017.1_sdx (64-bit)
+# SW Build 1915620 on Thu Jun 22 17:54:59 MDT 2017
+# IP Build 1908669 on Thu Jun 22 19:20:41 MDT 2017
+# Start of session at: Fri Jan  4 16:29:24 2019
+# Process ID: 145258
+# Current directory: /var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.runs/pynq_sds_irq_const_0_synth_1
+# Command line: vivado -log pynq_sds_irq_const_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source pynq_sds_irq_const_0.tcl
+# Log file: /var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.runs/pynq_sds_irq_const_0_synth_1/pynq_sds_irq_const_0.vds
+# Journal file: /var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.runs/pynq_sds_irq_const_0_synth_1/vivado.jou
+#-----------------------------------------------------------
+INFO: [Common 17-1460] Use of init.tcl in /scratch/safe/SDSoC/SDx/2017.1/Vivado/scripts/init.tcl is deprecated. Please use Vivado_init.tcl 
+Sourcing tcl script '/scratch/safe/SDSoC/SDx/2017.1/Vivado/scripts/init.tcl'
+16 Beta devices matching pattern found, 16 enabled.
+Loaded SDSoC Platform Tcl Library
+source pynq_sds_irq_const_0.tcl -notrace
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1328.703 ; gain = 0.000 ; free physical = 172749 ; free virtual = 187356
+INFO: [Synth 8-638] synthesizing module 'pynq_sds_irq_const_0' [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ip/pynq_sds_irq_const_0/synth/pynq_sds_irq_const_0.v:57]
+INFO: [Synth 8-638] synthesizing module 'xlconstant_v1_1_3_xlconstant' [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/45df/hdl/xlconstant_v1_1_vl_rfs.v:23]
+INFO: [Synth 8-256] done synthesizing module 'xlconstant_v1_1_3_xlconstant' (1#1) [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/45df/hdl/xlconstant_v1_1_vl_rfs.v:23]
+INFO: [Synth 8-256] done synthesizing module 'pynq_sds_irq_const_0' (2#1) [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ip/pynq_sds_irq_const_0/synth/pynq_sds_irq_const_0.v:57]
+Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 1337.836 ; gain = 9.133 ; free physical = 172899 ; free virtual = 187497
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1337.836 ; gain = 9.133 ; free physical = 172906 ; free virtual = 187512
+INFO: [Device 21-403] Loading part xc7z020clg400-1
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.02 . Memory (MB): peak = 1555.984 ; gain = 0.000 ; free physical = 172676 ; free virtual = 187285
+Finished Constraint Validation : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1555.984 ; gain = 227.281 ; free physical = 172898 ; free virtual = 187488
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1555.984 ; gain = 227.281 ; free physical = 172903 ; free virtual = 187493
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1555.984 ; gain = 227.281 ; free physical = 172903 ; free virtual = 187493
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1555.984 ; gain = 227.281 ; free physical = 172903 ; free virtual = 187494
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1555.984 ; gain = 227.281 ; free physical = 172830 ; free virtual = 187474
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1605.984 ; gain = 277.281 ; free physical = 172318 ; free virtual = 186909
+Finished Timing Optimization : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1605.984 ; gain = 277.281 ; free physical = 172317 ; free virtual = 186908
+Finished Technology Mapping : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1615.875 ; gain = 287.172 ; free physical = 172316 ; free virtual = 186907
+Finished IO Insertion : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1615.875 ; gain = 287.172 ; free physical = 172314 ; free virtual = 186904
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1615.875 ; gain = 287.172 ; free physical = 172314 ; free virtual = 186904
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1615.875 ; gain = 287.172 ; free physical = 172314 ; free virtual = 186904
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1615.875 ; gain = 287.172 ; free physical = 172313 ; free virtual = 186904
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1615.875 ; gain = 287.172 ; free physical = 172313 ; free virtual = 186904
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1615.875 ; gain = 287.172 ; free physical = 172313 ; free virtual = 186904
+
+Report Cell Usage: 
++-+-----+------+
+| |Cell |Count |
++-+-----+------+
++-+-----+------+
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1615.875 ; gain = 287.172 ; free physical = 172313 ; free virtual = 186904
+synth_design: Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1628.875 ; gain = 300.172 ; free physical = 172236 ; free virtual = 186827

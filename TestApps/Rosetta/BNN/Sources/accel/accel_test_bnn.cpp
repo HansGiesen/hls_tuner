@@ -1,5 +1,5 @@
 #define IMAGE_COUNT        (100)
-#define DESIRED_ERROR_RATE (0.03)
+#define DESIRED_ERROR_RATE (0.12)
 
 #include <cstddef>
 #include <cstdlib>
@@ -19,7 +19,10 @@
 #ifdef __SDSCC__
 #include <sds_lib.h>
 #endif
+
+#ifdef RUN_STANDALONE
 #include <ff.h>
+#endif
 
 int main(int argc, char** argv) {
 #ifdef RUN_STANDALONE
@@ -202,8 +205,10 @@ int main(int argc, char** argv) {
     //assert(prediction >= 0 && prediction <= 9);
     int label = y.data[n];
 
-//    printf ("  Pred/Label:\t%2u/%2d\t[%s]\n", prediction, label,
-//        ((prediction==label)?" OK ":"FAIL"));
+#ifndef RUN_STANDALONE
+    printf ("  Pred/Label:\t%2u/%2d\t[%s]\n", prediction, label,
+        ((prediction==label)?" OK ":"FAIL"));
+#endif
 
     n_errors += (prediction!=label);
   }

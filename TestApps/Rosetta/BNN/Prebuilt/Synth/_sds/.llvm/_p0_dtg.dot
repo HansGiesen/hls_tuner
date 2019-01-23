@@ -1,0 +1,55 @@
+digraph dm_graph {
+v0 [label = "v0:run_accel_schedule" ,style=filled];
+v1 [label = "v1:XFER(IN):wt_i @123, ARRAY\n" ,style=filled,fillcolor = green];
+v2 [label = "v2:XFER(IN):kh_i @123, ARRAY\n" ,style=filled,fillcolor = green];
+v3 [label = "v3:XFER(IN):dmem_i @123, ARRAY\n" ,style=filled,fillcolor = green];
+v4 [label = "v4:XFER(IN):n_inputs @123, SCALAR\n" ,style=filled,fillcolor = green];
+v5 [label = "v5:XFER(IN):n_outputs @123, SCALAR\n" ,style=filled,fillcolor = green];
+v6 [label = "v6:XFER(IN):input_words @123, SCALAR\n" ,style=filled,fillcolor = green];
+v7 [label = "v7:XFER(IN):output_words @123, SCALAR\n" ,style=filled,fillcolor = green];
+v8 [label = "v8:XFER(IN):layer_mode @123, SCALAR\n" ,style=filled,fillcolor = green];
+v9 [label = "v9:XFER(IN):dmem_mode @123, SCALAR\n" ,style=filled,fillcolor = green];
+v10 [label = "v10:XFER(IN):width_mode @123, SCALAR\n" ,style=filled,fillcolor = green];
+v11 [label = "v11:XFER(IN):norm_mode @123, SCALAR\n" ,style=filled,fillcolor = green];
+v12 [label = "v12:call 'top' in 'AccelSchedule.cpp' @123 (async_id:-1) (resource id:-1)\n" ,style=filled,fillcolor = red];
+v13 [label = "v13:XFER(OUT):dmem_o @123, ARRAY\n" ,style=filled,fillcolor = yellow];
+subgraph cluster0 {
+v1;
+v2;
+v3;
+v4;
+v5;
+v6;
+v7;
+v8;
+v9;
+v10;
+v11;
+v12;
+v13;
+label = "call 'top' in 'AccelSchedule.cpp' @123 (async_id:-1) (resource id:-1)\n";
+}
+v1 -> v12 [label = "0"];
+v2 -> v12 [label = "0"];
+v3 -> v12 [label = "0"];
+v4 -> v12 [label = "0"];
+v5 -> v12 [label = "0"];
+v6 -> v12 [label = "0"];
+v7 -> v12 [label = "0"];
+v8 -> v12 [label = "0"];
+v9 -> v12 [label = "0"];
+v10 -> v12 [label = "0"];
+v11 -> v12 [label = "0"];
+v12 -> v13 [label = "0"];
+v0 -> v1 [label = "", style = dotted];
+v0 -> v2 [label = "", style = dotted];
+v0 -> v3 [label = "", style = dotted];
+v0 -> v4 [label = "", style = dotted];
+v0 -> v5 [label = "", style = dotted];
+v0 -> v6 [label = "", style = dotted];
+v0 -> v7 [label = "", style = dotted];
+v0 -> v8 [label = "", style = dotted];
+v0 -> v9 [label = "", style = dotted];
+v0 -> v10 [label = "", style = dotted];
+v0 -> v11 [label = "", style = dotted];
+}

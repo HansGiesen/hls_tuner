@@ -1,0 +1,238 @@
+
+*** Running vivado
+    with args -log pynq_top_1_if_0.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source pynq_top_1_if_0.tcl
+
+
+
+****** Vivado v2017.1_sdx (64-bit)
+  **** SW Build 1915620 on Thu Jun 22 17:54:59 MDT 2017
+  **** IP Build 1908669 on Thu Jun 22 19:20:41 MDT 2017
+    ** Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+
+INFO: [Common 17-1460] Use of init.tcl in /scratch/safe/SDSoC/SDx/2017.1/Vivado/scripts/init.tcl is deprecated. Please use Vivado_init.tcl 
+Sourcing tcl script '/scratch/safe/SDSoC/SDx/2017.1/Vivado/scripts/init.tcl'
+16 Beta devices matching pattern found, 16 enabled.
+Loaded SDSoC Platform Tcl Library
+source pynq_top_1_if_0.tcl -notrace
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1489.723 ; gain = 0.000 ; free physical = 172141 ; free virtual = 186732
+INFO: [Synth 8-638] synthesizing module 'pynq_top_1_if_0' [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ip/pynq_top_1_if_0/synth/pynq_top_1_if_0.v:441]
+INFO: [Synth 8-638] synthesizing module 'top' [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/top.v:3]
+INFO: [Synth 8-638] synthesizing module 'adapter' [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/adapter.v:3]
+INFO: [Synth 8-638] synthesizing module 'fifo' [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/fifo.v:3]
+INFO: [Synth 8-638] synthesizing module 'xpm_fifo_async' [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1687]
+INFO: [Synth 8-638] synthesizing module 'xpm_fifo_base' [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:57]
+INFO: [Synth 8-638] synthesizing module 'xpm_memory_base' [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:58]
+INFO: [Synth 8-256] done synthesizing module 'xpm_memory_base' (1#1) [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:58]
+INFO: [Synth 8-638] synthesizing module 'xpm_cdc_gray' [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:204]
+INFO: [Synth 8-256] done synthesizing module 'xpm_cdc_gray' (2#1) [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:204]
+INFO: [Synth 8-638] synthesizing module 'xpm_fifo_reg_vec' [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1488]
+INFO: [Synth 8-256] done synthesizing module 'xpm_fifo_reg_vec' (3#1) [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1488]
+INFO: [Synth 8-638] synthesizing module 'xpm_cdc_gray__parameterized0' [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:204]
+INFO: [Synth 8-256] done synthesizing module 'xpm_cdc_gray__parameterized0' (3#1) [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:204]
+INFO: [Synth 8-638] synthesizing module 'xpm_fifo_reg_vec__parameterized0' [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1488]
+INFO: [Synth 8-256] done synthesizing module 'xpm_fifo_reg_vec__parameterized0' (3#1) [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1488]
+INFO: [Synth 8-638] synthesizing module 'xpm_cdc_gray__parameterized1' [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:204]
+INFO: [Synth 8-256] done synthesizing module 'xpm_cdc_gray__parameterized1' (3#1) [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:204]
+INFO: [Synth 8-638] synthesizing module 'xpm_fifo_reg_bit' [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1510]
+INFO: [Synth 8-256] done synthesizing module 'xpm_fifo_reg_bit' (4#1) [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1510]
+INFO: [Synth 8-638] synthesizing module 'xpm_counter_updn' [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1462]
+INFO: [Synth 8-256] done synthesizing module 'xpm_counter_updn' (5#1) [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1462]
+INFO: [Synth 8-638] synthesizing module 'xpm_fifo_rst' [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1319]
+INFO: [Synth 8-638] synthesizing module 'xpm_reg_pipe_bit' [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1529]
+INFO: [Synth 8-256] done synthesizing module 'xpm_reg_pipe_bit' (6#1) [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1529]
+INFO: [Synth 8-638] synthesizing module 'xpm_cdc_sync_rst' [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:793]
+INFO: [Synth 8-256] done synthesizing module 'xpm_cdc_sync_rst' (7#1) [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:793]
+INFO: [Synth 8-638] synthesizing module 'xpm_reg_pipe_bit__parameterized0' [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1529]
+INFO: [Synth 8-256] done synthesizing module 'xpm_reg_pipe_bit__parameterized0' (7#1) [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1529]
+INFO: [Synth 8-256] done synthesizing module 'xpm_fifo_rst' (8#1) [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1319]
+INFO: [Synth 8-638] synthesizing module 'xpm_counter_updn__parameterized0' [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1462]
+INFO: [Synth 8-256] done synthesizing module 'xpm_counter_updn__parameterized0' (8#1) [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1462]
+INFO: [Synth 8-638] synthesizing module 'xpm_counter_updn__parameterized1' [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1462]
+INFO: [Synth 8-256] done synthesizing module 'xpm_counter_updn__parameterized1' (8#1) [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1462]
+INFO: [Synth 8-638] synthesizing module 'xpm_counter_updn__parameterized2' [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1462]
+INFO: [Synth 8-256] done synthesizing module 'xpm_counter_updn__parameterized2' (8#1) [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1462]
+INFO: [Synth 8-256] done synthesizing module 'xpm_fifo_base' (9#1) [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:57]
+INFO: [Synth 8-256] done synthesizing module 'xpm_fifo_async' (10#1) [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1687]
+INFO: [Synth 8-256] done synthesizing module 'fifo' (11#1) [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/fifo.v:3]
+INFO: [Synth 8-638] synthesizing module 'fifo__parameterized0' [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/fifo.v:3]
+INFO: [Synth 8-638] synthesizing module 'xpm_fifo_async__parameterized0' [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1687]
+INFO: [Synth 8-638] synthesizing module 'xpm_fifo_base__parameterized0' [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:57]
+INFO: [Synth 8-638] synthesizing module 'xpm_memory_base__parameterized0' [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:58]
+INFO: [Synth 8-256] done synthesizing module 'xpm_memory_base__parameterized0' (11#1) [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:58]
+INFO: [Synth 8-256] done synthesizing module 'xpm_fifo_base__parameterized0' (11#1) [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:57]
+INFO: [Synth 8-256] done synthesizing module 'xpm_fifo_async__parameterized0' (11#1) [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1687]
+INFO: [Synth 8-256] done synthesizing module 'fifo__parameterized0' (11#1) [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/fifo.v:3]
+INFO: [Synth 8-638] synthesizing module 'cmd_control' [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/cmd_control.v:3]
+INFO: [Synth 8-256] done synthesizing module 'cmd_control' (12#1) [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/cmd_control.v:3]
+INFO: [Synth 8-638] synthesizing module 'AXI_LITE_IF' [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/AXI_LITE_IF.v:22]
+INFO: [Synth 8-256] done synthesizing module 'AXI_LITE_IF' (13#1) [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/AXI_LITE_IF.v:22]
+INFO: [Synth 8-256] done synthesizing module 'adapter' (14#1) [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/adapter.v:3]
+INFO: [Synth 8-638] synthesizing module 'scalar' [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/scalar.v:3]
+INFO: [Synth 8-638] synthesizing module 'in_register' [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/in_register.v:23]
+INFO: [Synth 8-256] done synthesizing module 'in_register' (15#1) [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/in_register.v:23]
+INFO: [Synth 8-638] synthesizing module 'fifo__parameterized1' [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/fifo.v:3]
+INFO: [Synth 8-638] synthesizing module 'xpm_fifo_async__parameterized1' [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1687]
+INFO: [Synth 8-638] synthesizing module 'xpm_fifo_base__parameterized1' [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:57]
+INFO: [Synth 8-638] synthesizing module 'xpm_memory_base__parameterized1' [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:58]
+INFO: [Synth 8-256] done synthesizing module 'xpm_memory_base__parameterized1' (15#1) [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:58]
+INFO: [Synth 8-256] done synthesizing module 'xpm_fifo_base__parameterized1' (15#1) [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:57]
+INFO: [Synth 8-256] done synthesizing module 'xpm_fifo_async__parameterized1' (15#1) [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1687]
+INFO: [Synth 8-256] done synthesizing module 'fifo__parameterized1' (15#1) [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/fifo.v:3]
+INFO: [Synth 8-638] synthesizing module 'in_register__parameterized0' [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/in_register.v:23]
+INFO: [Synth 8-256] done synthesizing module 'in_register__parameterized0' (15#1) [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/in_register.v:23]
+INFO: [Synth 8-638] synthesizing module 'fifo__parameterized2' [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/fifo.v:3]
+INFO: [Synth 8-638] synthesizing module 'xpm_fifo_async__parameterized2' [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1687]
+INFO: [Synth 8-638] synthesizing module 'xpm_fifo_base__parameterized2' [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:57]
+INFO: [Synth 8-638] synthesizing module 'xpm_memory_base__parameterized2' [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:58]
+INFO: [Synth 8-256] done synthesizing module 'xpm_memory_base__parameterized2' (15#1) [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:58]
+INFO: [Synth 8-256] done synthesizing module 'xpm_fifo_base__parameterized2' (15#1) [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:57]
+INFO: [Synth 8-256] done synthesizing module 'xpm_fifo_async__parameterized2' (15#1) [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1687]
+INFO: [Synth 8-256] done synthesizing module 'fifo__parameterized2' (15#1) [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/fifo.v:3]
+INFO: [Synth 8-638] synthesizing module 'in_register__parameterized1' [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/in_register.v:23]
+INFO: [Synth 8-256] done synthesizing module 'in_register__parameterized1' (15#1) [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/in_register.v:23]
+INFO: [Synth 8-638] synthesizing module 'fifo__parameterized3' [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/fifo.v:3]
+INFO: [Synth 8-638] synthesizing module 'xpm_fifo_async__parameterized3' [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1687]
+INFO: [Synth 8-256] done synthesizing module 'xpm_fifo_async__parameterized3' (15#1) [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1687]
+INFO: [Synth 8-256] done synthesizing module 'fifo__parameterized3' (15#1) [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/fifo.v:3]
+INFO: [Synth 8-638] synthesizing module 'in_register__parameterized2' [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/in_register.v:23]
+INFO: [Synth 8-256] done synthesizing module 'in_register__parameterized2' (15#1) [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/in_register.v:23]
+INFO: [Synth 8-638] synthesizing module 'fifo__parameterized4' [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/fifo.v:3]
+INFO: [Synth 8-638] synthesizing module 'xpm_fifo_async__parameterized4' [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1687]
+INFO: [Synth 8-638] synthesizing module 'xpm_fifo_base__parameterized3' [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:57]
+INFO: [Synth 8-638] synthesizing module 'xpm_memory_base__parameterized3' [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:58]
+INFO: [Synth 8-256] done synthesizing module 'xpm_memory_base__parameterized3' (15#1) [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:58]
+INFO: [Synth 8-256] done synthesizing module 'xpm_fifo_base__parameterized3' (15#1) [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:57]
+INFO: [Synth 8-256] done synthesizing module 'xpm_fifo_async__parameterized4' (15#1) [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1687]
+INFO: [Synth 8-256] done synthesizing module 'fifo__parameterized4' (15#1) [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/fifo.v:3]
+INFO: [Synth 8-256] done synthesizing module 'scalar' (16#1) [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/scalar.v:3]
+INFO: [Synth 8-638] synthesizing module 'in_fifo_args' [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/in_fifo_args.v:3]
+INFO: [Synth 8-638] synthesizing module 'axis_fifo' [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/axis_fifo.v:3]
+INFO: [Synth 8-638] synthesizing module 'fifo__parameterized5' [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/fifo.v:3]
+INFO: [Synth 8-638] synthesizing module 'xpm_fifo_async__parameterized5' [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1687]
+INFO: [Synth 8-638] synthesizing module 'xpm_fifo_base__parameterized4' [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:57]
+INFO: [Synth 8-638] synthesizing module 'xpm_memory_base__parameterized4' [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:58]
+INFO: [Synth 8-256] done synthesizing module 'xpm_memory_base__parameterized4' (16#1) [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:58]
+INFO: [Synth 8-638] synthesizing module 'xpm_cdc_gray__parameterized2' [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:204]
+INFO: [Synth 8-256] done synthesizing module 'xpm_cdc_gray__parameterized2' (16#1) [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:204]
+INFO: [Synth 8-638] synthesizing module 'xpm_fifo_reg_vec__parameterized1' [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1488]
+INFO: [Synth 8-256] done synthesizing module 'xpm_fifo_reg_vec__parameterized1' (16#1) [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1488]
+INFO: [Synth 8-638] synthesizing module 'xpm_cdc_gray__parameterized3' [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:204]
+INFO: [Synth 8-256] done synthesizing module 'xpm_cdc_gray__parameterized3' (16#1) [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:204]
+INFO: [Synth 8-638] synthesizing module 'xpm_fifo_reg_vec__parameterized2' [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1488]
+INFO: [Synth 8-256] done synthesizing module 'xpm_fifo_reg_vec__parameterized2' (16#1) [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1488]
+INFO: [Synth 8-638] synthesizing module 'xpm_cdc_gray__parameterized4' [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:204]
+INFO: [Synth 8-256] done synthesizing module 'xpm_cdc_gray__parameterized4' (16#1) [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:204]
+INFO: [Synth 8-638] synthesizing module 'xpm_counter_updn__parameterized3' [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1462]
+INFO: [Synth 8-256] done synthesizing module 'xpm_counter_updn__parameterized3' (16#1) [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1462]
+INFO: [Synth 8-638] synthesizing module 'xpm_counter_updn__parameterized4' [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1462]
+INFO: [Synth 8-256] done synthesizing module 'xpm_counter_updn__parameterized4' (16#1) [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1462]
+INFO: [Synth 8-638] synthesizing module 'xpm_counter_updn__parameterized5' [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1462]
+INFO: [Synth 8-256] done synthesizing module 'xpm_counter_updn__parameterized5' (16#1) [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1462]
+INFO: [Synth 8-256] done synthesizing module 'xpm_fifo_base__parameterized4' (16#1) [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:57]
+INFO: [Synth 8-256] done synthesizing module 'xpm_fifo_async__parameterized5' (16#1) [/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1687]
+INFO: [Synth 8-256] done synthesizing module 'fifo__parameterized5' (16#1) [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/fifo.v:3]
+INFO: [Synth 8-256] done synthesizing module 'axis_fifo' (17#1) [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/axis_fifo.v:3]
+INFO: [Synth 8-638] synthesizing module 'axis2fifo' [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/axis2fifo.v:23]
+INFO: [Synth 8-256] done synthesizing module 'axis2fifo' (18#1) [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/axis2fifo.v:23]
+INFO: [Synth 8-256] done synthesizing module 'in_fifo_args' (19#1) [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/in_fifo_args.v:3]
+INFO: [Synth 8-638] synthesizing module 'out_fifo_args' [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/out_fifo_args.v:3]
+INFO: [Synth 8-638] synthesizing module 'fifo2axis' [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/fifo2axis.v:23]
+INFO: [Synth 8-256] done synthesizing module 'fifo2axis' (20#1) [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/fifo2axis.v:23]
+INFO: [Synth 8-256] done synthesizing module 'out_fifo_args' (21#1) [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/out_fifo_args.v:3]
+INFO: [Synth 8-638] synthesizing module 'in_axis_args' [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/in_axis_args.v:3]
+INFO: [Synth 8-256] done synthesizing module 'in_axis_args' (22#1) [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/in_axis_args.v:3]
+INFO: [Synth 8-638] synthesizing module 'out_axis_args' [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/out_axis_args.v:3]
+INFO: [Synth 8-256] done synthesizing module 'out_axis_args' (23#1) [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/out_axis_args.v:3]
+INFO: [Synth 8-638] synthesizing module 'aximm_args' [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/aximm_args.v:3]
+INFO: [Synth 8-256] done synthesizing module 'aximm_args' (24#1) [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/aximm_args.v:3]
+INFO: [Synth 8-638] synthesizing module 'in_bram_args' [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/in_bram_args.v:3]
+INFO: [Synth 8-256] done synthesizing module 'in_bram_args' (25#1) [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/in_bram_args.v:3]
+INFO: [Synth 8-638] synthesizing module 'out_bram_args' [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/out_bram_args.v:3]
+INFO: [Synth 8-256] done synthesizing module 'out_bram_args' (26#1) [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/out_bram_args.v:3]
+INFO: [Synth 8-256] done synthesizing module 'top' (27#1) [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/f391/hdl/top.v:3]
+INFO: [Synth 8-256] done synthesizing module 'pynq_top_1_if_0' (28#1) [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ip/pynq_top_1_if_0/synth/pynq_top_1_if_0.v:441]
+Finished RTL Elaboration : Time (s): cpu = 00:00:51 ; elapsed = 00:00:51 . Memory (MB): peak = 1581.980 ; gain = 92.258 ; free physical = 170014 ; free virtual = 184636
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:55 ; elapsed = 00:00:56 . Memory (MB): peak = 1581.980 ; gain = 92.258 ; free physical = 169827 ; free virtual = 184477
+INFO: [Device 21-403] Loading part xc7z020clg400-1
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.20 ; elapsed = 00:00:00.07 . Memory (MB): peak = 1906.082 ; gain = 0.125 ; free physical = 169461 ; free virtual = 184096
+Finished Constraint Validation : Time (s): cpu = 00:01:22 ; elapsed = 00:01:23 . Memory (MB): peak = 1906.082 ; gain = 416.359 ; free physical = 168494 ; free virtual = 183134
+Finished Loading Part and Timing Information : Time (s): cpu = 00:01:22 ; elapsed = 00:01:23 . Memory (MB): peak = 1906.082 ; gain = 416.359 ; free physical = 168495 ; free virtual = 183136
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:01:22 ; elapsed = 00:01:23 . Memory (MB): peak = 1906.082 ; gain = 416.359 ; free physical = 168598 ; free virtual = 183245
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:01:38 ; elapsed = 00:01:40 . Memory (MB): peak = 1906.082 ; gain = 416.359 ; free physical = 167998 ; free virtual = 182637
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:45 ; elapsed = 00:01:50 . Memory (MB): peak = 1906.082 ; gain = 416.359 ; free physical = 167600 ; free virtual = 182242
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+ROM:
++----------------+----------------------------+---------------+----------------+
+|Module Name     | RTL Object                 | Depth x Width | Implemented As | 
++----------------+----------------------------+---------------+----------------+
+|pynq_top_1_if_0 | inst/adapter_i/scalar_re_i | 1024x1        | LUT            | 
++----------------+----------------------------+---------------+----------------+
+
+
+Block RAM: Preliminary Mapping  Report (see note below)
++---------------------------------+----------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name                      | RTL Object                       | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++---------------------------------+----------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|xpm_memory_base__parameterized4: | gen_wr_a.gen_word_narrow.mem_reg | 1 K x 65               | W |   | 1 K x 65               |   | R | Port A and B     | 0      | 2      | 
+|xpm_memory_base__parameterized4: | gen_wr_a.gen_word_narrow.mem_reg | 1 K x 65               | W |   | 1 K x 65               |   | R | Port A and B     | 0      | 2      | 
+|xpm_memory_base__parameterized4: | gen_wr_a.gen_word_narrow.mem_reg | 1 K x 65               | W |   | 1 K x 65               |   | R | Port A and B     | 0      | 2      | 
+|xpm_memory_base__parameterized4: | gen_wr_a.gen_word_narrow.mem_reg | 1 K x 65               | W |   | 1 K x 65               |   | R | Port A and B     | 0      | 2      | 
++---------------------------------+----------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+
+Note: The table above is a preliminary report that shows the Block RAMs at the current stage of the synthesis flow. Some Block RAMs may be reimplemented as non Block RAM primitives later in the synthesis flow. Multiple instantiated Block RAMs are reported only once. 
+
+Distributed RAM: Preliminary Mapping  Report (see note below)
++-----------------------------------------------------------------------------------------------------------------------+----------------------------------+----------------+----------------------+----------------+
+|Module Name                                                                                                            | RTL Object                       | Inference      | Size (Depth x Width) | Primitives     | 
++-----------------------------------------------------------------------------------------------------------------------+----------------------------------+----------------+----------------------+----------------+
+|\inst/adapter_i/cmd_queue/xpm_fifo_async_inst/xpm_fifo_base_inst /\gen_sdpram.xpm_memory_base_inst                     | gen_wr_a.gen_word_narrow.mem_reg | User Attribute | 16 x 32              | RAM32M x 6     | 
+|xpm_memory_base__parameterized0:                                                                                       | gen_wr_a.gen_word_narrow.mem_reg | User Attribute | 16 x 1               | RAM16X1D x 1   | 
+|xpm_memory_base__parameterized1:                                                                                       | gen_wr_a.gen_word_narrow.mem_reg | User Attribute | 16 x 16              | RAM32M x 3     | 
+|xpm_memory_base__parameterized1:                                                                                       | gen_wr_a.gen_word_narrow.mem_reg | User Attribute | 16 x 16              | RAM32M x 3     | 
+|xpm_memory_base__parameterized1:                                                                                       | gen_wr_a.gen_word_narrow.mem_reg | User Attribute | 16 x 16              | RAM32M x 3     | 
+|xpm_memory_base__parameterized1:                                                                                       | gen_wr_a.gen_word_narrow.mem_reg | User Attribute | 16 x 16              | RAM32M x 3     | 
+|\inst/scalar_i/INSCALAR_REG_GEN[4].in_fifo_i/xpm_fifo_async_inst/xpm_fifo_base_inst /\gen_sdpram.xpm_memory_base_inst  | gen_wr_a.gen_word_narrow.mem_reg | User Attribute | 16 x 3               | RAM32M x 1     | 
+|xpm_memory_base__parameterized0:                                                                                       | gen_wr_a.gen_word_narrow.mem_reg | User Attribute | 16 x 1               | RAM16X1D x 1   | 
+|xpm_memory_base__parameterized3:                                                                                       | gen_wr_a.gen_word_narrow.mem_reg | User Attribute | 16 x 2               | RAM16X1D x 2   | 
+|xpm_memory_base__parameterized3:                                                                                       | gen_wr_a.gen_word_narrow.mem_reg | User Attribute | 16 x 2               | RAM16X1D x 2   | 
++-----------------------------------------------------------------------------------------------------------------------+----------------------------------+----------------+----------------------+----------------+
+
+Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:50 ; elapsed = 00:01:56 . Memory (MB): peak = 1906.082 ; gain = 416.359 ; free physical = 168931 ; free virtual = 183583
+Finished Timing Optimization : Time (s): cpu = 00:01:50 ; elapsed = 00:01:56 . Memory (MB): peak = 1906.082 ; gain = 416.359 ; free physical = 168914 ; free virtual = 183565
+Finished Technology Mapping : Time (s): cpu = 00:01:52 ; elapsed = 00:02:00 . Memory (MB): peak = 1906.082 ; gain = 416.359 ; free physical = 168760 ; free virtual = 183411
+Finished IO Insertion : Time (s): cpu = 00:01:53 ; elapsed = 00:02:01 . Memory (MB): peak = 1906.082 ; gain = 416.359 ; free physical = 168790 ; free virtual = 183441
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:53 ; elapsed = 00:02:01 . Memory (MB): peak = 1906.082 ; gain = 416.359 ; free physical = 168790 ; free virtual = 183441
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:53 ; elapsed = 00:02:01 . Memory (MB): peak = 1906.082 ; gain = 416.359 ; free physical = 168775 ; free virtual = 183427
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:53 ; elapsed = 00:02:01 . Memory (MB): peak = 1906.082 ; gain = 416.359 ; free physical = 168775 ; free virtual = 183427
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:53 ; elapsed = 00:02:01 . Memory (MB): peak = 1906.082 ; gain = 416.359 ; free physical = 168766 ; free virtual = 183418
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:53 ; elapsed = 00:02:01 . Memory (MB): peak = 1906.082 ; gain = 416.359 ; free physical = 168765 ; free virtual = 183417
+
+Report Cell Usage: 
++------+---------+------+
+|      |Cell     |Count |
++------+---------+------+
+|1     |CARRY4   |   100|
+|2     |LUT1     |   162|
+|3     |LUT2     |   657|
+|4     |LUT3     |   146|
+|5     |LUT4     |   316|
+|6     |LUT5     |   279|
+|7     |LUT6     |   664|
+|8     |MUXF7    |     1|
+|9     |RAM16X1D |     6|
+|10    |RAM32M   |    19|
+|11    |RAMB36E1 |     8|
+|12    |SRL16E   |    14|
+|13    |FDRE     |  2917|
+|14    |FDSE     |   108|
+|15    |LD       |     1|
++------+---------+------+
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:53 ; elapsed = 00:02:01 . Memory (MB): peak = 1906.082 ; gain = 416.359 ; free physical = 168765 ; free virtual = 183417
+synth_design: Time (s): cpu = 00:01:58 ; elapsed = 00:02:05 . Memory (MB): peak = 2208.129 ; gain = 718.531 ; free physical = 168154 ; free virtual = 182809

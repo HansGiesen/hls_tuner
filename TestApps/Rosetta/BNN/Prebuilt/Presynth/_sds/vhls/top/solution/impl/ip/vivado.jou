@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2017.1_sdx (64-bit)
+# SW Build 1915620 on Thu Jun 22 17:54:59 MDT 2017
+# IP Build 1908669 on Thu Jun 22 19:20:41 MDT 2017
+# Start of session at: Fri Jan  4 15:57:17 2019
+# Process ID: 170997
+# Current directory: /var/tmp/tmp.yK7okjyWNi/_sds/vhls/top/solution/impl/ip
+# Command line: vivado -notrace -mode batch -source run_ippack.tcl
+# Log file: /var/tmp/tmp.yK7okjyWNi/_sds/vhls/top/solution/impl/ip/vivado.log
+# Journal file: /var/tmp/tmp.yK7okjyWNi/_sds/vhls/top/solution/impl/ip/vivado.jou
+#-----------------------------------------------------------
+source run_ippack.tcl -notrace

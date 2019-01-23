@@ -1,0 +1,67 @@
+#-----------------------------------------------------------
+# Vivado v2017.1_sdx (64-bit)
+# SW Build 1915620 on Thu Jun 22 17:54:59 MDT 2017
+# IP Build 1908669 on Thu Jun 22 19:20:41 MDT 2017
+# Start of session at: Fri Jan  4 16:26:43 2019
+# Process ID: 139681
+# Current directory: /var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.runs/pynq_s02_regslice_0_synth_1
+# Command line: vivado -log pynq_s02_regslice_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source pynq_s02_regslice_0.tcl
+# Log file: /var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.runs/pynq_s02_regslice_0_synth_1/pynq_s02_regslice_0.vds
+# Journal file: /var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.runs/pynq_s02_regslice_0_synth_1/vivado.jou
+#-----------------------------------------------------------
+INFO: [Common 17-1460] Use of init.tcl in /scratch/safe/SDSoC/SDx/2017.1/Vivado/scripts/init.tcl is deprecated. Please use Vivado_init.tcl 
+Sourcing tcl script '/scratch/safe/SDSoC/SDx/2017.1/Vivado/scripts/init.tcl'
+16 Beta devices matching pattern found, 16 enabled.
+Loaded SDSoC Platform Tcl Library
+source pynq_s02_regslice_0.tcl -notrace
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1331.707 ; gain = 0.000 ; free physical = 173453 ; free virtual = 187996
+INFO: [Synth 8-638] synthesizing module 'pynq_s02_regslice_0' [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ip/pynq_s02_regslice_0/synth/pynq_s02_regslice_0.v:58]
+INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_12_axi_register_slice' [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:791]
+INFO: [Synth 8-638] synthesizing module 'axi_infrastructure_v1_1_0_axi2vector' [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/7e3a/hdl/axi_infrastructure_v1_1_vl_rfs.v:60]
+INFO: [Synth 8-256] done synthesizing module 'axi_infrastructure_v1_1_0_axi2vector' (1#1) [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/7e3a/hdl/axi_infrastructure_v1_1_vl_rfs.v:60]
+INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice' [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice' (2#1) [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice__parameterized0' [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice__parameterized0' (2#1) [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice__parameterized1' [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice__parameterized1' (2#1) [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice__parameterized2' [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice__parameterized2' (2#1) [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice__parameterized3' [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_12_axic_register_slice__parameterized3' (2#1) [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:85]
+INFO: [Synth 8-638] synthesizing module 'axi_infrastructure_v1_1_0_vector2axi' [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/7e3a/hdl/axi_infrastructure_v1_1_vl_rfs.v:474]
+INFO: [Synth 8-256] done synthesizing module 'axi_infrastructure_v1_1_0_vector2axi' (3#1) [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/7e3a/hdl/axi_infrastructure_v1_1_vl_rfs.v:474]
+INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_12_axi_register_slice' (4#1) [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ipshared/0e33/hdl/axi_register_slice_v2_1_vl_rfs.v:791]
+INFO: [Synth 8-256] done synthesizing module 'pynq_s02_regslice_0' (5#1) [/var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.srcs/sources_1/bd/pynq/ip/pynq_s02_regslice_0/synth/pynq_s02_regslice_0.v:58]
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1339.840 ; gain = 8.133 ; free physical = 173452 ; free virtual = 187997
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1339.840 ; gain = 8.133 ; free physical = 173452 ; free virtual = 187997
+INFO: [Device 21-403] Loading part xc7z020clg400-1
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.02 . Memory (MB): peak = 1659.840 ; gain = 1.000 ; free physical = 173730 ; free virtual = 188275
+Finished Constraint Validation : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1659.965 ; gain = 328.258 ; free physical = 173832 ; free virtual = 188377
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1659.965 ; gain = 328.258 ; free physical = 173832 ; free virtual = 188377
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1659.965 ; gain = 328.258 ; free physical = 173833 ; free virtual = 188379
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1659.965 ; gain = 328.258 ; free physical = 173808 ; free virtual = 188354
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1659.965 ; gain = 328.258 ; free physical = 173768 ; free virtual = 188314
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1659.965 ; gain = 328.258 ; free physical = 172997 ; free virtual = 187543
+Finished Timing Optimization : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1659.965 ; gain = 328.258 ; free physical = 172990 ; free virtual = 187536
+Finished Technology Mapping : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1659.965 ; gain = 328.258 ; free physical = 172976 ; free virtual = 187522
+Finished IO Insertion : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1659.965 ; gain = 328.258 ; free physical = 172874 ; free virtual = 187420
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1659.965 ; gain = 328.258 ; free physical = 172874 ; free virtual = 187420
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1659.965 ; gain = 328.258 ; free physical = 172871 ; free virtual = 187417
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:16 ; elapsed = 00:00:18 . Memory (MB): peak = 1659.965 ; gain = 328.258 ; free physical = 172871 ; free virtual = 187417
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:16 ; elapsed = 00:00:18 . Memory (MB): peak = 1659.965 ; gain = 328.258 ; free physical = 172869 ; free virtual = 187415
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:16 ; elapsed = 00:00:18 . Memory (MB): peak = 1659.965 ; gain = 328.258 ; free physical = 172869 ; free virtual = 187415
+
+Report Cell Usage: 
++------+-----+------+
+|      |Cell |Count |
++------+-----+------+
+|1     |LUT1 |     1|
+|2     |LUT2 |     2|
+|3     |LUT3 |    68|
+|4     |LUT4 |     1|
+|5     |LUT5 |     3|
+|6     |FDRE |   204|
++------+-----+------+
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:16 ; elapsed = 00:00:18 . Memory (MB): peak = 1659.965 ; gain = 328.258 ; free physical = 172869 ; free virtual = 187415
+synth_design: Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 1659.965 ; gain = 328.258 ; free physical = 172932 ; free virtual = 187478

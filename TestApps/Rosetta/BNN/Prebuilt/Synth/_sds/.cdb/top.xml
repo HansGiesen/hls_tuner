@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xd:repository xmlns:xd="http://www.xilinx.com/xd" xd:vendor="xilinx.com" xd:library="hls" xd:name="top" xd:version="1.0">
+    <xd:component xd:vendor="xilinx.com" xd:library="hls" xd:name="top" xd:version="1.0" xd:type="accelerator">
+        <xd:busInterface xd:name="ap_clk" xd:busTypeRef="clock" xd:mode="slave" xd:direction="in" xd:library="signal" xd:port="ap_clk"/>
+        <xd:busInterface xd:name="ap_rst_n" xd:busTypeRef="reset" xd:mode="slave" xd:direction="in" xd:library="signal" xd:port="ap_rst_n"/>
+        <xd:busInterface xd:name="ap_ctrl" xd:busTypeRef="acc_handshake" xd:mode="slave"/>
+        <xd:busInterface xd:name="wt_i_V" xd:busTypeRef="acc_fifo_read" xd:mode="master"/>
+        <xd:busInterface xd:name="kh_i_V" xd:busTypeRef="acc_fifo_read" xd:mode="master"/>
+        <xd:busInterface xd:name="dmem_i_V" xd:busTypeRef="acc_fifo_read" xd:mode="master"/>
+        <xd:busInterface xd:name="dmem_o_V" xd:busTypeRef="acc_fifo_write" xd:mode="master"/>
+        <xd:busInterface xd:name="n_inputs_V" xd:busTypeRef="data" xd:mode="slave"/>
+        <xd:busInterface xd:name="n_outputs_V" xd:busTypeRef="data" xd:mode="slave"/>
+        <xd:busInterface xd:name="input_words_V" xd:busTypeRef="data" xd:mode="slave"/>
+        <xd:busInterface xd:name="output_words_V" xd:busTypeRef="data" xd:mode="slave"/>
+        <xd:busInterface xd:name="layer_mode_V" xd:busTypeRef="data" xd:mode="slave"/>
+        <xd:busInterface xd:name="dmem_mode_V" xd:busTypeRef="data" xd:mode="slave"/>
+        <xd:busInterface xd:name="width_mode_V" xd:busTypeRef="data" xd:mode="slave"/>
+        <xd:busInterface xd:name="norm_mode_V" xd:busTypeRef="data" xd:mode="slave"/>
+    </xd:component>
+</xd:repository>

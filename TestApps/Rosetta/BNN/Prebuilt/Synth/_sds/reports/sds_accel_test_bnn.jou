@@ -1,0 +1,16 @@
+(c) Copyright 2012-2017 Xilinx, Inc. All Rights Reserved.
+#-----------------------------------------------------------
+# Tool version  : sds++ 2017.1 SW Build 1915620 on Jun 22 2017 18:00:35
+# Start time    : Fri Jan 04 15:51:53 EST 2019
+# Command line  : sds++ -sds-sys-config standalone -sds-pf /mnt/icgridio2/safe/giesen/HLS_tuner/1/Platforms/Vivado_2017.1/pynq -sds-proc a9_0 -sds-hw top /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp -clkid 2 -sds-end -maxjobs 4 -maxthreads 4 -O3 -DHLS_COMPILE -DRUN_STANDALONE -I /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/utils -Wall -Wno-unused-label -c /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/accel_test_bnn.cpp -o accel_test_bnn.o
+# Log file      : /var/tmp/tmp.yK7okjyWNi/_sds/reports/sds_accel_test_bnn.log
+# Journal file  : /var/tmp/tmp.yK7okjyWNi/_sds/reports/sds_accel_test_bnn.jou
+# Report file   : /var/tmp/tmp.yK7okjyWNi/_sds/reports/sds_accel_test_bnn.rpt
+#-----------------------------------------------------------
+
+# Create data motion intermediate representation
+/mnt/icgridio2/safe/SDSoC/SDx/2017.1/bin/clang_wrapper -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/utils -DHLS_COMPILE -DRUN_STANDALONE -Wall -Wno-unused-label -D __SDSCC__ -target arm-none-eabi -mcpu=cortex-a9 -mfpu=vfpv3 -O0 -g     -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/target/aarch32-none/include  -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado_HLS/include   -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/include/c++/6.2.1 -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/include/c++/6.2.1/arm-none-eabi -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/include/c++/6.2.1/backward -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/6.2.1/include -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/6.2.1/include-fixed -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/include -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/libc/usr/include  -std=c++11 -emit-llvm -S /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/accel_test_bnn.cpp -o /var/tmp/tmp.yK7okjyWNi/_sds/.llvm/accel_test_bnn.s
+# Compiling /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/accel_test_bnn.cpp
+arm-none-eabi-g++ -c -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/utils -O3 -DHLS_COMPILE -DRUN_STANDALONE -Wall -Wno-unused-label -D __SDSCC__  -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard    -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/target/aarch32-none/include  -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado_HLS/include /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/accel_test_bnn.cpp -o accel_test_bnn.o
+arm-none-eabi-objcopy --add-section .xdsdata=/var/tmp/tmp.yK7okjyWNi/_sds/swstubs/accel_test_bnn.o.xml accel_test_bnn.o
+# sds++ completed at Fri Jan 04 15:52:08 EST 2019

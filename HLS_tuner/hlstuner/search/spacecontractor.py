@@ -19,12 +19,10 @@
 
 import logging
 
-from .bandittechniques import AUCBanditMetaTechnique
-from .differentialevolution import DifferentialEvolutionAlt
-from .evolutionarytechniques import NormalGreedyMutation, UniformGreedyMutation
-from .simplextechniques import RandomNelderMead
-from .metatechniques import MetaSearchTechnique
-from .technique import register
+from opentuner.search.metatechniques import MetaSearchTechnique
+from opentuner.search.technique import register
+from .learningtechniques import GreedyLearningTechnique
+from .randomforest import RandomForest
 
 log = logging.getLogger(__name__)
 
@@ -66,7 +64,6 @@ class SpaceContractorMetaTechnique(MetaSearchTechnique):
 
     # Get configurations from the subtechnique until we find one that is feasible.
     while True:
-
       # Get a desired result from the subtechnique.
       dr = super(SpaceContractorMetaTechnique, self).desired_result()
 
@@ -126,18 +123,15 @@ class SpaceContractorMetaTechnique(MetaSearchTechnique):
     This callback is invoked by the search driver to report the results of the sub-technique.
     """
 
-    # Check if synthesis ended in state IE3, which means that there were too many BRAMs for the device.  There are
-    # probably more applicable errors, but I haven't observed them yet.
-    if result.state == "IE3":
+    # Check if synthesis ended in a state that indicates that too many resources are used.  There are probably more
+    # applicable errors, but I haven't observed them yet.
+    if result.state == "PE3" or result.state == "PE4" or result.state == "IE3" or result.state == "IE6":
       # Keep the user in the loop.
       log.info("Added constraint to space contractor.");
       # Add the configuration of the result to the list.
-      constraints.add(result.configuration.data)
+      self.constraints.append(result.configuration.data)
 
 
 # Add the space contractor technique to the list such that we can use it.
-register(SpaceContractorMetaTechnique(AUCBanditMetaTechnique([DifferentialEvolutionAlt(),
-                                                              UniformGreedyMutation(),
-                                                              NormalGreedyMutation(mutation_rate=0.3),
-                                                              RandomNelderMead()]), name = "SpaceContractorMetaTechnique"))
+register(SpaceContractorMetaTechnique(GreedyLearningTechnique(RandomForest()), name = "SpaceContractorRandomForest"))
 

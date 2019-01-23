@@ -87,6 +87,8 @@ import re
 import shutil
 import stat
 from opentuner import Result
+import hlstuner.search.spacecontractor
+from hlstuner.measurement.cache import ResultsCache
 
 log = logging.getLogger(__name__)
 
@@ -128,6 +130,9 @@ class MeasurementInterface(opentuner.MeasurementInterface):
     # Check whether the FPGA is setup.
     self.check_fpga()
 
+    # Create or open a database with cached results.
+    self.results_cache = ResultsCache(self.manipulator(), self.results_cache_file)
+
 
   @abc.abstractmethod
   def configure(self, cfg):
@@ -141,6 +146,13 @@ class MeasurementInterface(opentuner.MeasurementInterface):
     """
     Builds hardware and software for one configuration.
     """
+
+    # Skip compilation if we have the result in the cache.
+    result = self.results_cache.lookup(config_data)
+    if result != None:
+      log.info("Result of configuration %d was found in cache.", result_id)
+      result.complete = True
+      return result
 
     # Create a new output directory for the build.
     output_dir = self.output_root + "/{0:04d}".format(result_id)
@@ -160,6 +172,11 @@ class MeasurementInterface(opentuner.MeasurementInterface):
     # Perform the implementation step if synthesis was successful.
     if result.state == 'SOK':
       result = self.do_impl(result_id, output_dir, synth_output_dir, result)
+
+    # Make sure that the build was successful.
+    if result.state != 'IOK':
+      # Add the result to the cache.
+      self.results_cache.add(config_data, result)
 
     # Return the result.
     return result
@@ -540,7 +557,9 @@ class MeasurementInterface(opentuner.MeasurementInterface):
       return self.update_result(result, state = 'ITO', msg = 'Implementation timed out.')
     # Check for known placer errors.
     if re.search(r'\[Place 30-640\]', lines) != None:
-      return self.update_result(result, state = 'IE3', msg = 'Too many BRAMs')
+      return self.update_result(result, state = 'IE3', msg = 'Design has too many BRAMs.')
+    if re.search(r'\[Place 30-487\]', lines) != None:
+      return self.update_result(result, state = 'IE6', msg = 'Design requires too many slices in P-block.')
     # Check for known design rule checker errors.
     if re.search(r'\[DRC PDCY-4\]', lines) != None:
       return self.update_result(result, state = 'IE4', msg = 'Unconnected carry input')
@@ -568,8 +587,13 @@ class MeasurementInterface(opentuner.MeasurementInterface):
     Tests one configuration on the FPGA.
     """
 
+    # Skip the run if we found the result in the cache.
+    if hasattr(compile_result, 'complete'):
+      return compile_result
+
     # Make sure that the build was successful.
     if compile_result.state != 'IOK':
+      # Return the result.
       return compile_result
 
     # Log that we are goint to try the implementation on the FPGA.
@@ -595,7 +619,13 @@ class MeasurementInterface(opentuner.MeasurementInterface):
                             self.job_name + '_' + RUN_JOB + '_' + str(result_id), 1, self.run_max_mem)
 
     # Analyze the run output to determine whether it was successful.
-    return self.get_run_result(result_id, compile_result, run_output_log, serial_log)
+    result = self.get_run_result(result_id, compile_result, run_output_log, serial_log)
+
+    # Add the result to the cache.
+    self.results_cache.add(desired_result.configuration.data, result)
+
+    # Return the result.
+    return result
 
 
   def create_run_scripts(self, output_dir, impl_output_dir, tcl_template, tcl_script, bash_template, bash_script,
@@ -759,7 +789,7 @@ class MeasurementInterface(opentuner.MeasurementInterface):
 
 
   @classmethod
-  def main(self):
+  def main(self, db_file, log_file):
     """
     This is the main function of the tuner.
     """
@@ -767,18 +797,33 @@ class MeasurementInterface(opentuner.MeasurementInterface):
     # Start logging messages.
     opentuner.init_logging()
 
-    # Make sure that information messages are also logged.
+    # Change some logging settings.
     for handler in logging.getLogger().handlers:
-      handler.setLevel(logging.INFO)
+      if isinstance(handler, logging.FileHandler):
+        # Make sure that information messages are also logged.
+        handler.setLevel(logging.INFO)
+        # Move the log file to the output directory.
+        handler.close()
+        handler.baseFilename = log_file
 
     # Parse the command line arguments.
     argparser = argparse.ArgumentParser(parents = opentuner.argparsers())
     argparser.add_argument('--append', action = 'store_true', help = 'append new tuning run to existing runs')
     args = argparser.parse_args()
 
+    # Extract the directory name from the database name.
+    db_dir = os.path.dirname(db_file)
+
+    # Create the directory if it does not exist.
+    if db_dir != "" and not os.path.isdir(db_dir):
+      os.makedirs(db_dir)
+
+    # Change the database location.
+    args.database = db_file
+
     # Select the random forest search technique by default.
     if not args.technique:
-      args.technique = ['RandomForest']
+      args.technique = ['SpaceContractorRandomForest']
 
     # Start the tuner.
     super(MeasurementInterface, self).main(args)

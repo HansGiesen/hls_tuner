@@ -1,0 +1,743 @@
+(c) Copyright 2012-2017 Xilinx, Inc. All Rights Reserved.
+#-----------------------------------------------------------
+# Tool version  : sds++ 2017.1 SW Build 1915620 on Jun 22 2017 18:00:35
+# Start time    : Fri Jan 04 15:52:08 EST 2019
+# Command line  : sds++ -sds-sys-config standalone -sds-pf /mnt/icgridio2/safe/giesen/HLS_tuner/1/Platforms/Vivado_2017.1/pynq -sds-proc a9_0 -sds-hw top /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp -clkid 2 -sds-end -maxjobs 4 -maxthreads 4 -O3 -DHLS_COMPILE -DRUN_STANDALONE -I /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/utils -Wall -Wno-unused-label -c /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp -o Accel.o
+# Log file      : /var/tmp/tmp.yK7okjyWNi/_sds/reports/sds_Accel.log
+# Journal file  : /var/tmp/tmp.yK7okjyWNi/_sds/reports/sds_Accel.jou
+# Report file   : /var/tmp/tmp.yK7okjyWNi/_sds/reports/sds_Accel.rpt
+#-----------------------------------------------------------
+
+Create data motion intermediate representation
+/mnt/icgridio2/safe/SDSoC/SDx/2017.1/bin/clang_wrapper -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/utils -DHLS_COMPILE -DRUN_STANDALONE -Wall -Wno-unused-label -D __SDSCC__ -target arm-none-eabi -mcpu=cortex-a9 -mfpu=vfpv3 -O0 -g     -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/target/aarch32-none/include  -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado_HLS/include   -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/include/c++/6.2.1 -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/include/c++/6.2.1/arm-none-eabi -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/include/c++/6.2.1/backward -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/6.2.1/include -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/6.2.1/include-fixed -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/include -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/libc/usr/include  -std=c++11 -emit-llvm -S /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp -o /var/tmp/tmp.yK7okjyWNi/_sds/.llvm/Accel.s
+Performing accelerator source linting for top
+/mnt/icgridio2/safe/SDSoC/SDx/2017.1/bin/sdslint -target cortex-a9 -func "top" /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp -- -c -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/utils -DHLS_COMPILE -DRUN_STANDALONE -Wall -Wno-unused-label -D __SDSCC__ -target arm-none-eabi -mcpu=cortex-a9 -mfpu=vfpv3 -O0 -g -w    -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/target/aarch32-none/include  -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado_HLS/include   -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/include/c++/6.2.1 -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/include/c++/6.2.1/arm-none-eabi -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/include/c++/6.2.1/backward -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/6.2.1/include -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/6.2.1/include-fixed -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/include -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/libc/usr/include  -std=c++11
+INFO: [Linting 83-3001] top
+INFO: [Linting 83-3001] top
+arm-none-eabi-g++ -c /var/tmp/tmp.yK7okjyWNi/_sds/swstubs/Accel.cpp -o /var/tmp/tmp.yK7okjyWNi/_sds/swstubs/Accel.o
+arm-none-eabi-objcopy --add-section .xdinfo=/var/tmp/tmp.yK7okjyWNi/_sds/swstubs/Accel.o.xml /var/tmp/tmp.yK7okjyWNi/_sds/swstubs/Accel.o
+Performing pragma generation
+/mnt/icgridio2/safe/SDSoC/SDx/2017.1/bin/clang_wrapper -E -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/utils -DHLS_COMPILE -DRUN_STANDALONE -Wall -Wno-unused-label -D __SDSCC__ -m32 -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/target/aarch32-none/include -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel -D __SDSVHLS__ -target arm-none-eabi -mcpu=cortex-a9 -mfpu=vfpv3 -O0 -g -w    -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/target/aarch32-none/include  -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado_HLS/include   -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/include/c++/6.2.1 -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/include/c++/6.2.1/arm-none-eabi -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/include/c++/6.2.1/backward -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/6.2.1/include -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/6.2.1/include-fixed -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/include -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/libc/usr/include  -std=c++11 /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp -o /var/tmp/tmp.yK7okjyWNi/_sds/vhls/Accel_pp.cpp
+/mnt/icgridio2/safe/SDSoC/SDx/2017.1/bin/pragma_gen  -func "top"   -tcl /var/tmp/tmp.yK7okjyWNi/_sds/vhls/top.tcl   /var/tmp/tmp.yK7okjyWNi/_sds/vhls/Accel_pp.cpp -multi_aximm   --  -c  -D __SDSVHLS__ -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/utils -O3 -DHLS_COMPILE -DRUN_STANDALONE -Wall -Wno-unused-label -D __SDSCC__ -m32    -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/target/aarch32-none/include -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel  -target arm-none-eabi -mcpu=cortex-a9 -mfpu=vfpv3 -O0 -g -w    -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/target/aarch32-none/include  -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado_HLS/include   -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/include/c++/6.2.1 -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/include/c++/6.2.1/arm-none-eabi -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/include/c++/6.2.1/backward -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/6.2.1/include -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/6.2.1/include-fixed -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/include -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/libc/usr/include  -std=c++11
+INFO: [PragmaGen 83-3231] Successfully generated tcl script: /var/tmp/tmp.yK7okjyWNi/_sds/vhls/top.tcl
+Moving function top to Programmable Logic
+/mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado_HLS/bin/vivado_hls /var/tmp/tmp.yK7okjyWNi/_sds/vhls/top_run.tcl
+================================================================
+  Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC
+  Version 2017.1
+  Build 1846317 on Thu Jun 22 18:17:09 MDT 2017
+  Copyright (C) 1986-2017 Xilinx, Inc. All Rights Reserved.
+================================================================
+INFO: [HLS 200-10] Running '/mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado_HLS/bin/unwrapped/lnx64.o/vivado_hls'
+INFO: [HLS 200-10] For user 'giesen' on host 'icgrid60.seas.upenn.edu' (Linux_x86_64 version 4.4.162-78-default) on Fri Jan 04 15:52:27 EST 2019
+INFO: [HLS 200-10] On os "openSUSE Leap 42.3"
+INFO: [HLS 200-10] In directory '/var/tmp/tmp.yK7okjyWNi/_sds/vhls'
+INFO: [HLS 200-10] Creating and opening project '/var/tmp/tmp.yK7okjyWNi/_sds/vhls/top'.
+INFO: [HLS 200-10] Adding design file '/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp' to the project
+INFO: [HLS 200-10] Creating and opening solution '/var/tmp/tmp.yK7okjyWNi/_sds/vhls/top/solution'.
+INFO: [HLS 200-10] Cleaning up the solution database.
+INFO: [HLS 200-10] Setting target device to ' xc7z020clg400-1 '
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [SYN 201-201] Setting up clock 'default' with an uncertainty of 2.7ns.
+INFO: [HLS 200-10] Analyzing design file '/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp' ... 
+INFO: [HLS 200-10] Validating synthesis directives ...
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:32 ; elapsed = 00:00:14 . Memory (MB): peak = 331.211 ; gain = 12.918 ; free physical = 182560 ; free virtual = 188909
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:33 ; elapsed = 00:00:15 . Memory (MB): peak = 331.211 ; gain = 12.918 ; free physical = 182407 ; free virtual = 188827
+INFO: [HLS 200-10] Starting code transformations ...
+WARNING: [XFORM 203-503] Ignored unroll directive 'LOOP_LOAD_WTS' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:527) in function 'fp_conv(ap_int<64> (*) [2341], ap_int<64>*, ap_int<64> (*) [2][1024], ap_uint<1>, ap_uint<1>, ap_uint<16>, ap_uint<16>, unsigned int)': multiple loop unroll directives in one loop, use the first one and ignore the rest.
+INFO: [XFORM 203-501] Unrolling loop 'PROLOG_ROWS' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:514) in function 'fp_conv(ap_int<64> (*) [2341], ap_int<64>*, ap_int<64> (*) [2][1024], ap_uint<1>, ap_uint<1>, ap_uint<16>, ap_uint<16>, unsigned int)' completely.
+INFO: [XFORM 203-501] Unrolling loop 'Loop-5.1.1.1.1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:515) in function 'fp_conv(ap_int<64> (*) [2341], ap_int<64>*, ap_int<64> (*) [2][1024], ap_uint<1>, ap_uint<1>, ap_uint<16>, ap_uint<16>, unsigned int)' completely.
+INFO: [XFORM 203-501] Unrolling loop 'Loop-5.3.1.1.3' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:575) in function 'fp_conv(ap_int<64> (*) [2341], ap_int<64>*, ap_int<64> (*) [2][1024], ap_uint<1>, ap_uint<1>, ap_uint<16>, ap_uint<16>, unsigned int)' completely.
+INFO: [XFORM 203-603] Inlining function 'encode_bit' into 'bin_conv' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:342).
+INFO: [XFORM 203-603] Inlining function 'encode_bit' into 'bin_conv' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:340).
+INFO: [XFORM 203-603] Inlining function 'encode_bit' into 'bin_conv' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:337).
+INFO: [XFORM 203-603] Inlining function 'conv3x3b' into 'conv_word' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:87).
+INFO: [XFORM 203-603] Inlining function 'process_word' into 'bin_conv' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:352).
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:34 ; elapsed = 00:00:17 . Memory (MB): peak = 461.266 ; gain = 142.973 ; free physical = 182272 ; free virtual = 188731
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [XFORM 203-602] Inlining function 'load_kh<ap_fixed<16, 4, (ap_q_mode)5, (ap_o_mode)3, 0> >' into 'fp_conv' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:536) automatically.
+INFO: [XFORM 203-602] Inlining function 'load_kh<ap_int<16> >' into 'top' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:847) automatically.
+WARNING: [SYNCHK 200-23] /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:529: variable-indexed range selection may cause suboptimal QoR.
+INFO: [SYNCHK 200-10] 0 error(s), 1 warning(s).
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:34 ; elapsed = 00:00:17 . Memory (MB): peak = 461.266 ; gain = 142.973 ; free physical = 182199 ; free virtual = 188671
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'LOOP_DENSE_I' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:646) in function 'bin_dense' for pipelining.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'LOOP_WORDS_IN_PHASE' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:279) in function 'bin_conv' for pipelining.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'LOOP_ACC_PHASES_I' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:397) in function 'bin_conv' for pipelining.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'LOOP_BATCH_NORM' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:423) in function 'bin_conv' for pipelining.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'LOOP_CONV_COLS' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:541) in function 'fp_conv' for pipelining.
+INFO: [XFORM 203-502] Unrolling all loops for pipelining in function 'conv_word' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:80).
+WARNING: [XFORM 203-561] Updating loop lower bound from 17 to 32 for loop 'LOOP_WORDS_IN_PHASE' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:281:1) in function 'bin_conv'.
+WARNING: [XFORM 203-561] Ignored invalid trip count directive (MIN (= 32) > AVE (= 24)) for loop 'LOOP_WORDS_IN_PHASE' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:281:1) in function 'bin_conv'.
+INFO: [XFORM 203-501] Unrolling loop 'Loop-1.1.1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:651) in function 'bin_dense' completely.
+INFO: [XFORM 203-501] Unrolling loop 'Loop-1.1.2' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:671) in function 'bin_dense' completely.
+INFO: [XFORM 203-501] Unrolling loop 'Loop-1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:244) in function 'bin_conv' completely.
+INFO: [XFORM 203-501] Unrolling loop 'Loop-2.1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:254) in function 'bin_conv' completely.
+INFO: [XFORM 203-501] Unrolling loop 'LOOP_WT_WORDS' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:294) in function 'bin_conv' completely.
+INFO: [XFORM 203-501] Unrolling loop 'LOOP_LOAD_WTS' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:316) in function 'bin_conv' completely.
+INFO: [XFORM 203-501] Unrolling loop 'Loop-3.1.2.1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:317) in function 'bin_conv' completely.
+INFO: [XFORM 203-501] Unrolling loop 'Loop-3.1.2.1.1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:318) in function 'bin_conv' completely.
+INFO: [XFORM 203-501] Unrolling loop 'LOOP_CONVOLVER_LOAD' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:333) in function 'bin_conv' completely.
+INFO: [XFORM 203-501] Unrolling loop 'Loop-3.1.3.1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:335) in function 'bin_conv' completely.
+INFO: [XFORM 203-501] Unrolling loop 'Loop-3.1.3.1.1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:336) in function 'bin_conv' completely.
+INFO: [XFORM 203-501] Unrolling loop 'LOOP_CONVOLVERS' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:349) in function 'bin_conv' completely.
+INFO: [XFORM 203-501] Unrolling loop 'Loop-3.1.4.1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:117) in function 'bin_conv' completely.
+INFO: [XFORM 203-501] Unrolling loop 'Loop-3.1.4.1.1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:121) in function 'bin_conv' completely.
+INFO: [XFORM 203-501] Unrolling loop 'Loop-3.1.4.1.2' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:128) in function 'bin_conv' completely.
+INFO: [XFORM 203-501] Unrolling loop 'Loop-3.1.4.2' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:146) in function 'bin_conv' completely.
+INFO: [XFORM 203-501] Unrolling loop 'Loop-3.1.4.2.1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:152) in function 'bin_conv' completely.
+INFO: [XFORM 203-501] Unrolling loop 'Loop-3.1.4.2.2' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:159) in function 'bin_conv' completely.
+INFO: [XFORM 203-501] Unrolling loop 'Loop-3.1.4.2.3' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:168) in function 'bin_conv' completely.
+INFO: [XFORM 203-501] Unrolling loop 'Loop-3.1.5' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:355) in function 'bin_conv' completely.
+INFO: [XFORM 203-501] Unrolling loop 'Loop-3.1.5.1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:356) in function 'bin_conv' completely.
+INFO: [XFORM 203-501] Unrolling loop 'Loop-3.1.5.1.1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:357) in function 'bin_conv' completely.
+INFO: [XFORM 203-501] Unrolling loop 'Loop-3.1.6' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:365) in function 'bin_conv' completely.
+INFO: [XFORM 203-501] Unrolling loop 'Loop-3.1.6.1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:369) in function 'bin_conv' completely.
+INFO: [XFORM 203-501] Unrolling loop 'Loop-4.1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:391) in function 'bin_conv' completely.
+INFO: [XFORM 203-501] Unrolling loop 'Loop-4.2.1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:400) in function 'bin_conv' completely.
+INFO: [XFORM 203-501] Unrolling loop 'Loop-4.3' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:404) in function 'bin_conv' completely.
+INFO: [XFORM 203-501] Unrolling loop 'Loop-5.1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:431) in function 'bin_conv' completely.
+INFO: [XFORM 203-501] Unrolling loop 'Loop-5.2' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:441) in function 'bin_conv' completely.
+INFO: [XFORM 203-501] Unrolling loop 'Loop-5.3' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:446) in function 'bin_conv' completely.
+INFO: [XFORM 203-501] Unrolling loop 'PROLOG_COLS' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:513) in function 'fp_conv' completely.
+INFO: [XFORM 203-501] Unrolling loop 'LOOP_LOAD_WTS' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:527) in function 'fp_conv' completely.
+INFO: [XFORM 203-501] Unrolling loop 'Loop-1.3.1.1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:550) in function 'fp_conv' completely.
+INFO: [XFORM 203-501] Unrolling loop 'Loop-1.3.1.1.1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:559) in function 'fp_conv' completely.
+INFO: [XFORM 203-501] Unrolling loop 'Loop-1.3.1.1.1.1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:560) in function 'fp_conv' completely.
+INFO: [XFORM 203-501] Unrolling loop 'Loop-1.3.1.1.2' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:565) in function 'fp_conv' completely.
+INFO: [XFORM 203-501] Unrolling loop 'Loop-1.3.1.2' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:585) in function 'fp_conv' completely.
+INFO: [XFORM 203-501] Unrolling loop 'Loop-1.3.1.2.1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:586) in function 'fp_conv' completely.
+INFO: [XFORM 203-501] Unrolling loop 'Loop-1.3.1.2.1.1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:587) in function 'fp_conv' completely.
+INFO: [XFORM 203-501] Unrolling loop 'Loop-1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:85) in function 'conv_word' completely.
+INFO: [XFORM 203-501] Unrolling loop 'Loop-1.1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:86) in function 'conv_word' completely.
+INFO: [XFORM 203-501] Unrolling loop 'Loop-1.1.1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:65) in function 'conv_word' completely.
+INFO: [XFORM 203-501] Unrolling loop 'Loop-1.1.1.1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:66) in function 'conv_word' completely.
+INFO: [XFORM 203-102] Partitioning array 'sum_m.V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:629) automatically.
+INFO: [XFORM 203-101] Partitioning array 'dmem.V'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'wt_mem.V'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'conv_params.V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:214) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'fixed_buffer.V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'fixed_temp.V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:218) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'word_buffer.V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:221) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'old_word_buffer.V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:223) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'conv_out_buffer.V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:225) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'lb' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:228) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'rb' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:230) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'wt_word_buffer.V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:285) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'win.V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:492) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'lbuf.V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:494) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'outwords.V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:496) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'wtbuf.V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:498) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'dmem.V.0'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'dmem.V.1'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.0'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.1'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'conv_params.V.0' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:214) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'conv_params.V.1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:214) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'word_buffer.V.0' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:221) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'word_buffer.V.1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:221) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'old_word_buffer.V.0' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:223) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'old_word_buffer.V.1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:223) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'conv_out_buffer.V.0' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:225) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'conv_out_buffer.V.1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:225) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'win.V.0' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:492) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'win.V.1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:492) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'win.V.2' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:492) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'lbuf.V.0' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:494) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'lbuf.V.1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:494) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'lbuf.V.2' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:494) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.0.0'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.0.1'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.0.2'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.0.3'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.0.4'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.0.5'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.0.6'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.0.7'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.1.0'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.1.1'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.1.2'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.1.3'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.1.4'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.1.5'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.1.6'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.1.7'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'conv_params.V.0.0' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:214) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'conv_params.V.0.1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:214) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'conv_params.V.0.2' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:214) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'conv_params.V.1.0' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:214) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'conv_params.V.1.1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:214) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'conv_params.V.1.2' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:214) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'word_buffer.V.0.0' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:221) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'word_buffer.V.0.1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:221) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'word_buffer.V.0.2' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:221) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'word_buffer.V.0.3' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:221) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'word_buffer.V.0.4' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:221) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'word_buffer.V.0.5' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:221) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'word_buffer.V.0.6' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:221) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'word_buffer.V.0.7' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:221) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'word_buffer.V.1.0' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:221) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'word_buffer.V.1.1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:221) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'word_buffer.V.1.2' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:221) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'word_buffer.V.1.3' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:221) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'word_buffer.V.1.4' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:221) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'word_buffer.V.1.5' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:221) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'word_buffer.V.1.6' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:221) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'word_buffer.V.1.7' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:221) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'old_word_buffer.V.0.0' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:223) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'old_word_buffer.V.0.1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:223) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'old_word_buffer.V.0.2' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:223) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'old_word_buffer.V.0.3' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:223) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'old_word_buffer.V.0.4' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:223) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'old_word_buffer.V.0.5' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:223) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'old_word_buffer.V.0.6' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:223) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'old_word_buffer.V.0.7' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:223) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'old_word_buffer.V.1.0' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:223) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'old_word_buffer.V.1.1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:223) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'old_word_buffer.V.1.2' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:223) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'old_word_buffer.V.1.3' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:223) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'old_word_buffer.V.1.4' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:223) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'old_word_buffer.V.1.5' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:223) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'old_word_buffer.V.1.6' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:223) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'old_word_buffer.V.1.7' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:223) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'win.V.0.0' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:492) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'win.V.0.1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:492) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'win.V.0.2' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:492) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'win.V.1.0' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:492) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'win.V.1.1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:492) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'win.V.1.2' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:492) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'win.V.2.0' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:492) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'win.V.2.1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:492) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'win.V.2.2' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:492) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'lbuf.V.0.0' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:494) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'lbuf.V.0.1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:494) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'lbuf.V.1.0' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:494) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'lbuf.V.1.1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:494) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'lbuf.V.2.0' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:494) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'lbuf.V.2.1' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:494) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.0.0.0'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.0.0.1'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.0.0.2'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.0.1.0'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.0.1.1'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.0.1.2'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.0.2.0'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.0.2.1'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.0.2.2'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.0.3.0'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.0.3.1'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.0.3.2'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.0.4.0'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.0.4.1'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.0.4.2'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.0.5.0'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.0.5.1'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.0.5.2'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.0.6.0'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.0.6.1'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.0.6.2'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.0.7.0'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.0.7.1'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.0.7.2'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.1.0.0'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.1.0.1'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.1.0.2'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.1.1.0'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.1.1.1'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.1.1.2'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.1.2.0'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.1.2.1'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.1.2.2'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.1.3.0'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.1.3.1'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.1.3.2'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.1.4.0'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.1.4.1'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.1.4.2'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.1.5.0'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.1.5.1'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.1.5.2'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.1.6.0'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.1.6.1'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.1.6.2'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.1.7.0'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.1.7.1'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'line_buffer.1.7.2'  in dimension 1 completely.
+WARNING: [XFORM 203-104] Completely partitioning array 'conv_out_buffer.V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:225) accessed through non-constant indices on dimension 1 (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:87:47), which may result in long runtime and suboptimal QoR due to large multiplexers. Please consider wrapping the array access into a function or using a register file core instead.
+INFO: [XFORM 203-602] Inlining function 'load_kh<ap_fixed<16, 4, (ap_q_mode)5, (ap_o_mode)3, 0> >' into 'fp_conv' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:536) automatically.
+INFO: [XFORM 203-602] Inlining function 'load_kh<ap_int<16> >' into 'top' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:847) automatically.
+WARNING: [XFORM 203-124] Array  'dmem_i.V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:734): may have improper streaming access(es), possible reasons: (1) some entries are accessed more than once; (2) some entries are not used; (3) the entries are not accessed in sequential order.
+WARNING: [XFORM 203-124] Array  'dmem_o.V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:735): may have improper streaming access(es), possible reasons: (1) some entries are accessed more than once; (2) some entries are not used; (3) the entries are not accessed in sequential order.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:842:46) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:842:40) in function 'top'... converting 8 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:895:47) in function 'top'... converting 8 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:891:26) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:893:5) in function 'top'... converting 8 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:511:38) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:511:32) in function 'fp_conv'... converting 257 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:541:58) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:574:15) in function 'fp_conv'... converting 11 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:556:40) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:574:15) in function 'fp_conv'... converting 3 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:556:40) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:574:15) in function 'fp_conv'... converting 3 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:525:43) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:540:39) in function 'fp_conv'... converting 11 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:646:65) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:646:39) in function 'bin_dense'... converting 7 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:637:44) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:646:23) in function 'bin_dense'... converting 8 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:677:9) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:716:10) in function 'bin_dense'... converting 16 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:331:11) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:119:9) in function 'bin_conv'... converting 9 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:122:66) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:125:58) in function 'bin_conv'... converting 65 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:122:66) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:125:58) in function 'bin_conv'... converting 64 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:132:21) in function 'bin_conv'... converting 3 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:122:66) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:125:58) in function 'bin_conv'... converting 55 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) in function 'bin_conv'... converting 5 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) in function 'bin_conv'... converting 5 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) in function 'bin_conv'... converting 5 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) in function 'bin_conv'... converting 5 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:132:21) in function 'bin_conv'... converting 6 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:122:66) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:125:58) in function 'bin_conv'... converting 46 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) in function 'bin_conv'... converting 6 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) in function 'bin_conv'... converting 6 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) in function 'bin_conv'... converting 6 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) in function 'bin_conv'... converting 6 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:132:21) in function 'bin_conv'... converting 7 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:122:66) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:125:58) in function 'bin_conv'... converting 37 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) in function 'bin_conv'... converting 7 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) in function 'bin_conv'... converting 7 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) in function 'bin_conv'... converting 7 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) in function 'bin_conv'... converting 7 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:132:21) in function 'bin_conv'... converting 8 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:122:66) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:125:58) in function 'bin_conv'... converting 3 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) in function 'bin_conv'... converting 8 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) in function 'bin_conv'... converting 8 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) in function 'bin_conv'... converting 9 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) in function 'bin_conv'... converting 8 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) in function 'bin_conv'... converting 9 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) in function 'bin_conv'... converting 8 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) in function 'bin_conv'... converting 9 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:132:21) in function 'bin_conv'... converting 9 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) in function 'bin_conv'... converting 9 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:132:21) in function 'bin_conv'... converting 10 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:23) in function 'bin_conv'... converting 5 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) in function 'bin_conv'... converting 9 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:153:52) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:156:48) in function 'bin_conv'... converting 3 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) in function 'bin_conv'... converting 8 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) in function 'bin_conv'... converting 9 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:153:52) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:156:48) in function 'bin_conv'... converting 30 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) in function 'bin_conv'... converting 8 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) in function 'bin_conv'... converting 9 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) in function 'bin_conv'... converting 7 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) in function 'bin_conv'... converting 8 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) in function 'bin_conv'... converting 9 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) in function 'bin_conv'... converting 7 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:163:21) in function 'bin_conv'... converting 9 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) in function 'bin_conv'... converting 8 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) in function 'bin_conv'... converting 7 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:163:21) in function 'bin_conv'... converting 8 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) in function 'bin_conv'... converting 7 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:163:21) in function 'bin_conv'... converting 7 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:153:52) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:156:48) in function 'bin_conv'... converting 39 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) in function 'bin_conv'... converting 6 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) in function 'bin_conv'... converting 6 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) in function 'bin_conv'... converting 6 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) in function 'bin_conv'... converting 6 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:163:21) in function 'bin_conv'... converting 6 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:153:52) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:156:48) in function 'bin_conv'... converting 48 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) in function 'bin_conv'... converting 5 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) in function 'bin_conv'... converting 5 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) in function 'bin_conv'... converting 5 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) in function 'bin_conv'... converting 5 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:163:21) in function 'bin_conv'... converting 5 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:153:52) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:156:48) in function 'bin_conv'... converting 57 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:163:21) in function 'bin_conv'... converting 3 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:153:52) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:156:48) in function 'bin_conv'... converting 66 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:122:66) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:125:58) in function 'bin_conv'... converting 65 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:122:66) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:125:58) in function 'bin_conv'... converting 64 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:132:21) in function 'bin_conv'... converting 3 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:122:66) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:125:58) in function 'bin_conv'... converting 55 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) in function 'bin_conv'... converting 5 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) in function 'bin_conv'... converting 5 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) in function 'bin_conv'... converting 5 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) in function 'bin_conv'... converting 5 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:132:21) in function 'bin_conv'... converting 6 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:122:66) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:125:58) in function 'bin_conv'... converting 46 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) in function 'bin_conv'... converting 6 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) in function 'bin_conv'... converting 6 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) in function 'bin_conv'... converting 6 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) in function 'bin_conv'... converting 6 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:132:21) in function 'bin_conv'... converting 7 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:122:66) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:125:58) in function 'bin_conv'... converting 37 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) in function 'bin_conv'... converting 7 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) in function 'bin_conv'... converting 7 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) in function 'bin_conv'... converting 7 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) in function 'bin_conv'... converting 7 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:132:21) in function 'bin_conv'... converting 8 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:122:66) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:125:58) in function 'bin_conv'... converting 3 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) in function 'bin_conv'... converting 8 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) in function 'bin_conv'... converting 8 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) in function 'bin_conv'... converting 9 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) in function 'bin_conv'... converting 8 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) in function 'bin_conv'... converting 9 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) in function 'bin_conv'... converting 8 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) in function 'bin_conv'... converting 9 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:132:21) in function 'bin_conv'... converting 9 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) in function 'bin_conv'... converting 9 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:132:21) in function 'bin_conv'... converting 10 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:129:87) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:23) in function 'bin_conv'... converting 5 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) in function 'bin_conv'... converting 9 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:153:52) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:156:48) in function 'bin_conv'... converting 3 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) in function 'bin_conv'... converting 8 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) in function 'bin_conv'... converting 9 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:153:52) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:156:48) in function 'bin_conv'... converting 30 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) in function 'bin_conv'... converting 8 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) in function 'bin_conv'... converting 9 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) in function 'bin_conv'... converting 7 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) in function 'bin_conv'... converting 8 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) in function 'bin_conv'... converting 9 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) in function 'bin_conv'... converting 7 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:163:21) in function 'bin_conv'... converting 9 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) in function 'bin_conv'... converting 8 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) in function 'bin_conv'... converting 7 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:163:21) in function 'bin_conv'... converting 8 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) in function 'bin_conv'... converting 7 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:163:21) in function 'bin_conv'... converting 7 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:153:52) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:156:48) in function 'bin_conv'... converting 39 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) in function 'bin_conv'... converting 6 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) in function 'bin_conv'... converting 6 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) in function 'bin_conv'... converting 6 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) in function 'bin_conv'... converting 6 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:163:21) in function 'bin_conv'... converting 6 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:153:52) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:156:48) in function 'bin_conv'... converting 48 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) in function 'bin_conv'... converting 5 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) in function 'bin_conv'... converting 5 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) in function 'bin_conv'... converting 5 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) in function 'bin_conv'... converting 5 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:163:21) in function 'bin_conv'... converting 5 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:153:52) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:156:48) in function 'bin_conv'... converting 57 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:160:82) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:163:21) in function 'bin_conv'... converting 3 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:153:52) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:156:48) in function 'bin_conv'... converting 66 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:378:11) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:279:74) in function 'bin_conv'... converting 3 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:239:32) to (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:253:23) in function 'bin_conv'... converting 4 basic blocks.
+INFO: [XFORM 203-11] Balancing expressions in function 'fp_conv' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:479)...26 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'conv_word' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:80)...512 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'bin_dense' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:615)...6 expression(s) balanced.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:01:09 ; elapsed = 00:00:52 . Memory (MB): peak = 587.098 ; gain = 268.805 ; free physical = 181827 ; free virtual = 188335
+INFO: [XFORM 203-541] Flattening a loop nest 'LOOP_CONV_ROWS' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:540:56) in function 'fp_conv'.
+WARNING: [XFORM 203-542] Cannot flatten a loop nest 'LOOP_FP_CONV_O' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:506:36) in function 'fp_conv' : 
+WARNING: [XFORM 203-542] more than one sub loop.
+WARNING: [XFORM 203-542] Cannot flatten a loop nest 'LOOP_DENSE_O' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:637:44) in function 'bin_dense' : 
+WARNING: [XFORM 203-542] the outer loop is not a perfect loop because there is nontrivial logic before entering the inner loop.
+WARNING: [XFORM 203-542] Cannot flatten a loop nest 'LOOP_PHASES' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:265:65) in function 'bin_conv' : 
+WARNING: [XFORM 203-542] the outer loop is not a perfect loop because either the parent loop or the sub loop has no computeable trip count.
+WARNING: [XFORM 203-542] Cannot flatten a loop nest 'LOOP_ACC_PHASES' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:389:53) in function 'bin_conv' : 
+WARNING: [XFORM 203-542] the outer loop is not a perfect loop because there is nontrivial logic in the loop latch.
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[0].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[1].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[2].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[3].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[4].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[5].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[6].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[7].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[8].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[9].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[10].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[11].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[12].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[13].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[14].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[15].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[16].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[17].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[18].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[19].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[20].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[21].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[22].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[23].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[24].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[25].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[26].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[27].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[28].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[29].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[30].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[31].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[32].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[33].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[34].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[35].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[36].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[37].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[38].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[39].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[40].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[41].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[42].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[43].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[44].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[45].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[46].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[47].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[48].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[49].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[50].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[51].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[52].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[53].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[54].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[55].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[56].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[57].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[58].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[59].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[60].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[61].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[62].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'fixed_buffer[63].V' (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:216).
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:01:27 ; elapsed = 00:01:11 . Memory (MB): peak = 731.090 ; gain = 412.797 ; free physical = 181549 ; free virtual = 188085
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'top' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'bin_dense' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'LOOP_DENSE_I'.
+INFO: [SCHED 204-61] Pipelining result: Target II: 1, Final II: 1, Depth: 7.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 71.82 seconds; current allocated memory: 356.496 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.55 seconds; current allocated memory: 358.675 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'conv_word' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'conv_word'.
+INFO: [SCHED 204-61] Pipelining result: Target II: 1, Final II: 1, Depth: 2.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 1.9 seconds; current allocated memory: 369.317 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 5.28 seconds; current allocated memory: 381.455 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'bin_conv' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'LOOP_WORDS_IN_PHASE'.
+INFO: [SCHED 204-61] Pipelining result: Target II: 1, Final II: 1, Depth: 7.
+INFO: [SCHED 204-61] Pipelining loop 'LOOP_ACC_PHASES_I'.
+INFO: [SCHED 204-61] Pipelining result: Target II: 1, Final II: 1, Depth: 2.
+INFO: [SCHED 204-61] Pipelining loop 'LOOP_BATCH_NORM'.
+INFO: [SCHED 204-61] Pipelining result: Target II: 1, Final II: 1, Depth: 4.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 55.93 seconds; current allocated memory: 414.840 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 17.24 seconds; current allocated memory: 454.789 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'fp_conv' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'LOOP_CONV_ROWS_LOOP_CONV_COLS'.
+INFO: [SCHED 204-61] Pipelining result: Target II: 1, Final II: 1, Depth: 6.
+INFO: [SCHED 204-61] Pipelining loop 'LOOP_OUTPUT'.
+INFO: [SCHED 204-61] Pipelining result: Target II: 1, Final II: 1, Depth: 1.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 44.76 seconds; current allocated memory: 467.984 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 4.81 seconds; current allocated memory: 497.264 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'top' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'LOOP_DMEM_I'.
+INFO: [SCHED 204-61] Pipelining result: Target II: 1, Final II: 1, Depth: 2.
+INFO: [SCHED 204-61] Pipelining loop 'LOOP_WT_I'.
+INFO: [SCHED 204-61] Pipelining result: Target II: 1, Final II: 1, Depth: 2.
+INFO: [SCHED 204-61] Pipelining loop 'LOOP_KH_I'.
+INFO: [SCHED 204-61] Pipelining result: Target II: 1, Final II: 1, Depth: 2.
+INFO: [SCHED 204-61] Pipelining loop 'LOOP_DMEM_O'.
+INFO: [SCHED 204-61] Pipelining result: Target II: 1, Final II: 1, Depth: 3.
+WARNING: [SCHED 204-71] Latency directive discarded for region top since it contains subloops.
+WARNING: [SCHED 204-21] Estimated clock period (9.63ns) exceeds the target (target clock period: 10ns, clock uncertainty: 2.7ns, effective delay budget: 7.3ns).
+WARNING: [SCHED 204-21] The critical path consists of the following:
+	'phi' operation ('p_0590_2', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:897) with incoming values : ('p_0590_2_49', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:897) (0 ns)
+	'mul' operation ('r.V', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:892) (3.36 ns)
+	'add' operation ('r.V', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:892) (3.02 ns)
+	'getelementptr' operation ('dmem_V_0_1_addr_4', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:892) (0 ns)
+	'load' operation ('dmem_V_0_1_load_1', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:892) on array 'dmem_V_0_1' (3.25 ns)
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 3.18 seconds; current allocated memory: 499.143 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 7.71 seconds; current allocated memory: 506.465 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'bin_dense' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SYN 201-210] Renamed object name 'top_mul_mul_20s_16s_36_1' to 'top_mul_mul_20s_1bkb' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'top_mul_mul_20s_1bkb': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'bin_dense'.
+INFO: [HLS 200-111]  Elapsed time: 7.81 seconds; current allocated memory: 516.856 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'conv_word' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'conv_word'.
+INFO: [HLS 200-111]  Elapsed time: 1.41 seconds; current allocated memory: 552.412 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'bin_conv' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+WARNING: [RTGEN 206-101] Register 'wt_addr_V' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'wt_offset_V' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'outword_V' is power-on initialization.
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_0_V' to 'bin_conv_fixed_bucud' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_1_V' to 'bin_conv_fixed_budEe' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_2_V' to 'bin_conv_fixed_bueOg' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_3_V' to 'bin_conv_fixed_bufYi' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_4_V' to 'bin_conv_fixed_bug8j' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_5_V' to 'bin_conv_fixed_buhbi' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_6_V' to 'bin_conv_fixed_buibs' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_7_V' to 'bin_conv_fixed_bujbC' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_8_V' to 'bin_conv_fixed_bukbM' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_9_V' to 'bin_conv_fixed_bulbW' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_10_V' to 'bin_conv_fixed_bumb6' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_11_V' to 'bin_conv_fixed_buncg' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_12_V' to 'bin_conv_fixed_buocq' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_13_V' to 'bin_conv_fixed_bupcA' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_14_V' to 'bin_conv_fixed_buqcK' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_15_V' to 'bin_conv_fixed_burcU' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_16_V' to 'bin_conv_fixed_busc4' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_17_V' to 'bin_conv_fixed_butde' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_18_V' to 'bin_conv_fixed_buudo' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_19_V' to 'bin_conv_fixed_buvdy' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_20_V' to 'bin_conv_fixed_buwdI' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_21_V' to 'bin_conv_fixed_buxdS' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_22_V' to 'bin_conv_fixed_buyd2' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_23_V' to 'bin_conv_fixed_buzec' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_24_V' to 'bin_conv_fixed_buAem' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_25_V' to 'bin_conv_fixed_buBew' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_26_V' to 'bin_conv_fixed_buCeG' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_27_V' to 'bin_conv_fixed_buDeQ' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_28_V' to 'bin_conv_fixed_buEe0' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_29_V' to 'bin_conv_fixed_buFfa' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_30_V' to 'bin_conv_fixed_buGfk' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_31_V' to 'bin_conv_fixed_buHfu' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_32_V' to 'bin_conv_fixed_buIfE' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_33_V' to 'bin_conv_fixed_buJfO' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_34_V' to 'bin_conv_fixed_buKfY' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_35_V' to 'bin_conv_fixed_buLf8' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_36_V' to 'bin_conv_fixed_buMgi' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_37_V' to 'bin_conv_fixed_buNgs' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_38_V' to 'bin_conv_fixed_buOgC' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_39_V' to 'bin_conv_fixed_buPgM' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_40_V' to 'bin_conv_fixed_buQgW' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_41_V' to 'bin_conv_fixed_buRg6' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_42_V' to 'bin_conv_fixed_buShg' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_43_V' to 'bin_conv_fixed_buThq' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_44_V' to 'bin_conv_fixed_buUhA' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_45_V' to 'bin_conv_fixed_buVhK' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_46_V' to 'bin_conv_fixed_buWhU' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_47_V' to 'bin_conv_fixed_buXh4' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_48_V' to 'bin_conv_fixed_buYie' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_49_V' to 'bin_conv_fixed_buZio' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_50_V' to 'bin_conv_fixed_bu0iy' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_51_V' to 'bin_conv_fixed_bu1iI' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_52_V' to 'bin_conv_fixed_bu2iS' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_53_V' to 'bin_conv_fixed_bu3i2' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_54_V' to 'bin_conv_fixed_bu4jc' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_55_V' to 'bin_conv_fixed_bu5jm' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_56_V' to 'bin_conv_fixed_bu6jw' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_57_V' to 'bin_conv_fixed_bu7jG' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_58_V' to 'bin_conv_fixed_bu8jQ' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_59_V' to 'bin_conv_fixed_bu9j0' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_60_V' to 'bin_conv_fixed_bubak' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_61_V' to 'bin_conv_fixed_bubbk' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_62_V' to 'bin_conv_fixed_bubck' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'bin_conv_fixed_buffer_63_V' to 'bin_conv_fixed_bubdk' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'top_mul_mul_10ns_5ns_15_1' to 'top_mul_mul_10ns_bek' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'top_mul_mul_15ns_5ns_16_1' to 'top_mul_mul_15ns_bfk' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'top_mul_mul_10ns_bek': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'top_mul_mul_15ns_bfk': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'top_mux_83_2_1': 38 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'bin_conv'.
+INFO: [HLS 200-111]  Elapsed time: 19.01 seconds; current allocated memory: 658.529 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'fp_conv' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Generating core module 'top_mux_164_64_1': 2 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'top_mux_325_20_1': 9 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'top_mux_32_20_1': 32 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'fp_conv'.
+INFO: [HLS 200-111]  Elapsed time: 26.06 seconds; current allocated memory: 804.709 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'top' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'top/wt_i_V' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'top/kh_i_V' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'top/dmem_i_V' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'top/dmem_o_V' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'top/n_inputs_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'top/n_outputs_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'top/input_words_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'top/output_words_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'top/layer_mode_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'top/dmem_mode_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'top/width_mode_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'top/norm_mode_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'top' to 'ap_ctrl_hs'.
+WARNING: [RTGEN 206-101] Register 'kh_index_V' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'o_index_V' is power-on initialization.
+INFO: [SYN 201-210] Renamed object name 'top_mac_muladd_15ns_5ns_10ns_20_1' to 'top_mac_muladd_15bgk' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'top_mac_muladd_15bgk': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'top'.
+INFO: [HLS 200-111]  Elapsed time: 7.09 seconds; current allocated memory: 858.766 MB.
+INFO: [RTMG 210-278] Implementing memory 'a0_bin_conv_fixed_bucud_ram (RAM)' using block RAMs.
+INFO: [RTMG 210-278] Implementing memory 'a0_top_kh_mem_V_ram (RAM)' using block RAMs with power-on initialization.
+INFO: [RTMG 210-278] Implementing memory 'a0_top_wt_mem_V_0_ram (RAM)' using block RAMs with power-on initialization.
+INFO: [RTMG 210-278] Implementing memory 'a0_top_dmem_V_0_0_ram (RAM)' using block RAMs with power-on initialization.
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:04:32 ; elapsed = 00:04:49 . Memory (MB): peak = 1256.738 ; gain = 938.445 ; free physical = 178914 ; free virtual = 186204
+INFO: [SYSC 207-301] Generating SystemC RTL for top with prefix a0_.
+INFO: [VHDL 208-304] Generating VHDL RTL for top with prefix a0_.
+INFO: [VLOG 209-307] Generating Verilog RTL for top with prefix a0_.
+INFO: [IMPL 213-8] Exporting RTL as an IP in IP-XACT.
+
+
+****** Vivado v2017.1_sdx (64-bit)
+  **** SW Build 1915620 on Thu Jun 22 17:54:59 MDT 2017
+  **** IP Build 1908669 on Thu Jun 22 19:20:41 MDT 2017
+    ** Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+
+INFO: [Common 17-1460] Use of init.tcl in /scratch/safe/SDSoC/SDx/2017.1/Vivado/scripts/init.tcl is deprecated. Please use Vivado_init.tcl 
+Sourcing tcl script '/scratch/safe/SDSoC/SDx/2017.1/Vivado/scripts/init.tcl'
+16 Beta devices matching pattern found, 16 enabled.
+Loaded SDSoC Platform Tcl Library
+source run_ippack.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/scratch/safe/SDSoC/SDx/2017.1/Vivado/data/ip'.
+INFO: [Common 17-206] Exiting Vivado at Fri Jan  4 15:57:27 2019...
+INFO: [HLS 200-112] Total elapsed time: 324.34 seconds; peak allocated memory: 858.766 MB.
+/usr/bin/sed -i -e {s/xilinx\.com\/xidane/xilinx\.com\/xd/g} /var/tmp/tmp.yK7okjyWNi/_sds/vhls/top/solution/impl/ip/auxiliary.xml
+/mnt/icgridio2/safe/SDSoC/SDx/2017.1/bin/xsltproc  --output /var/tmp/tmp.yK7okjyWNi/_sds/.llvm/top.hlsmap1.xml  --stringparam P_CLKID 2  --stringparam P_HLS_TYPE hls   /mnt/icgridio2/safe/SDSoC/SDx/2017.1/scripts/xsd/xdHlsmapRenameAttr.xsl  /var/tmp/tmp.yK7okjyWNi/_sds/.llvm/top_auxiliary.xml
+/mnt/icgridio2/safe/SDSoC/SDx/2017.1/bin/xsltproc  --output /var/tmp/tmp.yK7okjyWNi/_sds/.llvm/top.hlsmap.xml  /mnt/icgridio2/safe/SDSoC/SDx/2017.1/scripts/xsd/xdHlsmapAdapter.xsl  /var/tmp/tmp.yK7okjyWNi/_sds/.llvm/top.hlsmap1.xml
+/mnt/icgridio2/safe/SDSoC/SDx/2017.1/bin/xsltproc    --output /var/tmp/tmp.yK7okjyWNi/_sds/.llvm/top.fcnmap.xml  /mnt/icgridio2/safe/SDSoC/SDx/2017.1/scripts/xsd/xdHlsmapAxi4.xsl  /var/tmp/tmp.yK7okjyWNi/_sds/.llvm/top.hlsmap.xml
+/mnt/icgridio2/safe/SDSoC/SDx/2017.1/bin/xsltproc  --output /var/tmp/tmp.yK7okjyWNi/_sds/.llvm/top_if.xml  --stringparam P_ADAPTER_COMPREF adapter_v3_0  /mnt/icgridio2/safe/SDSoC/SDx/2017.1/scripts/xsd/xdHlsAdapterComp.xsl  /var/tmp/tmp.yK7okjyWNi/_sds/.llvm/top.fcnmap.xml
+arm-none-eabi-objcopy --add-section .xddata=/var/tmp/tmp.yK7okjyWNi/_sds/swstubs/top.xml /var/tmp/tmp.yK7okjyWNi/_sds/swstubs/Accel.o
+arm-none-eabi-objcopy --add-section .xdasm=/var/tmp/tmp.yK7okjyWNi/_sds/.llvm/Accel.s /var/tmp/tmp.yK7okjyWNi/_sds/swstubs/Accel.o
+arm-none-eabi-g++ -E -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/utils -O3 -DHLS_COMPILE -DRUN_STANDALONE -Wall -Wno-unused-label -D __SDSCC__  -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard    -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/target/aarch32-none/include  -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado_HLS/include /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp -o /var/tmp/tmp.yK7okjyWNi/_sds/.pp/Accel.ii
+arm-none-eabi-objcopy --add-section .xdpp=/var/tmp/tmp.yK7okjyWNi/_sds/.pp/Accel.ii /var/tmp/tmp.yK7okjyWNi/_sds/swstubs/Accel.o
+arm-none-eabi-objcopy --add-section .xdfcnmap=/var/tmp/tmp.yK7okjyWNi/_sds/.llvm/top.fcnmap.xml /var/tmp/tmp.yK7okjyWNi/_sds/swstubs/Accel.o
+arm-none-eabi-objcopy --add-section .xdhlscore=/var/tmp/tmp.yK7okjyWNi/_sds/vhls/top/solution/impl/ip/xilinx_com_hls_top_1_0.zip /var/tmp/tmp.yK7okjyWNi/_sds/swstubs/Accel.o
+arm-none-eabi-objcopy --add-section .xdif=/var/tmp/tmp.yK7okjyWNi/_sds/.llvm/top_if.xml /var/tmp/tmp.yK7okjyWNi/_sds/swstubs/Accel.o
+sds++ log file saved as /var/tmp/tmp.yK7okjyWNi/_sds/reports/sds_Accel.log
+sds++ completed at Fri Jan 04 15:57:52 EST 2019

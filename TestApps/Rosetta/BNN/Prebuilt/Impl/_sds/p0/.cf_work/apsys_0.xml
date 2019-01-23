@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<cf:model cf:cpu="cortex_a9" cf:partition="0" cf:prefix="_p0_" cf:name="top" xd:type="design" xmlns:xd="http://www.xilinx.com/xd" xmlns:cf="http://www.xilinx.com/connections">
+  <cf:block cf:name="hwblk_top">
+    <cf:port cf:name="cmd_top" cf:portType="stream" cf:direction="in"/>
+    <cf:port cf:name="wt_i_V" cf:portType="stream" cf:direction="in"/>
+    <cf:port cf:name="kh_i_V" cf:portType="stream" cf:direction="in"/>
+    <cf:port cf:name="dmem_i_V" cf:portType="stream" cf:direction="in"/>
+    <cf:port cf:name="dmem_o_V" cf:portType="stream" cf:direction="out"/>
+    <cf:port cf:name="n_inputs_V" cf:portType="stream" cf:direction="in"/>
+    <cf:port cf:name="n_outputs_V" cf:portType="stream" cf:direction="in"/>
+    <cf:port cf:name="input_words_V" cf:portType="stream" cf:direction="in"/>
+    <cf:port cf:name="output_words_V" cf:portType="stream" cf:direction="in"/>
+    <cf:port cf:name="layer_mode_V" cf:portType="stream" cf:direction="in"/>
+    <cf:port cf:name="dmem_mode_V" cf:portType="stream" cf:direction="in"/>
+    <cf:port cf:name="width_mode_V" cf:portType="stream" cf:direction="in"/>
+    <cf:port cf:name="norm_mode_V" cf:portType="stream" cf:direction="in"/>
+  </cf:block>
+  <cf:block cf:name="swblk_top">
+    <cf:port cf:name="cmd_top" cf:portType="stream" cf:direction="out"/>
+    <cf:port cf:name="wt_i_V" cf:portType="stream" cf:direction="out"/>
+    <cf:port cf:name="kh_i_V" cf:portType="stream" cf:direction="out"/>
+    <cf:port cf:name="dmem_i_V" cf:portType="stream" cf:direction="out"/>
+    <cf:port cf:name="dmem_o_V" cf:portType="stream" cf:direction="in"/>
+    <cf:port cf:name="n_inputs_V" cf:portType="stream" cf:direction="out"/>
+    <cf:port cf:name="n_outputs_V" cf:portType="stream" cf:direction="out"/>
+    <cf:port cf:name="input_words_V" cf:portType="stream" cf:direction="out"/>
+    <cf:port cf:name="output_words_V" cf:portType="stream" cf:direction="out"/>
+    <cf:port cf:name="layer_mode_V" cf:portType="stream" cf:direction="out"/>
+    <cf:port cf:name="dmem_mode_V" cf:portType="stream" cf:direction="out"/>
+    <cf:port cf:name="width_mode_V" cf:portType="stream" cf:direction="out"/>
+    <cf:port cf:name="norm_mode_V" cf:portType="stream" cf:direction="out"/>
+  </cf:block>
+  <cf:comp cf:name="dm_0" xd:componentRef="axi_dma" xd:clockId="2"/>
+  <cf:comp cf:name="dm_1" xd:componentRef="axi_dma" xd:clockId="2"/>
+  <cf:comp cf:name="dm_2" xd:componentRef="axi_dma" xd:clockId="2"/>
+  <cf:comp cf:name="dm_3" xd:componentRef="axi_dma" xd:clockId="2"/>
+  <cf:comp cf:name="pynq" xd:componentRef="pynq" xd:clockId="2"/>
+  <cf:comp cf:name="top_1" xd:componentRef="top" xd:clockId="2"/>
+  <cf:instance cf:name="hwinst_top_1" cf:blockName="hwblk_top" cf:compName="top_1">
+    <cf:portMap cf:blockPort="cmd_top" cf:compPort="ap_ctrl" xd:register="0x8"/>
+    <cf:portMap cf:blockPort="wt_i_V" cf:compPort="wt_i_V" xd:paddedWidth="64"/>
+    <cf:portMap cf:blockPort="kh_i_V" cf:compPort="kh_i_V" xd:paddedWidth="64"/>
+    <cf:portMap cf:blockPort="dmem_i_V" cf:compPort="dmem_i_V" xd:paddedWidth="64"/>
+    <cf:portMap cf:blockPort="dmem_o_V" cf:compPort="dmem_o_V" xd:paddedWidth="64"/>
+    <cf:portMap cf:blockPort="n_inputs_V" cf:compPort="n_inputs_V" xd:paddedWidth="16" xd:register="0xC"/>
+    <cf:portMap cf:blockPort="n_outputs_V" cf:compPort="n_outputs_V" xd:paddedWidth="16" xd:register="0x10"/>
+    <cf:portMap cf:blockPort="input_words_V" cf:compPort="input_words_V" xd:paddedWidth="16" xd:register="0x14"/>
+    <cf:portMap cf:blockPort="output_words_V" cf:compPort="output_words_V" xd:paddedWidth="16" xd:register="0x18"/>
+    <cf:portMap cf:blockPort="layer_mode_V" cf:compPort="layer_mode_V" xd:paddedWidth="8" xd:register="0x1C"/>
+    <cf:portMap cf:blockPort="dmem_mode_V" cf:compPort="dmem_mode_V" xd:paddedWidth="8" xd:register="0x20"/>
+    <cf:portMap cf:blockPort="width_mode_V" cf:compPort="width_mode_V" xd:paddedWidth="8" xd:register="0x24"/>
+    <cf:portMap cf:blockPort="norm_mode_V" cf:compPort="norm_mode_V" xd:paddedWidth="8" xd:register="0x28"/>
+  </cf:instance>
+  <cf:instance cf:name="swinst_top_1" cf:blockName="swblk_top" cf:compName="pynq">
+    <cf:portMap cf:blockPort="cmd_top" cf:compPort="processing_system7_0_M_AXI_GP0"/>
+    <cf:portMap cf:blockPort="wt_i_V" cf:compPort="processing_system7_0_S_AXI_ACP"/>
+    <cf:portMap cf:blockPort="kh_i_V" cf:compPort="processing_system7_0_S_AXI_ACP"/>
+    <cf:portMap cf:blockPort="dmem_i_V" cf:compPort="processing_system7_0_S_AXI_ACP"/>
+    <cf:portMap cf:blockPort="dmem_o_V" cf:compPort="processing_system7_0_S_AXI_ACP"/>
+    <cf:portMap cf:blockPort="n_inputs_V" cf:compPort="processing_system7_0_M_AXI_GP0"/>
+    <cf:portMap cf:blockPort="n_outputs_V" cf:compPort="processing_system7_0_M_AXI_GP0"/>
+    <cf:portMap cf:blockPort="input_words_V" cf:compPort="processing_system7_0_M_AXI_GP0"/>
+    <cf:portMap cf:blockPort="output_words_V" cf:compPort="processing_system7_0_M_AXI_GP0"/>
+    <cf:portMap cf:blockPort="layer_mode_V" cf:compPort="processing_system7_0_M_AXI_GP0"/>
+    <cf:portMap cf:blockPort="dmem_mode_V" cf:compPort="processing_system7_0_M_AXI_GP0"/>
+    <cf:portMap cf:blockPort="width_mode_V" cf:compPort="processing_system7_0_M_AXI_GP0"/>
+    <cf:portMap cf:blockPort="norm_mode_V" cf:compPort="processing_system7_0_M_AXI_GP0"/>
+  </cf:instance>
+  <cf:connection cf:srcInst="swinst_top_1" cf:srcPort="cmd_top" cf:dstInst="hwinst_top_1" cf:dstPort="cmd_top">
+    <cf:dataMover cf:compName="pynq" cf:softwareLib="axi_lite"/>
+  </cf:connection>
+  <cf:connection cf:srcInst="swinst_top_1" cf:srcPort="wt_i_V" cf:dstInst="hwinst_top_1" cf:dstPort="wt_i_V">
+    <cf:dataMover cf:compName="dm_0" cf:softwareLib="axi_dma_simple"/>
+  </cf:connection>
+  <cf:connection cf:srcInst="swinst_top_1" cf:srcPort="kh_i_V" cf:dstInst="hwinst_top_1" cf:dstPort="kh_i_V">
+    <cf:dataMover cf:compName="dm_1" cf:softwareLib="axi_dma_simple"/>
+  </cf:connection>
+  <cf:connection cf:srcInst="swinst_top_1" cf:srcPort="dmem_i_V" cf:dstInst="hwinst_top_1" cf:dstPort="dmem_i_V">
+    <cf:dataMover cf:compName="dm_2" cf:softwareLib="axi_dma_simple"/>
+  </cf:connection>
+  <cf:connection cf:srcInst="hwinst_top_1" cf:srcPort="dmem_o_V" cf:dstInst="swinst_top_1" cf:dstPort="dmem_o_V">
+    <cf:dataMover cf:compName="dm_3" cf:softwareLib="axi_dma_simple"/>
+  </cf:connection>
+  <cf:connection cf:srcInst="swinst_top_1" cf:srcPort="n_inputs_V" cf:dstInst="hwinst_top_1" cf:dstPort="n_inputs_V">
+    <cf:dataMover cf:compName="pynq" cf:softwareLib="axi_lite"/>
+  </cf:connection>
+  <cf:connection cf:srcInst="swinst_top_1" cf:srcPort="n_outputs_V" cf:dstInst="hwinst_top_1" cf:dstPort="n_outputs_V">
+    <cf:dataMover cf:compName="pynq" cf:softwareLib="axi_lite"/>
+  </cf:connection>
+  <cf:connection cf:srcInst="swinst_top_1" cf:srcPort="input_words_V" cf:dstInst="hwinst_top_1" cf:dstPort="input_words_V">
+    <cf:dataMover cf:compName="pynq" cf:softwareLib="axi_lite"/>
+  </cf:connection>
+  <cf:connection cf:srcInst="swinst_top_1" cf:srcPort="output_words_V" cf:dstInst="hwinst_top_1" cf:dstPort="output_words_V">
+    <cf:dataMover cf:compName="pynq" cf:softwareLib="axi_lite"/>
+  </cf:connection>
+  <cf:connection cf:srcInst="swinst_top_1" cf:srcPort="layer_mode_V" cf:dstInst="hwinst_top_1" cf:dstPort="layer_mode_V">
+    <cf:dataMover cf:compName="pynq" cf:softwareLib="axi_lite"/>
+  </cf:connection>
+  <cf:connection cf:srcInst="swinst_top_1" cf:srcPort="dmem_mode_V" cf:dstInst="hwinst_top_1" cf:dstPort="dmem_mode_V">
+    <cf:dataMover cf:compName="pynq" cf:softwareLib="axi_lite"/>
+  </cf:connection>
+  <cf:connection cf:srcInst="swinst_top_1" cf:srcPort="width_mode_V" cf:dstInst="hwinst_top_1" cf:dstPort="width_mode_V">
+    <cf:dataMover cf:compName="pynq" cf:softwareLib="axi_lite"/>
+  </cf:connection>
+  <cf:connection cf:srcInst="swinst_top_1" cf:srcPort="norm_mode_V" cf:dstInst="hwinst_top_1" cf:dstPort="norm_mode_V">
+    <cf:dataMover cf:compName="pynq" cf:softwareLib="axi_lite"/>
+  </cf:connection>
+</cf:model>

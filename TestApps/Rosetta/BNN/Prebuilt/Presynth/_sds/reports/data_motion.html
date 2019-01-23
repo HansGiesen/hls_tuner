@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    table, th, td
+    {
+      border-collapse:collapse;
+      border:1px solid black;
+    }
+    th, td
+    {
+      padding:5px;
+    }
+    p
+    {
+      font-size:200%
+    }
+  </style>
+  <title> Data Motion Network Report </title>
+</head>
+<body>
+<p>Partition 0</p>
+<table>
+<caption><b><font size="5">Data Motion Network</font></b></caption>
+<tr>
+<th>Accelerator</th>
+<th>Argument</th>
+<th>IP Port</th>
+<th>Direction</th>
+<th>Declared Size(bytes)</th>
+<th>Pragmas</th>
+<th>Connection</th>
+</tr>
+<tr>
+<td>top_1</td>
+<td>wt_i</td>
+<td>wt_i_V</td>
+<td>IN</td>
+<td>4682*8</td>
+<td><ul>
+<li>mem_attribute:PHYSICAL_CONTIGUOUS</li>
+</ul>
+</td>
+<td>processing_system7_0_S_AXI_ACP:AXIDMA_SIMPLE</td>
+</tr>
+<td></td>
+<td>kh_i</td>
+<td>kh_i_V</td>
+<td>IN</td>
+<td>64*8</td>
+<td><ul>
+<li>mem_attribute:PHYSICAL_CONTIGUOUS</li>
+</ul>
+</td>
+<td>processing_system7_0_S_AXI_ACP:AXIDMA_SIMPLE</td>
+</tr>
+<td></td>
+<td>dmem_i</td>
+<td>dmem_i_V</td>
+<td>IN</td>
+<td>2048*8</td>
+<td><ul>
+<li>length:(input_words)</li>
+<li>mem_attribute:PHYSICAL_CONTIGUOUS</li>
+</ul>
+</td>
+<td>processing_system7_0_S_AXI_ACP:AXIDMA_SIMPLE</td>
+</tr>
+<td></td>
+<td>dmem_o</td>
+<td>dmem_o_V</td>
+<td>OUT</td>
+<td>128*8</td>
+<td><ul>
+<li>length:(output_words)</li>
+<li>mem_attribute:PHYSICAL_CONTIGUOUS</li>
+</ul>
+</td>
+<td>processing_system7_0_S_AXI_ACP:AXIDMA_SIMPLE</td>
+</tr>
+<td></td>
+<td>n_inputs</td>
+<td>n_inputs_V</td>
+<td>IN</td>
+<td>2</td>
+<td><ul>
+</ul>
+</td>
+<td>processing_system7_0_M_AXI_GP0:AXILITE:0xC</td>
+</tr>
+<td></td>
+<td>n_outputs</td>
+<td>n_outputs_V</td>
+<td>IN</td>
+<td>2</td>
+<td><ul>
+</ul>
+</td>
+<td>processing_system7_0_M_AXI_GP0:AXILITE:0x10</td>
+</tr>
+<td></td>
+<td>input_words</td>
+<td>input_words_V</td>
+<td>IN</td>
+<td>2</td>
+<td><ul>
+</ul>
+</td>
+<td>processing_system7_0_M_AXI_GP0:AXILITE:0x14</td>
+</tr>
+<td></td>
+<td>output_words</td>
+<td>output_words_V</td>
+<td>IN</td>
+<td>2</td>
+<td><ul>
+</ul>
+</td>
+<td>processing_system7_0_M_AXI_GP0:AXILITE:0x18</td>
+</tr>
+<td></td>
+<td>layer_mode</td>
+<td>layer_mode_V</td>
+<td>IN</td>
+<td>1</td>
+<td><ul>
+</ul>
+</td>
+<td>processing_system7_0_M_AXI_GP0:AXILITE:0x1C</td>
+</tr>
+<td></td>
+<td>dmem_mode</td>
+<td>dmem_mode_V</td>
+<td>IN</td>
+<td>1</td>
+<td><ul>
+</ul>
+</td>
+<td>processing_system7_0_M_AXI_GP0:AXILITE:0x20</td>
+</tr>
+<td></td>
+<td>width_mode</td>
+<td>width_mode_V</td>
+<td>IN</td>
+<td>1</td>
+<td><ul>
+</ul>
+</td>
+<td>processing_system7_0_M_AXI_GP0:AXILITE:0x24</td>
+</tr>
+<td></td>
+<td>norm_mode</td>
+<td>norm_mode_V</td>
+<td>IN</td>
+<td>1</td>
+<td><ul>
+</ul>
+</td>
+<td>processing_system7_0_M_AXI_GP0:AXILITE:0x28</td>
+</tr>
+</table>
+
+<table>
+<caption><b><font size="5">Accelerator Callsites</font></b></caption>
+<tr>
+<th>Accelerator</th>
+<th>Callsite</th>
+<th>IP Port</th>
+<th>Transfer Size(bytes)</th>
+<th>Paged or Contiguous</th>
+<th>Datamover Setup Time(CPU cycles)</th>
+<th>Transfer Time(CPU cycles)</th>
+</tr>
+<tr>
+<td>top_1</td>
+<td>AccelSchedule.cpp:123:5</td>
+<td>wt_i_V</td>
+<td>37456</td>
+<td>PHYSICAL_CONTIGUOUS</td>
+<td>1032</td>
+<td>63568</td>
+</tr>
+<td></td>
+<td></td>
+<td>kh_i_V</td>
+<td>512</td>
+<td>PHYSICAL_CONTIGUOUS</td>
+<td>1014</td>
+<td>1984</td>
+</tr>
+<td></td>
+<td></td>
+<td>dmem_i_V</td>
+<td>(input_words) * 8</td>
+<td>PHYSICAL_CONTIGUOUS</td>
+<td>1028</td>
+<td>28440</td>
+</tr>
+<td></td>
+<td></td>
+<td>dmem_o_V</td>
+<td>(output_words) * 8</td>
+<td>PHYSICAL_CONTIGUOUS</td>
+<td>1012</td>
+<td>2852</td>
+</tr>
+<td></td>
+<td></td>
+<td>n_inputs_V</td>
+<td>2</td>
+<td>contiguous</td>
+<td>0</td>
+<td>6</td>
+</tr>
+<td></td>
+<td></td>
+<td>n_outputs_V</td>
+<td>2</td>
+<td>contiguous</td>
+<td>0</td>
+<td>6</td>
+</tr>
+<td></td>
+<td></td>
+<td>input_words_V</td>
+<td>2</td>
+<td>contiguous</td>
+<td>0</td>
+<td>6</td>
+</tr>
+<td></td>
+<td></td>
+<td>output_words_V</td>
+<td>2</td>
+<td>contiguous</td>
+<td>0</td>
+<td>6</td>
+</tr>
+<td></td>
+<td></td>
+<td>layer_mode_V</td>
+<td>1</td>
+<td>contiguous</td>
+<td>0</td>
+<td>3</td>
+</tr>
+<td></td>
+<td></td>
+<td>dmem_mode_V</td>
+<td>1</td>
+<td>contiguous</td>
+<td>0</td>
+<td>3</td>
+</tr>
+<td></td>
+<td></td>
+<td>width_mode_V</td>
+<td>1</td>
+<td>contiguous</td>
+<td>0</td>
+<td>3</td>
+</tr>
+<td></td>
+<td></td>
+<td>norm_mode_V</td>
+<td>1</td>
+<td>contiguous</td>
+<td>0</td>
+<td>3</td>
+</tr>
+</table>
+</body>
+</html>

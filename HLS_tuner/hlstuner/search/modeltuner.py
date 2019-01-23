@@ -84,6 +84,8 @@ class ModelDriver(DriverBase):
     """
     self.manipulator.normalize(cfg)
     hash = self.manipulator.hash_config(cfg)
+    if hash in self.results:
+      return self.results[hash].configuration
     return Configuration(hash = hash, data=cfg)
 
 
@@ -161,10 +163,8 @@ class ModelTuner(object):
 
     # Locate the optimum.
     for iter in range(ITERATIONS):
-
       # Request a new configuration to evaluate.
       desired_result = self.technique.desired_result()
-
       # Stop searching if the search technique does not suggest any configurations anymore.
       if desired_result == None:
         break
@@ -190,6 +190,8 @@ class ModelTuner(object):
       # Provide the best result to the driver, which shares it with interested search techniques.
       self.driver.set_best_result(best_result)
 
-    # Return the configuration associated with the best result.
-    return best_result.configuration
+    # Return the configuration associated with the best result.  We do not return a configuration object because there
+    # may already be another configuration object with the same parameters in the database.  Returning a new object
+    # with the same parameters may mess up code that expects the configuration to be unique.
+    return best_result.configuration.data
 

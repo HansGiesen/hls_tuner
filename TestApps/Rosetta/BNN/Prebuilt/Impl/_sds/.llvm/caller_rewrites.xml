@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<xd:XidanePass xd:num_rewrites="1" xmlns:xd="http://www.xilinx.com/xd">
+  <xd:caller xd:no="0" xd:file="/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/AccelSchedule.cpp" xd:rewrite="caller0.cfrewrite"/>
+</xd:XidanePass>

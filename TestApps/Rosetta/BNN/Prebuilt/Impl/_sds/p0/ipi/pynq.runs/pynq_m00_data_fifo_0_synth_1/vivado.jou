@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2017.1_sdx (64-bit)
+# SW Build 1915620 on Thu Jun 22 17:54:59 MDT 2017
+# IP Build 1908669 on Thu Jun 22 19:20:41 MDT 2017
+# Start of session at: Fri Jan  4 16:28:06 2019
+# Process ID: 142735
+# Current directory: /var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.runs/pynq_m00_data_fifo_0_synth_1
+# Command line: vivado -log pynq_m00_data_fifo_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source pynq_m00_data_fifo_0.tcl
+# Log file: /var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.runs/pynq_m00_data_fifo_0_synth_1/pynq_m00_data_fifo_0.vds
+# Journal file: /var/tmp/tmp.ad3h9wxxaq/_sds/p0/ipi/pynq.runs/pynq_m00_data_fifo_0_synth_1/vivado.jou
+#-----------------------------------------------------------
+source pynq_m00_data_fifo_0.tcl -notrace

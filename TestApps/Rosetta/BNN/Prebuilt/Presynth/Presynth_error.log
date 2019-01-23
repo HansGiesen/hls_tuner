@@ -1,0 +1,6 @@
+mv: inter-device move failed: '/scratch/local/tmp.8dOFgK23PS/_sds' to '/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Output/0004/Presynth/_sds'; unable to remove target: Directory not empty
+mv: inter-device move failed: '/scratch/local/tmp.8dOFgK23PS/.Xil' to '/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Output/0004/Presynth/.Xil'; unable to remove target: Directory not empty
+rmdir: failed to remove '/scratch/local/tmp.8dOFgK23PS': Directory not empty
+mv: inter-device move failed: '/scratch/local/tmp.XZ2A6xAjxX/_sds' to '/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Output/0004/Presynth/_sds'; unable to remove target: Directory not empty
+mv: inter-device move failed: '/scratch/local/tmp.XZ2A6xAjxX/.Xil' to '/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Output/0004/Presynth/.Xil'; unable to remove target: Directory not empty
+rmdir: failed to remove '/scratch/local/tmp.XZ2A6xAjxX': Directory not empty

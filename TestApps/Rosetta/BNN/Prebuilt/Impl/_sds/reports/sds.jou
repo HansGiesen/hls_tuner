@@ -1,0 +1,90 @@
+(c) Copyright 2012-2017 Xilinx, Inc. All Rights Reserved.
+#-----------------------------------------------------------
+# Tool version  : sds++ 2017.1 SW Build 1915620 on Jun 22 2017 18:00:35
+# Start time    : Fri Jan 04 16:00:06 EST 2019
+# Command line  : sds++ -sds-sys-config standalone -sds-pf /mnt/icgridio2/safe/giesen/HLS_tuner/1/Platforms/Vivado_2017.1/pynq -sds-proc a9_0 -sds-hw top /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp -clkid 2 -sds-end -maxjobs 4 -maxthreads 4 -dmclkid 2 -mno-boot-files -mno-bitstream -o BNN.elf accel_test_bnn.o Accel.o AccelSchedule.o AccelTest.o AccelPrint.o Dense.o InputConv.o Common.o Timer.o DataIO.o ParamIO.o
+# Log file      : /var/tmp/tmp.yK7okjyWNi/_sds/reports/sds.log
+# Journal file  : /var/tmp/tmp.yK7okjyWNi/_sds/reports/sds.jou
+# Report file   : /var/tmp/tmp.yK7okjyWNi/_sds/reports/sds.rpt
+#-----------------------------------------------------------
+
+# Analyzing object files
+arm-none-eabi-objcopy -O binary --set-section-flags .xdinfo=alloc --only-section=.xdinfo /var/tmp/tmp.yK7okjyWNi/accel_test_bnn.o /var/tmp/tmp.yK7okjyWNi/_sds/.data/xdinfo.xml
+arm-none-eabi-objcopy -O binary --set-section-flags .xddata=alloc --only-section=.xddata /var/tmp/tmp.yK7okjyWNi/accel_test_bnn.o /var/tmp/tmp.yK7okjyWNi/_sds/.data/xddata.xml
+arm-none-eabi-objcopy -O binary --set-section-flags .xdinfo=alloc --only-section=.xdinfo /var/tmp/tmp.yK7okjyWNi/Accel.o /var/tmp/tmp.yK7okjyWNi/_sds/.data/xdinfo.xml
+arm-none-eabi-objcopy -O binary --set-section-flags .xddata=alloc --only-section=.xddata /var/tmp/tmp.yK7okjyWNi/Accel.o /var/tmp/tmp.yK7okjyWNi/_sds/.data/top.xml
+arm-none-eabi-objcopy -O binary --set-section-flags .xdpp=alloc --only-section=.xdpp /var/tmp/tmp.yK7okjyWNi/Accel.o /var/tmp/tmp.yK7okjyWNi/_sds/.pp/Accel.ii
+arm-none-eabi-objcopy -O binary --set-section-flags .xdfcnmap=alloc --only-section=.xdfcnmap /var/tmp/tmp.yK7okjyWNi/Accel.o /var/tmp/tmp.yK7okjyWNi/_sds/.cdb/top.fcnmap.xml
+arm-none-eabi-objcopy -O binary --set-section-flags .xdhlscore=alloc --only-section=.xdhlscore /var/tmp/tmp.yK7okjyWNi/Accel.o /var/tmp/tmp.yK7okjyWNi/_sds/iprepo/repo/xilinx_com_hls_top_1_0/xilinx_com_hls_top_1_0.zip
+/usr/bin/unzip  -u -o /var/tmp/tmp.yK7okjyWNi/_sds/iprepo/repo/xilinx_com_hls_top_1_0/xilinx_com_hls_top_1_0.zip -d /var/tmp/tmp.yK7okjyWNi/_sds/iprepo/repo/xilinx_com_hls_top_1_0
+arm-none-eabi-objcopy -O binary --set-section-flags .xdif=alloc --only-section=.xdif /var/tmp/tmp.yK7okjyWNi/Accel.o /var/tmp/tmp.yK7okjyWNi/_sds/.cdb/top_if.xml
+arm-none-eabi-objcopy -O binary --set-section-flags .xdinfo=alloc --only-section=.xdinfo /var/tmp/tmp.yK7okjyWNi/AccelSchedule.o /var/tmp/tmp.yK7okjyWNi/_sds/.data/xdinfo.xml
+arm-none-eabi-objcopy -O binary --set-section-flags .xddata=alloc --only-section=.xddata /var/tmp/tmp.yK7okjyWNi/AccelSchedule.o /var/tmp/tmp.yK7okjyWNi/_sds/.data/xddata.xml
+arm-none-eabi-objcopy -O binary --set-section-flags .xdinfo=alloc --only-section=.xdinfo /var/tmp/tmp.yK7okjyWNi/AccelTest.o /var/tmp/tmp.yK7okjyWNi/_sds/.data/xdinfo.xml
+arm-none-eabi-objcopy -O binary --set-section-flags .xddata=alloc --only-section=.xddata /var/tmp/tmp.yK7okjyWNi/AccelTest.o /var/tmp/tmp.yK7okjyWNi/_sds/.data/xddata.xml
+arm-none-eabi-objcopy -O binary --set-section-flags .xdinfo=alloc --only-section=.xdinfo /var/tmp/tmp.yK7okjyWNi/AccelPrint.o /var/tmp/tmp.yK7okjyWNi/_sds/.data/xdinfo.xml
+arm-none-eabi-objcopy -O binary --set-section-flags .xddata=alloc --only-section=.xddata /var/tmp/tmp.yK7okjyWNi/AccelPrint.o /var/tmp/tmp.yK7okjyWNi/_sds/.data/xddata.xml
+arm-none-eabi-objcopy -O binary --set-section-flags .xdinfo=alloc --only-section=.xdinfo /var/tmp/tmp.yK7okjyWNi/Dense.o /var/tmp/tmp.yK7okjyWNi/_sds/.data/xdinfo.xml
+arm-none-eabi-objcopy -O binary --set-section-flags .xddata=alloc --only-section=.xddata /var/tmp/tmp.yK7okjyWNi/Dense.o /var/tmp/tmp.yK7okjyWNi/_sds/.data/xddata.xml
+arm-none-eabi-objcopy -O binary --set-section-flags .xdinfo=alloc --only-section=.xdinfo /var/tmp/tmp.yK7okjyWNi/InputConv.o /var/tmp/tmp.yK7okjyWNi/_sds/.data/xdinfo.xml
+arm-none-eabi-objcopy -O binary --set-section-flags .xddata=alloc --only-section=.xddata /var/tmp/tmp.yK7okjyWNi/InputConv.o /var/tmp/tmp.yK7okjyWNi/_sds/.data/xddata.xml
+arm-none-eabi-objcopy -O binary --set-section-flags .xdinfo=alloc --only-section=.xdinfo /var/tmp/tmp.yK7okjyWNi/Common.o /var/tmp/tmp.yK7okjyWNi/_sds/.data/xdinfo.xml
+arm-none-eabi-objcopy -O binary --set-section-flags .xddata=alloc --only-section=.xddata /var/tmp/tmp.yK7okjyWNi/Common.o /var/tmp/tmp.yK7okjyWNi/_sds/.data/xddata.xml
+arm-none-eabi-objcopy -O binary --set-section-flags .xdinfo=alloc --only-section=.xdinfo /var/tmp/tmp.yK7okjyWNi/Timer.o /var/tmp/tmp.yK7okjyWNi/_sds/.data/xdinfo.xml
+arm-none-eabi-objcopy -O binary --set-section-flags .xddata=alloc --only-section=.xddata /var/tmp/tmp.yK7okjyWNi/Timer.o /var/tmp/tmp.yK7okjyWNi/_sds/.data/xddata.xml
+arm-none-eabi-objcopy -O binary --set-section-flags .xdinfo=alloc --only-section=.xdinfo /var/tmp/tmp.yK7okjyWNi/DataIO.o /var/tmp/tmp.yK7okjyWNi/_sds/.data/xdinfo.xml
+arm-none-eabi-objcopy -O binary --set-section-flags .xddata=alloc --only-section=.xddata /var/tmp/tmp.yK7okjyWNi/DataIO.o /var/tmp/tmp.yK7okjyWNi/_sds/.data/xddata.xml
+arm-none-eabi-objcopy -O binary --set-section-flags .xdinfo=alloc --only-section=.xdinfo /var/tmp/tmp.yK7okjyWNi/ParamIO.o /var/tmp/tmp.yK7okjyWNi/_sds/.data/xdinfo.xml
+arm-none-eabi-objcopy -O binary --set-section-flags .xddata=alloc --only-section=.xddata /var/tmp/tmp.yK7okjyWNi/ParamIO.o /var/tmp/tmp.yK7okjyWNi/_sds/.data/xddata.xml
+/mnt/icgridio2/safe/SDSoC/SDx/2017.1/bin/build_xd_ip_db  -sds-pf /mnt/icgridio2/safe/giesen/HLS_tuner/1/Platforms/Vivado_2017.1/pynq/hw/pynq.hpfm  -ip /var/tmp/tmp.yK7okjyWNi/_sds/iprepo/repo/xilinx_com_hls_top_1_0  -o /var/tmp/tmp.yK7okjyWNi/_sds/.cdb/xd_ip_db.xml  
+# Generating data motion network
+/mnt/icgridio2/safe/SDSoC/SDx/2017.1/bin/llvm-link -o /var/tmp/tmp.yK7okjyWNi/_sds/.llvm/sds_all.o /var/tmp/tmp.yK7okjyWNi/_sds/.llvm/accel_test_bnn.s /var/tmp/tmp.yK7okjyWNi/_sds/.llvm/Accel.s /var/tmp/tmp.yK7okjyWNi/_sds/.llvm/AccelSchedule.s /var/tmp/tmp.yK7okjyWNi/_sds/.llvm/AccelTest.s /var/tmp/tmp.yK7okjyWNi/_sds/.llvm/AccelPrint.s /var/tmp/tmp.yK7okjyWNi/_sds/.llvm/Dense.s /var/tmp/tmp.yK7okjyWNi/_sds/.llvm/InputConv.s /var/tmp/tmp.yK7okjyWNi/_sds/.llvm/Common.s /var/tmp/tmp.yK7okjyWNi/_sds/.llvm/Timer.s /var/tmp/tmp.yK7okjyWNi/_sds/.llvm/DataIO.s /var/tmp/tmp.yK7okjyWNi/_sds/.llvm/ParamIO.s
+cd /var/tmp/tmp.yK7okjyWNi/_sds/.llvm
+cd /var/tmp/tmp.yK7okjyWNi/_sds/.llvm
+/mnt/icgridio2/safe/SDSoC/SDx/2017.1/bin/XidanePass  --platform pynq  --dmclkid 2  --repo /var/tmp/tmp.yK7okjyWNi/_sds/.cdb/xd_ip_db.xml  --dmdb /mnt/icgridio2/safe/SDSoC/SDx/2017.1/data/DM.db   -os standalone -processor cortex-a9  
+cd /var/tmp/tmp.yK7okjyWNi
+cd /var/tmp/tmp.yK7okjyWNi
+# Creating block diagram (BD), address map, port information and device registration for partition 0 (this may take a few minutes)
+/mnt/icgridio2/safe/SDSoC/SDx/2017.1/bin/system_linker -cf-input /var/tmp/tmp.yK7okjyWNi/_sds/.llvm/apsys_0.xml -cf-output-dir _sds/p0 -ip-db /var/tmp/tmp.yK7okjyWNi/_sds/.cdb/xd_ip_db.xml -ip-repo /var/tmp/tmp.yK7okjyWNi/_sds/iprepo/repo -sds-pf /mnt/icgridio2/safe/giesen/HLS_tuner/1/Platforms/Vivado_2017.1/pynq:standalone  -sds-sys-config standalone -sds-proc a9_0 -software-only   -maxjobs 4 -maxthreads 4 -target-os standalone -trace-buffer 1024 -sdsoc 
+# Software tracing enabled
+# Rewrite caller functions
+cd /var/tmp/tmp.yK7okjyWNi/_sds/swstubs
+arm-none-eabi-objcopy -O binary --set-section-flags .xdinfo=alloc --only-section=.xdinfo /var/tmp/tmp.yK7okjyWNi/AccelSchedule.o /var/tmp/tmp.yK7okjyWNi/_sds/.data/xdinfo.xml
+arm-none-eabi-objcopy -O binary --set-section-flags .xddata=alloc --only-section=.xddata /var/tmp/tmp.yK7okjyWNi/AccelSchedule.o /var/tmp/tmp.yK7okjyWNi/_sds/.data/xddata.xml
+arm-none-eabi-objcopy -O binary --set-section-flags .xdsdata=alloc --only-section=.xdsdata /var/tmp/tmp.yK7okjyWNi/AccelSchedule.o /var/tmp/tmp.yK7okjyWNi/_sds/.data/AccelSchedule.o.xml
+/mnt/icgridio2/safe/SDSoC/SDx/2017.1/bin/caller_rewrite  -rewrite /var/tmp/tmp.yK7okjyWNi/_sds/.llvm/caller0.cfrewrite  -o /var/tmp/tmp.yK7okjyWNi/_sds/swstubs/AccelSchedule.cpp  /var/tmp/tmp.yK7okjyWNi/_sds/swstubs/unix_AccelSchedule.cpp  --  -c  -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/utils -O3 -DHLS_COMPILE -DRUN_STANDALONE -Wall -Wno-unused-label -D __SDSCC__  -target arm-none-eabi -mcpu=cortex-a9 -mfpu=vfpv3 -O0 -g -w    -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/target/aarch32-none/include  -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado_HLS/include   -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/include/c++/6.2.1 -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/include/c++/6.2.1/arm-none-eabi -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/include/c++/6.2.1/backward -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/6.2.1/include -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/6.2.1/include-fixed -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/include -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/libc/usr/include  -std=c++11
+# Compile caller rewrite file /var/tmp/tmp.yK7okjyWNi/_sds/swstubs/AccelSchedule.cpp
+arm-none-eabi-g++  -c /var/tmp/tmp.yK7okjyWNi/_sds/swstubs/AccelSchedule.cpp  -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/utils -O3 -DHLS_COMPILE -DRUN_STANDALONE -Wall -Wno-unused-label -D __SDSCC__  -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard    -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/target/aarch32-none/include  -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado_HLS/include  -o /var/tmp/tmp.yK7okjyWNi/_sds/swstubs/AccelSchedule.o
+cd /var/tmp/tmp.yK7okjyWNi
+# Prepare hardware access API functions
+cd /var/tmp/tmp.yK7okjyWNi
+# Create accelerator stub functions
+cd /var/tmp/tmp.yK7okjyWNi/_sds/swstubs
+/mnt/icgridio2/safe/SDSoC/SDx/2017.1/bin/stub_gen  -func "top" -stub /var/tmp/tmp.yK7okjyWNi/_sds/.llvm/top.cfrewrite  -o /var/tmp/tmp.yK7okjyWNi/_sds/swstubs/Accel.cpp  /var/tmp/tmp.yK7okjyWNi/_sds/swstubs/unix_Accel.cpp  --  -c  -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/utils -O3 -DHLS_COMPILE -DRUN_STANDALONE -Wall -Wno-unused-label -D __SDSCC__  -target arm-none-eabi -mcpu=cortex-a9 -mfpu=vfpv3 -O0 -g -w    -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/target/aarch32-none/include  -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado_HLS/include   -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/include/c++/6.2.1 -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/include/c++/6.2.1/arm-none-eabi -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/include/c++/6.2.1/backward -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/6.2.1/include -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/6.2.1/include-fixed -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/include -I/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/gnu/aarch32/lin/gcc-arm-none-eabi/arm-none-eabi/libc/usr/include  -std=c++11
+cd /var/tmp/tmp.yK7okjyWNi
+cd /var/tmp/tmp.yK7okjyWNi/_sds/swstubs
+# Compile hardware access API functions
+arm-none-eabi-gcc   -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard    -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/target/aarch32-none/include  -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado_HLS/include -c  /var/tmp/tmp.yK7okjyWNi/_sds/swstubs/portinfo.c
+arm-none-eabi-g++  -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard    -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/target/aarch32-none/include  -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado_HLS/include -c  /var/tmp/tmp.yK7okjyWNi/_sds/swstubs/cf_stub.c
+arm-none-eabi-ar crs /var/tmp/tmp.yK7okjyWNi/_sds/swstubs/libxlnk_stub.a /var/tmp/tmp.yK7okjyWNi/_sds/swstubs/portinfo.o /var/tmp/tmp.yK7okjyWNi/_sds/swstubs/cf_stub.o
+cd /var/tmp/tmp.yK7okjyWNi
+cd /var/tmp/tmp.yK7okjyWNi/_sds/swstubs
+# Compile accelerator stub functions
+arm-none-eabi-g++ -c Accel.cpp -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel -I/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/utils -O3 -DHLS_COMPILE -DRUN_STANDALONE -Wall -Wno-unused-label -D __SDSCC__  -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard    -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/target/aarch32-none/include  -I /mnt/icgridio2/safe/SDSoC/SDx/2017.1/Vivado_HLS/include -o Accel.o
+cd /var/tmp/tmp.yK7okjyWNi
+cd /var/tmp/tmp.yK7okjyWNi/_sds/swstubs
+arm-none-eabi-ar crs /var/tmp/tmp.yK7okjyWNi/_sds/swstubs/libBNN.a /var/tmp/tmp.yK7okjyWNi/_sds/swstubs/portinfo.o /var/tmp/tmp.yK7okjyWNi/_sds/swstubs/cf_stub.o /var/tmp/tmp.yK7okjyWNi/_sds/swstubs/Accel.o
+cd /var/tmp/tmp.yK7okjyWNi
+cd /var/tmp/tmp.yK7okjyWNi/_sds/swstubs/standalone_bsp
+/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/bin/hsi  -mode batch -notrace -quiet -source /var/tmp/tmp.yK7okjyWNi/_sds/swstubs/standalone_bsp/create_bsp.tcl
+# Create board support package library
+/mnt/icgridio2/safe/SDSoC/SDx/2017.1/SDK/bin/hsi  -mode batch -notrace -quiet -source /var/tmp/tmp.yK7okjyWNi/_sds/swstubs/standalone_bsp/create_bsp_post.tcl
+cd /var/tmp/tmp.yK7okjyWNi
+# Link application ELF file
+arm-none-eabi-g++ -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,--build-id=none -specs=/mnt/icgridio2/safe/SDSoC/SDx/2017.1/data/toolchain/aarch32-none.spec -Wl,-T -Wl,/mnt/icgridio2/safe/giesen/HLS_tuner/1/Platforms/Vivado_2017.1/pynq/sw/standalone/lscript.ld  /var/tmp/tmp.yK7okjyWNi/_sds/swstubs/Accel.o /var/tmp/tmp.yK7okjyWNi/accel_test_bnn.o /var/tmp/tmp.yK7okjyWNi/AccelTest.o /var/tmp/tmp.yK7okjyWNi/AccelPrint.o /var/tmp/tmp.yK7okjyWNi/Dense.o /var/tmp/tmp.yK7okjyWNi/InputConv.o /var/tmp/tmp.yK7okjyWNi/Common.o /var/tmp/tmp.yK7okjyWNi/Timer.o /var/tmp/tmp.yK7okjyWNi/DataIO.o /var/tmp/tmp.yK7okjyWNi/ParamIO.o /var/tmp/tmp.yK7okjyWNi/_sds/swstubs/AccelSchedule.o   -L /var/tmp/tmp.yK7okjyWNi/_sds/swstubs/standalone_bsp/ps7_cortexa9_0/lib  -L /mnt/icgridio2/safe/SDSoC/SDx/2017.1/target/aarch32-none/lib -L/var/tmp/tmp.yK7okjyWNi/_sds/swstubs -Wl,--start-group -lxilffs -lgcc -lc -lstdc++ -Wl,--end-group -Wl,--start-group   -lxilffs -lxil -lgcc -lc  -lsds_lib -lxlnk_stub -lgcc -lc -Wl,--end-group -o /var/tmp/tmp.yK7okjyWNi/_sds/swstubs/BNN.elf
+arm-none-eabi-objcopy -R .xdinfo -R .xddata -R .xdasm -R .xdfcnmap -R .xdhlscore -R .xdif -R .xdparams -R .xdcore -R .xdsdata -R .xdpp /var/tmp/tmp.yK7okjyWNi/_sds/swstubs/BNN.elf
+cd /var/tmp/tmp.yK7okjyWNi
+# Not creating bitstream due to the -mno-bitstream switch
+# Calling system_linker for partition 0
+/mnt/icgridio2/safe/SDSoC/SDx/2017.1/bin/system_linker -cf-input /var/tmp/tmp.yK7okjyWNi/_sds/.llvm/apsys_0.xml -cf-output-dir _sds/p0 -ip-db /var/tmp/tmp.yK7okjyWNi/_sds/.cdb/xd_ip_db.xml -ip-repo /var/tmp/tmp.yK7okjyWNi/_sds/iprepo/repo -sds-pf /mnt/icgridio2/safe/giesen/HLS_tuner/1/Platforms/Vivado_2017.1/pynq:standalone  -sds-sys-config standalone -sds-proc a9_0   -bit-name BNN.elf.bit   -maxjobs 4 -maxthreads 4 -target-os standalone -trace-buffer 1024 -mdev-no-swgen -mdev-no-xsd -sdsoc -sd-output-dir _sds/p0/sd_card -bit-binary -elf /var/tmp/tmp.yK7okjyWNi/_sds/swstubs/BNN.elf
+# sds++ completed at Fri Jan 04 16:03:25 EST 2019

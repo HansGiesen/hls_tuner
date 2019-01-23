@@ -1,0 +1,13 @@
+{
+	"file":	"/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/AccelSchedule.cpp",
+	"callers":	[{
+			"call":	"top",
+			"line":	123,
+			"repl":	"_p0_top_1_noasync"
+		}],
+	"parents":	[{
+			"function":	"run_accel_schedule",
+			"proto":	"void _p0_top_1_noasync(Word wt_i[4682], Word kh_i[64], Word dmem_i[2048], Word dmem_o[128], const Address n_inputs, const Address n_outputs, const Address input_words, const Address output_words, const ap_uint<3> layer_mode, const ap_uint<1> dmem_mode, const ap_uint<2> width_mode, const ap_uint<2> norm_mode);\n"
+		}],
+	"waits":	[]
+}

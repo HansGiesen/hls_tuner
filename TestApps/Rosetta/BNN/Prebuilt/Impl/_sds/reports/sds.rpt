@@ -1,0 +1,24 @@
+(c) Copyright 2012-2017 Xilinx, Inc. All Rights Reserved.
+#-----------------------------------------------------------
+# Tool version  : sds++ 2017.1 SW Build 1915620 on Jun 22 2017 18:00:35
+# Start time    : Fri Jan 04 16:00:06 EST 2019
+# Command line  : sds++ -sds-sys-config standalone -sds-pf /mnt/icgridio2/safe/giesen/HLS_tuner/1/Platforms/Vivado_2017.1/pynq -sds-proc a9_0 -sds-hw top /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp -clkid 2 -sds-end -maxjobs 4 -maxthreads 4 -dmclkid 2 -mno-boot-files -mno-bitstream -o BNN.elf accel_test_bnn.o Accel.o AccelSchedule.o AccelTest.o AccelPrint.o Dense.o InputConv.o Common.o Timer.o DataIO.o ParamIO.o
+# Log file      : /var/tmp/tmp.yK7okjyWNi/_sds/reports/sds.log
+# Journal file  : /var/tmp/tmp.yK7okjyWNi/_sds/reports/sds.jou
+# Report file   : /var/tmp/tmp.yK7okjyWNi/_sds/reports/sds.rpt
+#-----------------------------------------------------------
+
+-------------------
+Data Motion Network
+-------------------
+
+Data motion network report generated in /var/tmp/tmp.yK7okjyWNi/_sds/reports
+HTML file : /var/tmp/tmp.yK7okjyWNi/_sds/reports/data_motion.html
+
+-------------------
+Design Utilization
+-------------------
+
+  Partition 0
+  Utilization Summary : file not found : /var/tmp/tmp.yK7okjyWNi/_sds/p0/ipi/pynq.runs/impl_1/*_utilization_placed.rpt
+

@@ -1,0 +1,1519 @@
+
+
+================================================================
+== Vivado HLS Report for 'bin_dense'
+================================================================
+* Date:           Fri Jan  4 15:53:38 2019
+
+* Version:        2017.1 (Build 1846317 on Thu Jun 22 18:17:09 MDT 2017)
+* Project:        top
+* Solution:       solution
+* Product family: zynq
+* Target device:  xc7z020clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  10.00|      7.05|        2.70|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+---------+
+    |  Latency  |  Interval | Pipeline|
+    | min | max | min | max |   Type  |
+    +-----+-----+-----+-----+---------+
+    |   16|   79|   16|   79|   none  |
+    +-----+-----+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-----------------+-----+-----+----------+-----------+-----------+--------+----------+
+        |                 |  Latency  | Iteration|  Initiation Interval  |  Trip  |          |
+        |    Loop Name    | min | max |  Latency |  achieved |   target  |  Count | Pipelined|
+        +-----------------+-----+-----+----------+-----------+-----------+--------+----------+
+        |- LOOP_DENSE_O   |   15|   78|  15 ~ 78 |          -|          -|       1|    no    |
+        | + LOOP_DENSE_I  |    6|   69|         7|          1|          1| 1 ~ 64 |    yes   |
+        +-----------------+-----+-----+----------+-----------+-----------+--------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 7
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states: 16
+* Pipeline: 1
+  Pipeline-0: II = 1, D = 7, States = { 5 6 7 8 9 10 11 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+	3  / (!exitcond)
+3 --> 
+	4  / true
+4 --> 
+	5  / true
+5 --> 
+	12  / (!tmp_57)
+	6  / (tmp_57)
+6 --> 
+	7  / true
+7 --> 
+	8  / true
+8 --> 
+	9  / true
+9 --> 
+	10  / true
+10 --> 
+	11  / true
+11 --> 
+	5  / true
+12 --> 
+	13  / true
+13 --> 
+	14  / true
+14 --> 
+	15  / true
+15 --> 
+	16  / true
+16 --> 
+	2  / true
+* FSM state operations: 
+
+ <State 1>: 1.77ns
+ST_1: n_outputs_read (14)  [1/1] 0.00ns
+arrayctor.loop.preheader:0  %n_outputs_read = call i16 @_ssdm_op_Read.ap_auto.i16(i16 %n_outputs)
+
+ST_1: n_inputs_read (15)  [1/1] 0.00ns
+arrayctor.loop.preheader:1  %n_inputs_read = call i16 @_ssdm_op_Read.ap_auto.i16(i16 %n_inputs)
+
+ST_1: o_index_V_read (16)  [1/1] 0.00ns
+arrayctor.loop.preheader:2  %o_index_V_read = call i16 @_ssdm_op_Read.ap_auto.i16(i16 %o_index_V)
+
+ST_1: d_o_idx_V_read (17)  [1/1] 0.00ns
+arrayctor.loop.preheader:3  %d_o_idx_V_read = call i1 @_ssdm_op_Read.ap_auto.i1(i1 %d_o_idx_V)
+
+ST_1: d_i_idx_V_read (18)  [1/1] 0.00ns
+arrayctor.loop.preheader:4  %d_i_idx_V_read = call i1 @_ssdm_op_Read.ap_auto.i1(i1 %d_i_idx_V)
+
+ST_1: layer_type_V_read (19)  [1/1] 0.00ns
+arrayctor.loop.preheader:5  %layer_type_V_read = call i2 @_ssdm_op_Read.ap_auto.i2(i2 %layer_type_V)
+
+ST_1: tmp (20)  [1/1] 0.96ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:626
+arrayctor.loop.preheader:6  %tmp = icmp eq i2 %layer_type_V_read, -2
+
+ST_1: lhs_V (21)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:639
+arrayctor.loop.preheader:7  %lhs_V = zext i16 %o_index_V_read to i17
+
+ST_1: tmp_1147 (22)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:640
+arrayctor.loop.preheader:8  %tmp_1147 = trunc i16 %o_index_V_read to i6
+
+ST_1: sel_tmp (23)  [1/1] 0.93ns
+arrayctor.loop.preheader:9  %sel_tmp = xor i1 %d_o_idx_V_read, true
+
+ST_1: tmp_s (24)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:649
+arrayctor.loop.preheader:10  %tmp_s = zext i16 %n_inputs_read to i22
+
+ST_1: StgValue_28 (25)  [1/1] 1.77ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:637
+arrayctor.loop.preheader:11  br label %0
+
+
+ <State 2>: 5.33ns
+ST_2: p_Val2_7 (27)  [1/1] 0.00ns
+:0  %p_Val2_7 = phi i16 [ -16384, %arrayctor.loop.preheader ], [ %best_out_V_2, %._crit_edge149022 ]
+
+ST_2: p_Val2_s (28)  [1/1] 0.00ns
+:1  %p_Val2_s = phi i8 [ -1, %arrayctor.loop.preheader ], [ %prediction_V_2, %._crit_edge149022 ]
+
+ST_2: p_s (29)  [1/1] 0.00ns
+:2  %p_s = phi i16 [ 0, %arrayctor.loop.preheader ], [ %o_V, %._crit_edge149022 ]
+
+ST_2: phi_mul (30)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:649
+:3  %phi_mul = phi i22 [ 0, %arrayctor.loop.preheader ], [ %next_mul, %._crit_edge149022 ]
+
+ST_2: next_mul (31)  [1/1] 2.26ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:649
+:4  %next_mul = add i22 %phi_mul, %tmp_s
+
+ST_2: exitcond (32)  [1/1] 2.43ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:637
+:5  %exitcond = icmp eq i16 %p_s, %n_outputs_read
+
+ST_2: o_V (33)  [1/1] 2.08ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:637
+:6  %o_V = add i16 %p_s, 1
+
+ST_2: StgValue_36 (34)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:637
+:7  br i1 %exitcond, label %2, label %_ifconv
+
+ST_2: rhs_V (39)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:639
+_ifconv:3  %rhs_V = zext i16 %p_s to i17
+
+ST_2: tmp_54 (40)  [1/1] 2.08ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:637
+_ifconv:4  %tmp_54 = add i16 %o_index_V_read, %p_s
+
+ST_2: r_V (41)  [1/1] 2.08ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:639
+_ifconv:5  %r_V = add i17 %rhs_V, %lhs_V
+
+ST_2: tmp_55 (44)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:641
+_ifconv:8  %tmp_55 = call i10 @_ssdm_op_PartSelect.i10.i17.i32.i32(i17 %r_V, i32 7, i32 16)
+
+ST_2: tmp_56 (45)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:641
+_ifconv:9  %tmp_56 = zext i10 %tmp_55 to i32
+
+ST_2: tmp_1149 (46)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:637
+_ifconv:10  %tmp_1149 = call i1 @_ssdm_op_BitSelect.i1.i16.i32(i16 %tmp_54, i32 6)
+
+ST_2: dmem_0_0_V_addr (47)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:641
+_ifconv:11  %dmem_0_0_V_addr = getelementptr [1024 x i64]* %dmem_0_0_V, i32 0, i32 %tmp_56
+
+ST_2: dmem_0_1_V_addr (48)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:641
+_ifconv:12  %dmem_0_1_V_addr = getelementptr [1024 x i64]* %dmem_0_1_V, i32 0, i32 %tmp_56
+
+ST_2: dmem_1_0_V_addr (49)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:641
+_ifconv:13  %dmem_1_0_V_addr = getelementptr [1024 x i64]* %dmem_1_0_V, i32 0, i32 %tmp_56
+
+ST_2: dmem_1_1_V_addr (50)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:641
+_ifconv:14  %dmem_1_1_V_addr = getelementptr [1024 x i64]* %dmem_1_1_V, i32 0, i32 %tmp_56
+
+ST_2: dmem_0_1_V_load (53)  [2/2] 3.25ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:641
+_ifconv:17  %dmem_0_1_V_load = load i64* %dmem_0_1_V_addr, align 4
+
+ST_2: dmem_0_0_V_load (54)  [2/2] 3.25ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:641
+_ifconv:18  %dmem_0_0_V_load = load i64* %dmem_0_0_V_addr, align 4
+
+ST_2: tmp_52 (420)  [1/1] 0.96ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:720
+:0  %tmp_52 = icmp eq i2 %layer_type_V_read, -1
+
+ST_2: StgValue_50 (421)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:720
+:1  br i1 %tmp_52, label %3, label %._crit_edge1491
+
+ST_2: p_Result_9 (423)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:723
+:0  %p_Result_9 = call i64 @_ssdm_op_BitConcatenate.i64.i56.i8(i56 0, i8 %p_Val2_s)
+
+ST_2: dmem_0_0_V_addr_2 (424)  [1/1] 0.00ns
+:1  %dmem_0_0_V_addr_2 = getelementptr [1024 x i64]* %dmem_0_0_V, i32 0, i32 0
+
+ST_2: dmem_1_0_V_addr_2 (425)  [1/1] 0.00ns
+:2  %dmem_1_0_V_addr_2 = getelementptr [1024 x i64]* %dmem_1_0_V, i32 0, i32 0
+
+ST_2: StgValue_54 (426)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:724
+:3  br i1 %d_o_idx_V_read, label %branch1, label %branch0
+
+ST_2: StgValue_55 (428)  [1/1] 3.25ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:724
+branch0:0  store i64 %p_Result_9, i64* %dmem_0_0_V_addr_2, align 8
+
+ST_2: StgValue_56 (429)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:724
+branch0:1  br label %4
+
+ST_2: StgValue_57 (431)  [1/1] 3.25ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:724
+branch1:0  store i64 %p_Result_9, i64* %dmem_1_0_V_addr_2, align 8
+
+ST_2: StgValue_58 (432)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:724
+branch1:1  br label %4
+
+ST_2: StgValue_59 (434)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:725
+:0  br label %._crit_edge1491
+
+ST_2: StgValue_60 (436)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:726
+._crit_edge1491:0  ret void
+
+
+ <State 3>: 4.62ns
+ST_3: dmem_1_1_V_load (51)  [2/2] 3.25ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:641
+_ifconv:15  %dmem_1_1_V_load = load i64* %dmem_1_1_V_addr, align 4
+
+ST_3: dmem_1_0_V_load (52)  [2/2] 3.25ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:641
+_ifconv:16  %dmem_1_0_V_load = load i64* %dmem_1_0_V_addr, align 4
+
+ST_3: dmem_0_1_V_load (53)  [1/2] 3.25ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:641
+_ifconv:17  %dmem_0_1_V_load = load i64* %dmem_0_1_V_addr, align 4
+
+ST_3: dmem_0_0_V_load (54)  [1/2] 3.25ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:641
+_ifconv:18  %dmem_0_0_V_load = load i64* %dmem_0_0_V_addr, align 4
+
+ST_3: sel_tmp1 (55)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:637 (grouped into LUT with out node sel_tmp2)
+_ifconv:19  %sel_tmp1 = and i1 %tmp_1149, %sel_tmp
+
+ST_3: sel_tmp2 (56)  [1/1] 1.37ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:641 (out node of the LUT)
+_ifconv:20  %sel_tmp2 = select i1 %sel_tmp1, i64 %dmem_0_1_V_load, i64 %dmem_0_0_V_load
+
+
+ <State 4>: 5.99ns
+ST_4: StgValue_67 (36)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:637
+_ifconv:0  call void (...)* @_ssdm_op_SpecLoopName([13 x i8]* @p_str38) nounwind
+
+ST_4: tmp_53 (37)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:637
+_ifconv:1  %tmp_53 = call i32 (...)* @_ssdm_op_SpecRegionBegin([13 x i8]* @p_str38)
+
+ST_4: StgValue_69 (38)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:638
+_ifconv:2  call void (...)* @_ssdm_op_SpecLoopTripCount(i32 1, i32 1, i32 1, [1 x i8]* @p_str8) nounwind
+
+ST_4: tmp_1148 (42)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:640
+_ifconv:6  %tmp_1148 = trunc i16 %p_s to i6
+
+ST_4: o_offset_V (43)  [1/1] 1.83ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:640
+_ifconv:7  %o_offset_V = add i6 %tmp_1148, %tmp_1147
+
+ST_4: dmem_1_1_V_load (51)  [1/2] 3.25ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:641
+_ifconv:15  %dmem_1_1_V_load = load i64* %dmem_1_1_V_addr, align 4
+
+ST_4: dmem_1_0_V_load (52)  [1/2] 3.25ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:641
+_ifconv:16  %dmem_1_0_V_load = load i64* %dmem_1_0_V_addr, align 4
+
+ST_4: sel_tmp3 (57)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:637 (grouped into LUT with out node sel_tmp5)
+_ifconv:21  %sel_tmp3 = xor i1 %tmp_1149, true
+
+ST_4: sel_tmp4 (58)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:637 (grouped into LUT with out node sel_tmp5)
+_ifconv:22  %sel_tmp4 = and i1 %d_o_idx_V_read, %sel_tmp3
+
+ST_4: sel_tmp5 (59)  [1/1] 1.37ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:641 (out node of the LUT)
+_ifconv:23  %sel_tmp5 = select i1 %sel_tmp4, i64 %dmem_1_0_V_load, i64 %sel_tmp2
+
+ST_4: sel_tmp6 (60)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:637 (grouped into LUT with out node o_word_V_4)
+_ifconv:24  %sel_tmp6 = and i1 %tmp_1149, %d_o_idx_V_read
+
+ST_4: o_word_V_4 (61)  [1/1] 1.37ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:641 (out node of the LUT)
+_ifconv:25  %o_word_V_4 = select i1 %sel_tmp6, i64 %dmem_1_1_V_load, i64 %sel_tmp5
+
+ST_4: StgValue_79 (62)  [1/1] 1.77ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:646
+_ifconv:26  br label %1
+
+
+ <State 5>: 5.51ns
+ST_5: p_Val2_3 (64)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:672
+:0  %p_Val2_3 = phi i16 [ 0, %_ifconv ], [ %sum_V_1, %_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv ]
+
+ST_5: p_5 (65)  [1/1] 0.00ns
+:1  %p_5 = phi i16 [ 0, %_ifconv ], [ %i_V, %_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv ]
+
+ST_5: tmp_57 (66)  [1/1] 2.43ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:646
+:2  %tmp_57 = icmp ult i16 %p_5, %n_inputs_read
+
+ST_5: StgValue_83 (67)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:646
+:3  br i1 %tmp_57, label %_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv, label %_ifconv8
+
+ST_5: rhs_V_4_cast (73)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:649
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:4  %rhs_V_4_cast = zext i16 %p_5 to i22
+
+ST_5: r_V_7 (74)  [1/1] 2.26ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:649
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:5  %r_V_7 = add i22 %rhs_V_4_cast, %phi_mul
+
+ST_5: r_V_9 (75)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:654
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:6  %r_V_9 = call i9 @_ssdm_op_PartSelect.i9.i16.i32.i32(i16 %p_5, i32 7, i32 15)
+
+ST_5: tmp_59 (76)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:654
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:7  %tmp_59 = zext i9 %r_V_9 to i32
+
+ST_5: p_0856_s (77)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:655
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:8  %p_0856_s = call i15 @_ssdm_op_PartSelect.i15.i22.i32.i32(i22 %r_V_7, i32 7, i32 21)
+
+ST_5: tmp_60 (78)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:655
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:9  %tmp_60 = zext i15 %p_0856_s to i32
+
+ST_5: dmem_0_0_V_addr_3 (79)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:654
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:10  %dmem_0_0_V_addr_3 = getelementptr [1024 x i64]* %dmem_0_0_V, i32 0, i32 %tmp_59
+
+ST_5: dmem_1_0_V_addr_3 (80)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:654
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:11  %dmem_1_0_V_addr_3 = getelementptr [1024 x i64]* %dmem_1_0_V, i32 0, i32 %tmp_59
+
+ST_5: dmem_1_0_V_load_1 (81)  [2/2] 3.25ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:654
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:12  %dmem_1_0_V_load_1 = load i64* %dmem_1_0_V_addr_3, align 4
+
+ST_5: dmem_0_0_V_load_1 (82)  [2/2] 3.25ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:654
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:13  %dmem_0_0_V_load_1 = load i64* %dmem_0_0_V_addr_3, align 4
+
+ST_5: wt_mem_0_V_addr (84)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:655
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:15  %wt_mem_0_V_addr = getelementptr [2341 x i64]* %wt_mem_0_V, i32 0, i32 %tmp_60
+
+ST_5: wt_mem_0_V_load (85)  [2/2] 3.25ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:655
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:16  %wt_mem_0_V_load = load i64* %wt_mem_0_V_addr, align 4
+
+ST_5: dmem_0_1_V_addr_2 (203)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:654
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:134  %dmem_0_1_V_addr_2 = getelementptr [1024 x i64]* %dmem_0_1_V, i32 0, i32 %tmp_59
+
+ST_5: dmem_1_1_V_addr_2 (204)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:654
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:135  %dmem_1_1_V_addr_2 = getelementptr [1024 x i64]* %dmem_1_1_V, i32 0, i32 %tmp_59
+
+ST_5: dmem_1_1_V_load_1 (205)  [2/2] 3.25ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:654
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:136  %dmem_1_1_V_load_1 = load i64* %dmem_1_1_V_addr_2, align 4
+
+ST_5: dmem_0_1_V_load_1 (206)  [2/2] 3.25ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:654
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:137  %dmem_0_1_V_load_1 = load i64* %dmem_0_1_V_addr_2, align 4
+
+ST_5: wt_mem_1_V_addr (208)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:655
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:139  %wt_mem_1_V_addr = getelementptr [2341 x i64]* %wt_mem_1_V, i32 0, i32 %tmp_60
+
+ST_5: wt_mem_1_V_load (209)  [2/2] 3.25ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:655
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:140  %wt_mem_1_V_load = load i64* %wt_mem_1_V_addr, align 4
+
+ST_5: i_V (331)  [1/1] 2.08ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:646
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:262  %i_V = add i16 128, %p_5
+
+
+ <State 6>: 4.62ns
+ST_6: dmem_1_0_V_load_1 (81)  [1/2] 3.25ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:654
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:12  %dmem_1_0_V_load_1 = load i64* %dmem_1_0_V_addr_3, align 4
+
+ST_6: dmem_0_0_V_load_1 (82)  [1/2] 3.25ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:654
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:13  %dmem_0_0_V_load_1 = load i64* %dmem_0_0_V_addr_3, align 4
+
+ST_6: in_wrd_V_0_phi (83)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:654 (grouped into LUT with out node r_V_s)
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:14  %in_wrd_V_0_phi = select i1 %d_i_idx_V_read, i64 %dmem_1_0_V_load_1, i64 %dmem_0_0_V_load_1
+
+ST_6: wt_mem_0_V_load (85)  [1/2] 3.25ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:655
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:16  %wt_mem_0_V_load = load i64* %wt_mem_0_V_addr, align 4
+
+ST_6: r_V_s (86)  [1/1] 1.37ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657 (out node of the LUT)
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:17  %r_V_s = xor i64 %wt_mem_0_V_load, %in_wrd_V_0_phi
+
+ST_6: tmp_1150 (87)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:18  %tmp_1150 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 63)
+
+ST_6: tmp_1151 (88)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:19  %tmp_1151 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 61)
+
+ST_6: tmp_1152 (89)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:20  %tmp_1152 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 59)
+
+ST_6: tmp_1153 (90)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:21  %tmp_1153 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 57)
+
+ST_6: tmp_1154 (91)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:22  %tmp_1154 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 55)
+
+ST_6: tmp_1155 (92)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:23  %tmp_1155 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 53)
+
+ST_6: tmp_1156 (93)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:24  %tmp_1156 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 51)
+
+ST_6: tmp_1157 (94)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:25  %tmp_1157 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 49)
+
+ST_6: tmp_1158 (95)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:26  %tmp_1158 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 47)
+
+ST_6: tmp_1159 (96)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:27  %tmp_1159 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 45)
+
+ST_6: tmp_1160 (97)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:28  %tmp_1160 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 43)
+
+ST_6: tmp_1161 (98)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:29  %tmp_1161 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 41)
+
+ST_6: tmp_1162 (99)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:30  %tmp_1162 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 39)
+
+ST_6: tmp_1163 (100)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:31  %tmp_1163 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 37)
+
+ST_6: tmp_1164 (101)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:32  %tmp_1164 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 35)
+
+ST_6: tmp_1165 (102)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:33  %tmp_1165 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 33)
+
+ST_6: tmp_1166 (103)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:34  %tmp_1166 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 31)
+
+ST_6: tmp_1167 (104)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:35  %tmp_1167 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 29)
+
+ST_6: tmp_1168 (105)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:36  %tmp_1168 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 27)
+
+ST_6: tmp_1169 (106)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:37  %tmp_1169 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 25)
+
+ST_6: tmp_1170 (107)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:38  %tmp_1170 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 23)
+
+ST_6: tmp_1171 (108)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:39  %tmp_1171 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 21)
+
+ST_6: tmp_1172 (109)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:40  %tmp_1172 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 19)
+
+ST_6: tmp_1173 (110)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:41  %tmp_1173 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 17)
+
+ST_6: tmp_1174 (111)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:42  %tmp_1174 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 15)
+
+ST_6: tmp_1175 (112)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:43  %tmp_1175 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 13)
+
+ST_6: tmp_1176 (113)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:44  %tmp_1176 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 11)
+
+ST_6: tmp_1177 (114)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:45  %tmp_1177 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 9)
+
+ST_6: tmp_1178 (115)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:46  %tmp_1178 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 7)
+
+ST_6: tmp_1179 (116)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:47  %tmp_1179 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 5)
+
+ST_6: tmp_1180 (117)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:48  %tmp_1180 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 3)
+
+ST_6: tmp_1181 (118)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:49  %tmp_1181 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_s, i32 1)
+
+ST_6: dmem_1_1_V_load_1 (205)  [1/2] 3.25ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:654
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:136  %dmem_1_1_V_load_1 = load i64* %dmem_1_1_V_addr_2, align 4
+
+ST_6: dmem_0_1_V_load_1 (206)  [1/2] 3.25ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:654
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:137  %dmem_0_1_V_load_1 = load i64* %dmem_0_1_V_addr_2, align 4
+
+ST_6: in_wrd_V_1_phi (207)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:654 (grouped into LUT with out node r_V_49_1)
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:138  %in_wrd_V_1_phi = select i1 %d_i_idx_V_read, i64 %dmem_1_1_V_load_1, i64 %dmem_0_1_V_load_1
+
+ST_6: wt_mem_1_V_load (209)  [1/2] 3.25ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:655
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:140  %wt_mem_1_V_load = load i64* %wt_mem_1_V_addr, align 4
+
+ST_6: r_V_49_1 (210)  [1/1] 1.37ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657 (out node of the LUT)
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:141  %r_V_49_1 = xor i64 %wt_mem_1_V_load, %in_wrd_V_1_phi
+
+ST_6: tmp_1184 (211)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:142  %tmp_1184 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 63)
+
+ST_6: tmp_1185 (212)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:143  %tmp_1185 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 61)
+
+ST_6: tmp_1186 (213)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:144  %tmp_1186 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 59)
+
+ST_6: tmp_1187 (214)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:145  %tmp_1187 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 57)
+
+ST_6: tmp_1188 (215)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:146  %tmp_1188 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 55)
+
+ST_6: tmp_1189 (216)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:147  %tmp_1189 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 53)
+
+ST_6: tmp_1190 (217)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:148  %tmp_1190 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 51)
+
+ST_6: tmp_1191 (218)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:149  %tmp_1191 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 49)
+
+ST_6: tmp_1192 (219)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:150  %tmp_1192 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 47)
+
+ST_6: tmp_1193 (220)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:151  %tmp_1193 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 45)
+
+ST_6: tmp_1194 (221)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:152  %tmp_1194 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 43)
+
+ST_6: tmp_1195 (222)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:153  %tmp_1195 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 41)
+
+ST_6: tmp_1196 (223)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:154  %tmp_1196 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 39)
+
+ST_6: tmp_1197 (224)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:155  %tmp_1197 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 37)
+
+ST_6: tmp_1198 (225)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:156  %tmp_1198 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 35)
+
+ST_6: tmp_1199 (226)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:157  %tmp_1199 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 33)
+
+ST_6: tmp_1200 (227)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:158  %tmp_1200 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 31)
+
+ST_6: tmp_1201 (228)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:159  %tmp_1201 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 29)
+
+ST_6: tmp_1202 (229)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:160  %tmp_1202 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 27)
+
+ST_6: tmp_1203 (230)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:161  %tmp_1203 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 25)
+
+ST_6: tmp_1204 (231)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:162  %tmp_1204 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 23)
+
+ST_6: tmp_1205 (232)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:163  %tmp_1205 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 21)
+
+ST_6: tmp_1206 (233)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:164  %tmp_1206 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 19)
+
+ST_6: tmp_1207 (234)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:165  %tmp_1207 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 17)
+
+ST_6: tmp_1208 (235)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:166  %tmp_1208 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 15)
+
+ST_6: tmp_1209 (236)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:167  %tmp_1209 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 13)
+
+ST_6: tmp_1210 (237)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:168  %tmp_1210 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 11)
+
+ST_6: tmp_1211 (238)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:169  %tmp_1211 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 9)
+
+ST_6: tmp_1212 (239)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:170  %tmp_1212 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 7)
+
+ST_6: tmp_1213 (240)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:171  %tmp_1213 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 5)
+
+ST_6: tmp_1214 (241)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:172  %tmp_1214 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 3)
+
+ST_6: tmp_1215 (242)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:173  %tmp_1215 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %r_V_49_1, i32 1)
+
+
+ <State 7>: 3.52ns
+ST_7: r_V_1 (119)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:50  %r_V_1 = call i63 @_ssdm_op_BitConcatenate.i63.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1(i1 %tmp_1150, i1 false, i1 %tmp_1151, i1 false, i1 %tmp_1152, i1 false, i1 %tmp_1153, i1 false, i1 %tmp_1154, i1 false, i1 %tmp_1155, i1 false, i1 %tmp_1156, i1 false, i1 %tmp_1157, i1 false, i1 %tmp_1158, i1 false, i1 %tmp_1159, i1 false, i1 %tmp_1160, i1 false, i1 %tmp_1161, i1 false, i1 %tmp_1162, i1 false, i1 %tmp_1163, i1 false, i1 %tmp_1164, i1 false, i1 %tmp_1165, i1 false, i1 %tmp_1166, i1 false, i1 %tmp_1167, i1 false, i1 %tmp_1168, i1 false, i1 %tmp_1169, i1 false, i1 %tmp_1170, i1 false, i1 %tmp_1171, i1 false, i1 %tmp_1172, i1 false, i1 %tmp_1173, i1 false, i1 %tmp_1174, i1 false, i1 %tmp_1175, i1 false, i1 %tmp_1176, i1 false, i1 %tmp_1177, i1 false, i1 %tmp_1178, i1 false, i1 %tmp_1179, i1 false, i1 %tmp_1180, i1 false, i1 %tmp_1181)
+
+ST_7: r_V_1_cast (120)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:51  %r_V_1_cast = zext i63 %r_V_1 to i64
+
+ST_7: x_V_6 (121)  [1/1] 3.52ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:52  %x_V_6 = sub nsw i64 %r_V_s, %r_V_1_cast
+
+ST_7: tmp_61 (122)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:53  %tmp_61 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 60, i32 61)
+
+ST_7: tmp_62 (123)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:54  %tmp_62 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 56, i32 57)
+
+ST_7: tmp_63 (124)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:55  %tmp_63 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 52, i32 53)
+
+ST_7: tmp_64 (125)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:56  %tmp_64 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 48, i32 49)
+
+ST_7: tmp_65 (126)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:57  %tmp_65 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 44, i32 45)
+
+ST_7: tmp_109 (127)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:58  %tmp_109 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 40, i32 41)
+
+ST_7: tmp_110 (128)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:59  %tmp_110 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 36, i32 37)
+
+ST_7: tmp_111 (129)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:60  %tmp_111 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 32, i32 33)
+
+ST_7: tmp_112 (130)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:61  %tmp_112 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 28, i32 29)
+
+ST_7: tmp_113 (131)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:62  %tmp_113 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 24, i32 25)
+
+ST_7: tmp_114 (132)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:63  %tmp_114 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 20, i32 21)
+
+ST_7: tmp_115 (133)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:64  %tmp_115 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 16, i32 17)
+
+ST_7: tmp_116 (134)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:65  %tmp_116 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 12, i32 13)
+
+ST_7: tmp_117 (135)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:66  %tmp_117 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 8, i32 9)
+
+ST_7: tmp_118 (136)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:67  %tmp_118 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 4, i32 5)
+
+ST_7: tmp_1182 (137)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:68  %tmp_1182 = trunc i64 %x_V_6 to i2
+
+ST_7: tmp_119 (140)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:71  %tmp_119 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 62, i32 63)
+
+ST_7: tmp_120 (141)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:72  %tmp_120 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 58, i32 59)
+
+ST_7: tmp_121 (142)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:73  %tmp_121 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 54, i32 55)
+
+ST_7: tmp_122 (143)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:74  %tmp_122 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 50, i32 51)
+
+ST_7: tmp_123 (144)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:75  %tmp_123 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 46, i32 47)
+
+ST_7: tmp_124 (145)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:76  %tmp_124 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 42, i32 43)
+
+ST_7: tmp_125 (146)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:77  %tmp_125 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 38, i32 39)
+
+ST_7: tmp_126 (147)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:78  %tmp_126 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 34, i32 35)
+
+ST_7: tmp_127 (148)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:79  %tmp_127 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 30, i32 31)
+
+ST_7: tmp_128 (149)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:80  %tmp_128 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 26, i32 27)
+
+ST_7: tmp_129 (150)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:81  %tmp_129 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 22, i32 23)
+
+ST_7: tmp_130 (151)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:82  %tmp_130 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 18, i32 19)
+
+ST_7: tmp_131 (152)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:83  %tmp_131 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 14, i32 15)
+
+ST_7: tmp_132 (153)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:84  %tmp_132 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 10, i32 11)
+
+ST_7: tmp_133 (154)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:85  %tmp_133 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 6, i32 7)
+
+ST_7: tmp_134 (155)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:86  %tmp_134 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6, i32 2, i32 3)
+
+ST_7: r_V_44_1 (243)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:174  %r_V_44_1 = call i63 @_ssdm_op_BitConcatenate.i63.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1.i1(i1 %tmp_1184, i1 false, i1 %tmp_1185, i1 false, i1 %tmp_1186, i1 false, i1 %tmp_1187, i1 false, i1 %tmp_1188, i1 false, i1 %tmp_1189, i1 false, i1 %tmp_1190, i1 false, i1 %tmp_1191, i1 false, i1 %tmp_1192, i1 false, i1 %tmp_1193, i1 false, i1 %tmp_1194, i1 false, i1 %tmp_1195, i1 false, i1 %tmp_1196, i1 false, i1 %tmp_1197, i1 false, i1 %tmp_1198, i1 false, i1 %tmp_1199, i1 false, i1 %tmp_1200, i1 false, i1 %tmp_1201, i1 false, i1 %tmp_1202, i1 false, i1 %tmp_1203, i1 false, i1 %tmp_1204, i1 false, i1 %tmp_1205, i1 false, i1 %tmp_1206, i1 false, i1 %tmp_1207, i1 false, i1 %tmp_1208, i1 false, i1 %tmp_1209, i1 false, i1 %tmp_1210, i1 false, i1 %tmp_1211, i1 false, i1 %tmp_1212, i1 false, i1 %tmp_1213, i1 false, i1 %tmp_1214, i1 false, i1 %tmp_1215)
+
+ST_7: r_V_44_1_cast (244)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:175  %r_V_44_1_cast = zext i63 %r_V_44_1 to i64
+
+ST_7: x_V_6_1 (245)  [1/1] 3.52ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:176  %x_V_6_1 = sub nsw i64 %r_V_49_1, %r_V_44_1_cast
+
+ST_7: tmp_147 (246)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:177  %tmp_147 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 60, i32 61)
+
+ST_7: tmp_148 (247)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:178  %tmp_148 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 56, i32 57)
+
+ST_7: tmp_149 (248)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:179  %tmp_149 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 52, i32 53)
+
+ST_7: tmp_150 (249)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:180  %tmp_150 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 48, i32 49)
+
+ST_7: tmp_151 (250)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:181  %tmp_151 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 44, i32 45)
+
+ST_7: tmp_152 (251)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:182  %tmp_152 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 40, i32 41)
+
+ST_7: tmp_153 (252)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:183  %tmp_153 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 36, i32 37)
+
+ST_7: tmp_154 (253)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:184  %tmp_154 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 32, i32 33)
+
+ST_7: tmp_155 (254)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:185  %tmp_155 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 28, i32 29)
+
+ST_7: tmp_156 (255)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:186  %tmp_156 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 24, i32 25)
+
+ST_7: tmp_157 (256)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:187  %tmp_157 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 20, i32 21)
+
+ST_7: tmp_158 (257)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:188  %tmp_158 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 16, i32 17)
+
+ST_7: tmp_159 (258)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:189  %tmp_159 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 12, i32 13)
+
+ST_7: tmp_160 (259)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:190  %tmp_160 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 8, i32 9)
+
+ST_7: tmp_161 (260)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:191  %tmp_161 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 4, i32 5)
+
+ST_7: tmp_1216 (261)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:192  %tmp_1216 = trunc i64 %x_V_6_1 to i2
+
+ST_7: tmp_162 (264)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:195  %tmp_162 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 62, i32 63)
+
+ST_7: tmp_163 (265)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:196  %tmp_163 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 58, i32 59)
+
+ST_7: tmp_164 (266)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:197  %tmp_164 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 54, i32 55)
+
+ST_7: tmp_165 (267)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:198  %tmp_165 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 50, i32 51)
+
+ST_7: tmp_166 (268)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:199  %tmp_166 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 46, i32 47)
+
+ST_7: tmp_167 (269)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:200  %tmp_167 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 42, i32 43)
+
+ST_7: tmp_168 (270)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:201  %tmp_168 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 38, i32 39)
+
+ST_7: tmp_169 (271)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:202  %tmp_169 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 34, i32 35)
+
+ST_7: tmp_170 (272)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:203  %tmp_170 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 30, i32 31)
+
+ST_7: tmp_171 (273)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:204  %tmp_171 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 26, i32 27)
+
+ST_7: tmp_172 (274)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:205  %tmp_172 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 22, i32 23)
+
+ST_7: tmp_173 (275)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:206  %tmp_173 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 18, i32 19)
+
+ST_7: tmp_174 (276)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:207  %tmp_174 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 14, i32 15)
+
+ST_7: tmp_175 (277)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:208  %tmp_175 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 10, i32 11)
+
+ST_7: tmp_176 (278)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:209  %tmp_176 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 6, i32 7)
+
+ST_7: tmp_177 (279)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:210  %tmp_177 = call i2 @_ssdm_op_PartSelect.i2.i64.i32.i32(i64 %x_V_6_1, i32 2, i32 3)
+
+
+ <State 8>: 6.78ns
+ST_8: r_V_2 (138)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:661
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:69  %r_V_2 = call i62 @_ssdm_op_BitConcatenate.i62.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2(i2 %tmp_61, i2 0, i2 %tmp_62, i2 0, i2 %tmp_63, i2 0, i2 %tmp_64, i2 0, i2 %tmp_65, i2 0, i2 %tmp_109, i2 0, i2 %tmp_110, i2 0, i2 %tmp_111, i2 0, i2 %tmp_112, i2 0, i2 %tmp_113, i2 0, i2 %tmp_114, i2 0, i2 %tmp_115, i2 0, i2 %tmp_116, i2 0, i2 %tmp_117, i2 0, i2 %tmp_118, i2 0, i2 %tmp_1182)
+
+ST_8: r_V_2_cast (139)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:661
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:70  %r_V_2_cast = zext i62 %r_V_2 to i63
+
+ST_8: r_V_3 (156)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:661
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:87  %r_V_3 = call i62 @_ssdm_op_BitConcatenate.i62.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2(i2 %tmp_119, i2 0, i2 %tmp_120, i2 0, i2 %tmp_121, i2 0, i2 %tmp_122, i2 0, i2 %tmp_123, i2 0, i2 %tmp_124, i2 0, i2 %tmp_125, i2 0, i2 %tmp_126, i2 0, i2 %tmp_127, i2 0, i2 %tmp_128, i2 0, i2 %tmp_129, i2 0, i2 %tmp_130, i2 0, i2 %tmp_131, i2 0, i2 %tmp_132, i2 0, i2 %tmp_133, i2 0, i2 %tmp_134)
+
+ST_8: r_V_3_cast (157)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:661
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:88  %r_V_3_cast = zext i62 %r_V_3 to i63
+
+ST_8: tmp_66 (158)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:89  %tmp_66 = call i60 @_ssdm_op_BitConcatenate.i60.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2(i2 0, i2 %tmp_62, i2 0, i2 %tmp_63, i2 0, i2 %tmp_64, i2 0, i2 %tmp_65, i2 0, i2 %tmp_109, i2 0, i2 %tmp_110, i2 0, i2 %tmp_111, i2 0, i2 %tmp_112, i2 0, i2 %tmp_113, i2 0, i2 %tmp_114, i2 0, i2 %tmp_115, i2 0, i2 %tmp_116, i2 0, i2 %tmp_117, i2 0, i2 %tmp_118, i2 0, i2 %tmp_1182)
+
+ST_8: tmp_67 (159)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:90  %tmp_67 = call i60 @_ssdm_op_BitConcatenate.i60.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2(i2 0, i2 %tmp_120, i2 0, i2 %tmp_121, i2 0, i2 %tmp_122, i2 0, i2 %tmp_123, i2 0, i2 %tmp_124, i2 0, i2 %tmp_125, i2 0, i2 %tmp_126, i2 0, i2 %tmp_127, i2 0, i2 %tmp_128, i2 0, i2 %tmp_129, i2 0, i2 %tmp_130, i2 0, i2 %tmp_131, i2 0, i2 %tmp_132, i2 0, i2 %tmp_133, i2 0, i2 %tmp_134)
+
+ST_8: tmp_135 (160)  [1/1] 3.47ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:661
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:91  %tmp_135 = add i62 %r_V_3, %r_V_2
+
+ST_8: x_V (161)  [1/1] 3.47ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:661
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:92  %x_V = add i63 %r_V_2_cast, %r_V_3_cast
+
+ST_8: tmp_1233_cast (162)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:663
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:93  %tmp_1233_cast = zext i2 %tmp_1182 to i4
+
+ST_8: tmp_1234_cast (163)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:663
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:94  %tmp_1234_cast = zext i2 %tmp_134 to i4
+
+ST_8: tmp_136 (164)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:662
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:95  %tmp_136 = call i59 @_ssdm_op_PartSelect.i59.i63.i32.i32(i63 %x_V, i32 4, i32 62)
+
+ST_8: tmp_68 (165)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:662
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:96  %tmp_68 = zext i59 %tmp_136 to i60
+
+ST_8: tmp_69 (166)  [1/1] 2.60ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:662
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:97  %tmp_69 = add i60 %tmp_67, %tmp_66
+
+ST_8: tmp_186_cast (167)  [1/1] 2.60ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:662
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:98  %tmp_186_cast = add i60 %tmp_69, %tmp_68
+
+ST_8: tmp_70 (168)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:663
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:99  %tmp_70 = call i4 @_ssdm_op_PartSelect.i4.i62.i32.i32(i62 %tmp_135, i32 4, i32 7)
+
+ST_8: tmp_137 (169)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:662
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:100  %tmp_137 = call i4 @_ssdm_op_PartSelect.i4.i60.i32.i32(i60 %tmp_186_cast, i32 56, i32 59)
+
+ST_8: tmp_138 (170)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:662
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:101  %tmp_138 = call i4 @_ssdm_op_PartSelect.i4.i60.i32.i32(i60 %tmp_186_cast, i32 48, i32 51)
+
+ST_8: tmp_139 (171)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:662
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:102  %tmp_139 = call i4 @_ssdm_op_PartSelect.i4.i60.i32.i32(i60 %tmp_186_cast, i32 40, i32 43)
+
+ST_8: tmp_140 (172)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:662
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:103  %tmp_140 = call i4 @_ssdm_op_PartSelect.i4.i60.i32.i32(i60 %tmp_186_cast, i32 32, i32 35)
+
+ST_8: tmp_141 (173)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:662
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:104  %tmp_141 = call i4 @_ssdm_op_PartSelect.i4.i60.i32.i32(i60 %tmp_186_cast, i32 24, i32 27)
+
+ST_8: tmp_142 (174)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:662
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:105  %tmp_142 = call i4 @_ssdm_op_PartSelect.i4.i60.i32.i32(i60 %tmp_186_cast, i32 16, i32 19)
+
+ST_8: tmp_143 (175)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:662
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:106  %tmp_143 = call i4 @_ssdm_op_PartSelect.i4.i60.i32.i32(i60 %tmp_186_cast, i32 8, i32 11)
+
+ST_8: tmp_1183 (176)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:662
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:107  %tmp_1183 = trunc i60 %tmp_186_cast to i4
+
+ST_8: tmp41 (182)  [1/1] 1.66ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:663
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:113  %tmp41 = add i4 %tmp_70, %tmp_1233_cast
+
+ST_8: tmp_71 (183)  [1/1] 1.66ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:663
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:114  %tmp_71 = add i4 %tmp_1234_cast, %tmp41
+
+ST_8: r_V_45_1 (262)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:661
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:193  %r_V_45_1 = call i62 @_ssdm_op_BitConcatenate.i62.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2(i2 %tmp_147, i2 0, i2 %tmp_148, i2 0, i2 %tmp_149, i2 0, i2 %tmp_150, i2 0, i2 %tmp_151, i2 0, i2 %tmp_152, i2 0, i2 %tmp_153, i2 0, i2 %tmp_154, i2 0, i2 %tmp_155, i2 0, i2 %tmp_156, i2 0, i2 %tmp_157, i2 0, i2 %tmp_158, i2 0, i2 %tmp_159, i2 0, i2 %tmp_160, i2 0, i2 %tmp_161, i2 0, i2 %tmp_1216)
+
+ST_8: r_V_45_1_cast (263)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:661
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:194  %r_V_45_1_cast = zext i62 %r_V_45_1 to i63
+
+ST_8: r_V_46_1 (280)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:661
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:211  %r_V_46_1 = call i62 @_ssdm_op_BitConcatenate.i62.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2(i2 %tmp_162, i2 0, i2 %tmp_163, i2 0, i2 %tmp_164, i2 0, i2 %tmp_165, i2 0, i2 %tmp_166, i2 0, i2 %tmp_167, i2 0, i2 %tmp_168, i2 0, i2 %tmp_169, i2 0, i2 %tmp_170, i2 0, i2 %tmp_171, i2 0, i2 %tmp_172, i2 0, i2 %tmp_173, i2 0, i2 %tmp_174, i2 0, i2 %tmp_175, i2 0, i2 %tmp_176, i2 0, i2 %tmp_177)
+
+ST_8: r_V_46_1_cast (281)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:661
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:212  %r_V_46_1_cast = zext i62 %r_V_46_1 to i63
+
+ST_8: tmp_83 (282)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:213  %tmp_83 = call i60 @_ssdm_op_BitConcatenate.i60.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2(i2 0, i2 %tmp_148, i2 0, i2 %tmp_149, i2 0, i2 %tmp_150, i2 0, i2 %tmp_151, i2 0, i2 %tmp_152, i2 0, i2 %tmp_153, i2 0, i2 %tmp_154, i2 0, i2 %tmp_155, i2 0, i2 %tmp_156, i2 0, i2 %tmp_157, i2 0, i2 %tmp_158, i2 0, i2 %tmp_159, i2 0, i2 %tmp_160, i2 0, i2 %tmp_161, i2 0, i2 %tmp_1216)
+
+ST_8: tmp_84 (283)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:214  %tmp_84 = call i60 @_ssdm_op_BitConcatenate.i60.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2.i2(i2 0, i2 %tmp_163, i2 0, i2 %tmp_164, i2 0, i2 %tmp_165, i2 0, i2 %tmp_166, i2 0, i2 %tmp_167, i2 0, i2 %tmp_168, i2 0, i2 %tmp_169, i2 0, i2 %tmp_170, i2 0, i2 %tmp_171, i2 0, i2 %tmp_172, i2 0, i2 %tmp_173, i2 0, i2 %tmp_174, i2 0, i2 %tmp_175, i2 0, i2 %tmp_176, i2 0, i2 %tmp_177)
+
+ST_8: tmp_178 (284)  [1/1] 3.47ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:661
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:215  %tmp_178 = add i62 %r_V_46_1, %r_V_45_1
+
+ST_8: x_V_1 (285)  [1/1] 3.47ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:661
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:216  %x_V_1 = add i63 %r_V_45_1_cast, %r_V_46_1_cast
+
+ST_8: tmp_1248_cast (286)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:663
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:217  %tmp_1248_cast = zext i2 %tmp_1216 to i4
+
+ST_8: tmp_1249_cast (287)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:663
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:218  %tmp_1249_cast = zext i2 %tmp_177 to i4
+
+ST_8: tmp_179 (288)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:662
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:219  %tmp_179 = call i59 @_ssdm_op_PartSelect.i59.i63.i32.i32(i63 %x_V_1, i32 4, i32 62)
+
+ST_8: tmp_85 (289)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:662
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:220  %tmp_85 = zext i59 %tmp_179 to i60
+
+ST_8: tmp_86 (290)  [1/1] 2.60ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:662
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:221  %tmp_86 = add i60 %tmp_84, %tmp_83
+
+ST_8: tmp_186_1_cast (291)  [1/1] 2.60ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:662
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:222  %tmp_186_1_cast = add i60 %tmp_86, %tmp_85
+
+ST_8: tmp_87 (292)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:663
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:223  %tmp_87 = call i4 @_ssdm_op_PartSelect.i4.i62.i32.i32(i62 %tmp_178, i32 4, i32 7)
+
+ST_8: tmp_180 (293)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:662
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:224  %tmp_180 = call i4 @_ssdm_op_PartSelect.i4.i60.i32.i32(i60 %tmp_186_1_cast, i32 56, i32 59)
+
+ST_8: tmp_181 (294)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:662
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:225  %tmp_181 = call i4 @_ssdm_op_PartSelect.i4.i60.i32.i32(i60 %tmp_186_1_cast, i32 48, i32 51)
+
+ST_8: tmp_182 (295)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:662
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:226  %tmp_182 = call i4 @_ssdm_op_PartSelect.i4.i60.i32.i32(i60 %tmp_186_1_cast, i32 40, i32 43)
+
+ST_8: tmp_183 (296)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:662
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:227  %tmp_183 = call i4 @_ssdm_op_PartSelect.i4.i60.i32.i32(i60 %tmp_186_1_cast, i32 32, i32 35)
+
+ST_8: tmp_184 (297)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:662
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:228  %tmp_184 = call i4 @_ssdm_op_PartSelect.i4.i60.i32.i32(i60 %tmp_186_1_cast, i32 24, i32 27)
+
+ST_8: tmp_185 (298)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:662
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:229  %tmp_185 = call i4 @_ssdm_op_PartSelect.i4.i60.i32.i32(i60 %tmp_186_1_cast, i32 16, i32 19)
+
+ST_8: tmp_186 (299)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:662
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:230  %tmp_186 = call i4 @_ssdm_op_PartSelect.i4.i60.i32.i32(i60 %tmp_186_1_cast, i32 8, i32 11)
+
+ST_8: tmp_1217 (300)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:662
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:231  %tmp_1217 = trunc i60 %tmp_186_1_cast to i4
+
+ST_8: tmp44 (306)  [1/1] 1.66ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:663
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:237  %tmp44 = add i4 %tmp_87, %tmp_1248_cast
+
+ST_8: tmp_88 (307)  [1/1] 1.66ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:663
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:238  %tmp_88 = add i4 %tmp_1249_cast, %tmp44
+
+
+ <State 9>: 5.84ns
+ST_9: x_V_2 (177)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:662
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:108  %x_V_2 = call i60 @_ssdm_op_BitConcatenate.i60.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4(i4 %tmp_137, i4 0, i4 %tmp_138, i4 0, i4 %tmp_139, i4 0, i4 %tmp_140, i4 0, i4 %tmp_141, i4 0, i4 %tmp_142, i4 0, i4 %tmp_143, i4 0, i4 %tmp_1183)
+
+ST_9: x_V_2_cast (178)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:662
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:109  %x_V_2_cast = zext i60 %x_V_2 to i61
+
+ST_9: r_V_4 (179)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:663
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:110  %r_V_4 = call i52 @_ssdm_op_BitConcatenate.i52.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4(i4 %tmp_137, i4 0, i4 %tmp_138, i4 0, i4 %tmp_139, i4 0, i4 %tmp_140, i4 0, i4 %tmp_141, i4 0, i4 %tmp_142, i4 0, i4 %tmp_143)
+
+ST_9: tmp_144 (180)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:663
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:111  %tmp_144 = zext i52 %r_V_4 to i60
+
+ST_9: r_V_4_cast (181)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:663
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:112  %r_V_4_cast = zext i52 %r_V_4 to i61
+
+ST_9: tmp_72 (184)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:662
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:115  %tmp_72 = call i47 @_ssdm_op_BitConcatenate.i47.i3.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4(i3 0, i4 %tmp_139, i4 0, i4 %tmp_140, i4 0, i4 %tmp_141, i4 0, i4 %tmp_142, i4 0, i4 %tmp_143, i4 0, i4 %tmp_1183)
+
+ST_9: tmp_73 (185)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:662
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:116  %tmp_73 = call i47 @_ssdm_op_BitConcatenate.i47.i3.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4(i3 0, i4 %tmp_138, i4 0, i4 %tmp_139, i4 0, i4 %tmp_140, i4 0, i4 %tmp_141, i4 0, i4 %tmp_142, i4 0, i4 %tmp_143)
+
+ST_9: tmp_145 (186)  [1/1] 3.42ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:663
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:117  %tmp_145 = add i60 %tmp_144, %x_V_2
+
+ST_9: x_V_3 (187)  [1/1] 3.42ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:663
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:118  %x_V_3 = add i61 %x_V_2_cast, %r_V_4_cast
+
+ST_9: x_V_3_cast (188)  [1/1] 2.43ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:663
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:119  %x_V_3_cast = add i47 %tmp_73, %tmp_72
+
+ST_9: tmp_146 (189)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:664
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:120  %tmp_146 = call i45 @_ssdm_op_PartSelect.i45.i61.i32.i32(i61 %x_V_3, i32 16, i32 60)
+
+ST_9: r_V_5_cast (190)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:664
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:121  %r_V_5_cast = zext i45 %tmp_146 to i47
+
+ST_9: x_V_4 (191)  [1/1] 2.43ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:664
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:122  %x_V_4 = add i47 %x_V_3_cast, %r_V_5_cast
+
+ST_9: tmp_76 (194)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:664
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:125  %tmp_76 = call i7 @_ssdm_op_PartSelect.i7.i47.i32.i32(i47 %x_V_4, i32 32, i32 38)
+
+ST_9: tmp_77 (195)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:663
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:126  %tmp_77 = call i7 @_ssdm_op_PartSelect.i7.i60.i32.i32(i60 %tmp_145, i32 16, i32 22)
+
+ST_9: x_V_2_1 (301)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:662
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:232  %x_V_2_1 = call i60 @_ssdm_op_BitConcatenate.i60.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4(i4 %tmp_180, i4 0, i4 %tmp_181, i4 0, i4 %tmp_182, i4 0, i4 %tmp_183, i4 0, i4 %tmp_184, i4 0, i4 %tmp_185, i4 0, i4 %tmp_186, i4 0, i4 %tmp_1217)
+
+ST_9: x_V_2_1_cast (302)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:662
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:233  %x_V_2_1_cast = zext i60 %x_V_2_1 to i61
+
+ST_9: r_V_47_1 (303)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:663
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:234  %r_V_47_1 = call i52 @_ssdm_op_BitConcatenate.i52.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4(i4 %tmp_180, i4 0, i4 %tmp_181, i4 0, i4 %tmp_182, i4 0, i4 %tmp_183, i4 0, i4 %tmp_184, i4 0, i4 %tmp_185, i4 0, i4 %tmp_186)
+
+ST_9: tmp_187 (304)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:663
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:235  %tmp_187 = zext i52 %r_V_47_1 to i60
+
+ST_9: r_V_47_1_cast (305)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:663
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:236  %r_V_47_1_cast = zext i52 %r_V_47_1 to i61
+
+ST_9: tmp_94 (308)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:662
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:239  %tmp_94 = call i47 @_ssdm_op_BitConcatenate.i47.i3.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4(i3 0, i4 %tmp_182, i4 0, i4 %tmp_183, i4 0, i4 %tmp_184, i4 0, i4 %tmp_185, i4 0, i4 %tmp_186, i4 0, i4 %tmp_1217)
+
+ST_9: tmp_98 (309)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:662
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:240  %tmp_98 = call i47 @_ssdm_op_BitConcatenate.i47.i3.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4.i4(i3 0, i4 %tmp_181, i4 0, i4 %tmp_182, i4 0, i4 %tmp_183, i4 0, i4 %tmp_184, i4 0, i4 %tmp_185, i4 0, i4 %tmp_186)
+
+ST_9: tmp_188 (310)  [1/1] 3.42ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:663
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:241  %tmp_188 = add i60 %tmp_187, %x_V_2_1
+
+ST_9: x_V_3_1 (311)  [1/1] 3.42ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:663
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:242  %x_V_3_1 = add i61 %x_V_2_1_cast, %r_V_47_1_cast
+
+ST_9: x_V_3_1_cast (312)  [1/1] 2.43ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:663
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:243  %x_V_3_1_cast = add i47 %tmp_98, %tmp_94
+
+ST_9: tmp_189 (313)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:664
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:244  %tmp_189 = call i45 @_ssdm_op_PartSelect.i45.i61.i32.i32(i61 %x_V_3_1, i32 16, i32 60)
+
+ST_9: r_V_48_1_cast (314)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:664
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:245  %r_V_48_1_cast = zext i45 %tmp_189 to i47
+
+ST_9: x_V_4_1 (315)  [1/1] 2.43ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:664
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:246  %x_V_4_1 = add i47 %x_V_3_1_cast, %r_V_48_1_cast
+
+ST_9: tmp_104 (318)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:664
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:249  %tmp_104 = call i7 @_ssdm_op_PartSelect.i7.i47.i32.i32(i47 %x_V_4_1, i32 32, i32 38)
+
+ST_9: tmp_105 (319)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:663
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:250  %tmp_105 = call i7 @_ssdm_op_PartSelect.i7.i60.i32.i32(i60 %tmp_188, i32 16, i32 22)
+
+
+ <State 10>: 3.66ns
+ST_10: tmp_74 (192)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:663
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:123  %tmp_74 = zext i4 %tmp_71 to i7
+
+ST_10: tmp_75 (193)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:662
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:124  %tmp_75 = call i7 @_ssdm_op_BitConcatenate.i7.i3.i4(i3 0, i4 %tmp_143)
+
+ST_10: tmp_78 (196)  [1/1] 1.87ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:663
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:127  %tmp_78 = add i7 %tmp_77, %tmp_76
+
+ST_10: tmp_79 (197)  [1/1] 1.79ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:662
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:128  %tmp_79 = add i7 %tmp_75, %tmp_74
+
+ST_10: tmp_80 (198)  [1/1] 1.79ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:668
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:129  %tmp_80 = add i7 %tmp_78, %tmp_79
+
+ST_10: tmp_100 (316)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:663
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:247  %tmp_100 = zext i4 %tmp_88 to i7
+
+ST_10: tmp_103 (317)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:662
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:248  %tmp_103 = call i7 @_ssdm_op_BitConcatenate.i7.i3.i4(i3 0, i4 %tmp_186)
+
+ST_10: tmp_106 (320)  [1/1] 1.87ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:663
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:251  %tmp_106 = add i7 %tmp_105, %tmp_104
+
+ST_10: tmp_107 (321)  [1/1] 1.79ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:662
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:252  %tmp_107 = add i7 %tmp_103, %tmp_100
+
+ST_10: tmp_1883_s (322)  [1/1] 1.79ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:668
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:253  %tmp_1883_s = add i7 %tmp_106, %tmp_107
+
+
+ <State 11>: 5.93ns
+ST_11: StgValue_337 (69)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:646
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:0  call void (...)* @_ssdm_op_SpecLoopName([13 x i8]* @p_str39) nounwind
+
+ST_11: tmp_58 (70)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:646
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:1  %tmp_58 = call i32 (...)* @_ssdm_op_SpecRegionBegin([13 x i8]* @p_str39)
+
+ST_11: StgValue_339 (71)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:647
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:2  call void (...)* @_ssdm_op_SpecLoopTripCount(i32 1, i32 64, i32 32, [1 x i8]* @p_str8) nounwind
+
+ST_11: StgValue_340 (72)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:648
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:3  call void (...)* @_ssdm_op_SpecPipeline(i32 -1, i32 1, i32 1, i32 0, [1 x i8]* @p_str8) nounwind
+
+ST_11: tmp_81 (199)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:668
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:130  %tmp_81 = call i8 @_ssdm_op_BitConcatenate.i8.i7.i1(i7 %tmp_80, i1 false)
+
+ST_11: phitmp_cast (200)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:668
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:131  %phitmp_cast = zext i8 %tmp_81 to i9
+
+ST_11: tmp_82 (201)  [1/1] 1.92ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:668
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:132  %tmp_82 = sub i9 64, %phitmp_cast
+
+ST_11: tmp_190_cast (202)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:668
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:133  %tmp_190_cast = sext i9 %tmp_82 to i10
+
+ST_11: tmp_189_1 (323)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:668
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:254  %tmp_189_1 = call i8 @_ssdm_op_BitConcatenate.i8.i7.i1(i7 %tmp_1883_s, i1 false)
+
+ST_11: phitmp_1_cast (324)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:668
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:255  %phitmp_1_cast = zext i8 %tmp_189_1 to i9
+
+ST_11: tmp_190_1 (325)  [1/1] 1.92ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:668
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:256  %tmp_190_1 = sub i9 64, %phitmp_1_cast
+
+ST_11: tmp_190_1_cast (326)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:668
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:257  %tmp_190_1_cast = sext i9 %tmp_190_1 to i10
+
+ST_11: tmp_108 (327)  [1/1] 1.94ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:672
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:258  %tmp_108 = add i10 %tmp_190_cast, %tmp_190_1_cast
+
+ST_11: p_cast (328)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:672
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:259  %p_cast = sext i10 %tmp_108 to i16
+
+ST_11: sum_V_1 (329)  [1/1] 2.08ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:672
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:260  %sum_V_1 = add i16 %p_cast, %p_Val2_3
+
+ST_11: empty (330)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:673
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:261  %empty = call i32 (...)* @_ssdm_op_SpecRegionEnd([13 x i8]* @p_str39, i32 %tmp_58)
+
+ST_11: StgValue_353 (332)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:646
+_ZrsILi64ELb1EE11ap_int_baseIXT_EXT0_EXleT_Li64EEERKS1_i.exit72.0_ifconv:263  br label %1
+
+
+ <State 12>: 3.25ns
+ST_12: r_V_10 (341)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:694
+_ifconv8:7  %r_V_10 = call i15 @_ssdm_op_PartSelect.i15.i16.i32.i32(i16 %p_s, i32 1, i32 15)
+
+ST_12: tmp_91 (342)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:695
+_ifconv8:8  %tmp_91 = zext i15 %r_V_10 to i32
+
+ST_12: kh_mem_V_addr_1 (343)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:695
+_ifconv8:9  %kh_mem_V_addr_1 = getelementptr [64 x i64]* %kh_mem_V, i32 0, i32 %tmp_91
+
+ST_12: kh_word_V_2 (344)  [2/2] 3.25ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:695
+_ifconv8:10  %kh_word_V_2 = load i64* %kh_mem_V_addr_1, align 4
+
+
+ <State 13>: 4.62ns
+ST_13: kh_off_V_1 (338)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:682
+_ifconv8:4  %kh_off_V_1 = trunc i16 %p_s to i1
+
+ST_13: kh_word_V_2 (344)  [1/2] 3.25ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:695
+_ifconv8:10  %kh_word_V_2 = load i64* %kh_mem_V_addr_1, align 4
+
+ST_13: loc_V_7 (347)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:700
+_ifconv8:13  %loc_V_7 = trunc i64 %kh_word_V_2 to i16
+
+ST_13: loc_V_8 (348)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:703
+_ifconv8:14  %loc_V_8 = call i16 @_ssdm_op_PartSelect.i16.i64.i32.i32(i64 %kh_word_V_2, i32 32, i32 47)
+
+ST_13: ki_V_2 (351)  [1/1] 1.37ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:682
+_ifconv8:17  %ki_V_2 = select i1 %kh_off_V_1, i16 %loc_V_8, i16 %loc_V_7
+
+
+ <State 14>: 6.38ns
+ST_14: r_V_8 (334)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:678
+_ifconv8:0  %r_V_8 = call i14 @_ssdm_op_PartSelect.i14.i16.i32.i32(i16 %p_s, i32 2, i32 15)
+
+ST_14: tmp_89 (335)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:679
+_ifconv8:1  %tmp_89 = zext i14 %r_V_8 to i32
+
+ST_14: kh_mem_V_addr (336)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:679
+_ifconv8:2  %kh_mem_V_addr = getelementptr [64 x i64]* %kh_mem_V, i32 0, i32 %tmp_89
+
+ST_14: kh_word_V (337)  [2/2] 3.25ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:679
+_ifconv8:3  %kh_word_V = load i64* %kh_mem_V_addr, align 4
+
+ST_14: tmp_1222 (352)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:672
+_ifconv8:18  %tmp_1222 = trunc i16 %p_Val2_3 to i10
+
+ST_14: tmp_95 (353)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:708
+_ifconv8:19  %tmp_95 = call i20 @_ssdm_op_BitConcatenate.i20.i10.i10(i10 %tmp_1222, i10 0)
+
+ST_14: OP1_V (354)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:708
+_ifconv8:20  %OP1_V = sext i20 %tmp_95 to i36
+
+ST_14: OP2_V (355)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:708
+_ifconv8:21  %OP2_V = sext i16 %ki_V_2 to i36
+
+ST_14: p_Val2_1 (356)  [1/1] 6.38ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:708
+_ifconv8:22  %p_Val2_1 = mul nsw i36 %OP1_V, %OP2_V
+
+
+ <State 15>: 7.05ns
+ST_15: kh_word_V (337)  [1/2] 3.25ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:679
+_ifconv8:3  %kh_word_V = load i64* %kh_mem_V_addr, align 4
+
+ST_15: kh_off_V (339)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:682
+_ifconv8:5  %kh_off_V = trunc i16 %p_s to i2
+
+ST_15: tmp_90 (340)  [1/1] 0.96ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:683
+_ifconv8:6  %tmp_90 = icmp eq i2 %kh_off_V, 0
+
+ST_15: loc_V (345)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:684 (grouped into LUT with out node newSel1)
+_ifconv8:11  %loc_V = trunc i64 %kh_word_V to i16
+
+ST_15: tmp_92 (346)  [1/1] 0.96ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:685
+_ifconv8:12  %tmp_92 = icmp eq i2 %kh_off_V, 1
+
+ST_15: loc_V_9 (349)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:686 (grouped into LUT with out node not_s)
+_ifconv8:15  %loc_V_9 = call i16 @_ssdm_op_PartSelect.i16.i64.i32.i32(i64 %kh_word_V, i32 16, i32 31)
+
+ST_15: tmp_93 (350)  [1/1] 0.96ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:687
+_ifconv8:16  %tmp_93 = icmp eq i2 %kh_off_V, -2
+
+ST_15: tmp_96 (357)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:708 (grouped into LUT with out node p_Val2_2)
+_ifconv8:23  %tmp_96 = zext i36 %p_Val2_1 to i37
+
+ST_15: tmp_190 (358)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:695 (grouped into LUT with out node p_Val2_2)
+_ifconv8:24  %tmp_190 = call i16 @_ssdm_op_PartSelect.i16.i64.i32.i32(i64 %kh_word_V_2, i32 48, i32 63)
+
+ST_15: tmp_191 (359)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:695 (grouped into LUT with out node p_Val2_2)
+_ifconv8:25  %tmp_191 = call i16 @_ssdm_op_PartSelect.i16.i64.i32.i32(i64 %kh_word_V_2, i32 16, i32 31)
+
+ST_15: tmp_192 (360)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:708 (grouped into LUT with out node p_Val2_2)
+_ifconv8:26  %tmp_192 = select i1 %kh_off_V_1, i16 %tmp_190, i16 %tmp_191
+
+ST_15: tmp_97 (361)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:708 (grouped into LUT with out node p_Val2_2)
+_ifconv8:27  %tmp_97 = call i28 @_ssdm_op_BitConcatenate.i28.i16.i12(i16 %tmp_192, i12 0)
+
+ST_15: tmp_104_cast (362)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:708 (grouped into LUT with out node p_Val2_2)
+_ifconv8:28  %tmp_104_cast = sext i28 %tmp_97 to i37
+
+ST_15: p_Val2_2 (363)  [1/1] 2.71ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:708 (out node of the LUT)
+_ifconv8:29  %p_Val2_2 = add nsw i37 %tmp_104_cast, %tmp_96
+
+ST_15: p_Val2_6 (364)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:708
+_ifconv8:30  %p_Val2_6 = call i20 @_ssdm_op_PartSelect.i20.i37.i32.i32(i37 %p_Val2_2, i32 14, i32 33)
+
+ST_15: tmp_99 (365)  [1/1] 2.43ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:710
+_ifconv8:31  %tmp_99 = icmp eq i16 %p_s, 0
+
+ST_15: loc_V_10 (366)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:688 (grouped into LUT with out node not_s)
+_ifconv8:32  %loc_V_10 = call i16 @_ssdm_op_PartSelect.i16.i64.i32.i32(i64 %kh_word_V, i32 32, i32 47)
+
+ST_15: loc_V_11 (367)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:690 (grouped into LUT with out node newSel1)
+_ifconv8:33  %loc_V_11 = call i16 @_ssdm_op_PartSelect.i16.i64.i32.i32(i64 %kh_word_V, i32 48, i32 63)
+
+ST_15: tmp_107_cast (368)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:710
+_ifconv8:34  %tmp_107_cast = sext i20 %p_Val2_6 to i22
+
+ST_15: tmp_101 (369)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:710
+_ifconv8:35  %tmp_101 = call i22 @_ssdm_op_BitConcatenate.i22.i16.i6(i16 %p_Val2_7, i6 0)
+
+ST_15: tmp_102 (370)  [1/1] 2.45ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:710
+_ifconv8:36  %tmp_102 = icmp sgt i22 %tmp_107_cast, %tmp_101
+
+ST_15: sel_tmp12 (371)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:683 (grouped into LUT with out node or_cond)
+_ifconv8:37  %sel_tmp12 = xor i1 %tmp_90, true
+
+ST_15: sel_tmp13 (372)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:685 (grouped into LUT with out node or_cond)
+_ifconv8:38  %sel_tmp13 = and i1 %tmp_92, %sel_tmp12
+
+ST_15: sel_tmp17_demorgan (373)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:683 (grouped into LUT with out node sel_tmp18)
+_ifconv8:39  %sel_tmp17_demorgan = or i1 %tmp_90, %tmp_92
+
+ST_15: sel_tmp17 (374)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:683 (grouped into LUT with out node sel_tmp18)
+_ifconv8:40  %sel_tmp17 = xor i1 %sel_tmp17_demorgan, true
+
+ST_15: sel_tmp18 (375)  [1/1] 0.93ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:687 (out node of the LUT)
+_ifconv8:41  %sel_tmp18 = and i1 %tmp_93, %sel_tmp17
+
+ST_15: newSel (376)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:687 (grouped into LUT with out node not_s)
+_ifconv8:42  %newSel = select i1 %sel_tmp18, i16 %loc_V_10, i16 %loc_V_9
+
+ST_15: or_cond (377)  [1/1] 0.93ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:687 (out node of the LUT)
+_ifconv8:43  %or_cond = or i1 %sel_tmp18, %sel_tmp13
+
+ST_15: newSel1 (378)  [1/1] 1.37ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:683 (out node of the LUT)
+_ifconv8:44  %newSel1 = select i1 %tmp_90, i16 %loc_V, i16 %loc_V_11
+
+ST_15: nc_V_4 (379)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:687 (grouped into LUT with out node not_s)
+_ifconv8:45  %nc_V_4 = select i1 %or_cond, i16 %newSel, i16 %newSel1
+
+ST_15: not_s (381)  [1/1] 2.43ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:692 (out node of the LUT)
+_ifconv8:47  %not_s = icmp slt i16 %p_Val2_3, %nc_V_4
+
+ST_15: tmp47 (388)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:710 (grouped into LUT with out node sel_tmp25_demorgan)
+_ifconv8:54  %tmp47 = or i1 %tmp_99, %tmp_102
+
+ST_15: sel_tmp25_demorgan (389)  [1/1] 0.93ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:710 (out node of the LUT)
+_ifconv8:55  %sel_tmp25_demorgan = or i1 %tmp47, %tmp
+
+
+ <State 16>: 4.62ns
+ST_16: bvh_d_index (380)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:692
+_ifconv8:46  %bvh_d_index = zext i6 %o_offset_V to i32
+
+ST_16: p_Repl2_s (382)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:692
+_ifconv8:48  %p_Repl2_s = zext i1 %not_s to i64
+
+ST_16: p_Result_s (383)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:692
+_ifconv8:49  %p_Result_s = call i64 @_ssdm_op_BitSet.i64.i64.i32.i64(i64 %o_word_V_4, i32 %bvh_d_index, i64 %p_Repl2_s)
+
+ST_16: prediction_V (384)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:711 (grouped into LUT with out node prediction_V_2)
+_ifconv8:50  %prediction_V = trunc i16 %p_s to i8
+
+ST_16: p_Val2_s_63 (385)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:712 (grouped into LUT with out node best_out_V_2)
+_ifconv8:51  %p_Val2_s_63 = call i14 @_ssdm_op_PartSelect.i14.i37.i32.i32(i37 %p_Val2_2, i32 20, i32 33)
+
+ST_16: best_out_V (386)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:712 (grouped into LUT with out node best_out_V_2)
+_ifconv8:52  %best_out_V = sext i14 %p_Val2_s_63 to i16
+
+ST_16: best_out_V_1 (387)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:626 (grouped into LUT with out node best_out_V_2)
+_ifconv8:53  %best_out_V_1 = select i1 %tmp, i16 %p_Val2_7, i16 %best_out_V
+
+ST_16: best_out_V_2 (390)  [1/1] 1.37ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:710 (out node of the LUT)
+_ifconv8:56  %best_out_V_2 = select i1 %sel_tmp25_demorgan, i16 %best_out_V_1, i16 %p_Val2_7
+
+ST_16: o_word_V_2 (391)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:626 (grouped into LUT with out node o_word_V_3)
+_ifconv8:57  %o_word_V_2 = select i1 %tmp, i64 %p_Result_s, i64 %o_word_V_4
+
+ST_16: o_word_V_3 (392)  [1/1] 1.37ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:710 (out node of the LUT)
+_ifconv8:58  %o_word_V_3 = select i1 %sel_tmp25_demorgan, i64 %o_word_V_2, i64 %o_word_V_4
+
+ST_16: prediction_V_1 (393)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:626 (grouped into LUT with out node prediction_V_2)
+_ifconv8:59  %prediction_V_1 = select i1 %tmp, i8 %p_Val2_s, i8 %prediction_V
+
+ST_16: prediction_V_2 (394)  [1/1] 1.37ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:710 (out node of the LUT)
+_ifconv8:60  %prediction_V_2 = select i1 %sel_tmp25_demorgan, i8 %prediction_V_1, i8 %p_Val2_s
+
+ST_16: StgValue_417 (395)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:716
+_ifconv8:61  br i1 %d_o_idx_V_read, label %branch7, label %branch6
+
+ST_16: StgValue_418 (397)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:716
+branch6:0  br i1 %tmp_1149, label %branch334, label %branch233
+
+ST_16: StgValue_419 (399)  [1/1] 3.25ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:716
+branch233:0  store i64 %o_word_V_3, i64* %dmem_0_0_V_addr, align 8
+
+ST_16: StgValue_420 (400)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:716
+branch233:1  br label %branch632
+
+ST_16: StgValue_421 (402)  [1/1] 3.25ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:716
+branch334:0  store i64 %o_word_V_3, i64* %dmem_0_1_V_addr, align 8
+
+ST_16: StgValue_422 (403)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:716
+branch334:1  br label %branch632
+
+ST_16: StgValue_423 (405)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:716
+branch632:0  br label %._crit_edge149022
+
+ST_16: StgValue_424 (407)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:716
+branch7:0  br i1 %tmp_1149, label %branch754, label %branch653
+
+ST_16: StgValue_425 (409)  [1/1] 3.25ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:716
+branch653:0  store i64 %o_word_V_3, i64* %dmem_1_0_V_addr, align 8
+
+ST_16: StgValue_426 (410)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:716
+branch653:1  br label %branch752
+
+ST_16: StgValue_427 (412)  [1/1] 3.25ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:716
+branch754:0  store i64 %o_word_V_3, i64* %dmem_1_1_V_addr, align 8
+
+ST_16: StgValue_428 (413)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:716
+branch754:1  br label %branch752
+
+ST_16: StgValue_429 (415)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:716
+branch752:0  br label %._crit_edge149022
+
+ST_16: empty_64 (417)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:717
+._crit_edge149022:0  %empty_64 = call i32 (...)* @_ssdm_op_SpecRegionEnd([13 x i8]* @p_str38, i32 %tmp_53)
+
+ST_16: StgValue_431 (418)  [1/1] 0.00ns  loc: /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:637
+._crit_edge149022:1  br label %0
+
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 2.7ns.
+
+ <State 1>: 1.77ns
+The critical path consists of the following:
+	multiplexor before 'phi' operation ('best_out.V') with incoming values : ('best_out.V', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:710) [27]  (1.77 ns)
+
+ <State 2>: 5.33ns
+The critical path consists of the following:
+	'phi' operation ('o.V') with incoming values : ('o.V', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:637) [29]  (0 ns)
+	'add' operation ('r.V', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:639) [41]  (2.08 ns)
+	'getelementptr' operation ('dmem_0_1_V_addr', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:641) [48]  (0 ns)
+	'load' operation ('dmem_0_1_V_load', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:641) on array 'dmem_0_1_V' [53]  (3.25 ns)
+
+ <State 3>: 4.62ns
+The critical path consists of the following:
+	'load' operation ('dmem_0_1_V_load', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:641) on array 'dmem_0_1_V' [53]  (3.25 ns)
+	'select' operation ('sel_tmp2', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:641) [56]  (1.37 ns)
+
+ <State 4>: 5.99ns
+The critical path consists of the following:
+	'load' operation ('dmem_1_0_V_load', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:641) on array 'dmem_1_0_V' [52]  (3.25 ns)
+	'select' operation ('sel_tmp5', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:641) [59]  (1.37 ns)
+	'select' operation ('o_word.V', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:641) [61]  (1.37 ns)
+
+ <State 5>: 5.51ns
+The critical path consists of the following:
+	'phi' operation ('i.V') with incoming values : ('i.V', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:646) [65]  (0 ns)
+	'add' operation ('r.V', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:649) [74]  (2.26 ns)
+	'getelementptr' operation ('wt_mem_0_V_addr', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:655) [84]  (0 ns)
+	'load' operation ('wt_mem_0_V_load', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:655) on array 'wt_mem_0_V' [85]  (3.25 ns)
+
+ <State 6>: 4.62ns
+The critical path consists of the following:
+	'load' operation ('dmem_1_0_V_load_1', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:654) on array 'dmem_1_0_V' [81]  (3.25 ns)
+	'select' operation ('in_wrd_V_0_phi', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:654) [83]  (0 ns)
+	'xor' operation ('r_V_s', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:657) [86]  (1.37 ns)
+
+ <State 7>: 3.52ns
+The critical path consists of the following:
+	'sub' operation ('x_V_6', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:660) [121]  (3.52 ns)
+
+ <State 8>: 6.78ns
+The critical path consists of the following:
+	'add' operation ('tmp_135', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:661) [160]  (3.47 ns)
+	'add' operation ('tmp41', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:663) [182]  (1.66 ns)
+	'add' operation ('tmp_71', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:663) [183]  (1.66 ns)
+
+ <State 9>: 5.84ns
+The critical path consists of the following:
+	'add' operation ('x_V_3', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:663) [187]  (3.42 ns)
+	'add' operation ('x_V_4', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:664) [191]  (2.43 ns)
+
+ <State 10>: 3.66ns
+The critical path consists of the following:
+	'add' operation ('tmp_78', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:663) [196]  (1.87 ns)
+	'add' operation ('tmp_80', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:668) [198]  (1.79 ns)
+
+ <State 11>: 5.93ns
+The critical path consists of the following:
+	'sub' operation ('tmp_82', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:668) [201]  (1.92 ns)
+	'add' operation ('tmp_108', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:672) [327]  (1.94 ns)
+	'add' operation ('sum_V_1', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:672) [329]  (2.08 ns)
+
+ <State 12>: 3.25ns
+The critical path consists of the following:
+	'getelementptr' operation ('kh_mem_V_addr_1', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:695) [343]  (0 ns)
+	'load' operation ('kh_word.V', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:695) on array 'kh_mem_V' [344]  (3.25 ns)
+
+ <State 13>: 4.62ns
+The critical path consists of the following:
+	'load' operation ('kh_word.V', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:695) on array 'kh_mem_V' [344]  (3.25 ns)
+	'select' operation ('ki.V', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:682) [351]  (1.37 ns)
+
+ <State 14>: 6.38ns
+The critical path consists of the following:
+	'mul' operation ('__Val2__', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:708) [356]  (6.38 ns)
+
+ <State 15>: 7.05ns
+The critical path consists of the following:
+	'load' operation ('kh_word.V', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:679) on array 'kh_mem_V' [337]  (3.25 ns)
+	'select' operation ('newSel1', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:683) [378]  (1.37 ns)
+	'select' operation ('nc.V', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:687) [379]  (0 ns)
+	'icmp' operation ('not_s', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:692) [381]  (2.43 ns)
+
+ <State 16>: 4.62ns
+The critical path consists of the following:
+	'select' operation ('o_word.V', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:626) [391]  (0 ns)
+	'select' operation ('o_word.V', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:710) [392]  (1.37 ns)
+	'store' operation (/mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:716) of variable 'o_word.V', /mnt/icgridio2/safe/giesen/HLS_tuner/1/TestApps/Rosetta/BNN/Sources/accel/Accel.cpp:710 on array 'dmem_0_0_V' [399]  (3.25 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+	State 10
+	State 11
+	State 12
+	State 13
+	State 14
+	State 15
+	State 16
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A
