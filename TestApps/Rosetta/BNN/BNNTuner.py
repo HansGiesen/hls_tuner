@@ -90,7 +90,7 @@ sys.path.insert(0, tuner_root + '/HLS_tuner')
 from hlstuner.measurement.hostinterfaces import GridHostInterface, SSHHostInterface
 from hlstuner.measurement.interface import MeasurementInterface
 import opentuner
-from opentuner import ConfigurationManipulator, EnumParameter, LogIntegerParameter
+from opentuner import ConfigurationManipulator, EnumParameter, FloatParameter, IntegerParameter, LogIntegerParameter
 from opentuner.search.manipulator import BooleanParameter
 
 # Determine the output directory.
@@ -183,7 +183,10 @@ class BNNTuner(MeasurementInterface):
 
     manipulator = ConfigurationManipulator()
     manipulator.add_parameter(EnumParameter("KERNEL_CLOCK", ['0', '1', '2', '3']))
+    manipulator.add_parameter(FloatParameter("CLOCK_UNCERTAINTY", 0, 100))
     manipulator.add_parameter(EnumParameter("DATA_MOVER_CLOCK", ['0', '1', '2', '3']))
+    manipulator.add_parameter(EnumParameter("DATA_MOVER_SHARING", ['0', '1', '2', '3']))
+    manipulator.add_parameter(IntegerParameter("IMPL_STRATEGY", 0, 27))
     manipulator.add_parameter(LogIntegerParameter("CONVOLVERS", 1, 16, prior = "inc"))
     return manipulator
 
@@ -196,8 +199,38 @@ class BNNTuner(MeasurementInterface):
     defines = ''
     parameters = ''
     for param, value in config_data.items():
-      if param == 'DATA_MOVER_CLOCK' or param == 'KERNEL_CLOCK':
+      if param in ['DATA_MOVER_CLOCK', 'KERNEL_CLOCK', 'CLOCK_UNCERTAINTY', 'DATA_MOVER_SHARING']:
         parameters += " " + param + "=" + str(value)
+      if param == 'IMPL_STRATEGY':
+        strategies = ['default',
+                      'Performance_Explore',
+                      'Performance_ExplorePostRoutePhysOpt',
+                      'Performance_WLBlockPlacement',
+                      'Performance_WLBlockPlacementFanoutOpt',
+                      'Performance_NetDelay_high',
+                      'Performance_NetDelay_low',
+                      'Performance_Retiming',
+                      'Performance_ExtraTimingOpt',
+                      'Performance_RefinePlacement',
+                      'Performance_SpreadSLLs',
+                      'Performance_BalanceSLLs',
+                      'Congestion_SpreadLogic_high',
+                      'Congestion_SpreadLogic_medium',
+                      'Congestion_SpreadLogic_low',
+                      'Congestion_SpreadLogic_Explore',
+                      'Congestion_SSI_SpreadLogic_high',
+                      'Congestion_SSI_SpreadLogic_low',
+                      'Congestion_SSI_SpreadLogic_Explore',
+                      'Area_Explore',
+                      'Area_ExploreSequential',
+                      'Area_ExploreWithRemap',
+                      'Power_DefaultOpt',
+                      'Power_ExploreArea',
+                      'Flow_RunPhysOpt',
+                      'Flow_RunPostRoutePhysOpt',
+                      'Flow_RuntimeOptimized',
+                      'Flow_Quick']
+        parameters += " IMPL_STRATEGY=" + strategies[value]
       else:
         defines += ' -D{0}={1}'.format(param, value)
     return parameters + " DEFINES='" + defines + "'"

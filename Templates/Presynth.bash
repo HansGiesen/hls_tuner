@@ -48,7 +48,7 @@ cd ${{TEMP_DIR}}
 # signals, so we use a custom timeout script.
 {tuner_root}/Scripts/Timeout.bash -t {timeout} \
   /usr/bin/time -f "Runtime: %e s\nMaximum residential set size: %M KB" -o /dev/stdout \
-    make -f {make_file} clean all JOBS={max_jobs} THREADS={max_threads} {parameters} && EXIT_CODE=0 || EXIT_CODE=$?
+    make -f {make_file} clean all NO_BITSTREAM=1 JOBS={max_jobs} THREADS={max_threads} {parameters} && EXIT_CODE=0 || EXIT_CODE=$?
 
 # Output a message about the build result.  The tuner script relies on these messages.
 [ "${{EXIT_CODE}}" == 143 ] && echo "Presynthesis timed out."

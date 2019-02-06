@@ -12,6 +12,10 @@ ifndef HLS_TUNER_ROOT
 $(error Please set the HLS_TUNER_ROOT environment variable to the root of the repository.)
 endif
 
+ifdef NO_BITSTREAM
+BITSTREAM_OPTION := -mno-bitstream
+endif
+
 DATA_MOVER_CLOCK ?= 1
 KERNEL_CLOCK ?= 1
 JOBS ?= 1
@@ -28,6 +32,7 @@ EXE_FILE := BNN.elf
 ACCEL_OBJ_FILES := Accel.o AccelSchedule.o AccelTest.o AccelPrint.o Dense.o InputConv.o
 UTILS_OBJ_FILES := Common.o Timer.o DataIO.o ParamIO.o
 BNN_OBJ_FILE := accel_test_bnn.o
+TCL_FILE := Config.tcl
 
 LOCAL_DIR = Local
 LOCAL_BNN_EXE_FILE := $(LOCAL_DIR)/BNN
@@ -60,13 +65,14 @@ VIVADO_HLS ?= vivado_hls
 CXX := g++
 
 SDS_FLAGS ?= -sds-sys-config $(SYS_CFG) -sds-pf $(PLATFORM) -sds-proc $(PROC) \
-             -sds-hw $(KERNEL) $(KERNEL_SRC) -clkid $(KERNEL_CLOCK) -sds-end \
-             -maxjobs $(JOBS) -maxthreads $(THREADS)
+             -sds-hw $(KERNEL) $(KERNEL_SRC) -hls-tcl $(TCL_FILE) -clkid $(KERNEL_CLOCK) -sds-end \
+             -dm-sharing $(DATA_MOVER_SHARING) -dmclkid $(DATA_MOVER_CLOCK) \
+             -impl-strategy $(IMPL_STRATEGY) -maxjobs $(JOBS) -maxthreads $(THREADS)
 
 CFLAGS ?= -std=gnu++11 -Wall -Wno-unused-label -Wno-unknown-pragmas
 
 SDS_CFLAGS ?= $(CFLAGS) -O3 -DHLS_COMPILE -I $(UTILS_SRC_DIR) $(DEFINES)
-SDS_LFLAGS ?= -dmclkid $(DATA_MOVER_CLOCK) -mno-boot-files -mno-bitstream
+SDS_LFLAGS ?= -mno-boot-files $(BITSTREAM_OPTION)
 
 LOCAL_CFLAGS ?= $(CFLAGS) -O3 -g -I $(UTILS_SRC_DIR) -I $(SDSOC_ROOT)/Vivado_HLS/include
 LOCAL_LFLAGS ?=
@@ -79,11 +85,14 @@ SHELL := /bin/bash # Needed to run the source command.
 
 all: $(EXE_FILE)
 
+$(TCL_FILE):
+	@echo "set_clock_uncertainty $(CLOCK_UNCERTAINTY)%" > $@
+
 $(EXE_FILE): $(BNN_OBJ_FILE) $(ACCEL_OBJ_FILES) $(UTILS_OBJ_FILES)
 	source $(SDSOC_ROOT)/settings64.sh && \
 	$(SDSCC) $(SDS_FLAGS) $(SDS_LFLAGS) -o $@ $^
 
-$(ACCEL_OBJ_FILES) $(BNN_OBJ_FILE): %.o: $(ACCEL_SRC_DIR)/%.cpp
+$(ACCEL_OBJ_FILES) $(BNN_OBJ_FILE): %.o: $(ACCEL_SRC_DIR)/%.cpp $(TCL_FILE)
 	source $(SDSOC_ROOT)/settings64.sh && \
 	$(SDSCC) $(SDS_FLAGS) $(SDS_CFLAGS) -DRUN_STANDALONE -c $< -o $@ -MMD -MP
 

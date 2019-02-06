@@ -304,6 +304,10 @@ class MeasurementInterface(opentuner.MeasurementInterface):
       return Result(state = 'PE3', msg = 'Too much unrolling')
     if re.search(r'\[XFORM 203-1403\]', lines) != None:
       return Result(state = 'PE4', msg = 'Too many load/store instructions')
+    if re.search(r'\[SYN 201-202\]', lines) != None:
+      return Result(state = 'PE6', msg = 'Clock uncertainty larger than period.')
+    if re.search(r'\[HLS 200-70\]]', lines) != None:
+      return Result(state = 'PE7', msg = 'Clock uncertainty cannot be 0%.')
     # We haven't encountered a known error.  Check whether everything went well.
     if re.search(r'Presynthesis has completed successfully.', lines) == None:
       # We don't know this error.  It may be worth adding to this script.
