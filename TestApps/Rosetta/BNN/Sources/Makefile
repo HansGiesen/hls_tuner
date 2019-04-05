@@ -16,8 +16,11 @@ ifdef NO_BITSTREAM
 BITSTREAM_OPTION := -mno-bitstream
 endif
 
-DATA_MOVER_CLOCK ?= 1
-KERNEL_CLOCK ?= 1
+DATA_MOVER_SHARING ?= 0
+IMPL_STRATEGY ?= default
+DATA_MOVER_CLOCK ?= 2
+KERNEL_CLOCK ?= 2
+CLOCK_UNCERTAINTY ?= 30
 JOBS ?= 1
 THREADS ?= 1
 
@@ -67,7 +70,7 @@ CXX := g++
 SDS_FLAGS ?= -sds-sys-config $(SYS_CFG) -sds-pf $(PLATFORM) -sds-proc $(PROC) \
              -sds-hw $(KERNEL) $(KERNEL_SRC) -hls-tcl $(TCL_FILE) -clkid $(KERNEL_CLOCK) -sds-end \
              -dm-sharing $(DATA_MOVER_SHARING) -dmclkid $(DATA_MOVER_CLOCK) \
-             -impl-strategy $(IMPL_STRATEGY) -maxjobs $(JOBS) -maxthreads $(THREADS)
+             -impl-strategy $(IMPL_STRATEGY) -maxjobs $(JOBS) -maxthreads $(THREADS) -trace
 
 CFLAGS ?= -std=gnu++11 -Wall -Wno-unused-label -Wno-unknown-pragmas
 
@@ -140,7 +143,7 @@ $(RTL_FILE): $(KERNEL_SRC)
 	$(VIVADO_HLS) $(SRC_DIR)/Synthesize.tcl
 
 clean:
-	rm -fr $(ACCEL_OBJ_FILES) $(UTILS_OBJ_FILES) $(EXE_FILE) $(LOCAL_DIR) _sds HLS
+	rm -fr $(ACCEL_OBJ_FILES) $(UTILS_OBJ_FILES) $(EXE_FILE) $(LOCAL_DIR) $(TCL_FILE) _sds HLS
 
 -include $(DEP_FILES)
 
