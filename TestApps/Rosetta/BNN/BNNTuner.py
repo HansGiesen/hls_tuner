@@ -89,6 +89,7 @@ sys.path.insert(0, tuner_root + '/HLS_tuner')
 # Import OpenTuner and HLSTuner classes.
 from hlstuner.measurement.hostinterfaces import GridHostInterface, SSHHostInterface
 from hlstuner.measurement.interface import MeasurementInterface
+import hlstuner.search.exhaustivetechniques
 import opentuner
 from opentuner import ConfigurationManipulator, EnumParameter, FloatParameter, IntegerParameter, LogIntegerParameter
 from opentuner.search.manipulator import BooleanParameter
@@ -182,12 +183,16 @@ class BNNTuner(MeasurementInterface):
     """
 
     manipulator = ConfigurationManipulator()
-    manipulator.add_parameter(EnumParameter("KERNEL_CLOCK", ['0', '1', '2', '3']))
-    manipulator.add_parameter(FloatParameter("CLOCK_UNCERTAINTY", 0, 100))
-    manipulator.add_parameter(EnumParameter("DATA_MOVER_CLOCK", ['0', '1', '2', '3']))
-    manipulator.add_parameter(EnumParameter("DATA_MOVER_SHARING", ['0', '1', '2', '3']))
-    manipulator.add_parameter(IntegerParameter("IMPL_STRATEGY", 0, 27))
-    manipulator.add_parameter(LogIntegerParameter("CONVOLVERS", 1, 16, prior = "inc"))
+    if 'ExhaustiveSearch' in self.args.technique:
+      manipulator.add_parameter(EnumParameter("KERNEL_CLOCK", ['0', '1', '2', '3']))
+      manipulator.add_parameter(LogIntegerParameter("CONVOLVERS", 1, 16))
+    else:
+      manipulator.add_parameter(EnumParameter("KERNEL_CLOCK", ['0', '1', '2', '3']))
+      manipulator.add_parameter(FloatParameter("CLOCK_UNCERTAINTY", 0, 100))
+      manipulator.add_parameter(EnumParameter("DATA_MOVER_CLOCK", ['0', '1', '2', '3']))
+      manipulator.add_parameter(EnumParameter("DATA_MOVER_SHARING", ['0', '1', '2', '3']))
+      manipulator.add_parameter(IntegerParameter("IMPL_STRATEGY", 0, 27))
+      manipulator.add_parameter(LogIntegerParameter("CONVOLVERS", 1, 16, prior = "inc"))
     return manipulator
 
 
