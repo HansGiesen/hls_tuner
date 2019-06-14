@@ -75,6 +75,12 @@ RUN_JOB      = "run"
 # Name of grid job for checking FPGA
 CHECK_FPGA_JOB = "check_fpga"
 
+# Location of tuner database
+TUNER_DB_FILE = '/HLS_tuner.db'
+
+# Location of log file
+LOG_FILE = '/HLS_tuner.log'
+
 #######################################################################################################################
 
 # Import modules that are used.
@@ -105,6 +111,9 @@ class MeasurementInterface(opentuner.MeasurementInterface):
     Initializes the measurement interface and performs a few sanity checks.
     """
 
+    # Set the output directory.
+    self.output_root = kwargs.pop('output_root')
+
     # Call the parent constructor.
     super(MeasurementInterface, self).__init__(*pargs, **kwargs)
 
@@ -125,7 +134,7 @@ class MeasurementInterface(opentuner.MeasurementInterface):
       raise RuntimeError("Environment variable SDSOC_ROOT was not set.")
 
     # Make sure there was no old data.
-    self.check_output_empty()
+    self.prepare_output_dir()
 
     # Check whether the FPGA is setup.
     self.check_fpga()
@@ -306,7 +315,7 @@ class MeasurementInterface(opentuner.MeasurementInterface):
       return Result(state = 'PE4', msg = 'Too many load/store instructions')
     if re.search(r'\[SYN 201-202\]', lines) != None:
       return Result(state = 'PE6', msg = 'Clock uncertainty larger than period.')
-    if re.search(r'\[HLS 200-70\]]', lines) != None:
+    if re.search(r'\[HLS 200-70\]', lines) != None:
       return Result(state = 'PE7', msg = 'Clock uncertainty cannot be 0%.')
     # We haven't encountered a known error.  Check whether everything went well.
     if re.search(r'Presynthesis has completed successfully.', lines) == None:
@@ -739,22 +748,27 @@ class MeasurementInterface(opentuner.MeasurementInterface):
     return re.search(r'^EXE_FILE\s*:=\s*(\S+)', data, re.MULTILINE).group(1)
 
 
-  def check_output_empty(self):
+  def prepare_output_dir(self):
     """
-    Check if there is old data in the output directory.
+    Prepare the output directory.
     """
 
-    # Check if there is still old data in the output directory.
-    old_data_found = False
-    for name in os.listdir(self.output_root):
-      path = self.output_root + '/' + name
-      if os.path.isdir(path) and re.match('[0-9]{4}$', os.path.basename(path)):
-        old_data_found = True
+    # Check if the output directory exists already.
+    if not os.path.isdir(self.output_root):
+      # Create the output directory.
+      os.mkdir(self.output_root)
+    else:
+      # Check if there is still old data in the output directory.
+      old_data_found = False
+      for name in os.listdir(self.output_root):
+        path = self.output_root + '/' + name
+        if os.path.isdir(path) and re.match('[0-9]{4}$', os.path.basename(path)):
+          old_data_found = True
 
-    # Throw an exception if there is still old data.
-    if old_data_found and not self.args.append:
-      raise RuntimeError("Old results were found.  Explicitly confirm appending the results using the --append" \
-                         " command line arguments.")
+      # Throw an exception if there is still old data.
+      if old_data_found and not self.args.append:
+        raise RuntimeError("Old results were found.  Explicitly confirm appending the results using the --append" \
+                            " command line arguments.")
 
 
   def check_fpga(self):
@@ -793,10 +807,26 @@ class MeasurementInterface(opentuner.MeasurementInterface):
 
 
   @classmethod
-  def main(self, db_file, log_file):
+  def get_argparsers(self):
+    """
+    Returns all command-line argument parsers
+    """
+    argparser = argparse.ArgumentParser(add_help = False)
+    argparser.add_argument('--append', action = 'store_true', help = 'append new tuning run to existing runs')
+    argparser.add_argument('--output-dir', help = 'output directory')
+    return opentuner.argparsers() + [argparser]
+
+
+  @classmethod
+  def main(self, args, default_output_dir):
     """
     This is the main function of the tuner.
     """
+
+    # Determine the output directory.
+    output_root = default_output_dir
+    if args.output_dir != None:
+      output_root = os.path.abspath(args.output_dir)
 
     # Start logging messages.
     opentuner.init_logging()
@@ -808,27 +838,23 @@ class MeasurementInterface(opentuner.MeasurementInterface):
         handler.setLevel(logging.INFO)
         # Move the log file to the output directory.
         handler.close()
-        handler.baseFilename = log_file
+        handler.baseFilename = output_root + LOG_FILE
 
-    # Parse the command line arguments.
-    argparser = argparse.ArgumentParser(parents = opentuner.argparsers())
-    argparser.add_argument('--append', action = 'store_true', help = 'append new tuning run to existing runs')
-    args = argparser.parse_args()
+    # Set the database location if the user did not specify anything.
+    if args.database == None:
+      args.database = output_root + TUNER_DB_FILE
 
     # Extract the directory name from the database name.
-    db_dir = os.path.dirname(db_file)
+    db_dir = os.path.dirname(args.database)
 
     # Create the directory if it does not exist.
     if db_dir != "" and not os.path.isdir(db_dir):
       os.makedirs(db_dir)
-
-    # Change the database location.
-    args.database = db_file
 
     # Select the random forest search technique by default.
     if not args.technique:
       args.technique = ['SpaceContractorRandomForest']
 
     # Start the tuner.
-    super(MeasurementInterface, self).main(args)
+    super(MeasurementInterface, self).main(args, output_root = output_root)
 
