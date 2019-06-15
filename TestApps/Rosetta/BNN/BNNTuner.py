@@ -24,12 +24,6 @@ PREBUILT_PRESYNTH_DIR = "/TestApps/Rosetta/BNN/Prebuilt/Presynth"
 PREBUILT_SYNTH_DIR    = "/TestApps/Rosetta/BNN/Prebuilt/Synth"
 PREBUILT_IMPL_DIR     = "/TestApps/Rosetta/BNN/Prebuilt/Impl"
 
-# Location of tuner database
-TUNER_DB_FILE = '/HLS_tuner.db'
-
-# Location of log file
-LOG_FILE = '/HLS_tuner.log'
-
 # Location of results cache
 RESULTS_CACHE_FILE = "/TestApps/Rosetta/BNN/Cache/Cache.db"
 
@@ -70,6 +64,7 @@ FPGA_HOST = "hactar.seas.upenn.edu"
 #######################################################################################################################
 
 # Import system modules.
+import argparse
 import os
 import sys
 
@@ -108,6 +103,7 @@ class BNNTuner(MeasurementInterface):
     """
     Initializes a tuner object and performs a few sanity checks.
     """
+
     # Call the parent constructor.
     kwargs['project_name'] = "Rosetta"
     kwargs['program_name'] = "BNN"
@@ -120,9 +116,6 @@ class BNNTuner(MeasurementInterface):
     """
     # Root directory of the tuner repository
     cfg.tuner_root = tuner_root
-
-    # Output directory
-    cfg.output_root = output_root
 
     # Location of makefile
     cfg.makefile = MAKEFILE
@@ -184,8 +177,11 @@ class BNNTuner(MeasurementInterface):
 
     manipulator = ConfigurationManipulator()
     if 'ExhaustiveSearch' in self.args.technique:
-      manipulator.add_parameter(EnumParameter("KERNEL_CLOCK", ['0', '1', '2', '3']))
+#      manipulator.add_parameter(EnumParameter("CLOCK", ['0', '1', '2', '3']))
+#      manipulator.add_parameter(EnumParameter("KERNEL_CLOCK", ['0', '1', '2', '3']))
       manipulator.add_parameter(LogIntegerParameter("CONVOLVERS", 1, 16))
+      manipulator.add_parameter(IntegerParameter("BIN_DENSE_PIPELINE", 1, 16))
+#      manipulator.add_parameter(IntegerParameter("FP_CONV_UNROLL", 1, 16))
     else:
       manipulator.add_parameter(EnumParameter("KERNEL_CLOCK", ['0', '1', '2', '3']))
       manipulator.add_parameter(FloatParameter("CLOCK_UNCERTAINTY", 0, 100))
@@ -193,6 +189,8 @@ class BNNTuner(MeasurementInterface):
       manipulator.add_parameter(EnumParameter("DATA_MOVER_SHARING", ['0', '1', '2', '3']))
       manipulator.add_parameter(IntegerParameter("IMPL_STRATEGY", 0, 27))
       manipulator.add_parameter(LogIntegerParameter("CONVOLVERS", 1, 16, prior = "inc"))
+      manipulator.add_parameter(IntegerParameter("BIN_DENSE_PIPELINE", 1, 16, prior = "dec"))
+      manipulator.add_parameter(IntegerParameter("FP_CONV_UNROLL", 1, 16, prior = "inc"))
     return manipulator
 
 
@@ -206,6 +204,8 @@ class BNNTuner(MeasurementInterface):
     for param, value in config_data.items():
       if param in ['DATA_MOVER_CLOCK', 'KERNEL_CLOCK', 'CLOCK_UNCERTAINTY', 'DATA_MOVER_SHARING']:
         parameters += " " + param + "=" + str(value)
+      if param in ['CLOCK']:
+        parameters += " KERNEL_CLOCK=" + str(value) + " DATA_MOVER_CLOCK=" + str(value)
       if param == 'IMPL_STRATEGY':
         strategies = ['default',
                       'Performance_Explore',
@@ -251,6 +251,10 @@ class BNNTuner(MeasurementInterface):
 
 if __name__ == '__main__':
 
+  # Parse the command line arguments.
+  argparser = argparse.ArgumentParser(parents = BNNTuner.get_argparsers())
+  args = argparser.parse_args()
+
   # Start the tuner.
-  BNNTuner.main(output_root + TUNER_DB_FILE, output_root + LOG_FILE)
+  BNNTuner.main(args, output_root)
 

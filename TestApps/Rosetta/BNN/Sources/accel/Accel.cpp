@@ -4,6 +4,9 @@
 #include "Accel.h"
 #include "AccelPrint.h"
 
+const unsigned fp_conv_unroll = FP_CONV_UNROLL;
+const unsigned bin_dense_pipeline = BIN_DENSE_PIPELINE;
+
 const static Word m1("0x5555555555555555", 16);
 const static Word m2("0x3333333333333333", 16);
 const static Word m4("0x0f0f0f0f0f0f0f0f", 16);
@@ -534,13 +537,14 @@ void fp_conv(
 
     // begin convolution
     LOOP_CONV_ROWS: for (IdxType r = 0; r < S+1; ++r) {
+#pragma HLS UNROLL factor = fp_conv_unroll
       LOOP_CONV_COLS: for (IdxType c = 0; c < S+1; ++c) {
 #pragma HLS PIPELINE
         // load input word
         Word inword = 0;
         if (r < S && c < S) {
           const Address addr = r*S + c;
-          inword = dmem[d_i_idx][addr/C_DMEM_WORDS][addr%C_DMEM_WORDS];
+          inword = dmem[d_i_idx][addr%CONVOLVERS][addr/CONVOLVERS];
         }
 
         for (ap_uint<2> m = 0; m < M; ++m) {
@@ -640,7 +644,7 @@ void bin_dense(
 
     LOOP_DENSE_I:
     for (Address i = 0; i < n_inputs; i+=CONVOLVERS*WORD_SIZE) {
-#pragma HLS PIPELINE
+#pragma HLS PIPELINE ii = bin_dense_pipeline
       const Address wt_addr = (o*n_inputs+i) / WORD_SIZE;
 
       for (IdxType j = 0; j < CONVOLVERS; ++j) {
@@ -787,7 +791,7 @@ void top(
       dmem[d_i_idx][bank_idx][(bank_off<<(2*width_mode)) + img_off] = dmem_i[i];
     }
     else if (layer_type == LAYER_CONV1)
-      dmem[d_i_idx][i/C_DMEM_WORDS][i%C_DMEM_WORDS] = dmem_i[i];
+      dmem[d_i_idx][i%CONVOLVERS][i/CONVOLVERS] = dmem_i[i];
     else
       dmem[d_i_idx][i%CONVOLVERS][i/CONVOLVERS] = dmem_i[i];
 

@@ -26,6 +26,14 @@
 #define CONVOLVERS 2
 #endif
 
+#ifndef FP_CONV_UNROLL
+#define FP_CONV_UNROLL 1
+#endif
+
+#ifndef BIN_DENSE_PIPELINE
+#define BIN_DENSE_PIPELINE 1
+#endif
+
 const unsigned WORD_SIZE = 64;
 const unsigned WT_SIZE = 9;
 const unsigned CONV_W_PER_WORD = 7;

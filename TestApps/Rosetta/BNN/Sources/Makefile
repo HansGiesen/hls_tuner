@@ -70,7 +70,7 @@ CXX := g++
 SDS_FLAGS ?= -sds-sys-config $(SYS_CFG) -sds-pf $(PLATFORM) -sds-proc $(PROC) \
              -sds-hw $(KERNEL) $(KERNEL_SRC) -hls-tcl $(TCL_FILE) -clkid $(KERNEL_CLOCK) -sds-end \
              -dm-sharing $(DATA_MOVER_SHARING) -dmclkid $(DATA_MOVER_CLOCK) \
-             -impl-strategy $(IMPL_STRATEGY) -maxjobs $(JOBS) -maxthreads $(THREADS) -trace
+             -impl-strategy $(IMPL_STRATEGY) -maxjobs $(JOBS) -maxthreads $(THREADS)
 
 CFLAGS ?= -std=gnu++11 -Wall -Wno-unused-label -Wno-unknown-pragmas
 
