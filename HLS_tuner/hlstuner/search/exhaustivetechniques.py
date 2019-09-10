@@ -31,8 +31,7 @@ class ExhaustiveSearchTechnique(AsyncProceduralSearchTechnique):
 
       # Create a configuration.
       cfg = {}
-      print([param.name for param in params])
-      print(inst)
+      log.info(str([param.name for param in params]) + " = (" + ', '.join(map(repr, inst)) + ")")
       for i in range(len(params)):
         cfg[params[i].name] = inst[i]
 

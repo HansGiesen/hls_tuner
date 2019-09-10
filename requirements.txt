@@ -1,0 +1,7 @@
+Cython==0.29.10
+fn==0.4.3
+numpy==1.16.4
+p4python==2014.2.962887
+scikit-learn==0.20.3
+scipy==1.2.2
+SQLAlchemy==0.8.2

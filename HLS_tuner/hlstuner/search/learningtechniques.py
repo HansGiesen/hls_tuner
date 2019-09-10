@@ -5,10 +5,8 @@
 # Author: Hans Giesen (giesen@seas.upenn.edu)
 #######################################################################################################################
 
-import abc
-import logging
+import abc, logging
 
-import opentuner
 from opentuner.search.bandittechniques import AUCBanditMetaTechnique
 from opentuner.search.differentialevolution import DifferentialEvolutionAlt
 from opentuner.search.evolutionarytechniques import NormalGreedyMutation, UniformGreedyMutation
@@ -18,94 +16,181 @@ from .modeltuner import ModelTuner
 
 log = logging.getLogger(__name__)
 
+#######################################################################################################################
 
 class LearningTechnique(SearchTechnique):
-  """
-  Abstract base class for machine-learning search techniques
-  """
+  """Abstract base class for machine-learning search techniques"""
 
   __metaclass__ = abc.ABCMeta
 
-  def __init__(self, model, *pargs, **kwargs):
+  def __init__(self, models, *pargs, **kwargs):
     """
     Initialize the machine learning search technique object.
+    
+    Parameters
+    ----------
+    models : list of Model objects
     """
-
-    # Call the constructor of the parent object.
     super(LearningTechnique, self).__init__(*pargs, **kwargs)
 
-    # Remember configuration selector to use.
-    self.model = model
-
-    # Create an empty dataset.
-    self.data_set = []
-
-    # Configurations that are still being evaluated
-    self.pending_cfgs = set()
-
-    # Provide the dataset to the model and configuration selector.
-    model.set_data_set(self.data_set)
+    self._models = models
+    self._data_set = []
+    self._pending_cfgs = set()
 
 
   def handle_requested_result(self, result):
+    """This callback is invoked by the search driver to report new results.
+    
+    Parameters
+    ----------
+    result : Result
+      Result
     """
-    This callback is invoked by the search driver to report new results.
+    self._data_set.append(result)
+
+    data_set = [result for result in self._data_set if result.state == 'OK']
+    
+    if data_set:
+      cfgs = [result.configuration.data for result in data_set]
+      for model in self._models:
+        results = [getattr(result, model.metric) for result in data_set]
+        model.train(cfgs, results)
+    
+    self._pending_cfgs.discard(result.configuration)
+
+
+  def desired_configuration(self):
+    """Suggest a new configuration to evaluate.
+    
+    Returns
+    -------
+    Configuration
+      Suggested configuration
+    """
+    for model in self._models:
+      cfg = model.select_configuration()
+      if cfg != None:
+        break
+      
+    if cfg == None:
+      cfg = self.select_configuration()
+
+    if cfg is not None:
+      self._pending_cfgs.add(cfg)
+    return cfg
+
+
+  @abc.abstractmethod
+  def select_configuration(self):
+    """Callback that should be implemented by a subclass to suggest a new configuration to evaluate.
+
+    Returns
+    -------
+    Configuration
+      Suggested configuration
     """
 
-    # Add a new result to the data set.
-    self.data_set.append(result)
 
-    # Remove the configuration from the list with pending configurations.
-    self.pending_cfgs.discard(result.configuration)
+  def set_driver(self, driver):
+    """Set the search driver.
+    
+    Parameters
+    ----------
+    driver : SearchDriver
+    """
+    super(LearningTechnique, self).set_driver(driver)
+    for model in self._models:
+      model.set_driver(driver)
 
 
 class Model(object):
-  """
-  Abstract base class for machine-learning models
-  """
+  """Abstract base class for machine-learning models"""
 
   __metaclass__ = abc.ABCMeta
+  
+  def __init__(self, metric = None):
+    """Constructor
+    
+    Parameters
+    ----------
+    metric : str
+      Metric that is modeled 
+    """
+    self.metric = metric
+    
 
-  def set_data_set(self, data_set):
+  def train(self, cfgs, results):
+    """Train the model with the provided dataset.
+    
+    Parameters
+    ----------
+    cfgs : list of dict
+      Configurations
+    results : list of float
+      Measurements
     """
-    Set data set for model.
+    pass
+    
+    
+  def set_driver(self, driver):
+    """Set the search driver.
+    
+    Parameters
+    ----------
+    driver : SearchDriver
     """
-    self.data_set = data_set
+    self._driver = driver
+    self._manipulator = driver.manipulator
 
 
   @abc.abstractmethod
   def predict(self, cfg):
-    """
-    Predict the result for the given configuration.
+    """Make a prediction for the given configuration.
+    
+    Parameters
+    ----------
+    cfg : dict
+      Configuration
+    
+    Returns
+    -------
+    float
+      Mean of prediction
+    float
+      Standard deviation of prediction
     """
 
 
-  @abc.abstractmethod
-  def estimate_uncertainty(self, cfg):
+  def select_configuration(self):
+    """Suggest a new configuration to evaluate to initialize the model.
+    
+    Returns
+    -------
+    Configuration
+      Suggested configuration.  None is returned if initialization has completed.
     """
-    Give a measure of uncertainty for the given configuration.
-    """
+    return None
 
 
 class GreedyLearningTechnique(LearningTechnique):
+  """Configuration selector that tries the optimal configuration according to the model unless it has already been
+  tried, in which case a random configuration is chosen.
   """
-  Configuration selector that tries the optimal configuration according to the model unless it has already been tried,
-  in which case a random configuration is chosen.
-  """
 
-  __metaclass__ = abc.ABCMeta
-
-  def desired_configuration(self):
+  def select_configuration(self):
+    """Suggest a new configuration to evaluate.
+    
+    If the configuration that the model thinks is best has not been tried yet, we will suggest it.  Otherwise, we
+    suggest a random configuration.
+    
+    Returns
+    -------
+    Configuration
+      Suggested configuration
     """
-    Suggest a new configuration to evaluate.  If the configuration that the model thinks is best has not been tried
-    yet, we will suggest it.  Otherwise, we suggest a random configuration.
-    """
+    if len(self._data_set) == 0:
+      return self._driver.get_configuration(self._manipulator.random())
 
-    # Suggest a random configuration if we don't have any data points yet.
-    if len(self.data_set) == 0:
-      return self.manipulator.random()
-
-    # Search technique to use for exploring the model.
     technique = AUCBanditMetaTechnique([
         DifferentialEvolutionAlt(),
         UniformGreedyMutation(),
@@ -113,23 +198,12 @@ class GreedyLearningTechnique(LearningTechnique):
         RandomNelderMead(),
       ])
 
-    # Create a version of the tuner that does not use the database.
-    tuner = ModelTuner(self.model, technique, self.objective, self.manipulator)
+    tuner = ModelTuner(self._models, technique, self._objective, self._manipulator)
 
-    # Explore the model.
-    cfg = tuner.tune()
+    cfg = self._driver.get_configuration(tuner.tune())
 
-    # Create a new unique Configuration object for the obtained configuration dictionary.
-    cfg = self.driver.get_configuration(cfg)
-
-    # Use a random configuration if we have already evaluated this configuration or are planning to evaluate it.
-    if (cfg in [result.configuration for result in self.data_set]) or (cfg in self.pending_cfgs):
+    if (cfg in [result.configuration for result in self._data_set]) or (cfg in self._pending_cfgs):
       log.info("Subtechnique suggests already evaluated point.  Falling back to random point.");
-      cfg = self.driver.get_configuration(self.manipulator.random())
+      cfg = self._driver.get_configuration(self._manipulator.random())
 
-    # Add the configuration to the list with pending configurations.
-    self.pending_cfgs.add(cfg)
-
-    # Return the configuration.
     return cfg
-
