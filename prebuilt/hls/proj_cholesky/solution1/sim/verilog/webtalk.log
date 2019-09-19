@@ -1,0 +1,14 @@
+#-----------------------------------------------------------
+# Webtalk v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:47:09 MDT 2019
+# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+# Start of session at: Tue Sep 17 15:44:40 2019
+# Process ID: 20037
+# Current directory: /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/proj_cholesky/solution1/sim/verilog
+# Command line: wbtcv -mode batch -source /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/proj_cholesky/solution1/sim/verilog/xsim.dir/cholesky_top/webtalk/xsim_webtalk.tcl -notrace
+# Log file: /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/proj_cholesky/solution1/sim/verilog/webtalk.log
+# Journal file: /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/proj_cholesky/solution1/sim/verilog/webtalk.jou
+#-----------------------------------------------------------
+source /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/proj_cholesky/solution1/sim/verilog/xsim.dir/cholesky_top/webtalk/xsim_webtalk.tcl -notrace
+INFO: [Common 17-186] '/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/proj_cholesky/solution1/sim/verilog/xsim.dir/cholesky_top/webtalk/usage_statistics_ext_xsim.xml' has been successfully sent to Xilinx on Tue Sep 17 15:44:43 2019. For additional details about this file, please refer to the WebTalk help file at /scratch/safe/SDSoC/Vivado/2019.1/doc/webtalk_introduction.html.
+INFO: [Common 17-206] Exiting Webtalk at Tue Sep 17 15:44:43 2019...

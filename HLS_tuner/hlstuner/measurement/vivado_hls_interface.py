@@ -35,6 +35,7 @@ MAX_CFG_STR_LEN = 150
 import distutils.dir_util
 import glob
 import logging
+from measurement.hostinterfaces import GridHostInterface
 import opentuner
 from opentuner.search.manipulator import ConfigurationManipulator, BooleanParameter, LogIntegerParameter, \
                                          PowerOfTwoParameter
@@ -44,6 +45,8 @@ import re
 import shutil
 import stat
 from utils.kernelstructure import KernelStructure
+import traceback
+from xml.etree import ElementTree
 import yaml
 
 log = logging.getLogger(__name__)
@@ -60,74 +63,52 @@ class VivadoHLSInterface(opentuner.MeasurementInterface):
 
     super(VivadoHLSInterface, self).__init__(*pargs, **kwargs)
 
-    self.batch_compile = True
-    self.test_iter = 1
+    self.host_interf = GridHostInterface(["80s*", "!60s", "*"])
+    self.host_interf.interf = self
+
+    self.parallel_compile = True
     self.log_cfg_enabled = None
     
     with open(self.args.pragma_file, 'r') as stream:
       self.pragmas = yaml.safe_load(stream)
 
 
-  def compile_batch(self, args):
-    "Compiles one batch of configurations."
+  def compile(self, config_data, result_id):
+    """Compiles one configuration.
 
-    cfgs = ", ".join([str(arg[1]) for arg in args])
-    log.info("Building configurations %s...", cfgs)
+    Parameters
+    ----------
+    config_data : dict
+      Configuration
+    result_id : int
+      Number of desired result
+    """
 
-    batch_dir = self.args.output_dir + "/Batches/{0:04d}".format(self.test_iter)
-    os.makedirs(batch_dir)
-    
-    test_list_file = batch_dir + "/Tests.txt"
+    log.info("Building configuration %d...", result_id)
 
-    with open(test_list_file, "w") as output_file:
-      for config_data, result_id in args:
-        
-        self.log_cfg(result_id, config_data)
+    self.log_cfg(result_id, config_data)
 
-        src_dir = self.args.output_dir + "/Sources/{0:04d}".format(result_id)
-        os.makedirs(src_dir)
+    output_dir = self.args.output_dir + "/{0:04d}".format(result_id)
+    os.makedirs(output_dir)
 
-        distutils.dir_util.copy_tree(self.args.src_dir, src_dir)
+    distutils.dir_util.copy_tree(self.args.src_dir, output_dir)
 
-        self.write_directives(src_dir + '/directives.tcl', config_data)
-        self.write_defines(src_dir + '/defines.tcl', config_data)
-        
-        output_file.write(src_dir + "\n")
-      
-    output_dir = self.args.output_dir + "/Output"
-    try:
-      os.makedirs(output_dir)
-    except os.error:
-      pass
-    
-    run_script = batch_dir + "/Compile_and_cosim.bash"
-    self.fill_in_template(self.tuner_root + "/Templates/Compile_and_cosim.bash", run_script,
-                          src_dir = self.args.src_dir, test_list_file = test_list_file,
-                          output_dir = output_dir)
+    self.write_directives(output_dir + '/directives.tcl', config_data)
+    self.write_defines(output_dir + '/defines.tcl', config_data)
+
+    run_script = output_dir + "/compile_and_cosim.bash"
+    self.fill_in_template(self.tuner_root + "/templates/compile_and_cosim.bash", run_script, output_dir = output_dir)
     os.chmod(run_script, os.stat(run_script).st_mode | stat.S_IXUSR)
 
     if not self.args.use_prebuilt:
-      result = self.call_program(run_script)
-  
-      with open(batch_dir + '/Stdout.log', 'w') as output_file:
-        output_file.write(result['stdout'])
-      with open(batch_dir + '/Stderr.log', 'w') as output_file:
-        output_file.write(result['stderr'])
-        
-      results = [result] * len(args)
-  
+      result = self.host_interf.run(run_script, output_dir, 'cholesky_' + str(result_id), 4, 2)
+
     else:
-      results = []
-      for config_data, result_id in args:
-        output_dir = self.args.output_dir + "/Output/{0:04d}".format(result_id)
-        
-        distutils.dir_util.copy_tree(self.tuner_root + '/Prebuilt/HLS', output_dir)
+      distutils.dir_util.copy_tree(self.tuner_root + '/prebuilt/hls', output_dir)
   
-        results.append({'run_time': reduce(lambda x, y: float(x) + float(y), config_data.values())})
-        
-    self.test_iter += 1
+      result = {'run_time': reduce(lambda x, y: float(x) + float(y), config_data.values())}
     
-    return results
+    return result
 
 
   def fill_in_template(self, template_filename, output_filename, **replacements):
@@ -144,12 +125,11 @@ class VivadoHLSInterface(opentuner.MeasurementInterface):
 
   def run_precompiled(self, desired_result, inp, limit, compile_result, result_id):
     "Get metrics of a built HLS kernel."
-    
-    output_dir = self.args.output_dir + "/Output/{0:04d}".format(result_id)
 
-    output_log = glob.glob(output_dir + '/*.OUTPUT')[0]
-    try:
-      with open(output_log, 'r') as input_file:
+    try:    
+      output_dir = self.args.output_dir + "/{0:04d}".format(result_id)
+
+      with open(output_dir + '/stdout.log', 'r') as input_file:
         report = []
         cosim_tb_output = []
         section = 'report'
@@ -164,71 +144,53 @@ class VivadoHLSInterface(opentuner.MeasurementInterface):
             section = 'C TB output'
           elif line.startswith('INFO: [COSIM 212-316]'):
             section = 'Cosim TB output'
-    except OSError:
-      return self.report_error(result_id, 'E1', 'Output log is missing.')
-    report = ''.join(report)
-    cosim_tb_output = ''.join(cosim_tb_output)
+      report = ''.join(report)
+      cosim_tb_output = ''.join(cosim_tb_output)
 
-    match = re.search(r'^ERROR: \[(.*)\] (.*)\n', report, re.MULTILINE)
-    if match:
-      return self.report_error(result_id, match.group(1), match.group(2))
+      match = re.search(r'^ERROR: \[(.*)\] (.*)\n', report, re.MULTILINE)
+      if match:
+        return self.report_error(result_id, match.group(1), match.group(2))
       
-    match = re.search(r'^ERROR: (.*)\n', report, re.MULTILINE)
-    if match:
-      return self.report_error("E7", match.group(1))
+      match = re.search(r'^ERROR: (.*)\n', report, re.MULTILINE)
+      if match:
+        return self.report_error("ERROR", match.group(1))
     
-    if not re.search(r'INFO: Finished writing New_DB_qor file', report):
-      return self.report_error(result_id, 'TIMEOUT', 'Build timed out.')
+      if not re.search(r'Exiting vivado_hls', report):
+        return self.report_error(result_id, 'TIMEOUT', 'Build timed out.')
 
-    metrics = re.findall(r'^VH_(\S+) : (\d+)$', report, re.MULTILINE)
-    metrics = {metric: value for metric, value in metrics}
-
-    match = re.search(r'^Test iteration (\d)+ was successful.', cosim_tb_output, re.MULTILINE)
-    if match:
-      test = match.group(1)
-      cosim_log = glob.glob(output_dir + '/*/proj/sol1/sim/report/verilog/result.transaction.rpt')[0]
+      cosim_log = glob.glob(output_dir + '/proj_cholesky/solution1/sim/report/cholesky_top_cosim.rpt')[0]
       with open(cosim_log, 'r') as input_file:
         for line in input_file:
-          tokens = line.split()
-          if tokens[1] == test + ':':
-            latency = float(tokens[2])
-    else:
-      if "Worst-caseLatency" not in metrics:
-        return self.report_error(result_id, 'E2', 'Cannot find latency in output log.')
-      latency = float(metrics['Worst-caseLatency'])
+          if 'Verilog' in line:
+            tokens = line.split('|')
+            latency = float(tokens[5].strip())
+
+      tree = ElementTree.parse(output_dir + '/proj_cholesky/solution1/syn/report/csynth.xml')
+      luts = int(tree.find('AreaEstimates/Resources/LUT').text)
+      regs = int(tree.find('AreaEstimates/Resources/FF').text)
+      brams = int(tree.find('AreaEstimates/Resources/BRAM_18K').text)
+      dsps = int(tree.find('AreaEstimates/Resources/DSP48E').text)
     
-    if "LUT" not in metrics:
-      return self.report_error(result_id, 'E3', 'Cannot find LUT count in output log.')
-    luts = int(metrics['LUT'])
+      if getattr(desired_result.configuration, "extract_struct", False):
+        kernel_struc = KernelStructure(output_dir)
+        kernel_struc.match_pragmas(self.pragmas)
+        kernel_struc.store(output_dir + "/krnl_struc.yml")
 
-    if "FF" not in metrics:
-      return self.report_error(result_id, 'E4', 'Cannot find flip-flop count in output log.')
-    regs = int(metrics['FF'])
+      if not self.args.no_cleanup:
+        shutil.rmtree(output_dir + '/proj_cholesky')
 
-    if "BRAM_18K" not in metrics:
-      return self.report_error(result_id, 'E5', 'Cannot find BRAM count in output log.')
-    brams = int(metrics['BRAM_18K'])
+      os.system("gzip " + output_dir + "/stdout.log " + output_dir + "/vivado_hls.log")
 
-    if "DSP48E" not in metrics:
-      return self.report_error(result_id, 'E6', 'Cannot find DSP count in output log.')
-    dsps = int(metrics['DSP48E'])
+      if self.args.use_prebuilt:
+        latency = compile_result['run_time']
 
-    if getattr(desired_result.configuration, "extract_struct", False):
-      kernel_struc = KernelStructure(output_dir)
-      kernel_struc.match_pragmas(self.pragmas)
-      kernel_struc.store(output_dir + "/KernelStruc.yml")
+      log.info('Latency of configuration %d: %f.', result_id, latency)
+      return Result(state = 'OK', run_time = latency, luts = luts, regs = regs, brams = brams, dsps = dsps,
+                    msg = 'Build was successful.')
 
-    build_dir = output_log[:-7]
-    if not self.args.no_cleanup:
-      shutil.rmtree(build_dir)
-      
-    os.system("gzip {0}.OUTPUT {0}.STDOUT".format(build_dir))
-
-    if self.args.use_prebuilt:
-      latency = compile_result['run_time']
-    log.info('Latency of configuration %d: %f.', result_id, latency)
-    return Result(state = 'OK', run_time = latency, luts = luts, regs = regs, brams = brams, dsps = dsps,
-                  msg = 'Build was successful.')
+    except:
+      log.error(traceback.format_exc())
+      return Result(state = 'EXCEPTION', msg = 'Unknown exception')
 
 
   def report_error(self, result_id, state, msg):

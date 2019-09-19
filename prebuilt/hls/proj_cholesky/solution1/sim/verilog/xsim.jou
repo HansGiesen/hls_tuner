@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# xsim v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:47:09 MDT 2019
+# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+# Start of session at: Tue Sep 17 15:40:22 2019
+# Process ID: 19864
+# Current directory: /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/proj_cholesky/solution1/sim/verilog
+# Command line: xsim -mode tcl -source {xsim.dir/cholesky_top/xsim_script.tcl}
+# Log file: /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/proj_cholesky/solution1/sim/verilog/xsim.log
+# Journal file: /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/proj_cholesky/solution1/sim/verilog/xsim.jou
+#-----------------------------------------------------------
+source xsim.dir/cholesky_top/xsim_script.tcl
+source cholesky_top.tcl

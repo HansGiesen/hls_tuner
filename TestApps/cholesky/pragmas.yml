@@ -1,0 +1,2 @@
+- {type: unroll, function: cholesky_alt, loop: sum_loop, factor: 1-64}
+

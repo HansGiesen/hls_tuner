@@ -148,11 +148,7 @@ class MaximizeExpecImpr(SearchObjective):
     Returns
     -------
     float
-      Expected improvement
-      
-    Notes
-    -----
-    For numerical stability, we compute the logarithm of the expected improvement instead.
+      Expected improvement      
     """    
     means = self.objective.get_means(result)
     std_devs = self.objective.get_std_devs(result)
@@ -174,46 +170,11 @@ class MaximizeExpecImpr(SearchObjective):
       
     if math.isinf(expec_impr) or math.isnan(expec_impr):
       raise RuntimeError("Invalid expected improvement.")
-
-    if False:
-      # CDFs and PDFs can easily become so small that floating-point representations do not have enough precision.  The
-      # logcdf and logpdf functions can handle a much larger domain, so we compute the logarithm of the expected
-      # improvement instead.
-      log_probs = [norm.logcdf(constraints[metric], means[metric], std_devs[metric]) for metric in range(1, len(means))]
-      log_prob = numpy.sum(log_probs)
-  
-      log_diff = math.log(best[0] - means[0])
-      exploit_term = log_prob + log_diff + norm.logcdf(best[0], means[0], std_devs[0])
-      explore_term = log_prob + math.log(std_devs[0]) + norm.logpdf(best[0], means[0], std_devs[0])
-      expec_impr = self.add_log(exploit_term, explore_term)
     
     # Due to rounding errors, the expected improvement is occasionally negative.  I suspect that this doesn't matter.
     return expec_impr
 
 
-  def add_log(self, x, y):
-    """Add two numbers that are in the log domain and avoid overflows.
-    
-    Parameters
-    ----------
-    x : float
-      Addition operand 1
-    y : float
-      Addition operand 2
-    
-    Returns
-    -------
-    float
-      Sum of operands
-    """
-    min_val = min(x, y)
-    max_val = max(x, y)
-    try:
-      return min_val + math.log(math.exp(max_val - min_val) + 1.0)
-    except OverflowError:
-      return max_val
-    
-    
   def safe_cdf(self, value, mean, std_dev):
     """Return the probability density of a normal distribution for a given value.
     

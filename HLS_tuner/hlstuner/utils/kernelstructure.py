@@ -27,7 +27,7 @@ SOFTWARE.
 
 #######################################################################################################################
 
-import glob, logging, re, time, yaml
+import glob, logging, re, os, yaml
 from xml.etree import ElementTree
 from collections import defaultdict, Counter
 
@@ -62,6 +62,7 @@ class KernelStructure(object):
   def __init__(self, output_dir = None):
     """Extract information about all functions, loops, and their latencies from HLS reports."""
     if output_dir:
+      self._disassemble(output_dir)
       self._read_full_names(output_dir)
       self._read_latencies(output_dir)
       self._assign_loop_bounds(output_dir)
@@ -74,6 +75,13 @@ class KernelStructure(object):
       self._assign_resources(output_dir)
     
     
+  def _disassemble(self, output_dir):
+    sdsoc_root = os.environ['SDSOC_ROOT']
+    version = os.path.basename(sdsoc_root)
+    disas_path = sdsoc_root + '/../../Vivado/' + version + '/lnx64/tools/clang/bin/llvm-dis'
+    os.system(disas_path + ' ' + output_dir + '/proj_cholesky/solution1/.autopilot/db/a.o.3.bc')
+    
+    
   def _read_full_names(self, output_dir):
     """Make a map in self._function_map that contains the full name for each abbreviated function name.
     
@@ -82,9 +90,8 @@ class KernelStructure(object):
     output_dir : str
       Output directory of build
     """
-    log = glob.glob(output_dir + '/*/proj/sol1/sol1.log')[0]
     self._function_map = {}
-    with open(log, "r") as input_file:
+    with open(output_dir + '/vivado_hls.log', "r") as input_file:
       for line in input_file:
         match = re.search(r'WARNING: \[XFORM 203-631\] Renaming function \'(\S+)\' to \'(\S+)\'', line)
         if match:
@@ -119,7 +126,7 @@ class KernelStructure(object):
     output_dir : str
       Output directory of build
     """
-    reports = glob.glob(output_dir + '/*/proj/sol1/syn/report/*_csynth.xml')    
+    reports = glob.glob(output_dir + '/proj_cholesky/solution1/syn/report/*_csynth.xml')    
     self.functions = {}
     for report in reports:
       tree = ElementTree.parse(report)
@@ -190,7 +197,7 @@ class KernelStructure(object):
     output_dir : str
       Output directory of build
     """
-    reports = glob.glob(output_dir + '/*/proj/sol1/.autopilot/db/*.verbose.sched.rpt')
+    reports = glob.glob(output_dir + '/proj_cholesky/solution1/.autopilot/db/*.verbose.sched.rpt')
     for report in reports:
       function, bounds = self._read_loop_bounds(report)
       self._assign_bounds(function, bounds)
@@ -297,7 +304,7 @@ class KernelStructure(object):
     output_dir : str
       Output directory of build
     """
-    reports = glob.glob(output_dir + '/*/proj/sol1/.autopilot/db/*.verbose.sched.rpt')
+    reports = glob.glob(output_dir + '/proj_cholesky/solution1/.autopilot/db/*.verbose.sched.rpt')
     for report in reports:
       function = self._get_full_name(re.search('.*/(.*?)\.verbose\.sched\.rpt', report).group(1))
       with open(report, "r") as input_file:
@@ -387,8 +394,7 @@ class KernelStructure(object):
     output_dir : str
       Output directory of build
     """    
-    reports = glob.glob(output_dir + '/*/proj/sol1/syn/report/csynth.xml')    
-    tree = ElementTree.parse(reports[0])
+    tree = ElementTree.parse(output_dir + '/proj_cholesky/solution1/syn/report/csynth.xml')
     self.top_function = tree.find('UserAssignments/TopModelName').text
   
   
@@ -409,9 +415,8 @@ class KernelStructure(object):
     output_dir : str
       Output directory of build
     """
-    filename = glob.glob(output_dir + '/*/proj/sol1/.autopilot/db/a.o.3.ll')[0]
     pattern = re.compile(r'@(\S+) = .*global \[(\d+) x (\S+)\]')
-    with open(filename, 'r') as input_file:
+    with open(output_dir + '/proj_cholesky/solution1/.autopilot/db/a.o.3.ll', 'r') as input_file:
       for line in input_file:
         match = re.match(pattern, line)
         if match:
@@ -428,7 +433,7 @@ class KernelStructure(object):
     output_dir : str
       Output directory of build
     """
-    reports = glob.glob(output_dir + '/*/proj/sol1/.autopilot/db/*.verbose.sched.rpt')
+    reports = glob.glob(output_dir + '/proj_cholesky/solution1/.autopilot/db/*.verbose.sched.rpt')
     function_pattern = re.compile(r'.*/(.*?)\.verbose\.sched\.rpt')
     mem_pattern = re.compile(r'%(\S+) = alloca \[(\d+) x (\S+)\]')
     for report in reports:
@@ -452,11 +457,10 @@ class KernelStructure(object):
     output_dir : str
       Output directory of build
     """
-    filename = glob.glob(output_dir + '/*/proj/sol1/.autopilot/db/a.o.3.ll')[0]
     function_pattern = re.compile(r'define .* @(\S+)\((.*)\) .*{')
     call_pattern = re.compile(r' = call .* @(\S+)\((.*)\)')
     functions = {}
-    with open(filename, 'r') as input_file:
+    with open(output_dir + '/proj_cholesky/solution1/.autopilot/db/a.o.3.ll', 'r') as input_file:
       for line in input_file:
         match = re.match(function_pattern, line)
         if match:
@@ -552,7 +556,7 @@ class KernelStructure(object):
     getelemptr_pattern = re.compile(r'%(\S+) = getelementptr .*\[.+\]\* [%@](\S+),')
     load_pattern = re.compile(r'ST_(\d+) .* \[1/2\] .* = load \S+ %(\S+),')
     store_pattern = re.compile(r'ST_(\d+) .* "store \S+ \S+, \S+ %(\S+),')
-    reports = glob.glob(output_dir + '/*/proj/sol1/.autopilot/db/*.verbose.sched.rpt')
+    reports = glob.glob(output_dir + '/proj_cholesky/solution1/.autopilot/db/*.verbose.sched.rpt')
     for report in reports:
       function = self._get_full_name(re.search('.*/(.*?)\.verbose\.sched\.rpt', report).group(1))
       addr_map = {}
@@ -618,7 +622,7 @@ class KernelStructure(object):
     self.func_units = {}
     self.registers = {}
     self.multiplexers = {}
-    reports = glob.glob(output_dir + '/*/proj/sol1/.autopilot/db/*.verbose.bind.rpt')
+    reports = glob.glob(output_dir + '/proj_cholesky/solution1/.autopilot/db/*.verbose.bind.rpt')
     for report in reports:
       function = self._get_full_name(re.search('.*/(.*?)\.verbose\.bind\.rpt', report).group(1))
       with open(report, 'r') as input_file:
@@ -755,7 +759,7 @@ class KernelStructure(object):
       Source YAML file
     """
     with open(filename, 'r') as input_file:
-      data = yaml.load(input_file)
+      data = yaml.load(input_file, Loader = yaml.FullLoader)
       
     self.functions = data['functions']
     self.top_function = data['top_function']

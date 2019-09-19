@@ -1,0 +1,336 @@
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [HLS 200-10] Setting target device to 'xcvu9p-flga2104-2-i'
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 5ns.
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+INFO: [SIM 211-1] CSim done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file '/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/cholesky.cpp' ... 
+WARNING: [HLS 200-40] In file included from /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/cholesky.cpp:33:
+In file included from /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/cholesky.h:35:
+In file included from /scratch/safe/SDSoC/Vivado/2019.1/common/technology/autopilot/hls_linear_algebra.h:52:
+In file included from /scratch/safe/SDSoC/Vivado/2019.1/common/technology/autopilot/hls/linear_algebra/deprecated/x_complex_matrix_multiply.h:62:
+/scratch/safe/SDSoC/Vivado/2019.1/common/technology/autopilot/hls/linear_algebra/utils/x_hls_complex.h:43:9: warning: hls::x_complex library will be replaced in 2019.2 with a new implementation that does not provide automatic bit width expansion. Please avoid relying on this feature. [-W#pragma-messages]
+#pragma message("hls::x_complex library will be replaced in 2019.2 with a new implementation that does not provide automatic bit width expansion. Please avoid relying on this feature.")
+        ^
+1 warning generated.
+WARNING: [HLS 200-40] In file included from /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/cholesky.cpp:1:
+In file included from /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/cholesky.cpp:32:
+/scratch/safe/SDSoC/Vivado/2019.1/include/gmp.h:2226:345: warning: equality comparison with extraneous parentheses [-Wparentheses-equality]
+  do { mp_size_t __gmp_i; mp_limb_t __gmp_x; __gmp_i = (__gmp_ysize); if (__gmp_i != 0) { if (__gmpn_add_n (__gmp_wp, __gmp_xp, __gmp_yp, __gmp_i)) { do { if (__gmp_i >= (__gmp_xsize)) { (__gmp_c) = 1; goto __gmp_done; } __gmp_x = (__gmp_xp)[__gmp_i]; } while ((((__gmp_wp)[__gmp_i++] = (__gmp_x + 1) & ((~ (static_cast<mp_limb_t> (0))) >> 0)) == 0)); } } if ((__gmp_wp) != (__gmp_xp)) do { mp_size_t __gmp_j; for (__gmp_j = (__gmp_i); __gmp_j < (__gmp_xsize); __gmp_j++) (__gmp_wp)[__gmp_j] = (__gmp_xp)[__gmp_j]; } while (0); (__gmp_c) = 0; __gmp_done: ; } while (0);
+                                                                                                                                                                                                                                                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~
+/scratch/safe/SDSoC/Vivado/2019.1/include/gmp.h:2226:345: note: remove extraneous parentheses around the comparison to silence this warning
+  do { mp_size_t __gmp_i; mp_limb_t __gmp_x; __gmp_i = (__gmp_ysize); if (__gmp_i != 0) { if (__gmpn_add_n (__gmp_wp, __gmp_xp, __gmp_yp, __gmp_i)) { do { if (__gmp_i >= (__gmp_xsize)) { (__gmp_c) = 1; goto __gmp_done; } __gmp_x = (__gmp_xp)[__gmp_i]; } while ((((__gmp_wp)[__gmp_i++] = (__gmp_x + 1) & ((~ (static_cast<mp_limb_t> (0))) >> 0)) == 0)); } } if ((__gmp_wp) != (__gmp_xp)) do { mp_size_t __gmp_j; for (__gmp_j = (__gmp_i); __gmp_j < (__gmp_xsize); __gmp_j++) (__gmp_wp)[__gmp_j] = (__gmp_xp)[__gmp_j]; } while (0); (__gmp_c) = 0; __gmp_done: ; } while (0);
+                                                                                                                                                                                                                                                                     ~                                                                                  ^   ~
+/scratch/safe/SDSoC/Vivado/2019.1/include/gmp.h:2226:345: note: use '=' to turn this equality comparison into an assignment
+  do { mp_size_t __gmp_i; mp_limb_t __gmp_x; __gmp_i = (__gmp_ysize); if (__gmp_i != 0) { if (__gmpn_add_n (__gmp_wp, __gmp_xp, __gmp_yp, __gmp_i)) { do { if (__gmp_i >= (__gmp_xsize)) { (__gmp_c) = 1; goto __gmp_done; } __gmp_x = (__gmp_xp)[__gmp_i]; } while ((((__gmp_wp)[__gmp_i++] = (__gmp_x + 1) & ((~ (static_cast<mp_limb_t> (0))) >> 0)) == 0)); } } if ((__gmp_wp) != (__gmp_xp)) do { mp_size_t __gmp_j; for (__gmp_j = (__gmp_i); __gmp_j < (__gmp_xsize); __gmp_j++) (__gmp_wp)[__gmp_j] = (__gmp_xp)[__gmp_j]; } while (0); (__gmp_c) = 0; __gmp_done: ; } while (0);
+                                                                                                                                                                                                                                                                                                                                                        ^~
+                                                                                                                                                                                                                                                                                                                                                        =
+In file included from /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/cholesky.cpp:1:
+In file included from /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/cholesky.cpp:33:
+In file included from /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/cholesky.h:35:
+In file included from /scratch/safe/SDSoC/Vivado/2019.1/common/technology/autopilot/hls_linear_algebra.h:52:
+In file included from /scratch/safe/SDSoC/Vivado/2019.1/common/technology/autopilot/hls/linear_algebra/deprecated/x_complex_matrix_multiply.h:62:
+/scratch/safe/SDSoC/Vivado/2019.1/common/technology/autopilot/hls/linear_algebra/utils/x_hls_complex.h:43:9: warning: hls::x_complex library will be replaced in 2019.2 with a new implementation that does not provide automatic bit width expansion. Please avoid relying on this feature. [-W#pragma-messages]
+#pragma message("hls::x_complex library will be replaced in 2019.2 with a new implementation that does not provide automatic bit width expansion. Please avoid relying on this feature.")
+        ^
+2 warnings generated.
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [HLS 200-10] Setting target device to 'xcvu9p-flga2104-2-i'
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 5ns.
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+INFO: [SIM 211-1] CSim done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file '/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/cholesky.cpp' ... 
+WARNING: [HLS 200-40] In file included from /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/cholesky.cpp:33:
+In file included from /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/cholesky.h:35:
+In file included from /scratch/safe/SDSoC/Vivado/2019.1/common/technology/autopilot/hls_linear_algebra.h:52:
+In file included from /scratch/safe/SDSoC/Vivado/2019.1/common/technology/autopilot/hls/linear_algebra/deprecated/x_complex_matrix_multiply.h:62:
+/scratch/safe/SDSoC/Vivado/2019.1/common/technology/autopilot/hls/linear_algebra/utils/x_hls_complex.h:43:9: warning: hls::x_complex library will be replaced in 2019.2 with a new implementation that does not provide automatic bit width expansion. Please avoid relying on this feature. [-W#pragma-messages]
+#pragma message("hls::x_complex library will be replaced in 2019.2 with a new implementation that does not provide automatic bit width expansion. Please avoid relying on this feature.")
+        ^
+1 warning generated.
+WARNING: [HLS 200-40] In file included from /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/cholesky.cpp:1:
+In file included from /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/cholesky.cpp:32:
+/scratch/safe/SDSoC/Vivado/2019.1/include/gmp.h:2226:345: warning: equality comparison with extraneous parentheses [-Wparentheses-equality]
+  do { mp_size_t __gmp_i; mp_limb_t __gmp_x; __gmp_i = (__gmp_ysize); if (__gmp_i != 0) { if (__gmpn_add_n (__gmp_wp, __gmp_xp, __gmp_yp, __gmp_i)) { do { if (__gmp_i >= (__gmp_xsize)) { (__gmp_c) = 1; goto __gmp_done; } __gmp_x = (__gmp_xp)[__gmp_i]; } while ((((__gmp_wp)[__gmp_i++] = (__gmp_x + 1) & ((~ (static_cast<mp_limb_t> (0))) >> 0)) == 0)); } } if ((__gmp_wp) != (__gmp_xp)) do { mp_size_t __gmp_j; for (__gmp_j = (__gmp_i); __gmp_j < (__gmp_xsize); __gmp_j++) (__gmp_wp)[__gmp_j] = (__gmp_xp)[__gmp_j]; } while (0); (__gmp_c) = 0; __gmp_done: ; } while (0);
+                                                                                                                                                                                                                                                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~
+/scratch/safe/SDSoC/Vivado/2019.1/include/gmp.h:2226:345: note: remove extraneous parentheses around the comparison to silence this warning
+  do { mp_size_t __gmp_i; mp_limb_t __gmp_x; __gmp_i = (__gmp_ysize); if (__gmp_i != 0) { if (__gmpn_add_n (__gmp_wp, __gmp_xp, __gmp_yp, __gmp_i)) { do { if (__gmp_i >= (__gmp_xsize)) { (__gmp_c) = 1; goto __gmp_done; } __gmp_x = (__gmp_xp)[__gmp_i]; } while ((((__gmp_wp)[__gmp_i++] = (__gmp_x + 1) & ((~ (static_cast<mp_limb_t> (0))) >> 0)) == 0)); } } if ((__gmp_wp) != (__gmp_xp)) do { mp_size_t __gmp_j; for (__gmp_j = (__gmp_i); __gmp_j < (__gmp_xsize); __gmp_j++) (__gmp_wp)[__gmp_j] = (__gmp_xp)[__gmp_j]; } while (0); (__gmp_c) = 0; __gmp_done: ; } while (0);
+                                                                                                                                                                                                                                                                     ~                                                                                  ^   ~
+/scratch/safe/SDSoC/Vivado/2019.1/include/gmp.h:2226:345: note: use '=' to turn this equality comparison into an assignment
+  do { mp_size_t __gmp_i; mp_limb_t __gmp_x; __gmp_i = (__gmp_ysize); if (__gmp_i != 0) { if (__gmpn_add_n (__gmp_wp, __gmp_xp, __gmp_yp, __gmp_i)) { do { if (__gmp_i >= (__gmp_xsize)) { (__gmp_c) = 1; goto __gmp_done; } __gmp_x = (__gmp_xp)[__gmp_i]; } while ((((__gmp_wp)[__gmp_i++] = (__gmp_x + 1) & ((~ (static_cast<mp_limb_t> (0))) >> 0)) == 0)); } } if ((__gmp_wp) != (__gmp_xp)) do { mp_size_t __gmp_j; for (__gmp_j = (__gmp_i); __gmp_j < (__gmp_xsize); __gmp_j++) (__gmp_wp)[__gmp_j] = (__gmp_xp)[__gmp_j]; } while (0); (__gmp_c) = 0; __gmp_done: ; } while (0);
+                                                                                                                                                                                                                                                                                                                                                        ^~
+                                                                                                                                                                                                                                                                                                                                                        =
+In file included from /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/cholesky.cpp:1:
+In file included from /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/cholesky.cpp:33:
+In file included from /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/cholesky.h:35:
+In file included from /scratch/safe/SDSoC/Vivado/2019.1/common/technology/autopilot/hls_linear_algebra.h:52:
+In file included from /scratch/safe/SDSoC/Vivado/2019.1/common/technology/autopilot/hls/linear_algebra/deprecated/x_complex_matrix_multiply.h:62:
+/scratch/safe/SDSoC/Vivado/2019.1/common/technology/autopilot/hls/linear_algebra/utils/x_hls_complex.h:43:9: warning: hls::x_complex library will be replaced in 2019.2 with a new implementation that does not provide automatic bit width expansion. Please avoid relying on this feature. [-W#pragma-messages]
+#pragma message("hls::x_complex library will be replaced in 2019.2 with a new implementation that does not provide automatic bit width expansion. Please avoid relying on this feature.")
+        ^
+2 warnings generated.
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [HLS 200-10] Setting target device to 'xcvu9p-flga2104-2-i'
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 5ns.
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+INFO: [SIM 211-1] CSim done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file '/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/cholesky.cpp' ... 
+WARNING: [HLS 200-40] In file included from /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/cholesky.cpp:33:
+In file included from /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/cholesky.h:35:
+In file included from /scratch/safe/SDSoC/Vivado/2019.1/common/technology/autopilot/hls_linear_algebra.h:52:
+In file included from /scratch/safe/SDSoC/Vivado/2019.1/common/technology/autopilot/hls/linear_algebra/deprecated/x_complex_matrix_multiply.h:62:
+/scratch/safe/SDSoC/Vivado/2019.1/common/technology/autopilot/hls/linear_algebra/utils/x_hls_complex.h:43:9: warning: hls::x_complex library will be replaced in 2019.2 with a new implementation that does not provide automatic bit width expansion. Please avoid relying on this feature. [-W#pragma-messages]
+#pragma message("hls::x_complex library will be replaced in 2019.2 with a new implementation that does not provide automatic bit width expansion. Please avoid relying on this feature.")
+        ^
+1 warning generated.
+WARNING: [HLS 200-40] In file included from /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/cholesky.cpp:1:
+In file included from /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/cholesky.cpp:32:
+/scratch/safe/SDSoC/Vivado/2019.1/include/gmp.h:2226:345: warning: equality comparison with extraneous parentheses [-Wparentheses-equality]
+  do { mp_size_t __gmp_i; mp_limb_t __gmp_x; __gmp_i = (__gmp_ysize); if (__gmp_i != 0) { if (__gmpn_add_n (__gmp_wp, __gmp_xp, __gmp_yp, __gmp_i)) { do { if (__gmp_i >= (__gmp_xsize)) { (__gmp_c) = 1; goto __gmp_done; } __gmp_x = (__gmp_xp)[__gmp_i]; } while ((((__gmp_wp)[__gmp_i++] = (__gmp_x + 1) & ((~ (static_cast<mp_limb_t> (0))) >> 0)) == 0)); } } if ((__gmp_wp) != (__gmp_xp)) do { mp_size_t __gmp_j; for (__gmp_j = (__gmp_i); __gmp_j < (__gmp_xsize); __gmp_j++) (__gmp_wp)[__gmp_j] = (__gmp_xp)[__gmp_j]; } while (0); (__gmp_c) = 0; __gmp_done: ; } while (0);
+                                                                                                                                                                                                                                                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~
+/scratch/safe/SDSoC/Vivado/2019.1/include/gmp.h:2226:345: note: remove extraneous parentheses around the comparison to silence this warning
+  do { mp_size_t __gmp_i; mp_limb_t __gmp_x; __gmp_i = (__gmp_ysize); if (__gmp_i != 0) { if (__gmpn_add_n (__gmp_wp, __gmp_xp, __gmp_yp, __gmp_i)) { do { if (__gmp_i >= (__gmp_xsize)) { (__gmp_c) = 1; goto __gmp_done; } __gmp_x = (__gmp_xp)[__gmp_i]; } while ((((__gmp_wp)[__gmp_i++] = (__gmp_x + 1) & ((~ (static_cast<mp_limb_t> (0))) >> 0)) == 0)); } } if ((__gmp_wp) != (__gmp_xp)) do { mp_size_t __gmp_j; for (__gmp_j = (__gmp_i); __gmp_j < (__gmp_xsize); __gmp_j++) (__gmp_wp)[__gmp_j] = (__gmp_xp)[__gmp_j]; } while (0); (__gmp_c) = 0; __gmp_done: ; } while (0);
+                                                                                                                                                                                                                                                                     ~                                                                                  ^   ~
+/scratch/safe/SDSoC/Vivado/2019.1/include/gmp.h:2226:345: note: use '=' to turn this equality comparison into an assignment
+  do { mp_size_t __gmp_i; mp_limb_t __gmp_x; __gmp_i = (__gmp_ysize); if (__gmp_i != 0) { if (__gmpn_add_n (__gmp_wp, __gmp_xp, __gmp_yp, __gmp_i)) { do { if (__gmp_i >= (__gmp_xsize)) { (__gmp_c) = 1; goto __gmp_done; } __gmp_x = (__gmp_xp)[__gmp_i]; } while ((((__gmp_wp)[__gmp_i++] = (__gmp_x + 1) & ((~ (static_cast<mp_limb_t> (0))) >> 0)) == 0)); } } if ((__gmp_wp) != (__gmp_xp)) do { mp_size_t __gmp_j; for (__gmp_j = (__gmp_i); __gmp_j < (__gmp_xsize); __gmp_j++) (__gmp_wp)[__gmp_j] = (__gmp_xp)[__gmp_j]; } while (0); (__gmp_c) = 0; __gmp_done: ; } while (0);
+                                                                                                                                                                                                                                                                                                                                                        ^~
+                                                                                                                                                                                                                                                                                                                                                        =
+In file included from /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/cholesky.cpp:1:
+In file included from /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/cholesky.cpp:33:
+In file included from /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/cholesky.h:35:
+In file included from /scratch/safe/SDSoC/Vivado/2019.1/common/technology/autopilot/hls_linear_algebra.h:52:
+In file included from /scratch/safe/SDSoC/Vivado/2019.1/common/technology/autopilot/hls/linear_algebra/deprecated/x_complex_matrix_multiply.h:62:
+/scratch/safe/SDSoC/Vivado/2019.1/common/technology/autopilot/hls/linear_algebra/utils/x_hls_complex.h:43:9: warning: hls::x_complex library will be replaced in 2019.2 with a new implementation that does not provide automatic bit width expansion. Please avoid relying on this feature. [-W#pragma-messages]
+#pragma message("hls::x_complex library will be replaced in 2019.2 with a new implementation that does not provide automatic bit width expansion. Please avoid relying on this feature.")
+        ^
+2 warnings generated.
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:01:39 ; elapsed = 00:01:52 . Memory (MB): peak = 815.496 ; gain = 128.207 ; free physical = 1244 ; free virtual = 13372
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:01:39 ; elapsed = 00:01:52 . Memory (MB): peak = 815.496 ; gain = 128.207 ; free physical = 1244 ; free virtual = 13372
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:01:40 ; elapsed = 00:01:53 . Memory (MB): peak = 815.496 ; gain = 128.207 ; free physical = 1244 ; free virtual = 13373
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [XFORM 203-602] Inlining function 'hls::sqrtf' into 'hls::x_sqrt' (/scratch/safe/SDSoC/Vivado/2019.1/common/technology/autopilot/hls/linear_algebra/utils/x_hls_matrix_utils.h:110) automatically.
+INFO: [XFORM 203-602] Inlining function 'hls::x_sqrt' into 'test::cholesky_sqrt_op<float, float>' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/test_cholesky.h:165) automatically.
+INFO: [XFORM 203-602] Inlining function 'hls::rsqrtf' into 'hls::x_rsqrt' (/scratch/safe/SDSoC/Vivado/2019.1/common/technology/autopilot/hls/linear_algebra/utils/x_hls_matrix_utils.h:164) automatically.
+INFO: [XFORM 203-602] Inlining function 'hls::x_rsqrt' into 'test::cholesky_rsqrt<float, float>' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/test_cholesky.h:189) automatically.
+INFO: [XFORM 203-602] Inlining function 'hls::x_conj<float>' into 'test::cholesky_alt<true, 66, test::cholesky_traits<true, 66, float, float>, float, float>' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/test_cholesky.h:405) automatically.
+INFO: [XFORM 203-602] Inlining function 'test::cholesky_prod_sum_mult<float, float, float>' into 'test::cholesky_alt<true, 66, test::cholesky_traits<true, 66, float, float>, float, float>' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/test_cholesky.h:413) automatically.
+INFO: [XFORM 203-602] Inlining function 'hls::x_conj_sq<float>' into 'test::cholesky_alt<true, 66, test::cholesky_traits<true, 66, float, float>, float, float>' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/test_cholesky.h:417) automatically.
+INFO: [XFORM 203-602] Inlining function 'test::cholesky_sqrt_op<float, float>' into 'test::cholesky_alt<true, 66, test::cholesky_traits<true, 66, float, float>, float, float>' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/test_cholesky.h:432) automatically.
+INFO: [XFORM 203-602] Inlining function 'hls::x_real<float>' into 'test::cholesky_alt<true, 66, test::cholesky_traits<true, 66, float, float>, float, float>' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/test_cholesky.h:442) automatically.
+INFO: [XFORM 203-602] Inlining function 'test::cholesky_rsqrt<float, float>' into 'test::cholesky_alt<true, 66, test::cholesky_traits<true, 66, float, float>, float, float>' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/test_cholesky.h:442) automatically.
+INFO: [XFORM 203-602] Inlining function 'test::cholesky_top<true, 66, test::cholesky_traits<true, 66, float, float>, float, float>' into 'test::cholesky<true, 66, float, float>' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/test_cholesky.h:653) automatically.
+INFO: [XFORM 203-602] Inlining function 'test::cholesky<true, 66, float, float>' into 'cholesky_top' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/cholesky.cpp:52) automatically.
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:01:40 ; elapsed = 00:01:53 . Memory (MB): peak = 815.496 ; gain = 128.207 ; free physical = 1243 ; free virtual = 13372
+INFO: [XFORM 203-602] Inlining function 'hls::sqrtf' into 'hls::x_sqrt' (/scratch/safe/SDSoC/Vivado/2019.1/common/technology/autopilot/hls/linear_algebra/utils/x_hls_matrix_utils.h:110) automatically.
+INFO: [XFORM 203-602] Inlining function 'hls::x_sqrt' into 'test::cholesky_sqrt_op<float, float>' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/test_cholesky.h:165) automatically.
+INFO: [XFORM 203-602] Inlining function 'hls::rsqrtf' into 'hls::x_rsqrt' (/scratch/safe/SDSoC/Vivado/2019.1/common/technology/autopilot/hls/linear_algebra/utils/x_hls_matrix_utils.h:164) automatically.
+INFO: [XFORM 203-602] Inlining function 'hls::x_rsqrt' into 'test::cholesky_rsqrt<float, float>' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/test_cholesky.h:189) automatically.
+INFO: [XFORM 203-602] Inlining function 'hls::x_conj<float>' into 'test::cholesky_alt<true, 66, test::cholesky_traits<true, 66, float, float>, float, float>' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/test_cholesky.h:405) automatically.
+INFO: [XFORM 203-602] Inlining function 'test::cholesky_prod_sum_mult<float, float, float>' into 'test::cholesky_alt<true, 66, test::cholesky_traits<true, 66, float, float>, float, float>' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/test_cholesky.h:413) automatically.
+INFO: [XFORM 203-602] Inlining function 'hls::x_conj_sq<float>' into 'test::cholesky_alt<true, 66, test::cholesky_traits<true, 66, float, float>, float, float>' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/test_cholesky.h:417) automatically.
+INFO: [XFORM 203-602] Inlining function 'test::cholesky_sqrt_op<float, float>' into 'test::cholesky_alt<true, 66, test::cholesky_traits<true, 66, float, float>, float, float>' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/test_cholesky.h:432) automatically.
+INFO: [XFORM 203-602] Inlining function 'hls::x_real<float>' into 'test::cholesky_alt<true, 66, test::cholesky_traits<true, 66, float, float>, float, float>' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/test_cholesky.h:442) automatically.
+INFO: [XFORM 203-602] Inlining function 'test::cholesky_rsqrt<float, float>' into 'test::cholesky_alt<true, 66, test::cholesky_traits<true, 66, float, float>, float, float>' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/test_cholesky.h:442) automatically.
+INFO: [XFORM 203-602] Inlining function 'test::cholesky_top<true, 66, test::cholesky_traits<true, 66, float, float>, float, float>' into 'test::cholesky<true, 66, float, float>' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/test_cholesky.h:653) automatically.
+INFO: [XFORM 203-602] Inlining function 'test::cholesky<true, 66, float, float>' into 'cholesky_top' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/cholesky.cpp:52) automatically.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/test_cholesky.h:430:7) to (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/test_cholesky.h:384:45) in function 'test::cholesky_alt<true, 66, test::cholesky_traits<true, 66, float, float>, float, float>'... converting 3 basic blocks.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:01:41 ; elapsed = 00:01:54 . Memory (MB): peak = 815.496 ; gain = 128.207 ; free physical = 1224 ; free virtual = 13353
+WARNING: [XFORM 203-542] Cannot flatten a loop nest 'col_loop' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/test_cholesky.h:391:45) in function 'test::cholesky_alt<true, 66, test::cholesky_traits<true, 66, float, float>, float, float>' : 
+
+the outer loop is not a perfect loop because there is nontrivial logic in the loop latch.
+WARNING: [XFORM 203-542] Cannot flatten a loop nest 'row_loop' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/test_cholesky.h:384:51) in function 'test::cholesky_alt<true, 66, test::cholesky_traits<true, 66, float, float>, float, float>' : 
+
+the outer loop is not a perfect loop because there is nontrivial logic in the loop latch.
+WARNING: [XFORM 203-631] Renaming function 'test::cholesky_alt<true, 66, test::cholesky_traits<true, 66, float, float>, float, float>' to 'cholesky_alt' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/src/test_cholesky.h:11:41)
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [HLS 200-10] Setting target device to 'xcvu9p-flga2104-2-i'
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 5ns.
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+INFO: [SIM 211-1] CSim done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file '/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp' ... 
+WARNING: [HLS 200-40] In file included from /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:33:
+In file included from /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.h:35:
+In file included from /scratch/safe/SDSoC/Vivado/2019.1/common/technology/autopilot/hls_linear_algebra.h:52:
+In file included from /scratch/safe/SDSoC/Vivado/2019.1/common/technology/autopilot/hls/linear_algebra/deprecated/x_complex_matrix_multiply.h:62:
+/scratch/safe/SDSoC/Vivado/2019.1/common/technology/autopilot/hls/linear_algebra/utils/x_hls_complex.h:43:9: warning: hls::x_complex library will be replaced in 2019.2 with a new implementation that does not provide automatic bit width expansion. Please avoid relying on this feature. [-W#pragma-messages]
+#pragma message("hls::x_complex library will be replaced in 2019.2 with a new implementation that does not provide automatic bit width expansion. Please avoid relying on this feature.")
+        ^
+1 warning generated.
+WARNING: [HLS 200-40] In file included from /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:1:
+In file included from /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:32:
+/scratch/safe/SDSoC/Vivado/2019.1/include/gmp.h:2226:345: warning: equality comparison with extraneous parentheses [-Wparentheses-equality]
+  do { mp_size_t __gmp_i; mp_limb_t __gmp_x; __gmp_i = (__gmp_ysize); if (__gmp_i != 0) { if (__gmpn_add_n (__gmp_wp, __gmp_xp, __gmp_yp, __gmp_i)) { do { if (__gmp_i >= (__gmp_xsize)) { (__gmp_c) = 1; goto __gmp_done; } __gmp_x = (__gmp_xp)[__gmp_i]; } while ((((__gmp_wp)[__gmp_i++] = (__gmp_x + 1) & ((~ (static_cast<mp_limb_t> (0))) >> 0)) == 0)); } } if ((__gmp_wp) != (__gmp_xp)) do { mp_size_t __gmp_j; for (__gmp_j = (__gmp_i); __gmp_j < (__gmp_xsize); __gmp_j++) (__gmp_wp)[__gmp_j] = (__gmp_xp)[__gmp_j]; } while (0); (__gmp_c) = 0; __gmp_done: ; } while (0);
+                                                                                                                                                                                                                                                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~
+/scratch/safe/SDSoC/Vivado/2019.1/include/gmp.h:2226:345: note: remove extraneous parentheses around the comparison to silence this warning
+  do { mp_size_t __gmp_i; mp_limb_t __gmp_x; __gmp_i = (__gmp_ysize); if (__gmp_i != 0) { if (__gmpn_add_n (__gmp_wp, __gmp_xp, __gmp_yp, __gmp_i)) { do { if (__gmp_i >= (__gmp_xsize)) { (__gmp_c) = 1; goto __gmp_done; } __gmp_x = (__gmp_xp)[__gmp_i]; } while ((((__gmp_wp)[__gmp_i++] = (__gmp_x + 1) & ((~ (static_cast<mp_limb_t> (0))) >> 0)) == 0)); } } if ((__gmp_wp) != (__gmp_xp)) do { mp_size_t __gmp_j; for (__gmp_j = (__gmp_i); __gmp_j < (__gmp_xsize); __gmp_j++) (__gmp_wp)[__gmp_j] = (__gmp_xp)[__gmp_j]; } while (0); (__gmp_c) = 0; __gmp_done: ; } while (0);
+                                                                                                                                                                                                                                                                     ~                                                                                  ^   ~
+/scratch/safe/SDSoC/Vivado/2019.1/include/gmp.h:2226:345: note: use '=' to turn this equality comparison into an assignment
+  do { mp_size_t __gmp_i; mp_limb_t __gmp_x; __gmp_i = (__gmp_ysize); if (__gmp_i != 0) { if (__gmpn_add_n (__gmp_wp, __gmp_xp, __gmp_yp, __gmp_i)) { do { if (__gmp_i >= (__gmp_xsize)) { (__gmp_c) = 1; goto __gmp_done; } __gmp_x = (__gmp_xp)[__gmp_i]; } while ((((__gmp_wp)[__gmp_i++] = (__gmp_x + 1) & ((~ (static_cast<mp_limb_t> (0))) >> 0)) == 0)); } } if ((__gmp_wp) != (__gmp_xp)) do { mp_size_t __gmp_j; for (__gmp_j = (__gmp_i); __gmp_j < (__gmp_xsize); __gmp_j++) (__gmp_wp)[__gmp_j] = (__gmp_xp)[__gmp_j]; } while (0); (__gmp_c) = 0; __gmp_done: ; } while (0);
+                                                                                                                                                                                                                                                                                                                                                        ^~
+                                                                                                                                                                                                                                                                                                                                                        =
+In file included from /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:1:
+In file included from /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:33:
+In file included from /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.h:35:
+In file included from /scratch/safe/SDSoC/Vivado/2019.1/common/technology/autopilot/hls_linear_algebra.h:52:
+In file included from /scratch/safe/SDSoC/Vivado/2019.1/common/technology/autopilot/hls/linear_algebra/deprecated/x_complex_matrix_multiply.h:62:
+/scratch/safe/SDSoC/Vivado/2019.1/common/technology/autopilot/hls/linear_algebra/utils/x_hls_complex.h:43:9: warning: hls::x_complex library will be replaced in 2019.2 with a new implementation that does not provide automatic bit width expansion. Please avoid relying on this feature. [-W#pragma-messages]
+#pragma message("hls::x_complex library will be replaced in 2019.2 with a new implementation that does not provide automatic bit width expansion. Please avoid relying on this feature.")
+        ^
+2 warnings generated.
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:01:22 ; elapsed = 00:01:37 . Memory (MB): peak = 803.496 ; gain = 128.207 ; free physical = 63965 ; free virtual = 75288
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:01:22 ; elapsed = 00:01:37 . Memory (MB): peak = 803.496 ; gain = 128.207 ; free physical = 63965 ; free virtual = 75288
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:01:22 ; elapsed = 00:01:38 . Memory (MB): peak = 803.496 ; gain = 128.207 ; free physical = 63964 ; free virtual = 75288
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [XFORM 203-602] Inlining function 'hls::sqrtf' into 'hls::x_sqrt' (/scratch/safe/SDSoC/Vivado/2019.1/common/technology/autopilot/hls/linear_algebra/utils/x_hls_matrix_utils.h:110) automatically.
+INFO: [XFORM 203-602] Inlining function 'hls::x_sqrt' into 'test::cholesky_sqrt_op<float, float>' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:165) automatically.
+INFO: [XFORM 203-602] Inlining function 'hls::rsqrtf' into 'hls::x_rsqrt' (/scratch/safe/SDSoC/Vivado/2019.1/common/technology/autopilot/hls/linear_algebra/utils/x_hls_matrix_utils.h:164) automatically.
+INFO: [XFORM 203-602] Inlining function 'hls::x_rsqrt' into 'test::cholesky_rsqrt<float, float>' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:189) automatically.
+INFO: [XFORM 203-602] Inlining function 'hls::x_conj<float>' into 'test::cholesky_alt<true, 66, test::cholesky_traits<true, 66, float, float>, float, float>' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:405) automatically.
+INFO: [XFORM 203-602] Inlining function 'test::cholesky_prod_sum_mult<float, float, float>' into 'test::cholesky_alt<true, 66, test::cholesky_traits<true, 66, float, float>, float, float>' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:413) automatically.
+INFO: [XFORM 203-602] Inlining function 'hls::x_conj_sq<float>' into 'test::cholesky_alt<true, 66, test::cholesky_traits<true, 66, float, float>, float, float>' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:417) automatically.
+INFO: [XFORM 203-602] Inlining function 'test::cholesky_sqrt_op<float, float>' into 'test::cholesky_alt<true, 66, test::cholesky_traits<true, 66, float, float>, float, float>' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:432) automatically.
+INFO: [XFORM 203-602] Inlining function 'hls::x_real<float>' into 'test::cholesky_alt<true, 66, test::cholesky_traits<true, 66, float, float>, float, float>' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:442) automatically.
+INFO: [XFORM 203-602] Inlining function 'test::cholesky_rsqrt<float, float>' into 'test::cholesky_alt<true, 66, test::cholesky_traits<true, 66, float, float>, float, float>' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:442) automatically.
+INFO: [XFORM 203-602] Inlining function 'test::cholesky_top<true, 66, test::cholesky_traits<true, 66, float, float>, float, float>' into 'test::cholesky<true, 66, float, float>' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:653) automatically.
+INFO: [XFORM 203-602] Inlining function 'test::cholesky<true, 66, float, float>' into 'cholesky_top' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:52) automatically.
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:01:23 ; elapsed = 00:01:38 . Memory (MB): peak = 803.496 ; gain = 128.207 ; free physical = 63963 ; free virtual = 75288
+INFO: [XFORM 203-501] Unrolling loop 'sum_loop' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:402) in function 'test::cholesky_alt<true, 66, test::cholesky_traits<true, 66, float, float>, float, float>' partially with a factor of 64.
+INFO: [XFORM 203-602] Inlining function 'hls::sqrtf' into 'hls::x_sqrt' (/scratch/safe/SDSoC/Vivado/2019.1/common/technology/autopilot/hls/linear_algebra/utils/x_hls_matrix_utils.h:110) automatically.
+INFO: [XFORM 203-602] Inlining function 'hls::x_sqrt' into 'test::cholesky_sqrt_op<float, float>' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:165) automatically.
+INFO: [XFORM 203-602] Inlining function 'hls::rsqrtf' into 'hls::x_rsqrt' (/scratch/safe/SDSoC/Vivado/2019.1/common/technology/autopilot/hls/linear_algebra/utils/x_hls_matrix_utils.h:164) automatically.
+INFO: [XFORM 203-602] Inlining function 'hls::x_rsqrt' into 'test::cholesky_rsqrt<float, float>' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:189) automatically.
+INFO: [XFORM 203-602] Inlining function 'hls::x_conj<float>' into 'test::cholesky_alt<true, 66, test::cholesky_traits<true, 66, float, float>, float, float>' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:405) automatically.
+INFO: [XFORM 203-602] Inlining function 'test::cholesky_prod_sum_mult<float, float, float>' into 'test::cholesky_alt<true, 66, test::cholesky_traits<true, 66, float, float>, float, float>' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:413) automatically.
+INFO: [XFORM 203-602] Inlining function 'hls::x_conj_sq<float>' into 'test::cholesky_alt<true, 66, test::cholesky_traits<true, 66, float, float>, float, float>' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:417) automatically.
+INFO: [XFORM 203-602] Inlining function 'test::cholesky_sqrt_op<float, float>' into 'test::cholesky_alt<true, 66, test::cholesky_traits<true, 66, float, float>, float, float>' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:432) automatically.
+INFO: [XFORM 203-602] Inlining function 'hls::x_real<float>' into 'test::cholesky_alt<true, 66, test::cholesky_traits<true, 66, float, float>, float, float>' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:442) automatically.
+INFO: [XFORM 203-602] Inlining function 'test::cholesky_rsqrt<float, float>' into 'test::cholesky_alt<true, 66, test::cholesky_traits<true, 66, float, float>, float, float>' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:442) automatically.
+INFO: [XFORM 203-602] Inlining function 'test::cholesky_top<true, 66, test::cholesky_traits<true, 66, float, float>, float, float>' into 'test::cholesky<true, 66, float, float>' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:653) automatically.
+INFO: [XFORM 203-602] Inlining function 'test::cholesky<true, 66, float, float>' into 'cholesky_top' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:52) automatically.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:430:7) to (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:384:45) in function 'test::cholesky_alt<true, 66, test::cholesky_traits<true, 66, float, float>, float, float>'... converting 3 basic blocks.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:01:24 ; elapsed = 00:01:40 . Memory (MB): peak = 803.496 ; gain = 128.207 ; free physical = 63938 ; free virtual = 75264
+WARNING: [XFORM 203-542] Cannot flatten a loop nest 'col_loop' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:391:45) in function 'test::cholesky_alt<true, 66, test::cholesky_traits<true, 66, float, float>, float, float>' : 
+
+the outer loop is not a perfect loop because there is nontrivial logic before entering the inner loop.
+WARNING: [XFORM 203-542] Cannot flatten a loop nest 'row_loop' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:384:51) in function 'test::cholesky_alt<true, 66, test::cholesky_traits<true, 66, float, float>, float, float>' : 
+
+the outer loop is not a perfect loop because there is nontrivial logic in the loop latch.
+WARNING: [XFORM 203-631] Renaming function 'test::cholesky_alt<true, 66, test::cholesky_traits<true, 66, float, float>, float, float>' to 'cholesky_alt' (/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:11:41)
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:01:26 ; elapsed = 00:01:42 . Memory (MB): peak = 867.496 ; gain = 192.207 ; free physical = 63929 ; free virtual = 75254
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'cholesky_top' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'cholesky_alt' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'sum_loop'.
+WARNING: [SCHED 204-68] The II Violation in module 'cholesky_alt' (Loop: sum_loop): Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 0)
+   between 'fadd' operation ('product_sum_1_62', /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:407) and 'fadd' operation ('product_sum_1', /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:407).
+WARNING: [SCHED 204-68] The II Violation in module 'cholesky_alt' (Loop: sum_loop): Unable to enforce a carried dependence constraint (II = 2, distance = 1, offset = 0)
+   between 'fadd' operation ('product_sum_1_62', /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:407) and 'fadd' operation ('product_sum_1', /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:407).
+WARNING: [SCHED 204-68] The II Violation in module 'cholesky_alt' (Loop: sum_loop): Unable to enforce a carried dependence constraint (II = 3, distance = 1, offset = 0)
+   between 'fadd' operation ('product_sum_1_62', /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:407) and 'fadd' operation ('product_sum_1', /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:407).
+WARNING: [SCHED 204-68] The II Violation in module 'cholesky_alt' (Loop: sum_loop): Unable to enforce a carried dependence constraint (II = 130, distance = 1, offset = 0)
+   between 'fadd' operation ('product_sum_1_62', /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:407) and 'fadd' operation ('product_sum_1', /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:407).
+WARNING: [SCHED 204-68] The II Violation in module 'cholesky_alt' (Loop: sum_loop): Unable to enforce a carried dependence constraint (II = 161, distance = 1, offset = 0)
+   between 'fadd' operation ('product_sum_1_62', /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:407) and 'fadd' operation ('product_sum_1', /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:407).
+WARNING: [SCHED 204-68] The II Violation in module 'cholesky_alt' (Loop: sum_loop): Unable to enforce a carried dependence constraint (II = 177, distance = 1, offset = 0)
+   between 'fadd' operation ('product_sum_1_62', /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:407) and 'fadd' operation ('product_sum_1', /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:407).
+WARNING: [SCHED 204-68] The II Violation in module 'cholesky_alt' (Loop: sum_loop): Unable to enforce a carried dependence constraint (II = 185, distance = 1, offset = 0)
+   between 'fadd' operation ('product_sum_1_62', /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:407) and 'fadd' operation ('product_sum_1', /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:407).
+WARNING: [SCHED 204-68] The II Violation in module 'cholesky_alt' (Loop: sum_loop): Unable to enforce a carried dependence constraint (II = 189, distance = 1, offset = 0)
+   between 'fadd' operation ('product_sum_1_62', /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:407) and 'fadd' operation ('product_sum_1', /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:407).
+WARNING: [SCHED 204-68] The II Violation in module 'cholesky_alt' (Loop: sum_loop): Unable to enforce a carried dependence constraint (II = 191, distance = 1, offset = 0)
+   between 'fadd' operation ('product_sum_1_62', /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:407) and 'fadd' operation ('product_sum_1', /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:407).
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 192, Depth = 197.
+WARNING: [SCHED 204-21] Estimated clock period (5.556ns) exceeds the target (target clock period: 5ns, clock uncertainty: 0.625ns, effective delay budget: 4.375ns).
+WARNING: [SCHED 204-21] The critical path in module 'cholesky_alt' consists of the following:
+	'fadd' operation ('product_sum_1', /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:407) [115]  (2.78 ns)
+	'fadd' operation ('product_sum_1_1', /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:407) [133]  (2.78 ns)
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 107.37 seconds; current allocated memory: 137.892 MB.
+INFO: [HLS 200-434] Only 1 loops out of a total 3 loops have been pipelined in this design.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 2.61 seconds; current allocated memory: 146.040 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'cholesky_top' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 1.6 seconds; current allocated memory: 146.520 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.2 seconds; current allocated memory: 146.851 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'cholesky_alt' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Generating core module 'cholesky_top_fadd_32ns_32ns_32_4_no_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'cholesky_top_faddfsub_32ns_32ns_32_4_full_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'cholesky_top_fcmp_32ns_32ns_1_2_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'cholesky_top_fmul_32ns_32ns_32_3_max_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'cholesky_top_frsqrt_32ns_32ns_32_8_full_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'cholesky_top_fsqrt_32ns_32ns_32_8_1': 1 instance(s).

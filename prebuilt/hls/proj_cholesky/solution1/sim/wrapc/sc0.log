@@ -1,0 +1,5 @@
+   Build using "/scratch/safe/SDSoC/Vivado/2019.1/tps/lnx64/gcc-6.2.0/bin/g++"
+   Compiling cholesky_tb.cpp_pre.cpp.tb.cpp
+   Compiling cholesky.cpp_pre.cpp.tb.cpp
+   Compiling apatb_cholesky_top.cpp
+   Generating cosim.tv.exe

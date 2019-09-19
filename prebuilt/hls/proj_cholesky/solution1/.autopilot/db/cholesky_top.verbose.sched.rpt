@@ -1,0 +1,261 @@
+
+
+================================================================
+== Vivado HLS Report for 'cholesky_top'
+================================================================
+* Date:           Tue Sep 17 15:35:45 2019
+
+* Version:        2019.1 (Build 2552052 on Fri May 24 15:28:33 MDT 2019)
+* Project:        proj_cholesky
+* Solution:       solution1
+* Product family: virtexuplus
+* Target device:  xcvu9p-flga2104-2-i
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |   5.00|     5.556|        0.62|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-------+--------+-------+--------+---------+
+    |     Latency    |    Interval    | Pipeline|
+    |  min  |   max  |  min  |   max  |   Type  |
+    +-------+--------+-------+--------+---------+
+    |  10102|  918791|  10102|  918791|   none  |
+    +-------+--------+-------+--------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +---------------+------+------+----------+-----------+-----------+------+----------+
+        |               |   Latency   | Iteration|  Initiation Interval  | Trip |          |
+        |   Loop Name   |  min |  max |  Latency |  achieved |   target  | Count| Pipelined|
+        +---------------+------+------+----------+-----------+-----------+------+----------+
+        |- a_row_loop   |  8844|  8844|       134|          -|          -|    66|    no    |
+        | + a_col_loop  |   132|   132|         2|          -|          -|    66|    no    |
+        |- l_row_loop   |  8844|  8844|       134|          -|          -|    66|    no    |
+        | + l_col_loop  |   132|   132|         2|          -|          -|    66|    no    |
+        +---------------+------+------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 9
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 5 3 
+3 --> 4 2 
+4 --> 3 
+5 --> 9 6 
+6 --> 7 9 
+7 --> 8 6 
+8 --> 7 
+9 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 0.60>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap([4356 x float]* %A) nounwind, !map !33"   --->   Operation 10 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap([4356 x float]* %L) nounwind, !map !39"   --->   Operation 11 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i32 0) nounwind, !map !43"   --->   Operation 12 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecTopModule([13 x i8]* @cholesky_top_str) nounwind"   --->   Operation 13 'spectopmodule' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%a_i = alloca [4356 x float], align 4" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:41]   --->   Operation 14 'alloca' 'a_i' <Predicate = true> <Delay = 0.00> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.15> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 4356> <RAM>
+ST_1 : Operation 15 [1/1] (0.00ns)   --->   "%L_assign = alloca [4356 x float], align 4"   --->   Operation 15 'alloca' 'L_assign' <Predicate = true> <Delay = 0.00> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.15> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 4356> <RAM>
+ST_1 : Operation 16 [1/1] (0.60ns)   --->   "br label %1" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:45]   --->   Operation 16 'br' <Predicate = true> <Delay = 0.60>
+
+State 2 <SV = 1> <Delay = 0.60>
+ST_2 : Operation 17 [1/1] (0.00ns)   --->   "%r_0 = phi i7 [ 0, %0 ], [ %r, %a_row_loop_end ]"   --->   Operation 17 'phi' 'r_0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 18 [1/1] (0.59ns)   --->   "%icmp_ln45 = icmp eq i7 %r_0, -62" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:45]   --->   Operation 18 'icmp' 'icmp_ln45' <Predicate = true> <Delay = 0.59> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.59> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 19 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecLoopTripCount(i64 66, i64 66, i64 66)"   --->   Operation 19 'speclooptripcount' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 20 [1/1] (0.40ns)   --->   "%r = add i7 %r_0, 1" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:45]   --->   Operation 20 'add' 'r' <Predicate = true> <Delay = 0.40> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 0.55> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 21 [1/1] (0.00ns)   --->   "br i1 %icmp_ln45, label %4, label %a_row_loop_begin" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:45]   --->   Operation 21 'br' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 22 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecLoopName([11 x i8]* @p_str) nounwind" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:45]   --->   Operation 22 'specloopname' <Predicate = (!icmp_ln45)> <Delay = 0.00>
+ST_2 : Operation 23 [1/1] (0.00ns)   --->   "%tmp_6 = call i32 (...)* @_ssdm_op_SpecRegionBegin([11 x i8]* @p_str) nounwind" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:45]   --->   Operation 23 'specregionbegin' 'tmp_6' <Predicate = (!icmp_ln45)> <Delay = 0.00>
+ST_2 : Operation 24 [1/1] (0.00ns)   --->   "%tmp = call i13 @_ssdm_op_BitConcatenate.i13.i7.i6(i7 %r_0, i6 0)" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:47]   --->   Operation 24 'bitconcatenate' 'tmp' <Predicate = (!icmp_ln45)> <Delay = 0.00>
+ST_2 : Operation 25 [1/1] (0.00ns)   --->   "%zext_ln47 = zext i13 %tmp to i14" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:47]   --->   Operation 25 'zext' 'zext_ln47' <Predicate = (!icmp_ln45)> <Delay = 0.00>
+ST_2 : Operation 26 [1/1] (0.00ns)   --->   "%tmp_1 = call i8 @_ssdm_op_BitConcatenate.i8.i7.i1(i7 %r_0, i1 false)" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:47]   --->   Operation 26 'bitconcatenate' 'tmp_1' <Predicate = (!icmp_ln45)> <Delay = 0.00>
+ST_2 : Operation 27 [1/1] (0.00ns)   --->   "%zext_ln47_1 = zext i8 %tmp_1 to i14" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:47]   --->   Operation 27 'zext' 'zext_ln47_1' <Predicate = (!icmp_ln45)> <Delay = 0.00>
+ST_2 : Operation 28 [1/1] (0.54ns)   --->   "%add_ln47 = add i14 %zext_ln47_1, %zext_ln47" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:47]   --->   Operation 28 'add' 'add_ln47' <Predicate = (!icmp_ln45)> <Delay = 0.54> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 0.55> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 29 [1/1] (0.60ns)   --->   "br label %2" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:46]   --->   Operation 29 'br' <Predicate = (!icmp_ln45)> <Delay = 0.60>
+ST_2 : Operation 30 [2/2] (0.00ns)   --->   "%tmp_i_i1 = call fastcc i32 @cholesky_alt([4356 x float]* %a_i, [4356 x float]* %L_assign) nounwind" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:625->/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:653->/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:52]   --->   Operation 30 'call' 'tmp_i_i1' <Predicate = (icmp_ln45)> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 3 <SV = 2> <Delay = 1.71>
+ST_3 : Operation 31 [1/1] (0.00ns)   --->   "%c_0 = phi i7 [ 0, %a_row_loop_begin ], [ %c, %3 ]"   --->   Operation 31 'phi' 'c_0' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 32 [1/1] (0.59ns)   --->   "%icmp_ln46 = icmp eq i7 %c_0, -62" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:46]   --->   Operation 32 'icmp' 'icmp_ln46' <Predicate = true> <Delay = 0.59> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.59> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 33 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecLoopTripCount(i64 66, i64 66, i64 66)"   --->   Operation 33 'speclooptripcount' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 34 [1/1] (0.40ns)   --->   "%c = add i7 %c_0, 1" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:46]   --->   Operation 34 'add' 'c' <Predicate = true> <Delay = 0.40> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 0.55> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 35 [1/1] (0.00ns)   --->   "br i1 %icmp_ln46, label %a_row_loop_end, label %3" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:46]   --->   Operation 35 'br' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 36 [1/1] (0.00ns)   --->   "%zext_ln47_2 = zext i7 %c_0 to i14" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:47]   --->   Operation 36 'zext' 'zext_ln47_2' <Predicate = (!icmp_ln46)> <Delay = 0.00>
+ST_3 : Operation 37 [1/1] (0.55ns)   --->   "%add_ln47_1 = add i14 %add_ln47, %zext_ln47_2" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:47]   --->   Operation 37 'add' 'add_ln47_1' <Predicate = (!icmp_ln46)> <Delay = 0.55> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 0.55> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 38 [1/1] (0.00ns)   --->   "%zext_ln47_3 = zext i14 %add_ln47_1 to i64" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:47]   --->   Operation 38 'zext' 'zext_ln47_3' <Predicate = (!icmp_ln46)> <Delay = 0.00>
+ST_3 : Operation 39 [1/1] (0.00ns)   --->   "%A_addr = getelementptr [4356 x float]* %A, i64 0, i64 %zext_ln47_3" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:47]   --->   Operation 39 'getelementptr' 'A_addr' <Predicate = (!icmp_ln46)> <Delay = 0.00>
+ST_3 : Operation 40 [2/2] (1.15ns)   --->   "%A_load = load float* %A_addr, align 4" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:47]   --->   Operation 40 'load' 'A_load' <Predicate = (!icmp_ln46)> <Delay = 1.15> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.15> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 4356> <RAM>
+ST_3 : Operation 41 [1/1] (0.00ns)   --->   "%empty = call i32 (...)* @_ssdm_op_SpecRegionEnd([11 x i8]* @p_str, i32 %tmp_6) nounwind" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:49]   --->   Operation 41 'specregionend' 'empty' <Predicate = (icmp_ln46)> <Delay = 0.00>
+ST_3 : Operation 42 [1/1] (0.00ns)   --->   "br label %1" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:45]   --->   Operation 42 'br' <Predicate = (icmp_ln46)> <Delay = 0.00>
+
+State 4 <SV = 3> <Delay = 2.31>
+ST_4 : Operation 43 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecLoopName([11 x i8]* @p_str1) nounwind" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:46]   --->   Operation 43 'specloopname' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 44 [1/1] (0.00ns)   --->   "%a_i_addr = getelementptr [4356 x float]* %a_i, i64 0, i64 %zext_ln47_3" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:47]   --->   Operation 44 'getelementptr' 'a_i_addr' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 45 [1/2] (1.15ns)   --->   "%A_load = load float* %A_addr, align 4" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:47]   --->   Operation 45 'load' 'A_load' <Predicate = true> <Delay = 1.15> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.15> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 4356> <RAM>
+ST_4 : Operation 46 [1/1] (1.15ns)   --->   "store float %A_load, float* %a_i_addr, align 4" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:47]   --->   Operation 46 'store' <Predicate = true> <Delay = 1.15> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.15> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 4356> <RAM>
+ST_4 : Operation 47 [1/1] (0.00ns)   --->   "br label %2" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:46]   --->   Operation 47 'br' <Predicate = true> <Delay = 0.00>
+
+State 5 <SV = 2> <Delay = 1.46>
+ST_5 : Operation 48 [1/2] (0.00ns)   --->   "%tmp_i_i1 = call fastcc i32 @cholesky_alt([4356 x float]* %a_i, [4356 x float]* %L_assign) nounwind" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:625->/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:653->/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:52]   --->   Operation 48 'call' 'tmp_i_i1' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_5 : Operation 49 [1/1] (0.85ns)   --->   "%icmp_ln52 = icmp eq i32 %tmp_i_i1, 0" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:52]   --->   Operation 49 'icmp' 'icmp_ln52' <Predicate = true> <Delay = 0.85> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.59> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 50 [1/1] (0.60ns)   --->   "br i1 %icmp_ln52, label %.preheader.preheader, label %.loopexit" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:52]   --->   Operation 50 'br' <Predicate = true> <Delay = 0.60>
+ST_5 : Operation 51 [1/1] (0.60ns)   --->   "br label %.preheader" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:58]   --->   Operation 51 'br' <Predicate = (icmp_ln52)> <Delay = 0.60>
+
+State 6 <SV = 3> <Delay = 0.60>
+ST_6 : Operation 52 [1/1] (0.00ns)   --->   "%r1_0 = phi i7 [ %r_1, %l_row_loop_end ], [ 0, %.preheader.preheader ]"   --->   Operation 52 'phi' 'r1_0' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 53 [1/1] (0.59ns)   --->   "%icmp_ln58 = icmp eq i7 %r1_0, -62" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:58]   --->   Operation 53 'icmp' 'icmp_ln58' <Predicate = true> <Delay = 0.59> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.59> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 54 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecLoopTripCount(i64 66, i64 66, i64 66)"   --->   Operation 54 'speclooptripcount' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 55 [1/1] (0.40ns)   --->   "%r_1 = add i7 %r1_0, 1" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:58]   --->   Operation 55 'add' 'r_1' <Predicate = true> <Delay = 0.40> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 0.55> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 56 [1/1] (0.00ns)   --->   "br i1 %icmp_ln58, label %.loopexit.loopexit, label %l_row_loop_begin" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:58]   --->   Operation 56 'br' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 57 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecLoopName([11 x i8]* @p_str2) nounwind" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:58]   --->   Operation 57 'specloopname' <Predicate = (!icmp_ln58)> <Delay = 0.00>
+ST_6 : Operation 58 [1/1] (0.00ns)   --->   "%tmp_7 = call i32 (...)* @_ssdm_op_SpecRegionBegin([11 x i8]* @p_str2) nounwind" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:58]   --->   Operation 58 'specregionbegin' 'tmp_7' <Predicate = (!icmp_ln58)> <Delay = 0.00>
+ST_6 : Operation 59 [1/1] (0.00ns)   --->   "%tmp_2 = call i13 @_ssdm_op_BitConcatenate.i13.i7.i6(i7 %r1_0, i6 0)" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:60]   --->   Operation 59 'bitconcatenate' 'tmp_2' <Predicate = (!icmp_ln58)> <Delay = 0.00>
+ST_6 : Operation 60 [1/1] (0.00ns)   --->   "%zext_ln60 = zext i13 %tmp_2 to i14" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:60]   --->   Operation 60 'zext' 'zext_ln60' <Predicate = (!icmp_ln58)> <Delay = 0.00>
+ST_6 : Operation 61 [1/1] (0.00ns)   --->   "%tmp_3 = call i8 @_ssdm_op_BitConcatenate.i8.i7.i1(i7 %r1_0, i1 false)" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:60]   --->   Operation 61 'bitconcatenate' 'tmp_3' <Predicate = (!icmp_ln58)> <Delay = 0.00>
+ST_6 : Operation 62 [1/1] (0.00ns)   --->   "%zext_ln60_1 = zext i8 %tmp_3 to i14" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:60]   --->   Operation 62 'zext' 'zext_ln60_1' <Predicate = (!icmp_ln58)> <Delay = 0.00>
+ST_6 : Operation 63 [1/1] (0.54ns)   --->   "%add_ln60 = add i14 %zext_ln60_1, %zext_ln60" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:60]   --->   Operation 63 'add' 'add_ln60' <Predicate = (!icmp_ln58)> <Delay = 0.54> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 0.55> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 64 [1/1] (0.60ns)   --->   "br label %5" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:59]   --->   Operation 64 'br' <Predicate = (!icmp_ln58)> <Delay = 0.60>
+ST_6 : Operation 65 [1/1] (0.60ns)   --->   "br label %.loopexit"   --->   Operation 65 'br' <Predicate = (icmp_ln58)> <Delay = 0.60>
+
+State 7 <SV = 4> <Delay = 1.71>
+ST_7 : Operation 66 [1/1] (0.00ns)   --->   "%c2_0 = phi i7 [ 0, %l_row_loop_begin ], [ %c_1, %6 ]"   --->   Operation 66 'phi' 'c2_0' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 67 [1/1] (0.59ns)   --->   "%icmp_ln59 = icmp eq i7 %c2_0, -62" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:59]   --->   Operation 67 'icmp' 'icmp_ln59' <Predicate = true> <Delay = 0.59> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.59> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_7 : Operation 68 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecLoopTripCount(i64 66, i64 66, i64 66)"   --->   Operation 68 'speclooptripcount' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 69 [1/1] (0.40ns)   --->   "%c_1 = add i7 %c2_0, 1" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:59]   --->   Operation 69 'add' 'c_1' <Predicate = true> <Delay = 0.40> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 0.55> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_7 : Operation 70 [1/1] (0.00ns)   --->   "br i1 %icmp_ln59, label %l_row_loop_end, label %6" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:59]   --->   Operation 70 'br' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 71 [1/1] (0.00ns)   --->   "%zext_ln60_2 = zext i7 %c2_0 to i14" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:60]   --->   Operation 71 'zext' 'zext_ln60_2' <Predicate = (!icmp_ln59)> <Delay = 0.00>
+ST_7 : Operation 72 [1/1] (0.55ns)   --->   "%add_ln60_1 = add i14 %add_ln60, %zext_ln60_2" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:60]   --->   Operation 72 'add' 'add_ln60_1' <Predicate = (!icmp_ln59)> <Delay = 0.55> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 0.55> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_7 : Operation 73 [1/1] (0.00ns)   --->   "%zext_ln60_3 = zext i14 %add_ln60_1 to i64" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:60]   --->   Operation 73 'zext' 'zext_ln60_3' <Predicate = (!icmp_ln59)> <Delay = 0.00>
+ST_7 : Operation 74 [1/1] (0.00ns)   --->   "%L_assign_addr = getelementptr [4356 x float]* %L_assign, i64 0, i64 %zext_ln60_3" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:60]   --->   Operation 74 'getelementptr' 'L_assign_addr' <Predicate = (!icmp_ln59)> <Delay = 0.00>
+ST_7 : Operation 75 [2/2] (1.15ns)   --->   "%L_assign_load = load float* %L_assign_addr, align 4" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:60]   --->   Operation 75 'load' 'L_assign_load' <Predicate = (!icmp_ln59)> <Delay = 1.15> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.15> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 4356> <RAM>
+ST_7 : Operation 76 [1/1] (0.00ns)   --->   "%empty_9 = call i32 (...)* @_ssdm_op_SpecRegionEnd([11 x i8]* @p_str2, i32 %tmp_7) nounwind" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:62]   --->   Operation 76 'specregionend' 'empty_9' <Predicate = (icmp_ln59)> <Delay = 0.00>
+ST_7 : Operation 77 [1/1] (0.00ns)   --->   "br label %.preheader" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:58]   --->   Operation 77 'br' <Predicate = (icmp_ln59)> <Delay = 0.00>
+
+State 8 <SV = 5> <Delay = 2.31>
+ST_8 : Operation 78 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecLoopName([11 x i8]* @p_str3) nounwind" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:59]   --->   Operation 78 'specloopname' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 79 [1/1] (0.00ns)   --->   "%L_addr = getelementptr [4356 x float]* %L, i64 0, i64 %zext_ln60_3" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:60]   --->   Operation 79 'getelementptr' 'L_addr' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 80 [1/2] (1.15ns)   --->   "%L_assign_load = load float* %L_assign_addr, align 4" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:60]   --->   Operation 80 'load' 'L_assign_load' <Predicate = true> <Delay = 1.15> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.15> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 4356> <RAM>
+ST_8 : Operation 81 [1/1] (1.15ns)   --->   "store float %L_assign_load, float* %L_addr, align 4" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:60]   --->   Operation 81 'store' <Predicate = true> <Delay = 1.15> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 1.15> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 4356> <RAM>
+ST_8 : Operation 82 [1/1] (0.00ns)   --->   "br label %5" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:59]   --->   Operation 82 'br' <Predicate = true> <Delay = 0.00>
+
+State 9 <SV = 4> <Delay = 0.00>
+ST_9 : Operation 83 [1/1] (0.00ns)   --->   "%p_0 = phi i1 [ true, %4 ], [ false, %.loopexit.loopexit ]"   --->   Operation 83 'phi' 'p_0' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 84 [1/1] (0.00ns)   --->   "%zext_ln65 = zext i1 %p_0 to i32" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:65]   --->   Operation 84 'zext' 'zext_ln65' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 85 [1/1] (0.00ns)   --->   "ret i32 %zext_ln65" [/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:65]   --->   Operation 85 'ret' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 5ns, clock uncertainty: 0.625ns.
+
+ <State 1>: 0.603ns
+The critical path consists of the following:
+	multiplexor before 'phi' operation ('r') with incoming values : ('r', /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:45) [11]  (0.603 ns)
+
+ <State 2>: 0.603ns
+The critical path consists of the following:
+	multiplexor before 'phi' operation ('c') with incoming values : ('c', /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:46) [26]  (0.603 ns)
+
+ <State 3>: 1.71ns
+The critical path consists of the following:
+	'phi' operation ('c') with incoming values : ('c', /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:46) [26]  (0 ns)
+	'add' operation ('add_ln47_1', /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:47) [34]  (0.555 ns)
+	'getelementptr' operation ('A_addr', /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:47) [36]  (0 ns)
+	'load' operation ('A_load', /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:47) on array 'A' [38]  (1.16 ns)
+
+ <State 4>: 2.32ns
+The critical path consists of the following:
+	'load' operation ('A_load', /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:47) on array 'A' [38]  (1.16 ns)
+	'store' operation ('store_ln47', /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:47) of variable 'A_load', /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:47 on array 'a_i', /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:41 [39]  (1.16 ns)
+
+ <State 5>: 1.46ns
+The critical path consists of the following:
+	'call' operation ('tmp_i_i1', /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:625->/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/test_cholesky.h:653->/mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:52) to 'cholesky_alt' [45]  (0 ns)
+	'icmp' operation ('icmp_ln52', /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:52) [46]  (0.859 ns)
+	multiplexor before 'phi' operation ('p_0') [87]  (0.603 ns)
+
+ <State 6>: 0.603ns
+The critical path consists of the following:
+	multiplexor before 'phi' operation ('c') with incoming values : ('c', /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:59) [66]  (0.603 ns)
+
+ <State 7>: 1.71ns
+The critical path consists of the following:
+	'phi' operation ('c') with incoming values : ('c', /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:59) [66]  (0 ns)
+	'add' operation ('add_ln60_1', /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:60) [74]  (0.555 ns)
+	'getelementptr' operation ('L_assign_addr', /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:60) [77]  (0 ns)
+	'load' operation ('L_assign_load', /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:60) on array 'L_assign' [78]  (1.16 ns)
+
+ <State 8>: 2.32ns
+The critical path consists of the following:
+	'load' operation ('L_assign_load', /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:60) on array 'L_assign' [78]  (1.16 ns)
+	'store' operation ('store_ln60', /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:60) of variable 'L_assign_load', /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/cholesky.cpp:60 on array 'L' [79]  (1.16 ns)
+
+ <State 9>: 0ns
+The critical path consists of the following:
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

@@ -123,9 +123,9 @@ class SimpleModel(Model):
     if not self._kernel_structure:      
       cfg = self._driver.get_configuration(self._get_smallest_cfg())
       result = self._driver.session.query(Result).filter_by(configuration = cfg).limit(1).one()
-      output_dir = "{0}/Output/{1:04d}".format(self._driver.args.output_dir, result.id)
+      output_dir = "{0}/{1:04d}".format(self._driver.args.output_dir, result.id)
       self._kernel_structure = KernelStructure()
-      self._kernel_structure.load(output_dir + '/KernelStruc.yml')
+      self._kernel_structure.load(output_dir + '/krnl_struc.yml')
       
       
   def _get_smallest_cfg(self):

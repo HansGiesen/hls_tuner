@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 '''
 Standalone HLS tuner
 
@@ -109,7 +109,7 @@ class HLSTuner:
     log.info('Search algorithm: ' + str(new_args.technique))
 
     if args.max_luts or args.max_regs or args.max_dsps or args.max_brams:
-      objective = ThresholdAreaMinimizeTime((args.max_luts, args.max_regs, args.max_dsps, args.max_brams))
+      objective = ThresholdAreaMinimizeTime(args.max_luts, args.max_regs, args.max_dsps, args.max_brams)
     else:
       objective = MinimizeTime()
     input_manager = FixedInputManager()
@@ -170,7 +170,7 @@ register(BayesianOptimization([CumulativeModel(SimpleLatencyModel(), GaussianPro
                                CumulativeModel(SimpleRegisterCountModel(), GaussianProcess(), "regs"),
                                CumulativeModel(SimpleDspCountModel(), GaussianProcess(), "dsps"),
                                CumulativeModel(SimpleBramCountModel(), GaussianProcess(), "brams")],
-                               name = "SimpleLatency"))
+                               name = "CombinedModel"))
 
 #######################################################################################################################
 

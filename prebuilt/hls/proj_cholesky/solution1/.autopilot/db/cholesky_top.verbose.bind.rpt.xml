@@ -1,0 +1,50 @@
+<profile>
+
+<section name = "Vivado HLS Report for 'cholesky_top'" level="0">
+<item name = "Date">Tue Sep 17 15:35:45 2019
+</item>
+<item name = "Version">2019.1 (Build 2552052 on Fri May 24 15:28:33 MDT 2019)</item>
+<item name = "Project">proj_cholesky</item>
+<item name = "Solution">solution1</item>
+<item name = "Product family">virtexuplus</item>
+<item name = "Target device">xcvu9p-flga2104-2-i</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing (ns)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">5.00, 5.556, 0.62</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency (clock cycles)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">, min, max, min, max, Type</keys>
+<column name="">10102, 918791, 10102, 918791, none</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="7">Instance, Module, min, max, min, max, Type</keys>
+<column name="grp_cholesky_alt_fu_169">cholesky_alt, 1255, 901099, 1255, 901099, none</column>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- a_row_loop">8844, 8844, 134, -, -, 66, no</column>
+<column name=" + a_col_loop">132, 132, 2, -, -, 66, no</column>
+<column name="- l_row_loop">8844, 8844, 134, -, -, 66, no</column>
+<column name=" + l_col_loop">132, 132, 2, -, -, 66, no</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+</profile>

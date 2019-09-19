@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:47:09 MDT 2019
+# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+# Start of session at: Tue Sep 17 15:37:09 2019
+# Process ID: 19348
+# Current directory: /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/proj_cholesky/solution1/.autopilot/db/ip_tmp
+# Command line: vivado  -notrace -mode batch -source run_vivado_gen_ip.tcl
+# Log file: /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/proj_cholesky/solution1/.autopilot/db/ip_tmp/vivado.log
+# Journal file: /mnt/icgridio2/safe/giesen/HLS_tuner/pragmatuner/TestApps/cholesky/output/0001/proj_cholesky/solution1/.autopilot/db/ip_tmp/vivado.jou
+#-----------------------------------------------------------
+source run_vivado_gen_ip.tcl -notrace

@@ -1,0 +1,336 @@
+src/cholesky.cpp
+--- ../../../../../SDSoC/Vivado/2019.1/examples/design/linear_algebra/cholesky/cholesky.cpp	2019-05-24 17:26:03.000000000 -0400
++++ src/cholesky.cpp	2019-09-16 13:16:56.844714000 -0400
+@@ -29,7 +29,9 @@
+  *
+  *****************************************************************************/
+ 
++#include "/scratch/safe/SDSoC/Vivado/2019.1/include/gmp.h"
+ #include "cholesky.h"
++#include "test_cholesky.h"
+ 
+ // The top-level function to synthesize
+ //
+@@ -47,7 +49,7 @@
+   }
+ 
+   // Call Cholesky
+-  if ( hls::cholesky<LOWER_TRIANGULAR, ROWS_COLS_A, MATRIX_IN_T, MATRIX_OUT_T>(a_i, l_i) ) {
++  if ( test::cholesky<LOWER_TRIANGULAR, ROWS_COLS_A, MATRIX_IN_T, MATRIX_OUT_T>(a_i, l_i) ) {
+     // Error - matrix was not symmetric positive definite
+     return 1;
+   }
+@@ -62,4 +64,4 @@
+   return 0;
+ }
+ 
+-
++
+src/cholesky.h
+--- ../../../../../SDSoC/Vivado/2019.1/examples/design/linear_algebra/cholesky/cholesky.h	2019-05-24 17:26:03.000000000 -0400
++++ src/cholesky.h	2019-09-17 13:06:48.507110000 -0400
+@@ -34,7 +34,7 @@
+ 
+ #include "hls_linear_algebra.h"
+ 
+-const unsigned ROWS_COLS_A = 6;
++const unsigned ROWS_COLS_A = 66;
+ const unsigned LOWER_TRIANGULAR = true;
+ 
+ typedef float MATRIX_IN_T;
+@@ -44,4 +44,4 @@
+                  MATRIX_OUT_T L[ROWS_COLS_A][ROWS_COLS_A]);
+ 
+ #endif
+-
++
+src/cholesky_tb.cpp
+--- ../../../../../SDSoC/Vivado/2019.1/examples/design/linear_algebra/cholesky/cholesky_tb.cpp	2019-05-24 17:26:03.000000000 -0400
++++ src/cholesky_tb.cpp	2019-09-17 13:08:08.903715000 -0400
+@@ -29,6 +29,7 @@
+  *
+  *****************************************************************************/
+ 
++#include "/scratch/safe/SDSoC/Vivado/2019.1/include/gmp.h"
+ #include "cholesky.h"
+ #include "hls/linear_algebra/utils/x_hls_matrix_utils.h"
+ #include "hls/linear_algebra/utils/x_hls_matrix_tb_utils.h"
+@@ -40,18 +41,21 @@
+     float L [ROWS_COLS_A][ROWS_COLS_A];
+     float Ar[ROWS_COLS_A][ROWS_COLS_A];
+ 
++#include "input.h"
++/*
+     A[0][0] = 115.0; A[0][1] =  -7.0; A[0][2] = -12.0; A[0][3] = -14.0; A[0][4] =  26.0; A[0][5] =   0.0;
+     A[1][0] =  -7.0; A[1][1] = 120.0; A[1][2] =  17.0; A[1][3] = -23.0; A[1][4] =  -6.0; A[1][5] =  -3.0;
+     A[2][0] = -12.0; A[2][1] =  17.0; A[2][2] = 124.0; A[2][3] =  -2.0; A[2][4] = -12.0; A[2][5] =   0.0;
+     A[3][0] = -14.0; A[3][1] = -23.0; A[3][2] =  -2.0; A[3][3] = 108.0; A[3][4] =  -5.0; A[3][5] =  -6.0;
+     A[4][0] =  26.0; A[4][1] =  -6.0; A[4][2] = -12.0; A[4][3] =  -5.0; A[4][4] = 127.0; A[4][5] = -10.0;
+     A[5][0] =   0.0; A[5][1] =  -3.0; A[5][2] =   0.0; A[5][3] =  -6.0; A[5][4] = -10.0; A[5][5] = 119.0;
++*/
+ 
+     cholesky_success = cholesky_top(A,L);
+ 
+     // Now re-create A: Ar = L * L'
+     hls::matrix_multiply<hls::NoTranspose,hls::Transpose,ROWS_COLS_A,ROWS_COLS_A,ROWS_COLS_A,ROWS_COLS_A,ROWS_COLS_A,ROWS_COLS_A,float,float>(L, L, Ar);
+-
++/*
+     printf("A = \n");
+     hls::print_matrix<ROWS_COLS_A, ROWS_COLS_A, float, hls::NoTranspose>(A, "   ");
+ 
+@@ -60,7 +64,7 @@
+ 
+     printf("A reconstructed = \n");
+     hls::print_matrix<ROWS_COLS_A, ROWS_COLS_A, float, hls::NoTranspose>(Ar, "   ");
+-
++*/
+     // Generate error ratio and compare against threshold value
+     // - LAPACK error measurement method
+     // - Threshold taken from LAPACK test functions
+@@ -70,4 +74,4 @@
+     }
+     return (cholesky_success||fail);
+ }
+-
++
+src/run_hls.tcl
+--- ../../../../../SDSoC/Vivado/2019.1/examples/design/linear_algebra/cholesky/run_hls.tcl	2019-05-24 17:26:04.000000000 -0400
++++ src/run_hls.tcl	2019-09-16 13:12:25.015598000 -0400
+@@ -91,7 +91,7 @@
+ #*******************************************************************************
+ set script_name [file normalize [info script]]
+ set example_dir [file dirname $script_name]
+-set example     [file tail $example_dir]
++set example     cholesky
+ 
+ # Create a project
+ open_project -reset proj_${example}
+@@ -122,7 +122,7 @@
+ # Set to 2: to run setup, synthesis and RTL simulation
+ # Set to 3: to run setup, synthesis, RTL simulation and RTL synthesis
+ # Any other value will run setup only
+-set hls_exec 1
++set hls_exec 2
+ 
+ if {$hls_exec == 1} {
+         # Run Synthesis and Exit
+src/test_cholesky.h
+--- ../../../../../SDSoC/Vivado/2019.1/include/hls/linear_algebra/hls_cholesky.h	2019-05-24 17:28:08.000000000 -0400
++++ src/test_cholesky.h	2019-09-16 10:40:16.297375000 -0400
+@@ -51,14 +51,14 @@
+ // 2014.1:
+ //  * Initial release.
+ 
+-#ifndef HLS_CHOLESKY_H
+-#define HLS_CHOLESKY_H
++#ifndef TEST_CHOLESKY_H
++#define TEST_CHOLESKY_H
+ 
+ #include "ap_fixed.h"
+ #include <complex>
+ #include "hls/linear_algebra/utils/x_hls_matrix_utils.h"
+ 
+-namespace hls {
++namespace test {
+ 
+   // ===================================================================================================================
+   // Default traits struct defining the internal variable types for the cholesky function
+@@ -162,7 +162,7 @@
+       b = ZERO;
+       return(1);
+     }
+-    b = x_sqrt(a);
++    b = hls::x_sqrt(a);
+     return (0);
+   }
+   template<typename T_IN, typename T_OUT> int cholesky_sqrt_op(std::complex<T_IN> din, std::complex<T_OUT> &dout){
+@@ -176,7 +176,7 @@
+       return(1);
+     }
+ 
+-    dout.real(x_sqrt(a));
++    dout.real(hls::x_sqrt(a));
+     return (0);
+   }
+   
+@@ -186,7 +186,7 @@
+       typename OutputType>
+   void cholesky_rsqrt(InputType x, OutputType &res) {
+     Function_cholesky_rsqrt_default:;
+-    res = x_rsqrt(x);
++    res = hls::x_rsqrt(x);
+   }
+   template <
+       int W1, int I1, ap_q_mode Q1, ap_o_mode O1, int N1,
+@@ -196,7 +196,7 @@
+     ap_fixed<W2, I2, Q2, O2, N2> one = 1;
+     ap_fixed<W1, I1, Q1, O1, N1> sqrt_res;
+     ap_fixed<W2, I2, Q2, O2, N2> sqrt_res_cast;
+-    sqrt_res = x_sqrt(x);
++    sqrt_res = hls::x_sqrt(x);
+     sqrt_res_cast = sqrt_res;
+     res = one / sqrt_res_cast;
+   }
+@@ -267,7 +267,7 @@
+           } else {
+             retrieved_L = L_internal[k][j];
+           }
+-          sum[j] += x_conj_sq(retrieved_L);
++          sum[j] += hls::x_conj_sq(retrieved_L);
+         }
+       }
+       A_cast_to_sum = A[j][j];
+@@ -288,8 +288,8 @@
+         L_internal[j][j] = new_L;
+         L[j][j]          = new_L;
+       } else         {
+-        L_internal[j][j] = x_conj(new_L);
+-        L[j][j]          = x_conj(new_L);
++        L_internal[j][j] = hls::x_conj(new_L);
++        L[j][j]          = hls::x_conj(new_L);
+       }
+       
+       // Calculate the off diagonal values for this column
+@@ -299,7 +299,7 @@
+           if(LowerTriangularL == true){
+             sum[j] = A[i][j];
+           } else {
+-            sum[j] = x_conj(A[j][i]);
++            sum[j] = hls::x_conj(A[j][i]);
+           }
+           
+           sum_loop: for(int k = 0; k < RowsColsA; k++) {
+@@ -307,9 +307,9 @@
+             if(k <= (j - 1)) {
+               
+               if(LowerTriangularL == true){
+-                prod = -L_internal[i][k] * x_conj(L_internal[j][k]);
++                prod = -L_internal[i][k] * hls::x_conj(L_internal[j][k]);
+               } else {
+-                prod = -x_conj(L_internal[k][i]) * (L_internal[k][j]);
++                prod = -hls::x_conj(L_internal[k][i]) * (L_internal[k][j]);
+               }
+               
+               prod_cast_to_sum = prod;
+@@ -322,7 +322,7 @@
+           L_cast_to_new_L_off_diag = L_internal[j][j];
+           
+           // Diagonal is always real, avoid complex division
+-          new_L_off_diag = new_L_off_diag / x_real(L_cast_to_new_L_off_diag);
++          new_L_off_diag = new_L_off_diag / hls::x_real(L_cast_to_new_L_off_diag);
+           
+           // Round to target format using method specifed by traits defined types.
+           new_L = new_L_off_diag;
+@@ -331,8 +331,8 @@
+             L[i][j]          = new_L;
+             L_internal[i][j] = new_L;
+           } else{
+-            L[j][i]          = x_conj(new_L);
+-            L_internal[j][i] = x_conj(new_L);
++            L[j][i]          = hls::x_conj(new_L);
++            L_internal[j][i] = hls::x_conj(new_L);
+           }
+         } else if(i < j){
+           if(LowerTriangularL == true){
+@@ -397,12 +397,12 @@
+         if(LowerTriangularL == true){
+           product_sum = A[i][j];
+         } else {
+-          product_sum = x_conj(A[j][i]);
++          product_sum = hls::x_conj(A[j][i]);
+         }
+         sum_loop: for(int k = 0; k < j; k++) {
+           #pragma HLS loop_tripcount max=1+RowsColsA/2
+           #pragma HLS PIPELINE II = CholeskyTraits::INNER_II
+-          prod = -L_internal[i_off+k] * x_conj(L_internal[j_off+k]);
++          prod = -L_internal[i_off+k] * hls::x_conj(L_internal[j_off+k]);
+           prod_cast_to_sum = prod;
+           product_sum+=prod_cast_to_sum;
+         }
+@@ -414,14 +414,14 @@
+         // Round to target format using method specifed by traits defined types.
+         new_L = new_L_off_diag;
+         // Build sum for use in diagonal calculation for this row.
+-        square_sum += x_conj_sq(new_L);
++        square_sum += hls::x_conj_sq(new_L);
+         // Store result
+         L_internal[i_off+j] = new_L;
+         if(LowerTriangularL == true){
+           L[i][j]          = new_L;          // store in lower triangle
+           L[j][i]          = 0;              // Zero upper
+         } else{
+-          L[j][i]          = x_conj(new_L);  // store in upper triangle
++          L[j][i]          = hls::x_conj(new_L);  // store in upper triangle
+           L[i][j]          = 0;              // Zero lower
+         }
+       }
+@@ -439,13 +439,13 @@
+       new_L = new_L_diag; 
+       // Generate the reciprocal of the diagonal for internal use to aviod the latency of a divide in every off-diagonal calculation
+       A_minus_sum_cast_diag = A_minus_sum;
+-      cholesky_rsqrt(x_real(A_minus_sum_cast_diag),new_L_diag_recip);
++      cholesky_rsqrt(hls::x_real(A_minus_sum_cast_diag),new_L_diag_recip);
+       // Store diagonal value
+       diag_internal[i] = new_L_diag_recip;
+       if(LowerTriangularL == true){
+         L[i][i]          = new_L;
+       } else {
+-        L[i][i]          = x_conj(new_L);
++        L[i][i]          = hls::x_conj(new_L);
+       }
+     }
+     return(return_code);
+@@ -506,12 +506,12 @@
+       new_L = new_L_diag; 
+       // Generate the reciprocal of the diagonal for internal use to aviod the latency of a divide in every off-diagonal calculation
+       A_minus_sum_cast_diag = A_minus_sum;
+-      cholesky_rsqrt(x_real(A_minus_sum_cast_diag),new_L_diag_recip);
++      cholesky_rsqrt(hls::x_real(A_minus_sum_cast_diag),new_L_diag_recip);
+       // Store diagonal value
+       if(LowerTriangularL == true){
+         L[j][j]          = new_L;
+       } else {
+-        L[j][j]          = x_conj(new_L);
++        L[j][j]          = hls::x_conj(new_L);
+       }
+       
+       sum_loop:  for(int k = 0; k <= j; k++) {
+@@ -519,7 +519,7 @@
+         #pragma HLS loop_tripcount max=1+RowsColsA/2
+         // Same value used in all calcs
+         // o Implement -1* here
+-        prod_column_top = -x_conj(L_internal[j][k]);
++        prod_column_top = -hls::x_conj(L_internal[j][k]);
+         
+         // NOTE: Using a fixed loop length combined with a "if" to implement reducing loop length
+         // o Ensures the inner loop can achieve the maximum II (1)
+@@ -542,7 +542,7 @@
+               if(LowerTriangularL == true){
+                 A_cast_to_sum = A[i][j];
+               } else {
+-                A_cast_to_sum = x_conj(A[j][i]);
++                A_cast_to_sum = hls::x_conj(A[j][i]);
+               }
+               product_sum = A_cast_to_sum;
+             } else {
+@@ -561,9 +561,9 @@
+               new_L = new_L_off_diag;
+               // Build sum for use in diagonal calculation for this row.
+               if ( k == 0 ) {
+-                square_sum_array[i] = x_conj_sq(new_L);
++                square_sum_array[i] = hls::x_conj_sq(new_L);
+               } else {
+-                square_sum_array[i] += x_conj_sq(new_L);
++                square_sum_array[i] += hls::x_conj_sq(new_L);
+               }
+               // Store result
+               L_internal[i][j] = new_L;
+@@ -576,7 +576,7 @@
+                 if (!CholeskyTraits::ARCH2_ZERO_LOOP)
+                   L[j][i]          = 0;           // Zero upper
+               } else{
+-                L[j][i]          = x_conj(new_L);  // Store in upper triangle
++                L[j][i]          = hls::x_conj(new_L);  // Store in upper triangle
+                 if (!CholeskyTraits::ARCH2_ZERO_LOOP)
+                   L[i][j]          = 0;           // Zero lower
+               }
