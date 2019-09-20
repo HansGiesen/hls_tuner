@@ -1,0 +1,10 @@
+20190919_cholesky.db
+  Run of pragma tuner developed at Xilinx on Cholesky decomposition without unsafe math optimizations and without
+  skip_exit_check.  We tune only the unrolling of the innermost loop.  The arrays are not partitioned.  Based on code
+  in commit 18145aa2fea109fa8776299637cfe52903234318.  Used combined model with Gaussian process and prior model.
+20190920_cholesky_modified.db
+  Run of pragma tuner developed at Xilinx on Cholesky decomposition with unsafe math optimizations and with
+  skip_exit_check.  We tune the unrolling of the innermost loop and partitioning of the L_internal array with the same
+  design parameter.  Based on code in commit a43642ba4be884fda5192accebbc640d8ac51cfc.  Used combined model with
+  Gaussian process and prior model.
+

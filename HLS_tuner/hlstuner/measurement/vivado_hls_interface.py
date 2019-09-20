@@ -101,7 +101,7 @@ class VivadoHLSInterface(opentuner.MeasurementInterface):
     os.chmod(run_script, os.stat(run_script).st_mode | stat.S_IXUSR)
 
     if not self.args.use_prebuilt:
-      result = self.host_interf.run(run_script, output_dir, 'cholesky_' + str(result_id), 4, 2)
+      result = self.host_interf.run(run_script, output_dir, 'cholesky_' + str(result_id), 1, 2)
 
     else:
       distutils.dir_util.copy_tree(self.tuner_root + '/prebuilt/hls', output_dir)
