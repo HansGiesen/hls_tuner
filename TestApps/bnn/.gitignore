@@ -1,0 +1,9 @@
+.apc
+.cproject
+.project
+.settings
+.vivado_hls_log_all.xml
+Compare
+*.txt
+solution1
+vivado_hls.app
