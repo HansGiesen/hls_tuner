@@ -20,6 +20,10 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
+## HuDSoN repository
+This work culminated in HuDSoN.  However, HuDSoN lives now in another repository:
+https://github.com/HansGiesen/hudson
+
 ## Introduction
 This is the pragma tuner for Vivado HLS developed by Hans Giesen, an intern from the University of Pennsylvania, during
 his internship in San Jose, CA between 6/5/2019 and 8/23/2019.  For an introduction to the tuner, please consult the
